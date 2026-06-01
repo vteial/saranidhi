@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- 
+    Saranidhi Logo — "The Treasure House of Breath"
+    
+    Concept: A minimalist lotus-form composed of two mirrored breath curves
+    (representing Ida/Left and Pingala/Right nadis) converging at a central
+    point (Sushumna). A subtle dot (bindu) at the crown represents cosmic
+    consciousness. The overall shape evokes both a lotus bloom and the
+    rhythmic expansion/contraction of breath.
+  -->
+  
+  <!-- Background circle (optional, for app icon use) -->
+  <circle cx="256" cy="256" r="248" fill="none" stroke="none"/>
+  
+  <!-- Left Nadi (Ida/Lunar) — flowing curve -->
+  <path 
+    d="M 256 420 
+       C 200 380, 140 320, 140 256 
+       C 140 192, 200 132, 256 108"
+    stroke="#5B8C6B" 
+    stroke-width="18" 
+    stroke-linecap="round" 
+    fill="none"
+    opacity="0.9"
+  />
+  
+  <!-- Right Nadi (Pingala/Solar) — flowing curve -->
+  <path 
+    d="M 256 420 
+       C 312 380, 372 320, 372 256 
+       C 372 192, 312 132, 256 108"
+    stroke="#C4863C" 
+    stroke-width="18" 
+    stroke-linecap="round" 
+    fill="none"
+    opacity="0.9"
+  />
+  
+  <!-- Central channel (Sushumna) — vertical subtle line -->
+  <line 
+    x1="256" y1="108" 
+    x2="256" y2="420" 
+    stroke="#4A5568" 
+    stroke-width="4" 
+    stroke-linecap="round" 
+    opacity="0.3"
+  />
+  
+  <!-- Crown Bindu (point of consciousness) -->
+  <circle cx="256" cy="82" r="14" fill="#5B8C6B" opacity="0.85"/>
+  
+  <!-- Base Bindu (grounding point) -->
+  <circle cx="256" cy="446" r="10" fill="#C4863C" opacity="0.7"/>
+  
+  <!-- Inner convergence point (Ajna/third eye) -->
+  <circle cx="256" cy="256" r="8" fill="#4A5568" opacity="0.6"/>
+  
+  <!-- Subtle breath ripples (left) -->
+  <path 
+    d="M 172 256 
+       C 172 230, 200 210, 220 220"
+    stroke="#5B8C6B" 
+    stroke-width="6" 
+    stroke-linecap="round" 
+    fill="none"
+    opacity="0.4"
+  />
+  
+  <!-- Subtle breath ripples (right) -->
+  <path 
+    d="M 340 256 
+       C 340 230, 312 210, 292 220"
+    stroke="#C4863C" 
+    stroke-width="6" 
+    stroke-linecap="round" 
+    fill="none"
+    opacity="0.4"
+  />
+</svg>
