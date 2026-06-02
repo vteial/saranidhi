@@ -21,11 +21,12 @@ main ─────────────────────────
    - `flutter test` — all pass
    - `flutter build web` — compiles
 4. **Push & PR:** One PR per sprint targeting `main`
-5. **CI gates:** Analyze + Test + Coverage (≥80%) + Build Web + Integration Tests
-6. **Review:** Owner reviews PR on GitHub
-7. **Merge:** Owner merges after CI passes
-8. **Vercel deploys:** `main` auto-deploys to [saranidhi.vercel.app](https://saranidhi.vercel.app/)
-9. **Verify:** Owner checks staging URL
+5. **Vercel Preview:** Verify UI visually on the preview URL (auto-generated for each PR)
+6. **CI gates:** Analyze + Test + Coverage (≥15% feature sprints) + Build Web + Integration Tests
+7. **Review:** Owner verifies on Vercel preview + reviews PR on GitHub
+8. **Merge:** Owner merges after visual QA + CI passes
+9. **Vercel deploys:** `main` auto-deploys to [saranidhi.vercel.app](https://saranidhi.vercel.app/)
+10. **Verify:** Owner confirms staging matches expectations
 
 ---
 
@@ -96,8 +97,8 @@ git push origin main
 
 ### Known Limitations (Current)
 
-- **Vercel PR previews:** Not available (repo is private, bot user not in Vercel team). Will be enabled when repo goes public for 1.0 release.
-- **Verification:** After merge to `main`, check saranidhi.vercel.app manually.
+- **Coverage gate:** Set to 15% during feature sprints (3–8); will raise to 80% in Sprint 9.
+- **UI verification:** Always verify on Vercel preview before merging UI changes. Never merge UI blind.
 
 ---
 

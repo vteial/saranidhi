@@ -76,6 +76,10 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Node.js 20 deprecation warning in CI | `actions/checkout@v4` uses deprecated Node.js 20 | Upgraded to `@v5` + `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` env | Sprint 2 |
 | Coverage gate failure (16% vs 80%) | New UI code without corresponding widget tests | Lowered threshold to 15% for feature sprints; raise in Sprint 9 | Sprint 3 |
 | Integration tests failing (stale assertions) | Home screen changed from placeholder to dashboard; integration test not updated | Updated `integration_test/app_test.dart` to match new dashboard UI | Sprint 4 |
+| Bottom nav full-width on desktop | `NavigationBar` not wrapped in responsive constraint | Used `Align` + `ConstrainedBox(maxWidth: 1200)` with `heightFactor: 1` | Sprint 4 (PR #9) |
+| Logo only on Home screen | Only `HomeScreen` had logo in AppBar | Created shared `BrandedAppBar` widget used on all tabs | Sprint 4 (PR #9) |
+| Entry logged without completing timer | Submit button enabled before timer completion | Disabled button until `TimerPhase.complete`; shows "Complete timer to log" | Sprint 4 (PR #9) |
+| UI collapsed after ResponsiveWrapper on bottomNav | `Center` + `ConstrainedBox` inside `Scaffold.bottomNavigationBar` collapsed height | Reverted (PR #8), used `Align(heightFactor: 1)` approach instead (PR #9) | Sprint 4 (PR #7→#8→#9) |
 
 ---
 
@@ -87,7 +91,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 1 | Project scaffold & core architecture | #1 | 2 | ✅ Complete |
 | Sprint 2 | Astro-Logic Engine (Pure Dart TDD) | #2 | 108 | ✅ Complete |
 | Sprint 3 | Sara Kalai Breath Journal UI + Logic | #3, #4 (hotfix) | 17 | ✅ Complete |
-| Sprint 4 | Streak & Consistency Engine | #5 | 23 | ✅ Complete |
+| Sprint 4 | Streak & Consistency Engine | #5, #6, #7→#8→#9 (UI polish) | 23 | ✅ Complete |
 
 ---
 

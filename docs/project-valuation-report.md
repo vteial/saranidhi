@@ -7,8 +7,8 @@
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
 **Sprints Delivered:** 4 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~8.5 Hours
-**Pull Requests Merged:** 5
+**Total Engineering Investment:** ~11.0 Hours
+**Pull Requests Merged:** 9
 **Automated Test Coverage:** 150 assertions (unit + widget + integration)
 
 ---
@@ -33,6 +33,15 @@
 | `15cd7bc` | Kiro Agent | 2026-06-02 07:55 | fix(sprint3): Drift web support |
 | `8c9d388` | Eialarasu | 2026-06-02 08:00 | **Merge PR #4 — Sprint 3 Hotfix** |
 | `85d65d9` | Kiro Agent | 2026-06-02 08:15 | feat(sprint4): Streak & Consistency Engine |
+| `3f7ec86` | Kiro Agent | 2026-06-02 08:20 | docs(sprint4): evaluation + valuation reports, fix integration tests |
+| `0811923` | Eialarasu | 2026-06-02 08:30 | **Merge PR #5 — Sprint 4 Complete** |
+| `50bfcaf` | Kiro Agent | 2026-06-02 09:00 | fix(sprint4): Journal UX (logo, timer display, delete) |
+| `bbe0650` | Eialarasu | 2026-06-02 09:15 | **Merge PR #6 — Sprint 4 Hotfix (Journal UX)** |
+| `7bacceb` | Kiro Agent | 2026-06-02 10:00 | fix(sprint4): branding, responsive nav, timer requirement |
+| `b318b06` | Eialarasu | 2026-06-02 10:10 | **Merge PR #7 — UI broke** |
+| `1394abf` | Eialarasu | 2026-06-02 10:20 | **Merge PR #8 — Revert PR #7** |
+| `aeff6c4` | Kiro Agent | 2026-06-02 11:00 | fix(sprint4): UI polish (Align approach for nav, BrandedAppBar) |
+| `db32304` | Eialarasu | 2026-06-02 11:30 | **Merge PR #9 — UI Polish (verified via Vercel preview)** |
 
 ---
 
@@ -42,7 +51,7 @@
 
 | Session | Date | Window | Hours | Sprints |
 |---------|------|--------|-------|---------|
-| Day 1 | 2026-06-02 | 06:00 - 08:30 | ~2.5 | Sprint 0, 1, 2, 3, 4 |
+| Day 1 | 2026-06-02 | 06:00 - 11:30 | ~5.5 | Sprint 0, 1, 2, 3, 4 + hotfixes |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -61,9 +70,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 2.5 |
-| Infrastructure & admin ops | 6.0 |
-| **Total** | **~8.5** |
+| Active coding & debugging (AI-assisted) | 5.5 |
+| Infrastructure & admin ops | 5.5 |
+| **Total** | **~11.0** |
 
 ---
 
@@ -75,7 +84,7 @@
 | Sprint 1 | Project scaffold & core architecture | #1 | 2 | ✅ Complete |
 | Sprint 2 | Astro-Logic Engine (Pure Dart TDD) | #2 | 110 | ✅ Complete |
 | Sprint 3 | Sara Kalai Breath Journal UI + Logic | #3, #4 | 127 | ✅ Complete |
-| Sprint 4 | Streak & Consistency Engine | #5 | 150 | ✅ Complete |
+| Sprint 4 | Streak & Consistency Engine + UI Polish | #5, #6, #7→#8→#9 | 150 | ✅ Complete |
 | Sprint 5 | Cloud Backup Integration | — | — | 🔲 Next |
 | Sprint 6 | Notifications + Onboarding | — | — | 🔲 Planned |
 | Sprint 7 | AI Wisdom Engine | — | — | 🔲 Planned |
