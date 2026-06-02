@@ -36,12 +36,12 @@ void main() {
         expect(allNakshatras.toSet().length, equals(27));
       });
 
-      test('starts with Ashwini', () {
-        expect(allNakshatras.first, equals('Ashwini'));
+      test('starts with Anuradha (alphabetical)', () {
+        expect(allNakshatras.first, equals('Anuradha'));
       });
 
-      test('ends with Revati', () {
-        expect(allNakshatras.last, equals('Revati'));
+      test('ends with Vishakha (alphabetical)', () {
+        expect(allNakshatras.last, equals('Vishakha'));
       });
     });
 

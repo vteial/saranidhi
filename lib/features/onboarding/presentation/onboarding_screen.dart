@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:saranidhi/core/router/app_router.dart';
+import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 
 /// The first-run onboarding flow.
@@ -19,59 +22,70 @@ class OnboardingScreen extends ConsumerWidget {
     final notifier = ref.read(onboardingNotifierProvider.notifier);
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              // Progress indicator
-              LinearProgressIndicator(
-                value: (state.currentStep + 1) / state.totalSteps,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              const SizedBox(height: 24),
+      body: ResponsiveWrapper(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              children: [
+                // Progress indicator
+                LinearProgressIndicator(
+                  value: (state.currentStep + 1) / state.totalSteps,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                const SizedBox(height: 24),
 
-              // Step content
-              Expanded(
-                child: switch (state.currentStep) {
-                  0 => _WelcomeStep(state: state, notifier: notifier),
-                  1 => _BirthStarStep(state: state, notifier: notifier),
-                  2 => _LocationStep(state: state, notifier: notifier),
-                  3 => _StorageModeStep(state: state, notifier: notifier),
-                  _ => const SizedBox.shrink(),
-                },
-              ),
+                // Step content
+                Expanded(
+                  child: switch (state.currentStep) {
+                    0 => _WelcomeStep(state: state, notifier: notifier),
+                    1 => _BirthStarStep(state: state, notifier: notifier),
+                    2 => _LocationStep(state: state, notifier: notifier),
+                    3 => _StorageModeStep(state: state, notifier: notifier),
+                    _ => const SizedBox.shrink(),
+                  },
+                ),
 
-              // Navigation buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (state.currentStep > 0)
-                    TextButton(
-                      onPressed: notifier.previousStep,
-                      child: const Text('Back'),
-                    )
-                  else
-                    const SizedBox(width: 80),
-                  if (state.currentStep < state.totalSteps - 1)
-                    FilledButton(
-                      onPressed: notifier.nextStep,
-                      child: const Text('Next'),
-                    )
-                  else
-                    FilledButton(
-                      onPressed: state.isSaving ? null : notifier.saveProfile,
-                      child: state.isSaving
-                          ? const SizedBox(
-                              width: 16,
-                              height: 16,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : const Text('Complete Setup'),
-                    ),
-                ],
-              ),
-            ],
+                // Navigation buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    if (state.currentStep > 0)
+                      TextButton(
+                        onPressed: notifier.previousStep,
+                        child: const Text('Back'),
+                      )
+                    else
+                      const SizedBox(width: 80),
+                    if (state.currentStep < state.totalSteps - 1)
+                      FilledButton(
+                        onPressed: notifier.nextStep,
+                        child: const Text('Next'),
+                      )
+                    else
+                      FilledButton(
+                        onPressed: state.isSaving
+                            ? null
+                            : () async {
+                                await notifier.saveProfile();
+                                if (context.mounted) {
+                                  context.go(AppRoutes.home);
+                                }
+                              },
+                        child: state.isSaving
+                            ? const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Text('Complete Setup'),
+                      ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
