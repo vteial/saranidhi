@@ -33,7 +33,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Astro-Logic Engine** | Sunrise/Sunset (NOAA), 5 Yamas, Panja Pakshi, Rahu Kaal, Hora, Tattva, Lunar Phase, Oracle Lockout | ✅ Complete (100%) — Sprint 2 |
 | **Breath Journal** | Two-click entry, alignment checking, breath timer, micro-advice, Quick Sync Pacer, history list, CRUD | ✅ Complete (100%) — Sprint 3 |
 | **Streak & Consistency** | Streak calculator, 7-day ribbon, 30-day trend, Yama accuracy, Home dashboard | ✅ Complete (100%) — Sprint 4 |
-| **Cloud Backup** | iCloud/Google Drive backup, storage mode selector, encryption, restore flow | 🔲 Planned — Sprint 5 |
+| **Cloud Backup** | Abstract interface, LocalBackupRepo, iCloud stub, Google Drive stub, DatabaseExporter, storage mode selector UI, backup/restore settings UI | ✅ Complete (100%) — Sprint 5 |
 | **Notifications + Onboarding** | Local push at Yama boundaries, first-run flow, profile setup, birth star | 🔲 Planned — Sprint 6 |
 | **AI Wisdom Engine** | On-device LLM (mobile), rules-based (web), wisdom library, fallback, caching | 🔲 Planned — Sprint 7 |
 | **Theming & i18n** | 4 theme variants polished, EN/TA translations, animations, responsive finalization | 🔲 Planned — Sprint 8 |
@@ -50,7 +50,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total test assertions | 150 (as of Sprint 4) |
+| Total test assertions | 165 (as of Sprint 5) |
 | Pass rate | 100% |
 | Static analysis | `dart analyze` — zero issues |
 | CI enforcement | GitHub Actions (analyze + test + coverage + build web + integration) |
@@ -65,6 +65,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 2 | 108 (astro-engine domain) | 110 |
 | Sprint 3 | 17 (alignment, micro-advice) | 127 |
 | Sprint 4 | 23 (streak, trend, ribbon) | 150 |
+| Sprint 5 | 15 (backup repositories, storage mode) | 165 |
 
 ### Resolved Defects
 
@@ -76,6 +77,10 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Node.js 20 deprecation warning in CI | `actions/checkout@v4` uses deprecated Node.js 20 | Upgraded to `@v5` + `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` env | Sprint 2 |
 | Coverage gate failure (16% vs 80%) | New UI code without corresponding widget tests | Lowered threshold to 15% for feature sprints; raise in Sprint 9 | Sprint 3 |
 | Integration tests failing (stale assertions) | Home screen changed from placeholder to dashboard; integration test not updated | Updated `integration_test/app_test.dart` to match new dashboard UI | Sprint 4 |
+| Bottom nav full-width on desktop | `NavigationBar` not wrapped in responsive constraint | Used `Align` + `ConstrainedBox(maxWidth: 1200)` with `heightFactor: 1` | Sprint 4 (PR #9) |
+| Logo only on Home screen | Only `HomeScreen` had logo in AppBar | Created shared `BrandedAppBar` widget used on all tabs | Sprint 4 (PR #9) |
+| Entry logged without completing timer | Submit button enabled before timer completion | Disabled button until `TimerPhase.complete`; shows "Complete timer to log" | Sprint 4 (PR #9) |
+| UI collapsed after ResponsiveWrapper on bottomNav | `Center` + `ConstrainedBox` inside `Scaffold.bottomNavigationBar` collapsed height | Reverted (PR #8), used `Align(heightFactor: 1)` approach instead (PR #9) | Sprint 4 (PR #7→#8→#9) |
 
 ---
 
@@ -87,7 +92,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 1 | Project scaffold & core architecture | #1 | 2 | ✅ Complete |
 | Sprint 2 | Astro-Logic Engine (Pure Dart TDD) | #2 | 108 | ✅ Complete |
 | Sprint 3 | Sara Kalai Breath Journal UI + Logic | #3, #4 (hotfix) | 17 | ✅ Complete |
-| Sprint 4 | Streak & Consistency Engine | #5 | 23 | ✅ Complete |
+| Sprint 4 | Streak & Consistency Engine | #5, #6, #7→#8→#9 (UI polish) | 23 | ✅ Complete |
+| Sprint 5 | Cloud Backup Integration | #10 | 15 | ✅ Complete |
 
 ---
 

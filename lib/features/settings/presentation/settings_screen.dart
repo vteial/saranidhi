@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/theme/app_theme.dart';
 import 'package:saranidhi/core/theme/theme_provider.dart';
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
+import 'package:saranidhi/features/cloud_backup/presentation/widgets/backup_actions_widget.dart';
+import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mode_selector.dart';
 
 /// The Settings screen.
 ///
@@ -51,12 +53,11 @@ class SettingsScreen extends ConsumerWidget {
             subtitle: Text('Coming in Sprint 6'),
             enabled: false,
           ),
-          const ListTile(
-            leading: Icon(Icons.cloud_outlined),
-            title: Text('Cloud Backup'),
-            subtitle: Text('Coming in Sprint 5'),
-            enabled: false,
-          ),
+          const SizedBox(height: 16),
+          const StorageModeSelector(),
+          const Divider(height: 32),
+          const BackupActionsWidget(),
+          const Divider(height: 32),
           const ListTile(
             leading: Icon(Icons.notifications_outlined),
             title: Text('Notifications'),
