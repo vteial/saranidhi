@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/alignment_result_widget.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/breath_entry_widget.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/breath_timer_widget.dart';
@@ -27,7 +28,7 @@ class JournalScreen extends ConsumerWidget {
     final alignment = entryState.alignmentResult;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Breath Journal'), centerTitle: true),
+      appBar: const BrandedAppBar(title: 'Breath Journal'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
