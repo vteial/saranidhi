@@ -1,0 +1,23 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.drift.dart"
+    - "lib/generated/**"
+    - "lib/l10n/**"
+    - "test/**"
+
+linter:
+  rules:
+    # Relaxed for readability
+    lines_longer_than_80_chars: false
+    # Enforce package imports
+    always_use_package_imports: true
+    # Disable doc requirements for table column definitions
+    public_member_api_docs: false
+    # Allow single-member abstract classes (e.g. route constants)
+    one_member_abstracts: false
+    # Sort imports is handled by formatter
+    sort_pub_dependencies: false

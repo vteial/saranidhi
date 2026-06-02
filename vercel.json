@@ -1,0 +1,6 @@
+{
+  "buildCommand": "chmod +x ./scripts/vercel_build.sh && ./scripts/vercel_build.sh",
+  "outputDirectory": "build/web",
+  "framework": null,
+  "installCommand": "echo 'Skip install — handled in build script'"
+}
