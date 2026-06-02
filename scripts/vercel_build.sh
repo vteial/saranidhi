@@ -14,6 +14,9 @@ flutter pub get
 echo "=== Running Code Generation ==="
 dart run build_runner build --delete-conflicting-outputs
 
+echo "=== Compiling Drift Worker for Web ==="
+dart compile js -o web/drift_worker.js web/drift_worker.dart
+
 echo "=== Building Flutter Web ==="
 flutter build web --release
 
