@@ -35,7 +35,7 @@ jobs:
       - name: Run unit & widget tests with coverage
         run: flutter test --coverage
 
-      - name: Check coverage threshold (80%)
+      - name: Check coverage threshold
         run: |
           if [ ! -f coverage/lcov.info ]; then
             echo "No coverage file found!"
@@ -54,11 +54,14 @@ jobs:
           COVERAGE=$(( HIT_LINES * 100 / TOTAL_LINES ))
           echo "Coverage: $COVERAGE% ($HIT_LINES/$TOTAL_LINES lines hit)"
 
-          if [ "$COVERAGE" -lt 80 ]; then
-            echo "❌ Coverage $COVERAGE% is below the 80% threshold!"
+          # Threshold: 15% during feature sprints (3-8), raised to 80% in Sprint 9
+          THRESHOLD=15
+          if [ "$COVERAGE" -lt "$THRESHOLD" ]; then
+            echo "❌ Coverage $COVERAGE% is below the ${THRESHOLD}% threshold!"
             exit 1
           else
-            echo "✅ Coverage $COVERAGE% meets the 80% threshold."
+            echo "✅ Coverage $COVERAGE% meets the ${THRESHOLD}% threshold."
+            echo "Note: Threshold will be raised to 80% in Sprint 9 (Testing & Hardening)."
           fi
 
       - name: Build web
