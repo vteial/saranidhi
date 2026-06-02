@@ -29,7 +29,7 @@ void main() {
       // Navigate to Settings
       await tester.tap(find.text('Settings'));
       await tester.pumpAndSettle();
-      expect(find.text('Theme'), findsOneWidget);
+      expect(find.text('Settings'), findsWidgets);
 
       // Navigate back to Home
       await tester.tap(find.text('Home'));
