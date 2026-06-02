@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   analyze-test-build:
     name: Analyze, Test & Build
@@ -13,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -29,8 +32,74 @@ jobs:
       - name: Analyze code
         run: dart analyze --fatal-infos
 
-      - name: Run tests
-        run: flutter test
+      - name: Run unit & widget tests with coverage
+        run: flutter test --coverage
+
+      - name: Check coverage threshold (80%)
+        run: |
+          if [ ! -f coverage/lcov.info ]; then
+            echo "No coverage file found!"
+            exit 1
+          fi
+
+          # Calculate total line coverage percentage
+          TOTAL_LINES=$(grep -c "^DA:" coverage/lcov.info || echo "0")
+          HIT_LINES=$(grep "^DA:" coverage/lcov.info | grep -v ",0$" | wc -l || echo "0")
+
+          if [ "$TOTAL_LINES" -eq 0 ]; then
+            echo "No coverage data found."
+            exit 1
+          fi
+
+          COVERAGE=$(( HIT_LINES * 100 / TOTAL_LINES ))
+          echo "Coverage: $COVERAGE% ($HIT_LINES/$TOTAL_LINES lines hit)"
+
+          if [ "$COVERAGE" -lt 80 ]; then
+            echo "❌ Coverage $COVERAGE% is below the 80% threshold!"
+            exit 1
+          else
+            echo "✅ Coverage $COVERAGE% meets the 80% threshold."
+          fi
 
       - name: Build web
         run: flutter build web
+
+  integration-test:
+    name: Integration Tests (Web)
+    runs-on: ubuntu-latest
+    needs: analyze-test-build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install Chrome and ChromeDriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run code generation
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Run integration tests (web)
+        run: |
+          if [ -d "integration_test" ] && [ "$(find integration_test -name '*_test.dart' | wc -l)" -gt 0 ]; then
+            chromedriver --port=4444 &
+            sleep 2
+            flutter drive \
+              --driver=test_driver/integration_test.dart \
+              --target=integration_test/app_test.dart \
+              -d web-server \
+              --browser-name=chrome \
+              --headless
+          else
+            echo "No integration tests found yet — skipping."
+          fi

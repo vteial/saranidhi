@@ -19,7 +19,7 @@
 
 ---
 
-## Sprint 1: Project Scaffold & Core Architecture ✅ (Current Sprint)
+## Sprint 1: Project Scaffold & Core Architecture ✅ Complete (Merged PR #1)
 
 - [x] Task 1.1: Initialize Flutter project with `flutter create` (iOS, Android, Web targets)
 - [x] Task 1.2: Configure `pubspec.yaml` with core dependencies (Riverpod 3, GoRouter, Drift, Freezed, very_good_analysis)
@@ -35,22 +35,22 @@
 
 ---
 
-## Sprint 2: Astro-Logic Engine (Pure Dart TDD)
+## Sprint 2: Astro-Logic Engine (Pure Dart TDD) ✅ Complete (Merged PR #2)
 
-- [ ] Task 2.1: Implement sunrise/sunset calculator using NOAA solar position algorithm
-- [ ] Task 2.2: Implement 5 Yamas calculation (divide daylight into 5 equal segments)
-- [ ] Task 2.3: Implement Panja Pakshi bird state cycling (weekday + lunar phase matrix)
-- [ ] Task 2.4: Implement Rahu Kaal calculation (8-segment division, day-index offset mapping)
-- [ ] Task 2.5: Implement 10% Floor Lockout logic (Oracle score override during Rahu Kaal)
-- [ ] Task 2.6: Implement Hora (planetary hour) calculation
-- [ ] Task 2.7: Implement Tattva (element) cycle calculation within Yamas
-- [ ] Task 2.8: Implement lunar phase determination (waxing/waning from date)
-- [ ] Task 2.9: Write comprehensive unit tests for all calculation functions (edge cases: equinox, solstice, extreme latitudes)
-- [ ] Task 2.10: Verify zero network dependency — all calculations work in airplane mode
+- [x] Task 2.1: Implement sunrise/sunset calculator using NOAA solar position algorithm
+- [x] Task 2.2: Implement 5 Yamas calculation (divide daylight into 5 equal segments)
+- [x] Task 2.3: Implement Panja Pakshi bird state cycling (weekday + lunar phase matrix)
+- [x] Task 2.4: Implement Rahu Kaal calculation (8-segment division, day-index offset mapping)
+- [x] Task 2.5: Implement 10% Floor Lockout logic (Oracle score override during Rahu Kaal)
+- [x] Task 2.6: Implement Hora (planetary hour) calculation
+- [x] Task 2.7: Implement Tattva (element) cycle calculation within Yamas
+- [x] Task 2.8: Implement lunar phase determination (waxing/waning from date)
+- [x] Task 2.9: Write comprehensive unit tests for all calculation functions (edge cases: equinox, solstice, extreme latitudes)
+- [x] Task 2.10: Verify zero network dependency — all calculations work in airplane mode
 
 ---
 
-## Sprint 3: Sara Kalai Breath Journal UI + Logic
+## Sprint 3: Sara Kalai Breath Journal UI + Logic (Current Sprint)
 
 - [ ] Task 3.1: Build two-click breath entry widget (Solar/Lunar/Sushumna selection)
 - [ ] Task 3.2: Implement real-time alignment comparison against Astro-Logic Engine output

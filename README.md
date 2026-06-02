@@ -149,6 +149,7 @@ flutter run
 - [Release 1.0 Plan](docs/release-1.0-plan.md) — Sprint-to-release milestones
 - [Sprint Tracker](docs/sprint-tracker.md) — Current progress
 - [Testing Plan](docs/testing-plan.md) — Test strategy and scenarios
+- [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, rollback strategies, quality gates
 
 ---
 
