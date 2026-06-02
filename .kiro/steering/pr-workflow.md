@@ -44,23 +44,38 @@ flutter test                    # Must exit 0
 - Activate the immediate subsequent sprint as `(Current Sprint)`
 - Verify all task checkboxes in the completed sprint are marked `[x]`
 
-### Step 3: Project Plan Alignment
+### Step 3: Valuation Report Update
+- Open `docs/project-valuation-report.md`
+- Parse recent commit metadata and append new entries to the Commit Metadata Timeline
+- Update the Active Coding Sessions table with session hours
+- Update Total Engineering Investment totals
+- Update Sprint Delivery Summary table (status transition)
+
+### Step 4: Evaluation Scorecard Bumping
+- Open `docs/project-evaluation.md`
+- Transition completed feature domains to `✅ Complete (100%)` in the scorecard
+- Update the cumulative test assertion count in Test Count Progression
+- Update Test Execution Parameters (total assertions, pass rate)
+- Append any new resolved defects to the Resolved Defects table
+- Update Sprint Delivery Summary with new sprint row
+
+### Step 5: Project Plan Alignment
 - Audit `docs/project-plan.md`
 - Cross-verify any newly introduced infrastructure or architecture is documented
 - Add missing sections if new patterns were introduced during the sprint
 
-### Step 4: Testing Synchronization
+### Step 6: Testing Synchronization
 - Scan `docs/testing-plan.md`
 - Verify documented scenarios match physical test file assertions
 - Update scenario counts if new tests were added during the sprint
 
-### Step 5: Commit & PR Preparation
+### Step 7: Commit & PR Preparation
 - Stage all changes
 - Commit with conventional message: `feat(sprintX): <summary>`
 - Output PR Title + description
 - Push via `github_push_to_remote` tool
 
-### Step 6: PR Creation
+### Step 8: PR Creation
 - Create pull request targeting `main`
 - PR body includes: sprint summary, tasks completed, tests added
 - Await CI pass before merge
@@ -79,7 +94,15 @@ dart analyze                    # Must exit 0
 flutter test                    # Must exit 0
 ```
 
-### Step 2: Commit
+### Step 2: Forensic Defect Entry
+- Append a row to the "Resolved Defects" table in `docs/project-evaluation.md` Section 3
+- Row format: `| Issue/Symptom | Root Cause | Resolution | Sprint |`
+
+### Step 3: Time Delta Recording
+- Increment the matching session row in `docs/project-valuation-report.md`
+- Update Total Project Investment cumulative hours if significant time was spent
+
+### Step 4: Commit
 - Stage the fix + any documentation updates
 - Commit with `fix(sprintX): <description>`
 
