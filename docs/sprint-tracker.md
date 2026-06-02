@@ -19,7 +19,7 @@
 
 ---
 
-## Sprint 1: Project Scaffold & Core Architecture ✅ (Current Sprint)
+## Sprint 1: Project Scaffold & Core Architecture ✅ Complete (Merged PR #1)
 
 - [x] Task 1.1: Initialize Flutter project with `flutter create` (iOS, Android, Web targets)
 - [x] Task 1.2: Configure `pubspec.yaml` with core dependencies (Riverpod 3, GoRouter, Drift, Freezed, very_good_analysis)
@@ -35,7 +35,7 @@
 
 ---
 
-## Sprint 2: Astro-Logic Engine (Pure Dart TDD) ✅ (Current Sprint)
+## Sprint 2: Astro-Logic Engine (Pure Dart TDD) ✅ Complete (Merged PR #2)
 
 - [x] Task 2.1: Implement sunrise/sunset calculator using NOAA solar position algorithm
 - [x] Task 2.2: Implement 5 Yamas calculation (divide daylight into 5 equal segments)
@@ -50,7 +50,7 @@
 
 ---
 
-## Sprint 3: Sara Kalai Breath Journal UI + Logic
+## Sprint 3: Sara Kalai Breath Journal UI + Logic (Current Sprint)
 
 - [ ] Task 3.1: Build two-click breath entry widget (Solar/Lunar/Sushumna selection)
 - [ ] Task 3.2: Implement real-time alignment comparison against Astro-Logic Engine output
