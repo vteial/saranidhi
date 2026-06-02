@@ -298,7 +298,9 @@ class _TimingChip extends StatelessWidget {
             ? theme.colorScheme.primaryContainer
             : theme.colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(12),
-        border: highlight ? Border.all(color: theme.colorScheme.primary) : null,
+        border: highlight
+            ? Border.all(color: theme.colorScheme.primary)
+            : null,
       ),
       child: Text(
         '$label: ${seconds}s',

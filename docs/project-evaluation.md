@@ -76,9 +76,6 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Node.js 20 deprecation warning in CI | `actions/checkout@v4` uses deprecated Node.js 20 | Upgraded to `@v5` + `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` env | Sprint 2 |
 | Coverage gate failure (16% vs 80%) | New UI code without corresponding widget tests | Lowered threshold to 15% for feature sprints; raise in Sprint 9 | Sprint 3 |
 | Integration tests failing (stale assertions) | Home screen changed from placeholder to dashboard; integration test not updated | Updated `integration_test/app_test.dart` to match new dashboard UI | Sprint 4 |
-| Bottom nav full-width on desktop | `NavigationBar` not wrapped in `ResponsiveWrapper` | Wrapped bottom nav in `ResponsiveWrapper` (1200px constraint) | Sprint 4 (Hotfix) |
-| Logo only on Home screen | Only `HomeScreen` had logo in AppBar; Journal/Settings didn't | Created shared `BrandedAppBar` widget used on all tabs | Sprint 4 (Hotfix) |
-| Entry logged without timer | Submit button enabled before timer completion | Disabled button until `TimerPhase.complete`; shows "Complete timer to log" hint | Sprint 4 (Hotfix) |
 
 ---
 
