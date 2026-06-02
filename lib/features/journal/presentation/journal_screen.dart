@@ -52,9 +52,10 @@ class JournalScreen extends ConsumerWidget {
 
               const SizedBox(height: 16),
 
-              // Submit button
+              // Submit button — only enabled after timer completes
               FilledButton.icon(
-                onPressed: entryState.isSubmitting
+                onPressed: entryState.isSubmitting ||
+                        timerState.phase != TimerPhase.complete
                     ? null
                     : () => _submitEntry(ref, timerState),
                 icon: entryState.isSubmitting
@@ -65,7 +66,11 @@ class JournalScreen extends ConsumerWidget {
                       )
                     : const Icon(Icons.save),
                 label: Text(
-                  entryState.isSubmitting ? 'Saving...' : 'Log Breath Entry',
+                  entryState.isSubmitting
+                      ? 'Saving...'
+                      : timerState.phase == TimerPhase.complete
+                          ? 'Log Breath Entry'
+                          : 'Complete timer to log',
                 ),
               ),
             ],
