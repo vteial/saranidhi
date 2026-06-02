@@ -4,7 +4,7 @@
 
 ---
 
-## Sprint 0: Pre-Development & Project Initialization ✅ (Current Sprint)
+## Sprint 0: Pre-Development & Project Initialization ✅
 
 - [x] Task 0.1: Initialize Git repository with `main` branch and Flutter `.gitignore`
 - [x] Task 0.2: Create Kiro steering files (`pr-workflow.md`, `saranidhi-spec.md`)
@@ -19,19 +19,19 @@
 
 ---
 
-## Sprint 1: Project Scaffold & Core Architecture
+## Sprint 1: Project Scaffold & Core Architecture ✅ (Current Sprint)
 
-- [ ] Task 1.1: Initialize Flutter project with `flutter create` (iOS, Android, Web targets)
-- [ ] Task 1.2: Configure `pubspec.yaml` with core dependencies (Riverpod 3, GoRouter, Drift, Freezed, very_good_analysis)
-- [ ] Task 1.3: Set up `analysis_options.yaml` with very_good_analysis and strict rules
-- [ ] Task 1.4: Configure Drift database with initial schema (profiles, sara_kalai_journal, breath_sessions, bird_library tables)
-- [ ] Task 1.5: Set up Riverpod 3 with code generation scaffold and provider structure
-- [ ] Task 1.6: Configure GoRouter with StatefulShellRoute (bottom nav: Home, Journal, Settings)
-- [ ] Task 1.7: Implement Material 3 theming (Light, Dark, Emerald, Gold) with persistence
-- [ ] Task 1.8: Set up feature-first folder structure (`lib/core/`, `lib/features/`, `lib/database/`)
-- [ ] Task 1.9: Configure GitHub Actions CI workflow (analyze + test + build web)
-- [ ] Task 1.10: Configure lefthook pre-commit hooks (format + analyze)
-- [ ] Task 1.11: Verify clean build on all platforms (`flutter build web`, iOS simulator, Android emulator)
+- [x] Task 1.1: Initialize Flutter project with `flutter create` (iOS, Android, Web targets)
+- [x] Task 1.2: Configure `pubspec.yaml` with core dependencies (Riverpod 3, GoRouter, Drift, Freezed, very_good_analysis)
+- [x] Task 1.3: Set up `analysis_options.yaml` with very_good_analysis and strict rules
+- [x] Task 1.4: Configure Drift database with initial schema (profiles, sara_kalai_journal, breath_sessions, bird_library tables)
+- [x] Task 1.5: Set up Riverpod 3 with code generation scaffold and provider structure
+- [x] Task 1.6: Configure GoRouter with StatefulShellRoute (bottom nav: Home, Journal, Settings)
+- [x] Task 1.7: Implement Material 3 theming (Light, Dark, Emerald, Gold) with persistence
+- [x] Task 1.8: Set up feature-first folder structure (`lib/core/`, `lib/features/`, `lib/database/`)
+- [x] Task 1.9: Configure GitHub Actions CI workflow (analyze + test + build web)
+- [x] Task 1.10: Configure lefthook pre-commit hooks (format + analyze)
+- [x] Task 1.11: Verify clean build on all platforms (`flutter build web`, iOS simulator, Android emulator)
 
 ---
 
