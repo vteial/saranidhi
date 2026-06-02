@@ -8,6 +8,8 @@ analyzer:
     - "lib/generated/**"
     - "lib/l10n/**"
     - "test/**"
+    - "integration_test/**"
+    - "test_driver/**"
 
 linter:
   rules:
