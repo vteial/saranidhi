@@ -50,20 +50,20 @@
 
 ---
 
-## Sprint 3: Sara Kalai Breath Journal UI + Logic (Current Sprint)
+## Sprint 3: Sara Kalai Breath Journal UI + Logic ✅ Complete (Merged PR #3)
 
-- [ ] Task 3.1: Build two-click breath entry widget (Solar/Lunar/Sushumna selection)
-- [ ] Task 3.2: Implement real-time alignment comparison against Astro-Logic Engine output
-- [ ] Task 3.3: Build breath duration timer UI (inhale/hold/exhale with visual feedback)
-- [ ] Task 3.4: Implement micro-advice display component (context-aware guidance text)
-- [ ] Task 3.5: Build Quick Sync Pacer animation (breathing guide to shift dominant nostril)
-- [ ] Task 3.6: Wire journal entries to Drift local repository (CRUD operations)
-- [ ] Task 3.7: Build journal history list view (chronological, grouped by date)
-- [ ] Task 3.8: Implement Riverpod state management for breath journal feature
+- [x] Task 3.1: Build two-click breath entry widget (Solar/Lunar/Sushumna selection)
+- [x] Task 3.2: Implement real-time alignment comparison against Astro-Logic Engine output
+- [x] Task 3.3: Build breath duration timer UI (inhale/hold/exhale with visual feedback)
+- [x] Task 3.4: Implement micro-advice display component (context-aware guidance text)
+- [x] Task 3.5: Build Quick Sync Pacer animation (breathing guide to shift dominant nostril)
+- [x] Task 3.6: Wire journal entries to Drift local repository (CRUD operations)
+- [x] Task 3.7: Build journal history list view (chronological, grouped by date)
+- [x] Task 3.8: Implement Riverpod state management for breath journal feature
 
 ---
 
-## Sprint 4: Streak & Consistency Engine
+## Sprint 4: Streak & Consistency Engine (Current Sprint)
 
 - [ ] Task 4.1: Implement streak calculation logic (consecutive aligned days from today backwards)
 - [ ] Task 4.2: Build 7-day calendar ribbon widget (compact visual checkmarks)
