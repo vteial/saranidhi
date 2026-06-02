@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "appTitle": "Saranidhi",
+  "@appTitle": {
+    "description": "The application title"
+  },
+  "homeTab": "Home",
+  "@homeTab": {
+    "description": "Home tab label"
+  },
+  "journalTab": "Journal",
+  "@journalTab": {
+    "description": "Journal tab label"
+  },
+  "settingsTab": "Settings",
+  "@settingsTab": {
+    "description": "Settings tab label"
+  }
+}

@@ -1,0 +1,63 @@
+name: saranidhi
+description: "The Treasure House of Breath — A spiritual life-guidance app rooted in ancient Sara Kalai science."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management — Riverpod 3 with code generation
+  flutter_riverpod: ^3.3.1
+  riverpod_annotation: ^4.0.2
+
+  # Routing
+  go_router: ^17.2.3
+
+  # Local Database
+  drift: ^2.33.0
+  sqlite3_flutter_libs: ^0.6.0
+  drift_flutter: ^0.3.0
+
+  # Models & Serialization
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+
+  # Utilities
+  shared_preferences: ^2.5.5
+  uuid: ^4.5.1
+  intl: ^0.20.2
+  path_provider: ^2.1.5
+  path: ^1.9.1
+
+  # Icons
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Linting
+  very_good_analysis: ^7.0.0
+
+  # Code Generation
+  build_runner: ^2.4.15
+  riverpod_generator: ^4.0.2
+  freezed: ^3.0.6
+  json_serializable: ^6.9.5
+  drift_dev: ^2.33.0
+
+  # Testing
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - public/logo.svg
