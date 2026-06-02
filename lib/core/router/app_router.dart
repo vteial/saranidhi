@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:saranidhi/core/router/shell_scaffold.dart';
 import 'package:saranidhi/features/home/presentation/home_screen.dart';
 import 'package:saranidhi/features/journal/presentation/journal_screen.dart';
+import 'package:saranidhi/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:saranidhi/features/settings/presentation/settings_screen.dart';
 
 /// Application route paths.
@@ -15,6 +16,9 @@ abstract class AppRoutes {
 
   /// Settings route.
   static const settings = '/settings';
+
+  /// Onboarding route.
+  static const onboarding = '/onboarding';
 }
 
 // Navigator keys for each branch
@@ -29,6 +33,10 @@ final GoRouter appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: AppRoutes.home,
   routes: [
+    GoRoute(
+      path: AppRoutes.onboarding,
+      builder: (context, state) => const OnboardingScreen(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ShellScaffold(navigationShell: navigationShell);
