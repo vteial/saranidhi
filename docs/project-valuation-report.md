@@ -6,10 +6,10 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 5 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~12.5 Hours
-**Pull Requests Merged:** 10
-**Automated Test Coverage:** 165 assertions (unit + widget + integration)
+**Sprints Delivered:** 6 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~14.0 Hours
+**Pull Requests Merged:** 11
+**Automated Test Coverage:** 183 assertions (unit + widget + integration)
 
 ---
 
@@ -52,7 +52,7 @@
 
 | Session | Date | Window | Hours | Sprints |
 |---------|------|--------|-------|---------|
-| Day 1 | 2026-06-02 | 06:00 - 13:00 | ~7.0 | Sprint 0, 1, 2, 3, 4, 5 + hotfixes |
+| Day 1 | 2026-06-02 | 06:00 - 14:00 | ~8.0 | Sprint 0, 1, 2, 3, 4, 5, 6 + hotfixes |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -71,9 +71,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 7.0 |
-| Infrastructure & admin ops | 5.5 |
-| **Total** | **~12.5** |
+| Active coding & debugging (AI-assisted) | 8.0 |
+| Infrastructure & admin ops | 6.0 |
+| **Total** | **~14.0** |
 
 ---
 
@@ -87,7 +87,8 @@
 | Sprint 3 | Sara Kalai Breath Journal UI + Logic | #3, #4 | 127 | ✅ Complete |
 | Sprint 4 | Streak & Consistency Engine + UI Polish | #5, #6, #7→#8→#9 | 150 | ✅ Complete |
 | Sprint 5 | Cloud Backup Integration | #10 | 165 | ✅ Complete |
-| Sprint 6 | Notifications + Onboarding | — | — | 🔲 Next |
+| Sprint 6 | Notifications + Onboarding | #11 | 183 | ✅ Complete |
+| Sprint 7 | AI Wisdom Engine | — | — | 🔲 Next |
 | Sprint 6 | Notifications + Onboarding | — | — | 🔲 Planned |
 | Sprint 7 | AI Wisdom Engine | — | — | 🔲 Planned |
 | Sprint 8 | Theming, i18n & Polish | — | — | 🔲 Planned |

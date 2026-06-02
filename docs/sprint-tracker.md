@@ -91,20 +91,20 @@
 
 ---
 
-## Sprint 6: Notifications + Onboarding (Current Sprint)
+## Sprint 6: Notifications + Onboarding ✅ Complete (Merged PR #11)
 
-- [ ] Task 6.1: Implement local notification scheduling at Yama boundary times
-- [ ] Task 6.2: Build dynamic wisdom payload injection into notification content
-- [ ] Task 6.3: Implement idempotent notification queue cleanup on app launch
-- [ ] Task 6.4: Build notification toggle settings (per-state: Ruling, Eating)
-- [ ] Task 6.5: Build first-run onboarding flow (welcome → birth star → location → storage mode)
-- [ ] Task 6.6: Implement birth bird calculation from nakshatra input
-- [ ] Task 6.7: Implement location permission request + geocoding for sunrise accuracy
-- [ ] Task 6.8: Persist onboarding profile to local Drift database
+- [x] Task 6.1: Implement local notification scheduling at Yama boundary times
+- [x] Task 6.2: Build dynamic wisdom payload injection into notification content
+- [x] Task 6.3: Implement idempotent notification queue cleanup on app launch
+- [x] Task 6.4: Build notification toggle settings (per-state: Ruling, Eating)
+- [x] Task 6.5: Build first-run onboarding flow (welcome → birth star → location → storage mode)
+- [x] Task 6.6: Implement birth bird calculation from nakshatra input
+- [x] Task 6.7: Implement location permission request + geocoding for sunrise accuracy
+- [x] Task 6.8: Persist onboarding profile to local Drift database
 
 ---
 
-## Sprint 7: AI Wisdom Engine
+## Sprint 7: AI Wisdom Engine (Current Sprint)
 
 - [ ] Task 7.1: Implement context payload builder (streak, accuracy, bird, rahu, tattva, hora)
 - [ ] Task 7.2: Integrate on-device LLM for mobile platforms

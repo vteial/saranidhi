@@ -251,6 +251,18 @@ class PakshiCalculator {
   }
 
   /// Maps a birth nakshatra to its corresponding Pakshi bird.
+  /// Returns null if the nakshatra is not recognized.
+  static PakshiBird? birthBirdFromNakshatraSafe(String nakshatra) {
+    final lower = nakshatra.toLowerCase().trim();
+    if (_vultureNakshatras.contains(lower)) return PakshiBird.vulture;
+    if (_owlNakshatras.contains(lower)) return PakshiBird.owl;
+    if (_crowNakshatras.contains(lower)) return PakshiBird.crow;
+    if (_roosterNakshatras.contains(lower)) return PakshiBird.rooster;
+    if (_peacockNakshatras.contains(lower)) return PakshiBird.peacock;
+    return null;
+  }
+
+  /// Maps a birth nakshatra to its corresponding Pakshi bird.
   ///
   /// The 27 nakshatras are grouped into 5 sets of ~5-6 each.
   static PakshiBird birthBirdFromNakshatra(String nakshatra) {

@@ -5,6 +5,7 @@ import 'package:saranidhi/core/theme/theme_provider.dart';
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/backup_actions_widget.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mode_selector.dart';
+import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
 
 /// The Settings screen.
 ///
@@ -61,14 +62,44 @@ class SettingsScreen extends ConsumerWidget {
           const ListTile(
             leading: Icon(Icons.notifications_outlined),
             title: Text('Notifications'),
-            subtitle: Text('Coming in Sprint 6'),
-            enabled: false,
+            subtitle: Text('Yama transition alerts (mobile only)'),
           ),
+          _NotificationToggles(),
           const ListTile(
             leading: Icon(Icons.language),
             title: Text('Language'),
             subtitle: Text('Coming in Sprint 8'),
             enabled: false,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _NotificationToggles extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final prefs = ref.watch(notificationPrefsProvider);
+    final notifier = ref.read(notificationPrefsProvider.notifier);
+
+    return Padding(
+      padding: const EdgeInsets.only(left: 16),
+      child: Column(
+        children: [
+          SwitchListTile(
+            title: const Text('Ruling state alerts'),
+            subtitle: const Text('Notify at Yama start (Ruling bird)'),
+            value: prefs.notifyRuling,
+            onChanged: (v) => notifier.setNotifyRuling(enabled: v),
+            dense: true,
+          ),
+          SwitchListTile(
+            title: const Text('Eating state alerts'),
+            subtitle: const Text('Notify when bird enters Eating state'),
+            value: prefs.notifyEating,
+            onChanged: (v) => notifier.setNotifyEating(enabled: v),
+            dense: true,
           ),
         ],
       ),
