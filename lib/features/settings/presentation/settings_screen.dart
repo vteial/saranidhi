@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/theme/app_theme.dart';
 import 'package:saranidhi/core/theme/theme_provider.dart';
+import 'package:saranidhi/core/utils/branded_app_bar.dart';
 
 /// The Settings screen.
 ///
@@ -16,7 +17,7 @@ class SettingsScreen extends ConsumerWidget {
     final currentTheme = ref.watch(themeProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings'), centerTitle: true),
+      appBar: const BrandedAppBar(title: 'Settings'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
