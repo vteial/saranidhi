@@ -77,7 +77,7 @@ void main() {
     await tester.tap(find.text('Settings'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
-    expect(find.text('Settings'), findsWidgets);
+    expect(find.text('Theme'), findsOneWidget);
 
     // Navigate back to Home tab
     await tester.tap(find.text('Home'));

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:saranidhi/core/utils/branded_app_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/seven_day_ribbon_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/trend_widget.dart';
@@ -18,7 +18,14 @@ class HomeScreen extends ConsumerWidget {
     final dashboardAsync = ref.watch(dashboardDataProvider);
 
     return Scaffold(
-      appBar: const BrandedAppBar(title: 'Saranidhi'),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: SvgPicture.asset('public/logo.svg', width: 32, height: 32),
+        ),
+        title: const Text('Saranidhi'),
+        centerTitle: true,
+      ),
       body: dashboardAsync.when(
         data: (data) => _DashboardContent(data: data),
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -57,12 +64,19 @@ class _DashboardContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Streak flame
           StreakFlameWidget(streak: data.streak),
           const SizedBox(height: 12),
+
+          // 7-day ribbon
           SevenDayRibbonWidget(ribbon: data.ribbon),
           const SizedBox(height: 12),
+
+          // 30-day trend
           TrendWidget(trend: data.trend),
           const SizedBox(height: 12),
+
+          // Yama accuracy
           YamaAccuracyWidget(accuracy: data.yamaAccuracy),
         ],
       ),
