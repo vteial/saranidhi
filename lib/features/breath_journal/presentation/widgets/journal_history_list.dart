@@ -299,17 +299,19 @@ class _TimingChip extends StatelessWidget {
             : theme.colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(12),
         border: highlight
-            ? Border.all(color: theme.colorScheme.primary, width: 1)
+            ? Border.all(color: theme.colorScheme.primary)
             : null,
       ),
       child: Text(
         '$label: ${seconds}s',
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: highlight
-              ? theme.colorScheme.primary
-              : theme.colorScheme.onSurfaceVariant,
-          fontWeight: highlight ? FontWeight.bold : FontWeight.w400,
-        ),
+        style: highlight
+            ? theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              )
+            : theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
       ),
     );
   }
