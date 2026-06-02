@@ -1,0 +1,74 @@
+import 'package:saranidhi/features/ai_wisdom/domain/wisdom_context.dart';
+import 'package:saranidhi/features/ai_wisdom/domain/wisdom_library.dart';
+
+/// Rules-based wisdom engine for the web platform.
+///
+/// Matches the current [WisdomContext] against a priority-ordered set of
+/// rules to select the most relevant wisdom. Falls back to general proverbs
+/// if no specific rule matches.
+class RulesEngine {
+  const RulesEngine._();
+
+  /// Generates a wisdom insight based on the current context.
+  ///
+  /// Priority order:
+  /// 1. Rahu Kaal (if active — override all others)
+  /// 2. Streak-based (high streak encouragement or restart motivation)
+  /// 3. Tattva-specific (element active)
+  /// 4. Bird state-specific
+  /// 5. Hora-specific
+  /// 6. General fallback
+  static String generate(WisdomContext context) {
+    // Priority 1: Rahu Kaal
+    if (context.isRahuKaal) {
+      return _pickByDate(WisdomLibrary.rahuKaalWisdom);
+    }
+
+    // Priority 2: Streak-based
+    if (context.currentStreak >= 5) {
+      return _pickByDate(WisdomLibrary.highStreakWisdom);
+    }
+    if (context.currentStreak == 0) {
+      return _pickByDate(WisdomLibrary.noStreakWisdom);
+    }
+
+    // Priority 3: Tattva
+    if (context.activeTattva != null) {
+      final key = context.activeTattva!.displayName;
+      final entries = WisdomLibrary.tattvaWisdom[key];
+      if (entries != null && entries.isNotEmpty) {
+        return _pickByDate(entries);
+      }
+    }
+
+    // Priority 4: Bird state
+    if (context.activeBirdState != null) {
+      final key = context.activeBirdState!.name;
+      final entries = WisdomLibrary.birdStateWisdom[key];
+      if (entries != null && entries.isNotEmpty) {
+        return _pickByDate(entries);
+      }
+    }
+
+    // Priority 5: Hora
+    if (context.activeHora != null) {
+      final key = context.activeHora!.displayName;
+      final entries = WisdomLibrary.horaWisdom[key];
+      if (entries != null && entries.isNotEmpty) {
+        return _pickByDate(entries);
+      }
+    }
+
+    // Priority 6: General fallback
+    return _pickByDate(WisdomLibrary.generalWisdom);
+  }
+
+  /// Deterministic selection based on date (same date = same wisdom).
+  /// This ensures the user sees the same insight throughout the day.
+  static String _pickByDate(List<String> entries) {
+    final today = DateTime.now();
+    final daysSinceEpoch = today.difference(DateTime(2000)).inDays;
+    final index = daysSinceEpoch % entries.length;
+    return entries[index];
+  }
+}
