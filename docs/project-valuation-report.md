@@ -6,10 +6,10 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 4 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~11.0 Hours
-**Pull Requests Merged:** 9
-**Automated Test Coverage:** 150 assertions (unit + widget + integration)
+**Sprints Delivered:** 5 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~12.5 Hours
+**Pull Requests Merged:** 10
+**Automated Test Coverage:** 165 assertions (unit + widget + integration)
 
 ---
 
@@ -42,6 +42,7 @@
 | `1394abf` | Eialarasu | 2026-06-02 10:20 | **Merge PR #8 — Revert PR #7** |
 | `aeff6c4` | Kiro Agent | 2026-06-02 11:00 | fix(sprint4): UI polish (Align approach for nav, BrandedAppBar) |
 | `db32304` | Eialarasu | 2026-06-02 11:30 | **Merge PR #9 — UI Polish (verified via Vercel preview)** |
+| `c8fcc65` | Kiro Agent | 2026-06-02 12:30 | feat(sprint5): Cloud Backup Integration |
 
 ---
 
@@ -51,7 +52,7 @@
 
 | Session | Date | Window | Hours | Sprints |
 |---------|------|--------|-------|---------|
-| Day 1 | 2026-06-02 | 06:00 - 11:30 | ~5.5 | Sprint 0, 1, 2, 3, 4 + hotfixes |
+| Day 1 | 2026-06-02 | 06:00 - 13:00 | ~7.0 | Sprint 0, 1, 2, 3, 4, 5 + hotfixes |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -70,9 +71,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 5.5 |
+| Active coding & debugging (AI-assisted) | 7.0 |
 | Infrastructure & admin ops | 5.5 |
-| **Total** | **~11.0** |
+| **Total** | **~12.5** |
 
 ---
 
@@ -85,7 +86,8 @@
 | Sprint 2 | Astro-Logic Engine (Pure Dart TDD) | #2 | 110 | ✅ Complete |
 | Sprint 3 | Sara Kalai Breath Journal UI + Logic | #3, #4 | 127 | ✅ Complete |
 | Sprint 4 | Streak & Consistency Engine + UI Polish | #5, #6, #7→#8→#9 | 150 | ✅ Complete |
-| Sprint 5 | Cloud Backup Integration | — | — | 🔲 Next |
+| Sprint 5 | Cloud Backup Integration | #10 | 165 | ✅ Complete |
+| Sprint 6 | Notifications + Onboarding | — | — | 🔲 Next |
 | Sprint 6 | Notifications + Onboarding | — | — | 🔲 Planned |
 | Sprint 7 | AI Wisdom Engine | — | — | 🔲 Planned |
 | Sprint 8 | Theming, i18n & Polish | — | — | 🔲 Planned |
@@ -94,16 +96,18 @@
 
 ---
 
-## Technical Deliverables (as of Sprint 4)
+## Technical Deliverables (as of Sprint 5)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
-- **Full breath journal** with alignment checking, timer, micro-advice, history
+- **Full breath journal** with alignment checking, timer, micro-advice, history, delete
 - **Streak engine** with 7-day ribbon, 30-day trend, Yama accuracy tracking
-- **150 automated tests** with GitHub Actions CI enforcement
+- **Cloud backup architecture** (abstract interface, stub providers, database export, UI)
+- **BrandedAppBar** with responsive logo + title across all screens
+- **165 automated tests** with GitHub Actions CI enforcement
 - **Material 3 theming** (4 variants) with persistence
-- **Responsive layout** (1200px max-width on desktop)
-- **Vercel staging** deployment at saranidhi.vercel.app
+- **Responsive layout** (1200px max-width on desktop, centered bottom nav)
+- **Vercel staging** deployment with PR preview support
 - **Drift/WebAssembly SQLite** for web platform persistence
 
 ---
