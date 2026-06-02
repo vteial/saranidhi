@@ -63,20 +63,20 @@
 
 ---
 
-## Sprint 4: Streak & Consistency Engine (Current Sprint)
+## Sprint 4: Streak & Consistency Engine ✅ Complete (Merged PR #5)
 
-- [ ] Task 4.1: Implement streak calculation logic (consecutive aligned days from today backwards)
-- [ ] Task 4.2: Build 7-day calendar ribbon widget (compact visual checkmarks)
-- [ ] Task 4.3: Implement 30-day rolling trend calculation (alignment percentage)
-- [ ] Task 4.4: Build trend visualization component (progress bar or mini chart)
-- [ ] Task 4.5: Implement Yama-level accuracy tracking (which segments user captures most)
-- [ ] Task 4.6: Build time-of-day heatmap component
-- [ ] Task 4.7: Handle edge cases (timezone changes, missed days, streak reset logic)
-- [ ] Task 4.8: Wire streak data to dashboard home view
+- [x] Task 4.1: Implement streak calculation logic (consecutive aligned days from today backwards)
+- [x] Task 4.2: Build 7-day calendar ribbon widget (compact visual checkmarks)
+- [x] Task 4.3: Implement 30-day rolling trend calculation (alignment percentage)
+- [x] Task 4.4: Build trend visualization component (progress bar or mini chart)
+- [x] Task 4.5: Implement Yama-level accuracy tracking (which segments user captures most)
+- [x] Task 4.6: Build time-of-day heatmap component
+- [x] Task 4.7: Handle edge cases (timezone changes, missed days, streak reset logic)
+- [x] Task 4.8: Wire streak data to dashboard home view
 
 ---
 
-## Sprint 5: Cloud Backup Integration
+## Sprint 5: Cloud Backup Integration (Current Sprint)
 
 - [ ] Task 5.1: Implement abstract `CloudBackupRepository` interface
 - [ ] Task 5.2: Implement iCloud backup/restore (iOS) using `icloud_storage` package

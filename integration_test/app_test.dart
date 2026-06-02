@@ -7,12 +7,14 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('App Shell E2E', () {
-    testWidgets('App launches and displays home screen', (tester) async {
+    testWidgets('App launches and displays home dashboard', (tester) async {
       await tester.pumpWidget(const ProviderScope(child: SaranidhiApp()));
       await tester.pumpAndSettle();
 
       expect(find.text('Saranidhi'), findsOneWidget);
-      expect(find.text('The Treasure House of Breath'), findsOneWidget);
+      // Dashboard should show streak and trend sections
+      expect(find.text('Last 7 Days'), findsOneWidget);
+      expect(find.text('30-Day Trend'), findsOneWidget);
     });
 
     testWidgets('Navigation between all tabs works', (tester) async {
@@ -32,7 +34,7 @@ void main() {
       // Navigate back to Home
       await tester.tap(find.text('Home'));
       await tester.pumpAndSettle();
-      expect(find.text('The Treasure House of Breath'), findsOneWidget);
+      expect(find.text('Saranidhi'), findsOneWidget);
     });
   });
 }
