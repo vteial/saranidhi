@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/seven_day_ribbon_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/trend_widget.dart';
@@ -17,7 +18,14 @@ class HomeScreen extends ConsumerWidget {
     final dashboardAsync = ref.watch(dashboardDataProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Saranidhi'), centerTitle: true),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: SvgPicture.asset('public/logo.svg', width: 32, height: 32),
+        ),
+        title: const Text('Saranidhi'),
+        centerTitle: true,
+      ),
       body: dashboardAsync.when(
         data: (data) => _DashboardContent(data: data),
         loading: () => const Center(child: CircularProgressIndicator()),

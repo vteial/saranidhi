@@ -4,6 +4,7 @@ import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 
 /// Displays the journal history grouped by date, chronologically descending.
+/// Supports delete via long-press or trailing icon.
 class JournalHistoryList extends ConsumerWidget {
   const JournalHistoryList({super.key});
 
@@ -138,48 +139,180 @@ class _HistoryContent extends StatelessWidget {
   }
 }
 
-class _EntryTile extends StatelessWidget {
+class _EntryTile extends ConsumerWidget {
   const _EntryTile({required this.entry});
 
   final SaraKalaiJournalData entry;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final time = DateTime.fromMillisecondsSinceEpoch(entry.timestamp);
     final timeStr =
         '${time.hour.toString().padLeft(2, '0')}:'
         '${time.minute.toString().padLeft(2, '0')}';
 
+    final hasTimingData =
+        (entry.inhaleDurationMs != null && entry.inhaleDurationMs! > 0) ||
+        (entry.holdDurationMs != null && entry.holdDurationMs! > 0) ||
+        (entry.exhaleDurationMs != null && entry.exhaleDurationMs! > 0);
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 2),
-      child: ListTile(
-        dense: true,
-        leading: Icon(
-          entry.isAligned ? Icons.check_circle : Icons.cancel_outlined,
-          color: entry.isAligned
-              ? theme.colorScheme.primary
-              : theme.colorScheme.error,
-          size: 20,
-        ),
-        title: Text(
-          '${_capitalize(entry.actualFlow)} flow',
-          style: theme.textTheme.bodyMedium,
-        ),
-        subtitle: Text(
-          'Expected: ${_capitalize(entry.expectedFlow)}',
-          style: theme.textTheme.bodySmall,
-        ),
-        trailing: Text(
-          timeStr,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
+      child: Column(
+        children: [
+          ListTile(
+            dense: true,
+            leading: Icon(
+              entry.isAligned ? Icons.check_circle : Icons.cancel_outlined,
+              color: entry.isAligned
+                  ? theme.colorScheme.primary
+                  : theme.colorScheme.error,
+              size: 20,
+            ),
+            title: Text(
+              '${_capitalize(entry.actualFlow)} flow',
+              style: theme.textTheme.bodyMedium,
+            ),
+            subtitle: Text(
+              'Expected: ${_capitalize(entry.expectedFlow)}',
+              style: theme.textTheme.bodySmall,
+            ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  timeStr,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                IconButton(
+                  icon: Icon(
+                    Icons.delete_outline,
+                    size: 18,
+                    color: theme.colorScheme.error.withValues(alpha: 0.7),
+                  ),
+                  onPressed: () => _confirmDelete(context, ref),
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(
+                    minWidth: 28,
+                    minHeight: 28,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+          // Show timing data if present
+          if (hasTimingData)
+            Padding(
+              padding: const EdgeInsets.only(left: 56, right: 16, bottom: 8),
+              child: Row(
+                children: [
+                  if (entry.inhaleDurationMs != null &&
+                      entry.inhaleDurationMs! > 0)
+                    _TimingChip(
+                      label: 'In',
+                      ms: entry.inhaleDurationMs!,
+                      theme: theme,
+                    ),
+                  if (entry.holdDurationMs != null &&
+                      entry.holdDurationMs! > 0) ...[
+                    const SizedBox(width: 8),
+                    _TimingChip(
+                      label: 'Hold',
+                      ms: entry.holdDurationMs!,
+                      theme: theme,
+                      highlight: true,
+                    ),
+                  ],
+                  if (entry.exhaleDurationMs != null &&
+                      entry.exhaleDurationMs! > 0) ...[
+                    const SizedBox(width: 8),
+                    _TimingChip(
+                      label: 'Out',
+                      ms: entry.exhaleDurationMs!,
+                      theme: theme,
+                    ),
+                  ],
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  void _confirmDelete(BuildContext context, WidgetRef ref) {
+    showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Entry?'),
+        content: const Text('This will permanently remove this breath entry.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              ref.read(journalRepositoryProvider).deleteEntry(entry.id);
+            },
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+            child: const Text('Delete'),
+          ),
+        ],
       ),
     );
   }
 
   String _capitalize(String s) =>
       s.isNotEmpty ? '${s[0].toUpperCase()}${s.substring(1)}' : s;
+}
+
+class _TimingChip extends StatelessWidget {
+  const _TimingChip({
+    required this.label,
+    required this.ms,
+    required this.theme,
+    this.highlight = false,
+  });
+
+  final String label;
+  final int ms;
+  final ThemeData theme;
+  final bool highlight;
+
+  @override
+  Widget build(BuildContext context) {
+    final seconds = (ms / 1000).toStringAsFixed(1);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: highlight
+            ? theme.colorScheme.primaryContainer
+            : theme.colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(12),
+        border: highlight
+            ? Border.all(color: theme.colorScheme.primary)
+            : null,
+      ),
+      child: Text(
+        '$label: ${seconds}s',
+        style: highlight
+            ? theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              )
+            : theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+      ),
+    );
+  }
 }
