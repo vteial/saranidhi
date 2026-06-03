@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,7 @@ class OnboardingScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(onboardingNotifierProvider);
     final notifier = ref.read(onboardingNotifierProvider.notifier);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: ResponsiveWrapper(
@@ -29,9 +31,12 @@ class OnboardingScreen extends ConsumerWidget {
             child: Column(
               children: [
                 // Progress indicator
-                LinearProgressIndicator(
-                  value: (state.currentStep + 1) / state.totalSteps,
-                  borderRadius: BorderRadius.circular(4),
+                Semantics(
+                  label: 'Step ${state.currentStep + 1} of ${state.totalSteps}',
+                  child: LinearProgressIndicator(
+                    value: (state.currentStep + 1) / state.totalSteps,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                 ),
                 const SizedBox(height: 24),
 
@@ -53,14 +58,14 @@ class OnboardingScreen extends ConsumerWidget {
                     if (state.currentStep > 0)
                       TextButton(
                         onPressed: notifier.previousStep,
-                        child: const Text('Back'),
+                        child: Text(l10n.back),
                       )
                     else
                       const SizedBox(width: 80),
                     if (state.currentStep < state.totalSteps - 1)
                       FilledButton(
                         onPressed: notifier.nextStep,
-                        child: const Text('Next'),
+                        child: Text(l10n.next),
                       )
                     else
                       FilledButton(
@@ -80,7 +85,7 @@ class OnboardingScreen extends ConsumerWidget {
                                   strokeWidth: 2,
                                 ),
                               )
-                            : const Text('Complete Setup'),
+                            : Text(l10n.completeSetup),
                       ),
                   ],
                 ),
@@ -122,21 +127,25 @@ class _WelcomeStepState extends State<_WelcomeStep> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       child: Column(
         children: [
           const SizedBox(height: 32),
-          SvgPicture.asset('public/logo.svg', width: 80, height: 80),
+          Semantics(
+            label: l10n.appTitle,
+            child: SvgPicture.asset('public/logo.svg', width: 80, height: 80),
+          ),
           const SizedBox(height: 24),
           Text(
-            'Welcome to Saranidhi',
+            l10n.onboardingWelcome,
             style: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 8),
           Text(
-            'The Treasure House of Breath',
+            l10n.onboardingSubtitle,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -144,10 +153,10 @@ class _WelcomeStepState extends State<_WelcomeStep> {
           const SizedBox(height: 32),
           TextField(
             controller: _controller,
-            decoration: const InputDecoration(
-              labelText: 'Your Name',
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.person_outline),
+            decoration: InputDecoration(
+              labelText: l10n.yourName,
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.person_outline),
             ),
             onChanged: widget.notifier.setDisplayName,
           ),
@@ -165,13 +174,14 @@ class _BirthStarStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Birth Star (Nakshatra)', style: theme.textTheme.titleLarge),
+        Text(l10n.birthStarNakshatra, style: theme.textTheme.titleLarge),
         const SizedBox(height: 8),
         Text(
-          'Your birth star determines your Panja Pakshi bird.',
+          l10n.birthStarHint,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -187,7 +197,7 @@ class _BirthStarStep extends StatelessWidget {
                   const Icon(Icons.stars),
                   const SizedBox(width: 8),
                   Text(
-                    'Your bird: ${state.birthBird!.displayName}',
+                    l10n.yourBird(state.birthBird!.displayName),
                     style: theme.textTheme.titleSmall?.copyWith(
                       color: theme.colorScheme.primary,
                     ),
@@ -229,22 +239,22 @@ class _LocationStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Your Location', style: theme.textTheme.titleLarge),
+          Text(l10n.yourLocation, style: theme.textTheme.titleLarge),
           const SizedBox(height: 8),
           Text(
-            'Used for accurate sunrise/sunset calculation. '
-            'Your location stays on your device.',
+            l10n.locationHint,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
           const SizedBox(height: 24),
           // Preset cities for quick selection
-          Text('Quick Select:', style: theme.textTheme.titleSmall),
+          Text(l10n.quickSelect, style: theme.textTheme.titleSmall),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
@@ -296,35 +306,36 @@ class _StorageModeStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Data Storage', style: theme.textTheme.titleLarge),
+        Text(l10n.dataStorage, style: theme.textTheme.titleLarge),
         const SizedBox(height: 8),
         Text(
-          'Choose where to keep your breath journal data.',
+          l10n.dataStorageHint,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
         ),
         const SizedBox(height: 24),
         _StorageOption(
-          title: 'Local Only',
-          subtitle: 'Data stays on this device only',
+          title: l10n.localOnly,
+          subtitle: l10n.localOnlySubtitle,
           icon: Icons.phone_android,
           isSelected: state.storageMode == 'local',
           onTap: () => notifier.setStorageMode('local'),
         ),
         _StorageOption(
-          title: 'iCloud (iOS)',
-          subtitle: 'Backup to your iCloud account',
+          title: l10n.icloud,
+          subtitle: l10n.icloudSubtitle,
           icon: Icons.cloud,
           isSelected: state.storageMode == 'icloud',
           onTap: () => notifier.setStorageMode('icloud'),
         ),
         _StorageOption(
-          title: 'Google Drive',
-          subtitle: 'Backup to your Google Drive',
+          title: l10n.googleDrive,
+          subtitle: l10n.googleDriveSubtitle,
           icon: Icons.cloud_outlined,
           isSelected: state.storageMode == 'gdrive',
           onTap: () => notifier.setStorageMode('gdrive'),

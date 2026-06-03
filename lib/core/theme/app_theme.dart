@@ -43,6 +43,9 @@ enum ThemeBrightness {
 
 /// Generates Material 3 [ThemeData] for accent + brightness combinations.
 /// Total: 4 accents × 2 brightness = 8 variants + system mode.
+///
+/// Accessibility: All themes ensure WCAG AA contrast ratios via Material 3
+/// color system, and text styles respect user font scaling preferences.
 class AppTheme {
   const AppTheme._();
 
@@ -51,6 +54,13 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(seedColor: accent.seedColor),
       fontFamily: 'Roboto',
+      // Ensure all interactive targets are at least 48px for accessibility
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      // Tooltip accessibility
+      tooltipTheme: const TooltipThemeData(
+        preferBelow: true,
+        waitDuration: Duration(milliseconds: 500),
+      ),
     );
   }
 
@@ -62,6 +72,11 @@ class AppTheme {
         brightness: Brightness.dark,
       ),
       fontFamily: 'Roboto',
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      tooltipTheme: const TooltipThemeData(
+        preferBelow: true,
+        waitDuration: Duration(milliseconds: 500),
+      ),
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
@@ -11,6 +13,7 @@ class AstroInfoBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final now = DateTime.now();
 
     // Default: Chennai (will use profile location in future)
@@ -51,32 +54,40 @@ class AstroInfoBar extends StatelessWidget {
       activeBirdState = entry.state;
     }
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _InfoChip(
-              icon: Icons.wb_sunny_outlined,
-              label: 'Sunrise',
-              value: _formatTime(sunResult.sunrise),
-              color: Colors.orange,
-            ),
-            _InfoChip(
-              icon: Icons.nights_stay_outlined,
-              label: 'Sunset',
-              value: _formatTime(sunResult.sunset),
-              color: Colors.indigo,
-            ),
-            if (activeBird != null)
+    return Semantics(
+      label: activeBird != null
+          ? '${l10n.sunrise} ${_formatTime(sunResult.sunrise)}, '
+              '${l10n.sunset} ${_formatTime(sunResult.sunset)}, '
+              '${activeBird.displayName} ${activeBirdState?.displayName ?? ''}'
+          : '${l10n.sunrise} ${_formatTime(sunResult.sunrise)}, '
+              '${l10n.sunset} ${_formatTime(sunResult.sunset)}',
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
               _InfoChip(
-                label: activeBird.displayName,
-                value: activeBirdState?.displayName ?? '',
-                color: theme.colorScheme.primary,
-                emoji: _birdEmoji(activeBird),
+                icon: Icons.wb_sunny_outlined,
+                label: l10n.sunrise,
+                value: _formatTime(sunResult.sunrise),
+                color: Colors.orange,
               ),
-          ],
+              _InfoChip(
+                icon: Icons.nights_stay_outlined,
+                label: l10n.sunset,
+                value: _formatTime(sunResult.sunset),
+                color: Colors.indigo,
+              ),
+              if (activeBird != null)
+                _InfoChip(
+                  label: activeBird.displayName,
+                  value: activeBirdState?.displayName ?? '',
+                  color: theme.colorScheme.primary,
+                  emoji: BirdEmoji.forBird(activeBird),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -86,14 +97,6 @@ class AstroInfoBar extends StatelessWidget {
     return '${time.hour.toString().padLeft(2, '0')}:'
         '${time.minute.toString().padLeft(2, '0')}';
   }
-
-  String _birdEmoji(PakshiBird bird) => switch (bird) {
-    PakshiBird.vulture => '🦅',
-    PakshiBird.owl => '🦉',
-    PakshiBird.crow => '🐦',
-    PakshiBird.rooster => '🐓',
-    PakshiBird.peacock => '🦚',
-  };
 }
 
 class _InfoChip extends StatelessWidget {

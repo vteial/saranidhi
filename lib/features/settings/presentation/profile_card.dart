@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
@@ -44,6 +46,7 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return FutureBuilder(
       future: ref
@@ -66,7 +69,7 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
               children: [
                 Row(
                   children: [
-                    Text('Profile', style: theme.textTheme.titleSmall),
+                    Text(l10n.profile, style: theme.textTheme.titleSmall),
                     const Spacer(),
                     IconButton(
                       icon: Icon(
@@ -87,9 +90,9 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                 if (_isEditing)
                   TextField(
                     controller: _nameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Name',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: l10n.name,
+                      border: const OutlineInputBorder(),
                       isDense: true,
                     ),
                   )
@@ -98,10 +101,10 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                     leading: const Icon(Icons.person),
                     title: Text(
                       profile.displayName.isEmpty
-                          ? 'Not set'
+                          ? l10n.notSet
                           : profile.displayName,
                     ),
-                    subtitle: const Text('Name'),
+                    subtitle: Text(l10n.name),
                     dense: true,
                     contentPadding: EdgeInsets.zero,
                   ),
@@ -109,14 +112,16 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                 // Birth Star + Bird
                 ListTile(
                   leading: Text(
-                    _birdEmoji(birdName),
+                    BirdEmoji.forBirdName(birdName),
                     style: const TextStyle(fontSize: 24),
                   ),
-                  title: Text(profile.birthStarNakshatra ?? 'Not set'),
+                  title: Text(profile.birthStarNakshatra ?? l10n.notSet),
                   subtitle: Text(
                     birdName != null
-                        ? 'Birth Bird: ${birdName[0].toUpperCase()}${birdName.substring(1)}'
-                        : 'Birth Star',
+                        ? l10n.birthBird(
+                            birdName[0].toUpperCase() + birdName.substring(1),
+                          )
+                        : l10n.birthStar,
                   ),
                   trailing: _isEditing
                       ? IconButton(
@@ -133,9 +138,9 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                   title: Text(
                     profile.locationLat != null
                         ? '${profile.locationLat!.toStringAsFixed(2)}, ${profile.locationLng!.toStringAsFixed(2)}'
-                        : 'Not set',
+                        : l10n.notSet,
                   ),
-                  subtitle: const Text('Location'),
+                  subtitle: Text(l10n.location),
                   trailing: _isEditing
                       ? IconButton(
                           icon: const Icon(Icons.edit, size: 16),
@@ -169,10 +174,11 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
   }
 
   void _editBirthStar(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog<String>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Change Birth Star'),
+        title: Text(l10n.changeBirthStar),
         content: SizedBox(
           width: double.maxFinite,
           height: 400,
@@ -180,7 +186,7 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Warning: Changing your birth star will update your Pakshi bird.',
+                l10n.changeBirthStarWarning,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).colorScheme.error,
                 ),
@@ -221,11 +227,11 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
   }
 
   void _editLocation(BuildContext context) {
-    // Reuse preset cities from onboarding
+    final l10n = AppLocalizations.of(context)!;
     showDialog<void>(
       context: context,
       builder: (ctx) => SimpleDialog(
-        title: const Text('Change Location'),
+        title: Text(l10n.changeLocation),
         children: [
           for (final city in _presetCities)
             SimpleDialogOption(
@@ -254,15 +260,6 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
       ),
     );
   }
-
-  String _birdEmoji(String? birdName) => switch (birdName) {
-    'vulture' => '🦅',
-    'owl' => '🦉',
-    'crow' => '🐦',
-    'rooster' => '🐓',
-    'peacock' => '🦚',
-    _ => '🐦',
-  };
 }
 
 class _PresetCity {
