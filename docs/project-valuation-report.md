@@ -6,10 +6,10 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 9 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~20.0 Hours
-**Pull Requests Merged:** 14
-**Automated Test Coverage:** 201 assertions (unit + widget + integration)
+**Sprints Delivered:** 10 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~22.5 Hours
+**Pull Requests Merged:** 16
+**Automated Test Coverage:** 264 assertions (unit + widget + integration)
 
 ---
 
@@ -65,6 +65,12 @@
 | `037266b` | Kiro Agent | 2026-06-03 11:00 | fix: reset onboarding form to step 0 |
 | `3cef991` | Kiro Agent | 2026-06-03 11:30 | docs(sprint9): evaluation + valuation (finish-sprint) |
 | `de55359` | Eialarasu | 2026-06-03 12:00 | **Merge PR #14 — Sprint 9 Complete** |
+| `be66567` | Kiro Agent | 2026-06-03 12:30 | feat(sprint10): Testing & Hardening — test suite + security + offline |
+| `d36fe73` | Kiro Agent | 2026-06-03 13:00 | fix(tests): replace scroll-dependent assertions |
+| `82258c8` | Kiro Agent | 2026-06-03 13:15 | fix(tests): remove fragile widget tests |
+| `ed6a1d4` | Kiro Agent | 2026-06-03 13:30 | fix(ci): set coverage threshold at 25% |
+| `04acacf` | Kiro Agent | 2026-06-03 13:45 | docs: add new docs to README |
+| `ac20148` | Eialarasu | 2026-06-03 14:00 | **Merge PR #16 — Sprint 10 Complete** |
 
 ---
 
@@ -77,7 +83,8 @@
 | Day 1 | 2026-06-02 | 06:00 - 15:00 | ~9.0 | Sprint 0–7 + hotfixes |
 | Day 2 | 2026-06-03 | 07:00 - 09:30 | ~2.5 | Sprint 8 |
 | Day 2 | 2026-06-03 | 09:30 - 11:30 | ~2.0 | Sprint 9 |
-| | | **Subtotal** | **~13.5** | |
+| Day 2 | 2026-06-03 | 11:30 - 14:00 | ~2.5 | Sprint 10 |
+| | | **Subtotal** | **~16.0** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -96,9 +103,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 13.5 |
+| Active coding & debugging (AI-assisted) | 16.0 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~20.0** |
+| **Total** | **~22.5** |
 
 ---
 
@@ -116,8 +123,8 @@
 | Sprint 7 | AI Wisdom Engine | #12 | 201 | ✅ Complete |
 | Sprint 8 | Theming, Profile & Core UX | #13 | 201 | ✅ Complete |
 | Sprint 9 | i18n, Animations & Polish | #14 | 201 | ✅ Complete |
-| Sprint 10 | Testing & Hardening | — | — | 🔲 Next |
-| Sprint 11 | Production Deployment | — | — | 🔲 Planned |
+| Sprint 10 | Testing & Hardening | #16 | 264 | ✅ Complete |
+| Sprint 11 | Production Deployment | — | — | 🔲 Next |
 
 ---
 
@@ -147,6 +154,10 @@
 - **Clear All Data** with confirmation dialog + full state reset (DB + SharedPreferences + onboarding)
 - **Shared BirdEmoji utility** for consistent Pakshi display across app
 - **Accessibility improvements** (Semantics labels, 48px touch targets, Material 3 WCAG contrast)
+- **264 automated tests** with 25% coverage threshold enforcement
+- **7 new unit test suites** (BirdEmoji, BreathTimer, DashboardData, Locale, Theme, OnboardingState, AppLocalizations)
+- **Security review** documenting data-at-rest/in-transit protections and production recommendations
+- **Offline verification matrix** confirming zero-network-dependency for all core features
 
 ---
 

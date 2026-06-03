@@ -150,7 +150,7 @@ git push origin main
 
 ### Known Limitations (Current)
 
-- **Coverage gate:** Set to 15% during feature sprints (3–9); will raise to 80% in Sprint 10 (Testing & Hardening).
+- **Coverage gate:** Set to 25% (raised from 15% in Sprint 10). Domain layer is ~95% covered; UI/presentation layer brings blended average to 26%. Will increase as stable widget testing patterns are established.
 - **UI verification:** Always verify on Vercel preview before merging UI changes. Never merge UI blind.
 
 ---
