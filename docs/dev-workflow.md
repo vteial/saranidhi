@@ -69,6 +69,18 @@ Runs **after merge** on a separate docs-only branch to avoid CI code failures.
 
 **Hours estimation rule:** Use AI-estimated active time + 20% buffer (owner-approved).
 
+### `/hotfix`
+
+Quick-fix protocol for defects found after merge.
+
+1. Create branch from `main` (`fix/sprintN-<topic>`)
+2. Implement fix
+3. Validate: `flutter analyze --fatal-infos` + `flutter test`
+4. Commit with `fix(sprintN): <description>`
+5. Push, create PR, merge
+6. Append a row to "Resolved Defects" table in `docs/project-evaluation.md`
+7. Increment hours in `docs/project-valuation-report.md` if significant time spent
+
 ---
 
 ## Rollback Strategies

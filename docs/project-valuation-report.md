@@ -64,7 +64,7 @@
 | `6232c44` | Kiro Agent | 2026-06-03 10:30 | fix: Clear All Data resets onboarding |
 | `037266b` | Kiro Agent | 2026-06-03 11:00 | fix: reset onboarding form to step 0 |
 | `3cef991` | Kiro Agent | 2026-06-03 11:30 | docs(sprint9): evaluation + valuation (finish-sprint) |
-| `———` | Eialarasu | 2026-06-03 TBD | **Merge PR #14 — Sprint 9 Complete** |
+| `de55359` | Eialarasu | 2026-06-03 12:00 | **Merge PR #14 — Sprint 9 Complete** |
 
 ---
 
