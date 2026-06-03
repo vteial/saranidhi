@@ -34,8 +34,10 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
   Future<void> _loadProfile() async {
     final db = ref.read(appDatabaseProvider);
     final profiles = await db.select(db.profiles).get();
-    if (profiles.isNotEmpty) {
-      _nameController.text = profiles.first.displayName;
+    if (profiles.isNotEmpty && mounted) {
+      setState(() {
+        _nameController.text = profiles.first.displayName;
+      });
     }
   }
 
