@@ -69,6 +69,24 @@ Runs **after merge** on a separate docs-only branch to avoid CI code failures.
 
 **Hours estimation rule:** Use AI-estimated active time + 20% buffer (owner-approved).
 
+### `/plan`
+
+Strategic brainstorming and sprint plan revision — forward-looking.
+
+1. Review current state (sprint tracker, release plan, what's done)
+2. Discuss trade-offs, priorities, new features, scope cuts
+3. Once aligned, update:
+   - `docs/sprint-tracker.md` — redefine upcoming sprints
+   - `docs/release-1.0-plan.md` — adjust milestones
+4. Committed on a feature branch → PR (may include code if CI skip needed)
+
+**Examples:**
+- `/plan` "Re-scope remaining sprints for beta release"
+- `/plan` "Add data export feature, push deployment back"
+- `/plan` "Cut cloud backup from 1.0, move to 1.1"
+
+---
+
 ### `/hotfix`
 
 Quick-fix protocol for defects found after merge.
