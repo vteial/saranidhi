@@ -209,6 +209,8 @@ class _ClearAllDataTile extends ConsumerWidget {
 
       // Reset onboarding flag so the guard redirects to onboarding
       await ref.read(onboardingCompleteProvider.notifier).reset();
+      // Reset onboarding form state back to step 0
+      ref.invalidate(onboardingNotifierProvider);
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
