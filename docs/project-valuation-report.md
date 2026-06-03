@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 8 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~18.0 Hours
-**Pull Requests Merged:** 13
+**Sprints Delivered:** 9 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~20.0 Hours
+**Pull Requests Merged:** 14
 **Automated Test Coverage:** 201 assertions (unit + widget + integration)
 
 ---
@@ -56,6 +56,15 @@
 | `4bdc62c` | Kiro Agent | 2026-06-03 08:30 | fix(sprint8): preserve display name from onboarding |
 | `8c5e1a2` | Kiro Agent | 2026-06-03 09:00 | docs(sprint8): evaluation + valuation (finish-sprint) |
 | `b836115` | Eialarasu | 2026-06-03 09:30 | **Merge PR #13 — Sprint 8 Complete** |
+| `b1e35e0` | Kiro Agent | 2026-06-03 09:30 | feat(sprint9): i18n, animations & polish |
+| `f1cc883` | Kiro Agent | 2026-06-03 09:45 | fix(sprint9): CI lint errors, l10n setup |
+| `5a8c1a7` | Kiro Agent | 2026-06-03 10:00 | fix(l10n): non-synthetic package with committed generated files |
+| `0676b34` | Kiro Agent | 2026-06-03 10:10 | fix(lint): directive sections ordering |
+| `fd1fbe3` | Kiro Agent | 2026-06-03 10:15 | fix(build): restore generate flag |
+| `6232c44` | Kiro Agent | 2026-06-03 10:30 | fix: Clear All Data resets onboarding |
+| `037266b` | Kiro Agent | 2026-06-03 11:00 | fix: reset onboarding form to step 0 |
+| `3cef991` | Kiro Agent | 2026-06-03 11:30 | docs(sprint9): evaluation + valuation (finish-sprint) |
+| `———` | Eialarasu | 2026-06-03 TBD | **Merge PR #14 — Sprint 9 Complete** |
 
 ---
 
@@ -67,7 +76,8 @@
 |---------|------|--------|-------|---------|
 | Day 1 | 2026-06-02 | 06:00 - 15:00 | ~9.0 | Sprint 0–7 + hotfixes |
 | Day 2 | 2026-06-03 | 07:00 - 09:30 | ~2.5 | Sprint 8 |
-| | | **Subtotal** | **~11.5** | |
+| Day 2 | 2026-06-03 | 09:30 - 11:30 | ~2.0 | Sprint 9 |
+| | | **Subtotal** | **~13.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -86,9 +96,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 11.5 |
+| Active coding & debugging (AI-assisted) | 13.5 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~18.0** |
+| **Total** | **~20.0** |
 
 ---
 
@@ -105,13 +115,13 @@
 | Sprint 6 | Notifications + Onboarding | #11 | 183 | ✅ Complete |
 | Sprint 7 | AI Wisdom Engine | #12 | 201 | ✅ Complete |
 | Sprint 8 | Theming, Profile & Core UX | #13 | 201 | ✅ Complete |
-| Sprint 9 | i18n, Animations & Polish | — | — | 🔲 Next |
-| Sprint 10 | Testing & Hardening | — | — | 🔲 Planned |
+| Sprint 9 | i18n, Animations & Polish | #14 | 201 | ✅ Complete |
+| Sprint 10 | Testing & Hardening | — | — | 🔲 Next |
 | Sprint 11 | Production Deployment | — | — | 🔲 Planned |
 
 ---
 
-## Technical Deliverables (as of Sprint 8)
+## Technical Deliverables (as of Sprint 9)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
@@ -130,6 +140,13 @@
 - **Responsive layout** (1200px max-width on desktop, centered bottom nav)
 - **Vercel staging** with PR preview support (repo public)
 - **Drift/WebAssembly SQLite** for web platform persistence
+- **Full i18n** with English + Tamil (90+ strings), LocaleProvider with persistence
+- **Language switcher** (EN/TA SegmentedButton in Settings)
+- **Smooth page transitions** (fade-through 250ms on tab navigation)
+- **Pull-to-refresh** on Home dashboard
+- **Clear All Data** with confirmation dialog + full state reset (DB + SharedPreferences + onboarding)
+- **Shared BirdEmoji utility** for consistent Pakshi display across app
+- **Accessibility improvements** (Semantics labels, 48px touch targets, Material 3 WCAG contrast)
 
 ---
 
