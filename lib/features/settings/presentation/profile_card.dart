@@ -46,7 +46,7 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
 
     return FutureBuilder(
       future: ref
@@ -174,7 +174,7 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
   }
 
   void _editBirthStar(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     showDialog<String>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -227,7 +227,7 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
   }
 
   void _editLocation(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     showDialog<void>(
       context: context,
       builder: (ctx) => SimpleDialog(

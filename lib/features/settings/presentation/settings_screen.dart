@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/theme/app_theme.dart';
 import 'package:saranidhi/core/theme/theme_provider.dart';
@@ -19,7 +19,7 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeState = ref.watch(themeProvider);
     final currentLocale = ref.watch(localeProvider);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -129,7 +129,7 @@ class _NotificationToggles extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final prefs = ref.watch(notificationPrefsProvider);
     final notifier = ref.read(notificationPrefsProvider.notifier);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
 
     return Padding(
       padding: const EdgeInsets.only(left: 16),
@@ -158,7 +158,7 @@ class _NotificationToggles extends ConsumerWidget {
 class _ClearAllDataTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
     return ListTile(
@@ -173,7 +173,7 @@ class _ClearAllDataTile extends ConsumerWidget {
   }
 
   Future<void> _showClearDataDialog(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
 
     final confirmed = await showDialog<bool>(
@@ -197,7 +197,7 @@ class _ClearAllDataTile extends ConsumerWidget {
       ),
     );
 
-    if (confirmed == true && context.mounted) {
+    if ((confirmed ?? false) && context.mounted) {
       final db = ref.read(appDatabaseProvider);
       // Delete all data from all tables
       await db.delete(db.saraKalaiJournal).go();

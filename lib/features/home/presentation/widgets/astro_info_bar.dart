@@ -13,7 +13,7 @@ class AstroInfoBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = AppLocalizations.of(context);
     final now = DateTime.now();
 
     // Default: Chennai (will use profile location in future)
