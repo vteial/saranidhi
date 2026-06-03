@@ -143,7 +143,7 @@
 
 ---
 
-## Sprint 10: Testing & Hardening (Current Sprint)
+## Sprint 10: Testing & Hardening ✅ Complete (Merged PR #16)
 
 - [x] Task 10.1: Write unit tests for all domain layer logic (Astro-Engine, Streaks, AI context)
 - [x] Task 10.2: Write widget tests for core UI components (breath entry, timer, streak ribbon)
@@ -156,17 +156,52 @@
 
 ---
 
-## Sprint 11: Production Deployment
+## Sprint 11: Smoke Test Plan & CI Polish (Current Sprint)
 
-- [ ] Task 11.1: Create `prod` branch from `main`
-- [ ] Task 11.2: Configure Cloudflare Pages for web production deployment
-- [ ] Task 11.3: Prepare App Store listing (screenshots, description, keywords, privacy policy)
-- [ ] Task 11.4: Prepare Play Store listing (screenshots, description, keywords, privacy policy)
-- [ ] Task 11.5: Submit iOS app for App Store review
-- [ ] Task 11.6: Submit Android app for Play Store review
-- [ ] Task 11.7: Configure production CI/CD workflow with manual approval gate
-- [ ] Task 11.8: Verify all platforms live and functional
-- [ ] Task 11.9: Tag release `v1.0.0` on `prod` branch
+- [ ] Task 11.1: Create `docs/manual-smoke-test.md` with full scenario matrix (Accuracy, Core Flow, Settings, Edge Cases)
+- [ ] Task 11.2: Create `docs/smoke-test-results.md` template (ready for manual execution)
+- [ ] Task 11.3: Add CI `paths-ignore` for docs-only branches (skip quality gates on .md/.kiro changes)
+- [ ] Task 11.4: Add `/plan` protocol to `docs/dev-workflow.md`
+- [ ] Task 11.5: Revise `docs/release-1.0-plan.md` — updated sprint mapping (11–14), move cloud backup/auth to 1.1
+- [ ] Task 11.6: Update `docs/sprint-tracker.md` with Sprints 12–14 definitions
+- [ ] Task 11.7: Improve Tamil translations (spiritual terms accuracy — Pakshi states, Yama, Hora)
+
+---
+
+## Sprint 12: Manual Smoke Test Execution & Fixes
+
+- [ ] Task 12.1: Execute manual smoke test (owner — compare with Align27 on Chennai/Pushya)
+- [ ] Task 12.2: Record results in `docs/smoke-test-results.md`
+- [ ] Task 12.3: Fix calculation accuracy issues (if any)
+- [ ] Task 12.4: Fix Tamil translation gaps (spiritual terms from smoke test)
+- [ ] Task 12.5: Fix UX issues surfaced during manual testing
+- [ ] Task 12.6: Re-execute failed scenarios after fixes → all pass
+
+---
+
+## Sprint 13: Web Production Deployment
+
+- [ ] Task 13.1: Create `prod` branch from `main`
+- [ ] Task 13.2: Configure Cloudflare Pages for web production deployment
+- [ ] Task 13.3: Set up custom domain (if applicable)
+- [ ] Task 13.4: Configure production CI/CD workflow with manual approval gate
+- [ ] Task 13.5: Add privacy policy page
+- [ ] Task 13.6: Include completed smoke-test-results.md as production pass gate
+- [ ] Task 13.7: Verify production deployment live and functional
+- [ ] Task 13.8: Tag release `v1.0.0-web`
+
+---
+
+## Sprint 14: Mobile App Store Deployment
+
+- [ ] Task 14.1: Prepare App Store listing (screenshots on iPhone SE, description, keywords, privacy policy)
+- [ ] Task 14.2: Prepare Play Store listing (screenshots, description, keywords, privacy policy)
+- [ ] Task 14.3: Build release iOS app (target: iPhone SE, iPad Mini)
+- [ ] Task 14.4: Build release Android app
+- [ ] Task 14.5: Submit iOS app for App Store review
+- [ ] Task 14.6: Submit Android app for Play Store review
+- [ ] Task 14.7: Verify both stores live and functional
+- [ ] Task 14.8: Tag release `v1.0.0`
 
 ---
 
