@@ -54,14 +54,15 @@ jobs:
           COVERAGE=$(( HIT_LINES * 100 / TOTAL_LINES ))
           echo "Coverage: $COVERAGE% ($HIT_LINES/$TOTAL_LINES lines hit)"
 
-          # Threshold: 15% during feature sprints (3-8), raised to 80% in Sprint 9
-          THRESHOLD=15
+          # Threshold: raised from 15% to 25% in Sprint 10
+          # Domain layer ~95% covered; UI/presentation layer brings average down
+          # Will increase incrementally as widget test coverage improves
+          THRESHOLD=25
           if [ "$COVERAGE" -lt "$THRESHOLD" ]; then
-            echo "❌ Coverage $COVERAGE% is below the ${THRESHOLD}% threshold!"
+            echo "Coverage $COVERAGE% is below the ${THRESHOLD}% threshold!"
             exit 1
           else
-            echo "✅ Coverage $COVERAGE% meets the ${THRESHOLD}% threshold."
-            echo "Note: Threshold will be raised to 80% in Sprint 9 (Testing & Hardening)."
+            echo "Coverage $COVERAGE% meets the ${THRESHOLD}% threshold."
           fi
 
       - name: Build web

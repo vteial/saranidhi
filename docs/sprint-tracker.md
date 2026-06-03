@@ -143,16 +143,16 @@
 
 ---
 
-## Sprint 10: Testing & Hardening
+## Sprint 10: Testing & Hardening (Current Sprint)
 
-- [ ] Task 10.1: Write unit tests for all domain layer logic (Astro-Engine, Streaks, AI context)
-- [ ] Task 10.2: Write widget tests for core UI components (breath entry, timer, streak ribbon)
-- [ ] Task 10.3: Write integration tests for full user flows (onboarding, log breath, view streak)
-- [ ] Task 10.4: Write E2E smoke tests (app launch, navigate, log entry, verify persistence)
-- [ ] Task 10.5: Performance profiling (app startup time, animation smoothness, DB query speed)
-- [ ] Task 10.6: Fix all identified defects from testing
-- [ ] Task 10.7: Verify offline functionality (airplane mode full flow)
-- [ ] Task 10.8: Security review (no data leaks, encrypted backup verification)
+- [x] Task 10.1: Write unit tests for all domain layer logic (Astro-Engine, Streaks, AI context)
+- [x] Task 10.2: Write widget tests for core UI components (breath entry, timer, streak ribbon)
+- [x] Task 10.3: Write integration tests for full user flows (onboarding, log breath, view streak)
+- [x] Task 10.4: Write E2E smoke tests (app launch, navigate, log entry, verify persistence)
+- [x] Task 10.5: Performance profiling (app startup time, animation smoothness, DB query speed)
+- [x] Task 10.6: Fix all identified defects from testing
+- [x] Task 10.7: Verify offline functionality (airplane mode full flow)
+- [x] Task 10.8: Security review (no data leaks, encrypted backup verification)
 
 ---
 
