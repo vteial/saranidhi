@@ -31,6 +31,13 @@ class OnboardingCompleteNotifier extends Notifier<bool> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_onboardingCompleteKey, true);
   }
+
+  /// Resets onboarding state — used when all data is cleared.
+  Future<void> reset() async {
+    state = false;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_onboardingCompleteKey);
+  }
 }
 
 /// Onboarding form state.

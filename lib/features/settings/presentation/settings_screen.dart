@@ -9,6 +9,7 @@ import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/backup_actions_widget.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mode_selector.dart';
 import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
+import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/features/settings/presentation/profile_card.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -205,6 +206,9 @@ class _ClearAllDataTile extends ConsumerWidget {
       await db.delete(db.breathSessions).go();
       await db.delete(db.birdLibrary).go();
       await db.delete(db.profiles).go();
+
+      // Reset onboarding flag so the guard redirects to onboarding
+      await ref.read(onboardingCompleteProvider.notifier).reset();
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
