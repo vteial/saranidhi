@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 10 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~22.5 Hours
-**Pull Requests Merged:** 16
+**Sprints Delivered:** 11 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~23.5 Hours
+**Pull Requests Merged:** 18
 **Automated Test Coverage:** 264 assertions (unit + widget + integration)
 
 ---
@@ -71,6 +71,8 @@
 | `ed6a1d4` | Kiro Agent | 2026-06-03 13:30 | fix(ci): set coverage threshold at 25% |
 | `04acacf` | Kiro Agent | 2026-06-03 13:45 | docs: add new docs to README |
 | `ac20148` | Eialarasu | 2026-06-03 14:00 | **Merge PR #16 — Sprint 10 Complete** |
+| `f0e2b35` | Kiro Agent | 2026-06-03 14:30 | feat(sprint11): Smoke Test Plan, CI polish, revised release plan |
+| `b1aa7a1` | Eialarasu | 2026-06-03 15:00 | **Merge PR #18 — Sprint 11 Complete** |
 
 ---
 
@@ -84,7 +86,8 @@
 | Day 2 | 2026-06-03 | 07:00 - 09:30 | ~2.5 | Sprint 8 |
 | Day 2 | 2026-06-03 | 09:30 - 11:30 | ~2.0 | Sprint 9 |
 | Day 2 | 2026-06-03 | 11:30 - 14:00 | ~2.5 | Sprint 10 |
-| | | **Subtotal** | **~16.0** | |
+| Day 2 | 2026-06-03 | 14:00 - 15:00 | ~1.0 | Sprint 11 |
+| | | **Subtotal** | **~17.0** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -103,9 +106,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 16.0 |
+| Active coding & debugging (AI-assisted) | 17.0 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~22.5** |
+| **Total** | **~23.5** |
 
 ---
 
@@ -124,7 +127,10 @@
 | Sprint 8 | Theming, Profile & Core UX | #13 | 201 | ✅ Complete |
 | Sprint 9 | i18n, Animations & Polish | #14 | 201 | ✅ Complete |
 | Sprint 10 | Testing & Hardening | #16 | 264 | ✅ Complete |
-| Sprint 11 | Production Deployment | — | — | 🔲 Next |
+| Sprint 11 | Smoke Test Plan & CI Polish | #18 | 264 | ✅ Complete |
+| Sprint 12 | Manual Smoke Execution & Fixes | — | — | 🔲 Next |
+| Sprint 13 | Web Production Deployment | — | — | 🔲 Planned |
+| Sprint 14 | Mobile App Store Deployment | — | — | 🔲 Planned |
 
 ---
 
@@ -158,6 +164,11 @@
 - **7 new unit test suites** (BirdEmoji, BreathTimer, DashboardData, Locale, Theme, OnboardingState, AppLocalizations)
 - **Security review** documenting data-at-rest/in-transit protections and production recommendations
 - **Offline verification matrix** confirming zero-network-dependency for all core features
+- **Manual smoke test plan** (34 scenarios: accuracy vs Align27, core flow, settings, Tamil, edge cases)
+- **Smoke test results template** (production pass gate — executed before deployment)
+- **CI paths-ignore** for docs-only PRs (skip quality gates on .md/.kiro changes)
+- **`/plan` protocol** for strategic sprint revisions
+- **Revised release plan** (Sprints 11–14, cloud backup/auth deferred to 1.1)
 
 ---
 

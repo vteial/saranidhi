@@ -39,7 +39,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Theming & Profile** | 8 theme variants (4 colors × Light/Dark), System mode, profile card with edit, OnboardingGuard, AstroInfoBar, live timer seconds | ✅ Complete (100%) — Sprint 8 |
 | **i18n & Polish** | Tamil translations (90+ strings), language switcher, locale persistence, smooth tab transitions, pull-to-refresh, Clear All Data, shared bird emoji utility, accessibility (Semantics, touch targets) | ✅ Complete (100%) — Sprint 9 |
 | **Testing & Hardening** | 264 automated tests (unit + widget + integration), 25% coverage threshold enforcement, security review, offline verification, 7 new test suites | ✅ Complete (100%) — Sprint 10 |
-| **Production Deployment** | App Store, Play Store, Cloudflare Pages, CI/CD prod workflow | 🔲 Planned — Sprint 11 |
+| **Smoke Test & CI Polish** | Manual smoke test plan (34 scenarios), results template, CI paths-ignore, /plan protocol, revised release plan (cloud backup → 1.1) | ✅ Complete (100%) — Sprint 11 |
+| **Production Deployment** | Web (Cloudflare Pages) + Mobile (App Store, Play Store) | 🔲 Planned — Sprints 13–14 |
 
 ---
 
@@ -109,6 +110,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 8 | Theming, Profile & Core UX | #13 | 0 (existing tests cover) | ✅ Complete |
 | Sprint 9 | i18n, Animations & Polish | #14 | 0 (existing tests cover) | ✅ Complete |
 | Sprint 10 | Testing & Hardening | #16 | 63 | ✅ Complete |
+| Sprint 11 | Smoke Test Plan & CI Polish | #18 | 0 (docs/CI only) | ✅ Complete |
 
 ---
 
