@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:saranidhi/l10n/generated/app_localizations.dart';
+
 import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays today's sunrise/sunset time and current bird state.
 class AstroInfoBar extends StatelessWidget {

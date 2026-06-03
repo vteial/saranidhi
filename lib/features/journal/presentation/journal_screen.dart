@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/alignment_result_widget.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/breath_entry_widget.dart';
@@ -8,6 +8,7 @@ import 'package:saranidhi/features/breath_journal/presentation/widgets/breath_ti
 import 'package:saranidhi/features/breath_journal/presentation/widgets/journal_history_list.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/quick_sync_pacer.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The Breath Journal screen — the core interaction surface of Saranidhi.
 ///

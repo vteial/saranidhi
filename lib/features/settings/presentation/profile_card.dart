@@ -1,12 +1,13 @@
 import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
-import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays and allows editing of the user profile.
 class ProfileCard extends ConsumerStatefulWidget {

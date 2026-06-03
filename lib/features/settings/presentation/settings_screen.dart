@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/theme/app_theme.dart';
 import 'package:saranidhi/core/theme/theme_provider.dart';
@@ -10,6 +10,7 @@ import 'package:saranidhi/features/cloud_backup/presentation/widgets/backup_acti
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mode_selector.dart';
 import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
 import 'package:saranidhi/features/settings/presentation/profile_card.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The Settings screen.
 class SettingsScreen extends ConsumerWidget {

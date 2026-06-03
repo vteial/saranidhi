@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:saranidhi/core/router/app_router.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The first-run onboarding flow.
 ///

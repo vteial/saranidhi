@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/astro_info_bar.dart';
@@ -9,6 +9,7 @@ import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_wid
 import 'package:saranidhi/features/streaks/presentation/widgets/trend_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/yama_accuracy_widget.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The Home/Dashboard screen.
 ///
