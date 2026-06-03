@@ -97,7 +97,7 @@ git push origin main
 
 ### Known Limitations (Current)
 
-- **Coverage gate:** Set to 15% during feature sprints (3–8); will raise to 80% in Sprint 9.
+- **Coverage gate:** Set to 15% during feature sprints (3–9); will raise to 80% in Sprint 10 (Testing & Hardening).
 - **UI verification:** Always verify on Vercel preview before merging UI changes. Never merge UI blind.
 
 ---

@@ -221,6 +221,7 @@ flutter build apk --release    → Upload to Play Store (manual)
 - **Pre-commit:** lefthook (format + analyze)
 - **Linting:** very_good_analysis
 - **Code Gen:** build_runner (Freezed, Drift, Riverpod)
+- **Localization:** `flutter gen-l10n` with `synthetic-package: false`; generated Dart committed to `lib/l10n/generated/`
 
 ---
 

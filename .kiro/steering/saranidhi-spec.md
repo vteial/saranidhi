@@ -29,7 +29,7 @@ inclusion: auto
 | **Local AI** | On-device LLM (mobile), rules-based engine (web) |
 | **Notifications** | flutter_local_notifications (mobile only) |
 | **Theming** | Material 3 (4 variants: Light, Dark, Emerald, Gold) |
-| **Localization** | ARB files (EN, TA) |
+| **Localization** | ARB files (EN, TA) + `flutter gen-l10n` (non-synthetic, committed output to `lib/l10n/generated/`) |
 | **Linting** | very_good_analysis |
 | **CI/CD** | GitHub Actions |
 | **Web Staging** | Vercel (PR previews) |
