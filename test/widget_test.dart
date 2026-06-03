@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/features/streaks/domain/seven_day_ribbon.dart';
 import 'package:saranidhi/features/streaks/domain/streak_calculator.dart';
 import 'package:saranidhi/features/streaks/domain/trend_calculator.dart';
@@ -10,6 +11,7 @@ import 'package:saranidhi/main.dart';
 
 void main() {
   final testOverrides = [
+    onboardingCompleteProvider.overrideWith(() => _AlwaysTrueNotifier()),
     journalEntriesProvider.overrideWith(
       (ref) => Stream.value(<SaraKalaiJournalData>[]),
     ),
@@ -84,4 +86,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('3 days'), findsOneWidget);
   });
+}
+
+class _AlwaysTrueNotifier extends OnboardingCompleteNotifier {
+  @override
+  bool build() => true;
 }

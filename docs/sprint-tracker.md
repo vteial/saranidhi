@@ -117,43 +117,56 @@
 
 ---
 
-## Sprint 8: Theming, i18n & Polish (Current Sprint)
+## Sprint 8: Theming, Profile & Core UX ✅ Complete (Merged PR #13)
 
-- [ ] Task 8.1: Finalize Material 3 theme variants (Light, Dark, Emerald, Gold)
-- [ ] Task 8.2: Implement theme persistence (shared_preferences)
-- [ ] Task 8.3: Set up ARB localization files (English + Tamil)
-- [ ] Task 8.4: Translate all user-facing strings to Tamil
-- [ ] Task 8.5: Add smooth page transitions and micro-animations
-- [ ] Task 8.6: Responsive layout finalization (iPhone SE → iPad → Desktop)
-- [ ] Task 8.7: Accessibility audit (semantic labels, contrast ratios, font scaling)
-- [ ] Task 8.8: App icon generation (all platform sizes from logo SVG)
-
----
-
-## Sprint 9: Testing & Hardening
-
-- [ ] Task 9.1: Write unit tests for all domain layer logic (Astro-Engine, Streaks, AI context)
-- [ ] Task 9.2: Write widget tests for core UI components (breath entry, timer, streak ribbon)
-- [ ] Task 9.3: Write integration tests for full user flows (onboarding, log breath, view streak)
-- [ ] Task 9.4: Write E2E smoke tests (app launch, navigate, log entry, verify persistence)
-- [ ] Task 9.5: Performance profiling (app startup time, animation smoothness, DB query speed)
-- [ ] Task 9.6: Fix all identified defects from testing
-- [ ] Task 9.7: Verify offline functionality (airplane mode full flow)
-- [ ] Task 9.8: Security review (no data leaks, encrypted backup verification)
+- [x] Task 8.1: Implement 8 theme variants: 4 colors (Default, Emerald, Gold, Purple) × 2 modes (Light/Dark)
+- [x] Task 8.2: Add System theme mode (follow OS) + Light/Dark manual toggle
+- [x] Task 8.3: Profile completion flag + GoRouter redirect (first launch → onboarding)
+- [x] Task 8.4: Profile display card in Settings (name, birth star, bird, location)
+- [x] Task 8.5: Editable profile (name, birth star with warning, location)
+- [x] Task 8.6: Display sunrise/sunset time on Home dashboard
+- [x] Task 8.7: Display current bird state (name + emoji) on Home dashboard
+- [x] Task 8.8: Breath timer: show live running seconds during each phase
 
 ---
 
-## Sprint 10: Production Deployment
+## Sprint 9: i18n, Animations & Polish (Current Sprint)
 
-- [ ] Task 10.1: Create `prod` branch from `main`
-- [ ] Task 10.2: Configure Cloudflare Pages for web production deployment
-- [ ] Task 10.3: Prepare App Store listing (screenshots, description, keywords, privacy policy)
-- [ ] Task 10.4: Prepare Play Store listing (screenshots, description, keywords, privacy policy)
-- [ ] Task 10.5: Submit iOS app for App Store review
-- [ ] Task 10.6: Submit Android app for Play Store review
-- [ ] Task 10.7: Configure production CI/CD workflow with manual approval gate
-- [ ] Task 10.8: Verify all platforms live and functional
-- [ ] Task 10.9: Tag release `v1.0.0` on `prod` branch
+- [ ] Task 9.1: Set up Tamil ARB translations (all user-facing strings)
+- [ ] Task 9.2: Language switcher in Settings (EN/TA)
+- [ ] Task 9.3: Smooth page transitions between tabs
+- [ ] Task 9.4: Pull-to-refresh on Home dashboard
+- [ ] Task 9.5: "Clear All Data" option in Settings
+- [ ] Task 9.6: Bird emoji/icons for Pakshi display throughout app
+- [ ] Task 9.7: Accessibility audit (font scaling, contrast, semantic labels)
+- [ ] Task 9.8: App icon generation from logo SVG
+
+---
+
+## Sprint 10: Testing & Hardening
+
+- [ ] Task 10.1: Write unit tests for all domain layer logic (Astro-Engine, Streaks, AI context)
+- [ ] Task 10.2: Write widget tests for core UI components (breath entry, timer, streak ribbon)
+- [ ] Task 10.3: Write integration tests for full user flows (onboarding, log breath, view streak)
+- [ ] Task 10.4: Write E2E smoke tests (app launch, navigate, log entry, verify persistence)
+- [ ] Task 10.5: Performance profiling (app startup time, animation smoothness, DB query speed)
+- [ ] Task 10.6: Fix all identified defects from testing
+- [ ] Task 10.7: Verify offline functionality (airplane mode full flow)
+- [ ] Task 10.8: Security review (no data leaks, encrypted backup verification)
+
+---
+
+## Sprint 11: Production Deployment
+
+- [ ] Task 11.1: Create `prod` branch from `main`
+- [ ] Task 11.2: Configure Cloudflare Pages for web production deployment
+- [ ] Task 11.3: Prepare App Store listing (screenshots, description, keywords, privacy policy)
+- [ ] Task 11.4: Prepare Play Store listing (screenshots, description, keywords, privacy policy)
+- [ ] Task 11.5: Submit iOS app for App Store review
+- [ ] Task 11.6: Submit Android app for Play Store review
+- [ ] Task 11.7: Configure production CI/CD workflow with manual approval gate
+- [ ] Task 11.8: Verify all platforms live and functional
+- [ ] Task 11.9: Tag release `v1.0.0` on `prod` branch
 
 ---
 

@@ -1,31 +1,64 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/theme/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-part 'theme_provider.g.dart';
+const _accentKey = 'theme_accent';
+const _brightnessKey = 'theme_brightness';
 
-const _themeKey = 'app_theme_mode';
+/// Combined theme state.
+class ThemeState {
+  const ThemeState({
+    this.accent = ThemeAccent.defaultPurple,
+    this.brightness = ThemeBrightness.system,
+  });
 
-/// Provides and persists the current [AppThemeMode].
-@Riverpod(keepAlive: true)
-class ThemeNotifier extends _$ThemeNotifier {
+  final ThemeAccent accent;
+  final ThemeBrightness brightness;
+}
+
+/// Provides and persists the current theme configuration.
+final themeProvider = NotifierProvider<ThemeNotifier, ThemeState>(
+  ThemeNotifier.new,
+);
+
+class ThemeNotifier extends Notifier<ThemeState> {
   @override
-  AppThemeMode build() {
+  ThemeState build() {
     _loadFromPrefs();
-    return AppThemeMode.light;
+    return const ThemeState();
   }
 
   Future<void> _loadFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    final saved = prefs.getString(_themeKey);
-    if (saved != null) {
-      state = AppThemeMode.fromString(saved);
-    }
+    final accentName = prefs.getString(_accentKey);
+    final brightnessName = prefs.getString(_brightnessKey);
+
+    final accent = accentName != null
+        ? ThemeAccent.values.firstWhere(
+            (e) => e.name == accentName,
+            orElse: () => ThemeAccent.defaultPurple,
+          )
+        : ThemeAccent.defaultPurple;
+
+    final brightness = brightnessName != null
+        ? ThemeBrightness.values.firstWhere(
+            (e) => e.name == brightnessName,
+            orElse: () => ThemeBrightness.system,
+          )
+        : ThemeBrightness.system;
+
+    state = ThemeState(accent: accent, brightness: brightness);
   }
 
-  Future<void> setTheme(AppThemeMode mode) async {
-    state = mode;
+  Future<void> setAccent(ThemeAccent accent) async {
+    state = ThemeState(accent: accent, brightness: state.brightness);
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_themeKey, mode.name);
+    await prefs.setString(_accentKey, accent.name);
+  }
+
+  Future<void> setBrightness(ThemeBrightness brightness) async {
+    state = ThemeState(accent: state.accent, brightness: brightness);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_brightnessKey, brightness.name);
   }
 }
