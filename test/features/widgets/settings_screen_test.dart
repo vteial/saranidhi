@@ -106,12 +106,15 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 500));
 
-      // Scroll to find Clear All Data
-      await tester.scrollUntilVisible(
-        find.text('Clear All Data'),
-        200,
-        scrollable: find.byType(Scrollable).last,
-      );
+      // Scroll down in the ListView to find Clear All Data
+      final listView = find.byType(ListView);
+      if (listView.evaluate().isNotEmpty) {
+        await tester.dragUntilVisible(
+          find.text('Clear All Data'),
+          listView.first,
+          const Offset(0, -200),
+        );
+      }
 
       expect(find.text('Clear All Data'), findsOneWidget);
     });

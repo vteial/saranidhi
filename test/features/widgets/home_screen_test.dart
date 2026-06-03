@@ -78,6 +78,12 @@ void main() {
       );
       await tester.pumpAndSettle();
 
+      // Yama Accuracy may be below the fold — scroll to find it
+      await tester.scrollUntilVisible(
+        find.text('Yama Accuracy'),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(find.text('Yama Accuracy'), findsOneWidget);
     });
 
