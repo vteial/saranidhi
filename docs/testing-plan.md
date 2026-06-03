@@ -239,7 +239,30 @@ This document defines the structured testing strategy for Saranidhi across all l
 | `[Smoke]` | Every PR via GitHub Actions CI | flutter_test (headless) | `flutter test` |
 | `[Regression]` | Sprint merge PRs | flutter_test (headless) | `flutter test` |
 | `[Platform]` | Sprint 5+ (cloud) and Sprint 6+ (notifications) | Real device / simulator | `integration_test` |
-| `[Edge]` | Sprint 9 dedicated hardening | Real device / simulator | `integration_test` + profiling |
+| `[Edge]` | Sprint 10 dedicated hardening | Real device / simulator | `integration_test` + profiling |
+
+---
+
+## Test Count Progression
+
+| Sprint | Tests Added | Cumulative | Notes |
+|--------|------------|-----------|-------|
+| Sprint 2 | 153 | 153 | Astro-Logic Engine (pure Dart TDD) |
+| Sprint 3 | 8 | 161 | Widget tests for journal + integration scaffold |
+| Sprint 4 | 24 | 185 | Streak engine domain tests |
+| Sprint 5 | 0 | 185 | Cloud backup (stubs, no new test assertions) |
+| Sprint 6 | 0 | 185 | Notifications (platform stubs) |
+| Sprint 7 | 16 | 201 | AI Wisdom Engine unit tests |
+| Sprint 8 | 0 | 201 | Theming/profile (UI-only, no new tests) |
+| Sprint 9 | 0 | 201 | i18n/polish (UI-only; G-08, I-05 covered in Sprint 10) |
+
+### Scenarios Awaiting Automated Test Coverage (Sprint 10)
+
+| ID | Scenario | Implemented In |
+|----|----------|---------------|
+| G-08 | Language switch (EN → TA) persistence | Sprint 9 |
+| I-05 | Clear all data from settings → onboarding reset | Sprint 9 |
+| H-01 | Bottom nav localized labels | Sprint 9 |
 
 ---
 

@@ -27,6 +27,24 @@ final _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _journalNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'journal');
 final _settingsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'settings');
 
+/// Custom fade-through transition for tab pages.
+CustomTransitionPage<void> _fadeTransitionPage({
+  required Widget child,
+  required GoRouterState state,
+}) {
+  return CustomTransitionPage<void>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: CurveTween(curve: Curves.easeInOut).animate(animation),
+        child: child,
+      );
+    },
+    transitionDuration: const Duration(milliseconds: 250),
+  );
+}
+
 /// The main router configuration using [StatefulShellRoute]
 /// for persistent bottom navigation state.
 final GoRouter appRouter = GoRouter(
@@ -35,7 +53,22 @@ final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(
       path: AppRoutes.onboarding,
-      builder: (context, state) => const OnboardingScreen(),
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        key: state.pageKey,
+        child: const OnboardingScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(
+              CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
+            ),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 350),
+      ),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -47,7 +80,10 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.home,
-              builder: (context, state) => const HomeScreen(),
+              pageBuilder: (context, state) => _fadeTransitionPage(
+                child: const HomeScreen(),
+                state: state,
+              ),
             ),
           ],
         ),
@@ -56,7 +92,10 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.journal,
-              builder: (context, state) => const JournalScreen(),
+              pageBuilder: (context, state) => _fadeTransitionPage(
+                child: const JournalScreen(),
+                state: state,
+              ),
             ),
           ],
         ),
@@ -65,7 +104,10 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.settings,
-              builder: (context, state) => const SettingsScreen(),
+              pageBuilder: (context, state) => _fadeTransitionPage(
+                child: const SettingsScreen(),
+                state: state,
+              ),
             ),
           ],
         ),

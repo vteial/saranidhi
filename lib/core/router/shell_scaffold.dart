@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Maximum content width — same as ResponsiveWrapper.
 const double _kMaxNavWidth = 1200;
@@ -15,6 +17,8 @@ class ShellScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       body: ResponsiveWrapper(child: navigationShell),
       bottomNavigationBar: Align(
@@ -30,21 +34,21 @@ class ShellScaffold extends StatelessWidget {
                 initialLocation: index == navigationShell.currentIndex,
               );
             },
-            destinations: const [
+            destinations: [
               NavigationDestination(
-                icon: Icon(Icons.home_outlined),
-                selectedIcon: Icon(Icons.home),
-                label: 'Home',
+                icon: const Icon(Icons.home_outlined),
+                selectedIcon: const Icon(Icons.home),
+                label: l10n.homeTab,
               ),
               NavigationDestination(
-                icon: Icon(Icons.book_outlined),
-                selectedIcon: Icon(Icons.book),
-                label: 'Journal',
+                icon: const Icon(Icons.book_outlined),
+                selectedIcon: const Icon(Icons.book),
+                label: l10n.journalTab,
               ),
               NavigationDestination(
-                icon: Icon(Icons.settings_outlined),
-                selectedIcon: Icon(Icons.settings),
-                label: 'Settings',
+                icon: const Icon(Icons.settings_outlined),
+                selectedIcon: const Icon(Icons.settings),
+                label: l10n.settingsTab,
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/alignment_result_widget.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/breath_entry_widget.dart';
@@ -7,6 +8,7 @@ import 'package:saranidhi/features/breath_journal/presentation/widgets/breath_ti
 import 'package:saranidhi/features/breath_journal/presentation/widgets/journal_history_list.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/quick_sync_pacer.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The Breath Journal screen — the core interaction surface of Saranidhi.
 ///
@@ -26,9 +28,10 @@ class JournalScreen extends ConsumerWidget {
     final timerState = ref.watch(breathTimerNotifierProvider);
     final hasSelection = entryState.selectedFlow != null;
     final alignment = entryState.alignmentResult;
+    final l10n = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: const BrandedAppBar(title: 'Breath Journal'),
+      appBar: BrandedAppBar(title: l10n.breathJournalTitle),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -54,25 +57,31 @@ class JournalScreen extends ConsumerWidget {
               const SizedBox(height: 16),
 
               // Submit button — only enabled after timer completes
-              FilledButton.icon(
-                onPressed:
-                    entryState.isSubmitting ||
-                        timerState.phase != TimerPhase.complete
-                    ? null
-                    : () => _submitEntry(ref, timerState),
-                icon: entryState.isSubmitting
-                    ? const SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : const Icon(Icons.save),
-                label: Text(
-                  entryState.isSubmitting
-                      ? 'Saving...'
-                      : timerState.phase == TimerPhase.complete
-                      ? 'Log Breath Entry'
-                      : 'Complete timer to log',
+              Semantics(
+                button: true,
+                label: timerState.phase == TimerPhase.complete
+                    ? l10n.logBreathEntry
+                    : l10n.completeTimerToLog,
+                child: FilledButton.icon(
+                  onPressed:
+                      entryState.isSubmitting ||
+                          timerState.phase != TimerPhase.complete
+                      ? null
+                      : () => _submitEntry(ref, timerState),
+                  icon: entryState.isSubmitting
+                      ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.save),
+                  label: Text(
+                    entryState.isSubmitting
+                        ? l10n.saving
+                        : timerState.phase == TimerPhase.complete
+                        ? l10n.logBreathEntry
+                        : l10n.completeTimerToLog,
+                  ),
                 ),
               ),
             ],
@@ -84,13 +93,13 @@ class JournalScreen extends ConsumerWidget {
                 color: Theme.of(
                   context,
                 ).colorScheme.primaryContainer.withValues(alpha: 0.3),
-                child: const Padding(
-                  padding: EdgeInsets.all(12),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
                   child: Row(
                     children: [
-                      Icon(Icons.check, size: 20),
-                      SizedBox(width: 8),
-                      Text('Entry logged successfully!'),
+                      const Icon(Icons.check, size: 20),
+                      const SizedBox(width: 8),
+                      Text(l10n.entryLoggedSuccess),
                     ],
                   ),
                 ),

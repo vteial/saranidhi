@@ -130,16 +130,16 @@
 
 ---
 
-## Sprint 9: i18n, Animations & Polish (Current Sprint)
+## Sprint 9: i18n, Animations & Polish ✅ Complete (Merged PR #14)
 
-- [ ] Task 9.1: Set up Tamil ARB translations (all user-facing strings)
-- [ ] Task 9.2: Language switcher in Settings (EN/TA)
-- [ ] Task 9.3: Smooth page transitions between tabs
-- [ ] Task 9.4: Pull-to-refresh on Home dashboard
-- [ ] Task 9.5: "Clear All Data" option in Settings
-- [ ] Task 9.6: Bird emoji/icons for Pakshi display throughout app
-- [ ] Task 9.7: Accessibility audit (font scaling, contrast, semantic labels)
-- [ ] Task 9.8: App icon generation from logo SVG
+- [x] Task 9.1: Set up Tamil ARB translations (all user-facing strings)
+- [x] Task 9.2: Language switcher in Settings (EN/TA)
+- [x] Task 9.3: Smooth page transitions between tabs
+- [x] Task 9.4: Pull-to-refresh on Home dashboard
+- [x] Task 9.5: "Clear All Data" option in Settings
+- [x] Task 9.6: Bird emoji/icons for Pakshi display throughout app
+- [x] Task 9.7: Accessibility audit (font scaling, contrast, semantic labels)
+- [x] Task 9.8: App icon generation from logo SVG
 
 ---
 

@@ -30,6 +30,47 @@ main ─────────────────────────
 
 ---
 
+## Sprint Protocols
+
+### `/start-sprint`
+
+Lightweight entry point — creates the branch and marks the sprint active.
+
+1. Create feature branch from `main` (`feature/sprintN-<topic>`)
+2. Update `docs/sprint-tracker.md` — mark sprint as "(Current Sprint)"
+3. Begin implementation
+
+### `/finish-sprint`
+
+Closes the sprint — delivers the code and merges.
+
+1. Commit all remaining changes
+2. Push branch to remote
+3. Create PR targeting `main`
+4. Update `docs/sprint-tracker.md` → ✅ Complete (PR #N)
+5. Verify CI passes
+6. **Merge PR** — sprint is officially closed
+7. Ask: *"Run /project-update now or later?"*
+
+### `/project-update`
+
+Runs **after merge** on a separate docs-only branch to avoid CI code failures.
+
+1. Create branch from `main` (`docs/sprintN-update`)
+2. Update all clerical docs:
+   - `docs/project-valuation-report.md` — timeline, commit log, hours (estimate + 20%), deliverables, executive summary
+   - `docs/project-evaluation.md` — feature scorecard, delivery table, resolved defects
+   - `docs/project-plan.md` — new infrastructure/architecture patterns
+   - `docs/testing-plan.md` — test count progression, scenarios awaiting coverage
+   - `docs/dev-workflow.md` — any threshold/process changes
+   - `.kiro/steering/saranidhi-spec.md` — tech stack updates
+3. Commit, push, create docs-only PR
+4. Merge docs PR (CI won't fail since no code changes)
+
+**Hours estimation rule:** Use AI-estimated active time + 20% buffer (owner-approved).
+
+---
+
 ## Rollback Strategies
 
 ### If Issues Found After Merge
@@ -97,7 +138,7 @@ git push origin main
 
 ### Known Limitations (Current)
 
-- **Coverage gate:** Set to 15% during feature sprints (3–8); will raise to 80% in Sprint 9.
+- **Coverage gate:** Set to 15% during feature sprints (3–9); will raise to 80% in Sprint 10 (Testing & Hardening).
 - **UI verification:** Always verify on Vercel preview before merging UI changes. Never merge UI blind.
 
 ---
