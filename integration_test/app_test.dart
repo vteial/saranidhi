@@ -8,8 +8,9 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('App Shell E2E', () {
-    testWidgets('App launches and shows onboarding on first run',
-        (tester) async {
+    testWidgets('App launches and shows onboarding on first run', (
+      tester,
+    ) async {
       await tester.pumpWidget(const ProviderScope(child: SaranidhiApp()));
       await tester.pumpAndSettle();
 
@@ -17,8 +18,7 @@ void main() {
       expect(find.text('Welcome to Saranidhi'), findsOneWidget);
     });
 
-    testWidgets('App shows dashboard when onboarding complete',
-        (tester) async {
+    testWidgets('App shows dashboard when onboarding complete', (tester) async {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [

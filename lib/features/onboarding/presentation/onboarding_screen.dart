@@ -93,10 +93,31 @@ class OnboardingScreen extends ConsumerWidget {
   }
 }
 
-class _WelcomeStep extends StatelessWidget {
+class _WelcomeStep extends StatefulWidget {
   const _WelcomeStep({required this.state, required this.notifier});
   final OnboardingState state;
   final OnboardingNotifier notifier;
+
+  @override
+  State<_WelcomeStep> createState() => _WelcomeStepState();
+}
+
+class _WelcomeStepState extends State<_WelcomeStep> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.state.displayName);
+  }
+
+  @override
+  void dispose() {
+    // Ensure name is saved when navigating away from this step
+    widget.notifier.setDisplayName(_controller.text);
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,12 +143,13 @@ class _WelcomeStep extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           TextField(
+            controller: _controller,
             decoration: const InputDecoration(
-              labelText: 'Your Name (optional)',
+              labelText: 'Your Name',
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.person_outline),
             ),
-            onChanged: notifier.setDisplayName,
+            onChanged: widget.notifier.setDisplayName,
           ),
         ],
       ),
