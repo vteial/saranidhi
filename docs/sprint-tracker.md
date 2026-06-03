@@ -156,15 +156,15 @@
 
 ---
 
-## Sprint 11: Smoke Test Plan & CI Polish (Current Sprint)
+## Sprint 11: Smoke Test Plan & CI Polish ✅ Complete (Merged PR #18)
 
-- [ ] Task 11.1: Create `docs/manual-smoke-test.md` with full scenario matrix (Accuracy, Core Flow, Settings, Edge Cases)
-- [ ] Task 11.2: Create `docs/smoke-test-results.md` template (ready for manual execution)
-- [ ] Task 11.3: Add CI `paths-ignore` for docs-only branches (skip quality gates on .md/.kiro changes)
-- [ ] Task 11.4: Add `/plan` protocol to `docs/dev-workflow.md`
-- [ ] Task 11.5: Revise `docs/release-1.0-plan.md` — updated sprint mapping (11–14), move cloud backup/auth to 1.1
-- [ ] Task 11.6: Update `docs/sprint-tracker.md` with Sprints 12–14 definitions
-- [ ] Task 11.7: Improve Tamil translations (spiritual terms accuracy — Pakshi states, Yama, Hora)
+- [x] Task 11.1: Create `docs/manual-smoke-test.md` with full scenario matrix (Accuracy, Core Flow, Settings, Edge Cases)
+- [x] Task 11.2: Create `docs/smoke-test-results.md` template (ready for manual execution)
+- [x] Task 11.3: Add CI `paths-ignore` for docs-only branches (skip quality gates on .md/.kiro changes)
+- [x] Task 11.4: Add `/plan` protocol to `docs/dev-workflow.md`
+- [x] Task 11.5: Revise `docs/release-1.0-plan.md` — updated sprint mapping (11–14), move cloud backup/auth to 1.1
+- [x] Task 11.6: Update `docs/sprint-tracker.md` with Sprints 12–14 definitions
+- [ ] Task 11.7: Improve Tamil translations (deferred to Sprint 12 — based on smoke test findings)
 
 ---
 
