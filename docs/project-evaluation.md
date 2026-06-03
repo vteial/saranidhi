@@ -51,11 +51,11 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total test assertions | 201 (as of Sprint 7) |
+| Total test assertions | 201 (as of Sprint 8) |
 | Pass rate | 100% |
 | Static analysis | `dart analyze` — zero issues |
 | CI enforcement | GitHub Actions (analyze + test + coverage + build web + integration) |
-| Coverage threshold | 15% (feature sprints); will raise to 80% in Sprint 9 |
+| Coverage threshold | 15% (feature sprints); will raise to 80% in Sprint 10 |
 | Linting | `very_good_analysis` |
 
 ### Test Count Progression
