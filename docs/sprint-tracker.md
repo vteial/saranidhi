@@ -143,7 +143,7 @@
 
 ---
 
-## Sprint 10: Testing & Hardening
+## Sprint 10: Testing & Hardening (Current Sprint)
 
 - [ ] Task 10.1: Write unit tests for all domain layer logic (Astro-Engine, Streaks, AI context)
 - [ ] Task 10.2: Write widget tests for core UI components (breath entry, timer, streak ribbon)
