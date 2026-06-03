@@ -150,6 +150,8 @@ flutter run
 - [Sprint Tracker](docs/sprint-tracker.md) — Current progress
 - [Testing Plan](docs/testing-plan.md) — Test strategy and scenarios
 - [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, rollback strategies, quality gates
+- [Security Review](docs/security-review.md) — Architecture security assessment, data protection
+- [Offline Verification](docs/offline-verification.md) — Offline capability matrix, zero-network verification
 - [Project Evaluation](docs/project-evaluation.md) — Feature scorecard, quality metrics, defect log
 - [Project Valuation Report](docs/project-valuation-report.md) — Time investment, commit timeline, sprint delivery
 
