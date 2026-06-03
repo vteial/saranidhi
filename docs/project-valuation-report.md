@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 7 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~15.5 Hours
-**Pull Requests Merged:** 12
+**Sprints Delivered:** 8 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~18.0 Hours
+**Pull Requests Merged:** 13
 **Automated Test Coverage:** 201 assertions (unit + widget + integration)
 
 ---
@@ -53,6 +53,7 @@
 | Session | Date | Window | Hours | Sprints |
 |---------|------|--------|-------|---------|
 | Day 1 | 2026-06-02 | 06:00 - 15:00 | ~9.0 | Sprint 0–7 + hotfixes |
+| Day 2 | 2026-06-03 | 07:00 - 09:30 | ~2.5 | Sprint 8 |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -89,7 +90,8 @@
 | Sprint 5 | Cloud Backup Integration | #10 | 165 | ✅ Complete |
 | Sprint 6 | Notifications + Onboarding | #11 | 183 | ✅ Complete |
 | Sprint 7 | AI Wisdom Engine | #12 | 201 | ✅ Complete |
-| Sprint 8 | Theming, i18n & Polish | — | — | 🔲 Next |
+| Sprint 8 | Theming, Profile & Core UX | #13 | 201 | ✅ Complete |
+| Sprint 9 | i18n, Animations & Polish | — | — | 🔲 Next |
 | Sprint 6 | Notifications + Onboarding | — | — | 🔲 Planned |
 | Sprint 7 | AI Wisdom Engine | — | — | 🔲 Planned |
 | Sprint 8 | Theming, i18n & Polish | — | — | 🔲 Planned |
