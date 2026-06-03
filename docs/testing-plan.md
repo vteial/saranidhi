@@ -255,6 +255,7 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 7 | 16 | 201 | AI Wisdom Engine unit tests |
 | Sprint 8 | 0 | 201 | Theming/profile (UI-only, no new tests) |
 | Sprint 9 | 0 | 201 | i18n/polish (UI-only; G-08, I-05 covered in Sprint 10) |
+| Sprint 10 | 63 | 264 | Unit tests: BirdEmoji, BreathTimer, DashboardData, Locale, Theme, OnboardingState, AppLocalizations |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 
