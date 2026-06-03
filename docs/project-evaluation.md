@@ -36,9 +36,10 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Cloud Backup** | Abstract interface, LocalBackupRepo, iCloud stub, Google Drive stub, DatabaseExporter, storage mode selector UI, backup/restore settings UI | ✅ Complete (100%) — Sprint 5 |
 | **Notifications + Onboarding** | Notification scheduler (Yama boundaries), wisdom payloads, notification toggles, 4-step onboarding flow, birth bird calculation, location selection, profile persistence | ✅ Complete (100%) — Sprint 6 |
 | **AI Wisdom Engine** | Context payload builder, rules-based engine, 60+ proverb library, deterministic fallback, daily caching, skeleton-loading wisdom card UI | ✅ Complete (100%) — Sprint 7 |
-| **Theming & i18n** | 4 theme variants polished, EN/TA translations, animations, responsive finalization | 🔲 Planned — Sprint 8 |
-| **Testing & Hardening** | Widget tests, integration tests, E2E suite, coverage >= 80%, performance profiling | 🔲 Planned — Sprint 9 |
-| **Production Deployment** | App Store, Play Store, Cloudflare Pages, CI/CD prod workflow | 🔲 Planned — Sprint 10 |
+| **Theming & Profile** | 8 theme variants (4 colors × Light/Dark), System mode, profile card with edit, OnboardingGuard, AstroInfoBar, live timer seconds | ✅ Complete (100%) — Sprint 8 |
+| **i18n & Polish** | Tamil translations, animations, accessibility | 🔲 Planned — Sprint 9 |
+| **Testing & Hardening** | Widget tests, integration tests, E2E suite, coverage >= 80%, performance profiling | 🔲 Planned — Sprint 10 |
+| **Production Deployment** | App Store, Play Store, Cloudflare Pages, CI/CD prod workflow | 🔲 Planned — Sprint 11 |
 
 ---
 
@@ -98,6 +99,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 5 | Cloud Backup Integration | #10 | 15 | ✅ Complete |
 | Sprint 6 | Notifications + Onboarding | #11 | 18 | ✅ Complete |
 | Sprint 7 | AI Wisdom Engine | #12 | 18 | ✅ Complete |
+| Sprint 8 | Theming, Profile & Core UX | #13 | 0 (existing tests cover) | ✅ Complete |
 
 ---
 

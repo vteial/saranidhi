@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.dart';
+import 'package:saranidhi/features/home/presentation/widgets/astro_info_bar.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/seven_day_ribbon_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/trend_widget.dart';
@@ -58,6 +59,10 @@ class _DashboardContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Astro info (sunrise, sunset, bird state)
+          const AstroInfoBar(),
+          const SizedBox(height: 12),
+
           // Streak flame
           StreakFlameWidget(streak: data.streak),
           const SizedBox(height: 12),

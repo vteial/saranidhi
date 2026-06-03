@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 
 /// Breath duration timer with inhale/hold/exhale phases.
 ///
-/// Uses a simple stopwatch-style UI where the user taps to advance
-/// through phases: Inhale → Hold → Exhale → Complete.
+/// Shows live running seconds and uses a simple stopwatch-style UI where
+/// the user taps to advance through phases: Inhale → Hold → Exhale → Complete.
 class BreathTimerWidget extends ConsumerStatefulWidget {
   const BreathTimerWidget({super.key});
 
@@ -15,11 +17,29 @@ class BreathTimerWidget extends ConsumerStatefulWidget {
 
 class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
   final Stopwatch _stopwatch = Stopwatch();
+  Timer? _displayTimer;
+  int _displaySeconds = 0;
 
   @override
   void dispose() {
     _stopwatch.stop();
+    _displayTimer?.cancel();
     super.dispose();
+  }
+
+  void _startDisplayTimer() {
+    _displayTimer?.cancel();
+    _displaySeconds = 0;
+    _displayTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() {
+        _displaySeconds = _stopwatch.elapsed.inSeconds;
+      });
+    });
+  }
+
+  void _stopDisplayTimer() {
+    _displayTimer?.cancel();
+    _displayTimer = null;
   }
 
   void _onTap() {
@@ -31,24 +51,31 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
         _stopwatch
           ..reset()
           ..start();
+        _startDisplayTimer();
         notifier.startInhale();
       case TimerPhase.inhale:
         _stopwatch.stop();
+        _stopDisplayTimer();
         notifier.finishInhale(_stopwatch.elapsedMilliseconds);
         _stopwatch
           ..reset()
           ..start();
+        _startDisplayTimer();
       case TimerPhase.hold:
         _stopwatch.stop();
+        _stopDisplayTimer();
         notifier.finishHold(_stopwatch.elapsedMilliseconds);
         _stopwatch
           ..reset()
           ..start();
+        _startDisplayTimer();
       case TimerPhase.exhale:
         _stopwatch.stop();
+        _stopDisplayTimer();
         notifier.finishExhale(_stopwatch.elapsedMilliseconds);
       case TimerPhase.complete:
         notifier.reset();
+        _displaySeconds = 0;
     }
     setState(() {});
   }
@@ -57,6 +84,9 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
   Widget build(BuildContext context) {
     final timerState = ref.watch(breathTimerNotifierProvider);
     final theme = Theme.of(context);
+    final isRunning =
+        timerState.phase != TimerPhase.idle &&
+        timerState.phase != TimerPhase.complete;
 
     return Card(
       child: InkWell(
@@ -78,6 +108,17 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              // Live seconds display
+              if (isRunning) ...[
+                const SizedBox(height: 8),
+                Text(
+                  '${_displaySeconds}s',
+                  style: theme.textTheme.headlineMedium?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
               const SizedBox(height: 4),
               Text(
                 _phaseInstruction(timerState.phase),
@@ -142,6 +183,7 @@ class _TimerResults extends StatelessWidget {
           label: 'Hold',
           value: '${(timerState.holdMs / 1000).toStringAsFixed(1)}s',
           theme: theme,
+          highlight: true,
         ),
         _ResultChip(
           label: 'Exhale',
@@ -158,17 +200,25 @@ class _ResultChip extends StatelessWidget {
     required this.label,
     required this.value,
     required this.theme,
+    this.highlight = false,
   });
 
   final String label;
   final String value;
   final ThemeData theme;
+  final bool highlight;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(value, style: theme.textTheme.titleSmall),
+        Text(
+          value,
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: highlight ? FontWeight.bold : null,
+            color: highlight ? theme.colorScheme.primary : null,
+          ),
+        ),
         Text(
           label,
           style: theme.textTheme.bodySmall?.copyWith(
