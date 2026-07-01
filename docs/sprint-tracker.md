@@ -179,7 +179,7 @@
 
 ---
 
-## Sprint 13: Web Production Deployment (Current Sprint)
+## Sprint 13: Web Production Deployment ✅ Complete (PR #25)
 
 - [x] Task 13.1: Verify Vercel production deployment on `main` (saranidhi.vercel.app)
 - [x] Task 13.2: Production deployment via Vercel (auto-deploy from `main`)
@@ -187,8 +187,8 @@
 - [x] Task 13.4: Document deployment workflow and rollback procedures
 - [x] Task 13.5: Add privacy policy page
 - [x] Task 13.6: Include completed smoke-test-results.md as production pass gate
-- [ ] Task 13.7: Verify production deployment live and functional
-- [ ] Task 13.8: Tag release `v1.0.0-web`
+- [x] Task 13.7: Verify production deployment live and functional
+- [x] Task 13.8: Tag release `v1.0.0-web`
 
 ---
 
