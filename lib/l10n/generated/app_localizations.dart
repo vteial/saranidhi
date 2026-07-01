@@ -364,6 +364,42 @@ abstract class AppLocalizations {
 
   /// Pull to refresh semantic label
   String get pullToRefresh;
+
+  /// Default color accent name
+  String get accentDefault;
+
+  /// Emerald color accent name
+  String get accentEmerald;
+
+  /// Gold color accent name
+  String get accentGold;
+
+  /// Purple color accent name
+  String get accentPurple;
+
+  /// Last backup label
+  String get lastBackup;
+
+  /// Backup now button
+  String get backupNow;
+
+  /// Backup in progress
+  String get backingUp;
+
+  /// Restore button
+  String get restore;
+
+  /// Restore in progress
+  String get restoring;
+
+  /// Hint when local mode is selected
+  String get switchToCloudHint;
+
+  /// Restore confirmation dialog title
+  String get restoreBackupTitle;
+
+  /// Restore confirmation dialog body
+  String get restoreBackupMessage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

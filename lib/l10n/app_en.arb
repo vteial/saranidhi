@@ -230,5 +230,31 @@
   "@dying": { "description": "Bird state" },
 
   "pullToRefresh": "Pull to refresh",
-  "@pullToRefresh": { "description": "Pull to refresh semantic label" }
+  "@pullToRefresh": { "description": "Pull to refresh semantic label" },
+
+  "accentDefault": "Default",
+  "@accentDefault": { "description": "Default color accent name" },
+  "accentEmerald": "Emerald",
+  "@accentEmerald": { "description": "Emerald color accent name" },
+  "accentGold": "Gold",
+  "@accentGold": { "description": "Gold color accent name" },
+  "accentPurple": "Purple",
+  "@accentPurple": { "description": "Purple color accent name" },
+
+  "lastBackup": "Last Backup",
+  "@lastBackup": { "description": "Last backup label" },
+  "backupNow": "Backup Now",
+  "@backupNow": { "description": "Backup now button" },
+  "backingUp": "Backing up...",
+  "@backingUp": { "description": "Backup in progress" },
+  "restore": "Restore",
+  "@restore": { "description": "Restore button" },
+  "restoring": "Restoring...",
+  "@restoring": { "description": "Restore in progress" },
+  "switchToCloudHint": "Switch to iCloud or Google Drive to enable backup",
+  "@switchToCloudHint": { "description": "Hint when local mode is selected" },
+  "restoreBackupTitle": "Restore Backup?",
+  "@restoreBackupTitle": { "description": "Restore confirmation dialog title" },
+  "restoreBackupMessage": "This will replace all current data with the backup. This action cannot be undone.",
+  "@restoreBackupMessage": { "description": "Restore confirmation dialog body" }
 }

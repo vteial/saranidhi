@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/features/breath_journal/domain/micro_advice.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays the alignment result with micro-advice after breath selection.
 class AlignmentResultWidget extends ConsumerWidget {
@@ -18,6 +20,7 @@ class AlignmentResultWidget extends ConsumerWidget {
     }
 
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final isAligned = alignment.isAligned;
 
     final advice = MicroAdvice.generate(
@@ -66,8 +69,8 @@ class AlignmentResultWidget extends ConsumerWidget {
             if (alignment.activeBird != null) ...[
               const SizedBox(height: 8),
               Text(
-                '${alignment.activeBird!.displayName} • '
-                '${alignment.activeBirdState?.displayName ?? ""} • '
+                '${alignment.activeBird!.localizedName(l10n)} • '
+                '${alignment.activeBirdState?.localizedName(l10n) ?? ""} • '
                 '${alignment.activeYama?.label ?? ""}',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
