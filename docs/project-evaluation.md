@@ -41,7 +41,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Testing & Hardening** | 264 automated tests (unit + widget + integration), 25% coverage threshold enforcement, security review, offline verification, 7 new test suites | ✅ Complete (100%) — Sprint 10 |
 | **Smoke Test & CI Polish** | Manual smoke test plan (34 scenarios), results template, CI paths-ignore, /plan protocol, revised release plan (cloud backup → 1.1) | ✅ Complete (100%) — Sprint 11 |
 | **Smoke Test Execution & i18n** | Manual smoke test (34 scenarios), Pakshi algorithm rewrite (authentic tables), complete Tamil localization (130+ keys, 3 pages), nakshatra Tamil names | ✅ Complete (100%) — Sprint 12 |
-| **Production Deployment** | Web (Cloudflare Pages) + Mobile (App Store, Play Store) | 🔲 Planned — Sprints 13–14 |
+| **Web Production Deployment** | Vercel production (saranidhi.vercel.app), privacy policy, deployment docs, smoke test gate, release tag v1.0.0-web | ✅ Complete (100%) — Sprint 13 |
+| **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint 14 |
 
 ---
 
@@ -120,6 +121,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 10 | Testing & Hardening | #16 | 63 | ✅ Complete |
 | Sprint 11 | Smoke Test Plan & CI Polish | #18 | 0 (docs/CI only) | ✅ Complete |
 | Sprint 12 | Smoke Test Execution & Fixes | #21, #22, #23 | 0 (test rewrite, same count) | ✅ Complete |
+| Sprint 13 | Web Production Deployment | #25, #26 | 0 (deployment/docs only) | ✅ Complete |
 
 ---
 
