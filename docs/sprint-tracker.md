@@ -164,18 +164,18 @@
 - [x] Task 11.4: Add `/plan` protocol to `docs/dev-workflow.md`
 - [x] Task 11.5: Revise `docs/release-1.0-plan.md` — updated sprint mapping (11–14), move cloud backup/auth to 1.1
 - [x] Task 11.6: Update `docs/sprint-tracker.md` with Sprints 12–14 definitions
-- [ ] Task 11.7: Improve Tamil translations (deferred to Sprint 12 — based on smoke test findings)
+- [x] Task 11.7: Improve Tamil translations (deferred to Sprint 12 — completed via PR #21 + #22)
 
 ---
 
-## Sprint 12: Manual Smoke Test Execution & Fixes ✅ Complete (PR #21)
+## Sprint 12: Manual Smoke Test Execution & Fixes ✅ Complete (PR #21, Hotfix PR #22)
 
 - [x] Task 12.1: Execute manual smoke test (owner — compare with Align27 on Chennai/Pushya)
 - [x] Task 12.2: Record results in `docs/smoke-test-results.md`
 - [x] Task 12.3: Fix calculation accuracy issues — rewrite Panja Pakshi algorithm with authentic 2D lookup tables
 - [x] Task 12.4: Fix Tamil translation gaps (breath page, settings page, bird names in UI)
 - [x] Task 12.5: Fix UX issues surfaced during manual testing
-- [ ] Task 12.6: Re-execute failed scenarios after fixes → all pass
+- [x] Task 12.6: Re-execute failed scenarios after fixes → all pass
 
 ---
 
