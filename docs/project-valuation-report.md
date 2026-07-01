@@ -6,10 +6,11 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 12 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~27.0 Hours
-**Pull Requests Merged:** 23
+**Sprints Delivered:** 13 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~29.0 Hours
+**Pull Requests Merged:** 26
 **Automated Test Coverage:** 264 assertions (unit + widget + integration)
+**Production Web Release:** v1.0.0-web
 
 ---
 
@@ -81,6 +82,10 @@
 | `be388c8` | Kiro Agent | 2026-07-02 15:00 | fix(i18n): Complete remaining Tamil translations — timer, pacer, advice, days |
 | `a01c7f3` | Kiro Agent | 2026-07-02 16:00 | fix(i18n): Localize nakshatra and bird names in profile card |
 | `1596148` | Eialarasu | 2026-07-02 16:30 | **Merge PR #22 — Tamil Hotfix Complete** |
+| `51859eb` | Kiro Agent | 2026-07-03 10:00 | feat(sprint13): Web Production Deployment — Cloudflare Pages setup |
+| `414750c` | Eialarasu | 2026-07-03 10:30 | **Merge PR #25 — Sprint 13 (initial)** |
+| `2d1b948` | Kiro Agent | 2026-07-03 11:00 | fix(sprint13): Switch to Vercel production, remove Cloudflare workflow |
+| `a51b8d6` | Eialarasu | 2026-07-03 11:15 | **Merge PR #26 — Sprint 13 Vercel switch** |
 
 ---
 
@@ -96,7 +101,8 @@
 | Day 2 | 2026-06-03 | 11:30 - 14:00 | ~2.5 | Sprint 10 |
 | Day 2 | 2026-06-03 | 14:00 - 15:00 | ~1.0 | Sprint 11 |
 | Day 3 | 2026-07-02 | 10:00 - 16:30 | ~3.5 | Sprint 12 |
-| | | **Subtotal** | **~20.5** | |
+| Day 3 (cont.) | 2026-07-03 | 10:00 - 11:30 | ~2.0 | Sprint 13 |
+| | | **Subtotal** | **~22.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -115,9 +121,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 20.5 |
+| Active coding & debugging (AI-assisted) | 22.5 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~27.0** |
+| **Total** | **~29.0** |
 
 ---
 
@@ -138,12 +144,12 @@
 | Sprint 10 | Testing & Hardening | #16 | 264 | ✅ Complete |
 | Sprint 11 | Smoke Test Plan & CI Polish | #18 | 264 | ✅ Complete |
 | Sprint 12 | Manual Smoke Test Execution & Fixes | #21, #22, #23 | 264 | ✅ Complete |
-| Sprint 13 | Web Production Deployment | — | — | 🔲 Planned |
+| Sprint 13 | Web Production Deployment | #25, #26 | 264 | ✅ Complete |
 | Sprint 14 | Mobile App Store Deployment | — | — | 🔲 Planned |
 
 ---
 
-## Technical Deliverables (as of Sprint 12)
+## Technical Deliverables (as of Sprint 13)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
@@ -183,6 +189,11 @@
 - **`NakshatraL10n` utility** with all 27 Tamil nakshatra name mappings
 - **Complete Tamil (தமிழ்) localization** — 130+ ARB keys covering all 3 app pages
 - **Smoke test results** recorded (Section B/C/E pass, A/D fixed)
+- **Production web deployment** at [saranidhi.vercel.app](https://saranidhi.vercel.app) via Vercel auto-deploy
+- **Privacy policy** (`web/privacy.html`) — zero data collection, on-device only, GDPR-compliant
+- **Deployment documentation** (`docs/deployment.md`) — workflow, rollback, monitoring, troubleshooting
+- **Production deployment gate** — smoke test results formalized as deployment prerequisite
+- **Release tag `v1.0.0-web`** — first public web release
 
 ---
 
