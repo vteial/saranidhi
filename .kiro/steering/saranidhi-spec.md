@@ -29,7 +29,7 @@ inclusion: auto
 | **Local AI** | On-device LLM (mobile), rules-based engine (web) |
 | **Notifications** | flutter_local_notifications (mobile only) |
 | **Theming** | Material 3 (4 variants: Light, Dark, Emerald, Gold) |
-| **Localization** | ARB files (EN, TA) + `flutter gen-l10n` (non-synthetic, committed output to `lib/l10n/generated/`) |
+| **Localization** | ARB files (EN, TA — 130+ keys) + `flutter gen-l10n` (non-synthetic, committed output to `lib/l10n/generated/`) |
 | **Linting** | very_good_analysis |
 | **CI/CD** | GitHub Actions |
 | **Web Staging** | Vercel (PR previews) |
@@ -103,7 +103,7 @@ notifyRuling, notifyEating, lastBackupDate
 ### Module 1: Astro-Logic Engine (Pure Dart, Deterministic)
 - Sunrise/Sunset calculator (offline, lat/lng-based)
 - 5 Yamas (daylight divided into 5 equal segments)
-- Panja Pakshi bird state cycling (weekday + lunar phase: Ruling/Eating/Walking/Sleeping/Dying)
+- Panja Pakshi bird state cycling (authentic 2D lookup tables from Prof. Dr. U.S. Pulippani's "Biorhythms of Natal Moon" — 9 day-group matrices × bright/dark half)
 - Rahu Kaal calculation (8 segments, day-index offset)
 - 10% Floor Lockout (Oracle score forced to 10% during Rahu Kaal)
 - Hora (planetary hour) calculation

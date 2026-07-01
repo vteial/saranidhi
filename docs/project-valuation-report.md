@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 11 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~23.5 Hours
-**Pull Requests Merged:** 18
+**Sprints Delivered:** 12 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~27.0 Hours
+**Pull Requests Merged:** 23
 **Automated Test Coverage:** 264 assertions (unit + widget + integration)
 
 ---
@@ -73,6 +73,14 @@
 | `ac20148` | Eialarasu | 2026-06-03 14:00 | **Merge PR #16 — Sprint 10 Complete** |
 | `f0e2b35` | Kiro Agent | 2026-06-03 14:30 | feat(sprint11): Smoke Test Plan, CI polish, revised release plan |
 | `b1aa7a1` | Eialarasu | 2026-06-03 15:00 | **Merge PR #18 — Sprint 11 Complete** |
+| `aaa78a0` | Kiro Agent | 2026-07-02 10:00 | feat(sprint12): Fix Pakshi algorithm + Tamil translations |
+| `d8e1ed5` | Kiro Agent | 2026-07-02 10:15 | fix(ci): resolve dart analyze issues |
+| `59337ce` | Kiro Agent | 2026-07-02 10:20 | fix(ci): escape bracket in doc comment |
+| `020e4b3` | Eialarasu | 2026-07-02 10:30 | **Merge PR #21 — Sprint 12 Complete** |
+| `c17ea52` | Kiro Agent | 2026-07-02 14:00 | fix(i18n): Complete Tamil translations for Home and Journal pages |
+| `be388c8` | Kiro Agent | 2026-07-02 15:00 | fix(i18n): Complete remaining Tamil translations — timer, pacer, advice, days |
+| `a01c7f3` | Kiro Agent | 2026-07-02 16:00 | fix(i18n): Localize nakshatra and bird names in profile card |
+| `1596148` | Eialarasu | 2026-07-02 16:30 | **Merge PR #22 — Tamil Hotfix Complete** |
 
 ---
 
@@ -87,7 +95,8 @@
 | Day 2 | 2026-06-03 | 09:30 - 11:30 | ~2.0 | Sprint 9 |
 | Day 2 | 2026-06-03 | 11:30 - 14:00 | ~2.5 | Sprint 10 |
 | Day 2 | 2026-06-03 | 14:00 - 15:00 | ~1.0 | Sprint 11 |
-| | | **Subtotal** | **~17.0** | |
+| Day 3 | 2026-07-02 | 10:00 - 16:30 | ~3.5 | Sprint 12 |
+| | | **Subtotal** | **~20.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -106,9 +115,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 17.0 |
+| Active coding & debugging (AI-assisted) | 20.5 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~23.5** |
+| **Total** | **~27.0** |
 
 ---
 
@@ -128,13 +137,13 @@
 | Sprint 9 | i18n, Animations & Polish | #14 | 201 | ✅ Complete |
 | Sprint 10 | Testing & Hardening | #16 | 264 | ✅ Complete |
 | Sprint 11 | Smoke Test Plan & CI Polish | #18 | 264 | ✅ Complete |
-| Sprint 12 | Manual Smoke Execution & Fixes | — | — | 🔲 Next |
+| Sprint 12 | Manual Smoke Test Execution & Fixes | #21, #22, #23 | 264 | ✅ Complete |
 | Sprint 13 | Web Production Deployment | — | — | 🔲 Planned |
 | Sprint 14 | Mobile App Store Deployment | — | — | 🔲 Planned |
 
 ---
 
-## Technical Deliverables (as of Sprint 9)
+## Technical Deliverables (as of Sprint 12)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
@@ -169,6 +178,11 @@
 - **CI paths-ignore** for docs-only PRs (skip quality gates on .md/.kiro changes)
 - **`/plan` protocol** for strategic sprint revisions
 - **Revised release plan** (Sprints 11–14, cloud backup/auth deferred to 1.1)
+- **Authentic Panja Pakshi 2D lookup tables** (9 day-group tables from Prof. Dr. U.S. Pulippani's "Biorhythms of Natal Moon")
+- **`PakshiBirdL10n` + `PakshiStateL10n` extensions** for localized bird/state display
+- **`NakshatraL10n` utility** with all 27 Tamil nakshatra name mappings
+- **Complete Tamil (தமிழ்) localization** — 130+ ARB keys covering all 3 app pages
+- **Smoke test results** recorded (Section B/C/E pass, A/D fixed)
 
 ---
 
