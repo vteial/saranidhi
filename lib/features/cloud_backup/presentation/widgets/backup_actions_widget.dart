@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/cloud_backup/domain/backup_repository.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Widget displaying backup/restore actions and last backup info.
 class BackupActionsWidget extends ConsumerWidget {
@@ -12,12 +13,13 @@ class BackupActionsWidget extends ConsumerWidget {
     final backupState = ref.watch(backupNotifierProvider);
     final storageMode = ref.watch(storageModeProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final isLocal = storageMode == StorageMode.local;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Backup & Restore', style: theme.textTheme.titleSmall),
+        Text(l10n.storageAndBackup, style: theme.textTheme.titleSmall),
         const SizedBox(height: 12),
 
         // Last backup info
@@ -25,7 +27,7 @@ class BackupActionsWidget extends ConsumerWidget {
           Card(
             child: ListTile(
               leading: const Icon(Icons.backup),
-              title: const Text('Last Backup'),
+              title: Text(l10n.lastBackup),
               subtitle: Text(_formatDate(backupState.metadata!.lastBackupDate)),
               trailing: Text(
                 _formatSize(backupState.metadata!.sizeBytes),
@@ -54,7 +56,9 @@ class BackupActionsWidget extends ConsumerWidget {
                       )
                     : const Icon(Icons.backup),
                 label: Text(
-                  backupState.isBackingUp ? 'Backing up...' : 'Backup Now',
+                  backupState.isBackingUp
+                      ? l10n.backingUp
+                      : l10n.backupNow,
                 ),
               ),
             ),
@@ -72,7 +76,9 @@ class BackupActionsWidget extends ConsumerWidget {
                       )
                     : const Icon(Icons.restore),
                 label: Text(
-                  backupState.isRestoring ? 'Restoring...' : 'Restore',
+                  backupState.isRestoring
+                      ? l10n.restoring
+                      : l10n.restore,
                 ),
               ),
             ),
@@ -82,7 +88,7 @@ class BackupActionsWidget extends ConsumerWidget {
         if (isLocal) ...[
           const SizedBox(height: 8),
           Text(
-            'Switch to iCloud or Google Drive to enable backup',
+            l10n.switchToCloudHint,
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -126,18 +132,16 @@ class BackupActionsWidget extends ConsumerWidget {
   }
 
   void _confirmRestore(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Restore Backup?'),
-        content: const Text(
-          'This will replace all current data with the backup. '
-          'This action cannot be undone.',
-        ),
+        title: Text(l10n.restoreBackupTitle),
+        content: Text(l10n.restoreBackupMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             onPressed: () {
@@ -147,7 +151,7 @@ class BackupActionsWidget extends ConsumerWidget {
             style: FilledButton.styleFrom(
               backgroundColor: Theme.of(context).colorScheme.error,
             ),
-            child: const Text('Restore'),
+            child: Text(l10n.restore),
           ),
         ],
       ),

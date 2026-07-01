@@ -4,100 +4,394 @@ import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 
 void main() {
   group('PakshiCalculator', () {
-    group('Waxing moon sequences', () {
-      test('A-40: Sunday waxing produces correct state sequence', () {
+    group('Bright half (waxing) — Group A: Sunday & Tuesday', () {
+      test('A-40: Sunday waxing produces correct state table', () {
         final result = PakshiCalculator.calculate(
           weekday: 0,
           lunarPhase: LunarPhase.waxing,
         );
 
         expect(result.entries.length, equals(5));
-        // States must be in order: ruling, eating, walking, sleeping, dying
-        expect(result.entries[0].state, equals(PakshiState.ruling));
-        expect(result.entries[1].state, equals(PakshiState.eating));
-        expect(result.entries[2].state, equals(PakshiState.walking));
-        expect(result.entries[3].state, equals(PakshiState.sleeping));
-        expect(result.entries[4].state, equals(PakshiState.dying));
+        // Verify state table structure
+        expect(result.stateTable.length, equals(5)); // 5 birds
+        expect(result.stateTable[0].length, equals(5)); // 5 yamas each
       });
 
-      test('Sunday waxing starts with Vulture', () {
+      test('Sunday waxing: Vulture states match authentic table', () {
         final result = PakshiCalculator.calculate(
           weekday: 0,
           lunarPhase: LunarPhase.waxing,
         );
 
-        expect(result.entries[0].bird, equals(PakshiBird.vulture));
+        // Vulture: Eating, Walking, Ruling, Sleeping, Dying
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama1),
+          equals(PakshiState.eating),
+        );
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama2),
+          equals(PakshiState.walking),
+        );
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama3),
+          equals(PakshiState.ruling),
+        );
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama4),
+          equals(PakshiState.sleeping),
+        );
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama5),
+          equals(PakshiState.dying),
+        );
       });
 
-      test('Monday waxing starts with Owl', () {
+      test('Sunday waxing: Owl states match authentic table', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 0,
+          lunarPhase: LunarPhase.waxing,
+        );
+
+        // Owl: Ruling, Dying, Eating, Walking, Sleeping
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama1),
+          equals(PakshiState.ruling),
+        );
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama2),
+          equals(PakshiState.dying),
+        );
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama3),
+          equals(PakshiState.eating),
+        );
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama4),
+          equals(PakshiState.walking),
+        );
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama5),
+          equals(PakshiState.sleeping),
+        );
+      });
+
+      test('Sunday waxing: Cock states match authentic table', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 0,
+          lunarPhase: LunarPhase.waxing,
+        );
+
+        // Cock: Dying, Ruling, Sleeping, Eating, Walking
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama1),
+          equals(PakshiState.dying),
+        );
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama2),
+          equals(PakshiState.ruling),
+        );
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama3),
+          equals(PakshiState.sleeping),
+        );
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama4),
+          equals(PakshiState.eating),
+        );
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama5),
+          equals(PakshiState.walking),
+        );
+      });
+
+      test('Tuesday waxing uses same table as Sunday (Group A)', () {
+        final sunday = PakshiCalculator.calculate(
+          weekday: 0,
+          lunarPhase: LunarPhase.waxing,
+        );
+        final tuesday = PakshiCalculator.calculate(
+          weekday: 2,
+          lunarPhase: LunarPhase.waxing,
+        );
+
+        // Same group — same state table
+        for (var bird = 0; bird < 5; bird++) {
+          for (var yama = 0; yama < 5; yama++) {
+            expect(
+              tuesday.stateTable[bird][yama],
+              equals(sunday.stateTable[bird][yama]),
+              reason: 'Bird $bird, Yama $yama should match',
+            );
+          }
+        }
+      });
+    });
+
+    group('Bright half (waxing) — Group B: Monday, Wednesday, Saturday', () {
+      test('Monday waxing: Owl states match Group B table', () {
         final result = PakshiCalculator.calculate(
           weekday: 1,
           lunarPhase: LunarPhase.waxing,
         );
 
-        expect(result.entries[0].bird, equals(PakshiBird.owl));
+        // Owl (Group B): Eating, Walking, Ruling, Sleeping, Dying
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama1),
+          equals(PakshiState.eating),
+        );
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama2),
+          equals(PakshiState.walking),
+        );
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama3),
+          equals(PakshiState.ruling),
+        );
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama4),
+          equals(PakshiState.sleeping),
+        );
+        expect(
+          result.stateForBird(PakshiBird.owl, YamaIndex.yama5),
+          equals(PakshiState.dying),
+        );
       });
-    });
 
-    group('Waning moon sequences', () {
-      test('A-41: Sunday waning has different bird sequence than waxing', () {
-        final waxing = PakshiCalculator.calculate(
-          weekday: 0,
+      test('Wednesday and Saturday use same table as Monday (Group B)', () {
+        final monday = PakshiCalculator.calculate(
+          weekday: 1,
           lunarPhase: LunarPhase.waxing,
         );
-        final waning = PakshiCalculator.calculate(
-          weekday: 0,
-          lunarPhase: LunarPhase.waning,
+        final wednesday = PakshiCalculator.calculate(
+          weekday: 3,
+          lunarPhase: LunarPhase.waxing,
         );
-
-        // First bird should differ
-        expect(waning.entries[0].bird, isNot(equals(waxing.entries[0].bird)));
-      });
-
-      test('Sunday waning starts with Crow', () {
-        final result = PakshiCalculator.calculate(
-          weekday: 0,
-          lunarPhase: LunarPhase.waning,
-        );
-
-        expect(result.entries[0].bird, equals(PakshiBird.crow));
-      });
-    });
-
-    group('A-43: bird state at specific yama', () {
-      test('forYama returns correct entry', () {
-        final result = PakshiCalculator.calculate(
-          weekday: 0,
+        final saturday = PakshiCalculator.calculate(
+          weekday: 6,
           lunarPhase: LunarPhase.waxing,
         );
 
-        final yama3 = result.forYama(YamaIndex.yama3);
-        expect(yama3.state, equals(PakshiState.walking));
-        expect(yama3.bird, equals(PakshiBird.crow));
-      });
-    });
-
-    group('A-44: all weekdays produce different sequences', () {
-      test('no two weekdays identical in waxing', () {
-        final sequences = <int, List<PakshiBird>>{};
-        for (var day = 0; day < 7; day++) {
-          final result = PakshiCalculator.calculate(
-            weekday: day,
-            lunarPhase: LunarPhase.waxing,
-          );
-          sequences[day] = result.entries.map((e) => e.bird).toList();
+        for (var bird = 0; bird < 5; bird++) {
+          for (var yama = 0; yama < 5; yama++) {
+            expect(
+              wednesday.stateTable[bird][yama],
+              equals(monday.stateTable[bird][yama]),
+            );
+            expect(
+              saturday.stateTable[bird][yama],
+              equals(monday.stateTable[bird][yama]),
+            );
+          }
         }
+      });
+    });
 
-        // Check each pair is different
-        for (var i = 0; i < 7; i++) {
-          for (var j = i + 1; j < 7; j++) {
-            final same = _listsEqual(sequences[i]!, sequences[j]!);
-            // Not all days are unique in traditional system (some repeat)
-            // But at least consecutive days differ
-            if (j == i + 1) {
-              expect(same, isFalse, reason: 'Day $i and day $j should differ');
+    group('Dark half (waning) — Group A: Sunday & Tuesday', () {
+      test('A-41: Tuesday waning: Cock states match authentic table', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 2,
+          lunarPhase: LunarPhase.waning,
+        );
+
+        // Cock (Dark Group A): Ruling, Eating, Walking, Sleeping, Dying
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama1),
+          equals(PakshiState.ruling),
+        );
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama2),
+          equals(PakshiState.eating),
+        );
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama3),
+          equals(PakshiState.walking),
+        );
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama4),
+          equals(PakshiState.sleeping),
+        );
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama5),
+          equals(PakshiState.dying),
+        );
+      });
+
+      test('Tuesday waning: Vulture states match authentic table', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 2,
+          lunarPhase: LunarPhase.waning,
+        );
+
+        // Vulture (Dark Group A): Walking, Ruling, Eating, Dying, Sleeping
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama1),
+          equals(PakshiState.walking),
+        );
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama2),
+          equals(PakshiState.ruling),
+        );
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama3),
+          equals(PakshiState.eating),
+        );
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama4),
+          equals(PakshiState.dying),
+        );
+        expect(
+          result.stateForBird(PakshiBird.vulture, YamaIndex.yama5),
+          equals(PakshiState.sleeping),
+        );
+      });
+    });
+
+    group('A-43: Ruling bird per Yama (forYama)', () {
+      test('forYama returns the bird whose state is Ruling', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 0,
+          lunarPhase: LunarPhase.waxing,
+        );
+
+        // Group A Bright: Yama 1 ruling bird is Owl
+        final yama1 = result.forYama(YamaIndex.yama1);
+        expect(yama1.bird, equals(PakshiBird.owl));
+        expect(yama1.state, equals(PakshiState.ruling));
+
+        // Yama 2 ruling bird is Cock
+        final yama2 = result.forYama(YamaIndex.yama2);
+        expect(yama2.bird, equals(PakshiBird.rooster));
+        expect(yama2.state, equals(PakshiState.ruling));
+
+        // Yama 3 ruling bird is Vulture
+        final yama3 = result.forYama(YamaIndex.yama3);
+        expect(yama3.bird, equals(PakshiBird.vulture));
+        expect(yama3.state, equals(PakshiState.ruling));
+
+        // Yama 4 ruling bird is Crow
+        final yama4 = result.forYama(YamaIndex.yama4);
+        expect(yama4.bird, equals(PakshiBird.crow));
+        expect(yama4.state, equals(PakshiState.ruling));
+
+        // Yama 5 ruling bird is Peacock
+        final yama5 = result.forYama(YamaIndex.yama5);
+        expect(yama5.bird, equals(PakshiBird.peacock));
+        expect(yama5.state, equals(PakshiState.ruling));
+      });
+    });
+
+    group('A-44: Day groups produce different tables', () {
+      test('Bright: Group A differs from Group B', () {
+        final groupA = PakshiCalculator.calculate(
+          weekday: 0,
+          lunarPhase: LunarPhase.waxing,
+        );
+        final groupB = PakshiCalculator.calculate(
+          weekday: 1,
+          lunarPhase: LunarPhase.waxing,
+        );
+
+        var hasDifference = false;
+        for (var bird = 0; bird < 5; bird++) {
+          for (var yama = 0; yama < 5; yama++) {
+            if (groupA.stateTable[bird][yama] !=
+                groupB.stateTable[bird][yama]) {
+              hasDifference = true;
+              break;
             }
           }
+          if (hasDifference) break;
+        }
+        expect(hasDifference, isTrue);
+      });
+
+      test('Dark: All 5 groups have distinct tables', () {
+        final tables = <int, List<List<PakshiState>>>{};
+        // Sun=0, Mon=1, Wed=3, Thu=4, Fri=5 — each from a different group
+        for (final day in [0, 1, 3, 4, 5]) {
+          tables[day] = PakshiCalculator.calculate(
+            weekday: day,
+            lunarPhase: LunarPhase.waning,
+          ).stateTable;
+        }
+
+        final days = tables.keys.toList();
+        for (var i = 0; i < days.length; i++) {
+          for (var j = i + 1; j < days.length; j++) {
+            var same = true;
+            outer:
+            for (var bird = 0; bird < 5; bird++) {
+              for (var yama = 0; yama < 5; yama++) {
+                if (tables[days[i]]![bird][yama] !=
+                    tables[days[j]]![bird][yama]) {
+                  same = false;
+                  break outer;
+                }
+              }
+            }
+            expect(
+              same,
+              isFalse,
+              reason: 'Day ${days[i]} and day ${days[j]} should differ',
+            );
+          }
+        }
+      });
+    });
+
+    group('stateForBird method', () {
+      test('returns correct state for specific bird and yama', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 2, // Tuesday
+          lunarPhase: LunarPhase.waning,
+        );
+
+        // Dark half, Group A, Cock Yama 2 = Eating
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama2),
+          equals(PakshiState.eating),
+        );
+      });
+
+      test('each yama has exactly one bird in Ruling state', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 4,
+          lunarPhase: LunarPhase.waxing,
+        );
+
+        for (var yamaIdx = 0; yamaIdx < 5; yamaIdx++) {
+          var rulingCount = 0;
+          for (var birdIdx = 0; birdIdx < 5; birdIdx++) {
+            if (result.stateTable[birdIdx][yamaIdx] == PakshiState.ruling) {
+              rulingCount++;
+            }
+          }
+          expect(
+            rulingCount,
+            equals(1),
+            reason: 'Yama $yamaIdx should have exactly 1 ruling bird',
+          );
+        }
+      });
+
+      test('each bird has exactly one Ruling yama per day', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 3,
+          lunarPhase: LunarPhase.waning,
+        );
+
+        for (var birdIdx = 0; birdIdx < 5; birdIdx++) {
+          var rulingCount = 0;
+          for (var yamaIdx = 0; yamaIdx < 5; yamaIdx++) {
+            if (result.stateTable[birdIdx][yamaIdx] == PakshiState.ruling) {
+              rulingCount++;
+            }
+          }
+          expect(
+            rulingCount,
+            equals(1),
+            reason: 'Bird $birdIdx should rule exactly 1 yama',
+          );
         }
       });
     });
@@ -183,13 +477,38 @@ void main() {
         );
       });
     });
-  });
-}
 
-bool _listsEqual(List<PakshiBird> a, List<PakshiBird> b) {
-  if (a.length != b.length) return false;
-  for (var i = 0; i < a.length; i++) {
-    if (a[i] != b[i]) return false;
-  }
-  return true;
+    group('Smoke test scenario: Tuesday waning (July 1, 2026)', () {
+      test('Cock in Yama 2 is Eating (matches Align27 "Energize")', () {
+        // This is the exact scenario from the smoke test failure.
+        // July 1, 2026 = Tuesday, Waning moon.
+        // Align27 showed: Cock / Energize (= Eating in traditional terms)
+        // Our old code showed: Rooster / Sleeping (WRONG)
+        final result = PakshiCalculator.calculate(
+          weekday: 2, // Tuesday
+          lunarPhase: LunarPhase.waning,
+        );
+
+        // In Dark Half Group A (Sun/Tue), Cock row:
+        // Ruling, Eating, Walking, Sleeping, Dying
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama2),
+          equals(PakshiState.eating),
+          reason: 'Cock/Rooster in Yama 2 should be Eating (Align27: Energize)',
+        );
+      });
+
+      test('Cock in Yama 1 is Ruling on Tuesday waning', () {
+        final result = PakshiCalculator.calculate(
+          weekday: 2,
+          lunarPhase: LunarPhase.waning,
+        );
+
+        expect(
+          result.stateForBird(PakshiBird.rooster, YamaIndex.yama1),
+          equals(PakshiState.ruling),
+        );
+      });
+    });
+  });
 }

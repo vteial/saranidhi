@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:saranidhi/core/utils/bird_emoji.dart';
+import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
@@ -59,7 +60,7 @@ class AstroInfoBar extends StatelessWidget {
       label: activeBird != null
           ? '${l10n.sunrise} ${_formatTime(sunResult.sunrise)}, '
               '${l10n.sunset} ${_formatTime(sunResult.sunset)}, '
-              '${activeBird.displayName} ${activeBirdState?.displayName ?? ''}'
+              '${activeBird.localizedName(l10n)} ${activeBirdState?.localizedName(l10n) ?? ''}'
           : '${l10n.sunrise} ${_formatTime(sunResult.sunrise)}, '
               '${l10n.sunset} ${_formatTime(sunResult.sunset)}',
       child: Card(
@@ -82,8 +83,8 @@ class AstroInfoBar extends StatelessWidget {
               ),
               if (activeBird != null)
                 _InfoChip(
-                  label: activeBird.displayName,
-                  value: activeBirdState?.displayName ?? '',
+                  label: activeBird.localizedName(l10n),
+                  value: activeBirdState?.localizedName(l10n) ?? '',
                   color: theme.colorScheme.primary,
                   emoji: BirdEmoji.forBird(activeBird),
                 ),

@@ -67,7 +67,7 @@ class SettingsScreen extends ConsumerWidget {
             children: ThemeAccent.values.map((accent) {
               final isSelected = themeState.accent == accent;
               return ChoiceChip(
-                label: Text(accent.displayName),
+                label: Text(_localizedAccentName(accent, l10n)),
                 selected: isSelected,
                 onSelected: (_) {
                   ref.read(themeProvider.notifier).setAccent(accent);
@@ -124,6 +124,14 @@ class SettingsScreen extends ConsumerWidget {
       ),
     );
   }
+
+  String _localizedAccentName(ThemeAccent accent, AppLocalizations l10n) =>
+      switch (accent) {
+        ThemeAccent.defaultPurple => l10n.accentDefault,
+        ThemeAccent.emerald => l10n.accentEmerald,
+        ThemeAccent.gold => l10n.accentGold,
+        ThemeAccent.purple => l10n.accentPurple,
+      };
 }
 
 class _NotificationToggles extends ConsumerWidget {

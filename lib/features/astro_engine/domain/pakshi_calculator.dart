@@ -35,10 +35,10 @@ class PakshiResult {
     required this.yama,
   });
 
-  /// The active bird for this Yama.
+  /// The active (ruling) bird for this Yama.
   final PakshiBird bird;
 
-  /// The activity state of the bird.
+  /// The activity state of the ruling bird (always `PakshiState.ruling`).
   final PakshiState state;
 
   /// Which Yama this result applies to.
@@ -46,172 +46,241 @@ class PakshiResult {
 }
 
 /// Full day Pakshi result with all 5 Yama assignments.
+///
+/// The authentic Panja Pakshi system assigns **all 5 birds** a state in each
+/// Yama. This class provides access to both the ruling bird per Yama and the
+/// state of any specific bird at any Yama.
 class PakshiDayResult {
-  const PakshiDayResult({required this.entries});
+  const PakshiDayResult({
+    required this.entries,
+    required this.stateTable,
+  });
 
-  /// All 5 Yama assignments for the day.
+  /// The ruling bird for each of the 5 Yamas (backward-compatible).
   final List<PakshiResult> entries;
 
-  /// Get the Pakshi result for a specific Yama.
+  /// Full 2D state table: `stateTable[birdIndex][yamaIndex]` → PakshiState.
+  /// Bird order: vulture=0, owl=1, crow=2, rooster=3, peacock=4.
+  final List<List<PakshiState>> stateTable;
+
+  /// Get the ruling bird result for a specific Yama.
   PakshiResult forYama(YamaIndex yama) {
     return entries.firstWhere((e) => e.yama == yama);
+  }
+
+  /// Get the state of a specific [bird] during a specific [yama].
+  PakshiState stateForBird(PakshiBird bird, YamaIndex yama) {
+    return stateTable[bird.index][yama.index];
   }
 }
 
 /// Calculates Panja Pakshi bird states based on weekday and lunar phase.
 ///
-/// The Panja Pakshi system assigns one of 5 birds to each of the 5 Yamas
-/// (time segments) of the day. The bird sequence rotates based on:
-/// - The day of the week (0=Sunday through 6=Saturday)
-/// - The lunar phase (waxing or waning moon)
+/// Uses authentic 2D lookup tables from the traditional Panja Pakshi system
+/// (source: Prof. Dr. U.S. Pulippani, "Biorhythms of Natal Moon — Mysteries
+/// of Pancha Pakshi").
 ///
-/// Each bird cycles through 5 states: Ruling → Eating → Walking →
-/// Sleeping → Dying across the 5 Yamas.
+/// The system groups weekdays into day-groups:
+/// - **Bright half (Shukla Paksha):** Group A (Sun/Tue), Group B (Mon/Wed/Sat),
+///   Group C (Thu), Group D (Fri)
+/// - **Dark half (Krishna Paksha):** Group A (Sun/Tue), Group B (Mon/Sat),
+///   Group C (Wed), Group D (Thu), Group E (Fri)
+///
+/// Each table assigns all 5 birds their own independent state per Yama.
 class PakshiCalculator {
   const PakshiCalculator._();
 
-  /// Bird sequence for each weekday during WAXING moon.
-  ///
-  /// Each row is a weekday (0=Sunday..6=Saturday).
-  /// The 5 values are the birds assigned to Yama 1–5.
-  /// The first bird in the sequence is in "Ruling" state.
-  static const List<List<PakshiBird>> _waxingSequences = [
-    // Sunday
-    [
-      PakshiBird.vulture,
-      PakshiBird.owl,
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-    ],
-    // Monday
-    [
-      PakshiBird.owl,
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-    ],
-    // Tuesday
-    [
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-      PakshiBird.owl,
-    ],
-    // Wednesday
-    [
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-      PakshiBird.owl,
-      PakshiBird.crow,
-    ],
-    // Thursday
-    [
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-      PakshiBird.owl,
-      PakshiBird.crow,
-      PakshiBird.rooster,
-    ],
-    // Friday
-    [
-      PakshiBird.vulture,
-      PakshiBird.owl,
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-    ],
-    // Saturday
-    [
-      PakshiBird.owl,
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-    ],
+  // ─── Abbreviations for readability ──────────────────────────────────
+  static const _r = PakshiState.ruling;
+  static const _e = PakshiState.eating;
+  static const _w = PakshiState.walking;
+  static const _s = PakshiState.sleeping;
+  static const _d = PakshiState.dying;
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // BRIGHT HALF (Shukla Paksha) — Daytime Tables
+  // ═══════════════════════════════════════════════════════════════════════
+  //
+  // Each table is a 5×5 matrix: [bird][yama] → state.
+  // Bird order: Vulture, Owl, Crow, Cock(Rooster), Peacock.
+  // Yama order: Yama1, Yama2, Yama3, Yama4, Yama5.
+
+  /// Group A: Sunday & Tuesday (Bright Half, Daytime)
+  static const List<List<PakshiState>> _brightGroupA = [
+    // Vulture:  Eating,  Walking, Ruling,  Sleeping, Dying
+    [_e, _w, _r, _s, _d],
+    // Owl:      Ruling,  Dying,   Eating,  Walking,  Sleeping
+    [_r, _d, _e, _w, _s],
+    // Crow:     Walking, Sleeping, Dying,  Ruling,   Eating
+    [_w, _s, _d, _r, _e],
+    // Cock:     Dying,   Ruling,  Sleeping, Eating,  Walking
+    [_d, _r, _s, _e, _w],
+    // Peacock:  Sleeping, Eating, Walking,  Dying,   Ruling
+    [_s, _e, _w, _d, _r],
   ];
 
-  /// Bird sequence for each weekday during WANING moon.
-  ///
-  /// The waning sequence is shifted from waxing — each day starts
-  /// with a different bird compared to waxing.
-  static const List<List<PakshiBird>> _waningSequences = [
-    // Sunday
-    [
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-      PakshiBird.owl,
-    ],
-    // Monday
-    [
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-      PakshiBird.owl,
-      PakshiBird.crow,
-    ],
-    // Tuesday
-    [
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-      PakshiBird.owl,
-      PakshiBird.crow,
-      PakshiBird.rooster,
-    ],
-    // Wednesday
-    [
-      PakshiBird.vulture,
-      PakshiBird.owl,
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-    ],
-    // Thursday
-    [
-      PakshiBird.owl,
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-    ],
-    // Friday
-    [
-      PakshiBird.crow,
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-      PakshiBird.owl,
-    ],
-    // Saturday
-    [
-      PakshiBird.rooster,
-      PakshiBird.peacock,
-      PakshiBird.vulture,
-      PakshiBird.owl,
-      PakshiBird.crow,
-    ],
+  /// Group B: Monday, Wednesday & Saturday (Bright Half, Daytime)
+  static const List<List<PakshiState>> _brightGroupB = [
+    // Vulture:  Dying,   Ruling,  Sleeping, Eating,  Walking
+    [_d, _r, _s, _e, _w],
+    // Owl:      Eating,  Walking, Ruling,   Sleeping, Dying
+    [_e, _w, _r, _s, _d],
+    // Crow:     Sleeping, Eating, Walking,  Dying,   Ruling
+    [_s, _e, _w, _d, _r],
+    // Cock:     Walking, Sleeping, Dying,   Ruling,  Eating
+    [_w, _s, _d, _r, _e],
+    // Peacock:  Ruling,  Dying,   Eating,   Walking, Sleeping
+    [_r, _d, _e, _w, _s],
   ];
 
-  /// The fixed state order: the bird at position 0 is Ruling,
-  /// position 1 is Eating, etc.
-  static const List<PakshiState> _stateOrder = [
-    PakshiState.ruling,
-    PakshiState.eating,
-    PakshiState.walking,
-    PakshiState.sleeping,
-    PakshiState.dying,
+  /// Group C: Thursday (Bright Half, Daytime)
+  static const List<List<PakshiState>> _brightGroupC = [
+    // Vulture:  Sleeping, Eating,  Walking, Dying,   Ruling
+    [_s, _e, _w, _d, _r],
+    // Owl:      Walking,  Sleeping, Dying,  Ruling,  Eating
+    [_w, _s, _d, _r, _e],
+    // Crow:     Eating,   Walking, Ruling,  Sleeping, Dying
+    [_e, _w, _r, _s, _d],
+    // Cock:     Ruling,   Dying,   Eating,  Walking, Sleeping
+    [_r, _d, _e, _w, _s],
+    // Peacock:  Dying,    Ruling,  Sleeping, Eating, Walking
+    [_d, _r, _s, _e, _w],
   ];
+
+  /// Group D: Friday (Bright Half, Daytime)
+  static const List<List<PakshiState>> _brightGroupD = [
+    // Vulture:  Walking, Sleeping, Dying,   Ruling,  Eating
+    [_w, _s, _d, _r, _e],
+    // Owl:      Dying,   Ruling,   Sleeping, Eating, Walking
+    [_d, _r, _s, _e, _w],
+    // Crow:     Ruling,  Dying,    Eating,  Walking, Sleeping
+    [_r, _d, _e, _w, _s],
+    // Cock:     Eating,  Walking,  Ruling,  Sleeping, Dying
+    [_e, _w, _r, _s, _d],
+    // Peacock:  Sleeping, Eating,  Walking, Dying,   Ruling
+    [_s, _e, _w, _d, _r],
+  ];
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // DARK HALF (Krishna Paksha) — Daytime Tables
+  // ═══════════════════════════════════════════════════════════════════════
+
+  /// Group A: Sunday & Tuesday (Dark Half, Daytime)
+  static const List<List<PakshiState>> _darkGroupA = [
+    // Vulture:  Walking, Ruling,  Eating,  Dying,   Sleeping
+    [_w, _r, _e, _d, _s],
+    // Owl:      Dying,   Sleeping, Ruling, Walking, Eating
+    [_d, _s, _r, _w, _e],
+    // Crow:     Eating,  Dying,   Sleeping, Ruling, Walking
+    [_e, _d, _s, _r, _w],
+    // Cock:     Ruling,  Eating,  Walking, Sleeping, Dying
+    [_r, _e, _w, _s, _d],
+    // Peacock:  Sleeping, Walking, Dying,  Eating,  Ruling
+    [_s, _w, _d, _e, _r],
+  ];
+
+  /// Group B: Monday & Saturday (Dark Half, Daytime)
+  static const List<List<PakshiState>> _darkGroupB = [
+    // Vulture:  Sleeping, Walking, Dying,  Eating,  Ruling
+    [_s, _w, _d, _e, _r],
+    // Owl:      Eating,   Dying,   Walking, Ruling, Sleeping
+    [_e, _d, _w, _r, _s],
+    // Crow:     Walking,  Ruling,  Eating, Sleeping, Dying
+    [_w, _r, _e, _s, _d],
+    // Cock:     Dying,    Sleeping, Ruling, Walking, Eating
+    [_d, _s, _r, _w, _e],
+    // Peacock:  Ruling,   Eating,  Sleeping, Dying, Walking
+    [_r, _e, _s, _d, _w],
+  ];
+
+  /// Group C: Wednesday (Dark Half, Daytime)
+  static const List<List<PakshiState>> _darkGroupC = [
+    // Vulture:  Dying,   Sleeping, Walking, Ruling,  Eating
+    [_d, _s, _w, _r, _e],
+    // Owl:      Ruling,  Eating,   Dying,   Sleeping, Walking
+    [_r, _e, _d, _s, _w],
+    // Crow:     Sleeping, Walking, Ruling,  Eating,  Dying
+    [_s, _w, _r, _e, _d],
+    // Cock:     Eating,  Ruling,   Sleeping, Dying, Walking
+    [_e, _r, _s, _d, _w],
+    // Peacock:  Walking, Dying,    Eating,  Walking, Ruling
+    [_w, _d, _e, _w, _r],
+  ];
+
+  /// Group D: Thursday (Dark Half, Daytime)
+  static const List<List<PakshiState>> _darkGroupD = [
+    // Vulture:  Ruling,  Eating,  Sleeping, Walking, Dying
+    [_r, _e, _s, _w, _d],
+    // Owl:      Sleeping, Walking, Eating,  Dying,   Ruling
+    [_s, _w, _e, _d, _r],
+    // Crow:     Dying,   Ruling,  Walking,  Eating,  Sleeping
+    [_d, _r, _w, _e, _s],
+    // Cock:     Walking, Dying,   Ruling,   Sleeping, Eating
+    [_w, _d, _r, _s, _e],
+    // Peacock:  Eating,  Sleeping, Dying,   Ruling,  Walking
+    [_e, _s, _d, _r, _w],
+  ];
+
+  /// Group E: Friday (Dark Half, Daytime)
+  static const List<List<PakshiState>> _darkGroupE = [
+    // Vulture:  Eating,  Dying,   Ruling,  Sleeping, Walking
+    [_e, _d, _r, _s, _w],
+    // Owl:      Walking, Ruling,  Sleeping, Eating,  Dying
+    [_w, _r, _s, _e, _d],
+    // Crow:     Ruling,  Sleeping, Dying,   Walking, Eating
+    [_r, _s, _d, _w, _e],
+    // Cock:     Sleeping, Eating,  Walking, Dying,   Ruling
+    [_s, _e, _w, _d, _r],
+    // Peacock:  Dying,   Walking,  Eating,  Ruling,  Sleeping
+    [_d, _w, _e, _r, _s],
+  ];
+
+  /// Returns the correct daytime state table for the given [weekday]
+  /// and [lunarPhase].
+  static List<List<PakshiState>> _getStateTable({
+    required int weekday,
+    required LunarPhase lunarPhase,
+  }) {
+    if (lunarPhase == LunarPhase.waxing) {
+      // Bright half day groups:
+      // Group A: Sunday(0), Tuesday(2)
+      // Group B: Monday(1), Wednesday(3), Saturday(6)
+      // Group C: Thursday(4)
+      // Group D: Friday(5)
+      return switch (weekday) {
+        0 || 2 => _brightGroupA,
+        1 || 3 || 6 => _brightGroupB,
+        4 => _brightGroupC,
+        5 => _brightGroupD,
+        _ => _brightGroupA, // unreachable
+      };
+    } else {
+      // Dark half day groups:
+      // Group A: Sunday(0), Tuesday(2)
+      // Group B: Monday(1), Saturday(6)
+      // Group C: Wednesday(3)
+      // Group D: Thursday(4)
+      // Group E: Friday(5)
+      return switch (weekday) {
+        0 || 2 => _darkGroupA,
+        1 || 6 => _darkGroupB,
+        3 => _darkGroupC,
+        4 => _darkGroupD,
+        5 => _darkGroupE,
+        _ => _darkGroupA, // unreachable
+      };
+    }
+  }
 
   /// Calculates the full-day Pakshi assignment for a given [weekday]
   /// and [lunarPhase].
   ///
-  /// [weekday] is 0=Sunday through 6=Saturday (use `DateTime.weekday % 7`
-  /// since Dart's DateTime.weekday is 1=Monday..7=Sunday).
+  /// [weekday] is 0=Sunday through 6=Saturday (use [dartWeekdayToSunBased]
+  /// to convert from Dart's DateTime.weekday).
+  ///
+  /// Returns a [PakshiDayResult] containing:
+  /// - `entries`: The ruling bird for each Yama (backward-compatible).
+  /// - `stateTable`: Full 2D table of all birds' states per Yama.
   static PakshiDayResult calculate({
     required int weekday,
     required LunarPhase lunarPhase,
@@ -224,24 +293,31 @@ class PakshiCalculator {
       );
     }
 
-    final sequences = lunarPhase == LunarPhase.waxing
-        ? _waxingSequences
-        : _waningSequences;
+    final stateTable = _getStateTable(
+      weekday: weekday,
+      lunarPhase: lunarPhase,
+    );
 
-    final dayBirds = sequences[weekday];
-
+    // Build entries: for each Yama, find the bird whose state is Ruling.
     final entries = <PakshiResult>[];
-    for (var i = 0; i < 5; i++) {
+    for (var yamaIdx = 0; yamaIdx < 5; yamaIdx++) {
+      PakshiBird? rulingBird;
+      for (var birdIdx = 0; birdIdx < 5; birdIdx++) {
+        if (stateTable[birdIdx][yamaIdx] == PakshiState.ruling) {
+          rulingBird = PakshiBird.values[birdIdx];
+          break;
+        }
+      }
       entries.add(
         PakshiResult(
-          bird: dayBirds[i],
-          state: _stateOrder[i],
-          yama: YamaIndex.values[i],
+          bird: rulingBird ?? PakshiBird.vulture,
+          state: PakshiState.ruling,
+          yama: YamaIndex.values[yamaIdx],
         ),
       );
     }
 
-    return PakshiDayResult(entries: entries);
+    return PakshiDayResult(entries: entries, stateTable: stateTable);
   }
 
   /// Convenience method: converts Dart's [DateTime.weekday] (1=Mon..7=Sun)

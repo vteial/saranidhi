@@ -328,4 +328,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pullToRefresh => 'Pull to refresh';
+
+  @override
+  String get accentDefault => 'Default';
+
+  @override
+  String get accentEmerald => 'Emerald';
+
+  @override
+  String get accentGold => 'Gold';
+
+  @override
+  String get accentPurple => 'Purple';
+
+  @override
+  String get lastBackup => 'Last Backup';
+
+  @override
+  String get backupNow => 'Backup Now';
+
+  @override
+  String get backingUp => 'Backing up...';
+
+  @override
+  String get restore => 'Restore';
+
+  @override
+  String get restoring => 'Restoring...';
+
+  @override
+  String get switchToCloudHint => 'Switch to iCloud or Google Drive to enable backup';
+
+  @override
+  String get restoreBackupTitle => 'Restore Backup?';
+
+  @override
+  String get restoreBackupMessage => 'This will replace all current data with the backup. This action cannot be undone.';
 }

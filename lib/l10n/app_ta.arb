@@ -124,5 +124,19 @@
   "sleeping": "தூக்கம்",
   "dying": "மரணம்",
 
-  "pullToRefresh": "புதுப்பிக்க இழுக்கவும்"
+  "pullToRefresh": "புதுப்பிக்க இழுக்கவும்",
+
+  "accentDefault": "இயல்புநிலை",
+  "accentEmerald": "மரகதம்",
+  "accentGold": "தங்கம்",
+  "accentPurple": "ஊதா",
+
+  "lastBackup": "கடைசி காப்புப்பிரதி",
+  "backupNow": "இப்போது காப்புப்பிரதி",
+  "backingUp": "காப்புப்பிரதி செய்கிறது...",
+  "restore": "மீட்டமை",
+  "restoring": "மீட்டமைக்கிறது...",
+  "switchToCloudHint": "காப்புப்பிரதியை இயக்க iCloud அல்லது Google Drive க்கு மாறவும்",
+  "restoreBackupTitle": "காப்புப்பிரதியை மீட்டமைக்கவா?",
+  "restoreBackupMessage": "இது தற்போதைய அனைத்து தரவையும் காப்புப்பிரதியுடன் மாற்றும். இந்த செயலை மீட்க முடியாது."
 }
