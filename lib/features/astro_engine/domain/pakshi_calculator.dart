@@ -38,7 +38,7 @@ class PakshiResult {
   /// The active (ruling) bird for this Yama.
   final PakshiBird bird;
 
-  /// The activity state of the ruling bird (always [PakshiState.ruling]).
+  /// The activity state of the ruling bird (always `PakshiState.ruling`).
   final PakshiState state;
 
   /// Which Yama this result applies to.
@@ -91,11 +91,11 @@ class PakshiCalculator {
   const PakshiCalculator._();
 
   // ─── Abbreviations for readability ──────────────────────────────────
-  static const _R = PakshiState.ruling;
-  static const _E = PakshiState.eating;
-  static const _W = PakshiState.walking;
-  static const _S = PakshiState.sleeping;
-  static const _D = PakshiState.dying;
+  static const _r = PakshiState.ruling;
+  static const _e = PakshiState.eating;
+  static const _w = PakshiState.walking;
+  static const _s = PakshiState.sleeping;
+  static const _d = PakshiState.dying;
 
   // ═══════════════════════════════════════════════════════════════════════
   // BRIGHT HALF (Shukla Paksha) — Daytime Tables
@@ -108,57 +108,57 @@ class PakshiCalculator {
   /// Group A: Sunday & Tuesday (Bright Half, Daytime)
   static const List<List<PakshiState>> _brightGroupA = [
     // Vulture:  Eating,  Walking, Ruling,  Sleeping, Dying
-    [_E, _W, _R, _S, _D],
+    [_e, _w, _r, _s, _d],
     // Owl:      Ruling,  Dying,   Eating,  Walking,  Sleeping
-    [_R, _D, _E, _W, _S],
+    [_r, _d, _e, _w, _s],
     // Crow:     Walking, Sleeping, Dying,  Ruling,   Eating
-    [_W, _S, _D, _R, _E],
+    [_w, _s, _d, _r, _e],
     // Cock:     Dying,   Ruling,  Sleeping, Eating,  Walking
-    [_D, _R, _S, _E, _W],
+    [_d, _r, _s, _e, _w],
     // Peacock:  Sleeping, Eating, Walking,  Dying,   Ruling
-    [_S, _E, _W, _D, _R],
+    [_s, _e, _w, _d, _r],
   ];
 
   /// Group B: Monday, Wednesday & Saturday (Bright Half, Daytime)
   static const List<List<PakshiState>> _brightGroupB = [
     // Vulture:  Dying,   Ruling,  Sleeping, Eating,  Walking
-    [_D, _R, _S, _E, _W],
+    [_d, _r, _s, _e, _w],
     // Owl:      Eating,  Walking, Ruling,   Sleeping, Dying
-    [_E, _W, _R, _S, _D],
+    [_e, _w, _r, _s, _d],
     // Crow:     Sleeping, Eating, Walking,  Dying,   Ruling
-    [_S, _E, _W, _D, _R],
+    [_s, _e, _w, _d, _r],
     // Cock:     Walking, Sleeping, Dying,   Ruling,  Eating
-    [_W, _S, _D, _R, _E],
+    [_w, _s, _d, _r, _e],
     // Peacock:  Ruling,  Dying,   Eating,   Walking, Sleeping
-    [_R, _D, _E, _W, _S],
+    [_r, _d, _e, _w, _s],
   ];
 
   /// Group C: Thursday (Bright Half, Daytime)
   static const List<List<PakshiState>> _brightGroupC = [
     // Vulture:  Sleeping, Eating,  Walking, Dying,   Ruling
-    [_S, _E, _W, _D, _R],
+    [_s, _e, _w, _d, _r],
     // Owl:      Walking,  Sleeping, Dying,  Ruling,  Eating
-    [_W, _S, _D, _R, _E],
+    [_w, _s, _d, _r, _e],
     // Crow:     Eating,   Walking, Ruling,  Sleeping, Dying
-    [_E, _W, _R, _S, _D],
+    [_e, _w, _r, _s, _d],
     // Cock:     Ruling,   Dying,   Eating,  Walking, Sleeping
-    [_R, _D, _E, _W, _S],
+    [_r, _d, _e, _w, _s],
     // Peacock:  Dying,    Ruling,  Sleeping, Eating, Walking
-    [_D, _R, _S, _E, _W],
+    [_d, _r, _s, _e, _w],
   ];
 
   /// Group D: Friday (Bright Half, Daytime)
   static const List<List<PakshiState>> _brightGroupD = [
     // Vulture:  Walking, Sleeping, Dying,   Ruling,  Eating
-    [_W, _S, _D, _R, _E],
+    [_w, _s, _d, _r, _e],
     // Owl:      Dying,   Ruling,   Sleeping, Eating, Walking
-    [_D, _R, _S, _E, _W],
+    [_d, _r, _s, _e, _w],
     // Crow:     Ruling,  Dying,    Eating,  Walking, Sleeping
-    [_R, _D, _E, _W, _S],
+    [_r, _d, _e, _w, _s],
     // Cock:     Eating,  Walking,  Ruling,  Sleeping, Dying
-    [_E, _W, _R, _S, _D],
+    [_e, _w, _r, _s, _d],
     // Peacock:  Sleeping, Eating,  Walking, Dying,   Ruling
-    [_S, _E, _W, _D, _R],
+    [_s, _e, _w, _d, _r],
   ];
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -168,71 +168,71 @@ class PakshiCalculator {
   /// Group A: Sunday & Tuesday (Dark Half, Daytime)
   static const List<List<PakshiState>> _darkGroupA = [
     // Vulture:  Walking, Ruling,  Eating,  Dying,   Sleeping
-    [_W, _R, _E, _D, _S],
+    [_w, _r, _e, _d, _s],
     // Owl:      Dying,   Sleeping, Ruling, Walking, Eating
-    [_D, _S, _R, _W, _E],
+    [_d, _s, _r, _w, _e],
     // Crow:     Eating,  Dying,   Sleeping, Ruling, Walking
-    [_E, _D, _S, _R, _W],
+    [_e, _d, _s, _r, _w],
     // Cock:     Ruling,  Eating,  Walking, Sleeping, Dying
-    [_R, _E, _W, _S, _D],
+    [_r, _e, _w, _s, _d],
     // Peacock:  Sleeping, Walking, Dying,  Eating,  Ruling
-    [_S, _W, _D, _E, _R],
+    [_s, _w, _d, _e, _r],
   ];
 
   /// Group B: Monday & Saturday (Dark Half, Daytime)
   static const List<List<PakshiState>> _darkGroupB = [
     // Vulture:  Sleeping, Walking, Dying,  Eating,  Ruling
-    [_S, _W, _D, _E, _R],
+    [_s, _w, _d, _e, _r],
     // Owl:      Eating,   Dying,   Walking, Ruling, Sleeping
-    [_E, _D, _W, _R, _S],
+    [_e, _d, _w, _r, _s],
     // Crow:     Walking,  Ruling,  Eating, Sleeping, Dying
-    [_W, _R, _E, _S, _D],
+    [_w, _r, _e, _s, _d],
     // Cock:     Dying,    Sleeping, Ruling, Walking, Eating
-    [_D, _S, _R, _W, _E],
+    [_d, _s, _r, _w, _e],
     // Peacock:  Ruling,   Eating,  Sleeping, Dying, Walking
-    [_R, _E, _S, _D, _W],
+    [_r, _e, _s, _d, _w],
   ];
 
   /// Group C: Wednesday (Dark Half, Daytime)
   static const List<List<PakshiState>> _darkGroupC = [
     // Vulture:  Dying,   Sleeping, Walking, Ruling,  Eating
-    [_D, _S, _W, _R, _E],
+    [_d, _s, _w, _r, _e],
     // Owl:      Ruling,  Eating,   Dying,   Sleeping, Walking
-    [_R, _E, _D, _S, _W],
+    [_r, _e, _d, _s, _w],
     // Crow:     Sleeping, Walking, Ruling,  Eating,  Dying
-    [_S, _W, _R, _E, _D],
+    [_s, _w, _r, _e, _d],
     // Cock:     Eating,  Ruling,   Sleeping, Dying, Walking
-    [_E, _R, _S, _D, _W],
+    [_e, _r, _s, _d, _w],
     // Peacock:  Walking, Dying,    Eating,  Walking, Ruling
-    [_W, _D, _E, _W, _R],
+    [_w, _d, _e, _w, _r],
   ];
 
   /// Group D: Thursday (Dark Half, Daytime)
   static const List<List<PakshiState>> _darkGroupD = [
     // Vulture:  Ruling,  Eating,  Sleeping, Walking, Dying
-    [_R, _E, _S, _W, _D],
+    [_r, _e, _s, _w, _d],
     // Owl:      Sleeping, Walking, Eating,  Dying,   Ruling
-    [_S, _W, _E, _D, _R],
+    [_s, _w, _e, _d, _r],
     // Crow:     Dying,   Ruling,  Walking,  Eating,  Sleeping
-    [_D, _R, _W, _E, _S],
+    [_d, _r, _w, _e, _s],
     // Cock:     Walking, Dying,   Ruling,   Sleeping, Eating
-    [_W, _D, _R, _S, _E],
+    [_w, _d, _r, _s, _e],
     // Peacock:  Eating,  Sleeping, Dying,   Ruling,  Walking
-    [_E, _S, _D, _R, _W],
+    [_e, _s, _d, _r, _w],
   ];
 
   /// Group E: Friday (Dark Half, Daytime)
   static const List<List<PakshiState>> _darkGroupE = [
     // Vulture:  Eating,  Dying,   Ruling,  Sleeping, Walking
-    [_E, _D, _R, _S, _W],
+    [_e, _d, _r, _s, _w],
     // Owl:      Walking, Ruling,  Sleeping, Eating,  Dying
-    [_W, _R, _S, _E, _D],
+    [_w, _r, _s, _e, _d],
     // Crow:     Ruling,  Sleeping, Dying,   Walking, Eating
-    [_R, _S, _D, _W, _E],
+    [_r, _s, _d, _w, _e],
     // Cock:     Sleeping, Eating,  Walking, Dying,   Ruling
-    [_S, _E, _W, _D, _R],
+    [_s, _e, _w, _d, _r],
     // Peacock:  Dying,   Walking,  Eating,  Ruling,  Sleeping
-    [_D, _W, _E, _R, _S],
+    [_d, _w, _e, _r, _s],
   ];
 
   /// Returns the correct daytime state table for the given [weekday]
@@ -279,8 +279,8 @@ class PakshiCalculator {
   /// to convert from Dart's DateTime.weekday).
   ///
   /// Returns a [PakshiDayResult] containing:
-  /// - [entries]: The ruling bird for each Yama (backward-compatible).
-  /// - [stateTable]: Full 2D table of all birds' states per Yama.
+  /// - `entries`: The ruling bird for each Yama (backward-compatible).
+  /// - `stateTable`: Full 2D table of all birds' states per Yama.
   static PakshiDayResult calculate({
     required int weekday,
     required LunarPhase lunarPhase,
