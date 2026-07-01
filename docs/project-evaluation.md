@@ -40,6 +40,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **i18n & Polish** | Tamil translations (90+ strings), language switcher, locale persistence, smooth tab transitions, pull-to-refresh, Clear All Data, shared bird emoji utility, accessibility (Semantics, touch targets) | ✅ Complete (100%) — Sprint 9 |
 | **Testing & Hardening** | 264 automated tests (unit + widget + integration), 25% coverage threshold enforcement, security review, offline verification, 7 new test suites | ✅ Complete (100%) — Sprint 10 |
 | **Smoke Test & CI Polish** | Manual smoke test plan (34 scenarios), results template, CI paths-ignore, /plan protocol, revised release plan (cloud backup → 1.1) | ✅ Complete (100%) — Sprint 11 |
+| **Smoke Test Execution & i18n** | Manual smoke test (34 scenarios), Pakshi algorithm rewrite (authentic tables), complete Tamil localization (130+ keys, 3 pages), nakshatra Tamil names | ✅ Complete (100%) — Sprint 12 |
 | **Production Deployment** | Web (Cloudflare Pages) + Mobile (App Store, Play Store) | 🔲 Planned — Sprints 13–14 |
 
 ---
@@ -70,6 +71,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 5 | 15 (backup repositories, storage mode) | 165 |
 | Sprint 6 | 18 (notifications, onboarding, nakshatra) | 183 |
 | Sprint 7 | 18 (context payload, rules engine, fallback, library) | 201 |
+| Sprint 10 | 63 (new test suites) | 264 |
+| Sprint 12 | 0 (test rewrite, same count) | 264 |
 
 ### Resolved Defects
 
@@ -92,6 +95,11 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Clear All Data shows "Complete Setup" instead of Welcome | `onboardingNotifierProvider` retained old form state (step 3) | Added `ref.invalidate(onboardingNotifierProvider)` to reset to step 0 | Sprint 9 |
 | Widget tests fail in headless CI due to scroll assertions | `scrollUntilVisible`/`dragUntilVisible` unreliable without real viewport | Removed fragile widget tests; rely on existing `widget_test.dart` + pure unit tests | Sprint 10 |
 | Coverage threshold 80% unrealistic for UI-heavy codebase | Domain ~95% covered but UI/presentation brings average to 26% | Set realistic threshold at 25%; domain layer verified independently | Sprint 10 |
+| Bird state calculation wrong (A-04) | Positional state assignment instead of authentic 2D bird×yama lookup tables | Complete algorithm rewrite using Prof. Pulippani's reference tables (9 day-group matrices) | Sprint 12 |
+| Tamil translations incomplete (D-01 to D-05) | UI widgets used `displayName` getter (English) instead of l10n ARB strings | Created `PakshiBirdL10n`/`PakshiStateL10n` extensions + localized all widgets | Sprint 12 |
+| Settings page English strings | StorageModeSelector, BackupActionsWidget, color accents hardcoded English | Replaced with l10n calls, added 14+ new ARB keys | Sprint 12 |
+| Timer/Pacer English labels | BreathTimerWidget and QuickSyncPacer used hardcoded English | Added 22 new l10n keys for timer phases, instructions, pacer | Sprint 12 |
+| Micro-advice in English only | MicroAdvice domain class returns English | Localized at presentation layer with 5 new advice ARB keys | Sprint 12 |
 
 ---
 
@@ -111,6 +119,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 9 | i18n, Animations & Polish | #14 | 0 (existing tests cover) | ✅ Complete |
 | Sprint 10 | Testing & Hardening | #16 | 63 | ✅ Complete |
 | Sprint 11 | Smoke Test Plan & CI Polish | #18 | 0 (docs/CI only) | ✅ Complete |
+| Sprint 12 | Smoke Test Execution & Fixes | #21, #22, #23 | 0 (test rewrite, same count) | ✅ Complete |
 
 ---
 

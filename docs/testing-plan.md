@@ -256,6 +256,7 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 8 | 0 | 201 | Theming/profile (UI-only, no new tests) |
 | Sprint 9 | 0 | 201 | i18n/polish (UI-only; G-08, I-05 covered in Sprint 10) |
 | Sprint 10 | 63 | 264 | Unit tests: BirdEmoji, BreathTimer, DashboardData, Locale, Theme, OnboardingState, AppLocalizations |
+| Sprint 12 | 0 | 264 | Pakshi calculator tests rewritten — validates authentic 2D lookup tables (bright/dark half, day groups, per-bird state verification) |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 
