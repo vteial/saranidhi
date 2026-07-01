@@ -364,4 +364,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get restoreBackupMessage => 'This will replace all current data with the backup. This action cannot be undone.';
+
+  @override
+  String get activeToday => 'Active today!';
+
+  @override
+  String get logTodayToContinue => 'Log today to continue';
+
+  @override
+  String get startYourStreak => 'Start your streak';
+
+  @override
+  String get best => 'Best';
+
+  @override
+  String trendSummary(int aligned, int total) {
+    return '$aligned aligned of $total days logged';
+  }
+
+  @override
+  String get yamaCoverageHint => 'Log entries during different times of day to see coverage';
+
+  @override
+  String get wisdomFallback => 'Every breath is a gift. Practice with gratitude.';
+
+  @override
+  String historyCount(int count) {
+    return 'History ($count)';
+  }
+
+  @override
+  String get firstEntryHint => 'Select your breath flow above to log your first entry';
+
+  @override
+  String flowLabel(String flow) {
+    return '$flow flow';
+  }
+
+  @override
+  String get deleteEntry => 'Delete Entry?';
+
+  @override
+  String get deleteEntryMessage => 'This will permanently remove this breath entry.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get timerIn => 'In';
+
+  @override
+  String get timerOut => 'Out';
 }

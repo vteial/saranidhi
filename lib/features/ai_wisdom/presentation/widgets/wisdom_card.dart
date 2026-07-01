@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/ai_wisdom/providers/wisdom_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// AI Wisdom insight card displayed on the Home dashboard.
 ///
@@ -12,6 +13,7 @@ class WisdomCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final wisdomAsync = ref.watch(wisdomInsightProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return Card(
       child: Padding(
@@ -28,7 +30,7 @@ class WisdomCard extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Daily Wisdom',
+                  l10n.wisdomTitle,
                   style: theme.textTheme.titleSmall?.copyWith(
                     color: theme.colorScheme.primary,
                   ),
@@ -46,7 +48,7 @@ class WisdomCard extends ConsumerWidget {
               ),
               loading: () => _SkeletonLoader(theme: theme),
               error: (_, __) => Text(
-                'Every breath is a gift. Practice with gratitude.',
+                l10n.wisdomFallback,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontStyle: FontStyle.italic,
                 ),

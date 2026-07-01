@@ -400,6 +400,51 @@ abstract class AppLocalizations {
 
   /// Restore confirmation dialog body
   String get restoreBackupMessage;
+
+  /// Streak active today message
+  String get activeToday;
+
+  /// Streak prompt to log today
+  String get logTodayToContinue;
+
+  /// Streak empty state message
+  String get startYourStreak;
+
+  /// Best streak label
+  String get best;
+
+  /// Trend summary text
+  String trendSummary(int aligned, int total);
+
+  /// Yama coverage empty state hint
+  String get yamaCoverageHint;
+
+  /// Wisdom card fallback text
+  String get wisdomFallback;
+
+  /// History section header with count
+  String historyCount(int count);
+
+  /// Empty history hint text
+  String get firstEntryHint;
+
+  /// Flow label in history entry
+  String flowLabel(String flow);
+
+  /// Delete entry dialog title
+  String get deleteEntry;
+
+  /// Delete entry dialog body
+  String get deleteEntryMessage;
+
+  /// Delete button label
+  String get delete;
+
+  /// Timer inhale short label
+  String get timerIn;
+
+  /// Timer exhale short label
+  String get timerOut;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

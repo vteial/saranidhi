@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saranidhi/features/streaks/domain/streak_calculator.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays the current streak with a flame icon.
 class StreakFlameWidget extends StatelessWidget {
@@ -10,6 +11,7 @@ class StreakFlameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final hasStreak = streak.currentStreak > 0;
 
     return Card(
@@ -29,17 +31,17 @@ class StreakFlameWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${streak.currentStreak} day${streak.currentStreak == 1 ? '' : 's'}',
+                  l10n.streakDays(streak.currentStreak),
                   style: theme.textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   streak.isActiveToday
-                      ? 'Active today!'
+                      ? l10n.activeToday
                       : streak.currentStreak > 0
-                      ? 'Log today to continue'
-                      : 'Start your streak',
+                      ? l10n.logTodayToContinue
+                      : l10n.startYourStreak,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -57,7 +59,7 @@ class StreakFlameWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Best',
+                    l10n.best,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),

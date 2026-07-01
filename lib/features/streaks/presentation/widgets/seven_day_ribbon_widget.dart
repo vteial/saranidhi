@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saranidhi/features/streaks/domain/seven_day_ribbon.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Compact 7-day calendar ribbon with status indicators.
 class SevenDayRibbonWidget extends StatelessWidget {
@@ -10,6 +11,7 @@ class SevenDayRibbonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return Card(
       child: Padding(
@@ -17,7 +19,7 @@ class SevenDayRibbonWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Last 7 Days', style: theme.textTheme.titleSmall),
+            Text(l10n.sevenDayRibbon, style: theme.textTheme.titleSmall),
             const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

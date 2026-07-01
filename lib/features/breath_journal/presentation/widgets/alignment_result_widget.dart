@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
+import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 import 'package:saranidhi/features/breath_journal/domain/micro_advice.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -47,7 +48,7 @@ class AlignmentResultWidget extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  isAligned ? 'Aligned!' : 'Not Aligned',
+                  isAligned ? l10n.aligned : l10n.notAligned,
                   style: theme.textTheme.titleSmall?.copyWith(
                     color: isAligned
                         ? theme.colorScheme.primary
@@ -57,7 +58,7 @@ class AlignmentResultWidget extends ConsumerWidget {
                 ),
                 const Spacer(),
                 Text(
-                  'Expected: ${alignment.expectedFlow.shortLabel}',
+                  '${l10n.expected}: ${_localizedFlowLabel(alignment.expectedFlow, l10n)}',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -82,4 +83,11 @@ class AlignmentResultWidget extends ConsumerWidget {
       ),
     );
   }
+
+  String _localizedFlowLabel(BreathFlow flow, AppLocalizations l10n) =>
+      switch (flow) {
+        BreathFlow.solar => l10n.solar,
+        BreathFlow.lunar => l10n.lunar,
+        BreathFlow.sushumna => l10n.sushumna,
+      };
 }

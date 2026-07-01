@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/database/app_database.dart';
+import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays the journal history grouped by date, chronologically descending.
 /// Supports delete via long-press or trailing icon.
@@ -41,6 +43,7 @@ class _EmptyHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(
@@ -52,14 +55,14 @@ class _EmptyHistory extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'No entries yet',
+            l10n.noEntries,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
           const SizedBox(height: 4),
           Text(
-            'Select your breath flow above to log your first entry',
+            l10n.firstEntryHint,
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -79,6 +82,7 @@ class _HistoryContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     // Group by date
     final grouped = <String, List<SaraKalaiJournalData>>{};
@@ -97,7 +101,7 @@ class _HistoryContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
           child: Text(
-            'History (${entries.length} entries)',
+            l10n.historyCount(entries.length),
             style: theme.textTheme.titleSmall,
           ),
         ),
@@ -109,7 +113,7 @@ class _HistoryContent extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Text(
-                  _formatDateLabel(dateKey),
+                  _formatDateLabel(dateKey, l10n),
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -124,16 +128,16 @@ class _HistoryContent extends StatelessWidget {
     );
   }
 
-  String _formatDateLabel(String dateKey) {
+  String _formatDateLabel(String dateKey, AppLocalizations l10n) {
     final today = DateTime.now();
     final todayKey =
         '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
-    if (dateKey == todayKey) return 'Today';
+    if (dateKey == todayKey) return l10n.today;
 
     final yesterday = today.subtract(const Duration(days: 1));
     final yesterdayKey =
         '${yesterday.year}-${yesterday.month.toString().padLeft(2, '0')}-${yesterday.day.toString().padLeft(2, '0')}';
-    if (dateKey == yesterdayKey) return 'Yesterday';
+    if (dateKey == yesterdayKey) return l10n.yesterday;
 
     return dateKey;
   }
@@ -147,6 +151,7 @@ class _EntryTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final time = DateTime.fromMillisecondsSinceEpoch(entry.timestamp);
     final timeStr =
         '${time.hour.toString().padLeft(2, '0')}:'
@@ -171,11 +176,11 @@ class _EntryTile extends ConsumerWidget {
               size: 20,
             ),
             title: Text(
-              '${_capitalize(entry.actualFlow)} flow',
+              l10n.flowLabel(_localizedFlowName(entry.actualFlow, l10n)),
               style: theme.textTheme.bodyMedium,
             ),
             subtitle: Text(
-              'Expected: ${_capitalize(entry.expectedFlow)}',
+              '${l10n.expected}: ${_localizedFlowName(entry.expectedFlow, l10n)}',
               style: theme.textTheme.bodySmall,
             ),
             trailing: Row(
@@ -213,7 +218,7 @@ class _EntryTile extends ConsumerWidget {
                   if (entry.inhaleDurationMs != null &&
                       entry.inhaleDurationMs! > 0)
                     _TimingChip(
-                      label: 'In',
+                      label: l10n.timerIn,
                       ms: entry.inhaleDurationMs!,
                       theme: theme,
                     ),
@@ -221,7 +226,7 @@ class _EntryTile extends ConsumerWidget {
                       entry.holdDurationMs! > 0) ...[
                     const SizedBox(width: 8),
                     _TimingChip(
-                      label: 'Hold',
+                      label: l10n.hold,
                       ms: entry.holdDurationMs!,
                       theme: theme,
                       highlight: true,
@@ -231,7 +236,7 @@ class _EntryTile extends ConsumerWidget {
                       entry.exhaleDurationMs! > 0) ...[
                     const SizedBox(width: 8),
                     _TimingChip(
-                      label: 'Out',
+                      label: l10n.timerOut,
                       ms: entry.exhaleDurationMs!,
                       theme: theme,
                     ),
@@ -245,15 +250,16 @@ class _EntryTile extends ConsumerWidget {
   }
 
   void _confirmDelete(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Entry?'),
-        content: const Text('This will permanently remove this breath entry.'),
+        title: Text(l10n.deleteEntry),
+        content: Text(l10n.deleteEntryMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             onPressed: () {
@@ -263,11 +269,21 @@ class _EntryTile extends ConsumerWidget {
             style: FilledButton.styleFrom(
               backgroundColor: Theme.of(context).colorScheme.error,
             ),
-            child: const Text('Delete'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
     );
+  }
+
+  String _localizedFlowName(String flowStr, AppLocalizations l10n) {
+    final flow = BreathFlow.values.where((f) => f.name == flowStr).firstOrNull;
+    if (flow == null) return _capitalize(flowStr);
+    return switch (flow) {
+      BreathFlow.solar => l10n.solar,
+      BreathFlow.lunar => l10n.lunar,
+      BreathFlow.sushumna => l10n.sushumna,
+    };
   }
 
   String _capitalize(String s) =>
