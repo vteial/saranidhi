@@ -179,7 +179,7 @@
 
 ---
 
-## Sprint 13: Web Production Deployment
+## Sprint 13: Web Production Deployment (Current Sprint)
 
 - [ ] Task 13.1: Create `prod` branch from `main`
 - [ ] Task 13.2: Configure Cloudflare Pages for web production deployment
