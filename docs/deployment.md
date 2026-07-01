@@ -5,94 +5,45 @@
 ## Architecture
 
 ```
-GitHub (main) ──PR──► GitHub (prod) ──push──► GitHub Actions ──build──► Cloudflare Pages
-                                                                              │
-                                                                    saranidhi.pages.dev
+GitHub (main) ──merge──► Vercel (auto-build) ──deploy──► saranidhi.vercel.app
 ```
 
 | Environment | Branch | Platform | URL | Trigger |
 |-------------|--------|----------|-----|---------|
-| **Staging** | `main` | Vercel | saranidhi.vercel.app | Auto (on merge) |
-| **Production** | `prod` | Cloudflare Pages | saranidhi.pages.dev | Auto (on push to prod) |
+| **Production** | `main` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | Auto (on merge to main) |
+| **Preview** | PR branches | Vercel | Auto-generated per PR | Auto (on PR open/update) |
 
 ---
 
-## Initial Setup (One-Time)
+## How It Works
 
-### 1. Create Cloudflare Pages Project
+Vercel is connected to the `vteial/saranidhi` GitHub repository and:
 
-1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com/)
-2. Go to **Workers & Pages** → **Create** → **Pages**
-3. Select **Direct Upload** (we deploy via GitHub Actions, not Cloudflare's git integration)
-4. Project name: `saranidhi`
-5. This creates the project — first actual deployment will come from GitHub Actions
+1. **On every push to `main`:** Builds Flutter web and deploys to `saranidhi.vercel.app`
+2. **On every PR:** Creates a unique preview URL for visual QA before merge
 
-### 2. Generate Cloudflare API Token
-
-1. Go to **My Profile** → **API Tokens** → **Create Token**
-2. Use template: **Edit Cloudflare Workers** (includes Pages permissions)
-3. OR create custom token with permissions:
-   - Account → Cloudflare Pages → Edit
-   - Account → Account Settings → Read
-4. Copy the token
-
-### 3. Get Cloudflare Account ID
-
-1. Go to any domain's **Overview** page in Cloudflare Dashboard
-2. Scroll down to the right sidebar → **Account ID** (32-character hex string)
-3. Copy the Account ID
-
-### 4. Add GitHub Secrets
-
-In the GitHub repo (`vteial/saranidhi`):
-
-1. Go to **Settings** → **Secrets and variables** → **Actions**
-2. Add these repository secrets:
-
-| Secret Name | Value |
-|-------------|-------|
-| `CLOUDFLARE_API_TOKEN` | The API token from step 2 |
-| `CLOUDFLARE_ACCOUNT_ID` | The Account ID from step 3 |
-
-### 5. Create the `prod` Branch
-
-```bash
-git checkout main
-git pull origin main
-git checkout -b prod
-git push origin prod
-```
-
-This triggers the first production deployment via GitHub Actions.
+No additional CI/CD workflow needed — Vercel handles build + deploy automatically.
 
 ---
 
 ## Deployment Workflow
 
-### Automatic (Recommended)
+### Standard Flow
 
-1. Development happens on feature branches → merged to `main`
-2. `main` auto-deploys to Vercel (staging) for QA
-3. When ready for production: merge `main` → `prod`
-4. Push to `prod` triggers `.github/workflows/deploy-production.yml`
-5. Workflow: analyze → test → build → deploy to Cloudflare → verify
+1. Feature work on branches → PR targeting `main`
+2. Vercel creates preview deployment for the PR (visual QA)
+3. CI passes (analyze + test + build) on GitHub Actions
+4. Owner reviews on preview URL + merges PR
+5. Vercel auto-deploys to production (`saranidhi.vercel.app`)
+6. Verify live site
 
-### Manual Trigger
+### Promotion Checklist
 
-1. Go to **Actions** → **Deploy to Production** workflow
-2. Click **Run workflow**
-3. Type `deploy` in the confirmation field
-4. Click **Run workflow**
+Before merging to `main`:
 
----
-
-## Deployment Checklist
-
-Before promoting `main` → `prod`:
-
-- [ ] All CI checks pass on `main`
-- [ ] Vercel staging (saranidhi.vercel.app) verified visually
-- [ ] Smoke test results: all sections PASS (see `docs/smoke-test-results.md`)
+- [ ] CI pipeline passes (GitHub Actions: analyze, test, coverage, build)
+- [ ] Vercel preview deployment works correctly
+- [ ] Smoke test criteria met (see `docs/smoke-test-results.md`)
 - [ ] No open blocker issues
 - [ ] Privacy policy accessible at `/privacy.html`
 
@@ -100,22 +51,23 @@ Before promoting `main` → `prod`:
 
 ## Rollback
 
-### Quick Rollback (Cloudflare Dashboard)
+### Via Vercel Dashboard
 
-1. Go to **Workers & Pages** → **saranidhi** → **Deployments**
-2. Find the previous working deployment
-3. Click **⋯** → **Rollback to this deployment**
-4. Takes effect immediately (~30 seconds)
+1. Go to [Vercel Dashboard](https://vercel.com/) → saranidhi project
+2. Click **Deployments** tab
+3. Find the previous working deployment
+4. Click **⋯** → **Promote to Production**
+5. Takes effect immediately
 
-### Git Rollback
+### Via Git Revert
 
 ```bash
-git checkout prod
+git checkout main
 git revert HEAD
-git push origin prod
+git push origin main
 ```
 
-This triggers a new deployment with the reverted code.
+Vercel auto-deploys the reverted state.
 
 ---
 
@@ -123,27 +75,25 @@ This triggers a new deployment with the reverted code.
 
 When ready to add a custom domain:
 
-1. Go to **Workers & Pages** → **saranidhi** → **Custom domains**
-2. Click **Set up a custom domain**
-3. Enter your domain (e.g., `saranidhi.app`)
-4. Cloudflare will auto-configure DNS if the domain is on Cloudflare
-5. SSL certificate is provisioned automatically
+1. Go to Vercel Dashboard → saranidhi → **Settings** → **Domains**
+2. Add your domain (e.g., `saranidhi.app`)
+3. Configure DNS (Vercel provides instructions)
+4. SSL is automatic
 
 ---
 
 ## Monitoring
 
-### Cloudflare Analytics (Built-in)
+### Vercel Analytics (Built-in)
 
-- **Workers & Pages** → **saranidhi** → **Analytics**
-- Shows: requests, bandwidth, response codes, geographic distribution
-- No tracking code needed — analytics are server-side
+- Dashboard → saranidhi → **Analytics**
+- Shows: visits, performance (Web Vitals), geographic distribution
+- **Speed Insights:** Core Web Vitals (LCP, FID, CLS)
+- No tracking code needed for basic metrics
 
-### Health Check
+### Privacy Note
 
-The deploy workflow includes automatic verification:
-- Checks HTTP 200 on `saranidhi.pages.dev`
-- Checks HTTP 200 on `saranidhi.pages.dev/privacy.html`
+Vercel's built-in analytics are privacy-friendly — no cookies, no personal data collection, compliant with GDPR.
 
 ---
 
@@ -151,11 +101,11 @@ The deploy workflow includes automatic verification:
 
 | Issue | Solution |
 |-------|----------|
-| Deploy workflow fails at "Deploy to Cloudflare Pages" | Check `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets are set correctly |
-| 404 on saranidhi.pages.dev | Verify Cloudflare Pages project name is `saranidhi` (case-sensitive) |
-| Build fails | Check Flutter version — workflow uses `stable` channel |
-| Wrangler authentication error | Regenerate API token with correct permissions |
-| Old version still showing | Cloudflare CDN cache — wait 5 minutes or purge cache in dashboard |
+| Build fails on Vercel | Check build logs in Vercel dashboard; ensure Flutter stable channel works |
+| Old version still showing | Vercel CDN cache — wait 1-2 minutes; check Deployments tab |
+| Preview URL not generated | Ensure Vercel GitHub integration is active for the repo |
+| 404 on sub-routes | Flutter web uses hash routing by default — URLs work correctly |
+| Privacy page 404 | Ensure `web/privacy.html` exists (static files in `web/` are included in build output) |
 
 ---
 

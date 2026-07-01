@@ -33,7 +33,7 @@ inclusion: auto
 | **Linting** | very_good_analysis |
 | **CI/CD** | GitHub Actions |
 | **Web Staging** | Vercel (PR previews) |
-| **Web Production** | Cloudflare Pages |
+| **Web Production** | Vercel (auto-deploy from main) |
 | **Mobile Distribution** | App Store (iOS) + Play Store (Android) |
 | **Pre-commit** | lefthook |
 
@@ -139,10 +139,10 @@ notifyRuling, notifyEating, lastBackupDate
 
 | Environment | Branch | Hosting | Purpose |
 |-------------|--------|---------|---------|
-| **Staging** | `main` | Vercel | PR previews, QA |
-| **Production (Web)** | `prod` | Cloudflare Pages | Live web app |
-| **Production (iOS)** | `prod` | App Store | Live iOS app |
-| **Production (Android)** | `prod` | Play Store | Live Android app |
+| **Production (Web)** | `main` | Vercel | Live web app (saranidhi.vercel.app) |
+| **Preview** | PR branches | Vercel | PR previews, QA |
+| **Production (iOS)** | `main` | App Store | Live iOS app |
+| **Production (Android)** | `main` | Play Store | Live Android app |
 
 ## 8. Monetization Model
 

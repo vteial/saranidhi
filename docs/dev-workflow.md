@@ -161,10 +161,10 @@ git push origin main
 
 | Environment | Branch | Platform | URL | Auto-Deploy |
 |-------------|--------|----------|-----|-------------|
-| Staging | `main` | Vercel | saranidhi.vercel.app | Yes (on merge) |
-| Production Web | `prod` | Cloudflare Pages | TBD (custom domain) | Yes (on merge) |
-| Production iOS | `prod` | App Store | — | Manual |
-| Production Android | `prod` | Play Store | — | Manual |
+| Production Web | `main` | Vercel | saranidhi.vercel.app | Yes (on merge) |
+| Preview | PR branches | Vercel | Auto-generated per PR | Yes (on PR) |
+| Production iOS | `main` | App Store | — | Manual |
+| Production Android | `main` | Play Store | — | Manual |
 
 ### Known Limitations (Current)
 
