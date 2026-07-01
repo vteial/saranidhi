@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Animated breathing pacer to help shift dominant nostril.
 ///
@@ -52,18 +53,19 @@ class _QuickSyncPacerState extends State<QuickSyncPacer>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Text('Quick Sync Pacer', style: theme.textTheme.titleSmall),
+            Text(l10n.quickSyncPacer, style: theme.textTheme.titleSmall),
             const SizedBox(height: 4),
             Text(
               _isActive
-                  ? 'Breathe with the circle'
-                  : 'Tap to start guided breathing',
+                  ? l10n.breatheWithCircle
+                  : l10n.quickSyncInstruction,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -113,7 +115,7 @@ class _QuickSyncPacerState extends State<QuickSyncPacer>
                   final isForward =
                       _controller.status == AnimationStatus.forward;
                   return Text(
-                    isForward ? 'Inhale...' : 'Exhale...',
+                    isForward ? l10n.inhaling : l10n.exhaling,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.colorScheme.primary,
                       fontWeight: FontWeight.w500,

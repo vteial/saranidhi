@@ -445,6 +445,78 @@ abstract class AppLocalizations {
 
   /// Timer exhale short label
   String get timerOut;
+
+  /// Breath timer title
+  String get breathTimer;
+
+  /// Inhaling phase label
+  String get inhaling;
+
+  /// Holding phase label
+  String get holding;
+
+  /// Exhaling phase label
+  String get exhaling;
+
+  /// Timer complete label
+  String get timerComplete;
+
+  /// Timer idle instruction
+  String get tapToStartInhale;
+
+  /// Timer inhale instruction
+  String get tapWhenInhaleComplete;
+
+  /// Timer hold instruction
+  String get tapWhenReadyToExhale;
+
+  /// Timer exhale instruction
+  String get tapWhenExhaleComplete;
+
+  /// Timer complete instruction
+  String get tapToReset;
+
+  /// Pacer active instruction
+  String get breatheWithCircle;
+
+  /// Yama label prefix
+  String get yamaPrefix;
+
+  /// Sunday abbreviation
+  String get daySun;
+
+  /// Monday abbreviation
+  String get dayMon;
+
+  /// Tuesday abbreviation
+  String get dayTue;
+
+  /// Wednesday abbreviation
+  String get dayWed;
+
+  /// Thursday abbreviation
+  String get dayThu;
+
+  /// Friday abbreviation
+  String get dayFri;
+
+  /// Saturday abbreviation
+  String get daySat;
+
+  /// Micro-advice when Sushumna aligned
+  String get adviceAlignedSushumna;
+
+  /// Micro-advice when Solar aligned
+  String get adviceAlignedSolar;
+
+  /// Micro-advice when Lunar aligned
+  String get adviceAlignedLunar;
+
+  /// Micro-advice when Solar expected but unaligned
+  String get adviceUnalignedSolar;
+
+  /// Micro-advice when Lunar expected but unaligned
+  String get adviceUnalignedLunar;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

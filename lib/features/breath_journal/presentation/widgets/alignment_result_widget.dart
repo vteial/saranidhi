@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
+import 'package:saranidhi/features/breath_journal/domain/alignment_checker.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
-import 'package:saranidhi/features/breath_journal/domain/micro_advice.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -24,9 +24,10 @@ class AlignmentResultWidget extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final isAligned = alignment.isAligned;
 
-    final advice = MicroAdvice.generate(
+    final advice = _localizedAdvice(
       alignment: alignment,
       actualFlow: selectedFlow,
+      l10n: l10n,
     );
 
     return Card(
@@ -72,7 +73,7 @@ class AlignmentResultWidget extends ConsumerWidget {
               Text(
                 '${alignment.activeBird!.localizedName(l10n)} • '
                 '${alignment.activeBirdState?.localizedName(l10n) ?? ""} • '
-                '${alignment.activeYama?.label ?? ""}',
+                '${_localizedYamaLabel(alignment, l10n)}',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -90,4 +91,31 @@ class AlignmentResultWidget extends ConsumerWidget {
         BreathFlow.lunar => l10n.lunar,
         BreathFlow.sushumna => l10n.sushumna,
       };
+
+  String _localizedYamaLabel(AlignmentResult alignment, AppLocalizations l10n) {
+    final yama = alignment.activeYama;
+    if (yama == null) return '';
+    return '${l10n.yamaPrefix} ${yama.index + 1}';
+  }
+
+  String _localizedAdvice({
+    required AlignmentResult alignment,
+    required BreathFlow actualFlow,
+    required AppLocalizations l10n,
+  }) {
+    if (alignment.isAligned) {
+      if (actualFlow == BreathFlow.sushumna) {
+        return l10n.adviceAlignedSushumna;
+      }
+      if (actualFlow == BreathFlow.solar) {
+        return l10n.adviceAlignedSolar;
+      }
+      return l10n.adviceAlignedLunar;
+    }
+    final expected = alignment.expectedFlow;
+    if (expected == BreathFlow.solar) {
+      return l10n.adviceUnalignedSolar;
+    }
+    return l10n.adviceUnalignedLunar;
+  }
 }

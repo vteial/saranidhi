@@ -44,7 +44,7 @@ class _DayChip extends StatelessWidget {
     return Column(
       children: [
         Text(
-          day.dayLabel,
+          _localizedDayLabel(context, day.date),
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -65,6 +65,20 @@ class _DayChip extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _localizedDayLabel(BuildContext context, DateTime date) {
+    final l10n = AppLocalizations.of(context);
+    return switch (date.weekday) {
+      1 => l10n.dayMon,
+      2 => l10n.dayTue,
+      3 => l10n.dayWed,
+      4 => l10n.dayThu,
+      5 => l10n.dayFri,
+      6 => l10n.daySat,
+      7 => l10n.daySun,
+      _ => '',
+    };
   }
 
   Color _bgColor(DayStatus status, ThemeData theme) => switch (status) {

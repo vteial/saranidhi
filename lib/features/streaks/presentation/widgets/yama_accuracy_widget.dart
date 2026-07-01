@@ -59,7 +59,7 @@ class YamaAccuracyWidget extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             ...accuracy.yamaEntries.entries.map((entry) {
-              final label = _yamaLabel(entry.key);
+              final label = _yamaLabel(entry.key, l10n);
               final count = entry.value;
               final fraction = maxCount > 0 ? count / maxCount : 0.0;
 
@@ -109,12 +109,12 @@ class YamaAccuracyWidget extends StatelessWidget {
     );
   }
 
-  String _yamaLabel(String key) => switch (key) {
-    'yama1' => 'Yama 1',
-    'yama2' => 'Yama 2',
-    'yama3' => 'Yama 3',
-    'yama4' => 'Yama 4',
-    'yama5' => 'Yama 5',
+  String _yamaLabel(String key, AppLocalizations l10n) => switch (key) {
+    'yama1' => '${l10n.yamaPrefix} 1',
+    'yama2' => '${l10n.yamaPrefix} 2',
+    'yama3' => '${l10n.yamaPrefix} 3',
+    'yama4' => '${l10n.yamaPrefix} 4',
+    'yama5' => '${l10n.yamaPrefix} 5',
     _ => key,
   };
 }
