@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/utils/bird_emoji.dart';
+import 'package:saranidhi/core/utils/nakshatra_l10n.dart';
+import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
@@ -116,11 +118,18 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                     BirdEmoji.forBirdName(birdName),
                     style: const TextStyle(fontSize: 24),
                   ),
-                  title: Text(profile.birthStarNakshatra ?? l10n.notSet),
+                  title: Text(
+                    profile.birthStarNakshatra != null
+                        ? NakshatraL10n.localizedDisplay(
+                            profile.birthStarNakshatra!,
+                            isTamil: l10n.localeName == 'ta',
+                          )
+                        : l10n.notSet,
+                  ),
                   subtitle: Text(
                     birdName != null
                         ? l10n.birthBird(
-                            birdName[0].toUpperCase() + birdName.substring(1),
+                            _localizedBirdName(birdName, l10n),
                           )
                         : l10n.birthStar,
                   ),
@@ -197,7 +206,12 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                 child: ListView.builder(
                   itemCount: allNakshatras.length,
                   itemBuilder: (context, i) => ListTile(
-                    title: Text(allNakshatras[i]),
+                    title: Text(
+                      NakshatraL10n.localizedDisplay(
+                        allNakshatras[i],
+                        isTamil: l10n.localeName == 'ta',
+                      ),
+                    ),
                     dense: true,
                     onTap: () => Navigator.of(ctx).pop(allNakshatras[i]),
                   ),
@@ -225,6 +239,13 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
       );
       setState(() {});
     });
+  }
+
+  /// Returns the localized bird name from the stored enum name string.
+  String _localizedBirdName(String birdEnumName, AppLocalizations l10n) {
+    final bird = PakshiBird.values.where((b) => b.name == birdEnumName).firstOrNull;
+    if (bird == null) return birdEnumName;
+    return bird.localizedName(l10n);
   }
 
   void _editLocation(BuildContext context) {

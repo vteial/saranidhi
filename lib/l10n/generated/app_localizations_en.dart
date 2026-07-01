@@ -364,4 +364,127 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get restoreBackupMessage => 'This will replace all current data with the backup. This action cannot be undone.';
+
+  @override
+  String get activeToday => 'Active today!';
+
+  @override
+  String get logTodayToContinue => 'Log today to continue';
+
+  @override
+  String get startYourStreak => 'Start your streak';
+
+  @override
+  String get best => 'Best';
+
+  @override
+  String trendSummary(int aligned, int total) {
+    return '$aligned aligned of $total days logged';
+  }
+
+  @override
+  String get yamaCoverageHint => 'Log entries during different times of day to see coverage';
+
+  @override
+  String get wisdomFallback => 'Every breath is a gift. Practice with gratitude.';
+
+  @override
+  String historyCount(int count) {
+    return 'History ($count)';
+  }
+
+  @override
+  String get firstEntryHint => 'Select your breath flow above to log your first entry';
+
+  @override
+  String flowLabel(String flow) {
+    return '$flow flow';
+  }
+
+  @override
+  String get deleteEntry => 'Delete Entry?';
+
+  @override
+  String get deleteEntryMessage => 'This will permanently remove this breath entry.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get timerIn => 'In';
+
+  @override
+  String get timerOut => 'Out';
+
+  @override
+  String get breathTimer => 'Breath Timer';
+
+  @override
+  String get inhaling => 'Inhaling...';
+
+  @override
+  String get holding => 'Holding...';
+
+  @override
+  String get exhaling => 'Exhaling...';
+
+  @override
+  String get timerComplete => 'Complete!';
+
+  @override
+  String get tapToStartInhale => 'Tap to start inhale';
+
+  @override
+  String get tapWhenInhaleComplete => 'Tap when inhale complete';
+
+  @override
+  String get tapWhenReadyToExhale => 'Tap when ready to exhale';
+
+  @override
+  String get tapWhenExhaleComplete => 'Tap when exhale complete';
+
+  @override
+  String get tapToReset => 'Tap to reset';
+
+  @override
+  String get breatheWithCircle => 'Breathe with the circle';
+
+  @override
+  String get yamaPrefix => 'Yama';
+
+  @override
+  String get daySun => 'S';
+
+  @override
+  String get dayMon => 'M';
+
+  @override
+  String get dayTue => 'T';
+
+  @override
+  String get dayWed => 'W';
+
+  @override
+  String get dayThu => 'T';
+
+  @override
+  String get dayFri => 'F';
+
+  @override
+  String get daySat => 'S';
+
+  @override
+  String get adviceAlignedSushumna => 'Sushumna is active \u2014 perfect balance. Ideal for meditation and spiritual practice.';
+
+  @override
+  String get adviceAlignedSolar => 'Solar flow aligned! Lead with your RIGHT foot. Good time for action, exercise, and decision-making.';
+
+  @override
+  String get adviceAlignedLunar => 'Lunar flow aligned! Lead with your LEFT foot. Good time for creative work, rest, and nourishment.';
+
+  @override
+  String get adviceUnalignedSolar => 'Expected Solar (Right) but your Lunar is active. Try lying on your LEFT side to shift, or press your LEFT armpit gently.';
+
+  @override
+  String get adviceUnalignedLunar => 'Expected Lunar (Left) but your Solar is active. Try lying on your RIGHT side to shift, or press your RIGHT armpit gently.';
 }

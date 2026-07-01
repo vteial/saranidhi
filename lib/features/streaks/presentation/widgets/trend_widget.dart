@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saranidhi/features/streaks/domain/trend_calculator.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays the 30-day alignment trend as a progress bar.
 class TrendWidget extends StatelessWidget {
@@ -10,6 +11,7 @@ class TrendWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final percentage = trend.alignmentPercentage;
 
     return Card(
@@ -20,7 +22,7 @@ class TrendWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text('30-Day Trend', style: theme.textTheme.titleSmall),
+                Text(l10n.thirtyDayTrend, style: theme.textTheme.titleSmall),
                 const Spacer(),
                 Text(
                   '$percentage%',
@@ -45,8 +47,7 @@ class TrendWidget extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              '${trend.totalAlignedDays} aligned of '
-              '${trend.totalDaysWithEntries} days logged',
+              l10n.trendSummary(trend.totalAlignedDays, trend.totalDaysWithEntries),
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),

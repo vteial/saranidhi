@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saranidhi/features/streaks/domain/seven_day_ribbon.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Compact 7-day calendar ribbon with status indicators.
 class SevenDayRibbonWidget extends StatelessWidget {
@@ -10,6 +11,7 @@ class SevenDayRibbonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return Card(
       child: Padding(
@@ -17,7 +19,7 @@ class SevenDayRibbonWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Last 7 Days', style: theme.textTheme.titleSmall),
+            Text(l10n.sevenDayRibbon, style: theme.textTheme.titleSmall),
             const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -42,7 +44,7 @@ class _DayChip extends StatelessWidget {
     return Column(
       children: [
         Text(
-          day.dayLabel,
+          _localizedDayLabel(context, day.date),
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -63,6 +65,20 @@ class _DayChip extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _localizedDayLabel(BuildContext context, DateTime date) {
+    final l10n = AppLocalizations.of(context);
+    return switch (date.weekday) {
+      1 => l10n.dayMon,
+      2 => l10n.dayTue,
+      3 => l10n.dayWed,
+      4 => l10n.dayThu,
+      5 => l10n.dayFri,
+      6 => l10n.daySat,
+      7 => l10n.daySun,
+      _ => '',
+    };
   }
 
   Color _bgColor(DayStatus status, ThemeData theme) => switch (status) {

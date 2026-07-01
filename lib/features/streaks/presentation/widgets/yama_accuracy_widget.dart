@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saranidhi/features/streaks/domain/trend_calculator.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays Yama-level accuracy as a mini heatmap/bar chart.
 class YamaAccuracyWidget extends StatelessWidget {
@@ -10,6 +11,7 @@ class YamaAccuracyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     if (accuracy.totalEntries == 0) {
       return Card(
@@ -18,10 +20,10 @@ class YamaAccuracyWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Yama Coverage', style: theme.textTheme.titleSmall),
+              Text(l10n.yamaAccuracy, style: theme.textTheme.titleSmall),
               const SizedBox(height: 8),
               Text(
-                'Log entries during different times of day to see coverage',
+                l10n.yamaCoverageHint,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -45,7 +47,7 @@ class YamaAccuracyWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text('Yama Coverage', style: theme.textTheme.titleSmall),
+                Text(l10n.yamaAccuracy, style: theme.textTheme.titleSmall),
                 const Spacer(),
                 Text(
                   '${accuracy.yamaCoverage}%',
@@ -57,7 +59,7 @@ class YamaAccuracyWidget extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             ...accuracy.yamaEntries.entries.map((entry) {
-              final label = _yamaLabel(entry.key);
+              final label = _yamaLabel(entry.key, l10n);
               final count = entry.value;
               final fraction = maxCount > 0 ? count / maxCount : 0.0;
 
@@ -107,12 +109,12 @@ class YamaAccuracyWidget extends StatelessWidget {
     );
   }
 
-  String _yamaLabel(String key) => switch (key) {
-    'yama1' => 'Yama 1',
-    'yama2' => 'Yama 2',
-    'yama3' => 'Yama 3',
-    'yama4' => 'Yama 4',
-    'yama5' => 'Yama 5',
+  String _yamaLabel(String key, AppLocalizations l10n) => switch (key) {
+    'yama1' => '${l10n.yamaPrefix} 1',
+    'yama2' => '${l10n.yamaPrefix} 2',
+    'yama3' => '${l10n.yamaPrefix} 3',
+    'yama4' => '${l10n.yamaPrefix} 4',
+    'yama5' => '${l10n.yamaPrefix} 5',
     _ => key,
   };
 }

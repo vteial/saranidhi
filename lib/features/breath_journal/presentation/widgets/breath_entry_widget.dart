@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Two-click breath entry widget.
 ///
@@ -15,11 +16,12 @@ class BreathEntryWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final entryState = ref.watch(breathEntryNotifierProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Which nostril is dominant?', style: theme.textTheme.titleMedium),
+        Text(l10n.selectNostril, style: theme.textTheme.titleMedium),
         const SizedBox(height: 16),
         Row(
           children: BreathFlow.values.map((flow) {
@@ -30,6 +32,7 @@ class BreathEntryWidget extends ConsumerWidget {
                 child: _FlowButton(
                   flow: flow,
                   isSelected: isSelected,
+                  label: _localizedFlowLabel(flow, l10n),
                   onTap: () {
                     ref
                         .read(breathEntryNotifierProvider.notifier)
@@ -43,17 +46,26 @@ class BreathEntryWidget extends ConsumerWidget {
       ],
     );
   }
+
+  String _localizedFlowLabel(BreathFlow flow, AppLocalizations l10n) =>
+      switch (flow) {
+        BreathFlow.solar => l10n.solar,
+        BreathFlow.lunar => l10n.lunar,
+        BreathFlow.sushumna => l10n.sushumna,
+      };
 }
 
 class _FlowButton extends StatelessWidget {
   const _FlowButton({
     required this.flow,
     required this.isSelected,
+    required this.label,
     required this.onTap,
   });
 
   final BreathFlow flow;
   final bool isSelected;
+  final String label;
   final VoidCallback onTap;
 
   @override
@@ -90,7 +102,7 @@ class _FlowButton extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                flow.shortLabel,
+                label,
                 style: theme.textTheme.labelLarge?.copyWith(
                   color: isSelected
                       ? colorScheme.primary

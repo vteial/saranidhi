@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Breath duration timer with inhale/hold/exhale phases.
 ///
@@ -84,6 +85,7 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
   Widget build(BuildContext context) {
     final timerState = ref.watch(breathTimerNotifierProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final isRunning =
         timerState.phase != TimerPhase.idle &&
         timerState.phase != TimerPhase.complete;
@@ -103,7 +105,7 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
               ),
               const SizedBox(height: 12),
               Text(
-                _phaseLabel(timerState.phase),
+                _phaseLabel(timerState.phase, l10n),
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -121,14 +123,14 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
               ],
               const SizedBox(height: 4),
               Text(
-                _phaseInstruction(timerState.phase),
+                _phaseInstruction(timerState.phase, l10n),
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
               if (timerState.phase == TimerPhase.complete) ...[
                 const SizedBox(height: 12),
-                _TimerResults(timerState: timerState),
+                _TimerResults(timerState: timerState, l10n: l10n),
               ],
             ],
           ),
@@ -145,27 +147,28 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
     TimerPhase.complete => Icons.check_circle_outline,
   };
 
-  String _phaseLabel(TimerPhase phase) => switch (phase) {
-    TimerPhase.idle => 'Breath Timer',
-    TimerPhase.inhale => 'Inhaling...',
-    TimerPhase.hold => 'Holding...',
-    TimerPhase.exhale => 'Exhaling...',
-    TimerPhase.complete => 'Complete!',
+  String _phaseLabel(TimerPhase phase, AppLocalizations l10n) => switch (phase) {
+    TimerPhase.idle => l10n.breathTimer,
+    TimerPhase.inhale => l10n.inhaling,
+    TimerPhase.hold => l10n.holding,
+    TimerPhase.exhale => l10n.exhaling,
+    TimerPhase.complete => l10n.timerComplete,
   };
 
-  String _phaseInstruction(TimerPhase phase) => switch (phase) {
-    TimerPhase.idle => 'Tap to start inhale',
-    TimerPhase.inhale => 'Tap when inhale complete',
-    TimerPhase.hold => 'Tap when ready to exhale',
-    TimerPhase.exhale => 'Tap when exhale complete',
-    TimerPhase.complete => 'Tap to reset',
+  String _phaseInstruction(TimerPhase phase, AppLocalizations l10n) => switch (phase) {
+    TimerPhase.idle => l10n.tapToStartInhale,
+    TimerPhase.inhale => l10n.tapWhenInhaleComplete,
+    TimerPhase.hold => l10n.tapWhenReadyToExhale,
+    TimerPhase.exhale => l10n.tapWhenExhaleComplete,
+    TimerPhase.complete => l10n.tapToReset,
   };
 }
 
 class _TimerResults extends StatelessWidget {
-  const _TimerResults({required this.timerState});
+  const _TimerResults({required this.timerState, required this.l10n});
 
   final BreathTimerState timerState;
+  final AppLocalizations l10n;
 
   @override
   Widget build(BuildContext context) {
@@ -175,18 +178,18 @@ class _TimerResults extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         _ResultChip(
-          label: 'Inhale',
+          label: l10n.inhale,
           value: '${(timerState.inhaleMs / 1000).toStringAsFixed(1)}s',
           theme: theme,
         ),
         _ResultChip(
-          label: 'Hold',
+          label: l10n.hold,
           value: '${(timerState.holdMs / 1000).toStringAsFixed(1)}s',
           theme: theme,
           highlight: true,
         ),
         _ResultChip(
-          label: 'Exhale',
+          label: l10n.exhale,
           value: '${(timerState.exhaleMs / 1000).toStringAsFixed(1)}s',
           theme: theme,
         ),
