@@ -59,7 +59,7 @@ class PakshiDayResult {
   /// The ruling bird for each of the 5 Yamas (backward-compatible).
   final List<PakshiResult> entries;
 
-  /// Full 2D state table: [birdIndex][yamaIndex] → PakshiState.
+  /// Full 2D state table: `stateTable[birdIndex][yamaIndex]` → PakshiState.
   /// Bird order: vulture=0, owl=1, crow=2, rooster=3, peacock=4.
   final List<List<PakshiState>> stateTable;
 
