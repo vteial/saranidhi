@@ -124,6 +124,7 @@ class _YamaRow extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(birdEmoji, style: const TextStyle(fontSize: 14)),
+          Text(BirdEmoji.forState(birdState), style: const TextStyle(fontSize: 14)),
           const SizedBox(width: 6),
           Expanded(
             child: Text(

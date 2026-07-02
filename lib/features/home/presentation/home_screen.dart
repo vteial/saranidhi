@@ -129,16 +129,36 @@ class _DashboardContent extends ConsumerWidget {
             ],
             const SizedBox(height: 12),
 
-            // 5. Hold Time Average
-            HoldTimeCard(
-              avgHoldMs: data.todayAvgHoldMs,
-              entryCount: data.todayEntryCount,
-            ),
+            // 5. Hold Time + Streak (two-column on wide)
+            if (isWide)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: HoldTimeCard(
+                        avgHoldMs: data.todayAvgHoldMs,
+                        entryCount: data.todayEntryCount,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: StreakFlameWidget(streak: data.streak),
+                    ),
+                  ],
+                ),
+              )
+            else ...[
+              HoldTimeCard(
+                avgHoldMs: data.todayAvgHoldMs,
+                entryCount: data.todayEntryCount,
+              ),
+              const SizedBox(height: 12),
+              StreakFlameWidget(streak: data.streak),
+            ],
             const SizedBox(height: 12),
 
-            // 6. Streak + 7-day ribbon
-            StreakFlameWidget(streak: data.streak),
-            const SizedBox(height: 12),
+            // 6. 7-day ribbon
             SevenDayRibbonWidget(ribbon: data.ribbon),
             const SizedBox(height: 12),
 
