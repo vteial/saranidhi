@@ -206,10 +206,11 @@ Contextual guidance layer delivering personalized spiritual coaching.
 
 | Environment | Branch | Hosting | Purpose |
 |-------------|--------|---------|---------|
-| Staging | `main` | Vercel | PR previews, QA testing |
-| Production (Web) | `prod` | Cloudflare Pages | Live web app |
-| Production (iOS) | `prod` | App Store | Live iOS distribution |
-| Production (Android) | `prod` | Play Store | Live Android distribution |
+| Production (Web) | `main` | Vercel | Live web app (saranidhi.vercel.app) |
+| Preview | PR branches | Vercel | PR previews, QA testing |
+| Production (iOS) | `main` | App Store | Live iOS distribution |
+| Production (Android) | `main` | Play Store | Live Android distribution |
+| Production (macOS) | `main` | Mac App Store | Live macOS distribution |
 
 ---
 
@@ -222,11 +223,11 @@ flutter test              → Must pass (all green)
 flutter build web         → Must compile successfully
 ```
 
-### On Merge to `prod`
+### On Merge to `main`
 ```
-flutter build web --release    → Deploy to Cloudflare Pages
-flutter build ios --release    → Archive for App Store (manual)
-flutter build apk --release    → Upload to Play Store (manual)
+flutter build web --release    → Vercel auto-deploys to saranidhi.vercel.app
+flutter build ios --release    → Archive for App Store (manual, Sprint X)
+flutter build apk --release    → Upload to Play Store (manual, Sprint X)
 ```
 
 ### Tooling
