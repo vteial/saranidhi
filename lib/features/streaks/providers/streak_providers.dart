@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:drift/drift.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
@@ -109,13 +110,13 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   RahuKaalResult? rahuKaal;
   LunarPhase? lunarPhase;
   double? todayAvgHoldMs;
-  int todayEntryCount = 0;
+  var todayEntryCount = 0;
   DateTime? sunrise;
   DateTime? sunset;
 
   // Read profile for birth bird and location
-  double lat = 13.08; // Default: Chennai
-  double lng = 80.27;
+  var lat = 13.08; // Default: Chennai
+  var lng = 80.27;
   const double utcOffset = 5.5;
 
   final profiles = await db.select(db.profiles).get();
@@ -147,21 +148,21 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
       sunrise: sunResult.sunrise,
       sunset: sunResult.sunset,
     );
-    activeYamaSegment = yamaResult!.activeYama(today);
+    activeYamaSegment = yamaResult.activeYama(today);
 
     // Calculate Pakshi day result
     final weekday = PakshiCalculator.dartWeekdayToSunBased(today.weekday);
     lunarPhase = LunarPhaseCalculator.phaseForDate(today);
     pakshiDay = PakshiCalculator.calculate(
       weekday: weekday,
-      lunarPhase: lunarPhase!,
+      lunarPhase: lunarPhase,
     );
 
     // Get birth bird state for current yama
     if (birthBird != null && activeYamaSegment != null) {
-      birthBirdState = pakshiDay!.stateForBird(
+      birthBirdState = pakshiDay.stateForBird(
         birthBird,
-        activeYamaSegment!.index,
+        activeYamaSegment.index,
       );
     }
 

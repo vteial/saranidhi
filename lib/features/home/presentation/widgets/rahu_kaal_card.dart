@@ -9,7 +9,7 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// - Amber hint when starting within 1 hour.
 /// - Subtle info display otherwise.
 class RahuKaalCard extends StatelessWidget {
-  const RahuKaalCard({super.key, required this.rahuKaal});
+  const RahuKaalCard({required this.rahuKaal, super.key});
 
   final RahuKaalResult rahuKaal;
 

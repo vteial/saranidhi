@@ -10,7 +10,7 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// Displays the full 5-yama daily schedule with the user's birth bird state
 /// at each yama, highlighting the current yama.
 class FullDaySchedule extends StatelessWidget {
-  const FullDaySchedule({super.key, required this.data});
+  const FullDaySchedule({required this.data, super.key});
 
   final DashboardData data;
 

@@ -9,7 +9,7 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// Odd yamas (1,3,5) = Solar (Right), Even yamas (2,4) = Lunar (Left).
 /// Highlights current yama and shows countdown to next switch.
 class NostrilDominanceChart extends StatelessWidget {
-  const NostrilDominanceChart({super.key, required this.data});
+  const NostrilDominanceChart({required this.data, super.key});
 
   final DashboardData data;
 
@@ -25,7 +25,7 @@ class NostrilDominanceChart extends StatelessWidget {
     final now = DateTime.now();
 
     // Calculate next switch time
-    String nextSwitchText = '';
+    var nextSwitchText = '';
     if (data.activeYama != null) {
       final minutesLeft = data.activeYama!.end.difference(now).inMinutes;
       if (minutesLeft > 0) {

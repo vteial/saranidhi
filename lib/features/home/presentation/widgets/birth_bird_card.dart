@@ -11,7 +11,7 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// Displays the bird emoji, localized name and state, guidance text,
 /// and a progress bar showing current yama progress with time remaining.
 class BirthBirdCard extends StatelessWidget {
-  const BirthBirdCard({super.key, required this.data});
+  const BirthBirdCard({required this.data, super.key});
 
   final DashboardData data;
 
@@ -33,8 +33,8 @@ class BirthBirdCard extends StatelessWidget {
 
     // Yama progress
     final activeYama = data.activeYama;
-    String yamaProgressText = '';
-    double yamaProgress = 0.0;
+    var yamaProgressText = '';
+    var yamaProgress = 0.0;
 
     if (activeYama != null) {
       final now = DateTime.now();

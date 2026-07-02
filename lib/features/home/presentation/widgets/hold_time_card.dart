@@ -7,9 +7,9 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// Displays "No entries yet today" if there are no entries.
 class HoldTimeCard extends StatelessWidget {
   const HoldTimeCard({
-    super.key,
     required this.avgHoldMs,
     required this.entryCount,
+    super.key,
   });
 
   /// Average hold duration in milliseconds (null if no hold data).
