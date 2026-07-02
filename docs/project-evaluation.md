@@ -42,7 +42,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Smoke Test & CI Polish** | Manual smoke test plan (34 scenarios), results template, CI paths-ignore, /plan protocol, revised release plan (cloud backup → 1.1) | ✅ Complete (100%) — Sprint 11 |
 | **Smoke Test Execution & i18n** | Manual smoke test (34 scenarios), Pakshi algorithm rewrite (authentic tables), complete Tamil localization (130+ keys, 3 pages), nakshatra Tamil names | ✅ Complete (100%) — Sprint 12 |
 | **Web Production Deployment** | Vercel production (saranidhi.vercel.app), privacy policy, deployment docs, smoke test gate, release tag v1.0.0-web | ✅ Complete (100%) — Sprint 13 |
-| **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint 14 |
+| **Personalized Dashboard + Deployment Safety** | Birth bird hero card, full-day schedule with state emojis, Rahu Kaal, nostril dominance, hold time tracking, responsive layout, prod branch gate | ✅ Complete (100%) — Sprint 14 |
+| **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint 15 |
 
 ---
 
@@ -122,6 +123,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 11 | Smoke Test Plan & CI Polish | #18 | 0 (docs/CI only) | ✅ Complete |
 | Sprint 12 | Smoke Test Execution & Fixes | #21, #22, #23 | 0 (test rewrite, same count) | ✅ Complete |
 | Sprint 13 | Web Production Deployment | #25, #26 | 0 (deployment/docs only) | ✅ Complete |
+| Sprint 14 | Birth Bird Dashboard + Rahu Kaal + Nostril Chart | #29 | 0 (UI widgets, no new tests) | ✅ Complete |
 
 ---
 
