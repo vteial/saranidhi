@@ -517,6 +517,66 @@ abstract class AppLocalizations {
 
   /// Micro-advice when Lunar expected but unaligned
   String get adviceUnalignedLunar;
+
+  /// Birth bird state display on dashboard
+  String yourBirdState(String bird, String state);
+
+  /// Guidance text for Ruling state
+  String get guidanceRuling;
+
+  /// Guidance text for Eating state
+  String get guidanceEating;
+
+  /// Guidance text for Walking state
+  String get guidanceWalking;
+
+  /// Guidance text for Sleeping state
+  String get guidanceSleeping;
+
+  /// Guidance text for Dying state
+  String get guidanceDying;
+
+  /// Yama progress indicator
+  String yamaProgress(int number, String timeLeft);
+
+  /// Rahu Kaal card title
+  String get rahuKaalTitle;
+
+  /// Rahu Kaal active warning
+  String get rahuKaalActive;
+
+  /// Rahu Kaal starting soon hint
+  String get rahuKaalSoon;
+
+  /// Full day schedule card title
+  String get todaysSchedule;
+
+  /// Best yama indicator
+  String get bestTime;
+
+  /// Current yama indicator
+  String get now;
+
+  /// Align27 comparison row
+  String align27Shows(String bird, String state);
+
+  /// Nostril dominance chart title
+  String get nostrilPattern;
+
+  /// Countdown to next nostril switch
+  String nextSwitch(int minutes);
+
+  /// Nostril alignment status
+  String get alignedStatus;
+
+  /// Hold time card title
+  String get todaysHold;
+
+  /// Average hold time display
+  String avgHold(String seconds, int count);
+
+  /// Empty state for today's hold card
+  String get noEntriesToday;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

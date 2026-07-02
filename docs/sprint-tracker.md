@@ -192,7 +192,7 @@
 
 ---
 
-## Sprint 14: Birth Bird Dashboard + Rahu Kaal + Nostril Chart
+## Sprint 14: Birth Bird Dashboard + Rahu Kaal + Nostril Chart (Current Sprint)
 
 - [ ] Task 14.1: Birth bird state card on Home — show user's birth bird + current state + Tamil/English guidance text
 - [ ] Task 14.2: Full-day 5-yama schedule showing user's birth bird state per yama (color-coded: green/yellow/red)

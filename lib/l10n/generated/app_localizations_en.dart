@@ -487,4 +487,74 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adviceUnalignedLunar => 'Expected Lunar (Left) but your Solar is active. Try lying on your RIGHT side to shift, or press your RIGHT armpit gently.';
+
+  @override
+  String yourBirdState(String bird, String state) {
+    return 'Your $bird \u2014 $state';
+  }
+
+  @override
+  String get guidanceRuling => 'Peak power! Act boldly. Best time for important decisions.';
+
+  @override
+  String get guidanceEating => 'Good time for preparation, learning, and gaining strength.';
+
+  @override
+  String get guidanceWalking => 'Routine work is fine. Avoid critical decisions.';
+
+  @override
+  String get guidanceSleeping => 'Rest and wait. Avoid important actions.';
+
+  @override
+  String get guidanceDying => 'Hard stop. Do not begin anything new.';
+
+  @override
+  String yamaProgress(int number, String timeLeft) {
+    return 'Yama $number ($timeLeft left)';
+  }
+
+  @override
+  String get rahuKaalTitle => 'Rahu Kaal';
+
+  @override
+  String get rahuKaalActive => 'Active now \u2014 avoid important decisions';
+
+  @override
+  String get rahuKaalSoon => 'Starting soon';
+
+  @override
+  String get todaysSchedule => 'Today\'s Schedule';
+
+  @override
+  String get bestTime => 'Best time!';
+
+  @override
+  String get now => 'NOW';
+
+  @override
+  String align27Shows(String bird, String state) {
+    return 'Align27: $bird / $state';
+  }
+
+  @override
+  String get nostrilPattern => 'Nostril Pattern';
+
+  @override
+  String nextSwitch(int minutes) {
+    return 'Next switch: in $minutes min';
+  }
+
+  @override
+  String get alignedStatus => 'Aligned';
+
+  @override
+  String get todaysHold => 'Today\'s Hold';
+
+  @override
+  String avgHold(String seconds, int count) {
+    return '${seconds}s avg ($count entries)';
+  }
+
+  @override
+  String get noEntriesToday => 'No entries yet today';
 }

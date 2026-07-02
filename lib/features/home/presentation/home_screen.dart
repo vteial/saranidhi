@@ -3,7 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.dart';
-import 'package:saranidhi/features/home/presentation/widgets/astro_info_bar.dart';
+import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
+import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
+import 'package:saranidhi/features/home/presentation/widgets/hold_time_card.dart';
+import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_chart.dart';
+import 'package:saranidhi/features/home/presentation/widgets/rahu_kaal_card.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/seven_day_ribbon_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/trend_widget.dart';
@@ -13,7 +17,9 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The Home/Dashboard screen.
 ///
-/// Displays streak flame, 7-day ribbon, 30-day trend, and Yama accuracy.
+/// Displays personalized guidance hub: birth bird state, nostril dominance,
+/// Rahu Kaal, full-day schedule, hold time, streak, trend, wisdom, and
+/// yama accuracy.
 /// Supports pull-to-refresh to reload dashboard data.
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -70,27 +76,48 @@ class _DashboardContent extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Astro info (sunrise, sunset, bird state)
-            const AstroInfoBar(),
+            // 1. Birth Bird State Card (hero)
+            if (data.birthBird != null)
+              BirthBirdCard(data: data),
             const SizedBox(height: 12),
 
-            // Streak flame
+            // 2. Nostril Dominance Chart
+            if (data.yamaResult != null)
+              NostrilDominanceChart(data: data),
+            const SizedBox(height: 12),
+
+            // 3. Rahu Kaal
+            if (data.rahuKaal != null)
+              RahuKaalCard(rahuKaal: data.rahuKaal!),
+            const SizedBox(height: 12),
+
+            // 4. Full Day Schedule
+            if (data.pakshiDay != null && data.birthBird != null)
+              FullDaySchedule(data: data),
+            const SizedBox(height: 12),
+
+            // 5. Hold Time Average
+            HoldTimeCard(
+              avgHoldMs: data.todayAvgHoldMs,
+              entryCount: data.todayEntryCount,
+            ),
+            const SizedBox(height: 12),
+
+            // 6. Streak + 7-day ribbon
             StreakFlameWidget(streak: data.streak),
             const SizedBox(height: 12),
-
-            // AI Wisdom Card
-            const WisdomCard(),
-            const SizedBox(height: 12),
-
-            // 7-day ribbon
             SevenDayRibbonWidget(ribbon: data.ribbon),
             const SizedBox(height: 12),
 
-            // 30-day trend
+            // 7. 30-day trend
             TrendWidget(trend: data.trend),
             const SizedBox(height: 12),
 
-            // Yama accuracy
+            // 8. Daily Wisdom
+            const WisdomCard(),
+            const SizedBox(height: 12),
+
+            // 9. Yama Coverage
             YamaAccuracyWidget(accuracy: data.yamaAccuracy),
           ],
         ),
