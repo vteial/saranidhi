@@ -117,7 +117,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   // Read profile for birth bird and location
   var lat = 13.08; // Default: Chennai
   var lng = 80.27;
-  const double utcOffset = 5.5;
+  const utcOffset = 5.5;
 
   final profiles = await db.select(db.profiles).get();
   if (profiles.isNotEmpty) {
