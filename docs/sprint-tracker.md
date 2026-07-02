@@ -192,7 +192,7 @@
 
 ---
 
-## Sprint 14: Mobile App Store Deployment
+## Sprint 14: Mobile App Store Deployment (Current Sprint)
 
 - [ ] Task 14.1: Prepare App Store listing (screenshots on iPhone SE, description, keywords, privacy policy)
 - [ ] Task 14.2: Prepare Play Store listing (screenshots, description, keywords, privacy policy)
