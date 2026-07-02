@@ -5,13 +5,16 @@
 ## Architecture
 
 ```
-GitHub (main) ──merge──► Vercel (auto-build) ──deploy──► saranidhi.vercel.app
+GitHub (main) ──merge──► Vercel (staging)
+                              │
+GitHub (prod) ──merge──► Vercel (production) ──deploy──► saranidhi.vercel.app
 ```
 
 | Environment | Branch | Platform | URL | Trigger |
 |-------------|--------|----------|-----|---------|
-| **Production** | `main` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | Auto (on merge to main) |
-| **Preview** | PR branches | Vercel | Auto-generated per PR | Auto (on PR open/update) |
+| **Staging** | `main` | Vercel | Auto-generated preview | Auto (on merge to main) |
+| **Production** | `prod` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | Auto (on push to prod) |
+| **PR Preview** | PR branches | Vercel | Auto-generated per PR | Auto (on PR open/update) |
 
 ---
 
@@ -19,27 +22,64 @@ GitHub (main) ──merge──► Vercel (auto-build) ──deploy──► sar
 
 Vercel is connected to the `vteial/saranidhi` GitHub repository and:
 
-1. **On every push to `main`:** Builds Flutter web and deploys to `saranidhi.vercel.app`
-2. **On every PR:** Creates a unique preview URL for visual QA before merge
+1. **On every push to `prod`:** Builds Flutter web and deploys to `saranidhi.vercel.app` (production)
+2. **On every push to `main`:** Builds and deploys to a staging preview URL
+3. **On every PR:** Creates a unique preview URL for visual QA before merge
 
-No additional CI/CD workflow needed — Vercel handles build + deploy automatically.
+---
+
+## Initial Setup (One-Time)
+
+### Configure Vercel Production Branch
+
+1. Go to [Vercel Dashboard](https://vercel.com/) → saranidhi project
+2. **Settings** → **Git**
+3. Change **Production Branch** from `main` to `prod`
+4. Save
+
+### Create the `prod` Branch
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b prod
+git push origin prod
+```
+
+This triggers the first production deployment from the `prod` branch.
 
 ---
 
 ## Deployment Workflow
 
-### Standard Flow
+### Standard Flow (with staging gate)
+
+```
+feature branch → PR → main (staging) → prod (production)
+```
 
 1. Feature work on branches → PR targeting `main`
 2. Vercel creates preview deployment for the PR (visual QA)
 3. CI passes (analyze + test + build) on GitHub Actions
-4. Owner reviews on preview URL + merges PR
-5. Vercel auto-deploys to production (`saranidhi.vercel.app`)
-6. Verify live site
+4. Owner reviews on preview URL + merges PR to `main`
+5. Vercel auto-deploys `main` to **staging** (preview only, not public production)
+6. Verify on staging
+7. When ready: promote `main` → `prod` (merge or fast-forward)
+8. Vercel auto-deploys `prod` to **production** (`saranidhi.vercel.app`)
+
+### Promoting to Production
+
+```bash
+git checkout prod
+git merge main
+git push origin prod
+```
+
+Or via GitHub: create a PR from `main` → `prod` and merge.
 
 ### Promotion Checklist
 
-Before merging to `main`:
+Before promoting to production:
 
 - [ ] CI pipeline passes (GitHub Actions: analyze, test, coverage, build)
 - [ ] Vercel preview deployment works correctly

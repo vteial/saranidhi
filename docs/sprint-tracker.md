@@ -192,16 +192,16 @@
 
 ---
 
-## Sprint 14: Birth Bird Dashboard + Rahu Kaal + Nostril Chart
+## Sprint 14: Birth Bird Dashboard + Rahu Kaal + Nostril Chart ✅ Complete (PR #29)
 
-- [ ] Task 14.1: Birth bird state card on Home — show user's birth bird + current state + Tamil/English guidance text
-- [ ] Task 14.2: Full-day 5-yama schedule showing user's birth bird state per yama (color-coded: green/yellow/red)
-- [ ] Task 14.3: Rahu Kaal time window prominently displayed on Home
-- [ ] Task 14.4: Yama progress indicator (current yama, time remaining)
-- [ ] Task 14.5: Align27 bird state comparison row (show what Align27 would display — for 6-month validation)
-- [ ] Task 14.6: Favorability guidance per state (Ruling=act boldly, Eating=prepare, Walking=routine, Sleeping=avoid, Dying=hard stop)
-- [ ] Task 14.7: Nostril dominance chart — expected flow per yama, alignment status, next switch countdown
-- [ ] Task 14.8: Today's average hold time card on Home
+- [x] Task 14.1: Birth bird state card on Home — show user's birth bird + current state + Tamil/English guidance text
+- [x] Task 14.2: Full-day 5-yama schedule showing user's birth bird state per yama (color-coded: green/yellow/red)
+- [x] Task 14.3: Rahu Kaal time window prominently displayed on Home
+- [x] Task 14.4: Yama progress indicator (current yama, time remaining)
+- [x] Task 14.5: Align27 bird state comparison row (show what Align27 would display — for 6-month validation)
+- [x] Task 14.6: Favorability guidance per state (Ruling=act boldly, Eating=prepare, Walking=routine, Sleeping=avoid, Dying=hard stop)
+- [x] Task 14.7: Nostril dominance chart — expected flow per yama, alignment status, next switch countdown
+- [x] Task 14.8: Today's average hold time card on Home
 
 ---
 

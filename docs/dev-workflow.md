@@ -161,8 +161,9 @@ git push origin main
 
 | Environment | Branch | Platform | URL | Auto-Deploy |
 |-------------|--------|----------|-----|-------------|
-| Production Web | `main` | Vercel | saranidhi.vercel.app | Yes (on merge) |
-| Preview | PR branches | Vercel | Auto-generated per PR | Yes (on PR) |
+| Staging | `main` | Vercel | Preview URL | Yes (on merge) |
+| Production Web | `prod` | Vercel | saranidhi.vercel.app | Yes (on push to prod) |
+| PR Preview | PR branches | Vercel | Auto-generated per PR | Yes (on PR) |
 | Production iOS | `main` | App Store | — | Manual |
 | Production Android | `main` | Play Store | — | Manual |
 
