@@ -192,16 +192,79 @@
 
 ---
 
-## Sprint 14: Mobile App Store Deployment (Current Sprint)
+## Sprint 14: Birth Bird Dashboard + Rahu Kaal + Nostril Chart
 
-- [ ] Task 14.1: Prepare App Store listing (screenshots on iPhone SE, description, keywords, privacy policy)
-- [ ] Task 14.2: Prepare Play Store listing (screenshots, description, keywords, privacy policy)
-- [ ] Task 14.3: Build release iOS app (target: iPhone SE, iPad Mini)
-- [ ] Task 14.4: Build release Android app
-- [ ] Task 14.5: Submit iOS app for App Store review
-- [ ] Task 14.6: Submit Android app for Play Store review
-- [ ] Task 14.7: Verify both stores live and functional
-- [ ] Task 14.8: Tag release `v1.0.0`
+- [ ] Task 14.1: Birth bird state card on Home — show user's birth bird + current state + Tamil/English guidance text
+- [ ] Task 14.2: Full-day 5-yama schedule showing user's birth bird state per yama (color-coded: green/yellow/red)
+- [ ] Task 14.3: Rahu Kaal time window prominently displayed on Home
+- [ ] Task 14.4: Yama progress indicator (current yama, time remaining)
+- [ ] Task 14.5: Align27 bird state comparison row (show what Align27 would display — for 6-month validation)
+- [ ] Task 14.6: Favorability guidance per state (Ruling=act boldly, Eating=prepare, Walking=routine, Sleeping=avoid, Dying=hard stop)
+- [ ] Task 14.7: Nostril dominance chart — expected flow per yama, alignment status, next switch countdown
+- [ ] Task 14.8: Today's average hold time card on Home
+
+---
+
+## Sprint 15: Night Yamas + Full 24h View
+
+- [ ] Task 15.1: Night yama calculations (sunset→sunrise divided into 5 equal segments)
+- [ ] Task 15.2: Night Pakshi state tables (authentic tables from Pulippani reference for night yamas 6-10)
+- [ ] Task 15.3: 10-yama full-day view (day + night in single scrollable timeline)
+- [ ] Task 15.4: Active state display works after sunset (currently shows nothing)
+- [ ] Task 15.5: Night-specific guidance text (meditation, sleep, spiritual practice timing)
+
+---
+
+## Sprint 16: iCloud Sync + macOS Target
+
+- [ ] Task 16.1: CloudKit container setup + schema (profile, journal entries, streaks)
+- [ ] Task 16.2: Implement sync-on-open (pull remote changes when app launches)
+- [ ] Task 16.3: Push local changes to iCloud after each journal entry
+- [ ] Task 16.4: Primary device configuration in Settings (conflict resolution)
+- [ ] Task 16.5: Add Flutter macOS target + verify build
+- [ ] Task 16.6: Test sync across iPhone SE ↔ iPad Mini ↔ iMac (macOS)
+
+---
+
+## Sprint 17: Notifications + Daily Engagement
+
+- [ ] Task 17.1: Implement real local notifications (iOS + macOS) at yama transitions
+- [ ] Task 17.2: "Your bird is now Ruling" notification with guidance text
+- [ ] Task 17.3: Configurable notification preferences (which states to notify)
+- [ ] Task 17.4: Morning daily summary notification (today's best times)
+- [ ] Task 17.5: Rahu Kaal start/end notification
+
+---
+
+## Sprint 18: Historical View + Planning
+
+- [ ] Task 18.1: Date picker on Home — view any past date's Pakshi schedule
+- [ ] Task 18.2: Tomorrow's schedule view (plan ahead)
+- [ ] Task 18.3: "Best times this week" — scan next 7 days for Ruling yamas
+- [ ] Task 18.4: Journal entries linked to historical dates (retrospective view)
+- [ ] Task 18.5: Calendar month view with entry indicators
+
+---
+
+## Sprint 19: Analytics + Export
+
+- [ ] Task 19.1: Weekly alignment summary (% aligned per week)
+- [ ] Task 19.2: Monthly patterns view (best days, worst days, most active yamas)
+- [ ] Task 19.3: CSV export of journal data
+- [ ] Task 19.4: Streak insights (longest, current, average gap between entries)
+- [ ] Task 19.5: Yama performance breakdown (which yama do you practice most/least)
+- [ ] Task 19.6: Hold time progression — averages per day/week/month/year, trend line chart, personal best
+
+---
+
+## Sprint X: App Store Submission (Deferred — Target ~Aug/Sep 2026)
+
+- [ ] Task X.1: Set up Apple Developer + Google Play accounts
+- [ ] Task X.2: Build release iOS + macOS app
+- [ ] Task X.3: Build release Android app (if needed)
+- [ ] Task X.4: Screenshots + store listing submission (see docs/store-listing.md)
+- [ ] Task X.5: Submit for review
+- [ ] Task X.6: Verify live + tag v1.0.0
 
 ---
 

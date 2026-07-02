@@ -94,6 +94,19 @@ Contextual guidance layer delivering personalized spiritual coaching.
 
 ---
 
+### Module 6: Cross-Device Sync (iCloud)
+
+| Feature | Implementation |
+|---------|---------------|
+| **Sync trigger** | On app open (pull remote → merge → push local) |
+| **Data synced** | Profile, journal entries, streak data, preferences |
+| **Conflict resolution** | Primary device wins (configurable in Settings) |
+| **Schema** | CloudKit record types matching Drift tables |
+| **Platforms** | iOS, macOS (shared CloudKit container) |
+| **Offline support** | Queue local changes, sync when connection available |
+
+---
+
 ## 3. Data Architecture
 
 ### Local Database Schema (Drift/SQLite)

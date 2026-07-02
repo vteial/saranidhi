@@ -35,6 +35,8 @@ inclusion: auto
 | **Web Staging** | Vercel (PR previews) |
 | **Web Production** | Vercel (auto-deploy from main) |
 | **Mobile Distribution** | App Store (iOS) + Play Store (Android) |
+| **Cloud Sync** | iCloud (CloudKit) — sync-on-open, primary device priority |
+| **macOS** | Flutter macOS target (same codebase as iOS) |
 | **Pre-commit** | lefthook |
 
 ## 3. Architecture Layers
@@ -66,6 +68,7 @@ inclusion: auto
 | **iOS** | Drift (SQLite) | iCloud | Apple Sign-In | On-device LLM | Local push |
 | **Android** | Drift (SQLite) | Google Drive App Data | Google Sign-In | On-device LLM | Local push |
 | **Web** | Drift (IndexedDB/sql.js) | Google Drive App Data | Google Sign-In (mandatory) | Rules-based + wisdom library | In-app only |
+| **macOS** | Drift (SQLite) | iCloud | Apple Sign-In | Rules-based + wisdom library | Native (macOS notifications) |
 
 **Mobile users choose at onboarding:** Local Only OR Cloud Backup.
 **Web users:** Google Drive is mandatory (browser storage is unreliable).
@@ -143,6 +146,7 @@ notifyRuling, notifyEating, lastBackupDate
 | **Preview** | PR branches | Vercel | PR previews, QA |
 | **Production (iOS)** | `main` | App Store | Live iOS app |
 | **Production (Android)** | `main` | Play Store | Live Android app |
+| **Production (macOS)** | `main` | Mac App Store | Live macOS app |
 
 ## 8. Monetization Model
 
