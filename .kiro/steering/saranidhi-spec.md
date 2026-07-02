@@ -142,7 +142,8 @@ notifyRuling, notifyEating, lastBackupDate
 
 | Environment | Branch | Hosting | Purpose |
 |-------------|--------|---------|---------|
-| **Production (Web)** | `main` | Vercel | Live web app (saranidhi.vercel.app) |
+| **Staging (Web)** | `main` | Vercel | Preview/staging after merge |
+| **Production (Web)** | `prod` | Vercel | Live web app (saranidhi.vercel.app) |
 | **Preview** | PR branches | Vercel | PR previews, QA |
 | **Production (iOS)** | `main` | App Store | Live iOS app |
 | **Production (Android)** | `main` | Play Store | Live Android app |
