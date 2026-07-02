@@ -105,20 +105,18 @@ class _DashboardContent extends ConsumerWidget {
 
             // Row 2: Nostril Pattern + Today's Schedule (two-column on wide)
             if (isWide)
-              IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (data.yamaResult != null)
-                      Expanded(child: NostrilDominanceChart(data: data)),
-                    if (data.yamaResult != null &&
-                        data.pakshiDay != null &&
-                        data.birthBird != null)
-                      const SizedBox(width: 12),
-                    if (data.pakshiDay != null && data.birthBird != null)
-                      Expanded(child: FullDaySchedule(data: data)),
-                  ],
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (data.yamaResult != null)
+                    Expanded(child: NostrilDominanceChart(data: data)),
+                  if (data.yamaResult != null &&
+                      data.pakshiDay != null &&
+                      data.birthBird != null)
+                    const SizedBox(width: 12),
+                  if (data.pakshiDay != null && data.birthBird != null)
+                    Expanded(child: FullDaySchedule(data: data)),
+                ],
               )
             else ...[
               // Single column on narrow
