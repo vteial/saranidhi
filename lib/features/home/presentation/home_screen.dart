@@ -64,6 +64,9 @@ class _DashboardContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isWide = screenWidth >= 600; // Medium+ devices
+
     return RefreshIndicator(
       onRefresh: () async {
         ref.invalidate(dashboardDataProvider);
@@ -76,24 +79,54 @@ class _DashboardContent extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 1. Birth Bird State Card (hero)
-            if (data.birthBird != null)
-              BirthBirdCard(data: data),
+            // Row 1: Birth Bird Card + Rahu Kaal (two-column on wide)
+            if (isWide)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    if (data.birthBird != null)
+                      Expanded(child: BirthBirdCard(data: data)),
+                    if (data.birthBird != null && data.rahuKaal != null)
+                      const SizedBox(width: 12),
+                    if (data.rahuKaal != null)
+                      Expanded(child: RahuKaalCard(rahuKaal: data.rahuKaal!)),
+                  ],
+                ),
+              )
+            else ...[
+              // Single column on narrow
+              if (data.birthBird != null) BirthBirdCard(data: data),
+              const SizedBox(height: 12),
+              if (data.rahuKaal != null)
+                RahuKaalCard(rahuKaal: data.rahuKaal!),
+            ],
             const SizedBox(height: 12),
 
-            // 2. Nostril Dominance Chart
-            if (data.yamaResult != null)
-              NostrilDominanceChart(data: data),
-            const SizedBox(height: 12),
-
-            // 3. Rahu Kaal
-            if (data.rahuKaal != null)
-              RahuKaalCard(rahuKaal: data.rahuKaal!),
-            const SizedBox(height: 12),
-
-            // 4. Full Day Schedule
-            if (data.pakshiDay != null && data.birthBird != null)
-              FullDaySchedule(data: data),
+            // Row 2: Nostril Pattern + Today's Schedule (two-column on wide)
+            if (isWide)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (data.yamaResult != null)
+                      Expanded(child: NostrilDominanceChart(data: data)),
+                    if (data.yamaResult != null &&
+                        data.pakshiDay != null &&
+                        data.birthBird != null)
+                      const SizedBox(width: 12),
+                    if (data.pakshiDay != null && data.birthBird != null)
+                      Expanded(child: FullDaySchedule(data: data)),
+                  ],
+                ),
+              )
+            else ...[
+              // Single column on narrow
+              if (data.yamaResult != null) NostrilDominanceChart(data: data),
+              const SizedBox(height: 12),
+              if (data.pakshiDay != null && data.birthBird != null)
+                FullDaySchedule(data: data),
+            ],
             const SizedBox(height: 12),
 
             // 5. Hold Time Average
