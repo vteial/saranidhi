@@ -296,4 +296,56 @@ jobs:
 
 ---
 
+## Future Test Scenarios (Sprints 14–19)
+
+### Sprint 14: Birth Bird Dashboard
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| D-01 | Birth bird state matches yama lookup table | Owl shows correct state for current weekday + phase + yama |
+| D-02 | Full-day schedule shows 5 yama entries | All 5 with correct bird states, times, and colors |
+| D-03 | Rahu Kaal window matches Align27 | Start/end times within ±2 min tolerance |
+| D-04 | Yama progress updates in real-time | Progress bar advances, time remaining decrements |
+| D-05 | Nostril dominance matches odd/even yama rule | Odd=Solar, Even=Lunar displayed correctly |
+| D-06 | Hold time card shows today's average | Computed from all entries with hold data today |
+
+### Sprint 15: Night Yamas
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| N-01 | Night yama calculation (sunset→sunrise ÷ 5) | Each yama ~2h 24m in duration |
+| N-02 | Night Pakshi states match reference tables | Bird states for night yamas 6-10 correct per Pulippani |
+| N-03 | App shows active state after sunset | Night bird state displayed, not blank |
+| N-04 | 10-yama view shows continuous day→night | Seamless transition at sunset |
+
+### Sprint 16: iCloud Sync
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| S-01 | Journal entry syncs to iCloud | Entry appears on second device after opening app |
+| S-02 | Profile changes sync | Name/star/location propagate |
+| S-03 | Conflict resolution uses primary device | Primary device entry wins |
+| S-04 | Offline entries queue and sync later | Entries made offline push when connection restored |
+| S-05 | macOS build runs and syncs | Flutter macOS target builds, reads same CloudKit container |
+
+### Sprint 17: Notifications
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| NT-01 | Yama transition fires notification | Alert within 1 min of yama boundary |
+| NT-02 | Notification shows bird state | "Your Owl is now Ruling" with guidance |
+| NT-03 | Disabled states don't fire | If user disables Sleeping notifications, none fire for Sleeping |
+| NT-04 | Morning summary shows best times | Today's Ruling yama times listed |
+
+### Sprint 19: Analytics
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| AN-01 | Hold time average correct per day | Sum of hold durations ÷ count for that day |
+| AN-02 | Weekly trend shows 7 data points | Each day's average hold shown |
+| AN-03 | CSV export contains all journal fields | Downloadable, correct column headers, all entries |
+| AN-04 | Personal best updates on new record | Highlighted when user beats their longest hold |
+
+---
+
 [← Back to Root](../README.md)

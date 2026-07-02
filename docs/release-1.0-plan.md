@@ -1,123 +1,100 @@
 [← Back to Root](../README.md)
 
-# Saranidhi — Release 1.0 Plan (Revised)
+# Saranidhi — Release Plan (Revised July 2026)
 
 ## Release Vision
 
-Release 1.0 delivers a **fully functional, privacy-first spiritual breath-tracking app** across iOS, Android, and Web. Quality over quantity — every feature that ships must work accurately and feel right for daily spiritual practice.
+Saranidhi aims to be a **daily-use spiritual breath companion** that provides genuine value through personalized Panja Pakshi guidance, cross-device sync, and progressive breath practice tracking. Quality and daily usefulness take priority over store publication timeline.
 
 ---
 
-## Release 1.0 Scope
+## Current State
 
-### Included in 1.0
-
-- Complete Astro-Logic Engine (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva)
-- Sara Kalai Breath Journal with two-click logging + optional duration timer
-- Streak & Consistency Engine (streaks, 7-day ribbon, 30-day trends)
-- Local notifications (mobile: Yama state transitions)
-- Rules-based AI wisdom (web) + deterministic fallback (60+ proverbs)
-- Material 3 theming (4 colors × Light/Dark + System)
-- Localization (English + Tamil — spiritual terms verified)
-- Onboarding flow (birth star, location, storage mode)
-- Manual smoke test verified against Align27 (accuracy gate)
-- Production deployment: Web (Cloudflare Pages) + iOS (App Store) + Android (Play Store)
-
-### Deferred to Release 1.1
-
-- Cloud backup/restore (iCloud on iOS, Google Drive on Android/Web)
-- Apple Sign-In / Google Sign-In (for cloud access)
-- On-device LLM integration (mobile — currently rules-based fallback)
-- Database export/encryption for backup
-- Restore flow (detect backup on sign-in, offer import)
-
-### Deferred to Release 1.2+
-
-- Breath session guided programs (structured pranayama courses)
-- Social sharing (streak cards, achievement badges)
-- Widget support (iOS/Android home screen widgets)
-- Apple Watch / Wear OS companion
-- Advanced analytics (weekly/monthly PDF reports)
-- Additional languages beyond EN/TA
-- RevenueCat premium tier implementation
-- Derive nakshatra/pakshi from DOB + Time + precise location
+| Milestone | Status |
+|-----------|--------|
+| Web production (v1.0.0-web) | ✅ Live at saranidhi.vercel.app |
+| Core Pakshi engine (accurate) | ✅ Authentic 2D tables |
+| Full Tamil + English | ✅ 130+ ARB keys |
+| Smoke test passed | ✅ All sections |
+| 13 sprints delivered | ✅ 27 PRs merged |
 
 ---
 
-## Sprint-to-Release Mapping
+## Phase 1: Core Value Enhancement (Sprints 14–15)
 
-| Sprint | Focus Area | Key Deliverables | Status |
-|--------|-----------|------------------|--------|
-| **Sprint 0** | Pre-Development | Repo init, docs, steering files, logo | ✅ Complete |
-| **Sprint 1** | Project Scaffold + Core Architecture | Flutter project, Drift DB, Riverpod, GoRouter, CI | ✅ Complete (PR #1) |
-| **Sprint 2** | Astro-Logic Engine (Pure Dart TDD) | Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar | ✅ Complete (PR #2) |
-| **Sprint 3** | Sara Kalai Breath Journal | Entry UI, alignment check, timer, micro-advice, Quick Sync Pacer | ✅ Complete (PR #3) |
-| **Sprint 4** | Streak & Consistency Engine | Streak calc, 7-day ribbon, 30-day trend, Yama accuracy | ✅ Complete (PR #5) |
-| **Sprint 5** | Cloud Backup Integration | Abstract interface, stub providers, storage selector, backup UI | ✅ Complete (PR #10) |
-| **Sprint 6** | Notifications + Onboarding | Local push, onboarding flow, birth star, location | ✅ Complete (PR #11) |
-| **Sprint 7** | AI Wisdom Engine | Rules engine, wisdom library, fallback, daily caching | ✅ Complete (PR #12) |
-| **Sprint 8** | Theming, Profile & Core UX | 8 theme variants, profile system, sunrise/bird on Home | ✅ Complete (PR #13) |
-| **Sprint 9** | i18n, Animations & Polish | EN/TA translations, language switcher, transitions, pull-to-refresh, clear data | ✅ Complete (PR #14) |
-| **Sprint 10** | Testing & Hardening | 264 tests, security review, offline verification, coverage gate | ✅ Complete (PR #16) |
-| **Sprint 11** | Smoke Test Plan & CI Polish | Manual test plan, results template, CI paths-ignore, plan protocol, Tamil polish | ✅ In Progress |
-| **Sprint 12** | Manual Smoke Execution & Fixes | Execute tests vs Align27, fix accuracy/Tamil/UX issues | 🔲 Next |
-| **Sprint 13** | Web Production Deployment | Cloudflare Pages, prod branch, privacy policy, smoke results as gate | 🔲 Planned |
-| **Sprint 14** | Mobile App Store Deployment | iOS (iPhone SE/iPad Mini focus), Android, store listings | 🔲 Planned |
+**Goal:** Make the app genuinely useful for daily spiritual practice.
+
+| Sprint | Deliverables |
+|--------|-------------|
+| Sprint 14 | Birth bird personalized dashboard, full-day schedule, Rahu Kaal, nostril dominance chart, hold time card, Align27 validation |
+| Sprint 15 | Night yamas (5 night segments), 10-yama 24h view, after-sunset functionality |
+
+**Success criteria:** User opens app multiple times daily and gets actionable guidance at any hour.
 
 ---
 
-## Quality Gate: Manual Smoke Test
+## Phase 2: Multi-Device (Sprint 16)
 
-**Before production deployment (Sprint 13), the following must pass:**
+**Goal:** Use the app seamlessly across iPhone SE, iPad Mini, and iMac.
 
-| Section | Scenarios | Required |
-|---------|-----------|----------|
-| A: Calculation Accuracy | 7 checks vs Align27 | All pass (±2 min tolerance) |
-| B: Core User Flow | 8 scenarios | All pass |
-| C: Settings & Data | 9 scenarios | All pass |
-| D: Tamil Quality | 5 checks | 4 of 5 pass |
-| E: Edge Cases | 5 scenarios | All pass |
+| Sprint | Deliverables |
+|--------|-------------|
+| Sprint 16 | iCloud (CloudKit) sync, macOS native target, primary device conflict resolution |
 
-Results recorded in `docs/smoke-test-results.md` and included in production PR.
+**Success criteria:** Log breath on iPhone, see it on iPad/Mac without manual transfer.
 
 ---
 
-## Milestone Gates (per sprint)
+## Phase 3: Engagement (Sprints 17–18)
 
-| Gate | Criteria |
-|------|----------|
-| **Code Quality** | `flutter analyze --fatal-infos` — zero issues |
-| **Tests** | `flutter test` — all pass |
-| **Coverage** | ≥ 25% (enforced in CI) |
-| **Build** | `flutter build web` compiles |
-| **Documentation** | Sprint tracker updated |
-| **Review** | PR created, CI passes, owner approves |
+**Goal:** Build daily habit through passive reminders and planning tools.
 
----
+| Sprint | Deliverables |
+|--------|-------------|
+| Sprint 17 | Real local notifications (yama transitions, daily summary, Rahu Kaal) |
+| Sprint 18 | Historical date view, tomorrow's schedule, "best times this week" |
 
-## Definition of Done — Release 1.0
-
-- [x] All feature sprints (1–10) merged to `main`
-- [ ] Manual smoke test passes (all sections)
-- [ ] `prod` branch created and deployed
-- [ ] Web app live on Cloudflare Pages
-- [ ] iOS app approved on App Store (iPhone SE / iPad Mini verified)
-- [ ] Android app approved on Play Store
-- [ ] Privacy policy published
-- [ ] App listing assets prepared (screenshots, description, keywords)
-- [ ] Tag release `v1.0.0`
+**Success criteria:** App reminds user at the right moments; user can plan important activities.
 
 ---
 
-## Risk Register
+## Phase 4: Insights (Sprint 19)
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| Sunrise calculation inaccuracy at user's location | Wrong Yama/Pakshi timing | Verified against Align27 in smoke test |
-| App Store rejection (spiritual content policies) | Launch delayed | Follow Apple guidelines, avoid medical claims |
-| Tamil translation errors for spiritual terms | User confusion | Manual verification in smoke test Section D |
-| Drift/sql.js performance on web for large datasets | Slow queries | Paginate queries, index key columns |
-| iPhone SE viewport too small for dashboard | UI overflow | Test on actual device in Sprint 14 |
+**Goal:** Show progress and motivate continued practice.
+
+| Sprint | Deliverables |
+|--------|-------------|
+| Sprint 19 | Weekly/monthly analytics, hold time progression (day/week/month/year averages + trend), CSV export, streak insights |
+
+**Success criteria:** User can see measurable improvement in breath hold and alignment consistency.
+
+---
+
+## Phase 5: Distribution (Sprint X — Target Aug/Sep 2026)
+
+**Goal:** Publish to app stores when the app is compelling enough to retain users.
+
+| Sprint | Deliverables |
+|--------|-------------|
+| Sprint X | Apple Developer + Play Console accounts, iOS/macOS/Android builds, store listings, screenshots, submission |
+
+**Success criteria:** App approved and live on App Store + Play Store.
+
+---
+
+## Deferred (Post v1.0)
+
+| Feature | Target |
+|---------|--------|
+| Google Drive sync (web + Android) | v1.1 |
+| On-device LLM (mobile AI) | v1.1 |
+| Breath session guided programs | v1.2 |
+| Widget support (iOS/macOS home screen) | v1.2 |
+| Apple Watch / Wear OS | v2.0 |
+| Advanced analytics (PDF reports) | v2.0 |
+| Additional languages | v2.0 |
+| RevenueCat premium tier | v2.0 |
+| Derive nakshatra from DOB + Time | v2.0 |
 
 ---
 
