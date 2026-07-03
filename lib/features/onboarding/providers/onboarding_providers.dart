@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
+import 'package:saranidhi/features/cloud_backup/providers/sync_trigger_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
@@ -148,12 +149,13 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
 
     final db = ref.read(appDatabaseProvider);
     final now = DateTime.now().millisecondsSinceEpoch;
+    final id = _uuid.v4();
 
     await db
         .into(db.profiles)
         .insert(
           ProfilesCompanion.insert(
-            id: _uuid.v4(),
+            id: id,
             displayName: Value(state.displayName),
             birthStarNakshatra: Value(state.selectedNakshatra),
             birthBird: Value(state.birthBird?.name),
@@ -164,6 +166,14 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
             updatedAt: now,
           ),
         );
+
+    // Push new profile to iCloud if sync enabled
+    final profile = await (db.select(db.profiles)
+          ..where((t) => t.id.equals(id)))
+        .getSingleOrNull();
+    if (profile != null) {
+      await ref.read(syncTriggerServiceProvider).onProfileUpdated(profile);
+    }
 
     await ref.read(onboardingCompleteProvider.notifier).markComplete();
     state = state.copyWith(isSaving: false);
