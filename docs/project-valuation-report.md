@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 16 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~38.0 Hours
-**Pull Requests Merged:** 39
+**Sprints Delivered:** 17 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~40.5 Hours
+**Pull Requests Merged:** 41
 **Automated Test Coverage:** 264+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -107,6 +107,10 @@
 | `c3474c1` | Kiro Agent | 2026-07-03 12:15 | test(sprint16): unit tests + multi-device testing guide |
 | `bbdf92f` | Kiro Agent | 2026-07-03 12:30 | docs(sprint16): dev environment setup guide |
 | `47c9031` | Eialarasu | 2026-07-03 13:00 | **Merge PR #39 — Sprint 16 Complete** |
+| `c67aa0c` | Kiro Agent | 2026-07-03 13:30 | feat(sprint17): flutter_local_notifications + NotificationService |
+| `2e4f3f9` | Kiro Agent | 2026-07-03 14:00 | feat(sprint17): personalized bird notifications + Rahu Kaal + morning summary |
+| `d99d3ba` | Kiro Agent | 2026-07-03 14:30 | feat(sprint17): Tamil wisdom library — locale-aware Daily Wisdom |
+| `7ca1e28` | Eialarasu | 2026-07-03 15:00 | **Merge PR #41 — Sprint 17 Complete** |
 
 ---
 
@@ -126,7 +130,8 @@
 | Day 4 | 2026-07-04 | 10:00 - 13:30 | ~3.5 | Sprint 14 |
 | Day 4 (cont.) | 2026-07-05 | 14:00 - 16:00 | ~2.5 | Sprint 15 |
 | Day 5 | 2026-07-03 | 11:00 - 13:30 | ~3.0 | Sprint 16 |
-| | | **Subtotal** | **~31.5** | |
+| Day 5 (cont.) | 2026-07-03 | 13:30 - 16:00 | ~2.5 | Sprint 17 |
+| | | **Subtotal** | **~34.0** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -145,9 +150,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 31.5 |
+| Active coding & debugging (AI-assisted) | 34.0 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~38.0** |
+| **Total** | **~40.5** |
 
 ---
 
@@ -172,6 +177,7 @@
 | Sprint 14 | Birth Bird Dashboard + Rahu Kaal + Nostril Chart | #29 | 264 | ✅ Complete |
 | Sprint 15 | Night Yamas + Full 24h View | #33, #34 | 264 | ✅ Complete |
 | Sprint 16 | iCloud Sync + macOS Target | #39 | 264+ | ✅ Complete |
+| Sprint 17 | Notifications + Daily Engagement | #41 | 264+ | ✅ Complete |
 
 ---
 
@@ -203,6 +209,10 @@
 - **macOS platform target** — full scaffold (AppDelegate, CloudKitPlugin, entitlements, Podfile, MainMenu.xib)
 - **iCloud sync testing guide** — 7 multi-device scenarios with CloudKit setup instructions
 - **Local dev environment guide** — 10-step iMac setup (Flutter, Xcode, CloudKit, lefthook)
+- **Real local notifications** — `flutter_local_notifications` with OS-level zonedSchedule, permission handling, platform channels
+- **Personalized bird notifications** — "Your Vulture is now Ruling" with state-specific guidance text
+- **4 configurable notification types** — Ruling transitions, Eating state, Rahu Kaal start/end, Morning summary at sunrise
+- **Tamil wisdom library** — 52+ Tamil proverbs, locale-aware RulesEngine + FallbackHandler, cache invalidation on language switch
 - **Smooth page transitions** (fade-through 250ms on tab navigation)
 - **Pull-to-refresh** on Home dashboard
 - **Clear All Data** with confirmation dialog + full state reset (DB + SharedPreferences + onboarding)
