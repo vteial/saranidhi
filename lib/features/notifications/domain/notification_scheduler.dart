@@ -1,5 +1,6 @@
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/features/notifications/data/notification_service.dart';
 
 /// Represents a scheduled notification for a Yama boundary.
 class ScheduledNotification {
@@ -117,9 +118,9 @@ class NotificationScheduler {
     return notifications;
   }
 
-  /// Clears all previously scheduled notifications (idempotent cleanup).
+  /// Clears all previously scheduled notifications.
   static Future<void> cancelAll() async {
-    // Stub — integrates with flutter_local_notifications on mobile
+    await NotificationService.instance.cancelAll();
   }
 
   /// Re-schedules all notifications for today (cancel + regenerate).
