@@ -68,7 +68,7 @@ class _SyncOnOpenWidgetState extends ConsumerState<SyncOnOpenWidget> {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final syncStatus = ref.watch(syncNotifierProvider);
     final storageMode = ref.watch(storageModeProvider);
 

@@ -36,7 +36,7 @@ class CloudKitSyncService {
     try {
       final result = await _channel.invokeMethod<bool>('getAccountStatus');
       return result ?? false;
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[CloudKit] Auth check failed: $e');
       return false;
     }
@@ -63,7 +63,7 @@ class CloudKitSyncService {
         },
       );
       return result ?? false;
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[CloudKit] Save $recordType/$recordName failed: $e');
       return false;
     }
@@ -83,7 +83,7 @@ class CloudKitSyncService {
       return result
           .map((e) => Map<String, dynamic>.from(e as Map))
           .toList();
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[CloudKit] Fetch $recordType failed: $e');
       return [];
     }
@@ -98,7 +98,7 @@ class CloudKitSyncService {
         {'recordName': recordName},
       );
       return result ?? false;
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[CloudKit] Delete $recordName failed: $e');
       return false;
     }
@@ -272,7 +272,7 @@ class CloudKitSyncService {
       try {
         await pushProfile(profile);
         pushed++;
-      } catch (e) {
+      } on Exception {
         errors++;
       }
     }
@@ -281,7 +281,7 @@ class CloudKitSyncService {
       try {
         await pushJournalEntry(entry);
         pushed++;
-      } catch (e) {
+      } on Exception {
         errors++;
       }
     }
@@ -290,7 +290,7 @@ class CloudKitSyncService {
       try {
         await pushBreathSession(session);
         pushed++;
-      } catch (e) {
+      } on Exception {
         errors++;
       }
     }
@@ -299,7 +299,6 @@ class CloudKitSyncService {
       success: errors == 0,
       message: 'Pushed $pushed records ($errors errors)',
       recordsPushed: pushed,
-      recordsPulled: 0,
       errors: errors,
     );
   }

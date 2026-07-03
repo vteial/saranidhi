@@ -137,7 +137,7 @@ class CloudKitSyncEngine {
         recordsPulled: pulled,
         recordsPushed: pushResult.recordsPushed,
       );
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[SyncEngine] Full sync failed: $e');
       return SyncStatus(
         state: SyncState.error,

@@ -3,7 +3,7 @@ import 'package:saranidhi/features/cloud_backup/data/cloudkit/cloudkit_schema.da
 
 /// Maps between local Drift models and CloudKit record field maps.
 ///
-/// CloudKit stores records as Map<String, dynamic>, where keys are field
+/// CloudKit stores records as `Map&lt;String, dynamic&gt;`, where keys are field
 /// names and values are the stored data. This mapper converts between
 /// local typed Drift objects and CloudKit's untyped field maps.
 class CloudKitRecordMapper {

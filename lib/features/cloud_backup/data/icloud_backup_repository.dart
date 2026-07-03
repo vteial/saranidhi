@@ -84,8 +84,7 @@ class ICloudBackupRepository implements CloudBackupRepository {
   @override
   Future<bool> isAuthenticated() async {
     if (!isSupported) return false;
-    _authenticated = await _syncService.isAuthenticated();
-    return _authenticated;
+    return _syncService.isAuthenticated();
   }
 
   @override

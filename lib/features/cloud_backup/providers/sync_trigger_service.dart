@@ -45,7 +45,7 @@ class SyncTriggerService {
     if (!_shouldSync) return;
     try {
       await _syncService.pushJournalEntry(entry);
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[SyncTrigger] Push journal entry failed: $e');
     }
   }
@@ -55,7 +55,7 @@ class SyncTriggerService {
     if (!_shouldSync) return;
     try {
       await _syncService.deleteJournalEntry(entryId);
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[SyncTrigger] Delete journal entry from CK failed: $e');
     }
   }
@@ -69,7 +69,7 @@ class SyncTriggerService {
     if (!_shouldSync) return;
     try {
       await _syncService.pushBreathSession(session);
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[SyncTrigger] Push breath session failed: $e');
     }
   }
@@ -79,7 +79,7 @@ class SyncTriggerService {
     if (!_shouldSync) return;
     try {
       await _syncService.deleteBreathSession(sessionId);
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[SyncTrigger] Delete breath session from CK failed: $e');
     }
   }
@@ -93,7 +93,7 @@ class SyncTriggerService {
     if (!_shouldSync) return;
     try {
       await _syncService.pushProfile(profile);
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('[SyncTrigger] Push profile failed: $e');
     }
   }

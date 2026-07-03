@@ -4,11 +4,11 @@
 /// and Apple's CloudKit private database. It uses a MethodChannel to
 /// communicate with native Swift code on iOS/macOS.
 ///
-/// **Architecture overview:**
-/// - [CloudKitSchema] — Record type definitions and field name constants
-/// - [CloudKitRecordMapper] — Converts between Drift models and CloudKit fields
-/// - [CloudKitSyncService] — Low-level CloudKit CRUD via MethodChannel
-/// - [CloudKitSyncEngine] — High-level sync orchestrator (pull→merge→push)
+/// Architecture overview:
+/// - `cloudkit_schema.dart` — Record type definitions and field name constants
+/// - `cloudkit_record_mapper.dart` — Converts between Drift models and CloudKit fields
+/// - `cloudkit_sync_service.dart` — Low-level CloudKit CRUD via MethodChannel
+/// - `cloudkit_sync_engine.dart` — High-level sync orchestrator (pull, merge, push)
 library;
 
 export 'cloudkit_record_mapper.dart';
