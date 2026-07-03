@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 14 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~32.5 Hours
-**Pull Requests Merged:** 29
+**Sprints Delivered:** 15 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~35.0 Hours
+**Pull Requests Merged:** 34
 **Automated Test Coverage:** 264 assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -94,6 +94,9 @@
 | `a437801` | Kiro Agent | 2026-07-04 12:30 | feat(deploy): Add prod branch safety gate |
 | `3967fe9` | Kiro Agent | 2026-07-04 13:00 | fix(ui): resolve RenderFlex overflow in NostrilDominanceChart |
 | `MERGE` | Eialarasu | 2026-07-04 13:30 | **Merge PR #29 — Sprint 14 Complete** |
+| `e3c9cff` | Kiro Agent | 2026-07-05 14:00 | feat(sprint15): Night Yamas + Full 24h View |
+| `538a0ea` | Kiro Agent | 2026-07-05 14:15 | fix(ci): remove unnecessary non-null assertions |
+| `6f725c9` | Eialarasu | 2026-07-05 14:30 | **Merge PR #33 — Sprint 15 Complete** |
 
 ---
 
@@ -111,7 +114,8 @@
 | Day 3 | 2026-07-02 | 10:00 - 16:30 | ~3.5 | Sprint 12 |
 | Day 3 (cont.) | 2026-07-03 | 10:00 - 11:30 | ~2.0 | Sprint 13 |
 | Day 4 | 2026-07-04 | 10:00 - 13:30 | ~3.5 | Sprint 14 |
-| | | **Subtotal** | **~26.0** | |
+| Day 4 (cont.) | 2026-07-05 | 14:00 - 16:00 | ~2.5 | Sprint 15 |
+| | | **Subtotal** | **~28.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -130,9 +134,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 26.0 |
+| Active coding & debugging (AI-assisted) | 28.5 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~32.5** |
+| **Total** | **~35.0** |
 
 ---
 
@@ -155,10 +159,11 @@
 | Sprint 12 | Manual Smoke Test Execution & Fixes | #21, #22, #23 | 264 | ✅ Complete |
 | Sprint 13 | Web Production Deployment | #25, #26 | 264 | ✅ Complete |
 | Sprint 14 | Birth Bird Dashboard + Rahu Kaal + Nostril Chart | #29 | 264 | ✅ Complete |
+| Sprint 15 | Night Yamas + Full 24h View | #33, #34 | 264 | ✅ Complete |
 
 ---
 
-## Technical Deliverables (as of Sprint 14)
+## Technical Deliverables (as of Sprint 15)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
@@ -211,6 +216,13 @@
 - **Responsive two-column layout** for medium+ screens (>=600px)
 - **Production branch safety gate** — `main` = staging, `prod` = production (documented)
 - **Coverage threshold** lowered to 20% (UI-heavy sprint, domain still ~95%)
+- **Night Yama Calculator** (`YamaCalculator.calculateNight()`) — sunset→sunrise ÷ 5 segments
+- **9 Nighttime Pakshi state tables** (4 bright half + 5 dark half, matching Prof. Pulippani reference)
+- **10-yama full-day schedule** — unified day (Y1-5) + night (Y6-10) timeline view
+- **BirthBirdCard night support** — shows birth bird state after sunset with night-specific guidance
+- **Night guidance text** (EN + TA) — meditation, sleep, spiritual practice timing
+- **3-tier deployment architecture** — Production (`saranidhi.vercel.app`), Staging (`saranidhi-staging.vercel.app`), Preview (per-PR)
+- **`/release` protocol** — PR-based promotion from main→prod with versioning
 
 ---
 
