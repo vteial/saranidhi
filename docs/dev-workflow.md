@@ -101,6 +101,44 @@ Quick-fix protocol for defects found after merge.
 
 ---
 
+### `/release`
+
+Promotes `main` (staging) to `prod` (production) via a tracked PR.
+
+1. Create PR from `main` → `prod`
+2. PR title: `Release: vX.Y.Z — <summary>`
+3. PR body: release notes structured as:
+   - **What's New** — features added since last release
+   - **Fixes** — bugs resolved
+   - **Known Issues** — anything still pending
+   - **Sprint(s)** — which sprints are included
+4. Review the PR (final sanity check)
+5. Merge → Vercel auto-deploys `prod` to `saranidhi.vercel.app`
+6. Tag the release on `prod`:
+   ```bash
+   git checkout prod && git pull
+   git tag vX.Y.Z
+   git push origin vX.Y.Z
+   ```
+7. (Optional) Create GitHub Release from the tag with the same notes
+
+**Versioning:**
+- `vX.Y.Z-web` where:
+  - **X** = major (breaking changes, redesigns)
+  - **Y** = minor (new sprint features)
+  - **Z** = patch (hotfixes, minor tweaks)
+- Examples:
+  - `v1.1.0-web` — Sprint 14 features (birth bird dashboard)
+  - `v1.1.1-web` — Hotfix after Sprint 14
+  - `v1.2.0-web` — Sprint 15 features (night yamas)
+
+**When to release:**
+- After each sprint merge (or batch of sprints) when staging is verified
+- Not every merge to `main` needs a production release
+- Release when you're confident the staging version is stable
+
+---
+
 ## Rollback Strategies
 
 ### If Issues Found After Merge
