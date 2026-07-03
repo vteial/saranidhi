@@ -10,6 +10,7 @@ import 'package:saranidhi/features/home/presentation/widgets/best_times_card.dar
 import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/date_selector.dart';
 import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
+import 'package:saranidhi/features/home/presentation/widgets/historical_entries_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/hold_time_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_chart.dart';
 import 'package:saranidhi/features/home/presentation/widgets/rahu_kaal_card.dart';
@@ -144,6 +145,12 @@ class _DashboardContent extends ConsumerWidget {
             if (ref.watch(isViewingTodayProvider))
               const BestTimesCard(),
             if (ref.watch(isViewingTodayProvider))
+              const SizedBox(height: 12),
+
+            // Historical entries (only on non-today view)
+            if (!ref.watch(isViewingTodayProvider))
+              const HistoricalEntriesCard(),
+            if (!ref.watch(isViewingTodayProvider))
               const SizedBox(height: 12),
 
             // 5. Hold Time + Streak (two-column on wide)
