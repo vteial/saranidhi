@@ -51,6 +51,8 @@ Closes the sprint — delivers the code and merges.
 5. Verify CI passes
 6. **Merge PR** — sprint is officially closed
 7. Ask: *"Run /project-update now or later?"*
+8. Update `docs/testing-plan.md` — add test count entry for the sprint
+9. Update `docs/manual-smoke-test.md` — add scenarios for new features (if any)
 
 ### `/project-update`
 
@@ -112,15 +114,19 @@ Promotes `main` (staging) to `prod` (production) via a tracked PR.
    - **Fixes** — bugs resolved
    - **Known Issues** — anything still pending
    - **Sprint(s)** — which sprints are included
-4. Review the PR (final sanity check)
-5. Merge → Vercel auto-deploys `prod` to `saranidhi.vercel.app`
-6. Tag the release on `prod`:
+4. **Verify manual smoke test passes** on staging (saranidhi-staging.vercel.app)
+   - Execute `docs/manual-smoke-test.md` scenarios
+   - Record results in `docs/smoke-test-results.md`
+   - All sections must pass before merge
+5. Review the PR (final sanity check)
+6. Merge → Vercel auto-deploys `prod` to `saranidhi.vercel.app`
+7. Tag the release on `prod`:
    ```bash
    git checkout prod && git pull
    git tag vX.Y.Z
    git push origin vX.Y.Z
    ```
-7. (Optional) Create GitHub Release from the tag with the same notes
+8. (Optional) Create GitHub Release from the tag with the same notes
 
 **Versioning:**
 - `vX.Y.Z-web` where:

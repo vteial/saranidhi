@@ -29,6 +29,17 @@ Saranidhi helps you:
 
 ---
 
+## Current Status
+
+| Milestone | Version | URL |
+|-----------|---------|-----|
+| **Production** | v1.1.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | Latest main | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
+| **Sprints Delivered** | 15 | — |
+| **Total PRs** | 35 | — |
+
+---
+
 ## Architecture
 
 ```
@@ -77,6 +88,8 @@ Saranidhi helps you:
 | Localization | EN, TA (ARB files) |
 | Linting | very_good_analysis |
 | CI/CD | GitHub Actions |
+| Cloud Sync | iCloud (CloudKit) — planned Sprint 16 |
+| macOS | Flutter macOS target — planned Sprint 16 |
 
 ---
 
@@ -87,6 +100,7 @@ Saranidhi helps you:
 | iOS | SQLite | iCloud (Apple Sign-In) | On-device |
 | Android | SQLite | Google Drive (Google Sign-In) | On-device |
 | Web | IndexedDB/sql.js | Google Drive (Google Sign-In) | Rules-based |
+| macOS | SQLite | iCloud (Apple Sign-In) | Rules-based |
 
 ---
 
@@ -132,13 +146,18 @@ dart run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
-### Sprint Workflow
+### Development Workflow
+
+```
+Feature branch → PR → main (staging) → /release PR → prod (production)
+```
 
 1. Branch from `main`: `feature/sprintX-topic`
 2. Develop with TDD (unit tests for domain logic)
 3. Run validation: `dart analyze && flutter test`
-4. Create PR targeting `main`
-5. Merge after CI passes
+4. Create PR targeting `main` — Vercel creates preview URL
+5. Merge after CI passes → auto-deploys to [staging](https://saranidhi-staging.vercel.app)
+6. When ready: `/release` PR from `main` → `prod` → deploys to [production](https://saranidhi.vercel.app)
 
 ---
 
@@ -146,14 +165,17 @@ flutter run
 
 - [User Guide](docs/user-guide.md) — What is Saranidhi, its aim, how it helps, and feature overview
 - [Project Plan](docs/project-plan.md) — Features, architecture, deployment targets
-- [Release 1.0 Plan](docs/release-1.0-plan.md) — Sprint-to-release milestones
+- [Release Plan](docs/release-1.0-plan.md) — Phased release milestones (5 phases)
 - [Sprint Tracker](docs/sprint-tracker.md) — Current progress
 - [Testing Plan](docs/testing-plan.md) — Test strategy and scenarios
-- [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, rollback strategies, quality gates
-- [Security Review](docs/security-review.md) — Architecture security assessment, data protection
-- [Offline Verification](docs/offline-verification.md) — Offline capability matrix, zero-network verification
 - [Manual Smoke Test](docs/manual-smoke-test.md) — Pre-production manual QA scenarios
 - [Smoke Test Results](docs/smoke-test-results.md) — Execution results (production pass gate)
+- [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, protocols (`/start-sprint`, `/finish-sprint`, `/release`)
+- [Deployment Guide](docs/deployment.md) — Prod/Staging/Preview architecture, rollback, monitoring
+- [Store Listing](docs/store-listing.md) — App Store & Play Store listing text (for Sprint X)
+- [Mobile Release Guide](docs/mobile-release-guide.md) — iOS/Android build & submission steps (for Sprint X)
+- [Security Review](docs/security-review.md) — Architecture security assessment, data protection
+- [Offline Verification](docs/offline-verification.md) — Offline capability matrix, zero-network verification
 - [Project Evaluation](docs/project-evaluation.md) — Feature scorecard, quality metrics, defect log
 - [Project Valuation Report](docs/project-valuation-report.md) — Time investment, commit timeline, sprint delivery
 
