@@ -8,6 +8,7 @@ import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart'
 import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
 import 'package:saranidhi/features/home/presentation/widgets/best_times_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
+import 'package:saranidhi/features/home/presentation/widgets/calendar_month_view.dart';
 import 'package:saranidhi/features/home/presentation/widgets/date_selector.dart';
 import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
 import 'package:saranidhi/features/home/presentation/widgets/historical_entries_card.dart';
@@ -184,6 +185,10 @@ class _DashboardContent extends ConsumerWidget {
 
             // 6. 7-day ribbon
             SevenDayRibbonWidget(ribbon: data.ribbon),
+            const SizedBox(height: 12),
+
+            // 6b. Calendar month view
+            const CalendarMonthView(),
             const SizedBox(height: 12),
 
             // 7. 30-day trend
