@@ -5,16 +5,16 @@
 ## Architecture
 
 ```
-GitHub (main) ──merge──► Vercel (staging)
-                              │
-GitHub (prod) ──merge──► Vercel (production) ──deploy──► saranidhi.vercel.app
+Feature branch → PR → main (staging) → /release PR → prod (production)
+                  ↓                         ↓                    ↓
+        Preview URL (fresh)    saranidhi-staging.vercel.app    saranidhi.vercel.app
 ```
 
-| Environment | Branch | Platform | URL | Trigger |
-|-------------|--------|----------|-----|---------|
-| **Staging** | `main` | Vercel | Auto-generated preview | Auto (on merge to main) |
-| **Production** | `prod` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | Auto (on push to prod) |
-| **PR Preview** | PR branches | Vercel | Auto-generated per PR | Auto (on PR open/update) |
+| Environment | Branch | Platform | URL | Trigger | Data |
+|-------------|--------|----------|-----|---------|------|
+| **Production** | `prod` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | `/release` PR merge | Existing user data |
+| **Staging** | `main` | Vercel (2nd project) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) | Auto (on merge to main) | Existing user data |
+| **Preview** | PR branches | Vercel | Auto-generated per PR | Auto (on PR open/update) | Clean/fresh data |
 
 ---
 

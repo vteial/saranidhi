@@ -205,13 +205,13 @@
 
 ---
 
-## Sprint 15: Night Yamas + Full 24h View
+## Sprint 15: Night Yamas + Full 24h View ✅ Complete (PR #33)
 
-- [ ] Task 15.1: Night yama calculations (sunset→sunrise divided into 5 equal segments)
-- [ ] Task 15.2: Night Pakshi state tables (authentic tables from Pulippani reference for night yamas 6-10)
-- [ ] Task 15.3: 10-yama full-day view (day + night in single scrollable timeline)
-- [ ] Task 15.4: Active state display works after sunset (currently shows nothing)
-- [ ] Task 15.5: Night-specific guidance text (meditation, sleep, spiritual practice timing)
+- [x] Task 15.1: Night yama calculations (sunset→sunrise divided into 5 equal segments)
+- [x] Task 15.2: Night Pakshi state tables (authentic tables from Pulippani reference for night yamas 6-10)
+- [x] Task 15.3: 10-yama full-day view (day + night in single scrollable timeline)
+- [x] Task 15.4: Active state display works after sunset (currently shows nothing)
+- [x] Task 15.5: Night-specific guidance text (meditation, sleep, spiritual practice timing)
 
 ---
 
