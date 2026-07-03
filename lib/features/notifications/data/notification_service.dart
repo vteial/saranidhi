@@ -109,7 +109,8 @@ class NotificationService {
       scheduledDate,
       _notificationDetails(),
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
-      matchDateTimeComponents: null,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
@@ -158,13 +159,9 @@ class NotificationService {
       ),
       iOS: DarwinNotificationDetails(
         presentAlert: true,
-        presentBadge: true,
-        presentSound: true,
       ),
       macOS: DarwinNotificationDetails(
         presentAlert: true,
-        presentBadge: true,
-        presentSound: true,
       ),
     );
   }

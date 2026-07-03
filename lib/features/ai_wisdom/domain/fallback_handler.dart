@@ -9,7 +9,7 @@ import 'package:saranidhi/features/ai_wisdom/domain/wisdom_library_ta.dart';
 /// - Different day = different proverb (rotates through library)
 /// - Always returns a non-empty string
 ///
-/// Supports locale-aware selection via [locale] parameter.
+/// Supports locale-aware selection via `locale` parameter.
 class FallbackHandler {
   const FallbackHandler._();
 
