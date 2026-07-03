@@ -215,7 +215,7 @@
 
 ---
 
-## Sprint 16: iCloud Sync + macOS Target
+## Sprint 16: iCloud Sync + macOS Target (Current Sprint)
 
 - [ ] Task 16.1: CloudKit container setup + schema (profile, journal entries, streaks)
 - [ ] Task 16.2: Implement sync-on-open (pull remote changes when app launches)
