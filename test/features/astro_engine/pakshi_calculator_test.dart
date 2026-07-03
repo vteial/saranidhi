@@ -510,5 +510,138 @@ void main() {
         );
       });
     });
+
+    group('Night Pakshi', () {
+      group('Night Bright Half (Waxing)', () {
+        test('Group A (Sun, Tue): Vulture states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 0, lunarPhase: LunarPhase.waxing);
+          // Vulture: Dying, Ruling, Sleeping, Eating, Walking
+          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama1), equals(PakshiState.dying));
+          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama2), equals(PakshiState.ruling));
+          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama3), equals(PakshiState.sleeping));
+          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama4), equals(PakshiState.eating));
+          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama5), equals(PakshiState.walking));
+        });
+
+        test('Group B (Mon, Wed, Sat): Owl states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 1, lunarPhase: LunarPhase.waxing);
+          // Owl: Dying, Ruling, Sleeping, Eating, Walking
+          expect(res.stateForBird(PakshiBird.owl, YamaIndex.yama1), equals(PakshiState.dying));
+          expect(res.stateForBird(PakshiBird.owl, YamaIndex.yama2), equals(PakshiState.ruling));
+        });
+
+        test('Group C (Thu): Crow states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 4, lunarPhase: LunarPhase.waxing);
+          // Crow: Dying, Ruling, Sleeping, Eating, Walking
+          expect(res.stateForBird(PakshiBird.crow, YamaIndex.yama1), equals(PakshiState.dying));
+        });
+
+        test('Group D (Fri): Cock states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 5, lunarPhase: LunarPhase.waxing);
+          // Cock: Dying, Ruling, Sleeping, Eating, Walking
+          expect(res.stateForBird(PakshiBird.rooster, YamaIndex.yama1), equals(PakshiState.dying));
+        });
+      });
+
+      group('Night Dark Half (Waning)', () {
+        test('Group A (Sun, Tue): Vulture states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 0, lunarPhase: LunarPhase.waning);
+          // Vulture: Sleeping, Walking, Dying, Eating, Ruling
+          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama1), equals(PakshiState.sleeping));
+          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama5), equals(PakshiState.ruling));
+        });
+
+        test('Group B (Mon, Sat): Owl states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 1, lunarPhase: LunarPhase.waning);
+          // Owl: Sleeping, Walking, Dying, Eating, Ruling
+          expect(res.stateForBird(PakshiBird.owl, YamaIndex.yama1), equals(PakshiState.sleeping));
+          expect(res.stateForBird(PakshiBird.owl, YamaIndex.yama5), equals(PakshiState.ruling));
+        });
+
+        test('Group C (Wed): Crow states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 3, lunarPhase: LunarPhase.waning);
+          // Crow: Dying, Eating, Walking, Sleeping, Ruling
+          expect(res.stateForBird(PakshiBird.crow, YamaIndex.yama1), equals(PakshiState.dying));
+          expect(res.stateForBird(PakshiBird.crow, YamaIndex.yama5), equals(PakshiState.ruling));
+        });
+
+        test('Group D (Thu): Peacock states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 4, lunarPhase: LunarPhase.waning);
+          // Peacock: Walking, Sleeping, Dying, Sleeping, Eating
+          expect(res.stateForBird(PakshiBird.peacock, YamaIndex.yama1), equals(PakshiState.walking));
+        });
+
+        test('Group E (Fri): Peacock states match', () {
+          final res = PakshiCalculator.calculateNight(weekday: 5, lunarPhase: LunarPhase.waning);
+          // Peacock: Sleeping, Ruling, Walking, Eating, Dying
+          expect(res.stateForBird(PakshiBird.peacock, YamaIndex.yama1), equals(PakshiState.sleeping));
+          expect(res.stateForBird(PakshiBird.peacock, YamaIndex.yama2), equals(PakshiState.ruling));
+        });
+      });
+
+      test('Each night yama has exactly 1 ruling bird', () {
+        for (final phase in LunarPhase.values) {
+          for (var day = 0; day < 7; day++) {
+            final result = PakshiCalculator.calculateNight(
+              weekday: day,
+              lunarPhase: phase,
+            );
+            for (var yamaIdx = 0; yamaIdx < 5; yamaIdx++) {
+              var rulingCount = 0;
+              for (var birdIdx = 0; birdIdx < 5; birdIdx++) {
+                if (result.stateTable[birdIdx][yamaIdx] == PakshiState.ruling) {
+                  rulingCount++;
+                }
+              }
+              expect(rulingCount, equals(1),
+                  reason: 'Day $day, Phase $phase, Yama $yamaIdx should have 1 ruling bird');
+            }
+          }
+        }
+      });
+
+      test('Each bird rules exactly 1 night yama', () {
+        for (final phase in LunarPhase.values) {
+          for (var day = 0; day < 7; day++) {
+            final result = PakshiCalculator.calculateNight(
+              weekday: day,
+              lunarPhase: phase,
+            );
+            for (var birdIdx = 0; birdIdx < 5; birdIdx++) {
+              var rulingCount = 0;
+              for (var yamaIdx = 0; yamaIdx < 5; yamaIdx++) {
+                if (result.stateTable[birdIdx][yamaIdx] == PakshiState.ruling) {
+                  rulingCount++;
+                }
+              }
+              expect(rulingCount, equals(1),
+                  reason: 'Day $day, Phase $phase, Bird $birdIdx should rule 1 yama');
+            }
+          }
+        }
+      });
+
+      test('Night tables differ from daytime tables', () {
+        final day = PakshiCalculator.calculate(
+          weekday: 0,
+          lunarPhase: LunarPhase.waxing,
+        );
+        final night = PakshiCalculator.calculateNight(
+          weekday: 0,
+          lunarPhase: LunarPhase.waxing,
+        );
+
+        var identical = true;
+        for (var b = 0; b < 5; b++) {
+          for (var y = 0; y < 5; y++) {
+            if (day.stateTable[b][y] != night.stateTable[b][y]) {
+              identical = false;
+              break;
+            }
+          }
+        }
+        expect(identical, isFalse);
+      });
+    });
   });
 }
