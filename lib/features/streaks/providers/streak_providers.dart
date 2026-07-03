@@ -109,6 +109,7 @@ class SelectedDateNotifier extends Notifier<DateTime> {
   @override
   DateTime build() => DateTime.now();
 
+  // Notifier requires a method (not setter) because there's no corresponding getter.
   // ignore: use_setters_to_change_properties
   void select(DateTime newDate) => state = newDate;
 
