@@ -6,6 +6,7 @@ import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.da
 import 'package:saranidhi/features/cloud_backup/domain/backup_repository.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
 import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
+import 'package:saranidhi/features/home/presentation/widgets/best_times_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/date_selector.dart';
 import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
@@ -138,6 +139,12 @@ class _DashboardContent extends ConsumerWidget {
                 FullDaySchedule(data: data),
             ],
             const SizedBox(height: 12),
+
+            // Best Times This Week (only on today view)
+            if (ref.watch(isViewingTodayProvider))
+              const BestTimesCard(),
+            if (ref.watch(isViewingTodayProvider))
+              const SizedBox(height: 12),
 
             // 5. Hold Time + Streak (two-column on wide)
             if (isWide)
