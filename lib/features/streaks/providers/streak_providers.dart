@@ -98,24 +98,43 @@ class DashboardData {
   final bool isNight;
 }
 
+/// The currently selected date for the dashboard.
+///
+/// Defaults to today. Changed by the date picker on the Home screen.
+/// When changed, the dashboardDataProvider recalculates for that date.
+final selectedDateProvider = StateProvider<DateTime>((ref) {
+  return DateTime.now();
+});
+
+/// Whether the selected date is today.
+final isViewingTodayProvider = Provider<bool>((ref) {
+  final selected = ref.watch(selectedDateProvider);
+  final now = DateTime.now();
+  return selected.year == now.year &&
+      selected.month == now.month &&
+      selected.day == now.day;
+});
+
 /// Provides all dashboard data (streak, trend, ribbon, yama accuracy, astro).
-/// Auto-refreshes every 30 seconds.
+/// Auto-refreshes every 30 seconds when viewing today.
 final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   final repo = ref.watch(streakRepositoryProvider);
   final db = ref.watch(appDatabaseProvider);
-  final today = DateTime.now();
+  final selectedDate = ref.watch(selectedDateProvider);
+  final isToday = ref.watch(isViewingTodayProvider);
+  final now = DateTime.now();
 
   // Fetch last 30 days of summaries (covers both streak and trend)
-  final summaries = await repo.getDailySummaries(days: 30, fromDate: today);
+  final summaries = await repo.getDailySummaries(days: 30, fromDate: now);
 
-  // Calculate streak
-  final streak = StreakCalculator.calculate(summaries: summaries, today: today);
+  // Calculate streak (always from actual today)
+  final streak = StreakCalculator.calculate(summaries: summaries, today: now);
 
   // Calculate 30-day trend
   final trend = TrendCalculator.calculate(summaries: summaries);
 
   // Generate 7-day ribbon
-  final ribbon = SevenDayRibbon.generate(summaries: summaries, today: today);
+  final ribbon = SevenDayRibbon.generate(summaries: summaries, today: now);
 
   // Calculate Yama accuracy
   final yamaValues = await repo.getYamaValues(days: 30);
@@ -156,9 +175,9 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     if (profile.locationLng != null) lng = profile.locationLng!;
   }
 
-  // Calculate sunrise/sunset
+  // Calculate sunrise/sunset for the selected date
   final sunResult = SunriseCalculator.calculate(
-    date: today,
+    date: selectedDate,
     latitude: lat,
     longitude: lng,
     utcOffset: utcOffset,
@@ -173,17 +192,23 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
       sunrise: sunResult.sunrise,
       sunset: sunResult.sunset,
     );
-    activeYamaSegment = yamaResult.activeYama(today);
+
+    // Active yama only when viewing today
+    if (isToday) {
+      activeYamaSegment = yamaResult.activeYama(now);
+    }
 
     // Calculate Pakshi day result
-    final weekday = PakshiCalculator.dartWeekdayToSunBased(today.weekday);
-    lunarPhase = LunarPhaseCalculator.phaseForDate(today);
+    final weekday = PakshiCalculator.dartWeekdayToSunBased(
+      selectedDate.weekday,
+    );
+    lunarPhase = LunarPhaseCalculator.phaseForDate(selectedDate);
     pakshiDay = PakshiCalculator.calculate(
       weekday: weekday,
       lunarPhase: lunarPhase,
     );
 
-    // Get birth bird state for current yama
+    // Get birth bird state for current/active yama
     if (birthBird != null && activeYamaSegment != null) {
       birthBirdState = pakshiDay.stateForBird(
         birthBird,
@@ -198,11 +223,10 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
       weekday: weekday,
     );
 
-    // ─── Night Yama calculations ────────────────────────────────────────
-    if (today.isAfter(sunResult.sunset)) {
+    // ─── Night Yama calculations (only when viewing today) ──────────────
+    if (isToday && now.isAfter(sunResult.sunset)) {
       isNight = true;
-      // Calculate next sunrise (tomorrow)
-      final tomorrow = today.add(const Duration(days: 1));
+      final tomorrow = now.add(const Duration(days: 1));
       final tomorrowSunResult = SunriseCalculator.calculate(
         date: tomorrow,
         latitude: lat,
@@ -215,24 +239,21 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
           sunset: sunResult.sunset,
           nextSunrise: tomorrowSunResult.sunrise,
         );
-        activeNightYama = nightYamaResult.activeYama(today);
+        activeNightYama = nightYamaResult.activeYama(now);
 
-        // Calculate night Pakshi
         pakshiNight = PakshiCalculator.calculateNight(
           weekday: weekday,
           lunarPhase: lunarPhase,
         );
 
-        // Get birth bird night state for current night yama
         if (birthBird != null && activeNightYama != null) {
           birthBirdNightState = pakshiNight.stateTable[birthBird.index]
               [activeNightYama.index.index];
         }
       }
-    } else if (today.isBefore(sunResult.sunrise)) {
-      // Before sunrise — still nighttime from previous day's sunset
+    } else if (isToday && now.isBefore(sunResult.sunrise)) {
       isNight = true;
-      final yesterday = today.subtract(const Duration(days: 1));
+      final yesterday = now.subtract(const Duration(days: 1));
       final yesterdaySunResult = SunriseCalculator.calculate(
         date: yesterday,
         latitude: lat,
@@ -245,13 +266,14 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
           sunset: yesterdaySunResult.sunset,
           nextSunrise: sunResult.sunrise,
         );
-        activeNightYama = nightYamaResult.activeYama(today);
+        activeNightYama = nightYamaResult.activeYama(now);
 
-        // Use yesterday's weekday for night Pakshi
         final yesterdayWeekday = PakshiCalculator.dartWeekdayToSunBased(
           yesterday.weekday,
         );
-        final yesterdayLunarPhase = LunarPhaseCalculator.phaseForDate(yesterday);
+        final yesterdayLunarPhase = LunarPhaseCalculator.phaseForDate(
+          yesterday,
+        );
         pakshiNight = PakshiCalculator.calculateNight(
           weekday: yesterdayWeekday,
           lunarPhase: yesterdayLunarPhase,
@@ -262,20 +284,53 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
               [activeNightYama.index.index];
         }
       }
+    } else if (!isToday) {
+      // For historical/future dates, calculate night yamas for display only
+      final nextDay = selectedDate.add(const Duration(days: 1));
+      final nextDaySunResult = SunriseCalculator.calculate(
+        date: nextDay,
+        latitude: lat,
+        longitude: lng,
+        utcOffset: utcOffset,
+      );
+
+      if (nextDaySunResult != null) {
+        nightYamaResult = YamaCalculator.calculateNight(
+          sunset: sunResult.sunset,
+          nextSunrise: nextDaySunResult.sunrise,
+        );
+
+        final weekdayForNight = PakshiCalculator.dartWeekdayToSunBased(
+          selectedDate.weekday,
+        );
+        pakshiNight = PakshiCalculator.calculateNight(
+          weekday: weekdayForNight,
+          lunarPhase: lunarPhase,
+        );
+      }
     }
   }
 
-  // ─── Today's hold time average ──────────────────────────────────────
-  final todayStart = DateTime(today.year, today.month, today.day);
-  final todayStartMs = todayStart.millisecondsSinceEpoch;
+  // ─── Hold time average for selected date ─────────────────────────────
+  final dayStart = DateTime(
+    selectedDate.year,
+    selectedDate.month,
+    selectedDate.day,
+  );
+  final dayStartMs = dayStart.millisecondsSinceEpoch;
+  final dayEndMs = dayStart.add(const Duration(days: 1)).millisecondsSinceEpoch;
 
-  final todayEntries = await (db.select(db.saraKalaiJournal)
-        ..where((t) => t.timestamp.isBiggerOrEqualValue(todayStartMs)))
+  final dayEntries = await (db.select(db.saraKalaiJournal)
+        ..where(
+          (t) =>
+              t.timestamp.isBiggerOrEqualValue(dayStartMs) &
+              t.timestamp.isSmallerThanValue(dayEndMs),
+        ))
       .get();
 
-  todayEntryCount = todayEntries.length;
+  todayEntryCount = dayEntries.length;
 
-  final holdValues = todayEntries
+  final holdValues = dayEntries
       .where((e) => e.holdDurationMs != null && e.holdDurationMs! > 0)
       .map((e) => e.holdDurationMs!.toDouble())
       .toList();
@@ -284,11 +339,13 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     todayAvgHoldMs = holdValues.reduce((a, b) => a + b) / holdValues.length;
   }
 
-  // Auto-invalidate every 30 seconds for freshness
-  final timer = Timer(const Duration(seconds: 30), () {
-    ref.invalidateSelf();
-  });
-  ref.onDispose(timer.cancel);
+  // Auto-invalidate every 30 seconds when viewing today
+  if (isToday) {
+    final timer = Timer(const Duration(seconds: 30), () {
+      ref.invalidateSelf();
+    });
+    ref.onDispose(timer.cancel);
+  }
 
   return DashboardData(
     streak: streak,

@@ -7,6 +7,7 @@ import 'package:saranidhi/features/cloud_backup/domain/backup_repository.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
 import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
 import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
+import 'package:saranidhi/features/home/presentation/widgets/date_selector.dart';
 import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
 import 'package:saranidhi/features/home/presentation/widgets/hold_time_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_chart.dart';
@@ -87,6 +88,9 @@ class _DashboardContent extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Date selector row
+            const DateSelector(),
+
             // Row 1: Birth Bird Card + Rahu Kaal (two-column on wide)
             if (isWide)
               IntrinsicHeight(
