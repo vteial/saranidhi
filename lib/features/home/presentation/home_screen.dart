@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.dart';
+import 'package:saranidhi/features/cloud_backup/domain/backup_repository.dart';
+import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
+import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
 import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
 import 'package:saranidhi/features/home/presentation/widgets/hold_time_card.dart';
@@ -69,6 +72,11 @@ class _DashboardContent extends ConsumerWidget {
 
     return RefreshIndicator(
       onRefresh: () async {
+        // Trigger iCloud sync on pull-to-refresh if enabled
+        final storageMode = ref.read(storageModeProvider);
+        if (storageMode == StorageMode.icloud) {
+          await ref.read(syncNotifierProvider.notifier).performSync();
+        }
         ref.invalidate(dashboardDataProvider);
         // Wait for the provider to settle
         await ref.read(dashboardDataProvider.future);
