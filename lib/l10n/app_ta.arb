@@ -200,5 +200,13 @@
   "alignedStatus": "ஒத்திசைவு",
   "todaysHold": "இன்றைய நிறுத்தம்",
   "avgHold": "{seconds}s சராசரி ({count} பதிவுகள்)",
-  "noEntriesToday": "இன்று பதிவுகள் இல்லை"
+  "noEntriesToday": "இன்று பதிவுகள் இல்லை",
+
+  "nightYamas": "இரவு அட்டவணை",
+  "guidanceNightRuling": "இரவு ஆளுகை — தியானம் மற்றும் ஆன்மீக பயிற்சிக்கு சக்திவாய்ந்த நேரம்.",
+  "guidanceNightEating": "இரவு ஊட்டம் — ஞானத்தை உள்வாங்கு, பதிவேட்டில் எழுது.",
+  "guidanceNightWalking": "நடுநிலை இரவு — லேசான வாசிப்பு அல்லது மெதுவான நீட்சி.",
+  "guidanceNightSleeping": "ஆழ்ந்த ஓய்வு நேரம் — தூக்கத்திற்கு ஏற்றது.",
+  "guidanceNightDying": "இரவின் கடைசி நிலை — ஆழ்ந்து உறங்கு, முழுமையாக விடுவி.",
+  "nightNoNostrilPattern": "இரவு — எதிர்பார்க்கப்பட்ட நாசி முறை இல்லை"
 }

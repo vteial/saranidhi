@@ -7,8 +7,8 @@ import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
-/// Displays the full 5-yama daily schedule with the user's birth bird state
-/// at each yama, highlighting the current yama.
+/// Displays the full 10-yama daily schedule (5 day + 5 night) with the user's
+/// birth bird state at each yama, highlighting the current yama.
 class FullDaySchedule extends StatelessWidget {
   const FullDaySchedule({required this.data, super.key});
 
@@ -28,6 +28,7 @@ class FullDaySchedule extends StatelessWidget {
 
     final birdEmoji = BirdEmoji.forBird(bird);
     final activeYamaIndex = data.activeYama?.index;
+    final activeNightYamaIndex = data.activeNightYama?.index;
 
     return Card(
       child: Padding(
@@ -43,26 +44,78 @@ class FullDaySchedule extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-            // 5 yama rows
+            // 5 daytime yama rows
             for (final yama in yamaResult.yamas)
               _YamaRow(
-                yama: yama,
+                yamaNumber: yama.index.index + 1,
+                startTime: yama.start,
                 birdEmoji: birdEmoji,
                 birdState: pakshiDay.stateForBird(bird, yama.index),
-                isActive: yama.index == activeYamaIndex,
+                isActive: !data.isNight && yama.index == activeYamaIndex,
                 isBest: pakshiDay.stateForBird(bird, yama.index) ==
                     PakshiState.ruling,
                 l10n: l10n,
                 theme: theme,
               ),
 
+            // Night section
+            if (data.nightYamaResult != null && data.pakshiNight != null) ...[
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  children: [
+                    const Text('\uD83C\uDF19', style: TextStyle(fontSize: 14)),
+                    const SizedBox(width: 6),
+                    Text(
+                      l10n.nightYamas,
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Divider(
+                        color: theme.colorScheme.outlineVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // 5 nighttime yama rows
+              for (var i = 0; i < data.nightYamaResult!.yamas.length; i++)
+                _YamaRow(
+                  yamaNumber: i + 6,
+                  startTime: data.nightYamaResult!.yamas[i].start,
+                  birdEmoji: birdEmoji,
+                  birdState: data.pakshiNight!.stateTable[bird.index][i],
+                  isActive: data.isNight &&
+                      data.nightYamaResult!.yamas[i].index ==
+                          activeNightYamaIndex,
+                  isBest: data.pakshiNight!.stateTable[bird.index][i] ==
+                      PakshiState.ruling,
+                  l10n: l10n,
+                  theme: theme,
+                ),
+            ],
+
             const Divider(height: 16),
 
-            // Align27 comparison row
-            if (activeYamaIndex != null) ...[
+            // Align27 comparison row for current yama (day or night)
+            if (!data.isNight && activeYamaIndex != null) ...[
               _Align27Row(
                 pakshiDay: pakshiDay,
                 activeYamaIndex: activeYamaIndex,
+                l10n: l10n,
+                theme: theme,
+              ),
+            ] else if (data.isNight &&
+                activeNightYamaIndex != null &&
+                data.pakshiNight != null) ...[
+              _NightAlign27Row(
+                pakshiNight: data.pakshiNight!,
+                activeNightYamaIndex: activeNightYamaIndex,
                 l10n: l10n,
                 theme: theme,
               ),
@@ -76,7 +129,8 @@ class FullDaySchedule extends StatelessWidget {
 
 class _YamaRow extends StatelessWidget {
   const _YamaRow({
-    required this.yama,
+    required this.yamaNumber,
+    required this.startTime,
     required this.birdEmoji,
     required this.birdState,
     required this.isActive,
@@ -85,7 +139,8 @@ class _YamaRow extends StatelessWidget {
     required this.theme,
   });
 
-  final YamaSegment yama;
+  final int yamaNumber;
+  final DateTime startTime;
   final String birdEmoji;
   final PakshiState birdState;
   final bool isActive;
@@ -96,9 +151,9 @@ class _YamaRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stateColor = _colorForState(birdState, theme);
-    final timeStr = _formatTime(yama.start);
+    final timeStr = _formatTime(startTime);
     final stateName = birdState.localizedName(l10n);
-    final yamaLabel = 'Y${yama.index.index + 1}';
+    final yamaLabel = 'Y$yamaNumber';
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -207,6 +262,54 @@ class _Align27Row extends StatelessWidget {
     final birdEmoji = BirdEmoji.forBird(rulingBird);
     final birdName = rulingBird.localizedName(l10n);
     final stateName = entry.state.localizedName(l10n);
+
+    return Row(
+      children: [
+        Text(birdEmoji, style: const TextStyle(fontSize: 14)),
+        const SizedBox(width: 6),
+        Expanded(
+          child: Text(
+            l10n.align27Shows(birdName, stateName),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _NightAlign27Row extends StatelessWidget {
+  const _NightAlign27Row({
+    required this.pakshiNight,
+    required this.activeNightYamaIndex,
+    required this.l10n,
+    required this.theme,
+  });
+
+  final PakshiDayResult pakshiNight;
+  final NightYamaIndex activeNightYamaIndex;
+  final AppLocalizations l10n;
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    // Find the ruling bird for this night yama
+    final yamaIdx = activeNightYamaIndex.index;
+    PakshiBird? rulingBird;
+    for (var birdIdx = 0; birdIdx < 5; birdIdx++) {
+      if (pakshiNight.stateTable[birdIdx][yamaIdx] == PakshiState.ruling) {
+        rulingBird = PakshiBird.values[birdIdx];
+        break;
+      }
+    }
+    rulingBird ??= PakshiBird.vulture;
+
+    final birdEmoji = BirdEmoji.forBird(rulingBird);
+    final birdName = rulingBird.localizedName(l10n);
+    final stateName = PakshiState.ruling.localizedName(l10n);
 
     return Row(
       children: [

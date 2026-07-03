@@ -557,4 +557,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noEntriesToday => 'No entries yet today';
+
+  @override
+  String get nightYamas => 'Night Schedule';
+
+  @override
+  String get guidanceNightRuling => 'Night Ruling \u2014 powerful time for meditation and spiritual practice.';
+
+  @override
+  String get guidanceNightEating => 'Night nourishment \u2014 absorb wisdom, journal reflections.';
+
+  @override
+  String get guidanceNightWalking => 'Neutral night period \u2014 light reading or gentle stretching.';
+
+  @override
+  String get guidanceNightSleeping => 'Deep rest period \u2014 ideal for sleep.';
+
+  @override
+  String get guidanceNightDying => 'Night\'s lowest ebb \u2014 sleep deeply, let go completely.';
+
+  @override
+  String get nightNoNostrilPattern => 'Night \u2014 no expected nostril pattern';
 }
