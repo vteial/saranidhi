@@ -143,5 +143,76 @@ void main() {
         expect(YamaIndex.yama5.label, equals('Yama 5'));
       });
     });
+
+    group('Night Yamas', () {
+      final sunset = DateTime(2025, 3, 20, 18, 0);
+      final nextSunrise = DateTime(2025, 3, 21, 6, 0);
+      // 12 hours night = 720 mins = 144 mins per yama
+
+      test('calculateNight() divides into 5 equal segments', () {
+        final result = YamaCalculator.calculateNight(
+          sunset: sunset,
+          nextSunrise: nextSunrise,
+        );
+
+        expect(result.yamas.length, equals(5));
+        expect(result.yamaDuration.inMinutes, equals(144));
+        for (final yama in result.yamas) {
+          expect(yama.duration.inMinutes, equals(144));
+        }
+      });
+
+      test('NightYamaSegment.contains() returns correct yama', () {
+        final result = YamaCalculator.calculateNight(
+          sunset: sunset,
+          nextSunrise: nextSunrise,
+        );
+
+        // Yama 6 starts at 18:00
+        expect(result.yamas[0].contains(sunset), isTrue);
+        expect(result.yamas[0].contains(sunset.add(const Duration(minutes: 1))),
+            isTrue);
+        expect(
+            result.yamas[0].contains(sunset.add(const Duration(minutes: 144))),
+            isFalse); // Exclusive end
+      });
+
+      test('activeYama() returns null for daytime', () {
+        final result = YamaCalculator.calculateNight(
+          sunset: sunset,
+          nextSunrise: nextSunrise,
+        );
+
+        final daytime = DateTime(2025, 3, 20, 12, 0);
+        expect(result.activeYama(daytime), isNull);
+      });
+
+      test('calculateNight throws if nextSunrise not after sunset', () {
+        expect(
+          () => YamaCalculator.calculateNight(
+            sunset: nextSunrise,
+            nextSunrise: sunset,
+          ),
+          throwsArgumentError,
+        );
+      });
+
+      test('calculateNight throws if nextSunrise equals sunset', () {
+        expect(
+          () => YamaCalculator.calculateNight(
+            sunset: sunset,
+            nextSunrise: sunset,
+          ),
+          throwsArgumentError,
+        );
+      });
+    });
+
+    group('NightYamaIndex', () {
+      test('has correct labels', () {
+        expect(NightYamaIndex.yama6.label, equals('Yama 6'));
+        expect(NightYamaIndex.yama10.label, equals('Yama 10'));
+      });
+    });
   });
 }
