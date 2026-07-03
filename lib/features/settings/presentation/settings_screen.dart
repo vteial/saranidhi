@@ -164,6 +164,20 @@ class _NotificationToggles extends ConsumerWidget {
             onChanged: (v) => notifier.setNotifyEating(enabled: v),
             dense: true,
           ),
+          SwitchListTile(
+            title: const Text('Rahu Kaal Alerts'),
+            subtitle: const Text('Notify when Rahu Kaal starts and ends'),
+            value: prefs.notifyRahuKaal,
+            onChanged: (v) => notifier.setNotifyRahuKaal(enabled: v),
+            dense: true,
+          ),
+          SwitchListTile(
+            title: const Text('Morning Summary'),
+            subtitle: const Text("Today's best times at sunrise"),
+            value: prefs.notifyMorningSummary,
+            onChanged: (v) => notifier.setNotifyMorningSummary(enabled: v),
+            dense: true,
+          ),
         ],
       ),
     );
