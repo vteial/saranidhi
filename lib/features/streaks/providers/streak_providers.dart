@@ -215,7 +215,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
           sunset: sunResult.sunset,
           nextSunrise: tomorrowSunResult.sunrise,
         );
-        activeNightYama = nightYamaResult!.activeYama(today);
+        activeNightYama = nightYamaResult.activeYama(today);
 
         // Calculate night Pakshi
         pakshiNight = PakshiCalculator.calculateNight(
@@ -225,8 +225,8 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
 
         // Get birth bird night state for current night yama
         if (birthBird != null && activeNightYama != null) {
-          birthBirdNightState = pakshiNight!.stateTable[birthBird.index]
-              [activeNightYama!.index.index];
+          birthBirdNightState = pakshiNight.stateTable[birthBird.index]
+              [activeNightYama.index.index];
         }
       }
     } else if (today.isBefore(sunResult.sunrise)) {
@@ -245,7 +245,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
           sunset: yesterdaySunResult.sunset,
           nextSunrise: sunResult.sunrise,
         );
-        activeNightYama = nightYamaResult!.activeYama(today);
+        activeNightYama = nightYamaResult.activeYama(today);
 
         // Use yesterday's weekday for night Pakshi
         final yesterdayWeekday = PakshiCalculator.dartWeekdayToSunBased(
@@ -258,8 +258,8 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
         );
 
         if (birthBird != null && activeNightYama != null) {
-          birthBirdNightState = pakshiNight!.stateTable[birthBird.index]
-              [activeNightYama!.index.index];
+          birthBirdNightState = pakshiNight.stateTable[birthBird.index]
+              [activeNightYama.index.index];
         }
       }
     }
