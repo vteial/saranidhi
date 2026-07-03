@@ -92,8 +92,7 @@ class ICloudBackupRepository implements CloudBackupRepository {
     if (!isSupported) return false;
     // iCloud auth is automatic on Apple platforms — if the user
     // is signed in to their Apple ID, CloudKit is available.
-    _authenticated = await _syncService.isAuthenticated();
-    return _authenticated;
+    return _authenticated = await _syncService.isAuthenticated();
   }
 
   @override
