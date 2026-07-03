@@ -197,11 +197,11 @@ git push origin main
 
 ## Deployment Architecture
 
-| Environment | Branch | Platform | URL | Auto-Deploy |
-|-------------|--------|----------|-----|-------------|
-| Staging | `main` | Vercel | Preview URL | Yes (on merge) |
-| Production Web | `prod` | Vercel | saranidhi.vercel.app | Yes (on push to prod) |
-| PR Preview | PR branches | Vercel | Auto-generated per PR | Yes (on PR) |
+| Environment | Branch | Platform | URL | Auto-Deploy | Data |
+|-------------|--------|----------|-----|-------------|------|
+| Production | `prod` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | On `/release` PR merge | Existing |
+| Staging | `main` | Vercel (2nd project) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) | On merge to main | Existing |
+| Preview | PR branches | Vercel | Auto-generated per PR | On PR open/update | Fresh |
 | Production iOS | `main` | App Store | — | Manual |
 | Production Android | `main` | Play Store | — | Manual |
 
