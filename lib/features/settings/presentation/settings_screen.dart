@@ -8,6 +8,7 @@ import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/backup_actions_widget.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mode_selector.dart';
+import 'package:saranidhi/features/cloud_backup/presentation/widgets/sync_device_config_widget.dart';
 import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/features/settings/presentation/profile_card.dart';
@@ -106,6 +107,10 @@ class SettingsScreen extends ConsumerWidget {
           const StorageModeSelector(),
           const Divider(height: 32),
           const BackupActionsWidget(),
+          const Divider(height: 32),
+
+          // iCloud Sync Device Configuration
+          const SyncDeviceConfigWidget(),
           const Divider(height: 32),
 
           // Notifications
