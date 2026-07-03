@@ -178,6 +178,7 @@ Feature branch → PR → main (staging) → /release PR → prod (production)
 - [Offline Verification](docs/offline-verification.md) — Offline capability matrix, zero-network verification
 - [Project Evaluation](docs/project-evaluation.md) — Feature scorecard, quality metrics, defect log
 - [Project Valuation Report](docs/project-valuation-report.md) — Time investment, commit timeline, sprint delivery
+- [Jules Test Coverage Task](docs/jules-test-coverage-task.md) — Delegated test coverage enhancement (Google Jules)
 
 ---
 
