@@ -44,7 +44,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Web Production Deployment** | Vercel production (saranidhi.vercel.app), privacy policy, deployment docs, smoke test gate, release tag v1.0.0-web | ✅ Complete (100%) — Sprint 13 |
 | **Personalized Dashboard + Deployment Safety** | Birth bird hero card, full-day schedule with state emojis, Rahu Kaal, nostril dominance, hold time tracking, responsive layout, prod branch gate | ✅ Complete (100%) — Sprint 14 |
 | **Night Yamas + 24h Coverage** | Night yama calculator, 9 nighttime Pakshi tables, 10-yama full-day view, BirthBirdCard night support, night guidance, 3-tier deployment (prod/staging/preview) | ✅ Complete (100%) — Sprint 15 |
-| **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint 16+ |
+| **iCloud Sync + macOS Target** | CloudKit sync service (MethodChannel), sync engine (pull→merge→push), native Swift plugins (iOS+macOS), sync-on-open widget, push-after-write triggers, primary device conflict resolution UI, macOS platform scaffold, dev environment setup guide | ✅ Complete (100%) — Sprint 16 |
+| **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
 
@@ -126,6 +127,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 13 | Web Production Deployment | #25, #26 | 0 (deployment/docs only) | ✅ Complete |
 | Sprint 14 | Birth Bird Dashboard + Rahu Kaal + Nostril Chart | #29 | 0 (UI widgets, no new tests) | ✅ Complete |
 | Sprint 15 | Night Yamas + Full 24h View | #33, #34 | 0 (night tables + deployment docs) | ✅ Complete |
+| Sprint 16 | iCloud Sync + macOS Target | #39 | 3 test files (mapper, metadata, service) | ✅ Complete |
 
 ---
 
