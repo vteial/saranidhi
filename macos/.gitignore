@@ -1,0 +1,14 @@
+# Flutter-related
+**/Flutter/ephemeral/
+**/Pods/
+**/xcuserdata/
+
+# Xcode-related
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/xcshareddata/xcschemes/
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Generated
+**/GeneratedPluginRegistrant.swift
