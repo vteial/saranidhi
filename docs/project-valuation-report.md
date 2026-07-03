@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 17 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~40.5 Hours
-**Pull Requests Merged:** 41
+**Sprints Delivered:** 18 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~43.0 Hours
+**Pull Requests Merged:** 44
 **Automated Test Coverage:** 264+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -111,6 +111,11 @@
 | `2e4f3f9` | Kiro Agent | 2026-07-03 14:00 | feat(sprint17): personalized bird notifications + Rahu Kaal + morning summary |
 | `d99d3ba` | Kiro Agent | 2026-07-03 14:30 | feat(sprint17): Tamil wisdom library — locale-aware Daily Wisdom |
 | `7ca1e28` | Eialarasu | 2026-07-03 15:00 | **Merge PR #41 — Sprint 17 Complete** |
+| `03acf5b` | Kiro Agent | 2026-07-03 16:00 | feat(sprint18): date picker on Home — view any date's Pakshi schedule |
+| `f98f44d` | Kiro Agent | 2026-07-03 16:30 | feat(sprint18): 'Best Times This Week' card — 7-day Ruling yama scan |
+| `34210cf` | Kiro Agent | 2026-07-03 17:00 | feat(sprint18): journal entries linked to historical dates |
+| `a0d1fa0` | Kiro Agent | 2026-07-03 17:30 | feat(sprint18): calendar month view with entry indicators |
+| `ba29eec` | Eialarasu | 2026-07-03 18:30 | **Merge PR #44 — Sprint 18 Complete** |
 
 ---
 
@@ -131,7 +136,8 @@
 | Day 4 (cont.) | 2026-07-05 | 14:00 - 16:00 | ~2.5 | Sprint 15 |
 | Day 5 | 2026-07-03 | 11:00 - 13:30 | ~3.0 | Sprint 16 |
 | Day 5 (cont.) | 2026-07-03 | 13:30 - 16:00 | ~2.5 | Sprint 17 |
-| | | **Subtotal** | **~34.0** | |
+| Day 5 (cont.) | 2026-07-03 | 16:00 - 18:30 | ~2.5 | Sprint 18 |
+| | | **Subtotal** | **~36.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -150,9 +156,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 34.0 |
+| Active coding & debugging (AI-assisted) | 36.5 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~40.5** |
+| **Total** | **~43.0** |
 
 ---
 
@@ -178,6 +184,7 @@
 | Sprint 15 | Night Yamas + Full 24h View | #33, #34 | 264 | ✅ Complete |
 | Sprint 16 | iCloud Sync + macOS Target | #39 | 264+ | ✅ Complete |
 | Sprint 17 | Notifications + Daily Engagement | #41 | 264+ | ✅ Complete |
+| Sprint 18 | Historical View + Planning | #44 | 264+ | ✅ Complete |
 
 ---
 
@@ -213,6 +220,11 @@
 - **Personalized bird notifications** — "Your Vulture is now Ruling" with state-specific guidance text
 - **4 configurable notification types** — Ruling transitions, Eating state, Rahu Kaal start/end, Morning summary at sunrise
 - **Tamil wisdom library** — 52+ Tamil proverbs, locale-aware RulesEngine + FallbackHandler, cache invalidation on language switch
+- **Date-parameterized dashboard** — selectedDateProvider drives all astro calculations for any date
+- **Date selector widget** — arrows, date picker dialog, Tomorrow quick-access, Today reset
+- **Best Times This Week** — 7-day scan showing birth bird's Ruling yama windows
+- **Historical entries card** — past date journal entries with flow, alignment, hold time
+- **Calendar month view** — month grid with entry dot indicators, tappable day navigation
 - **Smooth page transitions** (fade-through 250ms on tab navigation)
 - **Pull-to-refresh** on Home dashboard
 - **Clear All Data** with confirmation dialog + full state reset (DB + SharedPreferences + onboarding)
