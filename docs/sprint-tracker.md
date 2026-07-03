@@ -226,13 +226,14 @@
 
 ---
 
-## Sprint 17: Notifications + Daily Engagement
+## Sprint 17: Notifications + Daily Engagement (Current Sprint)
 
 - [ ] Task 17.1: Implement real local notifications (iOS + macOS) at yama transitions
 - [ ] Task 17.2: "Your bird is now Ruling" notification with guidance text
 - [ ] Task 17.3: Configurable notification preferences (which states to notify)
 - [ ] Task 17.4: Morning daily summary notification (today's best times)
 - [ ] Task 17.5: Rahu Kaal start/end notification
+- [ ] Task 17.6: Tamil wisdom library (locale-aware Daily Wisdom content)
 
 ---
 
