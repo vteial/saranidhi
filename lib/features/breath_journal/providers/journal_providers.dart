@@ -4,6 +4,7 @@ import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/breath_journal/data/journal_repository.dart';
 import 'package:saranidhi/features/breath_journal/domain/alignment_checker.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
+import 'package:saranidhi/features/cloud_backup/providers/sync_trigger_service.dart';
 
 /// Provides the [JournalRepository] instance.
 final journalRepositoryProvider = Provider<JournalRepository>((ref) {
@@ -101,6 +102,16 @@ class BreathEntryNotifier extends Notifier<BreathEntryState> {
       activeBird: alignment.activeBird?.name,
       activeBirdState: alignment.activeBirdState?.name,
     );
+
+    // Push to iCloud if sync is enabled
+    final syncTrigger = ref.read(syncTriggerServiceProvider);
+    final db = ref.read(appDatabaseProvider);
+    final entry = await (db.select(db.saraKalaiJournal)
+          ..where((t) => t.id.equals(id)))
+        .getSingleOrNull();
+    if (entry != null) {
+      await syncTrigger.onJournalEntryCreated(entry);
+    }
 
     state = BreathEntryState(lastEntryId: id);
   }

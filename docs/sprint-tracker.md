@@ -215,14 +215,14 @@
 
 ---
 
-## Sprint 16: iCloud Sync + macOS Target
+## Sprint 16: iCloud Sync + macOS Target ✅ Complete (PR #39)
 
-- [ ] Task 16.1: CloudKit container setup + schema (profile, journal entries, streaks)
-- [ ] Task 16.2: Implement sync-on-open (pull remote changes when app launches)
-- [ ] Task 16.3: Push local changes to iCloud after each journal entry
-- [ ] Task 16.4: Primary device configuration in Settings (conflict resolution)
-- [ ] Task 16.5: Add Flutter macOS target + verify build
-- [ ] Task 16.6: Test sync across iPhone SE ↔ iPad Mini ↔ iMac (macOS)
+- [x] Task 16.1: CloudKit container setup + schema (profile, journal entries, streaks)
+- [x] Task 16.2: Implement sync-on-open (pull remote changes when app launches)
+- [x] Task 16.3: Push local changes to iCloud after each journal entry
+- [x] Task 16.4: Primary device configuration in Settings (conflict resolution)
+- [x] Task 16.5: Add Flutter macOS target + verify build
+- [x] Task 16.6: Test sync across iPhone SE ↔ iPad Mini ↔ iMac (macOS)
 
 ---
 

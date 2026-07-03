@@ -8,6 +8,7 @@ import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
+import 'package:saranidhi/features/cloud_backup/providers/sync_trigger_service.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -180,6 +181,15 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
         updatedAt: drift.Value(DateTime.now().millisecondsSinceEpoch),
       ),
     );
+
+    // Push updated profile to iCloud
+    final updatedProfile = await (db.select(db.profiles)
+          ..where((t) => t.id.equals(profile.id)))
+        .getSingleOrNull();
+    if (updatedProfile != null) {
+      await ref.read(syncTriggerServiceProvider).onProfileUpdated(updatedProfile);
+    }
+
     setState(() {});
   }
 
@@ -237,6 +247,17 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
           updatedAt: drift.Value(DateTime.now().millisecondsSinceEpoch),
         ),
       );
+
+      // Push updated profile to iCloud
+      final updatedProfile = await (db.select(db.profiles)
+            ..where((t) => t.id.equals(profiles.first.id)))
+          .getSingleOrNull();
+      if (updatedProfile != null) {
+        await ref.read(syncTriggerServiceProvider).onProfileUpdated(
+          updatedProfile,
+        );
+      }
+
       setState(() {});
     });
   }
