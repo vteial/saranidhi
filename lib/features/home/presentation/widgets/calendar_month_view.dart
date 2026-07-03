@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart' hide Column;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -5,11 +6,16 @@ import 'package:intl/intl.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 
-/// Provider that fetches which days in a given month have journal entries.
+/// The displayed month for the calendar view.
+final calendarMonthProvider = StateProvider<DateTime>((ref) {
+  return DateTime.now();
+});
+
+/// Provider that fetches which days in the displayed month have journal entries.
 ///
 /// Returns a Set of day-of-month integers (1-31) that have at least one entry.
-final monthEntryDaysProvider =
-    FutureProvider.family<Set<int>, DateTime>((ref, month) async {
+final monthEntryDaysProvider = FutureProvider<Set<int>>((ref) async {
+  final month = ref.watch(calendarMonthProvider);
   final db = ref.watch(appDatabaseProvider);
 
   final startOfMonth = DateTime(month.year, month.month);
@@ -40,30 +46,14 @@ final monthEntryDaysProvider =
 /// Tapping a day navigates the date selector to that date.
 /// Days with entries show a colored dot indicator.
 /// The selected date is highlighted.
-class CalendarMonthView extends ConsumerStatefulWidget {
+class CalendarMonthView extends ConsumerWidget {
   const CalendarMonthView({super.key});
 
   @override
-  ConsumerState<CalendarMonthView> createState() => _CalendarMonthViewState();
-}
-
-class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
-  late DateTime _displayedMonth;
-
-  @override
-  void initState() {
-    super.initState();
-    _displayedMonth = DateTime.now();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final selectedDate = ref.watch(selectedDateProvider);
-    final entryDaysAsync = ref.watch(
-      monthEntryDaysProvider(
-        DateTime(_displayedMonth.year, _displayedMonth.month),
-      ),
-    );
+    final displayedMonth = ref.watch(calendarMonthProvider);
+    final entryDaysAsync = ref.watch(monthEntryDaysProvider);
     final theme = Theme.of(context);
 
     return Card(
@@ -77,13 +67,13 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.chevron_left, size: 20),
-                  onPressed: _previousMonth,
+                  onPressed: () => _changeMonth(ref, -1),
                   visualDensity: VisualDensity.compact,
                 ),
                 Expanded(
                   child: Center(
                     child: Text(
-                      DateFormat('MMMM yyyy').format(_displayedMonth),
+                      DateFormat('MMMM yyyy').format(displayedMonth),
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -92,7 +82,7 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.chevron_right, size: 20),
-                  onPressed: _nextMonth,
+                  onPressed: () => _changeMonth(ref, 1),
                   visualDensity: VisualDensity.compact,
                 ),
               ],
@@ -124,8 +114,10 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
             // Calendar grid
             entryDaysAsync.when(
               data: (entryDays) => _buildCalendarGrid(
+                ref: ref,
                 theme: theme,
                 selectedDate: selectedDate,
+                displayedMonth: displayedMonth,
                 entryDays: entryDays,
               ),
               loading: () => const SizedBox(height: 180),
@@ -137,22 +129,32 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
     );
   }
 
+  void _changeMonth(WidgetRef ref, int offset) {
+    final current = ref.read(calendarMonthProvider);
+    ref.read(calendarMonthProvider.notifier).state = DateTime(
+      current.year,
+      current.month + offset,
+    );
+  }
+
   Widget _buildCalendarGrid({
+    required WidgetRef ref,
     required ThemeData theme,
     required DateTime selectedDate,
+    required DateTime displayedMonth,
     required Set<int> entryDays,
   }) {
     final firstDayOfMonth = DateTime(
-      _displayedMonth.year,
-      _displayedMonth.month,
+      displayedMonth.year,
+      displayedMonth.month,
     );
     final daysInMonth = DateTime(
-      _displayedMonth.year,
-      _displayedMonth.month + 1,
+      displayedMonth.year,
+      displayedMonth.month + 1,
       0,
     ).day;
 
-    // Sunday = 0 start (DateTime.sunday = 7, so we convert)
+    // Sunday = 0 start
     final startWeekday = firstDayOfMonth.weekday % 7;
 
     final now = DateTime.now();
@@ -180,8 +182,8 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
 
         final day = dayCounter;
         final date = DateTime(
-          _displayedMonth.year,
-          _displayedMonth.month,
+          displayedMonth.year,
+          displayedMonth.month,
           day,
         );
         final isSelected = date.year == selectedDate.year &&
@@ -216,24 +218,6 @@ class _CalendarMonthViewState extends ConsumerState<CalendarMonthView> {
     }
 
     return Column(children: rows);
-  }
-
-  void _previousMonth() {
-    setState(() {
-      _displayedMonth = DateTime(
-        _displayedMonth.year,
-        _displayedMonth.month - 1,
-      );
-    });
-  }
-
-  void _nextMonth() {
-    setState(() {
-      _displayedMonth = DateTime(
-        _displayedMonth.year,
-        _displayedMonth.month + 1,
-      );
-    });
   }
 }
 
