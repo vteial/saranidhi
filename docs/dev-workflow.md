@@ -89,6 +89,30 @@ Strategic brainstorming and sprint plan revision — forward-looking.
 
 ---
 
+### `/delegate`
+
+Assigns secondary tasks (testing, documentation, refactoring) to external AI agents (e.g., Google Jules) while sprint development continues in Kiro Web.
+
+**Delegation rules:**
+1. Delegated tasks operate on **separate branches** from sprint work
+2. Delegated agents may **only modify files in their assigned scope** (e.g., `test/` only)
+3. Sprint PRs take **merge priority** — delegated PRs merge after
+4. If sprint changes affect delegated work, delegated agent rebases
+5. Task brief lives in `docs/` for reference (e.g., `docs/jules-test-coverage-task.md`)
+
+**Current delegations:**
+
+| Agent | Task | Scope | Branch Pattern | Status |
+|-------|------|-------|----------------|--------|
+| Google Jules | Test coverage (20% → 60%+) | `test/` only | `test/*-coverage` | Active |
+
+**Coordination protocol:**
+```
+Sprint PR merged to main → Jules rebases if needed → Jules PR merged → Coverage improves
+```
+
+---
+
 ### `/hotfix`
 
 Quick-fix protocol for defects found after merge.
