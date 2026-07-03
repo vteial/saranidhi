@@ -2,10 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:saranidhi/features/notifications/domain/notification_scheduler.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-
-import 'package:saranidhi/features/notifications/domain/notification_scheduler.dart';
 
 /// Service wrapping `flutter_local_notifications` for real OS-level scheduling.
 ///
@@ -154,8 +153,6 @@ class NotificationService {
             'Notifications for Panja Pakshi bird state transitions',
         importance: Importance.high,
         priority: Priority.high,
-        playSound: true,
-        enableVibration: true,
       ),
       iOS: DarwinNotificationDetails(
         presentAlert: true,
