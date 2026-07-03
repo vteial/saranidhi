@@ -6,10 +6,10 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 15 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~35.0 Hours
-**Pull Requests Merged:** 34
-**Automated Test Coverage:** 264 assertions (unit + widget + integration)
+**Sprints Delivered:** 16 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~38.0 Hours
+**Pull Requests Merged:** 39
+**Automated Test Coverage:** 264+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
 ---
@@ -97,6 +97,16 @@
 | `e3c9cff` | Kiro Agent | 2026-07-05 14:00 | feat(sprint15): Night Yamas + Full 24h View |
 | `538a0ea` | Kiro Agent | 2026-07-05 14:15 | fix(ci): remove unnecessary non-null assertions |
 | `6f725c9` | Eialarasu | 2026-07-05 14:30 | **Merge PR #33 — Sprint 15 Complete** |
+| `942510d` | Jules Bot | 2026-07-03 09:00 | test: domain layer coverage enhancement |
+| `0a07ea7` | Eialarasu | 2026-07-03 10:32 | **Merge PR #38 — Jules Domain Tests** |
+| `2a3b2f7` | Kiro Agent | 2026-07-03 11:00 | feat(sprint16): CloudKit container + schema + sync infrastructure |
+| `d12729d` | Kiro Agent | 2026-07-03 11:15 | feat(sprint16): sync-on-open (pull remote at launch) |
+| `e6826b5` | Kiro Agent | 2026-07-03 11:30 | feat(sprint16): push local changes to iCloud after write |
+| `d5e2430` | Kiro Agent | 2026-07-03 11:45 | feat(sprint16): primary device configuration in Settings |
+| `307dff4` | Kiro Agent | 2026-07-03 12:00 | feat(sprint16): add Flutter macOS target + CloudKit entitlements |
+| `c3474c1` | Kiro Agent | 2026-07-03 12:15 | test(sprint16): unit tests + multi-device testing guide |
+| `bbdf92f` | Kiro Agent | 2026-07-03 12:30 | docs(sprint16): dev environment setup guide |
+| `47c9031` | Eialarasu | 2026-07-03 13:00 | **Merge PR #39 — Sprint 16 Complete** |
 
 ---
 
@@ -115,7 +125,8 @@
 | Day 3 (cont.) | 2026-07-03 | 10:00 - 11:30 | ~2.0 | Sprint 13 |
 | Day 4 | 2026-07-04 | 10:00 - 13:30 | ~3.5 | Sprint 14 |
 | Day 4 (cont.) | 2026-07-05 | 14:00 - 16:00 | ~2.5 | Sprint 15 |
-| | | **Subtotal** | **~28.5** | |
+| Day 5 | 2026-07-03 | 11:00 - 13:30 | ~3.0 | Sprint 16 |
+| | | **Subtotal** | **~31.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -134,9 +145,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 28.5 |
+| Active coding & debugging (AI-assisted) | 31.5 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~35.0** |
+| **Total** | **~38.0** |
 
 ---
 
@@ -160,6 +171,7 @@
 | Sprint 13 | Web Production Deployment | #25, #26 | 264 | ✅ Complete |
 | Sprint 14 | Birth Bird Dashboard + Rahu Kaal + Nostril Chart | #29 | 264 | ✅ Complete |
 | Sprint 15 | Night Yamas + Full 24h View | #33, #34 | 264 | ✅ Complete |
+| Sprint 16 | iCloud Sync + macOS Target | #39 | 264+ | ✅ Complete |
 
 ---
 
@@ -184,6 +196,13 @@
 - **Drift/WebAssembly SQLite** for web platform persistence
 - **Full i18n** with English + Tamil (90+ strings), LocaleProvider with persistence
 - **Language switcher** (EN/TA SegmentedButton in Settings)
+- **CloudKit sync architecture** — MethodChannel-based service, record-level sync engine (pull→merge→push), native Swift plugins for iOS + macOS
+- **Sync-on-open widget** — auto-sync on app launch and resume from background
+- **Push-after-write triggers** — journal entries and profile updates auto-push to CloudKit
+- **Primary device conflict resolution** — Settings UI with device toggle, name editor, sync status, other devices list
+- **macOS platform target** — full scaffold (AppDelegate, CloudKitPlugin, entitlements, Podfile, MainMenu.xib)
+- **iCloud sync testing guide** — 7 multi-device scenarios with CloudKit setup instructions
+- **Local dev environment guide** — 10-step iMac setup (Flutter, Xcode, CloudKit, lefthook)
 - **Smooth page transitions** (fade-through 250ms on tab navigation)
 - **Pull-to-refresh** on Home dashboard
 - **Clear All Data** with confirmation dialog + full state reset (DB + SharedPreferences + onboarding)
