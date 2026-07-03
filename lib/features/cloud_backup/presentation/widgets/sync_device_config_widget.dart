@@ -320,7 +320,7 @@ class _RegisteredDevicesList extends ConsumerWidget {
 
     return devicesAsync.when(
       data: (devices) {
-        final currentId = currentDeviceAsync.valueOrNull?.deviceId;
+        final currentId = currentDeviceAsync.value?.deviceId;
         // Filter out current device
         final otherDevices = devices
             .where((d) => d.deviceId != currentId)
