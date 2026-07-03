@@ -102,9 +102,17 @@ class DashboardData {
 ///
 /// Defaults to today. Changed by the date picker on the Home screen.
 /// When changed, the dashboardDataProvider recalculates for that date.
-final selectedDateProvider = StateProvider<DateTime>((ref) {
-  return DateTime.now();
-});
+final selectedDateProvider =
+    NotifierProvider<SelectedDateNotifier, DateTime>(SelectedDateNotifier.new);
+
+class SelectedDateNotifier extends Notifier<DateTime> {
+  @override
+  DateTime build() => DateTime.now();
+
+  void setDate(DateTime date) => state = date;
+
+  void addDays(int days) => state = state.add(Duration(days: days));
+}
 
 /// Whether the selected date is today.
 final isViewingTodayProvider = Provider<bool>((ref) {

@@ -119,7 +119,7 @@ class _EntryRow extends StatelessWidget {
 
     // Bird state if available
     final birdInfo = entry.activeBird != null
-        ? BirdEmoji.forBirdName(entry.activeBird!)
+        ? BirdEmoji.forBirdName(entry.activeBird ?? '')
         : '';
 
     return Padding(

@@ -7,9 +7,21 @@ import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 
 /// The displayed month for the calendar view.
-final calendarMonthProvider = StateProvider<DateTime>((ref) {
-  return DateTime.now();
-});
+final calendarMonthProvider =
+    NotifierProvider<CalendarMonthNotifier, DateTime>(
+      CalendarMonthNotifier.new,
+    );
+
+class CalendarMonthNotifier extends Notifier<DateTime> {
+  @override
+  DateTime build() => DateTime.now();
+
+  void setMonth(DateTime month) => state = month;
+
+  void changeMonth(int offset) {
+    state = DateTime(state.year, state.month + offset);
+  }
+}
 
 /// Provider that fetches which days in the displayed month have journal entries.
 ///
@@ -130,11 +142,7 @@ class CalendarMonthView extends ConsumerWidget {
   }
 
   void _changeMonth(WidgetRef ref, int offset) {
-    final current = ref.read(calendarMonthProvider);
-    ref.read(calendarMonthProvider.notifier).state = DateTime(
-      current.year,
-      current.month + offset,
-    );
+    ref.read(calendarMonthProvider.notifier).changeMonth(offset);
   }
 
   Widget _buildCalendarGrid({
@@ -202,7 +210,7 @@ class CalendarMonthView extends ConsumerWidget {
             isFuture: isFuture,
             theme: theme,
             onTap: () {
-              ref.read(selectedDateProvider.notifier).state = date;
+              ref.read(selectedDateProvider.notifier).setDate(date);
             },
           ),
         );

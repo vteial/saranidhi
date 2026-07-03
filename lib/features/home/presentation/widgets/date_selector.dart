@@ -103,12 +103,13 @@ class DateSelector extends ConsumerWidget {
 
   void _changeDate(WidgetRef ref, int days) {
     final current = ref.read(selectedDateProvider);
-    ref.read(selectedDateProvider.notifier).state =
-        current.add(Duration(days: days));
+    ref.read(selectedDateProvider.notifier).setDate(
+      current.add(Duration(days: days)),
+    );
   }
 
   void _goToToday(WidgetRef ref) {
-    ref.read(selectedDateProvider.notifier).state = DateTime.now();
+    ref.read(selectedDateProvider.notifier).setDate(DateTime.now());
   }
 
   Future<void> _showDatePicker(
@@ -124,7 +125,7 @@ class DateSelector extends ConsumerWidget {
       helpText: 'Select a date to view schedule',
     );
     if (picked != null) {
-      ref.read(selectedDateProvider.notifier).state = picked;
+      ref.read(selectedDateProvider.notifier).setDate(picked);
     }
   }
 }
