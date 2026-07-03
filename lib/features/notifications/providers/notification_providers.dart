@@ -2,12 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/database/database_provider.dart';
+import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/notifications/data/notification_service.dart';
 import 'package:saranidhi/features/notifications/domain/notification_scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const _notifyRulingKey = 'notify_ruling';
 const _notifyEatingKey = 'notify_eating';
+const _notifyRahuKaalKey = 'notify_rahu_kaal';
+const _notifyMorningSummaryKey = 'notify_morning_summary';
 
 /// Provides and persists notification preferences.
 ///
@@ -29,13 +32,22 @@ class NotificationPrefsNotifier extends Notifier<NotificationPreferences> {
     final prefs = await SharedPreferences.getInstance();
     final ruling = prefs.getBool(_notifyRulingKey) ?? true;
     final eating = prefs.getBool(_notifyEatingKey) ?? false;
-    state = NotificationPreferences(notifyRuling: ruling, notifyEating: eating);
+    final rahuKaal = prefs.getBool(_notifyRahuKaalKey) ?? false;
+    final morning = prefs.getBool(_notifyMorningSummaryKey) ?? false;
+    state = NotificationPreferences(
+      notifyRuling: ruling,
+      notifyEating: eating,
+      notifyRahuKaal: rahuKaal,
+      notifyMorningSummary: morning,
+    );
   }
 
   Future<void> setNotifyRuling({required bool enabled}) async {
     state = NotificationPreferences(
       notifyRuling: enabled,
       notifyEating: state.notifyEating,
+      notifyRahuKaal: state.notifyRahuKaal,
+      notifyMorningSummary: state.notifyMorningSummary,
     );
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_notifyRulingKey, enabled);
@@ -46,9 +58,35 @@ class NotificationPrefsNotifier extends Notifier<NotificationPreferences> {
     state = NotificationPreferences(
       notifyRuling: state.notifyRuling,
       notifyEating: enabled,
+      notifyRahuKaal: state.notifyRahuKaal,
+      notifyMorningSummary: state.notifyMorningSummary,
     );
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_notifyEatingKey, enabled);
+    await _refreshSchedule();
+  }
+
+  Future<void> setNotifyRahuKaal({required bool enabled}) async {
+    state = NotificationPreferences(
+      notifyRuling: state.notifyRuling,
+      notifyEating: state.notifyEating,
+      notifyRahuKaal: enabled,
+      notifyMorningSummary: state.notifyMorningSummary,
+    );
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_notifyRahuKaalKey, enabled);
+    await _refreshSchedule();
+  }
+
+  Future<void> setNotifyMorningSummary({required bool enabled}) async {
+    state = NotificationPreferences(
+      notifyRuling: state.notifyRuling,
+      notifyEating: state.notifyEating,
+      notifyRahuKaal: state.notifyRahuKaal,
+      notifyMorningSummary: enabled,
+    );
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_notifyMorningSummaryKey, enabled);
     await _refreshSchedule();
   }
 
@@ -80,11 +118,18 @@ class NotificationPrefsNotifier extends Notifier<NotificationPreferences> {
     const utcOffset = 5.5; // IST — TODO: derive from timezone
 
     // Generate and schedule
+    final birthBird = profile.birthBird != null
+        ? PakshiBird.values
+            .where((b) => b.name == profile.birthBird)
+            .firstOrNull
+        : null;
+
     final notifications = await NotificationScheduler.refreshSchedule(
       latitude: lat,
       longitude: lng,
       utcOffset: utcOffset,
       prefs: state,
+      birthBird: birthBird,
     );
 
     await service.scheduleAll(notifications);
@@ -106,11 +151,18 @@ final notificationRefreshProvider = FutureProvider<void>((ref) async {
   final lng = profile.locationLng ?? 80.27;
   const utcOffset = 5.5;
 
+  final birthBird = profile.birthBird != null
+      ? PakshiBird.values
+          .where((b) => b.name == profile.birthBird)
+          .firstOrNull
+      : null;
+
   final notifications = await NotificationScheduler.refreshSchedule(
     latitude: lat,
     longitude: lng,
     utcOffset: utcOffset,
     prefs: prefs,
+    birthBird: birthBird,
   );
 
   await service.scheduleAll(notifications);
