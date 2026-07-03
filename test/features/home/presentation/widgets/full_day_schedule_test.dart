@@ -61,6 +61,7 @@ void main() {
                   end: DateTime(2025, 3, 20, 7 + i),
                 ),
               ),
+              yamaDuration: const Duration(hours: 1),
             ),
         activeYama: activeYama,
         nightYamaResult: nightYamaResult,
@@ -103,6 +104,7 @@ void main() {
             end: DateTime(2025, 3, 20, 19 + i),
           ),
         ),
+        yamaDuration: const Duration(hours: 1),
       );
       final data = createData(
         nightYamaResult: nightYamas,

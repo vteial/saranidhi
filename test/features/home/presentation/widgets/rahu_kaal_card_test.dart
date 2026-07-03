@@ -16,7 +16,7 @@ void main() {
       return RahuKaalResult(
         start: start,
         end: end,
-        index: 0,
+        weekday: 0,
       );
     }
 

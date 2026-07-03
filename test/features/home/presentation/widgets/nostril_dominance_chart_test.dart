@@ -46,6 +46,7 @@ void main() {
                   end: DateTime(2025, 3, 20, 7 + i),
                 ),
               ),
+              yamaDuration: const Duration(hours: 1),
             ),
         activeYama: activeYama,
         isNight: isNight,

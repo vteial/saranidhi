@@ -103,7 +103,7 @@ void main() {
     testWidgets('shows night guidance and yama during nighttime', (tester) async {
       final now = DateTime.now();
       final activeNightYama = NightYamaSegment(
-        index: NightYamaIndex.yama1,
+        index: NightYamaIndex.yama6,
         start: now.subtract(const Duration(minutes: 45)),
         end: now.add(const Duration(minutes: 15)),
       );
