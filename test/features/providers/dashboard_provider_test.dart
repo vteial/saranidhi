@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/features/streaks/domain/streak_calculator.dart';
+import 'package:saranidhi/features/streaks/domain/trend_calculator.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 
 void main() {
