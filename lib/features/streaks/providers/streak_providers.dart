@@ -109,7 +109,8 @@ class SelectedDateNotifier extends Notifier<DateTime> {
   @override
   DateTime build() => DateTime.now();
 
-  set date(DateTime date) => state = date;
+  // ignore: use_setters_to_change_properties
+  void select(DateTime newDate) => state = newDate;
 
   void addDays(int days) => state = state.add(Duration(days: days));
 }

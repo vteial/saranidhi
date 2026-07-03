@@ -16,7 +16,8 @@ class CalendarMonthNotifier extends Notifier<DateTime> {
   @override
   DateTime build() => DateTime.now();
 
-  set month(DateTime month) => state = month;
+  // ignore: use_setters_to_change_properties
+  void select(DateTime newMonth) => state = newMonth;
 
   void changeMonth(int offset) {
     state = DateTime(state.year, state.month + offset);
@@ -210,7 +211,7 @@ class CalendarMonthView extends ConsumerWidget {
             isFuture: isFuture,
             theme: theme,
             onTap: () {
-              ref.read(selectedDateProvider.notifier).date = date;
+              ref.read(selectedDateProvider.notifier).select(date);
             },
           ),
         );
