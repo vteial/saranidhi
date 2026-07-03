@@ -377,5 +377,20 @@
   "avgHold": "{seconds}s avg ({count} entries)",
   "@avgHold": { "description": "Average hold time display", "placeholders": { "seconds": { "type": "String" }, "count": { "type": "int" } } },
   "noEntriesToday": "No entries yet today",
-  "@noEntriesToday": { "description": "Empty state for today's hold card" }
+  "@noEntriesToday": { "description": "Empty state for today's hold card" },
+
+  "nightYamas": "Night Schedule",
+  "@nightYamas": { "description": "Night yamas section header" },
+  "guidanceNightRuling": "Night Ruling \u2014 powerful time for meditation and spiritual practice.",
+  "@guidanceNightRuling": { "description": "Night guidance for Ruling state" },
+  "guidanceNightEating": "Night nourishment \u2014 absorb wisdom, journal reflections.",
+  "@guidanceNightEating": { "description": "Night guidance for Eating state" },
+  "guidanceNightWalking": "Neutral night period \u2014 light reading or gentle stretching.",
+  "@guidanceNightWalking": { "description": "Night guidance for Walking state" },
+  "guidanceNightSleeping": "Deep rest period \u2014 ideal for sleep.",
+  "@guidanceNightSleeping": { "description": "Night guidance for Sleeping state" },
+  "guidanceNightDying": "Night's lowest ebb \u2014 sleep deeply, let go completely.",
+  "@guidanceNightDying": { "description": "Night guidance for Dying state" },
+  "nightNoNostrilPattern": "Night \u2014 no expected nostril pattern",
+  "@nightNoNostrilPattern": { "description": "Note shown in nostril chart during nighttime" }
 }

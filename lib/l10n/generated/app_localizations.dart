@@ -577,6 +577,27 @@ abstract class AppLocalizations {
 
   /// Empty state for today's hold card
   String get noEntriesToday;
+
+  /// Night yamas section header
+  String get nightYamas;
+
+  /// Night guidance for Ruling state
+  String get guidanceNightRuling;
+
+  /// Night guidance for Eating state
+  String get guidanceNightEating;
+
+  /// Night guidance for Walking state
+  String get guidanceNightWalking;
+
+  /// Night guidance for Sleeping state
+  String get guidanceNightSleeping;
+
+  /// Night guidance for Dying state
+  String get guidanceNightDying;
+
+  /// Note shown in nostril chart during nighttime
+  String get nightNoNostrilPattern;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

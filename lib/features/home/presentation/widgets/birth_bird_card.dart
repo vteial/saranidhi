@@ -10,6 +10,7 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 ///
 /// Displays the bird emoji, localized name and state, guidance text,
 /// and a progress bar showing current yama progress with time remaining.
+/// Works for both daytime and nighttime yamas.
 class BirthBirdCard extends StatelessWidget {
   const BirthBirdCard({required this.data, super.key});
 
@@ -21,22 +22,42 @@ class BirthBirdCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     final bird = data.birthBird;
-    final state = data.birthBirdState;
     if (bird == null) return const SizedBox.shrink();
+
+    // Determine state based on day/night
+    final PakshiState? state;
+    if (data.isNight && data.activeNightYama != null) {
+      state = data.birthBirdNightState;
+    } else {
+      state = data.birthBirdState;
+    }
 
     final birdEmoji = BirdEmoji.forBird(bird);
     final birdName = bird.localizedName(l10n);
     final stateName = state?.localizedName(l10n) ?? '';
 
     final stateColor = _colorForState(state, theme);
-    final guidance = _guidanceText(state, l10n);
+    final guidance = _guidanceText(state, data.isNight, l10n);
 
-    // Yama progress
-    final activeYama = data.activeYama;
+    // Yama progress — works for both day and night
     var yamaProgressText = '';
     var yamaProgress = 0.0;
 
-    if (activeYama != null) {
+    if (data.isNight && data.activeNightYama != null) {
+      final nightYama = data.activeNightYama!;
+      final now = DateTime.now();
+      final elapsed = now.difference(nightYama.start).inMilliseconds;
+      final total = nightYama.duration.inMilliseconds;
+      yamaProgress = (elapsed / total).clamp(0.0, 1.0);
+
+      final remaining = nightYama.end.difference(now);
+      final minutesLeft = remaining.inMinutes;
+      yamaProgressText = l10n.yamaProgress(
+        nightYama.index.index + 6,
+        '${minutesLeft}min',
+      );
+    } else if (data.activeYama != null) {
+      final activeYama = data.activeYama!;
       final now = DateTime.now();
       final elapsed = now.difference(activeYama.start).inMilliseconds;
       final total = activeYama.duration.inMilliseconds;
@@ -49,6 +70,9 @@ class BirthBirdCard extends StatelessWidget {
         '${minutesLeft}min',
       );
     }
+
+    final hasProgress = (data.isNight && data.activeNightYama != null) ||
+        (!data.isNight && data.activeYama != null);
 
     return Card(
       color: stateColor.withValues(alpha: 0.08),
@@ -78,7 +102,7 @@ class BirthBirdCard extends StatelessWidget {
             const SizedBox(height: 12),
 
             // Progress bar + yama info
-            if (activeYama != null) ...[
+            if (hasProgress) ...[
               ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: LinearProgressIndicator(
@@ -113,7 +137,17 @@ class BirthBirdCard extends StatelessWidget {
     };
   }
 
-  String _guidanceText(PakshiState? state, AppLocalizations l10n) {
+  String _guidanceText(PakshiState? state, bool isNight, AppLocalizations l10n) {
+    if (isNight) {
+      return switch (state) {
+        PakshiState.ruling => l10n.guidanceNightRuling,
+        PakshiState.eating => l10n.guidanceNightEating,
+        PakshiState.walking => l10n.guidanceNightWalking,
+        PakshiState.sleeping => l10n.guidanceNightSleeping,
+        PakshiState.dying => l10n.guidanceNightDying,
+        null => '',
+      };
+    }
     return switch (state) {
       PakshiState.ruling => l10n.guidanceRuling,
       PakshiState.eating => l10n.guidanceEating,

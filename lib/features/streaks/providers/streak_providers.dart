@@ -37,6 +37,11 @@ class DashboardData {
     this.todayEntryCount = 0,
     this.sunrise,
     this.sunset,
+    this.nightYamaResult,
+    this.activeNightYama,
+    this.pakshiNight,
+    this.birthBirdNightState,
+    this.isNight = false,
   });
 
   final StreakResult streak;
@@ -76,6 +81,21 @@ class DashboardData {
 
   /// Today's sunset time.
   final DateTime? sunset;
+
+  /// Night yama calculation result (sunset to next sunrise).
+  final NightYamaResult? nightYamaResult;
+
+  /// Current active night yama (if currently nighttime).
+  final NightYamaSegment? activeNightYama;
+
+  /// Night Pakshi result (bird states for nighttime).
+  final PakshiDayResult? pakshiNight;
+
+  /// Birth bird state for current night yama.
+  final PakshiState? birthBirdNightState;
+
+  /// Whether current time is after sunset (nighttime).
+  final bool isNight;
 }
 
 /// Provides all dashboard data (streak, trend, ribbon, yama accuracy, astro).
@@ -113,6 +133,11 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   var todayEntryCount = 0;
   DateTime? sunrise;
   DateTime? sunset;
+  NightYamaResult? nightYamaResult;
+  NightYamaSegment? activeNightYama;
+  PakshiDayResult? pakshiNight;
+  PakshiState? birthBirdNightState;
+  var isNight = false;
 
   // Read profile for birth bird and location
   var lat = 13.08; // Default: Chennai
@@ -172,6 +197,72 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
       sunset: sunResult.sunset,
       weekday: weekday,
     );
+
+    // ─── Night Yama calculations ────────────────────────────────────────
+    if (today.isAfter(sunResult.sunset)) {
+      isNight = true;
+      // Calculate next sunrise (tomorrow)
+      final tomorrow = today.add(const Duration(days: 1));
+      final tomorrowSunResult = SunriseCalculator.calculate(
+        date: tomorrow,
+        latitude: lat,
+        longitude: lng,
+        utcOffset: utcOffset,
+      );
+
+      if (tomorrowSunResult != null) {
+        nightYamaResult = YamaCalculator.calculateNight(
+          sunset: sunResult.sunset,
+          nextSunrise: tomorrowSunResult.sunrise,
+        );
+        activeNightYama = nightYamaResult!.activeYama(today);
+
+        // Calculate night Pakshi
+        pakshiNight = PakshiCalculator.calculateNight(
+          weekday: weekday,
+          lunarPhase: lunarPhase,
+        );
+
+        // Get birth bird night state for current night yama
+        if (birthBird != null && activeNightYama != null) {
+          birthBirdNightState = pakshiNight!.stateTable[birthBird.index]
+              [activeNightYama!.index.index];
+        }
+      }
+    } else if (today.isBefore(sunResult.sunrise)) {
+      // Before sunrise — still nighttime from previous day's sunset
+      isNight = true;
+      final yesterday = today.subtract(const Duration(days: 1));
+      final yesterdaySunResult = SunriseCalculator.calculate(
+        date: yesterday,
+        latitude: lat,
+        longitude: lng,
+        utcOffset: utcOffset,
+      );
+
+      if (yesterdaySunResult != null) {
+        nightYamaResult = YamaCalculator.calculateNight(
+          sunset: yesterdaySunResult.sunset,
+          nextSunrise: sunResult.sunrise,
+        );
+        activeNightYama = nightYamaResult!.activeYama(today);
+
+        // Use yesterday's weekday for night Pakshi
+        final yesterdayWeekday = PakshiCalculator.dartWeekdayToSunBased(
+          yesterday.weekday,
+        );
+        final yesterdayLunarPhase = LunarPhaseCalculator.phaseForDate(yesterday);
+        pakshiNight = PakshiCalculator.calculateNight(
+          weekday: yesterdayWeekday,
+          lunarPhase: yesterdayLunarPhase,
+        );
+
+        if (birthBird != null && activeNightYama != null) {
+          birthBirdNightState = pakshiNight!.stateTable[birthBird.index]
+              [activeNightYama!.index.index];
+        }
+      }
+    }
   }
 
   // ─── Today's hold time average ──────────────────────────────────────
@@ -215,5 +306,10 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     todayEntryCount: todayEntryCount,
     sunrise: sunrise,
     sunset: sunset,
+    nightYamaResult: nightYamaResult,
+    activeNightYama: activeNightYama,
+    pakshiNight: pakshiNight,
+    birthBirdNightState: birthBirdNightState,
+    isNight: isNight,
   );
 });

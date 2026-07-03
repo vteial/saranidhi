@@ -57,8 +57,17 @@ class NostrilDominanceChart extends StatelessWidget {
                 theme: theme,
               ),
 
-            // Next switch countdown
-            if (nextSwitchText.isNotEmpty) ...[
+            // Night note or next switch countdown
+            if (data.isNight) ...[
+              const SizedBox(height: 12),
+              Text(
+                l10n.nightNoNostrilPattern,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ] else if (nextSwitchText.isNotEmpty) ...[
               const SizedBox(height: 12),
               Text(
                 nextSwitchText,
