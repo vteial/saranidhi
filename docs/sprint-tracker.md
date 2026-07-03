@@ -237,7 +237,7 @@
 
 ---
 
-## Sprint 18: Historical View + Planning
+## Sprint 18: Historical View + Planning (Current Sprint)
 
 - [ ] Task 18.1: Date picker on Home — view any past date's Pakshi schedule
 - [ ] Task 18.2: Tomorrow's schedule view (plan ahead)
