@@ -258,7 +258,7 @@
 
 ---
 
-## Sprint 20: UI Polish + Home Layout Redesign
+## Sprint 20: UI Polish + Home Layout Redesign — In Progress
 
 - [ ] Task 20.1: Split Home into two sub-tabs: "Today" (default) and "Explore"
 - [ ] Task 20.2: Today tab — focused 7 cards (Bird, Rahu, Schedule, Nostril, Wisdom, Hold+Streak, Ribbon)
