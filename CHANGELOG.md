@@ -9,49 +9,30 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Added
+### Planned
 - Sprint 20: UI Polish + Home Layout Redesign (Today/Explore tabs)
 - Sprint 21: Pakshi Accuracy (DOB-based Moon longitude calculation)
 - Sprint 22: Widget Test Coverage (10 test files)
 
----
-
-## [1.2.0-web] — 2026-07-04
-
-### Added
+### Added (on staging, not yet released to production)
 - **Analytics tab** (4th bottom nav) with 6 insight cards (Sprint 19)
-- Weekly alignment summary with progress bars
-- Monthly patterns (best/worst day, most active yama)
-- Streak insights (longest, current, avg gap, consistency %)
-- Yama performance breakdown (sorted by practice frequency)
-- Hold time progression (weekly/monthly avg, personal best, trend direction)
-- CSV export of complete journal history
+- Weekly alignment summary, monthly patterns, streak insights
+- Yama performance breakdown, hold time progression, CSV export
 - **Historical View** (Sprint 18)
-- Date selector on Home (arrows + picker + Tomorrow/Today)
+- Date selector on Home, calendar month view, best times this week
 - Browse any past/future date's Pakshi schedule
-- "Best Times This Week" card (7-day Ruling yama scan)
-- Historical entries card for past dates
-- Calendar month view with entry dot indicators
 - **Notifications** (Sprint 17)
-- Real local notifications via flutter_local_notifications
-- Personalized bird state alerts ("Your Vulture is now Ruling")
-- Rahu Kaal start/end notifications
-- Morning summary at sunrise (best time today)
-- 4 configurable toggles (Ruling, Eating, Rahu Kaal, Morning)
-- **Tamil Wisdom** (Sprint 17)
-- 52+ Tamil proverbs for Daily Wisdom
-- Locale-aware selection (switches instantly with language)
-- Cache invalidation on language change
+- Real local notifications (flutter_local_notifications)
+- Personalized bird state alerts, Rahu Kaal, morning summary
+- 4 configurable toggles
+- **Tamil Wisdom** (Sprint 17) — 52+ proverbs, locale-aware
 - **iCloud Sync architecture** (Sprint 16)
-- CloudKit record-level sync (MethodChannel + native Swift)
-- Sync-on-open, push-after-write, primary device conflict resolution
-- Settings UI: device name, primary toggle, sync status, other devices
-- **macOS target** (Sprint 16)
-- Full platform scaffold with CloudKit entitlements
-- Native Swift CloudKitPluginMacOS
+- CloudKit record-level sync, primary device conflict resolution
+- **macOS target** (Sprint 16) — full scaffold with CloudKit
+- **Night Yamas** (Sprint 15) — full 24h Pakshi coverage
 
 ### Changed
-- Dashboard provider parameterized by selected date (not hardcoded today)
+- Dashboard provider parameterized by selected date
 - Notification preferences expanded from 2 to 4 toggles
 - ICloudBackupRepository upgraded from stub to real CloudKit service
 
@@ -60,10 +41,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [1.1.0-web] — 2026-07-03
 
 ### Added
-- **Night Yamas** (Sprint 15) — full 24h Pakshi coverage (sunset→sunrise)
 - **Birth Bird Dashboard** (Sprint 14) — personalized hero card, full-day schedule, Rahu Kaal, nostril chart, hold time
-- **Responsive layout** — two-column on medium+ devices (≥600px)
-- **Production safety gate** — `main` (staging) → `prod` (production) promotion
+- **Responsive layout** — two-column on medium+ devices (>=600px)
+- **Production safety gate** — `main` (staging) -> `prod` (production) promotion
 
 ---
 
@@ -85,7 +65,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [0.9.0] — 2026-06-03
 
 ### Added
-- Sprints 1–11: Full app foundation
+- Sprints 1-11: Full app foundation
 - Astro-Logic Engine (8 pure Dart calculators)
 - Sara Kalai Breath Journal (two-click entry, timer, history)
 - Streak & Consistency Engine (streaks, ribbons, trends)
@@ -99,7 +79,6 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-[Unreleased]: https://github.com/vteial/saranidhi/compare/prod...main
-[1.2.0-web]: https://github.com/vteial/saranidhi/compare/v1.1.0-web...main
+[Unreleased]: https://github.com/vteial/saranidhi/compare/v1.1.0-web...main
 [1.1.0-web]: https://github.com/vteial/saranidhi/compare/v1.0.0-web...v1.1.0-web
 [1.0.0-web]: https://github.com/vteial/saranidhi/releases/tag/v1.0.0-web
