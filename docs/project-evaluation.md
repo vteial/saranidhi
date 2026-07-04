@@ -47,6 +47,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **iCloud Sync + macOS Target** | CloudKit sync service (MethodChannel), sync engine (pull→merge→push), native Swift plugins (iOS+macOS), sync-on-open widget, push-after-write triggers, primary device conflict resolution UI, macOS platform scaffold, dev environment setup guide | ✅ Complete (100%) — Sprint 16 |
 | **Notifications + Daily Engagement** | Real local notifications (flutter_local_notifications), personalized bird state alerts, Rahu Kaal start/end notifications, morning summary at sunrise, 4 configurable toggles, Tamil wisdom library (52+ proverbs), locale-aware Daily Wisdom | ✅ Complete (100%) — Sprint 17 |
 | **Historical View + Planning** | Date-parameterized dashboard, date selector (arrows + picker + Tomorrow/Today), Best Times This Week (7-day Ruling scan), historical entries card, calendar month view with entry indicators | ✅ Complete (100%) — Sprint 18 |
+| **Analytics + Export** | Analytics screen (4th tab), weekly alignment summary, monthly patterns (best/worst day, active yamas), CSV export, streak insights (gaps, consistency), yama performance breakdown, hold time progression (trend, personal best) | ✅ Complete (100%) — Sprint 19 |
 | **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
@@ -132,6 +133,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 16 | iCloud Sync + macOS Target | #39 | 3 test files (mapper, metadata, service) | ✅ Complete |
 | Sprint 17 | Notifications + Daily Engagement | #41 | 0 (existing scheduler tests cover logic) | ✅ Complete |
 | Sprint 18 | Historical View + Planning | #44 | 0 (UI widgets, no new tests) | ✅ Complete |
+| Sprint 19 | Analytics + Export | #46 | 0 (analytics calculator, no new tests) | ✅ Complete |
 
 ---
 

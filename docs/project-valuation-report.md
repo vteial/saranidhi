@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 18 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~43.0 Hours
-**Pull Requests Merged:** 44
+**Sprints Delivered:** 19 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~45.5 Hours
+**Pull Requests Merged:** 46
 **Automated Test Coverage:** 264+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -116,6 +116,8 @@
 | `34210cf` | Kiro Agent | 2026-07-03 17:00 | feat(sprint18): journal entries linked to historical dates |
 | `a0d1fa0` | Kiro Agent | 2026-07-03 17:30 | feat(sprint18): calendar month view with entry indicators |
 | `ba29eec` | Eialarasu | 2026-07-03 18:30 | **Merge PR #44 — Sprint 18 Complete** |
+| `6adde19` | Kiro Agent | 2026-07-04 08:30 | feat(sprint19): Analytics + Export — full analytics screen |
+| `3f3c0bc` | Eialarasu | 2026-07-04 10:30 | **Merge PR #46 — Sprint 19 Complete** |
 
 ---
 
@@ -137,7 +139,8 @@
 | Day 5 | 2026-07-03 | 11:00 - 13:30 | ~3.0 | Sprint 16 |
 | Day 5 (cont.) | 2026-07-03 | 13:30 - 16:00 | ~2.5 | Sprint 17 |
 | Day 5 (cont.) | 2026-07-03 | 16:00 - 18:30 | ~2.5 | Sprint 18 |
-| | | **Subtotal** | **~36.5** | |
+| Day 6 | 2026-07-04 | 08:00 - 10:30 | ~2.5 | Sprint 19 |
+| | | **Subtotal** | **~39.0** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -156,9 +159,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 36.5 |
+| Active coding & debugging (AI-assisted) | 39.0 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~43.0** |
+| **Total** | **~45.5** |
 
 ---
 
@@ -185,6 +188,7 @@
 | Sprint 16 | iCloud Sync + macOS Target | #39 | 264+ | ✅ Complete |
 | Sprint 17 | Notifications + Daily Engagement | #41 | 264+ | ✅ Complete |
 | Sprint 18 | Historical View + Planning | #44 | 264+ | ✅ Complete |
+| Sprint 19 | Analytics + Export | #46 | 264+ | ✅ Complete |
 
 ---
 
@@ -225,6 +229,13 @@
 - **Best Times This Week** — 7-day scan showing birth bird's Ruling yama windows
 - **Historical entries card** — past date journal entries with flow, alignment, hold time
 - **Calendar month view** — month grid with entry dot indicators, tappable day navigation
+- **Analytics screen** — dedicated 4th tab with 6 insight cards (weekly/monthly/streak/yama/hold/export)
+- **Weekly alignment summary** — 4-week breakdown with progress bars
+- **Monthly patterns** — best/worst day, most/least active yama, avg entries per day
+- **Streak insights** — current/longest, total practice days, avg gap, consistency %
+- **Yama performance breakdown** — sorted by practice frequency with % labels
+- **Hold time progression** — weekly/monthly/all-time averages, personal best, trend direction
+- **CSV export** — full 14-column journal data export to documents directory
 - **Smooth page transitions** (fade-through 250ms on tab navigation)
 - **Pull-to-refresh** on Home dashboard
 - **Clear All Data** with confirmation dialog + full state reset (DB + SharedPreferences + onboarding)
