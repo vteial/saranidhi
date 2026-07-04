@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:saranidhi/core/router/shell_scaffold.dart';
+import 'package:saranidhi/features/analytics/presentation/analytics_screen.dart';
 import 'package:saranidhi/features/home/presentation/home_screen.dart';
 import 'package:saranidhi/features/journal/presentation/journal_screen.dart';
 import 'package:saranidhi/features/onboarding/presentation/onboarding_screen.dart';
@@ -14,6 +15,9 @@ abstract class AppRoutes {
   /// Breath Journal route.
   static const journal = '/journal';
 
+  /// Analytics route.
+  static const analytics = '/analytics';
+
   /// Settings route.
   static const settings = '/settings';
 
@@ -25,6 +29,8 @@ abstract class AppRoutes {
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _journalNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'journal');
+final _analyticsNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'analytics');
 final _settingsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'settings');
 
 /// Custom fade-through transition for tab pages.
@@ -106,6 +112,18 @@ final GoRouter appRouter = GoRouter(
               path: AppRoutes.settings,
               pageBuilder: (context, state) => _fadeTransitionPage(
                 child: const SettingsScreen(),
+                state: state,
+              ),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _analyticsNavigatorKey,
+          routes: [
+            GoRoute(
+              path: AppRoutes.analytics,
+              pageBuilder: (context, state) => _fadeTransitionPage(
+                child: const AnalyticsScreen(),
                 state: state,
               ),
             ),
