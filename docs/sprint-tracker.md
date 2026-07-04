@@ -265,6 +265,7 @@
 - [ ] Task 20.3: Explore tab — Date Selector, Calendar Month, Historical Entries, Best Times, 30-Day Trend
 - [ ] Task 20.4: Responsive two-column layout consistency audit (all screens ≥600px)
 - [ ] Task 20.5: Remove redundant widgets from Today tab (Date Selector, Calendar, Yama Accuracy)
+- [ ] Task 20.6: Full data export/import in Settings (JSON file — all tables + preferences)
 
 ---
 
