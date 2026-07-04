@@ -269,7 +269,7 @@
 
 ---
 
-## Sprint 21: Pakshi Accuracy (DOB-Based Calculation)
+## Sprint 21: Pakshi Accuracy (DOB-Based Calculation) — In Progress
 
 - [ ] Task 21.1: Moon longitude calculator — Pure Dart (Jean Meeus ELP 2000/82)
 - [ ] Task 21.2: Lahiri Ayanamsa calculator — sidereal correction for given date
