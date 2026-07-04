@@ -467,7 +467,6 @@ class _DOBCalculatePath extends StatelessWidget {
   Future<void> _pickDate(BuildContext context) async {
     final picked = await showDatePicker(
       context: context,
-      useRootNavigator: true,
       initialDate: state.birthDate ?? DateTime(1990),
       firstDate: DateTime(1920),
       lastDate: DateTime.now(),
@@ -481,7 +480,6 @@ class _DOBCalculatePath extends StatelessWidget {
   Future<void> _pickTime(BuildContext context) async {
     final picked = await showTimePicker(
       context: context,
-      useRootNavigator: true,
       initialTime: state.birthTimeOfDay ?? const TimeOfDay(hour: 6, minute: 0),
       helpText: 'Select your birth time',
     );
