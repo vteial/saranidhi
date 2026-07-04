@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/analytics/domain/analytics_calculator.dart';
 import 'package:saranidhi/features/analytics/providers/analytics_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Analytics & Export screen showing detailed insights about practice patterns.
 class AnalyticsScreen extends ConsumerWidget {
@@ -20,7 +21,7 @@ class AnalyticsScreen extends ConsumerWidget {
     final isWide = screenWidth >= 600;
 
     return Scaffold(
-      appBar: const BrandedAppBar(title: 'Analytics'),
+      appBar: BrandedAppBar(title: AppLocalizations.of(context).analyticsTitle),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -97,8 +98,8 @@ class _WeeklySummaryCard extends ConsumerWidget {
     return weeklyAsync.when(
       data: (weeks) {
         if (weeks.isEmpty) {
-          return _emptyCard(theme, 'Weekly Summary', 'Log entries to see '
-              'weekly alignment trends.');
+          final l10n = AppLocalizations.of(context);
+          return _emptyCard(theme, l10n.weeklyAlignment, l10n.weeklyAlignmentEmpty);
         }
 
         return Card(
@@ -108,7 +109,7 @@ class _WeeklySummaryCard extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Weekly Alignment',
+                  AppLocalizations.of(context).weeklyAlignment,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -189,12 +190,12 @@ class _MonthlyPatternsCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final patternsAsync = ref.watch(monthlyPatternsProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return patternsAsync.when(
       data: (patterns) {
         if (patterns.totalEntries == 0) {
-          return _emptyCard(theme, 'Monthly Patterns', 'Practice for a few '
-              'days to see patterns emerge.');
+          return _emptyCard(theme, l10n.monthlyPatterns, l10n.monthlyPatternsEmpty);
         }
 
         return Card(
@@ -204,7 +205,7 @@ class _MonthlyPatternsCard extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Monthly Patterns (30 days)',
+                  l10n.monthlyPatterns,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -212,29 +213,29 @@ class _MonthlyPatternsCard extends ConsumerWidget {
                 const SizedBox(height: 12),
                 _PatternRow(
                   icon: Icons.trending_up,
-                  label: 'Best day',
+                  label: l10n.bestDay,
                   value: patterns.bestDay ?? '—',
                   color: theme.colorScheme.primary,
                   theme: theme,
                 ),
                 _PatternRow(
                   icon: Icons.trending_down,
-                  label: 'Needs attention',
+                  label: l10n.needsAttention,
                   value: patterns.worstDay ?? '—',
                   color: theme.colorScheme.error,
                   theme: theme,
                 ),
                 _PatternRow(
                   icon: Icons.star,
-                  label: 'Most active yama',
-                  value: _yamaLabel(patterns.mostActiveYama),
+                  label: l10n.mostActiveYama,
+                  value: _yamaLabel(patterns.mostActiveYama, l10n),
                   color: theme.colorScheme.primary,
                   theme: theme,
                 ),
                 _PatternRow(
                   icon: Icons.schedule,
-                  label: 'Least active yama',
-                  value: _yamaLabel(patterns.leastActiveYama),
+                  label: l10n.leastActiveYama,
+                  value: _yamaLabel(patterns.leastActiveYama, l10n),
                   color: theme.colorScheme.onSurfaceVariant,
                   theme: theme,
                 ),
@@ -243,17 +244,17 @@ class _MonthlyPatternsCard extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _StatChip(
-                      label: 'Active days',
+                      label: l10n.activeDays,
                       value: '${patterns.activeDays}',
                       theme: theme,
                     ),
                     _StatChip(
-                      label: 'Avg/day',
+                      label: l10n.avgPerDay,
                       value: patterns.avgEntriesPerDay.toStringAsFixed(1),
                       theme: theme,
                     ),
                     _StatChip(
-                      label: 'Alignment',
+                      label: l10n.alignment,
                       value: '${patterns.alignmentPercentage}%',
                       theme: theme,
                     ),
@@ -269,10 +270,10 @@ class _MonthlyPatternsCard extends ConsumerWidget {
     );
   }
 
-  String _yamaLabel(String? yama) {
+  String _yamaLabel(String? yama, AppLocalizations l10n) {
     if (yama == null) return '—';
-    final num = yama.replaceAll('yama', '');
-    return 'Yama $num';
+    final yamaNum = yama.replaceAll('yama', '');
+    return '${l10n.yamaPrefix} $yamaNum';
   }
 }
 
@@ -352,12 +353,12 @@ class _StreakInsightsCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final insightsAsync = ref.watch(streakInsightsProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return insightsAsync.when(
       data: (insights) {
         if (insights.totalPracticeDays == 0) {
-          return _emptyCard(theme, 'Streak Insights', 'Start practicing to '
-              'build streak insights.');
+          return _emptyCard(theme, l10n.streakInsights, l10n.streakInsightsEmpty);
         }
 
         return Card(
@@ -367,7 +368,7 @@ class _StreakInsightsCard extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Streak Insights',
+                  l10n.streakInsights,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -377,17 +378,17 @@ class _StreakInsightsCard extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _StatChip(
-                      label: 'Current',
+                      label: l10n.current,
                       value: '${insights.currentStreak}d',
                       theme: theme,
                     ),
                     _StatChip(
-                      label: 'Longest',
+                      label: l10n.longest,
                       value: '${insights.longestStreak}d',
                       theme: theme,
                     ),
                     _StatChip(
-                      label: 'Total days',
+                      label: l10n.totalDays,
                       value: '${insights.totalPracticeDays}',
                       theme: theme,
                     ),
@@ -396,17 +397,17 @@ class _StreakInsightsCard extends ConsumerWidget {
                 const Divider(height: 16),
                 _PatternRow(
                   icon: Icons.calendar_today,
-                  label: 'Practice consistency',
+                  label: l10n.practiceConsistency,
                   value: '${insights.practiceConsistency}%',
                   color: theme.colorScheme.primary,
                   theme: theme,
                 ),
                 _PatternRow(
                   icon: Icons.timelapse,
-                  label: 'Avg gap between sessions',
+                  label: l10n.avgGapBetweenSessions,
                   value: insights.averageGapDays > 0
-                      ? '${insights.averageGapDays.toStringAsFixed(1)} days'
-                      : 'No gaps',
+                      ? '${insights.averageGapDays.toStringAsFixed(1)} ${l10n.days}'
+                      : l10n.noGaps,
                   color: theme.colorScheme.onSurfaceVariant,
                   theme: theme,
                 ),
@@ -426,13 +427,13 @@ class _YamaPerformanceCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final yamaAsync = ref.watch(yamaPerformanceProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return yamaAsync.when(
       data: (counts) {
         final total = counts.values.fold<int>(0, (a, b) => a + b);
         if (total == 0) {
-          return _emptyCard(theme, 'Yama Performance', 'Log entries during '
-              'different yamas to see breakdown.');
+          return _emptyCard(theme, l10n.yamaPerformance, l10n.yamaPerformanceEmpty);
         }
 
         final sorted = counts.entries.toList()
@@ -446,14 +447,14 @@ class _YamaPerformanceCard extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Yama Performance',
+                  l10n.yamaPerformance,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Which time of day you practice most',
+                  l10n.yamaPerformanceSubtitle,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -473,7 +474,7 @@ class _YamaPerformanceCard extends ConsumerWidget {
                         SizedBox(
                           width: 52,
                           child: Text(
-                            'Yama $yamaNum',
+                            '${l10n.yamaPrefix} $yamaNum',
                             style: theme.textTheme.bodySmall,
                           ),
                         ),
@@ -523,12 +524,12 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final holdAsync = ref.watch(holdTimeProgressionProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return holdAsync.when(
       data: (hold) {
         if (hold.totalSessions == 0) {
-          return _emptyCard(theme, 'Hold Time Progression', 'Use the breath '
-              'timer to track hold time improvement.');
+          return _emptyCard(theme, l10n.holdTimeProgression, l10n.holdTimeEmpty);
         }
 
         final trendIcon = switch (hold.trendDirection) {
@@ -542,9 +543,9 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
           TrendDirection.declining => theme.colorScheme.error,
         };
         final trendLabel = switch (hold.trendDirection) {
-          TrendDirection.improving => 'Improving',
-          TrendDirection.stable => 'Stable',
-          TrendDirection.declining => 'Declining',
+          TrendDirection.improving => l10n.improving,
+          TrendDirection.stable => l10n.stable,
+          TrendDirection.declining => l10n.declining,
         };
 
         return Card(
@@ -556,7 +557,7 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
                 Row(
                   children: [
                     Text(
-                      'Hold Time Progression',
+                      l10n.holdTimeProgression,
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -578,17 +579,17 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _StatChip(
-                      label: 'This week',
+                      label: l10n.thisWeek,
                       value: '${(hold.weeklyAverage / 1000).toStringAsFixed(1)}s',
                       theme: theme,
                     ),
                     _StatChip(
-                      label: 'This month',
+                      label: l10n.thisMonth,
                       value: '${(hold.monthlyAverage / 1000).toStringAsFixed(1)}s',
                       theme: theme,
                     ),
                     _StatChip(
-                      label: 'Best ever',
+                      label: l10n.bestEver,
                       value: '${(hold.personalBestMs / 1000).toStringAsFixed(1)}s',
                       theme: theme,
                     ),
@@ -597,14 +598,14 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
                 const Divider(height: 16),
                 _PatternRow(
                   icon: Icons.timer,
-                  label: 'All-time average',
+                  label: l10n.allTimeAverage,
                   value: '${(hold.allTimeAverage / 1000).toStringAsFixed(1)}s',
                   color: theme.colorScheme.primary,
                   theme: theme,
                 ),
                 _PatternRow(
                   icon: Icons.format_list_numbered,
-                  label: 'Total sessions',
+                  label: l10n.totalSessions,
                   value: '${hold.totalSessions}',
                   color: theme.colorScheme.onSurfaceVariant,
                   theme: theme,
@@ -612,7 +613,7 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
                 if (hold.personalBestDate != null)
                   _PatternRow(
                     icon: Icons.emoji_events,
-                    label: 'Personal best date',
+                    label: l10n.personalBestDate,
                     value: DateFormat('MMM d, yyyy')
                         .format(hold.personalBestDate!),
                     color: theme.colorScheme.primary,
@@ -633,6 +634,7 @@ class _ExportCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return Card(
       child: Padding(
@@ -641,14 +643,14 @@ class _ExportCard extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Export Data',
+              l10n.exportData,
               style: theme.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              'Download your complete journal history as a CSV file.',
+              l10n.exportDataSubtitle,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -659,7 +661,7 @@ class _ExportCard extends ConsumerWidget {
               child: OutlinedButton.icon(
                 onPressed: () => _exportCsv(context, ref),
                 icon: const Icon(Icons.download),
-                label: const Text('Export as CSV'),
+                label: Text(l10n.exportAsCsv),
               ),
             ),
           ],
@@ -669,6 +671,7 @@ class _ExportCard extends ConsumerWidget {
   }
 
   Future<void> _exportCsv(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
     try {
       final csv = await ref.read(csvExportProvider.future);
 
@@ -676,8 +679,8 @@ class _ExportCard extends ConsumerWidget {
         // On web, show a dialog with the CSV content (can't write files)
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('CSV export is available on mobile devices'),
+            SnackBar(
+              content: Text(l10n.csvExportWebOnly),
             ),
           );
         }
@@ -693,13 +696,13 @@ class _ExportCard extends ConsumerWidget {
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Exported to: ${file.path}')),
+          SnackBar(content: Text(l10n.exportedTo(file.path))),
         );
       }
     } on Exception catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Export failed: $e')),
+          SnackBar(content: Text('${l10n.exportFailed}: $e')),
         );
       }
     }
