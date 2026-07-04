@@ -361,6 +361,88 @@ class _DOBStep extends StatelessWidget {
               ),
             ),
           ),
+
+          // Calculate from DOB button
+          if (state.birthDate != null) ...[
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: () => notifier.calculateFromDOB(),
+                icon: const Icon(Icons.auto_awesome),
+                label: const Text('Calculate Nakshatra from DOB'),
+              ),
+            ),
+          ],
+
+          // Calculated result display
+          if (state.calculatedNakshatra != null) ...[
+            const SizedBox(height: 16),
+            Card(
+              color: theme.colorScheme.primaryContainer,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.stars,
+                          color: theme.colorScheme.primary,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Calculated: ${state.calculatedNakshatra!.displayName}',
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            color: theme.colorScheme.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (state.birthBird != null) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        'Your bird: ${state.birthBird!.displayName}',
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ],
+                    const SizedBox(height: 8),
+                    Text(
+                      'Moon sidereal longitude: '
+                      '${state.calculatedNakshatra!.siderealLongitude.toStringAsFixed(2)}\u00B0',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    if (state.isNearBoundary) ...[
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.warning_amber,
+                            size: 16,
+                            color: theme.colorScheme.error,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              'Near nakshatra boundary — birth time accuracy is '
+                              'important. Verify with a panchangam if unsure.',
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: theme.colorScheme.error,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
