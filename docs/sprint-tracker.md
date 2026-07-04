@@ -258,14 +258,14 @@
 
 ---
 
-## Sprint 20: UI Polish + Home Layout Redesign — In Progress
+## Sprint 20: UI Polish + Home Layout Redesign ✅ Complete (PR #51)
 
-- [ ] Task 20.1: Split Home into two sub-tabs: "Today" (default) and "Explore"
-- [ ] Task 20.2: Today tab — focused 7 cards (Bird, Rahu, Schedule, Nostril, Wisdom, Hold+Streak, Ribbon)
-- [ ] Task 20.3: Explore tab — Date Selector, Calendar Month, Historical Entries, Best Times, 30-Day Trend
-- [ ] Task 20.4: Responsive two-column layout consistency audit (all screens ≥600px)
-- [ ] Task 20.5: Remove redundant widgets from Today tab (Date Selector, Calendar, Yama Accuracy)
-- [ ] Task 20.6: Full data export/import in Settings (JSON file — all tables + preferences)
+- [x] Task 20.1: Split Home into two sub-tabs: "Today" (default) and "Explore"
+- [x] Task 20.2: Today tab — focused 7 cards (Bird, Rahu, Schedule, Nostril, Wisdom, Hold+Streak, Ribbon)
+- [x] Task 20.3: Explore tab — Date Selector, Calendar Month, Historical Entries, Best Times, 30-Day Trend
+- [x] Task 20.4: Responsive two-column layout consistency audit (all screens ≥600px)
+- [x] Task 20.5: Remove redundant widgets from Today tab (Date Selector, Calendar, Yama Accuracy)
+- [x] Task 20.6: Full data export/import in Settings (JSON file — all tables + preferences)
 
 ---
 
