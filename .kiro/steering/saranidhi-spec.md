@@ -73,5 +73,9 @@ inclusion: auto
 - **File sharing:** `share_plus` — cross-platform share sheet for data export
 - **File picking:** `file_picker` — JSON file selection for data import
 - **iCloud entitlements:** Already committed; requires Apple Developer account to activate
+- **Nakshatra calculation:** Pure Dart Jean Meeus ELP 2000/82 (Moon longitude) + Lahiri Ayanamsa — zero network dependency
+- **OnboardingGuard:** Wraps OnboardingScreen in `Navigator` widget for web picker dialog support (MaterialApp.builder renders above GoRouter)
+- **Onboarding flow:** 4 steps — Welcome → Find Your Bird (dual-path: know nakshatra / calculate from DOB) → Your Location → Data Storage
+- **Preset cities:** Indian only (Chennai, Mumbai, Delhi, Bangalore, Hyderabad, Kolkata)
 
 ---

@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 20 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~49.5 Hours
-**Pull Requests Merged:** 52
+**Sprints Delivered:** 21 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~52.5 Hours
+**Pull Requests Merged:** 54
 **Automated Test Coverage:** 348+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -125,6 +125,17 @@
 | `4b689a0` | Kiro Agent | 2026-07-04 15:00 | feat(ui): vibrant bird+breath logo + fix Settings page width |
 | `062b699` | Kiro Agent | 2026-07-04 16:00 | fix(settings): consistent background + back button alignment |
 | `de57ccb` | Eialarasu | 2026-07-04 16:30 | **Merge PR #51 — Sprint 20 Complete** |
+| `b3fc2d1` | Kiro Agent | 2026-07-04 17:00 | docs(/project-update): Sprint 20 documentation + logo alternatives |
+| `d676e33` | Eialarasu | 2026-07-04 17:30 | **Merge PR #53 — Sprint 20 Docs** |
+| `1da9ee4` | Kiro Agent | 2026-07-04 18:00 | fix(lint): resolve all 12 analyzer issues |
+| `4084a51` | Kiro Agent | 2026-07-04 18:15 | fix(test): update tests for Sprint 21 changes |
+| `b12950d` | Kiro Agent | 2026-07-04 18:30 | fix(test): relax moon latitude test to range check |
+| `7e11194` | Kiro Agent | 2026-07-04 19:00 | fix: onboarding UX redesign (5→4 steps), i18n, web pickers, Indian cities only |
+| `0e5fcde` | Kiro Agent | 2026-07-04 19:30 | fix(web): date/time pickers — add Navigator to OnboardingGuard |
+| `106becc` | Kiro Agent | 2026-07-04 19:45 | fix(web): remove context.go() after saveProfile — guard handles transition |
+| `20d734c` | Kiro Agent | 2026-07-04 20:00 | fix: location step layout shift — pin content to top-left |
+| `b01c686` | Kiro Agent | 2026-07-04 20:15 | docs: mark Sprint 21 complete, add web polish tasks to Sprint 22 |
+| `f243860` | Eialarasu | 2026-07-04 20:30 | **Merge PR #54 — Sprint 21 Complete** |
 
 ---
 
@@ -148,7 +159,8 @@
 | Day 5 (cont.) | 2026-07-03 | 16:00 - 18:30 | ~2.5 | Sprint 18 |
 | Day 6 | 2026-07-04 | 08:00 - 10:30 | ~2.5 | Sprint 19 |
 | Day 6 (cont.) | 2026-07-04 | 11:00 - 16:30 | ~4.0 | Sprint 20 |
-| | | **Subtotal** | **~43.0** | |
+| Day 6 (cont.) | 2026-07-04 | 17:00 - 20:30 | ~2.5 | Sprint 21 |
+| | | **Subtotal** | **~45.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -161,15 +173,16 @@
 | GitHub Actions CI setup & debugging | ~1.5 | Workflow creation, Node.js 24 migration, coverage gate, integration tests |
 | Drift WebAssembly configuration | ~0.5 | sqlite3.wasm sourcing, drift_worker.js compilation, web debugging |
 | Project planning & documentation | ~3.0 | Architecture decisions, sprint planning, testing strategy, evaluation docs |
-| | **Subtotal** | **~6.5** |
+| Preview testing & iteration | ~0.5 | Sprint 21 Vercel preview QA cycles (date picker, layout fixes) |
+| | **Subtotal** | **~7.0** |
 
 ### Total Project Investment
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 43.0 |
-| Infrastructure & admin ops | 6.5 |
-| **Total** | **~49.5** |
+| Active coding & debugging (AI-assisted) | 45.5 |
+| Infrastructure & admin ops | 7.0 |
+| **Total** | **~52.5** |
 
 ---
 
@@ -198,17 +211,18 @@
 | Sprint 18 | Historical View + Planning | #44 | 264+ | ✅ Complete |
 | Sprint 19 | Analytics + Export | #46 | 264+ | ✅ Complete |
 | Sprint 20 | UI Polish + Home Layout Redesign | #51 | 348+ | ✅ Complete |
+| Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 348+ | ✅ Complete |
 
 ---
 
-## Technical Deliverables (as of Sprint 20)
+## Technical Deliverables (as of Sprint 21)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
 - **Full breath journal** with alignment checking, live timer (seconds display), micro-advice, history, delete
 - **Streak engine** with 7-day ribbon, 30-day trend, Yama accuracy tracking
 - **Cloud backup architecture** (abstract interface, stub providers, database export, UI)
-- **4-step onboarding flow** (Welcome → Birth Star → Location → Storage Mode)
+- **4-step onboarding flow** (Welcome → Find Your Bird → Your Location → Data Storage) with dual-path "Find Your Bird" UI
 - **Notification scheduling** (Yama boundaries, ruling/eating toggles)
 - **AI Wisdom Engine** (rules-based, 60+ proverbs, daily caching, deterministic fallback)
 - **8 Material 3 theme variants** (4 colors × Light/Dark + System mode)
@@ -293,6 +307,15 @@
 - **SVG favicon** — `web/favicon.svg` for browser tab branding
 - **share_plus + file_picker** dependencies for cross-platform file sharing and picking
 - **Responsive two-column audit** — all screens (Journal, Settings, Analytics) now use ≥600px breakpoint consistently
+- **Moon Longitude Calculator** — Pure Dart implementation of Jean Meeus ELP 2000/82 algorithm for lunar position (no network/ephemeris dependency)
+- **Lahiri Ayanamsa Calculator** — sidereal correction from tropical longitude for any given date
+- **Nakshatra-from-DOB Calculator** — Moon sidereal longitude → nakshatra index (0–26) with boundary detection (~0.5° tolerance warning)
+- **Onboarding UX redesign (5→4 steps)** — merged Birth Star + DOB into "Find Your Bird" step with SegmentedButton dual-path ("I know my star" / "Calculate from DOB")
+- **IST assumption for Indian births** — no separate birth place field; Moon ±0.5°/hr negligible within India's timezone span vs 13.33° nakshatra width
+- **OnboardingGuard Navigator wrapper** — wraps OnboardingScreen in its own Navigator so picker dialogs work on Flutter Web (MaterialApp.builder renders outside GoRouter)
+- **Extended birth bird attributes** — friends, enemies, ruling planet, direction, colour for all 5 Pakshi birds
+- **Indian-only preset cities** — removed international cities (London, NY, Singapore, Sydney) from onboarding and settings
+- **Analytics tab i18n** — replaced hardcoded 'Analytics' label with `l10n.analyticsTitle`
 
 ---
 

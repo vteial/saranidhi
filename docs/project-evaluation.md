@@ -49,6 +49,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Historical View + Planning** | Date-parameterized dashboard, date selector (arrows + picker + Tomorrow/Today), Best Times This Week (7-day Ruling scan), historical entries card, calendar month view with entry indicators | ✅ Complete (100%) — Sprint 18 |
 | **Analytics + Export** | Analytics screen (4th tab), weekly alignment summary, monthly patterns (best/worst day, active yamas), CSV export, streak insights (gaps, consistency), yama performance breakdown, hold time progression (trend, personal best) | ✅ Complete (100%) — Sprint 19 |
 | **UI Polish + Home Layout Redesign** | Home Today/Explore sub-tabs, responsive two-column audit (all screens), redundant widget cleanup, full JSON data export/import, Settings moved to top-right gear icon, schedule column reorder, vibrant bird logo, SVG favicon | ✅ Complete (100%) — Sprint 20 |
+| **Pakshi Accuracy (DOB-Based Calculation)** | Moon longitude calculator (Jean Meeus ELP 2000/82), Lahiri Ayanamsa, Nakshatra-from-DOB, onboarding UX redesign (5→4 steps with dual-path "Find Your Bird"), extended birth bird attributes (friends/enemies/planet/direction/colour), Indian-only cities, OnboardingGuard Navigator for web pickers | ✅ Complete (100%) — Sprint 21 |
 | **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
@@ -117,6 +118,12 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Import data not reflecting immediately | Only `dashboardDataProvider` invalidated after JSON import | Added cascade invalidation of 6 providers (dashboard, journal, theme, locale, notifications, onboarding) | Sprint 20 |
 | Settings background color inconsistency | Scaffold inside ResponsiveWrapper only covered 1200px; outer area was white | Used full-width Scaffold for theme background, constrained only body content | Sprint 20 |
 | Missing favicon in browser tab | `index.html` referenced `favicon.png` which didn't exist | Added `web/favicon.svg` (SVG logo) + updated link tag with PNG fallback | Sprint 20 |
+| Date/time pickers crash on Flutter Web | OnboardingGuard renders OnboardingScreen via `MaterialApp.builder` — outside GoRouter Navigator; `showDatePicker` has no Navigator to push dialog route | Wrapped OnboardingScreen in its own `Navigator` widget inside OnboardingGuard | Sprint 21 |
+| `context.go()` TypeError after saveProfile on web | After onboarding completes, guard swaps widget tree; `context.go(AppRoutes.home)` tries to use GoRouter from dead Navigator context | Removed explicit navigation — OnboardingGuard handles transition automatically via provider state | Sprint 21 |
+| Location step layout shift on wide screens | `SingleChildScrollView` content centered in `Expanded` when short (before selection), snapped to left when tall (after selection) | Wrapped with `Align(alignment: Alignment.topLeft)` to pin content consistently | Sprint 21 |
+| Hardcoded 'Analytics' bottom nav label | NavigationDestination label was English-only string literal | Replaced with `l10n.analyticsTitle` (key exists in both EN/TA ARB files) | Sprint 21 |
+| Non-Indian cities in preset lists | London, New York, Singapore, Sydney included — irrelevant for Indian birth-based app | Removed; kept only Chennai, Mumbai, Delhi, Bangalore, Hyderabad, Kolkata | Sprint 21 |
+| `avoid_redundant_argument_values` lint warnings | `useRootNavigator: true` explicitly passed to `showDatePicker`/`showTimePicker` (already default) | Removed redundant arguments | Sprint 21 |
 
 ---
 
@@ -145,6 +152,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 18 | Historical View + Planning | #44 | 0 (UI widgets, no new tests) | ✅ Complete |
 | Sprint 19 | Analytics + Export | #46 | 0 (analytics calculator, no new tests) | ✅ Complete |
 | Sprint 20 | UI Polish + Home Layout Redesign | #51 | 84 (widget test updates + new assertions) | ✅ Complete |
+| Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 0 (test expectations updated, no new tests) | ✅ Complete |
 
 ---
 
