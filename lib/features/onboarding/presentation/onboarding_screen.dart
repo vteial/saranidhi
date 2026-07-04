@@ -326,17 +326,14 @@ class _DOBCalculatePath extends StatefulWidget {
 
 class _DOBCalculatePathState extends State<_DOBCalculatePath> {
   Future<void> _pickDate() async {
-    // Capture navigator context before async gap
-    final navigator = Navigator.of(context, rootNavigator: true);
     final initialDate = widget.state.birthDate ?? DateTime(1990);
     final now = DateTime.now();
 
     final picked = await showDatePicker(
-      context: navigator.context,
+      context: context,
       initialDate: initialDate.isAfter(now) ? now : initialDate,
       firstDate: DateTime(1920),
       lastDate: now,
-      helpText: 'Select your date of birth',
     );
     if (picked != null && mounted) {
       widget.notifier.setBirthDate(picked);
@@ -344,14 +341,10 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
   }
 
   Future<void> _pickTime() async {
-    // Capture navigator context before async gap
-    final navigator = Navigator.of(context, rootNavigator: true);
-
     final picked = await showTimePicker(
-      context: navigator.context,
+      context: context,
       initialTime:
           widget.state.birthTimeOfDay ?? const TimeOfDay(hour: 6, minute: 0),
-      helpText: 'Select your birth time',
     );
     if (picked != null && mounted) {
       widget.notifier.setBirthTime(picked);
