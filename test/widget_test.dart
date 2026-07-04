@@ -56,11 +56,16 @@ void main() {
     expect(find.text('Journal'), findsOneWidget);
     expect(find.text('Settings'), findsOneWidget);
 
-    // Verify home screen shows dashboard content
+    // Verify home screen shows dashboard title
     expect(find.text('Saranidhi'), findsOneWidget);
+
+    // Verify Today sub-tab is visible (default tab)
+    expect(find.text('Today'), findsOneWidget);
+    expect(find.text('Explore'), findsOneWidget);
+
+    // Verify Today tab shows streak and ribbon (cards on Today tab)
     expect(find.text('3 days'), findsOneWidget); // streak
     expect(find.text('Last 7 Days'), findsOneWidget); // ribbon header
-    expect(find.text('30-Day Trend'), findsOneWidget); // trend header
   });
 
   testWidgets('Navigation between tabs works', (tester) async {
@@ -83,7 +88,10 @@ void main() {
 
     // Navigate back to Home tab
     await tester.tap(find.text('Home'));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+    // Verify Today tab content is still visible
+    expect(find.text('Today'), findsOneWidget);
     expect(find.text('3 days'), findsOneWidget);
   });
 }
