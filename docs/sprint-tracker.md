@@ -269,18 +269,18 @@
 
 ---
 
-## Sprint 21: Pakshi Accuracy (DOB-Based Calculation) — In Progress
+## Sprint 21: Pakshi Accuracy (DOB-Based Calculation) ✅ Complete (PR #54)
 
-- [ ] Task 21.1: Moon longitude calculator — Pure Dart (Jean Meeus ELP 2000/82)
-- [ ] Task 21.2: Lahiri Ayanamsa calculator — sidereal correction for given date
-- [ ] Task 21.3: Nakshatra from DOB — Moon sidereal longitude → nakshatra index (0–26)
-- [ ] Task 21.4: Enhanced onboarding — add DOB date + time + birth place fields
-- [ ] Task 21.5: Auto-calculate vs manual — "Calculate from DOB" button + keep manual fallback
-- [ ] Task 21.6: Extended birth bird attributes — friends, enemies, ruling planet, direction, colour
+- [x] Task 21.1: Moon longitude calculator — Pure Dart (Jean Meeus ELP 2000/82)
+- [x] Task 21.2: Lahiri Ayanamsa calculator — sidereal correction for given date
+- [x] Task 21.3: Nakshatra from DOB — Moon sidereal longitude → nakshatra index (0–26)
+- [x] Task 21.4: Enhanced onboarding — add DOB date + time fields, merge into 4-step flow with dual-path "Find Your Bird" UI
+- [x] Task 21.5: Auto-calculate vs manual — SegmentedButton toggle ("I know my star" / "Calculate from DOB") + keep manual fallback
+- [x] Task 21.6: Extended birth bird attributes — friends, enemies, ruling planet, direction, colour
 
 ---
 
-## Sprint 22: Widget Test Coverage
+## Sprint 22: Widget Test Coverage + Web Polish
 
 - [ ] Task 22.1: BirthBirdCard widget test
 - [ ] Task 22.2: RahuKaalCard widget test
@@ -288,6 +288,8 @@
 - [ ] Task 22.4: NostrilDominanceChart + HoldTimeCard widget tests
 - [ ] Task 22.5: StreakFlameWidget + TrendWidget + SevenDayRibbonWidget tests
 - [ ] Task 22.6: YamaAccuracyWidget + WisdomCard widget tests
+- [ ] Task 22.7: Fix Drift WASM worker CORS/loading errors on Vercel (console TypeErrors at startup)
+- [ ] Task 22.8: Add Noto Color Emoji font asset to suppress Flutter Web missing characters warning
 
 ---
 
