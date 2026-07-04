@@ -50,6 +50,11 @@ class ShellScaffold extends StatelessWidget {
                 selectedIcon: const Icon(Icons.settings),
                 label: l10n.settingsTab,
               ),
+              const NavigationDestination(
+                icon: Icon(Icons.insights_outlined),
+                selectedIcon: Icon(Icons.insights),
+                label: 'Analytics',
+              ),
             ],
           ),
         ),
