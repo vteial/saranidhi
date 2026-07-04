@@ -13,8 +13,9 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// Steps:
 /// 0. Welcome (name)
 /// 1. Birth Star (nakshatra → bird)
-/// 2. Location (lat/lng for sunrise calculation)
-/// 3. Storage Mode (local / icloud / gdrive)
+/// 2. Date of Birth (date + time + birth place)
+/// 3. Location (lat/lng for sunrise calculation)
+/// 4. Storage Mode (local / icloud / gdrive)
 class OnboardingScreen extends ConsumerWidget {
   const OnboardingScreen({super.key});
 
@@ -46,8 +47,9 @@ class OnboardingScreen extends ConsumerWidget {
                   child: switch (state.currentStep) {
                     0 => _WelcomeStep(state: state, notifier: notifier),
                     1 => _BirthStarStep(state: state, notifier: notifier),
-                    2 => _LocationStep(state: state, notifier: notifier),
-                    3 => _StorageModeStep(state: state, notifier: notifier),
+                    2 => _DOBStep(state: state, notifier: notifier),
+                    3 => _LocationStep(state: state, notifier: notifier),
+                    4 => _StorageModeStep(state: state, notifier: notifier),
                     _ => const SizedBox.shrink(),
                   },
                 ),
@@ -229,6 +231,163 @@ class _BirthStarStep extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class _DOBStep extends StatelessWidget {
+  const _DOBStep({required this.state, required this.notifier});
+  final OnboardingState state;
+  final OnboardingNotifier notifier;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Date of Birth', style: theme.textTheme.titleLarge),
+          const SizedBox(height: 8),
+          Text(
+            'Your birth date, time, and place are used to accurately '
+            'calculate your birth nakshatra and Pakshi bird.',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 24),
+
+          // Date picker
+          ListTile(
+            leading: const Icon(Icons.calendar_today),
+            title: Text(
+              state.birthDate != null
+                  ? '${state.birthDate!.day}/${state.birthDate!.month}/${state.birthDate!.year}'
+                  : 'Select date',
+            ),
+            subtitle: const Text('Birth date'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _pickDate(context),
+            contentPadding: EdgeInsets.zero,
+          ),
+          const Divider(),
+
+          // Time picker
+          ListTile(
+            leading: const Icon(Icons.access_time),
+            title: Text(
+              state.birthTimeOfDay != null
+                  ? '${state.birthTimeOfDay!.hour.toString().padLeft(2, '0')}:'
+                      '${state.birthTimeOfDay!.minute.toString().padLeft(2, '0')}'
+                  : 'Select time (optional)',
+            ),
+            subtitle: const Text('Birth time (for precise nakshatra)'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _pickTime(context),
+            contentPadding: EdgeInsets.zero,
+          ),
+          const Divider(),
+
+          // Birth place
+          const SizedBox(height: 16),
+          Text('Birth Place', style: theme.textTheme.titleSmall),
+          const SizedBox(height: 8),
+          Text(
+            'Optional — used for precise moon position at birth.',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: _presetCities.map((city) {
+              final isSelected = state.birthPlaceName == city.name;
+              return ChoiceChip(
+                label: Text(city.name),
+                selected: isSelected,
+                onSelected: (_) => notifier.setBirthPlace(
+                  latitude: city.lat,
+                  longitude: city.lng,
+                  name: city.name,
+                ),
+              );
+            }).toList(),
+          ),
+          if (state.birthPlaceName != null) ...[
+            const SizedBox(height: 12),
+            Card(
+              color: theme.colorScheme.primaryContainer,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    const Icon(Icons.location_city),
+                    const SizedBox(width: 8),
+                    Text(state.birthPlaceName!),
+                  ],
+                ),
+              ),
+            ),
+          ],
+
+          // Info note about accuracy
+          const SizedBox(height: 24),
+          Card(
+            color: theme.colorScheme.surfaceContainerHighest,
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    size: 18,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'If you know your birth nakshatra already, you can '
+                      'skip this step. The previous step selection will be used.',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _pickDate(BuildContext context) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: state.birthDate ?? DateTime(1990),
+      firstDate: DateTime(1920),
+      lastDate: DateTime.now(),
+      helpText: 'Select your date of birth',
+    );
+    if (picked != null) {
+      notifier.setBirthDate(picked);
+    }
+  }
+
+  Future<void> _pickTime(BuildContext context) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: state.birthTimeOfDay ?? const TimeOfDay(hour: 6, minute: 0),
+      helpText: 'Select your birth time',
+    );
+    if (picked != null) {
+      notifier.setBirthTime(picked);
+    }
   }
 }
 
