@@ -273,6 +273,52 @@ Contextual guidance layer delivering personalized spiritual coaching.
 
 ---
 
+## 6c. Nakshatra Calculation Architecture (Sprint 21)
+
+### DOB-Based Birth Bird Derivation
+
+The classic Sara Kalai approach: birth bird is **fixed from birth** (natal chart), while daily rhythm (yamas, sunrise/sunset) follows **current geographical position**.
+
+#### Calculation Pipeline
+```
+DOB (date + time) → IST assumed (UTC+5:30)
+    → Julian Day Number
+    → Moon Longitude (Jean Meeus ELP 2000/82, pure Dart)
+    → Lahiri Ayanamsa correction (sidereal longitude)
+    → Nakshatra index (sidereal_longitude ÷ 13.33°)
+    → Birth Bird (nakshatra → bird mapping)
+```
+
+#### Key Design Decisions
+| Decision | Rationale |
+|----------|-----------|
+| IST assumption for all births | Moon moves ~0.5°/hour; India's ±30min timezone span is negligible vs 13.33° nakshatra width |
+| No separate birth place field | Removes UX friction; accuracy impact < 0.25° for anywhere in India |
+| ~0.5° tolerance acceptable | Boundary warning shown when Moon is within 1° of nakshatra edge |
+| Pure Dart (no ephemeris files) | Zero network dependency, works offline, small binary size |
+
+#### Onboarding Dual-Path UI
+```
+Step 1: "Find Your Bird"
+├── Path A: "I know my star" → Nakshatra list (27 items) → Bird
+└── Path B: "Calculate from DOB" → Date + Time pickers → Calculate → Bird
+```
+
+#### OnboardingGuard Navigator Pattern
+`MaterialApp.builder` renders widgets **above** the GoRouter Navigator. The `OnboardingGuard` wraps `OnboardingScreen` in its own `Navigator` widget so that `showDatePicker`/`showTimePicker` have a valid overlay to push dialog routes onto (required for Flutter Web).
+
+### Profiles Table — Sprint 21 Columns
+
+| Column | Type | Notes |
+|--------|------|-------|
+| birth_date_epoch | INTEGER | DOB as Unix epoch ms (nullable) |
+| birth_time | TEXT | "HH:mm" format (nullable) |
+| birth_place_name | TEXT | City name (nullable — not used in current flow) |
+| birth_place_lat | REAL | Birth latitude (nullable — not used in current flow) |
+| birth_place_lng | REAL | Birth longitude (nullable — not used in current flow) |
+
+---
+
 ## 6. CI/CD Pipeline
 
 ### On Every PR to `main`

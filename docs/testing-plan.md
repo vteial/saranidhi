@@ -260,6 +260,7 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 14 | 0 | 264 | UI-heavy sprint (5 new widgets), no new test assertions |
 | Sprint 15 | 0 | 264 | Night yama calculator + night Pakshi tables, no new tests |
 | Sprint 20 | 84 | 348 | Widget/integration test rewrites for Today/Explore tabs, Settings gear icon nav, new assertions for sub-tab labels |
+| Sprint 21 | 0 | 348 | Moon longitude, Lahiri Ayanamsa, Nakshatra calculators + onboarding UX redesign; existing test expectations updated (totalSteps 5→4), no new test files |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 
