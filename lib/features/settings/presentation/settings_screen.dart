@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/theme/app_theme.dart';
 import 'package:saranidhi/core/theme/theme_provider.dart';
+import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/backup_actions_widget.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mode_selector.dart';
@@ -140,25 +141,27 @@ class SettingsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settingsTitle)),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: isWide
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(child: personalSection),
-                  const SizedBox(width: 24),
-                  Expanded(child: dataSection),
-                ],
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  personalSection,
-                  const Divider(height: 32),
-                  dataSection,
-                ],
-              ),
+      body: ResponsiveWrapper(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: isWide
+              ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: personalSection),
+                    const SizedBox(width: 24),
+                    Expanded(child: dataSection),
+                  ],
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    personalSection,
+                    const Divider(height: 32),
+                    dataSection,
+                  ],
+                ),
+        ),
       ),
     );
   }
