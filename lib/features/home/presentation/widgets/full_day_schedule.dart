@@ -179,7 +179,6 @@ class _YamaRow extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(birdEmoji, style: const TextStyle(fontSize: 14)),
-          Text(BirdEmoji.forState(birdState), style: const TextStyle(fontSize: 14)),
           const SizedBox(width: 6),
           Expanded(
             child: Text(
@@ -189,19 +188,26 @@ class _YamaRow extends StatelessWidget {
               ),
             ),
           ),
+          Text(BirdEmoji.forState(birdState), style: const TextStyle(fontSize: 14)),
           if (isActive)
-            Text(
-              '\u2190 ${l10n.now}',
-              style: theme.textTheme.bodySmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: stateColor,
+            Padding(
+              padding: const EdgeInsets.only(left: 6),
+              child: Text(
+                '\u2190 ${l10n.now}',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: stateColor,
+                ),
               ),
             )
           else if (isBest)
-            Text(
-              '\u2190 ${l10n.bestTime}',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.primary,
+            Padding(
+              padding: const EdgeInsets.only(left: 6),
+              child: Text(
+                '\u2190 ${l10n.bestTime}',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.primary,
+                ),
               ),
             ),
           const SizedBox(width: 8),

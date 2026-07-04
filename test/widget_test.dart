@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:saranidhi/database/app_database.dart';
@@ -51,10 +52,13 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    // Verify bottom navigation tabs are present
+    // Verify bottom navigation tabs are present (Home, Journal, Analytics)
     expect(find.text('Home'), findsOneWidget);
     expect(find.text('Journal'), findsOneWidget);
-    expect(find.text('Settings'), findsOneWidget);
+    expect(find.text('Analytics'), findsOneWidget);
+
+    // Verify Settings gear icon is in app bar (top-right)
+    expect(find.byIcon(Icons.settings_outlined), findsOneWidget);
 
     // Verify home screen shows dashboard title
     expect(find.text('Saranidhi'), findsOneWidget);
@@ -80,13 +84,18 @@ void main() {
     await tester.pump(const Duration(milliseconds: 500));
     expect(find.text('Breath Journal'), findsOneWidget);
 
-    // Navigate to Settings tab
-    await tester.tap(find.text('Settings'));
+    // Navigate to Settings via gear icon
+    await tester.tap(find.byIcon(Icons.settings_outlined));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
-    expect(find.text('Settings'), findsWidgets);
+    expect(find.text('Settings'), findsOneWidget);
 
-    // Navigate back to Home tab
+    // Go back from Settings
+    await tester.tap(find.byType(BackButton));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    // Navigate to Home tab
     await tester.tap(find.text('Home'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));

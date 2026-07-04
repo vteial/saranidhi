@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,10 +52,14 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Breath Journal'), findsOneWidget);
 
-      // Navigate to Settings
-      await tester.tap(find.text('Settings'));
+      // Navigate to Settings via gear icon
+      await tester.tap(find.byIcon(Icons.settings_outlined));
       await tester.pumpAndSettle();
-      expect(find.text('Settings'), findsWidgets);
+      expect(find.text('Settings'), findsOneWidget);
+
+      // Go back from Settings
+      await tester.tap(find.byType(BackButton));
+      await tester.pumpAndSettle();
 
       // Navigate back to Home
       await tester.tap(find.text('Home'));

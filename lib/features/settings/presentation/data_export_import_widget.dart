@@ -259,12 +259,13 @@ class _DataExportImportWidgetState
 
       // Invalidate all providers that read from DB or SharedPreferences
       // so the UI reflects the imported data immediately
-      ref.invalidate(dashboardDataProvider);
-      ref.invalidate(journalEntriesProvider);
-      ref.invalidate(themeProvider);
-      ref.invalidate(localeProvider);
-      ref.invalidate(notificationPrefsProvider);
-      ref.invalidate(onboardingCompleteProvider);
+      ref
+        ..invalidate(dashboardDataProvider)
+        ..invalidate(journalEntriesProvider)
+        ..invalidate(themeProvider)
+        ..invalidate(localeProvider)
+        ..invalidate(notificationPrefsProvider)
+        ..invalidate(onboardingCompleteProvider);
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

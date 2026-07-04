@@ -31,7 +31,6 @@ final _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _journalNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'journal');
 final _analyticsNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'analytics');
-final _settingsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'settings');
 
 /// Custom fade-through transition for tab pages.
 CustomTransitionPage<void> _fadeTransitionPage({
@@ -76,6 +75,15 @@ final GoRouter appRouter = GoRouter(
         transitionDuration: const Duration(milliseconds: 350),
       ),
     ),
+    // Settings as a top-level route (accessed via gear icon in app bar)
+    GoRoute(
+      path: AppRoutes.settings,
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) => _fadeTransitionPage(
+        child: const SettingsScreen(),
+        state: state,
+      ),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ShellScaffold(navigationShell: navigationShell);
@@ -100,18 +108,6 @@ final GoRouter appRouter = GoRouter(
               path: AppRoutes.journal,
               pageBuilder: (context, state) => _fadeTransitionPage(
                 child: const JournalScreen(),
-                state: state,
-              ),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          navigatorKey: _settingsNavigatorKey,
-          routes: [
-            GoRoute(
-              path: AppRoutes.settings,
-              pageBuilder: (context, state) => _fadeTransitionPage(
-                child: const SettingsScreen(),
                 state: state,
               ),
             ),
