@@ -139,10 +139,10 @@ class SettingsScreen extends ConsumerWidget {
       ],
     );
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.settingsTitle)),
-      body: ResponsiveWrapper(
-        child: SingleChildScrollView(
+    return ResponsiveWrapper(
+      child: Scaffold(
+        appBar: AppBar(title: Text(l10n.settingsTitle)),
+        body: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: isWide
               ? Row(
