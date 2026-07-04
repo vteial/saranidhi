@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
-import 'package:saranidhi/features/home/presentation/today_tab.dart';
 import 'package:saranidhi/features/home/presentation/explore_tab.dart';
+import 'package:saranidhi/features/home/presentation/today_tab.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 

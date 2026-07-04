@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:drift/drift.dart';
 import 'package:saranidhi/database/app_database.dart';
