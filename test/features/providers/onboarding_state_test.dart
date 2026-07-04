@@ -17,9 +17,9 @@ void main() {
       expect(state.isSaving, isFalse);
     });
 
-    test('totalSteps is 4', () {
+    test('totalSteps is 5', () {
       const state = OnboardingState();
-      expect(state.totalSteps, equals(4));
+      expect(state.totalSteps, equals(5));
     });
 
     test('copyWith updates only specified fields', () {
