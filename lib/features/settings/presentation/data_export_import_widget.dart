@@ -5,8 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:saranidhi/core/l10n/locale_provider.dart';
+import 'package:saranidhi/core/theme/theme_provider.dart';
+import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/features/cloud_backup/domain/database_exporter.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
+import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
+import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
@@ -252,8 +257,14 @@ class _DataExportImportWidgetState
       final exporter = ref.read(databaseExporterProvider);
       await exporter.importFromBytes(bytes);
 
-      // Invalidate all dashboard data to reflect imported data
+      // Invalidate all providers that read from DB or SharedPreferences
+      // so the UI reflects the imported data immediately
       ref.invalidate(dashboardDataProvider);
+      ref.invalidate(journalEntriesProvider);
+      ref.invalidate(themeProvider);
+      ref.invalidate(localeProvider);
+      ref.invalidate(notificationPrefsProvider);
+      ref.invalidate(onboardingCompleteProvider);
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
