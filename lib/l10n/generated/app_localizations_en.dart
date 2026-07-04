@@ -19,6 +19,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTab => 'Settings';
 
   @override
+  String get todayTab => 'Today';
+
+  @override
+  String get exploreTab => 'Explore';
+
+  @override
   String get dashboardTitle => 'Saranidhi';
 
   @override
@@ -578,4 +584,61 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nightNoNostrilPattern => 'Night \u2014 no expected nostril pattern';
+
+  @override
+  String get dataExportImportTitle => 'Data Export / Import';
+
+  @override
+  String get dataExportImportSubtitle => 'Transfer your data between devices or create a manual backup as a JSON file.';
+
+  @override
+  String get exportAllData => 'Export All Data';
+
+  @override
+  String get exporting => 'Exporting...';
+
+  @override
+  String get exportSuccess => 'Data exported successfully';
+
+  @override
+  String get importData => 'Import Data';
+
+  @override
+  String get importing => 'Importing...';
+
+  @override
+  String get importConfirmTitle => 'Import Data?';
+
+  @override
+  String get importConfirmMessage => 'This will replace ALL existing data with the imported file.';
+
+  @override
+  String get importExportedOn => 'Exported on';
+
+  @override
+  String get importProfiles => 'Profiles';
+
+  @override
+  String get importJournalEntries => 'Journal entries';
+
+  @override
+  String get importBreathSessions => 'Breath sessions';
+
+  @override
+  String get importWarning => 'This action cannot be undone.';
+
+  @override
+  String get importConfirmButton => 'Import';
+
+  @override
+  String get importSuccess => 'Data imported successfully';
+
+  @override
+  String get importFailed => 'Import failed';
+
+  @override
+  String get importFailedReadFile => 'Could not read selected file';
+
+  @override
+  String get importInvalidFile => 'Invalid export file';
 }

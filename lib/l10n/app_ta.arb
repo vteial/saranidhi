@@ -4,6 +4,8 @@
   "homeTab": "முகப்பு",
   "journalTab": "பதிவேடு",
   "settingsTab": "அமைப்புகள்",
+  "todayTab": "இன்று",
+  "exploreTab": "ஆராய்",
 
   "dashboardTitle": "சரநிதி",
   "breathJournalTitle": "மூச்சு பதிவேடு",
@@ -208,5 +210,25 @@
   "guidanceNightWalking": "நடுநிலை இரவு — லேசான வாசிப்பு அல்லது மெதுவான நீட்சி.",
   "guidanceNightSleeping": "ஆழ்ந்த ஓய்வு நேரம் — தூக்கத்திற்கு ஏற்றது.",
   "guidanceNightDying": "இரவின் கடைசி நிலை — ஆழ்ந்து உறங்கு, முழுமையாக விடுவி.",
-  "nightNoNostrilPattern": "இரவு — எதிர்பார்க்கப்பட்ட நாசி முறை இல்லை"
+  "nightNoNostrilPattern": "இரவு — எதிர்பார்க்கப்பட்ட நாசி முறை இல்லை",
+
+  "dataExportImportTitle": "தரவு ஏற்றுமதி / இறக்குமதி",
+  "dataExportImportSubtitle": "சாதனங்களுக்கு இடையே தரவை மாற்றவும் அல்லது JSON கோப்பாக கைமுறை காப்புப்பிரதி உருவாக்கவும்.",
+  "exportAllData": "அனைத்து தரவையும் ஏற்றுமதி செய்",
+  "exporting": "ஏற்றுமதி செய்கிறது...",
+  "exportSuccess": "தரவு வெற்றிகரமாக ஏற்றுமதி செய்யப்பட்டது",
+  "importData": "தரவை இறக்குமதி செய்",
+  "importing": "இறக்குமதி செய்கிறது...",
+  "importConfirmTitle": "தரவை இறக்குமதி செய்யவா?",
+  "importConfirmMessage": "இது ஏற்கனவே உள்ள அனைத்து தரவையும் இறக்குமதி கோப்புடன் மாற்றும்.",
+  "importExportedOn": "ஏற்றுமதி செய்யப்பட்ட தேதி",
+  "importProfiles": "சுயவிவரங்கள்",
+  "importJournalEntries": "பதிவேடு பதிவுகள்",
+  "importBreathSessions": "மூச்சு அமர்வுகள்",
+  "importWarning": "இந்த செயலை மீட்க முடியாது.",
+  "importConfirmButton": "இறக்குமதி",
+  "importSuccess": "தரவு வெற்றிகரமாக இறக்குமதி செய்யப்பட்டது",
+  "importFailed": "இறக்குமதி தோல்வி",
+  "importFailedReadFile": "தேர்ந்தெடுக்கப்பட்ட கோப்பை படிக்க முடியவில்லை",
+  "importInvalidFile": "தவறான ஏற்றுமதி கோப்பு"
 }

@@ -35,6 +35,10 @@ dependencies:
   path_provider: ^2.1.5
   path: ^1.9.1
 
+  # File sharing & picking
+  share_plus: ^10.1.4
+  file_picker: ^8.3.7
+
   # Icons
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.3.0

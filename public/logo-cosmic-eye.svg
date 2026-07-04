@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!--
+    Saranidhi Logo — Cosmic Eye (Option C)
+    
+    Concept: Third-eye/bindu motif with vibrant teal-gold radial
+    gradient on deep indigo. The eye shape represents awareness and
+    cosmic sight (Pakshi vision). A central bindu radiates outward
+    with sacred geometry rings. The iris has a subtle lotus pattern.
+  -->
+
+  <defs>
+    <radialGradient id="bgRadial" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="60%" stop-color="#0f0a2e"/>
+      <stop offset="100%" stop-color="#050318"/>
+    </radialGradient>
+    <linearGradient id="eyeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5BEAD6"/>
+      <stop offset="40%" stop-color="#7B68EE"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+    <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="60%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </radialGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5BEAD6" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#7B68EE" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Deep background circle -->
+  <circle cx="256" cy="256" r="248" fill="url(#bgRadial)"/>
+
+  <!-- Outer sacred ring -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#5BEAD6" stroke-width="1.5" opacity="0.25"/>
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#7B68EE" stroke-width="1" opacity="0.2"/>
+
+  <!-- Cosmic dust / star dots -->
+  <circle cx="120" cy="130" r="2" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="390" cy="110" r="2.5" fill="#FFFFFF" opacity="0.5"/>
+  <circle cx="95" cy="310" r="1.5" fill="#FFFFFF" opacity="0.4"/>
+  <circle cx="420" cy="330" r="2" fill="#FFFFFF" opacity="0.5"/>
+  <circle cx="150" cy="420" r="2" fill="#FFFFFF" opacity="0.3"/>
+  <circle cx="370" cy="430" r="1.5" fill="#FFFFFF" opacity="0.4"/>
+  <circle cx="440" cy="200" r="1.5" fill="#FFFFFF" opacity="0.5"/>
+  <circle cx="75" cy="220" r="2" fill="#FFFFFF" opacity="0.35"/>
+
+  <!-- Eye shape — almond/mandorla form -->
+  <!-- Upper lid -->
+  <path
+    d="M 100 256
+       C 150 160, 220 130, 256 130
+       C 292 130, 362 160, 412 256"
+    stroke="url(#eyeGrad)"
+    stroke-width="12"
+    stroke-linecap="round"
+    fill="none"
+  />
+  <!-- Lower lid -->
+  <path
+    d="M 100 256
+       C 150 352, 220 382, 256 382
+       C 292 382, 362 352, 412 256"
+    stroke="url(#eyeGrad)"
+    stroke-width="12"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Eye fill (translucent) -->
+  <path
+    d="M 100 256
+       C 150 160, 220 130, 256 130
+       C 292 130, 362 160, 412 256
+       C 362 352, 292 382, 256 382
+       C 220 382, 150 352, 100 256Z"
+    fill="url(#glowGrad)"
+    opacity="0.3"
+  />
+
+  <!-- Outer iris ring -->
+  <circle cx="256" cy="256" r="75" fill="none" stroke="url(#eyeGrad)" stroke-width="6" opacity="0.8"/>
+
+  <!-- Iris (golden) -->
+  <circle cx="256" cy="256" r="60" fill="url(#irisGrad)"/>
+
+  <!-- Iris inner pattern (lotus petals) -->
+  <path d="M 256 200 C 265 225, 275 240, 256 256 C 237 240, 247 225, 256 200Z" fill="#D97706" opacity="0.5"/>
+  <path d="M 256 312 C 247 287, 237 272, 256 256 C 275 272, 265 287, 256 312Z" fill="#D97706" opacity="0.5"/>
+  <path d="M 200 256 C 225 247, 240 237, 256 256 C 240 275, 225 265, 200 256Z" fill="#D97706" opacity="0.5"/>
+  <path d="M 312 256 C 287 265, 272 275, 256 256 C 272 237, 287 247, 312 256Z" fill="#D97706" opacity="0.5"/>
+
+  <!-- Pupil -->
+  <circle cx="256" cy="256" r="22" fill="#0f0a2e"/>
+
+  <!-- Central bindu (bright point of awareness) -->
+  <circle cx="256" cy="256" r="8" fill="#FFD700"/>
+  <circle cx="256" cy="256" r="4" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- Light reflection on iris -->
+  <circle cx="242" cy="242" r="8" fill="#FFFFFF" opacity="0.25"/>
+  <circle cx="268" cy="248" r="4" fill="#FFFFFF" opacity="0.15"/>
+
+  <!-- Upper crest rays (third eye activation) -->
+  <line x1="256" y1="100" x2="256" y2="118" stroke="#5BEAD6" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <line x1="230" y1="105" x2="238" y2="120" stroke="#5BEAD6" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="282" y1="105" x2="274" y2="120" stroke="#5BEAD6" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Lower anchor dot -->
+  <circle cx="256" cy="420" r="5" fill="#F59E0B" opacity="0.6"/>
+</svg>
