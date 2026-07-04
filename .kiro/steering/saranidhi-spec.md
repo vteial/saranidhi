@@ -2,168 +2,74 @@
 inclusion: auto
 ---
 
-# Saranidhi — Unified Application Specification
+# Saranidhi — Steering Rules & Guardrails
 
-## 1. System Objective & Guardrails
+> This file auto-loads into every Kiro session. It contains ONLY rules,
+> constraints, and conventions that must be followed at all times.
+> For architecture details, see `.kiro/design.md`.
+> For product requirements, see `.kiro/product.md`.
+> For file structure, see `.kiro/structure.md`.
 
-* **Core Purpose:** A spiritual breath-tracking and life-guidance app rooted in Siva Swarodaya (Sara Kalai) science, Panja Pakshi Shastra, and Vedic time systems. Helps users align their daily breath patterns with cosmic rhythms for conscious living.
-* **Architecture Pattern:** Local-first, zero-backend. All data resides on-device (SQLite via Drift) with optional encrypted backup to user's own cloud (iCloud on iOS, Google Drive on Android/Web).
-* **UI Philosophy:** Mobile-first, minimalist, spiritually evocative. Material 3 design language with custom theming (Light, Dark, Emerald, Gold). iPhone SE viewport as minimum target.
-* **Strict Exclusions:** No server-side database, no Supabase, no Firebase Firestore, no third-party analytics that leak user data, no social features, no user-to-user interaction.
-* **Privacy Guarantee:** User data never touches developer-owned infrastructure. Cloud backup is to user's OWN Apple/Google account only.
-* **Type-Safety:** Strict Dart analysis. Zero usage of `dynamic` except where framework-mandated. Freezed models for all entities.
+---
 
-## 2. Technical Stack Definition
+## 1. Strict Exclusions (NEVER do these)
 
-| Layer | Choice |
-|-------|--------|
-| **Framework** | Flutter (iOS, Android, Web) |
-| **State Management** | Riverpod 3 (@riverpod code generation) |
-| **Routing** | GoRouter (StatefulShellRoute, auth redirects, deep linking) |
-| **Local Database** | Drift (SQLite) — works on mobile + web (sql.js/IndexedDB) |
-| **Models** | Freezed + json_serializable |
-| **Cloud Backup (iOS)** | iCloud via `icloud_storage` package |
-| **Cloud Backup (Android/Web)** | Google Drive App Data folder via `googleapis` |
-| **Auth (iOS)** | Apple Sign-In (for iCloud access only) |
-| **Auth (Android/Web)** | Google Sign-In (for Google Drive access only) |
-| **Local AI** | On-device LLM (mobile), rules-based engine (web) |
-| **Notifications** | flutter_local_notifications (mobile only) |
-| **Theming** | Material 3 (4 variants: Light, Dark, Emerald, Gold) |
-| **Localization** | ARB files (EN, TA — 130+ keys) + `flutter gen-l10n` (non-synthetic, committed output to `lib/l10n/generated/`) |
-| **Linting** | very_good_analysis |
-| **CI/CD** | GitHub Actions |
-| **Web Staging** | Vercel (PR previews) |
-| **Web Production** | Vercel (auto-deploy from main) |
-| **Mobile Distribution** | App Store (iOS) + Play Store (Android) |
-| **Cloud Sync** | iCloud (CloudKit) — sync-on-open, primary device priority |
-| **macOS** | Flutter macOS target (same codebase as iOS) |
-| **Pre-commit** | lefthook |
+- No server-side database (no Supabase, no Firebase Firestore, no custom backend)
+- No third-party analytics that leak user data
+- No social features or user-to-user interaction
+- No developer-owned cloud storage of user data
+- No usage of `dynamic` type except where framework-mandated
+- No `IntrinsicHeight` widget (causes layout issues)
+- No `git push --force` to main/prod branches
+- No modifications to files outside assigned scope (e.g., Jules only touches `test/`)
 
-## 3. Architecture Layers
+## 2. Architecture Constraints
 
-```
-┌─────────────────────────────────────────────────────┐
-│  PRESENTATION LAYER                                  │
-│  Flutter Widgets + Riverpod State + GoRouter         │
-├─────────────────────────────────────────────────────┤
-│  DOMAIN LAYER                                        │
-│  Entities (Freezed), Use Cases, Pure Vedic Math      │
-│  (Sunrise, Yama, Rahu, Hora, Panja Pakshi, Tattva)  │
-├─────────────────────────────────────────────────────┤
-│  DATA LAYER                                          │
-│  ┌─────────────────┐  ┌──────────────────────────┐ │
-│  │ LocalRepository  │  │ CloudBackupRepository    │ │
-│  │ (Drift/SQLite)   │  │ (iCloud / Google Drive)  │ │
-│  └─────────────────┘  └──────────────────────────┘ │
-├─────────────────────────────────────────────────────┤
-│  AI LAYER                                            │
-│  On-device LLM (mobile) / Rules engine (web)         │
-└─────────────────────────────────────────────────────┘
-```
+- **Local-first, zero-backend** — all data on-device or user's own cloud
+- **Privacy guarantee** — user data never touches developer infrastructure
+- **Offline-capable** — all Vedic calculations are pure Dart, zero network dependency
+- **Cloud backup** — ONLY to user's OWN iCloud/Google Drive account
 
-## 4. Platform Behavior Matrix
+## 3. Code Conventions
 
-| Platform | Local DB | Cloud Backup | Auth | AI | Notifications |
-|----------|----------|--------------|------|-----|---------------|
-| **iOS** | Drift (SQLite) | iCloud | Apple Sign-In | On-device LLM | Local push |
-| **Android** | Drift (SQLite) | Google Drive App Data | Google Sign-In | On-device LLM | Local push |
-| **Web** | Drift (IndexedDB/sql.js) | Google Drive App Data | Google Sign-In (mandatory) | Rules-based + wisdom library | In-app only |
-| **macOS** | Drift (SQLite) | iCloud | Apple Sign-In | Rules-based + wisdom library | Native (macOS notifications) |
+- **Linting:** `very_good_analysis` — zero issues on `flutter analyze --fatal-infos`
+- **Import ordering:** dart → third-party packages → blank line → own-package (`package:saranidhi/`)
+- **State management:** Riverpod 3 (`NotifierProvider`, `FutureProvider`) — no `StateProvider` (deprecated)
+- **Models:** Freezed + json_serializable for entities
+- **Local variables:** Use `var` (not `final`) only when value changes; prefer `final`
+- **Responsive layout:** Two-column on medium+ devices (>=600px), single-column on narrow
+- **Feature structure:** `lib/features/<name>/domain/`, `data/`, `presentation/`, `providers/`
+- **Generated files:** `*.g.dart`, `*.freezed.dart` excluded from git (CI runs `build_runner`)
+- **Localization:** `lib/l10n/generated/` committed; `flutter: generate: true` in pubspec
 
-**Mobile users choose at onboarding:** Local Only OR Cloud Backup.
-**Web users:** Google Drive is mandatory (browser storage is unreliable).
+## 4. CI Quality Gates
 
-## 5. Core Domain Entities
+- `flutter analyze --fatal-infos` — zero issues (errors, warnings, AND infos)
+- `flutter test` — all pass
+- Coverage threshold: ≥ 20% (blended; domain layer ~95%)
+- `flutter build web` — must compile
+- Integration tests via headless Chrome
 
-### Profile
-```
-id, displayName, birthStarNakshatra, birthBird, locationLat, locationLng,
-theme, language, storageMode, notifyRuling, notifyEating, lastAiNote, lastAiNoteDate
-```
+## 5. Sprint Protocols
 
-### SaraKalaiEntry (Breath Journal)
-```
-id, timestamp, expectedFlow (solar/lunar), actualFlow (solar/lunar/sushumna),
-isAligned, nostril (left/right/both), inhaleDuration, holdDuration, exhaleDuration,
-notes, activeYama, activeBird, activeElement
-```
+- `/start-sprint` — branch from main, update tracker to "Current Sprint"
+- `/finish-sprint` — push, create PR, update tracker to "Complete (PR #N)", verify CI, merge
+- `/project-update` — runs AFTER merge on separate `docs/` branch (valuation, evaluation, plan, testing-plan)
+- Valuation hours: AI-estimated time + 20% buffer
 
-### BreathSession (Detailed Practice)
-```
-id, timestamp, totalDuration, nostril (left/right/both),
-inhaleLength, holdAfterInhale, exhaleLength, holdAfterExhale,
-completedCycles, mood, notes, consciousnessRating
-```
+## 6. Deployment
 
-### AppSettings
-```
-storageMode (local/icloud/gdrive), theme, language,
-notifyRuling, notifyEating, lastBackupDate
-```
+| Environment | Branch | URL |
+|-------------|--------|-----|
+| Production | `prod` | saranidhi.vercel.app |
+| Staging | `main` | saranidhi-staging.vercel.app |
+| Preview | PR branches | Auto-generated Vercel URL |
 
-## 6. Core Feature Modules
+## 7. Platform Notes
 
-### Module 1: Astro-Logic Engine (Pure Dart, Deterministic)
-- Sunrise/Sunset calculator (offline, lat/lng-based)
-- 5 Yamas (daylight divided into 5 equal segments)
-- Panja Pakshi bird state cycling (authentic 2D lookup tables from Prof. Dr. U.S. Pulippani's "Biorhythms of Natal Moon" — 9 day-group matrices × bright/dark half)
-- Rahu Kaal calculation (8 segments, day-index offset)
-- 10% Floor Lockout (Oracle score forced to 10% during Rahu Kaal)
-- Hora (planetary hour) calculation
-- Tattva (element) cycle (Earth/Water/Fire/Air/Ether per breath cycle)
-
-### Module 2: Sara Kalai Breath Journal
-- Two-click flow logging (Solar/Lunar/Sushumna)
-- Real-time alignment comparison to cosmic pattern
-- Breath duration timer (inhale/hold/exhale)
-- Actionable micro-advice display
-- Quick Sync Pacer (breathing guidance animation)
-
-### Module 3: Streak & Consistency Engine
-- Current streak (consecutive aligned days)
-- 7-day calendar ribbon (visual checkmarks)
-- 30-day trend weight (alignment percentage)
-- Time-of-day heatmap
-- Yama-level accuracy tracking
-
-### Module 4: Smart Local Notifications (Mobile Only)
-- Yama state transition alerts
-- Dynamic wisdom in notification payload
-- Idempotent queue cleanup on app launch
-- Configurable per-state toggles
-
-### Module 5: AI Wisdom Engine
-- On-device LLM (mobile): contextual insights from streak/accuracy/bird/rahu data
-- Rules-based engine (web): curated wisdom library
-- Deterministic fallback: static spiritual proverbs array
-- Future: optional user-provided API key for enhanced insights
-
-## 7. Deployment Targets
-
-| Environment | Branch | Hosting | Purpose |
-|-------------|--------|---------|---------|
-| **Production (Web)** | `prod` | Vercel | Live web app ([saranidhi.vercel.app](https://saranidhi.vercel.app)) |
-| **Staging (Web)** | `main` | Vercel (2nd project) | Testing with existing data ([saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app)) |
-| **Preview** | PR branches | Vercel | PR previews with fresh data |
-| **Production (iOS)** | `main` | App Store | Live iOS app |
-| **Production (Android)** | `main` | Play Store | Live Android app |
-| **Production (macOS)** | `main` | Mac App Store | Live macOS app |
-
-## 8. Monetization Model
-
-- **App purchase** (one-time or freemium with premium unlock)
-- **Zero server costs** — user-owned cloud storage
-- **Zero data liability** — no user data on developer infrastructure
-- Revenue from RevenueCat in-app purchases
-
-## 9. Verification Checklist (Per Sprint)
-
-- [ ] `dart analyze` — zero warnings/errors
-- [ ] `flutter test` — all tests pass
-- [ ] Type safety: zero `dynamic` usage outside framework boundaries
-- [ ] Drift schema migrations tested
-- [ ] Offline functionality verified (airplane mode)
-- [ ] Cloud backup/restore cycle tested (where applicable)
-- [ ] Material 3 theming consistent across all new views
+- **iOS/macOS:** CloudKit sync via MethodChannel (native Swift plugins)
+- **Web:** Drift uses WebAssembly SQLite (`sqlite3.wasm` + `drift_worker.js`)
+- **Notifications:** `flutter_local_notifications` — iOS/macOS/Android only, web is no-op
+- **iCloud entitlements:** Already committed; requires Apple Developer account to activate
 
 ---
