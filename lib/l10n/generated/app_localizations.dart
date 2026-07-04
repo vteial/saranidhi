@@ -604,6 +604,63 @@ abstract class AppLocalizations {
 
   /// Note shown in nostril chart during nighttime
   String get nightNoNostrilPattern;
+
+  /// Export/import section title in settings
+  String get dataExportImportTitle;
+
+  /// Export/import section subtitle
+  String get dataExportImportSubtitle;
+
+  /// Export button label
+  String get exportAllData;
+
+  /// Export in progress label
+  String get exporting;
+
+  /// Export success snackbar
+  String get exportSuccess;
+
+  /// Import button label
+  String get importData;
+
+  /// Import in progress label
+  String get importing;
+
+  /// Import confirmation dialog title
+  String get importConfirmTitle;
+
+  /// Import confirmation dialog message
+  String get importConfirmMessage;
+
+  /// Label for export date in summary
+  String get importExportedOn;
+
+  /// Profile count label in import summary
+  String get importProfiles;
+
+  /// Journal entry count in import summary
+  String get importJournalEntries;
+
+  /// Breath session count in import summary
+  String get importBreathSessions;
+
+  /// Import warning text
+  String get importWarning;
+
+  /// Import confirmation button
+  String get importConfirmButton;
+
+  /// Import success snackbar
+  String get importSuccess;
+
+  /// Import failure prefix
+  String get importFailed;
+
+  /// File read error on import
+  String get importFailedReadFile;
+
+  /// Validation error prefix on import
+  String get importInvalidFile;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
