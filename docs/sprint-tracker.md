@@ -255,7 +255,38 @@
 - [x] Task 19.4: Streak insights (longest, current, average gap between entries)
 - [x] Task 19.5: Yama performance breakdown (which yama do you practice most/least)
 - [x] Task 19.6: Hold time progression — averages per day/week/month/year, trend line chart, personal best
-- [ ] Task 19.6: Hold time progression — averages per day/week/month/year, trend line chart, personal best
+
+---
+
+## Sprint 20: UI Polish + Home Layout Redesign
+
+- [ ] Task 20.1: Split Home into two sub-tabs: "Today" (default) and "Explore"
+- [ ] Task 20.2: Today tab — focused 7 cards (Bird, Rahu, Schedule, Nostril, Wisdom, Hold+Streak, Ribbon)
+- [ ] Task 20.3: Explore tab — Date Selector, Calendar Month, Historical Entries, Best Times, 30-Day Trend
+- [ ] Task 20.4: Responsive two-column layout consistency audit (all screens ≥600px)
+- [ ] Task 20.5: Remove redundant widgets from Today tab (Date Selector, Calendar, Yama Accuracy)
+
+---
+
+## Sprint 21: Pakshi Accuracy (DOB-Based Calculation)
+
+- [ ] Task 21.1: Moon longitude calculator — Pure Dart (Jean Meeus ELP 2000/82)
+- [ ] Task 21.2: Lahiri Ayanamsa calculator — sidereal correction for given date
+- [ ] Task 21.3: Nakshatra from DOB — Moon sidereal longitude → nakshatra index (0–26)
+- [ ] Task 21.4: Enhanced onboarding — add DOB date + time + birth place fields
+- [ ] Task 21.5: Auto-calculate vs manual — "Calculate from DOB" button + keep manual fallback
+- [ ] Task 21.6: Extended birth bird attributes — friends, enemies, ruling planet, direction, colour
+
+---
+
+## Sprint 22: Widget Test Coverage
+
+- [ ] Task 22.1: BirthBirdCard widget test
+- [ ] Task 22.2: RahuKaalCard widget test
+- [ ] Task 22.3: FullDaySchedule widget test
+- [ ] Task 22.4: NostrilDominanceChart + HoldTimeCard widget tests
+- [ ] Task 22.5: StreakFlameWidget + TrendWidget + SevenDayRibbonWidget tests
+- [ ] Task 22.6: YamaAccuracyWidget + WisdomCard widget tests
 
 ---
 
