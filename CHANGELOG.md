@@ -14,11 +14,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Sprint 21: Pakshi Accuracy (DOB-based Moon longitude calculation)
 - Sprint 22: Widget Test Coverage (10 test files)
 
----
+### Since last production release (v1.1.0-web)
 
-## [1.2.0-web] — 2026-07-04
-
-### Added
 - **Analytics tab** (4th bottom nav) with 6 insight cards (Sprint 19)
 - Weekly alignment summary with progress bars
 - Monthly patterns (best/worst day, most active yama)
@@ -49,6 +46,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - **macOS target** (Sprint 16)
 - Full platform scaffold with CloudKit entitlements
 - Native Swift CloudKitPluginMacOS
+- **Night Yamas** (Sprint 15) — full 24h Pakshi coverage (sunset→sunrise)
 
 ### Changed
 - Dashboard provider parameterized by selected date (not hardcoded today)
@@ -99,7 +97,6 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-[Unreleased]: https://github.com/vteial/saranidhi/compare/prod...main
-[1.2.0-web]: https://github.com/vteial/saranidhi/compare/v1.1.0-web...main
+[Unreleased]: https://github.com/vteial/saranidhi/compare/v1.1.0-web...main
 [1.1.0-web]: https://github.com/vteial/saranidhi/compare/v1.0.0-web...v1.1.0-web
 [1.0.0-web]: https://github.com/vteial/saranidhi/releases/tag/v1.0.0-web
