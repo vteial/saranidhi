@@ -30,8 +30,9 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Saranidhi'), findsOneWidget);
+      expect(find.text('Today'), findsOneWidget);
+      expect(find.text('Explore'), findsOneWidget);
       expect(find.text('Last 7 Days'), findsOneWidget);
-      expect(find.text('30-Day Trend'), findsOneWidget);
     });
 
     testWidgets('Navigation between all tabs works', (tester) async {
