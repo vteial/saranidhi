@@ -214,6 +214,65 @@ Contextual guidance layer delivering personalized spiritual coaching.
 
 ---
 
+## 6a. Navigation Architecture (as of Sprint 20)
+
+### Bottom Navigation (3 tabs)
+| Tab | Route | Screen |
+|-----|-------|--------|
+| Home | `/` | HomeScreen (Today/Explore sub-tabs) |
+| Journal | `/journal` | JournalScreen |
+| Analytics | `/analytics` | AnalyticsScreen |
+
+### Top-Right Actions
+| Icon | Route | Access |
+|------|-------|--------|
+| Gear (⚙️) | `/settings` | Pushed route via `context.push` — full-screen with back button |
+
+### Home Sub-Tabs (TabBarView)
+| Tab | Content | Purpose |
+|-----|---------|---------|
+| Today (default) | Bird, Rahu, Schedule, Nostril, Wisdom, Hold+Streak, Ribbon | Focused live data |
+| Explore | Date Selector, Calendar, Historical Entries, Best Times, Trend | Date navigation + history |
+
+---
+
+## 6b. Data Export/Import Architecture (Sprint 20)
+
+### Export Format (JSON)
+```json
+{
+  "version": 1,
+  "exportedAt": "2026-07-04T12:00:00.000Z",
+  "profiles": [...],
+  "journal": [...],
+  "sessions": [...],
+  "birds": [...],
+  "preferences": {
+    "theme_accent": "defaultPurple",
+    "theme_brightness": "system",
+    "app_locale": "en",
+    "storage_mode": "local",
+    "notify_ruling": true,
+    ...
+  }
+}
+```
+
+### Import Flow
+1. File picker (`.json` only)
+2. Validation (`DatabaseExporter.validateExportData`)
+3. Summary dialog (record counts + export date)
+4. Destructive import (clear all → insert rows → restore preferences)
+5. Provider invalidation (6 providers cascaded)
+
+### Dependencies
+| Package | Purpose |
+|---------|---------|
+| `share_plus` | Share sheet / download on export |
+| `file_picker` | JSON file selection on import |
+
+---
+
 ## 6. CI/CD Pipeline
 
 ### On Every PR to `main`
