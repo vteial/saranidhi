@@ -49,7 +49,7 @@ void main() {
       test('initial state has step 0', () {
         const state = OnboardingState();
         expect(state.currentStep, equals(0));
-        expect(state.totalSteps, equals(5));
+        expect(state.totalSteps, equals(4));
       });
 
       test('copyWith works correctly', () {

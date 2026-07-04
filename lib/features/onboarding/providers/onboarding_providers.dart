@@ -84,7 +84,7 @@ class OnboardingState {
   final String storageMode;
   final bool isSaving;
 
-  int get totalSteps => 5; // Welcome, Birth Star, DOB, Location, Storage Mode
+  int get totalSteps => 4; // Welcome, Find Your Bird, Location, Storage Mode
 
   /// Whether the nakshatra was auto-calculated from DOB.
   bool get isAutoCalculated => calculatedNakshatra != null;

@@ -8,14 +8,13 @@ import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
-/// The first-run onboarding flow.
+/// The first-run onboarding flow (4 steps).
 ///
 /// Steps:
 /// 0. Welcome (name)
-/// 1. Birth Star (nakshatra → bird)
-/// 2. Date of Birth (date + time + birth place)
-/// 3. Location (lat/lng for sunrise calculation)
-/// 4. Storage Mode (local / icloud / gdrive)
+/// 1. Find Your Bird (dual-path: know nakshatra OR calculate from DOB)
+/// 2. Your Location (current city for sunrise/sunset)
+/// 3. Data Storage (local / icloud / gdrive)
 class OnboardingScreen extends ConsumerWidget {
   const OnboardingScreen({super.key});
 
@@ -46,10 +45,9 @@ class OnboardingScreen extends ConsumerWidget {
                 Expanded(
                   child: switch (state.currentStep) {
                     0 => _WelcomeStep(state: state, notifier: notifier),
-                    1 => _BirthStarStep(state: state, notifier: notifier),
-                    2 => _DOBStep(state: state, notifier: notifier),
-                    3 => _LocationStep(state: state, notifier: notifier),
-                    4 => _StorageModeStep(state: state, notifier: notifier),
+                    1 => _FindYourBirdStep(state: state, notifier: notifier),
+                    2 => _LocationStep(state: state, notifier: notifier),
+                    3 => _StorageModeStep(state: state, notifier: notifier),
                     _ => const SizedBox.shrink(),
                   },
                 ),
@@ -100,6 +98,10 @@ class OnboardingScreen extends ConsumerWidget {
     );
   }
 }
+
+// ---------------------------------------------------------------------------
+// Step 0: Welcome
+// ---------------------------------------------------------------------------
 
 class _WelcomeStep extends StatefulWidget {
   const _WelcomeStep({required this.state, required this.notifier});
@@ -169,19 +171,44 @@ class _WelcomeStepState extends State<_WelcomeStep> {
   }
 }
 
-class _BirthStarStep extends StatelessWidget {
-  const _BirthStarStep({required this.state, required this.notifier});
+// ---------------------------------------------------------------------------
+// Step 1: Find Your Bird (dual-path — know nakshatra OR calculate from DOB)
+// ---------------------------------------------------------------------------
+
+/// Enum for the two paths in the Find Your Bird step.
+enum _BirdPathMode { knowNakshatra, calculateFromDOB }
+
+class _FindYourBirdStep extends StatefulWidget {
+  const _FindYourBirdStep({required this.state, required this.notifier});
   final OnboardingState state;
   final OnboardingNotifier notifier;
+
+  @override
+  State<_FindYourBirdStep> createState() => _FindYourBirdStepState();
+}
+
+class _FindYourBirdStepState extends State<_FindYourBirdStep> {
+  _BirdPathMode _mode = _BirdPathMode.knowNakshatra;
+
+  @override
+  void initState() {
+    super.initState();
+    // If user already has DOB data but no manual nakshatra, default to DOB path
+    if (widget.state.birthDate != null &&
+        widget.state.selectedNakshatra == null) {
+      _mode = _BirdPathMode.calculateFromDOB;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(l10n.birthStarNakshatra, style: theme.textTheme.titleLarge),
+        Text('Find Your Bird', style: theme.textTheme.titleLarge),
         const SizedBox(height: 8),
         Text(
           l10n.birthStarHint,
@@ -189,7 +216,47 @@ class _BirthStarStep extends StatelessWidget {
             color: theme.colorScheme.onSurfaceVariant,
           ),
         ),
-        if (state.birthBird != null) ...[
+        const SizedBox(height: 16),
+
+        // Segmented button toggle
+        SizedBox(
+          width: double.infinity,
+          child: SegmentedButton<_BirdPathMode>(
+            segments: const [
+              ButtonSegment(
+                value: _BirdPathMode.knowNakshatra,
+                label: Text('I know my star'),
+                icon: Icon(Icons.stars),
+              ),
+              ButtonSegment(
+                value: _BirdPathMode.calculateFromDOB,
+                label: Text('Calculate from DOB'),
+                icon: Icon(Icons.auto_awesome),
+              ),
+            ],
+            selected: {_mode},
+            onSelectionChanged: (selection) {
+              setState(() => _mode = selection.first);
+            },
+          ),
+        ),
+        const SizedBox(height: 16),
+
+        // Path content
+        Expanded(
+          child: _mode == _BirdPathMode.knowNakshatra
+              ? _NakshatraListPath(
+                  state: widget.state,
+                  notifier: widget.notifier,
+                )
+              : _DOBCalculatePath(
+                  state: widget.state,
+                  notifier: widget.notifier,
+                ),
+        ),
+
+        // Bird result card (shown regardless of path once determined)
+        if (widget.state.birthBird != null) ...[
           const SizedBox(height: 12),
           Card(
             color: theme.colorScheme.primaryContainer,
@@ -199,10 +266,12 @@ class _BirthStarStep extends StatelessWidget {
                 children: [
                   const Icon(Icons.stars),
                   const SizedBox(width: 8),
-                  Text(
-                    l10n.yourBird(state.birthBird!.displayName),
-                    style: theme.textTheme.titleSmall?.copyWith(
-                      color: theme.colorScheme.primary,
+                  Expanded(
+                    child: Text(
+                      l10n.yourBird(widget.state.birthBird!.displayName),
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                      ),
                     ),
                   ),
                 ],
@@ -210,32 +279,42 @@ class _BirthStarStep extends StatelessWidget {
             ),
           ),
         ],
-        const SizedBox(height: 12),
-        Expanded(
-          child: ListView.builder(
-            itemCount: allNakshatras.length,
-            itemBuilder: (context, index) {
-              final nakshatra = allNakshatras[index];
-              final isSelected = state.selectedNakshatra == nakshatra;
-              return ListTile(
-                title: Text(nakshatra),
-                trailing: isSelected
-                    ? Icon(Icons.check_circle, color: theme.colorScheme.primary)
-                    : null,
-                selected: isSelected,
-                onTap: () => notifier.setNakshatra(nakshatra),
-                dense: true,
-              );
-            },
-          ),
-        ),
       ],
     );
   }
 }
 
-class _DOBStep extends StatelessWidget {
-  const _DOBStep({required this.state, required this.notifier});
+/// Sub-path: nakshatra list selection.
+class _NakshatraListPath extends StatelessWidget {
+  const _NakshatraListPath({required this.state, required this.notifier});
+  final OnboardingState state;
+  final OnboardingNotifier notifier;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return ListView.builder(
+      itemCount: allNakshatras.length,
+      itemBuilder: (context, index) {
+        final nakshatra = allNakshatras[index];
+        final isSelected = state.selectedNakshatra == nakshatra;
+        return ListTile(
+          title: Text(nakshatra),
+          trailing: isSelected
+              ? Icon(Icons.check_circle, color: theme.colorScheme.primary)
+              : null,
+          selected: isSelected,
+          onTap: () => notifier.setNakshatra(nakshatra),
+          dense: true,
+        );
+      },
+    );
+  }
+}
+
+/// Sub-path: calculate from date of birth.
+class _DOBCalculatePath extends StatelessWidget {
+  const _DOBCalculatePath({required this.state, required this.notifier});
   final OnboardingState state;
   final OnboardingNotifier notifier;
 
@@ -246,17 +325,6 @@ class _DOBStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Date of Birth', style: theme.textTheme.titleLarge),
-          const SizedBox(height: 8),
-          Text(
-            'Your birth date, time, and place are used to accurately '
-            'calculate your birth nakshatra and Pakshi bird.',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: 24),
-
           // Date picker
           ListTile(
             leading: const Icon(Icons.calendar_today),
@@ -288,52 +356,8 @@ class _DOBStep extends StatelessWidget {
           ),
           const Divider(),
 
-          // Birth place
-          const SizedBox(height: 16),
-          Text('Birth Place', style: theme.textTheme.titleSmall),
-          const SizedBox(height: 8),
-          Text(
-            'Optional — used for precise moon position at birth.',
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: _presetCities.map((city) {
-              final isSelected = state.birthPlaceName == city.name;
-              return ChoiceChip(
-                label: Text(city.name),
-                selected: isSelected,
-                onSelected: (_) => notifier.setBirthPlace(
-                  latitude: city.lat,
-                  longitude: city.lng,
-                  name: city.name,
-                ),
-              );
-            }).toList(),
-          ),
-          if (state.birthPlaceName != null) ...[
-            const SizedBox(height: 12),
-            Card(
-              color: theme.colorScheme.primaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Row(
-                  children: [
-                    const Icon(Icons.location_city),
-                    const SizedBox(width: 8),
-                    Text(state.birthPlaceName!),
-                  ],
-                ),
-              ),
-            ),
-          ],
-
-          // Info note about accuracy
-          const SizedBox(height: 24),
+          // Info note: IST assumption
+          const SizedBox(height: 12),
           Card(
             color: theme.colorScheme.surfaceContainerHighest,
             child: Padding(
@@ -349,8 +373,9 @@ class _DOBStep extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'If you know your birth nakshatra already, you can '
-                      'skip this step. The previous step selection will be used.',
+                      'IST (UTC+5:30) is assumed for all Indian births. '
+                      'The Moon moves ~0.5\u00B0/hour \u2014 negligible within '
+                      'India\u2019s timezone span vs a nakshatra\u2019s 13.33\u00B0 width.',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
@@ -361,15 +386,15 @@ class _DOBStep extends StatelessWidget {
             ),
           ),
 
-          // Calculate from DOB button
+          // Calculate button
           if (state.birthDate != null) ...[
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               child: FilledButton.icon(
                 onPressed: notifier.calculateFromDOB,
                 icon: const Icon(Icons.auto_awesome),
-                label: const Text('Calculate Nakshatra from DOB'),
+                label: const Text('Calculate Nakshatra'),
               ),
             ),
           ],
@@ -386,27 +411,19 @@ class _DOBStep extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(
-                          Icons.stars,
-                          color: theme.colorScheme.primary,
-                        ),
+                        Icon(Icons.stars, color: theme.colorScheme.primary),
                         const SizedBox(width: 8),
-                        Text(
-                          'Calculated: ${state.calculatedNakshatra!.displayName}',
-                          style: theme.textTheme.titleSmall?.copyWith(
-                            color: theme.colorScheme.primary,
-                            fontWeight: FontWeight.bold,
+                        Expanded(
+                          child: Text(
+                            'Calculated: ${state.calculatedNakshatra!.displayName}',
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              color: theme.colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    if (state.birthBird != null) ...[
-                      const SizedBox(height: 8),
-                      Text(
-                        'Your bird: ${state.birthBird!.displayName}',
-                        style: theme.textTheme.bodyMedium,
-                      ),
-                    ],
                     const SizedBox(height: 8),
                     Text(
                       'Moon sidereal longitude: '
@@ -427,8 +444,8 @@ class _DOBStep extends StatelessWidget {
                           const SizedBox(width: 4),
                           Expanded(
                             child: Text(
-                              'Near nakshatra boundary — birth time accuracy is '
-                              'important. Verify with a panchangam if unsure.',
+                              'Near nakshatra boundary \u2014 birth time accuracy '
+                              'is important. Verify with a panchangam if unsure.',
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: theme.colorScheme.error,
                               ),
@@ -450,6 +467,7 @@ class _DOBStep extends StatelessWidget {
   Future<void> _pickDate(BuildContext context) async {
     final picked = await showDatePicker(
       context: context,
+      useRootNavigator: true,
       initialDate: state.birthDate ?? DateTime(1990),
       firstDate: DateTime(1920),
       lastDate: DateTime.now(),
@@ -463,6 +481,7 @@ class _DOBStep extends StatelessWidget {
   Future<void> _pickTime(BuildContext context) async {
     final picked = await showTimePicker(
       context: context,
+      useRootNavigator: true,
       initialTime: state.birthTimeOfDay ?? const TimeOfDay(hour: 6, minute: 0),
       helpText: 'Select your birth time',
     );
@@ -471,6 +490,10 @@ class _DOBStep extends StatelessWidget {
     }
   }
 }
+
+// ---------------------------------------------------------------------------
+// Step 2: Your Location
+// ---------------------------------------------------------------------------
 
 class _LocationStep extends StatelessWidget {
   const _LocationStep({required this.state, required this.notifier});
@@ -488,7 +511,7 @@ class _LocationStep extends StatelessWidget {
           Text(l10n.yourLocation, style: theme.textTheme.titleLarge),
           const SizedBox(height: 8),
           Text(
-            l10n.locationHint,
+            'Where are you now? (for daily sunrise/sunset)',
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -538,6 +561,10 @@ class _LocationStep extends StatelessWidget {
     );
   }
 }
+
+// ---------------------------------------------------------------------------
+// Step 3: Data Storage
+// ---------------------------------------------------------------------------
 
 class _StorageModeStep extends StatelessWidget {
   const _StorageModeStep({required this.state, required this.notifier});
@@ -619,6 +646,10 @@ class _StorageOption extends StatelessWidget {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Shared: Preset cities (Indian only)
+// ---------------------------------------------------------------------------
+
 /// Preset cities for quick location selection.
 class _PresetCity {
   const _PresetCity(this.name, this.lat, this.lng);
@@ -634,8 +665,4 @@ const _presetCities = [
   _PresetCity('Bangalore', 12.97, 77.59),
   _PresetCity('Hyderabad', 17.39, 78.49),
   _PresetCity('Kolkata', 22.57, 88.36),
-  _PresetCity('London', 51.51, -0.13),
-  _PresetCity('New York', 40.71, -74.01),
-  _PresetCity('Singapore', 1.35, 103.82),
-  _PresetCity('Sydney', -33.87, 151.21),
 ];
