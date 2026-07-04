@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
-import 'package:saranidhi/core/router/app_router.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -74,9 +72,9 @@ class OnboardingScreen extends ConsumerWidget {
                             ? null
                             : () async {
                                 await notifier.saveProfile();
-                                if (context.mounted) {
-                                  context.go(AppRoutes.home);
-                                }
+                                // OnboardingGuard automatically shows the main
+                                // app once onboardingCompleteProvider is true.
+                                // No explicit navigation needed.
                               },
                         child: state.isSaving
                             ? const SizedBox(
