@@ -521,59 +521,62 @@ class _LocationStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(l10n.yourLocation, style: theme.textTheme.titleLarge),
-          const SizedBox(height: 8),
-          Text(
-            'Where are you now? (for daily sunrise/sunset)',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: 24),
-          // Preset cities for quick selection
-          Text(l10n.quickSelect, style: theme.textTheme.titleSmall),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: _presetCities.map((city) {
-              final isSelected = state.locationName == city.name;
-              return ChoiceChip(
-                label: Text(city.name),
-                selected: isSelected,
-                onSelected: (_) => notifier.setLocation(
-                  latitude: city.lat,
-                  longitude: city.lng,
-                  name: city.name,
-                ),
-              );
-            }).toList(),
-          ),
-          if (state.locationName != null) ...[
-            const SizedBox(height: 16),
-            Card(
-              color: theme.colorScheme.primaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Row(
-                  children: [
-                    const Icon(Icons.location_on),
-                    const SizedBox(width: 8),
-                    Text(
-                      '${state.locationName} '
-                      '(${state.latitude?.toStringAsFixed(2)}, '
-                      '${state.longitude?.toStringAsFixed(2)})',
-                    ),
-                  ],
-                ),
+    return Align(
+      alignment: Alignment.topLeft,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.yourLocation, style: theme.textTheme.titleLarge),
+            const SizedBox(height: 8),
+            Text(
+              'Where are you now? (for daily sunrise/sunset)',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
+            const SizedBox(height: 24),
+            // Preset cities for quick selection
+            Text(l10n.quickSelect, style: theme.textTheme.titleSmall),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: _presetCities.map((city) {
+                final isSelected = state.locationName == city.name;
+                return ChoiceChip(
+                  label: Text(city.name),
+                  selected: isSelected,
+                  onSelected: (_) => notifier.setLocation(
+                    latitude: city.lat,
+                    longitude: city.lng,
+                    name: city.name,
+                  ),
+                );
+              }).toList(),
+            ),
+            if (state.locationName != null) ...[
+              const SizedBox(height: 16),
+              Card(
+                color: theme.colorScheme.primaryContainer,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.location_on),
+                      const SizedBox(width: 8),
+                      Text(
+                        '${state.locationName} '
+                        '(${state.latitude?.toStringAsFixed(2)}, '
+                        '${state.longitude?.toStringAsFixed(2)})',
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
