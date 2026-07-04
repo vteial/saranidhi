@@ -35,8 +35,9 @@ Saranidhi helps you:
 |-----------|---------|-----|
 | **Production** | v1.1.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | Latest main | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 15 | — |
-| **Total PRs** | 35 | — |
+| **Sprints Delivered** | 19 | — |
+| **Total PRs** | 48 | — |
+| **Engineering Hours** | ~45.5h | AI-assisted (Kiro) |
 
 ---
 
@@ -88,8 +89,9 @@ Saranidhi helps you:
 | Localization | EN, TA (ARB files) |
 | Linting | very_good_analysis |
 | CI/CD | GitHub Actions |
-| Cloud Sync | iCloud (CloudKit) — planned Sprint 16 |
-| macOS | Flutter macOS target — planned Sprint 16 |
+| Cloud Sync | iCloud (CloudKit) via MethodChannel |
+| macOS | Flutter macOS target (shared codebase) |
+| Notifications | flutter_local_notifications (zonedSchedule) |
 
 ---
 
@@ -127,8 +129,11 @@ saranidhi/
 
 ### Prerequisites
 
-- Flutter SDK (latest stable)
-- Dart SDK (bundled with Flutter)
+- Flutter SDK (stable channel, ≥3.44)
+- Dart SDK ≥3.12.1 (bundled with Flutter)
+- Xcode 15+ (for iOS/macOS builds + CloudKit)
+
+> For full iMac setup instructions, see [docs/dev-setup.md](docs/dev-setup.md).
 
 ### Getting Started
 
@@ -171,14 +176,16 @@ Feature branch → PR → main (staging) → /release PR → prod (production)
 - [Manual Smoke Test](docs/manual-smoke-test.md) — Pre-production manual QA scenarios
 - [Smoke Test Results](docs/smoke-test-results.md) — Execution results (production pass gate)
 - [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, protocols (`/start-sprint`, `/finish-sprint`, `/release`)
+- [Dev Setup](docs/dev-setup.md) — iMac development environment setup (10-step guide)
 - [Deployment Guide](docs/deployment.md) — Prod/Staging/Preview architecture, rollback, monitoring
+- [iCloud Sync Testing](docs/icloud-sync-testing.md) — Multi-device CloudKit sync verification guide
 - [Store Listing](docs/store-listing.md) — App Store & Play Store listing text (for Sprint X)
 - [Mobile Release Guide](docs/mobile-release-guide.md) — iOS/Android build & submission steps (for Sprint X)
 - [Security Review](docs/security-review.md) — Architecture security assessment, data protection
 - [Offline Verification](docs/offline-verification.md) — Offline capability matrix, zero-network verification
 - [Project Evaluation](docs/project-evaluation.md) — Feature scorecard, quality metrics, defect log
 - [Project Valuation Report](docs/project-valuation-report.md) — Time investment, commit timeline, sprint delivery
-- [Jules Test Coverage Task](docs/jules-test-coverage-task.md) — Delegated test coverage enhancement (Google Jules)
+- [Changelog](CHANGELOG.md) — Release history and notable changes
 
 ---
 
