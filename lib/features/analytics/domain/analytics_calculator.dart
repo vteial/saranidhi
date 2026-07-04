@@ -238,7 +238,7 @@ class AnalyticsCalculator {
     required int longestStreak,
   }) {
     if (entries.isEmpty) {
-      return StreakInsights(
+      return const StreakInsights(
         currentStreak: 0,
         longestStreak: 0,
         totalPracticeDays: 0,
@@ -403,13 +403,11 @@ class AnalyticsCalculator {
 
   /// Generate CSV string from journal entries.
   static String generateCsv(List<SaraKalaiJournalData> entries) {
-    final buffer = StringBuffer();
-
-    // Header
-    buffer.writeln(
-      'Date,Time,Expected Flow,Actual Flow,Aligned,Nostril,'
-      'Inhale (ms),Hold (ms),Exhale (ms),Yama,Bird,Bird State,Element,Notes',
-    );
+    final buffer = StringBuffer()
+      ..writeln(
+        'Date,Time,Expected Flow,Actual Flow,Aligned,Nostril,'
+        ' Inhale (ms),Hold (ms),Exhale (ms),Yama,Bird,Bird State,Element,Notes',
+      );
 
     // Data rows
     for (final entry in entries) {
