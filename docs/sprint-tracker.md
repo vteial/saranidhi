@@ -237,13 +237,13 @@
 
 ---
 
-## Sprint 18: Historical View + Planning (Current Sprint)
+## Sprint 18: Historical View + Planning ✅ Complete (PR #44)
 
-- [ ] Task 18.1: Date picker on Home — view any past date's Pakshi schedule
-- [ ] Task 18.2: Tomorrow's schedule view (plan ahead)
-- [ ] Task 18.3: "Best times this week" — scan next 7 days for Ruling yamas
-- [ ] Task 18.4: Journal entries linked to historical dates (retrospective view)
-- [ ] Task 18.5: Calendar month view with entry indicators
+- [x] Task 18.1: Date picker on Home — view any past date's Pakshi schedule
+- [x] Task 18.2: Tomorrow's schedule view (plan ahead)
+- [x] Task 18.3: "Best times this week" — scan next 7 days for Ruling yamas
+- [x] Task 18.4: Journal entries linked to historical dates (retrospective view)
+- [x] Task 18.5: Calendar month view with entry indicators
 
 ---
 
