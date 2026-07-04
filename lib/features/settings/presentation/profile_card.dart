@@ -319,8 +319,4 @@ const _presetCities = [
   _PresetCity('Bangalore', 12.97, 77.59),
   _PresetCity('Hyderabad', 17.39, 78.49),
   _PresetCity('Kolkata', 22.57, 88.36),
-  _PresetCity('London', 51.51, -0.13),
-  _PresetCity('New York', 40.71, -74.01),
-  _PresetCity('Singapore', 1.35, 103.82),
-  _PresetCity('Sydney', -33.87, 151.21),
 ];
