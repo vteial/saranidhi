@@ -139,28 +139,34 @@ class SettingsScreen extends ConsumerWidget {
       ],
     );
 
-    return ResponsiveWrapper(
-      child: Scaffold(
-        appBar: AppBar(title: Text(l10n.settingsTitle)),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: isWide
-              ? Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: personalSection),
-                    const SizedBox(width: 24),
-                    Expanded(child: dataSection),
-                  ],
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    personalSection,
-                    const Divider(height: 32),
-                    dataSection,
-                  ],
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.settingsTitle),
+        leading: const BackButton(),
+      ),
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: kMaxContentWidth),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: isWide
+                ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: personalSection),
+                      const SizedBox(width: 24),
+                      Expanded(child: dataSection),
+                    ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      personalSection,
+                      const Divider(height: 32),
+                      dataSection,
+                    ],
+                  ),
+          ),
         ),
       ),
     );
