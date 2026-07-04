@@ -16,6 +16,9 @@ class AnalyticsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isWide = screenWidth >= 600;
+
     return Scaffold(
       appBar: const BrandedAppBar(title: 'Analytics'),
       body: SingleChildScrollView(
@@ -23,17 +26,61 @@ class AnalyticsScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _WeeklySummaryCard(),
+            // Row 1: Weekly Summary + Monthly Patterns (two-column on wide)
+            if (isWide)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(child: _WeeklySummaryCard()),
+                    const SizedBox(width: 12),
+                    Expanded(child: _MonthlyPatternsCard()),
+                  ],
+                ),
+              )
+            else ...[
+              _WeeklySummaryCard(),
+              const SizedBox(height: 12),
+              _MonthlyPatternsCard(),
+            ],
             const SizedBox(height: 12),
-            _MonthlyPatternsCard(),
+
+            // Row 2: Streak Insights + Yama Performance (two-column on wide)
+            if (isWide)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(child: _StreakInsightsCard()),
+                    const SizedBox(width: 12),
+                    Expanded(child: _YamaPerformanceCard()),
+                  ],
+                ),
+              )
+            else ...[
+              _StreakInsightsCard(),
+              const SizedBox(height: 12),
+              _YamaPerformanceCard(),
+            ],
             const SizedBox(height: 12),
-            _StreakInsightsCard(),
-            const SizedBox(height: 12),
-            _YamaPerformanceCard(),
-            const SizedBox(height: 12),
-            _HoldTimeProgressionCard(),
-            const SizedBox(height: 12),
-            _ExportCard(),
+
+            // Row 3: Hold Time + Export (two-column on wide)
+            if (isWide)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(child: _HoldTimeProgressionCard()),
+                    const SizedBox(width: 12),
+                    Expanded(child: _ExportCard()),
+                  ],
+                ),
+              )
+            else ...[
+              _HoldTimeProgressionCard(),
+              const SizedBox(height: 12),
+              _ExportCard(),
+            ],
           ],
         ),
       ),

@@ -24,108 +24,136 @@ class SettingsScreen extends ConsumerWidget {
     final currentLocale = ref.watch(localeProvider);
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isWide = screenWidth >= 600;
+
+    // Left column: Profile + Appearance + Language
+    final personalSection = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Profile
+        const ProfileCard(),
+        const Divider(height: 32),
+
+        // Theme Brightness (Light/Dark/System)
+        Text(l10n.appearance, style: theme.textTheme.titleSmall),
+        const SizedBox(height: 12),
+        SegmentedButton<ThemeBrightness>(
+          segments: [
+            ButtonSegment<ThemeBrightness>(
+              value: ThemeBrightness.light,
+              label: Text(l10n.light),
+            ),
+            ButtonSegment<ThemeBrightness>(
+              value: ThemeBrightness.dark,
+              label: Text(l10n.dark),
+            ),
+            ButtonSegment<ThemeBrightness>(
+              value: ThemeBrightness.system,
+              label: Text(l10n.system),
+            ),
+          ],
+          selected: {themeState.brightness},
+          onSelectionChanged: (selected) {
+            ref.read(themeProvider.notifier).setBrightness(selected.first);
+          },
+        ),
+        const SizedBox(height: 16),
+
+        // Theme Accent Color
+        Text(l10n.colorAccent, style: theme.textTheme.titleSmall),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: ThemeAccent.values.map((accent) {
+            final isSelected = themeState.accent == accent;
+            return ChoiceChip(
+              label: Text(_localizedAccentName(accent, l10n)),
+              selected: isSelected,
+              onSelected: (_) {
+                ref.read(themeProvider.notifier).setAccent(accent);
+              },
+              avatar: CircleAvatar(
+                backgroundColor: accent.seedColor,
+                radius: 10,
+              ),
+            );
+          }).toList(),
+        ),
+
+        const Divider(height: 32),
+
+        // Language Switcher
+        Text(l10n.language, style: theme.textTheme.titleSmall),
+        const SizedBox(height: 12),
+        SegmentedButton<AppLocale>(
+          segments: AppLocale.values
+              .map(
+                (loc) => ButtonSegment<AppLocale>(
+                  value: loc,
+                  label: Text(loc.displayName),
+                ),
+              )
+              .toList(),
+          selected: {currentLocale},
+          onSelectionChanged: (selected) {
+            ref.read(localeProvider.notifier).setLocale(selected.first);
+          },
+        ),
+      ],
+    );
+
+    // Right column: Storage + Backup + Sync + Notifications + Clear Data
+    final dataSection = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Storage & Backup
+        const StorageModeSelector(),
+        const Divider(height: 32),
+        const BackupActionsWidget(),
+        const Divider(height: 32),
+
+        // iCloud Sync Device Configuration
+        const SyncDeviceConfigWidget(),
+        const Divider(height: 32),
+
+        // Notifications
+        ListTile(
+          leading: const Icon(Icons.notifications_outlined),
+          title: Text(l10n.notifications),
+          subtitle: Text(l10n.notificationsSubtitle),
+        ),
+        _NotificationToggles(),
+
+        const Divider(height: 32),
+
+        // Clear All Data
+        _ClearAllDataTile(),
+      ],
+    );
 
     return Scaffold(
       appBar: BrandedAppBar(title: l10n.settingsTitle),
-      body: ListView(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        children: [
-          // Profile
-          const ProfileCard(),
-          const Divider(height: 32),
-
-          // Theme Brightness (Light/Dark/System)
-          Text(l10n.appearance, style: theme.textTheme.titleSmall),
-          const SizedBox(height: 12),
-          SegmentedButton<ThemeBrightness>(
-            segments: [
-              ButtonSegment<ThemeBrightness>(
-                value: ThemeBrightness.light,
-                label: Text(l10n.light),
+        child: isWide
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(child: personalSection),
+                  const SizedBox(width: 24),
+                  Expanded(child: dataSection),
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  personalSection,
+                  const Divider(height: 32),
+                  dataSection,
+                ],
               ),
-              ButtonSegment<ThemeBrightness>(
-                value: ThemeBrightness.dark,
-                label: Text(l10n.dark),
-              ),
-              ButtonSegment<ThemeBrightness>(
-                value: ThemeBrightness.system,
-                label: Text(l10n.system),
-              ),
-            ],
-            selected: {themeState.brightness},
-            onSelectionChanged: (selected) {
-              ref.read(themeProvider.notifier).setBrightness(selected.first);
-            },
-          ),
-          const SizedBox(height: 16),
-
-          // Theme Accent Color
-          Text(l10n.colorAccent, style: theme.textTheme.titleSmall),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: ThemeAccent.values.map((accent) {
-              final isSelected = themeState.accent == accent;
-              return ChoiceChip(
-                label: Text(_localizedAccentName(accent, l10n)),
-                selected: isSelected,
-                onSelected: (_) {
-                  ref.read(themeProvider.notifier).setAccent(accent);
-                },
-                avatar: CircleAvatar(
-                  backgroundColor: accent.seedColor,
-                  radius: 10,
-                ),
-              );
-            }).toList(),
-          ),
-
-          const Divider(height: 32),
-
-          // Language Switcher
-          Text(l10n.language, style: theme.textTheme.titleSmall),
-          const SizedBox(height: 12),
-          SegmentedButton<AppLocale>(
-            segments: AppLocale.values
-                .map(
-                  (loc) => ButtonSegment<AppLocale>(
-                    value: loc,
-                    label: Text(loc.displayName),
-                  ),
-                )
-                .toList(),
-            selected: {currentLocale},
-            onSelectionChanged: (selected) {
-              ref.read(localeProvider.notifier).setLocale(selected.first);
-            },
-          ),
-
-          const Divider(height: 32),
-
-          // Storage & Backup
-          const StorageModeSelector(),
-          const Divider(height: 32),
-          const BackupActionsWidget(),
-          const Divider(height: 32),
-
-          // iCloud Sync Device Configuration
-          const SyncDeviceConfigWidget(),
-          const Divider(height: 32),
-
-          // Notifications
-          ListTile(
-            leading: const Icon(Icons.notifications_outlined),
-            title: Text(l10n.notifications),
-            subtitle: Text(l10n.notificationsSubtitle),
-          ),
-          _NotificationToggles(),
-
-          const Divider(height: 32),
-
-          // Clear All Data
-          _ClearAllDataTile(),
-        ],
       ),
     );
   }
