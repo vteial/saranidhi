@@ -5,13 +5,20 @@ import 'package:flutter_svg/flutter_svg.dart';
 ///
 /// On medium/large screens (>= 600px), shows logo + title together in center.
 /// On small screens, shows logo as leading icon with title centered.
+///
+/// Supports an optional [bottom] widget (e.g. TabBar).
 class BrandedAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BrandedAppBar({required this.title, super.key});
+  const BrandedAppBar({required this.title, this.bottom, super.key});
 
   final String title;
 
+  /// Optional widget displayed below the app bar (e.g. a [TabBar]).
+  final PreferredSizeWidget? bottom;
+
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(
+        kToolbarHeight + (bottom?.preferredSize.height ?? 0),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +36,7 @@ class BrandedAppBar extends StatelessWidget implements PreferredSizeWidget {
           ],
         ),
         centerTitle: true,
+        bottom: bottom,
       );
     }
 
@@ -39,6 +47,7 @@ class BrandedAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(title),
       centerTitle: true,
+      bottom: bottom,
     );
   }
 }

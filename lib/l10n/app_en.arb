@@ -9,6 +9,10 @@
   "@journalTab": { "description": "Journal tab label" },
   "settingsTab": "Settings",
   "@settingsTab": { "description": "Settings tab label" },
+  "todayTab": "Today",
+  "@todayTab": { "description": "Today sub-tab label on Home screen" },
+  "exploreTab": "Explore",
+  "@exploreTab": { "description": "Explore sub-tab label on Home screen" },
 
   "dashboardTitle": "Saranidhi",
   "@dashboardTitle": { "description": "Dashboard app bar title" },

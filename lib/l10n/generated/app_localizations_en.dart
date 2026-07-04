@@ -19,6 +19,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTab => 'Settings';
 
   @override
+  String get todayTab => 'Today';
+
+  @override
+  String get exploreTab => 'Explore';
+
+  @override
   String get dashboardTitle => 'Saranidhi';
 
   @override

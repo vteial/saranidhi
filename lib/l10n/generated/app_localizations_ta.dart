@@ -19,6 +19,12 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsTab => '\u0B85\u0BAE\u0BC8\u0BAA\u0BCD\u0BAA\u0BC1\u0B95\u0BB3\u0BCD';
 
   @override
+  String get todayTab => '\u0B87\u0BA9\u0BCD\u0BB1\u0BC1';
+
+  @override
+  String get exploreTab => '\u0B86\u0BB0\u0BBE\u0BAF\u0BCD';
+
+  @override
   String get dashboardTitle => '\u0B9A\u0BB0\u0BA8\u0BBF\u0BA4\u0BBF';
 
   @override

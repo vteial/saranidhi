@@ -2,207 +2,77 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
-import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.dart';
-import 'package:saranidhi/features/cloud_backup/domain/backup_repository.dart';
-import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
-import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
-import 'package:saranidhi/features/home/presentation/widgets/best_times_card.dart';
-import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
-import 'package:saranidhi/features/home/presentation/widgets/calendar_month_view.dart';
-import 'package:saranidhi/features/home/presentation/widgets/date_selector.dart';
-import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
-import 'package:saranidhi/features/home/presentation/widgets/historical_entries_card.dart';
-import 'package:saranidhi/features/home/presentation/widgets/hold_time_card.dart';
-import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_chart.dart';
-import 'package:saranidhi/features/home/presentation/widgets/rahu_kaal_card.dart';
-import 'package:saranidhi/features/streaks/presentation/widgets/seven_day_ribbon_widget.dart';
-import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_widget.dart';
-import 'package:saranidhi/features/streaks/presentation/widgets/trend_widget.dart';
-import 'package:saranidhi/features/streaks/presentation/widgets/yama_accuracy_widget.dart';
+import 'package:saranidhi/features/home/presentation/today_tab.dart';
+import 'package:saranidhi/features/home/presentation/explore_tab.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The Home/Dashboard screen.
 ///
-/// Displays personalized guidance hub: birth bird state, nostril dominance,
-/// Rahu Kaal, full-day schedule, hold time, streak, trend, wisdom, and
-/// yama accuracy.
-/// Supports pull-to-refresh to reload dashboard data.
-class HomeScreen extends ConsumerWidget {
+/// Split into two sub-tabs:
+/// - **Today** (default): focused live data for the current day.
+/// - **Explore**: date navigation, historical/future schedule views.
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final dashboardAsync = ref.watch(dashboardDataProvider);
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(_onTabChanged);
+  }
+
+  @override
+  void dispose() {
+    _tabController
+      ..removeListener(_onTabChanged)
+      ..dispose();
+    super.dispose();
+  }
+
+  /// When switching to the Today tab, reset the selected date to now.
+  void _onTabChanged() {
+    if (!_tabController.indexIsChanging && _tabController.index == 0) {
+      ref.read(selectedDateProvider.notifier).select(DateTime.now());
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: BrandedAppBar(title: l10n.dashboardTitle),
-      body: dashboardAsync.when(
-        data: (data) => _DashboardContent(data: data),
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.error_outline, size: 48),
-                const SizedBox(height: 12),
-                Text(l10n.errorLoadingDashboard(error.toString())),
-                const SizedBox(height: 12),
-                FilledButton(
-                  onPressed: () => ref.invalidate(dashboardDataProvider),
-                  child: Text(l10n.retry),
-                ),
-              ],
-            ),
+      appBar: BrandedAppBar(
+        title: l10n.dashboardTitle,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48),
+          child: TabBar(
+            controller: _tabController,
+            labelColor: theme.colorScheme.primary,
+            unselectedLabelColor: theme.colorScheme.onSurfaceVariant,
+            indicatorColor: theme.colorScheme.primary,
+            tabs: [
+              Tab(text: l10n.todayTab),
+              Tab(text: l10n.exploreTab),
+            ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _DashboardContent extends ConsumerWidget {
-  const _DashboardContent({required this.data});
-
-  final DashboardData data;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isWide = screenWidth >= 600; // Medium+ devices
-
-    return RefreshIndicator(
-      onRefresh: () async {
-        // Trigger iCloud sync on pull-to-refresh if enabled
-        final storageMode = ref.read(storageModeProvider);
-        if (storageMode == StorageMode.icloud) {
-          await ref.read(syncNotifierProvider.notifier).performSync();
-        }
-        ref.invalidate(dashboardDataProvider);
-        // Wait for the provider to settle
-        await ref.read(dashboardDataProvider.future);
-      },
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Date selector row
-            const DateSelector(),
-
-            // Row 1: Birth Bird Card + Rahu Kaal (two-column on wide)
-            if (isWide)
-              IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (data.birthBird != null)
-                      Expanded(child: BirthBirdCard(data: data)),
-                    if (data.birthBird != null && data.rahuKaal != null)
-                      const SizedBox(width: 12),
-                    if (data.rahuKaal != null)
-                      Expanded(child: RahuKaalCard(rahuKaal: data.rahuKaal!)),
-                  ],
-                ),
-              )
-            else ...[
-              // Single column on narrow
-              if (data.birthBird != null) BirthBirdCard(data: data),
-              const SizedBox(height: 12),
-              if (data.rahuKaal != null)
-                RahuKaalCard(rahuKaal: data.rahuKaal!),
-            ],
-            const SizedBox(height: 12),
-
-            // Row 2: Nostril Pattern + Today's Schedule (two-column on wide)
-            if (isWide)
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (data.yamaResult != null)
-                    Expanded(child: NostrilDominanceChart(data: data)),
-                  if (data.yamaResult != null &&
-                      data.pakshiDay != null &&
-                      data.birthBird != null)
-                    const SizedBox(width: 12),
-                  if (data.pakshiDay != null && data.birthBird != null)
-                    Expanded(child: FullDaySchedule(data: data)),
-                ],
-              )
-            else ...[
-              // Single column on narrow
-              if (data.yamaResult != null) NostrilDominanceChart(data: data),
-              const SizedBox(height: 12),
-              if (data.pakshiDay != null && data.birthBird != null)
-                FullDaySchedule(data: data),
-            ],
-            const SizedBox(height: 12),
-
-            // Best Times This Week (only on today view)
-            if (ref.watch(isViewingTodayProvider))
-              const BestTimesCard(),
-            if (ref.watch(isViewingTodayProvider))
-              const SizedBox(height: 12),
-
-            // Historical entries (only on non-today view)
-            if (!ref.watch(isViewingTodayProvider))
-              const HistoricalEntriesCard(),
-            if (!ref.watch(isViewingTodayProvider))
-              const SizedBox(height: 12),
-
-            // 5. Hold Time + Streak (two-column on wide)
-            if (isWide)
-              IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      child: HoldTimeCard(
-                        avgHoldMs: data.todayAvgHoldMs,
-                        entryCount: data.todayEntryCount,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: StreakFlameWidget(streak: data.streak),
-                    ),
-                  ],
-                ),
-              )
-            else ...[
-              HoldTimeCard(
-                avgHoldMs: data.todayAvgHoldMs,
-                entryCount: data.todayEntryCount,
-              ),
-              const SizedBox(height: 12),
-              StreakFlameWidget(streak: data.streak),
-            ],
-            const SizedBox(height: 12),
-
-            // 6. 7-day ribbon
-            SevenDayRibbonWidget(ribbon: data.ribbon),
-            const SizedBox(height: 12),
-
-            // 6b. Calendar month view
-            const CalendarMonthView(),
-            const SizedBox(height: 12),
-
-            // 7. 30-day trend
-            TrendWidget(trend: data.trend),
-            const SizedBox(height: 12),
-
-            // 8. Daily Wisdom
-            const WisdomCard(),
-            const SizedBox(height: 12),
-
-            // 9. Yama Coverage
-            YamaAccuracyWidget(accuracy: data.yamaAccuracy),
-          ],
-        ),
+      body: TabBarView(
+        controller: _tabController,
+        children: const [
+          TodayTab(),
+          ExploreTab(),
+        ],
       ),
     );
   }

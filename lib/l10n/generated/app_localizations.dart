@@ -62,6 +62,12 @@ abstract class AppLocalizations {
   /// Settings tab label
   String get settingsTab;
 
+  /// Today sub-tab label on Home screen
+  String get todayTab;
+
+  /// Explore sub-tab label on Home screen
+  String get exploreTab;
+
   /// Dashboard app bar title
   String get dashboardTitle;
 
