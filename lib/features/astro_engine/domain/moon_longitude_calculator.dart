@@ -34,7 +34,6 @@ class MoonLongitudeCalculator {
   const MoonLongitudeCalculator._();
 
   static const double _deg2rad = pi / 180;
-  static const double _rad2deg = 180 / pi;
 
   /// Calculates the Moon's position for a given [dateTime].
   ///
@@ -192,7 +191,7 @@ class MoonLongitudeCalculator {
     final absM = mCoeff.abs().round();
     if (absM == 1) return e;
     if (absM == 2) return e2;
-    return 1.0;
+    return 1;
   }
 
   // ─── Periodic term tables ───────────────────────────────────────────

@@ -221,7 +221,7 @@ class NakshatraCalculator {
   }
 
   /// Convenience method: returns just the nakshatra name string
-  /// (compatible with [PakshiCalculator.birthBirdFromNakshatra]).
+  /// (compatible with `PakshiCalculator.birthBirdFromNakshatra`).
   static String nakshatraNameForDOB(DateTime dateOfBirth) {
     return calculate(dateOfBirth).standardName;
   }

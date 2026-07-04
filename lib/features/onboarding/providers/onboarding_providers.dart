@@ -186,7 +186,7 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
   /// Calculates the birth nakshatra from DOB data and updates the
   /// selected nakshatra + birth bird accordingly.
   ///
-  /// Requires at least [birthDate] to be set. If [birthTimeOfDay] is
+  /// Requires at least `birthDate` to be set. If `birthTimeOfDay` is
   /// not set, defaults to 12:00 noon (midday approximation).
   void calculateFromDOB() {
     if (state.birthDate == null) return;

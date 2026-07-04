@@ -242,7 +242,6 @@ class _DOBStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -368,7 +367,7 @@ class _DOBStep extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: FilledButton.icon(
-                onPressed: () => notifier.calculateFromDOB(),
+                onPressed: notifier.calculateFromDOB,
                 icon: const Icon(Icons.auto_awesome),
                 label: const Text('Calculate Nakshatra from DOB'),
               ),

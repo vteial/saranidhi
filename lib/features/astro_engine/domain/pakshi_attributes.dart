@@ -194,7 +194,7 @@ enum PakshiColour {
 ///
 /// Content rephrased for compliance with licensing restrictions.
 final Map<PakshiBird, PakshiAttributes> _attributes = {
-  PakshiBird.vulture: PakshiAttributes(
+  PakshiBird.vulture: const PakshiAttributes(
     bird: PakshiBird.vulture,
     element: PakshiElement.earth,
     planet: PakshiPlanet.saturn,
@@ -205,7 +205,7 @@ final Map<PakshiBird, PakshiAttributes> _attributes = {
     nature: 'Grounded, patient, observant. Excels in sustained effort, '
         'endurance, and strategic waiting. Strongest in evening hours.',
   ),
-  PakshiBird.owl: PakshiAttributes(
+  PakshiBird.owl: const PakshiAttributes(
     bird: PakshiBird.owl,
     element: PakshiElement.water,
     planet: PakshiPlanet.mars,
@@ -216,7 +216,7 @@ final Map<PakshiBird, PakshiAttributes> _attributes = {
     nature: 'Intuitive, perceptive, powerful at night. Excels in hidden '
         'knowledge, research, and decisive action. Strongest after dark.',
   ),
-  PakshiBird.crow: PakshiAttributes(
+  PakshiBird.crow: const PakshiAttributes(
     bird: PakshiBird.crow,
     element: PakshiElement.fire,
     planet: PakshiPlanet.venus,
@@ -227,7 +227,7 @@ final Map<PakshiBird, PakshiAttributes> _attributes = {
     nature: 'Adaptable, clever, communicative. Excels in social situations, '
         'trade, and creative problem-solving. Strongest mid-morning.',
   ),
-  PakshiBird.rooster: PakshiAttributes(
+  PakshiBird.rooster: const PakshiAttributes(
     bird: PakshiBird.rooster,
     element: PakshiElement.air,
     planet: PakshiPlanet.jupiter,
@@ -238,7 +238,7 @@ final Map<PakshiBird, PakshiAttributes> _attributes = {
     nature: 'Disciplined, courageous, early-rising. Excels in leadership, '
         'announcements, and new beginnings. Strongest at dawn.',
   ),
-  PakshiBird.peacock: PakshiAttributes(
+  PakshiBird.peacock: const PakshiAttributes(
     bird: PakshiBird.peacock,
     element: PakshiElement.ether,
     planet: PakshiPlanet.mercury,
