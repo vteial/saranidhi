@@ -70,6 +70,8 @@ inclusion: auto
 - **iOS/macOS:** CloudKit sync via MethodChannel (native Swift plugins)
 - **Web:** Drift uses WebAssembly SQLite (`sqlite3.wasm` + `drift_worker.js`)
 - **Notifications:** `flutter_local_notifications` — iOS/macOS/Android only, web is no-op
+- **File sharing:** `share_plus` — cross-platform share sheet for data export
+- **File picking:** `file_picker` — JSON file selection for data import
 - **iCloud entitlements:** Already committed; requires Apple Developer account to activate
 
 ---

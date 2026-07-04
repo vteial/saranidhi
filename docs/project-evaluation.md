@@ -48,6 +48,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Notifications + Daily Engagement** | Real local notifications (flutter_local_notifications), personalized bird state alerts, Rahu Kaal start/end notifications, morning summary at sunrise, 4 configurable toggles, Tamil wisdom library (52+ proverbs), locale-aware Daily Wisdom | ✅ Complete (100%) — Sprint 17 |
 | **Historical View + Planning** | Date-parameterized dashboard, date selector (arrows + picker + Tomorrow/Today), Best Times This Week (7-day Ruling scan), historical entries card, calendar month view with entry indicators | ✅ Complete (100%) — Sprint 18 |
 | **Analytics + Export** | Analytics screen (4th tab), weekly alignment summary, monthly patterns (best/worst day, active yamas), CSV export, streak insights (gaps, consistency), yama performance breakdown, hold time progression (trend, personal best) | ✅ Complete (100%) — Sprint 19 |
+| **UI Polish + Home Layout Redesign** | Home Today/Explore sub-tabs, responsive two-column audit (all screens), redundant widget cleanup, full JSON data export/import, Settings moved to top-right gear icon, schedule column reorder, vibrant bird logo, SVG favicon | ✅ Complete (100%) — Sprint 20 |
 | **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
@@ -60,7 +61,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total test assertions | 201 (as of Sprint 8) |
+| Total test assertions | 348 (as of Sprint 20) |
 | Pass rate | 100% |
 | Static analysis | `dart analyze` — zero issues |
 | CI enforcement | GitHub Actions (analyze + test + coverage + build web + integration) |
@@ -80,6 +81,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 7 | 18 (context payload, rules engine, fallback, library) | 201 |
 | Sprint 10 | 63 (new test suites) | 264 |
 | Sprint 12 | 0 (test rewrite, same count) | 264 |
+| Sprint 20 | 84 (widget/integration test updates) | 348 |
 
 ### Resolved Defects
 
@@ -107,6 +109,14 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Settings page English strings | StorageModeSelector, BackupActionsWidget, color accents hardcoded English | Replaced with l10n calls, added 14+ new ARB keys | Sprint 12 |
 | Timer/Pacer English labels | BreathTimerWidget and QuickSyncPacer used hardcoded English | Added 22 new l10n keys for timer phases, instructions, pacer | Sprint 12 |
 | Micro-advice in English only | MicroAdvice domain class returns English | Localized at presentation layer with 5 new advice ARB keys | Sprint 12 |
+| Widget tests expect '30-Day Trend' on Home | TrendWidget moved from Today tab to Explore tab in layout redesign | Updated widget_test.dart and integration test to assert Today/Explore sub-tab labels instead | Sprint 20 |
+| `cascade_invocations` lint failures | Multiple `ref.invalidate()` calls on same receiver without cascade | Used `ref..invalidate()` cascade syntax | Sprint 20 |
+| `unnecessary_import` lint (dart:typed_data) | `Uint8List` already re-exported by `drift` and `flutter/foundation` | Removed redundant `dart:typed_data` imports | Sprint 20 |
+| `directives_ordering` lint (share_plus) | `share_plus` sorts after `saranidhi` alphabetically, breaking section grouping | Put all `package:` imports in single alphabetically-sorted section | Sprint 20 |
+| Settings page full-width on desktop | Settings pushed route was outside ShellScaffold's ResponsiveWrapper | Wrapped body with `Center` + `ConstrainedBox(maxWidth: 1200)` | Sprint 20 |
+| Import data not reflecting immediately | Only `dashboardDataProvider` invalidated after JSON import | Added cascade invalidation of 6 providers (dashboard, journal, theme, locale, notifications, onboarding) | Sprint 20 |
+| Settings background color inconsistency | Scaffold inside ResponsiveWrapper only covered 1200px; outer area was white | Used full-width Scaffold for theme background, constrained only body content | Sprint 20 |
+| Missing favicon in browser tab | `index.html` referenced `favicon.png` which didn't exist | Added `web/favicon.svg` (SVG logo) + updated link tag with PNG fallback | Sprint 20 |
 
 ---
 
@@ -134,6 +144,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 17 | Notifications + Daily Engagement | #41 | 0 (existing scheduler tests cover logic) | ✅ Complete |
 | Sprint 18 | Historical View + Planning | #44 | 0 (UI widgets, no new tests) | ✅ Complete |
 | Sprint 19 | Analytics + Export | #46 | 0 (analytics calculator, no new tests) | ✅ Complete |
+| Sprint 20 | UI Polish + Home Layout Redesign | #51 | 84 (widget test updates + new assertions) | ✅ Complete |
 
 ---
 

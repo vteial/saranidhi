@@ -209,9 +209,9 @@ This document defines the structured testing strategy for Saranidhi across all l
 
 | ID | Scenario | Expected Outcome |
 |----|----------|-----------------|
-| H-01 | Bottom nav shows correct tabs | Home, Journal, Settings visible |
+| H-01 | Bottom nav shows correct tabs | Home, Journal, Analytics visible |
 | H-02 | Tap Journal tab | Navigates to journal view |
-| H-03 | Tap Settings tab | Navigates to settings view |
+| H-03 | Tap Settings gear icon | Navigates to settings view (pushed route) |
 | H-04 | Deep link to journal entry | Opens specific entry detail |
 | H-05 | Back navigation preserves state | Tab state maintained across navigation |
 | H-06 | App resume from background | State preserved, no re-onboarding |
@@ -259,6 +259,7 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 12 | 0 | 264 | Pakshi calculator tests rewritten — validates authentic 2D lookup tables (bright/dark half, day groups, per-bird state verification) |
 | Sprint 14 | 0 | 264 | UI-heavy sprint (5 new widgets), no new test assertions |
 | Sprint 15 | 0 | 264 | Night yama calculator + night Pakshi tables, no new tests |
+| Sprint 20 | 84 | 348 | Widget/integration test rewrites for Today/Explore tabs, Settings gear icon nav, new assertions for sub-tab labels |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 
@@ -351,6 +352,21 @@ jobs:
 | AN-02 | Weekly trend shows 7 data points | Each day's average hold shown |
 | AN-03 | CSV export contains all journal fields | Downloadable, correct column headers, all entries |
 | AN-04 | Personal best updates on new record | Highlighted when user beats their longest hold |
+
+### Sprint 20: UI Polish + Data Export/Import
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| UI-01 | Home shows Today/Explore sub-tabs | TabBar visible, Today is default |
+| UI-02 | Today tab shows 7 focused cards | Bird, Rahu, Schedule, Nostril, Wisdom, Hold+Streak, Ribbon |
+| UI-03 | Explore tab shows date navigation | Date Selector, Calendar, Trend, Historical entries |
+| UI-04 | Responsive layout ≥600px all screens | Two-column on Journal, Settings, Analytics |
+| UI-05 | Settings accessible via top-right gear icon | Icon visible on all screens, navigates to Settings |
+| UI-06 | JSON export produces valid file | share sheet/download triggers with correct JSON structure |
+| UI-07 | JSON import with valid file | Validation passes, confirmation dialog shows summary, data imports |
+| UI-08 | JSON import with invalid file | Error message shown, no data modified |
+| UI-09 | Import reflects changes immediately | All providers invalidated, UI updates without page reload |
+| UI-10 | Schedule row order | Yama → Time → Bird → State name → State icon |
 
 ---
 

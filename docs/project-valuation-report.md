@@ -6,10 +6,10 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 19 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~45.5 Hours
-**Pull Requests Merged:** 46
-**Automated Test Coverage:** 264+ assertions (unit + widget + integration)
+**Sprints Delivered:** 20 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~49.5 Hours
+**Pull Requests Merged:** 52
+**Automated Test Coverage:** 348+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
 ---
@@ -118,6 +118,13 @@
 | `ba29eec` | Eialarasu | 2026-07-03 18:30 | **Merge PR #44 — Sprint 18 Complete** |
 | `6adde19` | Kiro Agent | 2026-07-04 08:30 | feat(sprint19): Analytics + Export — full analytics screen |
 | `3f3c0bc` | Eialarasu | 2026-07-04 10:30 | **Merge PR #46 — Sprint 19 Complete** |
+| `67e4923` | Kiro Agent | 2026-07-04 12:00 | feat(home): split Home into Today/Explore sub-tabs (Task 20.1) |
+| `320cb32` | Kiro Agent | 2026-07-04 12:30 | feat(ui): responsive two-column layout for Journal, Settings, Analytics (Task 20.4) |
+| `8eff976` | Kiro Agent | 2026-07-04 13:00 | feat(settings): full data export/import as JSON (Task 20.6) |
+| `d3457e3` | Kiro Agent | 2026-07-04 14:00 | fix(ui): move Settings to top-right + reorder schedule + lint |
+| `4b689a0` | Kiro Agent | 2026-07-04 15:00 | feat(ui): vibrant bird+breath logo + fix Settings page width |
+| `062b699` | Kiro Agent | 2026-07-04 16:00 | fix(settings): consistent background + back button alignment |
+| `de57ccb` | Eialarasu | 2026-07-04 16:30 | **Merge PR #51 — Sprint 20 Complete** |
 
 ---
 
@@ -140,7 +147,8 @@
 | Day 5 (cont.) | 2026-07-03 | 13:30 - 16:00 | ~2.5 | Sprint 17 |
 | Day 5 (cont.) | 2026-07-03 | 16:00 - 18:30 | ~2.5 | Sprint 18 |
 | Day 6 | 2026-07-04 | 08:00 - 10:30 | ~2.5 | Sprint 19 |
-| | | **Subtotal** | **~39.0** | |
+| Day 6 (cont.) | 2026-07-04 | 11:00 - 16:30 | ~4.0 | Sprint 20 |
+| | | **Subtotal** | **~43.0** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -159,9 +167,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 39.0 |
+| Active coding & debugging (AI-assisted) | 43.0 |
 | Infrastructure & admin ops | 6.5 |
-| **Total** | **~45.5** |
+| **Total** | **~49.5** |
 
 ---
 
@@ -189,10 +197,11 @@
 | Sprint 17 | Notifications + Daily Engagement | #41 | 264+ | ✅ Complete |
 | Sprint 18 | Historical View + Planning | #44 | 264+ | ✅ Complete |
 | Sprint 19 | Analytics + Export | #46 | 264+ | ✅ Complete |
+| Sprint 20 | UI Polish + Home Layout Redesign | #51 | 348+ | ✅ Complete |
 
 ---
 
-## Technical Deliverables (as of Sprint 15)
+## Technical Deliverables (as of Sprint 20)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
@@ -275,6 +284,15 @@
 - **Night guidance text** (EN + TA) — meditation, sleep, spiritual practice timing
 - **3-tier deployment architecture** — Production (`saranidhi.vercel.app`), Staging (`saranidhi-staging.vercel.app`), Preview (per-PR)
 - **`/release` protocol** — PR-based promotion from main→prod with versioning
+- **Home Today/Explore sub-tabs** — TabBar splitting dashboard into focused "Today" (7 live cards) and "Explore" (date navigation, history, trends)
+- **Full JSON data export/import** — DataExportImportWidget in Settings: export all 4 tables + SharedPreferences to JSON, import with validation + confirmation + provider invalidation
+- **Settings moved to top-right** — gear icon in BrandedAppBar actions, removed from bottom nav (now 3 tabs: Home, Journal, Analytics)
+- **Schedule column reorder** — Yama → Time → Bird emoji → State name → State emoji for visual clarity
+- **Vibrant bird+breath logo** — golden bird in flight on deep indigo-to-purple gradient (primary: `logo.svg`)
+- **4 logo alternatives** — cosmic eye (`logo-cosmic-eye.svg`), lotus flame (`logo-lotus-flame.svg`), breath mandala (`logo-breath-mandala.svg`)
+- **SVG favicon** — `web/favicon.svg` for browser tab branding
+- **share_plus + file_picker** dependencies for cross-platform file sharing and picking
+- **Responsive two-column audit** — all screens (Journal, Settings, Analytics) now use ≥600px breakpoint consistently
 
 ---
 

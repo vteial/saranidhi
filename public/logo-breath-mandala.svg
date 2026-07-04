@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!--
+    Saranidhi Logo — Breath Mandala (Direction D)
+    
+    Concept: A simplified mandala with 5 petals (one for each Pakshi bird)
+    arranged in sacred geometry around a central bindu. Rich gradient
+    background. Each petal subtly represents a bird's energy. The
+    overall form evokes rhythmic breath expansion and contraction.
+  -->
+
+  <defs>
+    <radialGradient id="bmBgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a2744"/>
+      <stop offset="70%" stop-color="#0d1b2a"/>
+      <stop offset="100%" stop-color="#060e18"/>
+    </radialGradient>
+    <linearGradient id="bmPetal1" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+    <linearGradient id="bmPetal2" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#5BEAD6"/>
+      <stop offset="100%" stop-color="#38B2AC"/>
+    </linearGradient>
+    <linearGradient id="bmPetal3" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#9B59B6"/>
+      <stop offset="100%" stop-color="#7B2FBE"/>
+    </linearGradient>
+    <linearGradient id="bmPetal4" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#E74C3C"/>
+      <stop offset="100%" stop-color="#C0392B"/>
+    </linearGradient>
+    <linearGradient id="bmPetal5" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#2ECC71"/>
+      <stop offset="100%" stop-color="#27AE60"/>
+    </linearGradient>
+    <radialGradient id="bmCenterGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Deep background -->
+  <circle cx="256" cy="256" r="248" fill="url(#bmBgGrad)"/>
+
+  <!-- Outer sacred rings -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="#5BEAD6" stroke-width="1" opacity="0.15"/>
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#FFD700" stroke-width="1" opacity="0.12"/>
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#9B59B6" stroke-width="1" opacity="0.1"/>
+
+  <!-- 5 Petals arranged in a circle (72 degrees apart) -->
+  <!-- Petal 1: Vulture (Gold) — top -->
+  <path
+    d="M 256 256
+       L 245 175
+       C 248 140, 256 120, 256 110
+       C 256 120, 264 140, 267 175
+       Z"
+    fill="url(#bmPetal1)"
+    opacity="0.9"
+  />
+  <path
+    d="M 256 256
+       L 240 180
+       C 244 150, 256 130, 256 118
+       C 256 130, 268 150, 272 180
+       Z"
+    fill="url(#bmPetal1)"
+    opacity="0.5"
+    transform="rotate(0, 256, 256) scale(0.85) translate(38, 38)"
+  />
+
+  <!-- Petal 2: Owl (Teal) — top-right (72 degrees) -->
+  <path
+    d="M 256 256
+       L 325 195
+       C 352 175, 370 170, 380 168
+       C 370 175, 357 188, 335 210
+       Z"
+    fill="url(#bmPetal2)"
+    opacity="0.9"
+  />
+
+  <!-- Petal 3: Crow (Purple) — bottom-right (144 degrees) -->
+  <path
+    d="M 256 256
+       L 340 310
+       C 365 330, 375 348, 378 358
+       C 368 350, 352 340, 325 322
+       Z"
+    fill="url(#bmPetal3)"
+    opacity="0.9"
+  />
+
+  <!-- Petal 4: Rooster (Red) — bottom-left (216 degrees) -->
+  <path
+    d="M 256 256
+       L 172 310
+       C 147 330, 137 348, 134 358
+       C 144 350, 160 340, 187 322
+       Z"
+    fill="url(#bmPetal4)"
+    opacity="0.9"
+  />
+
+  <!-- Petal 5: Peacock (Green) — top-left (288 degrees) -->
+  <path
+    d="M 256 256
+       L 187 195
+       C 160 175, 142 170, 132 168
+       C 142 175, 155 188, 177 210
+       Z"
+    fill="url(#bmPetal5)"
+    opacity="0.9"
+  />
+
+  <!-- Inner connecting ring -->
+  <circle cx="256" cy="256" r="55" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.4"/>
+
+  <!-- Breath spiral (subtle) -->
+  <path
+    d="M 256 200
+       C 280 215, 295 240, 285 260
+       C 275 280, 250 285, 235 270
+       C 220 255, 225 235, 240 225
+       C 255 215, 270 225, 265 240"
+    stroke="#5BEAD6"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    fill="none"
+    opacity="0.4"
+  />
+
+  <!-- Center bindu (golden radial) -->
+  <circle cx="256" cy="256" r="22" fill="url(#bmCenterGrad)"/>
+  <circle cx="256" cy="256" r="10" fill="#FFD700"/>
+  <circle cx="256" cy="256" r="4" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- Petal tip dots (bird markers) -->
+  <circle cx="256" cy="108" r="5" fill="#FFD700" opacity="0.8"/>
+  <circle cx="382" cy="167" r="5" fill="#5BEAD6" opacity="0.8"/>
+  <circle cx="380" cy="360" r="5" fill="#9B59B6" opacity="0.8"/>
+  <circle cx="132" cy="360" r="5" fill="#E74C3C" opacity="0.8"/>
+  <circle cx="130" cy="167" r="5" fill="#2ECC71" opacity="0.8"/>
+
+  <!-- Cosmic stars -->
+  <circle cx="140" cy="100" r="1.5" fill="#FFFFFF" opacity="0.5"/>
+  <circle cx="380" cy="95" r="2" fill="#FFFFFF" opacity="0.4"/>
+  <circle cx="90" cy="280" r="1.5" fill="#FFFFFF" opacity="0.35"/>
+  <circle cx="425" cy="270" r="2" fill="#FFFFFF" opacity="0.4"/>
+  <circle cx="170" cy="440" r="1.5" fill="#FFFFFF" opacity="0.3"/>
+  <circle cx="350" cy="445" r="2" fill="#FFFFFF" opacity="0.35"/>
+</svg>
