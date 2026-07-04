@@ -313,14 +313,57 @@ class _NakshatraListPath extends StatelessWidget {
 }
 
 /// Sub-path: calculate from date of birth.
-class _DOBCalculatePath extends StatelessWidget {
+///
+/// Uses [StatefulWidget] to safely handle async picker dialogs on Flutter Web.
+class _DOBCalculatePath extends StatefulWidget {
   const _DOBCalculatePath({required this.state, required this.notifier});
   final OnboardingState state;
   final OnboardingNotifier notifier;
 
   @override
+  State<_DOBCalculatePath> createState() => _DOBCalculatePathState();
+}
+
+class _DOBCalculatePathState extends State<_DOBCalculatePath> {
+  Future<void> _pickDate() async {
+    // Capture navigator context before async gap
+    final navigator = Navigator.of(context, rootNavigator: true);
+    final initialDate = widget.state.birthDate ?? DateTime(1990);
+    final now = DateTime.now();
+
+    final picked = await showDatePicker(
+      context: navigator.context,
+      initialDate: initialDate.isAfter(now) ? now : initialDate,
+      firstDate: DateTime(1920),
+      lastDate: now,
+      helpText: 'Select your date of birth',
+    );
+    if (picked != null && mounted) {
+      widget.notifier.setBirthDate(picked);
+    }
+  }
+
+  Future<void> _pickTime() async {
+    // Capture navigator context before async gap
+    final navigator = Navigator.of(context, rootNavigator: true);
+
+    final picked = await showTimePicker(
+      context: navigator.context,
+      initialTime:
+          widget.state.birthTimeOfDay ?? const TimeOfDay(hour: 6, minute: 0),
+      helpText: 'Select your birth time',
+    );
+    if (picked != null && mounted) {
+      widget.notifier.setBirthTime(picked);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final state = widget.state;
+    final notifier = widget.notifier;
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -335,7 +378,7 @@ class _DOBCalculatePath extends StatelessWidget {
             ),
             subtitle: const Text('Birth date'),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => _pickDate(context),
+            onTap: _pickDate,
             contentPadding: EdgeInsets.zero,
           ),
           const Divider(),
@@ -351,7 +394,7 @@ class _DOBCalculatePath extends StatelessWidget {
             ),
             subtitle: const Text('Birth time (for precise nakshatra)'),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => _pickTime(context),
+            onTap: _pickTime,
             contentPadding: EdgeInsets.zero,
           ),
           const Divider(),
@@ -462,30 +505,6 @@ class _DOBCalculatePath extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future<void> _pickDate(BuildContext context) async {
-    final picked = await showDatePicker(
-      context: context,
-      initialDate: state.birthDate ?? DateTime(1990),
-      firstDate: DateTime(1920),
-      lastDate: DateTime.now(),
-      helpText: 'Select your date of birth',
-    );
-    if (picked != null) {
-      notifier.setBirthDate(picked);
-    }
-  }
-
-  Future<void> _pickTime(BuildContext context) async {
-    final picked = await showTimePicker(
-      context: context,
-      initialTime: state.birthTimeOfDay ?? const TimeOfDay(hour: 6, minute: 0),
-      helpText: 'Select your birth time',
-    );
-    if (picked != null) {
-      notifier.setBirthTime(picked);
-    }
   }
 }
 
