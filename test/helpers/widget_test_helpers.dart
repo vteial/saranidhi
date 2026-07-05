@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/rahu_kaal_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
@@ -12,7 +10,12 @@ import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Wraps a widget in MaterialApp with localizations for isolated widget testing.
-Widget testableWidget(Widget child, {List<Override> overrides = const []}) {
+///
+/// If [overrides] are provided, wraps in a [ProviderScope] for Riverpod.
+Widget testableWidget(
+  Widget child, {
+  List<Override> overrides = const [],
+}) {
   final widget = MaterialApp(
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
@@ -23,7 +26,7 @@ Widget testableWidget(Widget child, {List<Override> overrides = const []}) {
   if (overrides.isNotEmpty) {
     return ProviderScope(overrides: overrides, child: widget);
   }
-  return widget;
+  return ProviderScope(overrides: const [], child: widget);
 }
 
 /// Creates a minimal DashboardData with sensible defaults for testing.
@@ -108,10 +111,12 @@ YamaResult createTestYamaResult({
 RahuKaalResult createTestRahuKaal({
   DateTime? start,
   DateTime? end,
+  int weekday = 6,
 }) {
   return RahuKaalResult(
     start: start ?? DateTime(2026, 7, 5, 9, 0),
     end: end ?? DateTime(2026, 7, 5, 10, 30),
+    weekday: weekday,
   );
 }
 
