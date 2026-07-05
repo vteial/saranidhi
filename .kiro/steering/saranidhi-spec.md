@@ -45,8 +45,8 @@ inclusion: auto
 ## 4. CI Quality Gates
 
 - `flutter analyze --fatal-infos` — zero issues (errors, warnings, AND infos)
-- `flutter test` — all pass
-- Coverage threshold: ≥ 20% (blended; domain layer ~95%)
+- **Tier 1 (PRs):** `flutter test test/features/{domain dirs}` — domain + provider tests pass
+- **Tier 2 (merge):** `flutter test --coverage` — ALL tests pass + ≥ 20% coverage
 - `flutter build web` — must compile
 - Integration tests via headless Chrome
 
