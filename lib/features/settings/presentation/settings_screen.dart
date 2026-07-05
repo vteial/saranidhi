@@ -11,6 +11,7 @@ import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mod
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/sync_device_config_widget.dart';
 import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/features/settings/presentation/about_card.dart';
 import 'package:saranidhi/features/settings/presentation/data_export_import_widget.dart';
 import 'package:saranidhi/features/settings/presentation/profile_card.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -136,6 +137,11 @@ class SettingsScreen extends ConsumerWidget {
 
         // Clear All Data
         _ClearAllDataTile(),
+
+        const Divider(height: 32),
+
+        // About
+        const AboutCard(),
       ],
     );
 
