@@ -40,6 +40,7 @@ class OnboardingGuard extends ConsumerWidget {
 
       if (!introSeen) {
         return Navigator(
+          key: const ValueKey('intro-navigator'),
           onGenerateRoute: (_) => MaterialPageRoute<void>(
             builder: (_) => const IntroScreen(),
           ),
@@ -47,6 +48,7 @@ class OnboardingGuard extends ConsumerWidget {
       }
 
       return Navigator(
+        key: const ValueKey('onboarding-navigator'),
         onGenerateRoute: (_) => MaterialPageRoute<void>(
           builder: (_) => const OnboardingScreen(),
         ),
