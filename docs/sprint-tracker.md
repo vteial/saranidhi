@@ -280,7 +280,7 @@
 
 ---
 
-## Sprint 22: Widget Test Coverage + Web Polish
+## Sprint 22: Widget Test Coverage + Web Polish — In Progress
 
 - [ ] Task 22.1: BirthBirdCard widget test
 - [ ] Task 22.2: RahuKaalCard widget test
