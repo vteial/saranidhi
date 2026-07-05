@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 22 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~55.5 Hours
-**Pull Requests Merged:** 56
+**Sprints Delivered:** 23 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~59.0 Hours
+**Pull Requests Merged:** 59
 **Automated Test Coverage:** 410+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -143,6 +143,15 @@
 | `0a7c3a4` | Kiro Agent | 2026-07-05 05:00 | fix: notification scheduler weekday conversion |
 | `129649f` | Kiro Agent | 2026-07-05 05:30 | ci: split into two-tier test strategy |
 | `5f31dac` | Eialarasu | 2026-07-05 06:00 | **Merge PR #56 — Sprint 22 Complete** |
+| `67c666d` | Kiro Agent | 2026-07-05 08:00 | chore: mark Sprint 23 as In Progress |
+| `d5615a8` | Kiro Agent | 2026-07-05 08:30 | feat(sprint23): About card, User Guide, Intro screen, dialog consistency |
+| `7226d1c` | Kiro Agent | 2026-07-05 09:30 | fix: Get Started button — use ConsumerWidget with direct ref |
+| `0e89a6c` | Kiro Agent | 2026-07-05 09:45 | fix: Get Started button — add unique Keys to Navigators |
+| `3e081c1` | Kiro Agent | 2026-07-05 10:00 | fix(ui): move About card to personalSection for balanced layout |
+| `f66a2db` | Kiro Agent | 2026-07-05 10:15 | feat(i18n): locale-aware Privacy Policy |
+| `5ba67be` | Kiro Agent | 2026-07-05 10:30 | fix(ui): align Settings back button with content on wide screens |
+| `c83437a` | Kiro Agent | 2026-07-05 10:45 | fix(i18n): correct Tamil name — இயலரசு |
+| `d649010` | Eialarasu | 2026-07-05 11:00 | **Merge PR #59 — Sprint 23 Complete** |
 
 ---
 
@@ -168,7 +177,8 @@
 | Day 6 (cont.) | 2026-07-04 | 11:00 - 16:30 | ~4.0 | Sprint 20 |
 | Day 6 (cont.) | 2026-07-04 | 17:00 - 20:30 | ~2.5 | Sprint 21 |
 | Day 7 | 2026-07-05 | 03:00 - 06:00 | ~3.0 | Sprint 22 |
-| | | **Subtotal** | **~48.5** | |
+| Day 7 (cont.) | 2026-07-05 | 08:00 - 11:00 | ~3.5 | Sprint 23 |
+| | | **Subtotal** | **~52.0** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -188,9 +198,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 48.5 |
+| Active coding & debugging (AI-assisted) | 52.0 |
 | Infrastructure & admin ops | 7.0 |
-| **Total** | **~55.5** |
+| **Total** | **~59.0** |
 
 ---
 
@@ -221,10 +231,11 @@
 | Sprint 20 | UI Polish + Home Layout Redesign | #51 | 348+ | ✅ Complete |
 | Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 348+ | ✅ Complete |
 | Sprint 22 | Widget Test Coverage + Web Polish | #56 | 410+ | ✅ Complete |
+| Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 410+ | ✅ Complete |
 
 ---
 
-## Technical Deliverables (as of Sprint 22)
+## Technical Deliverables (as of Sprint 23)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
@@ -330,6 +341,12 @@
 - **Vercel COOP/COEP headers** — Cross-Origin-Opener-Policy + Cross-Origin-Embedder-Policy for Drift WASM SharedArrayBuffer
 - **Custom `flutter_bootstrap.js`** — useColorEmoji:true for Noto Color Emoji preloading
 - **Notification scheduler bug fix** — weekday conversion using `dartWeekdayToSunBased()` for correct Pakshi/Rahu calculations
+- **Pre-onboarding IntroScreen** — scrollable guide with "Get Started" button shown before 4-step onboarding (ConsumerWidget + introSeenProvider + Navigator ValueKeys)
+- **About card in Settings** — Apple-style card with logo, dynamic version (package_info_plus), developer info (Eialarasu, vteial@icloud.com), tappable email/website links
+- **User Guide screen** — 9-section flat scrollable guide (What is Saranidhi, Science, Birth Bird, Daily Rhythm, How to Use, Best Practices, Dashboard, Benefits, FAQ)
+- **Locale-aware Privacy Policy** — `privacy-en.html` + `privacy-ta.html` with dynamic URL via `Uri.base.origin`
+- **Settings layout improvements** — SliverAppBar inside ConstrainedBox for aligned back button, About card in personalSection (left column)
+- **`package_info_plus` + `url_launcher`** dependencies for version display and external link launching
 
 ---
 
