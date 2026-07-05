@@ -6,6 +6,7 @@ import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Provider that fetches journal entries for the currently selected date.
 final historicalEntriesProvider =
@@ -35,22 +36,37 @@ class HistoricalEntriesCard extends ConsumerWidget {
     return entriesAsync.when(
       data: (entries) {
         if (entries.isEmpty) {
+          final l10n = AppLocalizations.of(context);
           return Card(
             child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 24,
+              ),
+              child: Column(
                 children: [
                   Icon(
-                    Icons.event_note_outlined,
-                    color: theme.colorScheme.onSurfaceVariant,
-                    size: 20,
+                    Icons.event_available_outlined,
+                    size: 36,
+                    color: theme.colorScheme.onSurfaceVariant
+                        .withValues(alpha: 0.4),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(height: 12),
                   Text(
-                    'No entries on this day',
-                    style: theme.textTheme.bodyMedium?.copyWith(
+                    l10n.exploreNoEntriesTitle,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      color: theme.colorScheme.onSurface,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.exploreNoEntriesHint,
+                    style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),

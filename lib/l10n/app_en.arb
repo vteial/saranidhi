@@ -596,5 +596,38 @@
   "@guideBenefitsBody": { "description": "Guide section 8 body" },
   "guideFaqTitle": "Frequently Asked Questions",
   "@guideFaqTitle": { "description": "Guide section 9 title" },
-  "guideFaqBody": "Q: How accurate are the calculations?\nA: Saranidhi uses the Jean Meeus astronomical algorithm for Moon position and authentic Panja Pakshi lookup tables from Prof. Dr. U.S. Pulippani's research. Accuracy is within \u00B10.5\u00B0.\n\nQ: Does it work offline?\nA: Yes! All calculations run on your device. No internet needed.\n\nQ: Is my data private?\nA: Absolutely. Your data never leaves your device unless you choose to back up to your own iCloud/Google Drive.\n\nQ: What if I don't know my birth star?\nA: Use the 'Calculate from DOB' option during onboarding \u2014 enter your date and time of birth and the app will determine your nakshatra.\n\nQ: What is Rahu Kaal?\nA: A daily inauspicious window (about 90 minutes) based on Vedic astrology. Avoid starting new activities during this time.\n\nQ: Can I use this outside India?\nA: Yes! The app works anywhere. Sunrise/sunset are calculated for your location. Preset cities are Indian, but any latitude/longitude works.\n\nQ: How do I export my data?\nA: Settings \u2192 Data Export/Import \u2192 Export All Data. This creates a JSON file you can save or share."
+  "guideFaqBody": "Q: How accurate are the calculations?\nA: Saranidhi uses the Jean Meeus astronomical algorithm for Moon position and authentic Panja Pakshi lookup tables from Prof. Dr. U.S. Pulippani's research. Accuracy is within \u00B10.5\u00B0.\n\nQ: Does it work offline?\nA: Yes! All calculations run on your device. No internet needed.\n\nQ: Is my data private?\nA: Absolutely. Your data never leaves your device unless you choose to back up to your own iCloud/Google Drive.\n\nQ: What if I don't know my birth star?\nA: Use the 'Calculate from DOB' option during onboarding \u2014 enter your date and time of birth and the app will determine your nakshatra.\n\nQ: What is Rahu Kaal?\nA: A daily inauspicious window (about 90 minutes) based on Vedic astrology. Avoid starting new activities during this time.\n\nQ: Can I use this outside India?\nA: Yes! The app works anywhere. Sunrise/sunset are calculated for your location. Preset cities are Indian, but any latitude/longitude works.\n\nQ: How do I export my data?\nA: Settings \u2192 Data Export/Import \u2192 Export All Data. This creates a JSON file you can save or share.",
+
+  "journalEmptyTitle": "Begin Your Breath Journey",
+  "@journalEmptyTitle": { "description": "Journal empty state title when no entries exist" },
+  "journalEmptySubtitle": "Track your nostril dominance throughout the day to discover your natural alignment with cosmic rhythms.",
+  "@journalEmptySubtitle": { "description": "Journal empty state subtitle" },
+  "journalEmptyHint": "Start by selecting your nostril flow above",
+  "@journalEmptyHint": { "description": "Journal empty state action hint" },
+
+  "analyticsEmptyTitle": "Your Insights Await",
+  "@analyticsEmptyTitle": { "description": "Analytics empty state title" },
+  "analyticsEmptySubtitle": "Log a few breath entries in the Journal tab to unlock patterns, trends, and personalized insights about your practice.",
+  "@analyticsEmptySubtitle": { "description": "Analytics empty state subtitle" },
+
+  "errorSomethingWentWrong": "Something went wrong",
+  "@errorSomethingWentWrong": { "description": "Generic error title" },
+  "errorTryAgainLater": "An unexpected error occurred. Please try again.",
+  "@errorTryAgainLater": { "description": "Generic error subtitle" },
+
+  "exploreNoEntriesTitle": "No entries on this day",
+  "@exploreNoEntriesTitle": { "description": "Explore tab empty state title for selected date" },
+  "exploreNoEntriesHint": "Navigate to this date's Journal tab to log past entries, or explore other dates.",
+  "@exploreNoEntriesHint": { "description": "Explore tab empty state hint" },
+
+  "streakZeroTitle": "Build Your Streak",
+  "@streakZeroTitle": { "description": "Streak zero-state title for new users" },
+  "streakZeroSubtitle": "Consistency is the key to alignment awareness.",
+  "@streakZeroSubtitle": { "description": "Streak zero-state subtitle" },
+  "streakStep1": "Log your breath flow once per day",
+  "@streakStep1": { "description": "Streak onboarding step 1" },
+  "streakStep2": "Each aligned day adds to your streak",
+  "@streakStep2": { "description": "Streak onboarding step 2" },
+  "streakStep3": "Watch your consistency grow over time",
+  "@streakStep3": { "description": "Streak onboarding step 3" }
 }

@@ -74,7 +74,9 @@ void main() {
       await tester.pumpWidget(testableWidget(StreakFlameWidget(streak: streak)));
       await tester.pumpAndSettle();
 
-      expect(find.textContaining('0'), findsOneWidget);
+      // Zero-state shows motivational onboarding card
+      expect(find.text('Build Your Streak'), findsOneWidget);
+      expect(find.byIcon(Icons.local_fire_department), findsOneWidget);
     });
   });
 }

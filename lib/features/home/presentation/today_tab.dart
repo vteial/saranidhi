@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:saranidhi/core/widgets/error_boundary.dart';
+import 'package:saranidhi/core/widgets/shimmer_loading.dart';
 import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.dart';
 import 'package:saranidhi/features/cloud_backup/domain/backup_repository.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
@@ -13,7 +15,6 @@ import 'package:saranidhi/features/home/presentation/widgets/rahu_kaal_card.dart
 import 'package:saranidhi/features/streaks/presentation/widgets/seven_day_ribbon_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_widget.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
-import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The "Today" sub-tab on the Home screen.
 ///
@@ -26,28 +27,13 @@ class TodayTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dashboardAsync = ref.watch(dashboardDataProvider);
-    final l10n = AppLocalizations.of(context);
 
     return dashboardAsync.when(
       data: (data) => _TodayContent(data: data),
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stack) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error_outline, size: 48),
-              const SizedBox(height: 12),
-              Text(l10n.errorLoadingDashboard(error.toString())),
-              const SizedBox(height: 12),
-              FilledButton(
-                onPressed: () => ref.invalidate(dashboardDataProvider),
-                child: Text(l10n.retry),
-              ),
-            ],
-          ),
-        ),
+      loading: () => const ShimmerLoading(),
+      error: (error, stack) => ErrorFallback(
+        message: error.toString(),
+        onRetry: () => ref.invalidate(dashboardDataProvider),
       ),
     );
   }

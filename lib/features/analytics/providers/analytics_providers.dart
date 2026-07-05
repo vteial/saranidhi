@@ -8,6 +8,8 @@ import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 /// Provides weekly alignment summaries (last 4 weeks).
 final weeklyAnalyticsProvider =
     FutureProvider<List<WeeklySummary>>((ref) async {
+  // Watch journal entries stream to auto-refresh when entries change.
+  await ref.watch(journalEntriesProvider.future);
   final repo = ref.watch(journalRepositoryProvider);
   final entries = await repo.getAllEntries();
   return AnalyticsCalculator.calculateWeeklySummaries(entries: entries);
@@ -15,6 +17,8 @@ final weeklyAnalyticsProvider =
 
 /// Provides monthly patterns analysis.
 final monthlyPatternsProvider = FutureProvider<MonthlyPatterns>((ref) async {
+  // Watch journal entries stream to auto-refresh when entries change.
+  await ref.watch(journalEntriesProvider.future);
   final repo = ref.watch(journalRepositoryProvider);
   final now = DateTime.now();
   final thirtyDaysAgo = now.subtract(const Duration(days: 30));
@@ -30,6 +34,8 @@ final monthlyPatternsProvider = FutureProvider<MonthlyPatterns>((ref) async {
 
 /// Provides extended streak insights.
 final streakInsightsProvider = FutureProvider<StreakInsights>((ref) async {
+  // Watch journal entries stream to auto-refresh when entries change.
+  await ref.watch(journalEntriesProvider.future);
   final repo = ref.watch(journalRepositoryProvider);
   final dashData = await ref.watch(dashboardDataProvider.future);
 
@@ -44,6 +50,8 @@ final streakInsightsProvider = FutureProvider<StreakInsights>((ref) async {
 /// Provides hold time progression data.
 final holdTimeProgressionProvider =
     FutureProvider<HoldTimeProgression>((ref) async {
+  // Watch journal entries stream to auto-refresh when entries change.
+  await ref.watch(journalEntriesProvider.future);
   final repo = ref.watch(journalRepositoryProvider);
   final entries = await repo.getAllEntries();
   return AnalyticsCalculator.calculateHoldTimeProgression(entries: entries);
@@ -59,6 +67,8 @@ final csvExportProvider = FutureProvider<String>((ref) async {
 /// Provides yama performance breakdown (sorted by count).
 final yamaPerformanceProvider =
     FutureProvider<Map<String, int>>((ref) async {
+  // Watch journal entries stream to auto-refresh when entries change.
+  await ref.watch(journalEntriesProvider.future);
   final db = ref.watch(appDatabaseProvider);
   final entries = await db.select(db.saraKalaiJournal).get();
 
