@@ -51,6 +51,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **UI Polish + Home Layout Redesign** | Home Today/Explore sub-tabs, responsive two-column audit (all screens), redundant widget cleanup, full JSON data export/import, Settings moved to top-right gear icon, schedule column reorder, vibrant bird logo, SVG favicon | ✅ Complete (100%) — Sprint 20 |
 | **Pakshi Accuracy (DOB-Based Calculation)** | Moon longitude calculator (Jean Meeus ELP 2000/82), Lahiri Ayanamsa, Nakshatra-from-DOB, onboarding UX redesign (5→4 steps with dual-path "Find Your Bird"), extended birth bird attributes (friends/enemies/planet/direction/colour), Indian-only cities, OnboardingGuard Navigator for web pickers | ✅ Complete (100%) — Sprint 21 |
 | **Widget Test Coverage + Web Polish** | 10 widget tests, two-tier CI (ci.yml fast/ci-full.yml complete), COOP/COEP headers, emoji preload, notification weekday fix | ✅ Complete (100%) — Sprint 22 |
+| **Product Polish — About, User Guide & Onboarding Intro** | Pre-onboarding intro, About card (version+links), User Guide (9 sections), locale-aware privacy policy, dialog consistency, Settings layout alignment | ✅ Complete (100%) — Sprint 23 |
 | **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
@@ -127,6 +128,9 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Non-Indian cities in preset lists | London, New York, Singapore, Sydney included — irrelevant for Indian birth-based app | Removed; kept only Chennai, Mumbai, Delhi, Bangalore, Hyderabad, Kolkata | Sprint 21 |
 | `avoid_redundant_argument_values` lint warnings | `useRootNavigator: true` explicitly passed to `showDatePicker`/`showTimePicker` (already default) | Removed redundant arguments | Sprint 21 |
 | Notification scheduler wrong weekday format | Passing Dart's DateTime.weekday (1=Mon..7=Sun) directly to PakshiCalculator/RahuKaalCalculator which expect 0=Sun..6=Sat | Wrapped with PakshiCalculator.dartWeekdayToSunBased() | Sprint 22 |
+| Get Started button not responding | OnboardingGuard passed callback through Navigator's cached route — ref became stale | Made IntroScreen a ConsumerWidget + added ValueKey to each Navigator for proper element replacement | Sprint 23 |
+| Settings back button misaligned on wide screens | AppBar spanned full viewport while content constrained to 1200px | Replaced with SliverAppBar inside ConstrainedBox using CustomScrollView | Sprint 23 |
+| Double divider above Notifications | BackupActionsWidget and SyncDeviceConfigWidget had separate dividers | Consolidated into single group with one divider | Sprint 23 |
 
 ---
 
@@ -157,6 +161,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 20 | UI Polish + Home Layout Redesign | #51 | 84 (widget test updates + new assertions) | ✅ Complete |
 | Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 0 (test expectations updated, no new tests) | ✅ Complete |
 | Sprint 22 | Widget Test Coverage + Web Polish | #56 | 62 (widget tests) | ✅ Complete |
+| Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 0 (UI features, no new tests) | ✅ Complete |
 
 ---
 
