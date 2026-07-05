@@ -113,7 +113,9 @@ class AboutCard extends ConsumerWidget {
               trailing: const Icon(Icons.open_in_new, size: 16),
               dense: true,
               contentPadding: EdgeInsets.zero,
-              onTap: () => _launchUrl('https://saranidhi.vercel.app/privacy.html'),
+              onTap: () => _launchUrl(
+                'https://saranidhi.vercel.app/privacy-${Localizations.localeOf(context).languageCode == 'ta' ? 'ta' : 'en'}.html',
+              ),
             ),
 
             const SizedBox(height: 16),
