@@ -295,14 +295,27 @@
 
 ---
 
-## Sprint 23: Product Polish — About & User Guide
+## Sprint 23: Product Polish — About, User Guide & Onboarding Intro
 
-- [ ] Task 23.1: About card in Settings (logo, version via package_info_plus, developer, links)
-- [ ] Task 23.2: User Guide screen (in-app, scrollable, sectioned)
-- [ ] Task 23.3: Link About → User Guide, About → Privacy Policy
-- [ ] Task 23.4: Add `package_info_plus` dependency for dynamic version display
-- [ ] Task 23.5: User Guide content (app story, how it works, daily practice, benefits, FAQ)
-- [ ] Task 23.6: Tamil translation for About + Guide content
+- [ ] Task 23.1: Pre-onboarding intro page (scrollable guide + "Get Started" button — shown before 4-step onboarding)
+- [ ] Task 23.2: About card in Settings (logo, version via package_info_plus, developer name/email/website, links)
+- [ ] Task 23.3: Add `package_info_plus` dependency + version provider
+- [ ] Task 23.4: User Guide screen (flat scrollable, pushed route from About — same content accessible post-onboarding)
+- [ ] Task 23.5: User Guide content — English (What is Saranidhi, The Science, Your Birth Bird, Daily Rhythm, How to Use, Best Practices, Dashboard Guide, Benefits, FAQ)
+- [ ] Task 23.6: Wire navigation: About → User Guide, About → Privacy Policy (url_launcher)
+- [ ] Task 23.7: Consistent dialog sizing — birth star + location edit popups use same AlertDialog pattern with adaptive height
+- [ ] Task 23.8: Tamil translation for About + Guide + Intro content (all new ARB keys)
+
+---
+
+## Sprint 24: UX Polish — Empty States, Loading & Error Handling
+
+- [ ] Task 24.1: Journal empty state — friendly "get started" message with illustration when no entries exist
+- [ ] Task 24.2: Analytics empty state — guidance message when insufficient data for charts
+- [ ] Task 24.3: Dashboard loading state — skeleton/shimmer cards while data loads (first launch on web)
+- [ ] Task 24.4: Error boundary widget — catch and display friendly error messages instead of blank screens
+- [ ] Task 24.5: Explore tab empty state — message when no historical entries for selected date
+- [ ] Task 24.6: Streak zero-state improvement — motivational onboarding hint for new users
 
 ---
 
@@ -314,6 +327,7 @@
 - [ ] Task X.4: Screenshots + store listing submission (see docs/store-listing.md)
 - [ ] Task X.5: Submit for review
 - [ ] Task X.6: Verify live + tag v1.0.0
+- [ ] Task X.7: Changelog / What's New screen (for returning users after updates)
 
 ---
 
