@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'package:saranidhi/features/settings/presentation/user_guide_screen.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Provides app version info from package_info_plus.
 final appVersionProvider = FutureProvider<String>((ref) async {
@@ -82,7 +81,7 @@ class AboutCard extends ConsumerWidget {
               icon: Icons.email_outlined,
               label: l10n.aboutContact,
               value: 'vteial@icloud.com',
-              onTap: () => _launchEmail(),
+              onTap: _launchEmail,
             ),
             _InfoRow(
               icon: Icons.language,

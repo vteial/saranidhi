@@ -6,7 +6,16 @@ import 'package:saranidhi/features/onboarding/presentation/onboarding_screen.dar
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 
 /// Whether the user has dismissed the intro screen and is in the onboarding flow.
-final _introSeenProvider = StateProvider<bool>((ref) => false);
+late final _introSeenProvider = NotifierProvider<_IntroSeenNotifier, bool>(
+  _IntroSeenNotifier.new,
+);
+
+class _IntroSeenNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+
+  void markSeen() => state = true;
+}
 
 /// Guards the main app — shows intro → onboarding if profile not completed.
 ///
@@ -34,7 +43,7 @@ class OnboardingGuard extends ConsumerWidget {
           onGenerateRoute: (_) => MaterialPageRoute<void>(
             builder: (_) => IntroScreen(
               onGetStarted: () {
-                ref.read(_introSeenProvider.notifier).state = true;
+                ref.read(_introSeenProvider.notifier).markSeen();
               },
             ),
           ),
