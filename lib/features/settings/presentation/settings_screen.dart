@@ -103,6 +103,11 @@ class SettingsScreen extends ConsumerWidget {
             ref.read(localeProvider.notifier).setLocale(selected.first);
           },
         ),
+
+        const Divider(height: 32),
+
+        // About
+        const AboutCard(),
       ],
     );
 
@@ -137,11 +142,6 @@ class SettingsScreen extends ConsumerWidget {
 
         // Clear All Data
         _ClearAllDataTile(),
-
-        const Divider(height: 32),
-
-        // About
-        const AboutCard(),
       ],
     );
 
