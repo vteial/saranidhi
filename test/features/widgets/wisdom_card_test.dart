@@ -58,7 +58,10 @@ void main() {
       // Don't settle — stay in loading state
       await tester.pump();
 
-      expect(find.byType(Container), findsWidgets);
+      // Wisdom text should NOT be present (still loading)
+      expect(find.text('Never'), findsNothing);
+      // The card itself should be rendered
+      expect(find.byType(WisdomCard), findsOneWidget);
     });
 
     testWidgets('shows fallback text on error', (tester) async {

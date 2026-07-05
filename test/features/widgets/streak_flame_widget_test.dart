@@ -59,8 +59,9 @@ void main() {
       await tester.pumpWidget(testableWidget(StreakFlameWidget(streak: streak)));
       await tester.pumpAndSettle();
 
-      // Should not show a separate 'best' column
-      expect(find.text('5'), findsOneWidget);
+      // Should not show a separate 'best' column — longest only shows
+      // when longestStreak > currentStreak
+      expect(find.textContaining('5'), findsOneWidget);
     });
 
     testWidgets('shows zero state message when no streak', (tester) async {
