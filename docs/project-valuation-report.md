@@ -6,10 +6,10 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 21 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~52.5 Hours
-**Pull Requests Merged:** 54
-**Automated Test Coverage:** 348+ assertions (unit + widget + integration)
+**Sprints Delivered:** 22 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~55.5 Hours
+**Pull Requests Merged:** 56
+**Automated Test Coverage:** 410+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
 ---
@@ -136,6 +136,13 @@
 | `20d734c` | Kiro Agent | 2026-07-04 20:00 | fix: location step layout shift — pin content to top-left |
 | `b01c686` | Kiro Agent | 2026-07-04 20:15 | docs: mark Sprint 21 complete, add web polish tasks to Sprint 22 |
 | `f243860` | Eialarasu | 2026-07-04 20:30 | **Merge PR #54 — Sprint 21 Complete** |
+| `978cd49` | Kiro Agent | 2026-07-05 03:00 | chore: mark Sprint 22 as In Progress |
+| `b12d5c1` | Kiro Agent | 2026-07-05 03:30 | test(sprint22): widget tests for all dashboard widgets (Tasks 22.1-22.6) |
+| `949a44b` | Kiro Agent | 2026-07-05 04:00 | fix(web): add COOP/COEP headers for Drift WASM SharedArrayBuffer |
+| `ed197f8` | Kiro Agent | 2026-07-05 04:15 | fix(web): enable color emoji preloading |
+| `0a7c3a4` | Kiro Agent | 2026-07-05 05:00 | fix: notification scheduler weekday conversion |
+| `129649f` | Kiro Agent | 2026-07-05 05:30 | ci: split into two-tier test strategy |
+| `5f31dac` | Eialarasu | 2026-07-05 06:00 | **Merge PR #56 — Sprint 22 Complete** |
 
 ---
 
@@ -160,7 +167,8 @@
 | Day 6 | 2026-07-04 | 08:00 - 10:30 | ~2.5 | Sprint 19 |
 | Day 6 (cont.) | 2026-07-04 | 11:00 - 16:30 | ~4.0 | Sprint 20 |
 | Day 6 (cont.) | 2026-07-04 | 17:00 - 20:30 | ~2.5 | Sprint 21 |
-| | | **Subtotal** | **~45.5** | |
+| Day 7 | 2026-07-05 | 03:00 - 06:00 | ~3.0 | Sprint 22 |
+| | | **Subtotal** | **~48.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -180,9 +188,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 45.5 |
+| Active coding & debugging (AI-assisted) | 48.5 |
 | Infrastructure & admin ops | 7.0 |
-| **Total** | **~52.5** |
+| **Total** | **~55.5** |
 
 ---
 
@@ -212,10 +220,11 @@
 | Sprint 19 | Analytics + Export | #46 | 264+ | ✅ Complete |
 | Sprint 20 | UI Polish + Home Layout Redesign | #51 | 348+ | ✅ Complete |
 | Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 348+ | ✅ Complete |
+| Sprint 22 | Widget Test Coverage + Web Polish | #56 | 410+ | ✅ Complete |
 
 ---
 
-## Technical Deliverables (as of Sprint 21)
+## Technical Deliverables (as of Sprint 22)
 
 - **Flutter 3.44.1** cross-platform app (iOS, Android, Web)
 - **8 pure Dart calculators** (Sunrise, Yama, Rahu, Hora, Pakshi, Tattva, Lunar, Oracle) — zero network dependency
@@ -316,6 +325,11 @@
 - **Extended birth bird attributes** — friends, enemies, ruling planet, direction, colour for all 5 Pakshi birds
 - **Indian-only preset cities** — removed international cities (London, NY, Singapore, Sydney) from onboarding and settings
 - **Analytics tab i18n** — replaced hardcoded 'Analytics' label with `l10n.analyticsTitle`
+- **10 widget test files** (BirthBirdCard, RahuKaalCard, FullDaySchedule, NostrilDominanceChart, HoldTimeCard, StreakFlameWidget, TrendWidget, SevenDayRibbonWidget, YamaAccuracyWidget, WisdomCard) + shared `widget_test_helpers.dart`
+- **Two-tier CI strategy** — `ci.yml` (Tier 1: domain/provider tests on PRs, ~30s) + `ci-full.yml` (Tier 2: all tests + coverage + integration on merge to main)
+- **Vercel COOP/COEP headers** — Cross-Origin-Opener-Policy + Cross-Origin-Embedder-Policy for Drift WASM SharedArrayBuffer
+- **Custom `flutter_bootstrap.js`** — useColorEmoji:true for Noto Color Emoji preloading
+- **Notification scheduler bug fix** — weekday conversion using `dartWeekdayToSunBased()` for correct Pakshi/Rahu calculations
 
 ---
 
