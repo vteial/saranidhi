@@ -3,15 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.dart';
 import 'package:saranidhi/features/ai_wisdom/providers/wisdom_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
-import '../../helpers/widget_test_helpers.dart';
+Widget _wisdomTestApp({required List overrides}) {
+  return ProviderScope(
+    overrides: overrides.cast(),
+    child: MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale('en'),
+      home: const Scaffold(body: WisdomCard()),
+    ),
+  );
+}
 
 void main() {
   group('WisdomCard', () {
     testWidgets('shows wisdom text when loaded', (tester) async {
       await tester.pumpWidget(
-        testableWidget(
-          const WisdomCard(),
+        _wisdomTestApp(
           overrides: [
             wisdomInsightProvider.overrideWith(
               (ref) async => 'The breath is the bridge.',
@@ -26,8 +36,7 @@ void main() {
 
     testWidgets('shows auto_awesome icon', (tester) async {
       await tester.pumpWidget(
-        testableWidget(
-          const WisdomCard(),
+        _wisdomTestApp(
           overrides: [
             wisdomInsightProvider.overrideWith(
               (ref) async => 'Test wisdom',
@@ -40,44 +49,40 @@ void main() {
       expect(find.byIcon(Icons.auto_awesome), findsOneWidget);
     });
 
-    testWidgets('shows skeleton loader while loading', (tester) async {
+    testWidgets('shows loading state before data arrives', (tester) async {
       await tester.pumpWidget(
-        testableWidget(
-          const WisdomCard(),
+        _wisdomTestApp(
           overrides: [
             wisdomInsightProvider.overrideWith((ref) {
-              // Never completes — stays in loading state
               return Future.delayed(
                 const Duration(days: 1),
-                () => 'Never',
+                () => 'Never arrives',
               );
             }),
           ],
         ),
       );
-      // Don't settle — stay in loading state
+      // Single pump — provider is still loading
       await tester.pump();
 
-      // Wisdom text should NOT be present (still loading)
-      expect(find.text('Never'), findsNothing);
-      // The card itself should be rendered
+      // The card renders but wisdom text is not yet present
       expect(find.byType(WisdomCard), findsOneWidget);
+      expect(find.text('Never arrives'), findsNothing);
     });
 
-    testWidgets('shows fallback text on error', (tester) async {
+    testWidgets('shows fallback on error', (tester) async {
       await tester.pumpWidget(
-        testableWidget(
-          const WisdomCard(),
+        _wisdomTestApp(
           overrides: [
             wisdomInsightProvider.overrideWith(
-              (ref) async => throw Exception('Network error'),
+              (ref) async => throw Exception('fail'),
             ),
           ],
         ),
       );
       await tester.pumpAndSettle();
 
-      // Should show the fallback wisdom text from l10n
+      // Card still renders (with error/fallback state)
       expect(find.byType(WisdomCard), findsOneWidget);
     });
   });
