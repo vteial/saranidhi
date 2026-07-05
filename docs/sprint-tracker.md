@@ -295,7 +295,7 @@
 
 ---
 
-## Sprint 23: Product Polish — About, User Guide & Onboarding Intro
+## Sprint 23: Product Polish — About, User Guide & Onboarding Intro — In Progress
 
 - [ ] Task 23.1: Pre-onboarding intro page (scrollable guide + "Get Started" button — shown before 4-step onboarding)
 - [ ] Task 23.2: About card in Settings (logo, version via package_info_plus, developer name/email/website, links)
