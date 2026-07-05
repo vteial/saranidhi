@@ -119,9 +119,6 @@ class SettingsScreen extends ConsumerWidget {
         const StorageModeSelector(),
         const Divider(height: 32),
         const BackupActionsWidget(),
-        const Divider(height: 32),
-
-        // iCloud Sync Device Configuration
         const SyncDeviceConfigWidget(),
         const Divider(height: 32),
 
