@@ -140,8 +140,6 @@ class _ShimmerCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
           colors: [baseColor, highlightColor, baseColor],
           stops: [
             (animation.value - 0.3).clamp(0.0, 1.0),
