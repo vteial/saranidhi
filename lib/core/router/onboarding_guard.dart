@@ -6,11 +6,11 @@ import 'package:saranidhi/features/onboarding/presentation/onboarding_screen.dar
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 
 /// Whether the user has dismissed the intro screen and is in the onboarding flow.
-final _introSeenProvider = NotifierProvider<_IntroSeenNotifier, bool>(
-  _IntroSeenNotifier.new,
+final introSeenProvider = NotifierProvider<IntroSeenNotifier, bool>(
+  IntroSeenNotifier.new,
 );
 
-class _IntroSeenNotifier extends Notifier<bool> {
+class IntroSeenNotifier extends Notifier<bool> {
   @override
   bool build() => false;
 
@@ -36,16 +36,12 @@ class OnboardingGuard extends ConsumerWidget {
     final isComplete = ref.watch(onboardingCompleteProvider);
 
     if (!isComplete) {
-      final introSeen = ref.watch(_introSeenProvider);
+      final introSeen = ref.watch(introSeenProvider);
 
       if (!introSeen) {
         return Navigator(
           onGenerateRoute: (_) => MaterialPageRoute<void>(
-            builder: (_) => IntroScreen(
-              onGetStarted: () {
-                ref.read(_introSeenProvider.notifier).markSeen();
-              },
-            ),
+            builder: (_) => const IntroScreen(),
           ),
         );
       }

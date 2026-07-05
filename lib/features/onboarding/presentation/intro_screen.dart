@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:saranidhi/core/router/onboarding_guard.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -9,14 +11,11 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// Gives first-time users context about the app before asking them
 /// to configure their profile. Shows app story, how it works, and
 /// a "Get Started" button to proceed to onboarding.
-class IntroScreen extends StatelessWidget {
-  const IntroScreen({required this.onGetStarted, super.key});
-
-  /// Called when user taps "Get Started" to proceed to onboarding.
-  final VoidCallback onGetStarted;
+class IntroScreen extends ConsumerWidget {
+  const IntroScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
 
@@ -113,7 +112,9 @@ class IntroScreen extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: FilledButton.icon(
-                    onPressed: onGetStarted,
+                    onPressed: () {
+                      ref.read(introSeenProvider.notifier).markSeen();
+                    },
                     icon: const Icon(Icons.arrow_forward),
                     label: Text(l10n.introGetStarted),
                   ),
