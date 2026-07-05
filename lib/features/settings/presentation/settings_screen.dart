@@ -11,6 +11,7 @@ import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mod
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/sync_device_config_widget.dart';
 import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/features/settings/presentation/about_card.dart';
 import 'package:saranidhi/features/settings/presentation/data_export_import_widget.dart';
 import 'package:saranidhi/features/settings/presentation/profile_card.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -102,6 +103,11 @@ class SettingsScreen extends ConsumerWidget {
             ref.read(localeProvider.notifier).setLocale(selected.first);
           },
         ),
+
+        const Divider(height: 32),
+
+        // About
+        const AboutCard(),
       ],
     );
 
@@ -113,9 +119,6 @@ class SettingsScreen extends ConsumerWidget {
         const StorageModeSelector(),
         const Divider(height: 32),
         const BackupActionsWidget(),
-        const Divider(height: 32),
-
-        // iCloud Sync Device Configuration
         const SyncDeviceConfigWidget(),
         const Divider(height: 32),
 
@@ -140,32 +143,39 @@ class SettingsScreen extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.settingsTitle),
-        leading: const BackButton(),
-      ),
       body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: kMaxContentWidth),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: isWide
-                ? Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(child: personalSection),
-                      const SizedBox(width: 24),
-                      Expanded(child: dataSection),
-                    ],
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      personalSection,
-                      const Divider(height: 32),
-                      dataSection,
-                    ],
-                  ),
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                title: Text(l10n.settingsTitle),
+                leading: const BackButton(),
+                pinned: true,
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverToBoxAdapter(
+                  child: isWide
+                      ? Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: personalSection),
+                            const SizedBox(width: 24),
+                            Expanded(child: dataSection),
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            personalSection,
+                            const Divider(height: 32),
+                            dataSection,
+                          ],
+                        ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

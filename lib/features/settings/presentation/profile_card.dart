@@ -273,33 +273,40 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
     final l10n = AppLocalizations.of(context);
     showDialog<void>(
       context: context,
-      builder: (ctx) => SimpleDialog(
+      builder: (ctx) => AlertDialog(
         title: Text(l10n.changeLocation),
-        children: [
-          for (final city in _presetCities)
-            SimpleDialogOption(
-              onPressed: () async {
-                Navigator.of(ctx).pop();
-                final db = ref.read(appDatabaseProvider);
-                final profiles = await db.select(db.profiles).get();
-                if (profiles.isEmpty) return;
+        content: SizedBox(
+          width: double.maxFinite,
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              for (final city in _presetCities)
+                ListTile(
+                  title: Text(city.name),
+                  dense: true,
+                  onTap: () async {
+                    Navigator.of(ctx).pop();
+                    final db = ref.read(appDatabaseProvider);
+                    final profiles = await db.select(db.profiles).get();
+                    if (profiles.isEmpty) return;
 
-                await (db.update(
-                  db.profiles,
-                )..where((t) => t.id.equals(profiles.first.id))).write(
-                  ProfilesCompanion(
-                    locationLat: drift.Value(city.lat),
-                    locationLng: drift.Value(city.lng),
-                    updatedAt: drift.Value(
-                      DateTime.now().millisecondsSinceEpoch,
-                    ),
-                  ),
-                );
-                setState(() {});
-              },
-              child: Text(city.name),
-            ),
-        ],
+                    await (db.update(
+                      db.profiles,
+                    )..where((t) => t.id.equals(profiles.first.id))).write(
+                      ProfilesCompanion(
+                        locationLat: drift.Value(city.lat),
+                        locationLng: drift.Value(city.lng),
+                        updatedAt: drift.Value(
+                          DateTime.now().millisecondsSinceEpoch,
+                        ),
+                      ),
+                    );
+                    setState(() {});
+                  },
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -295,16 +295,16 @@
 
 ---
 
-## Sprint 23: Product Polish — About, User Guide & Onboarding Intro
+## Sprint 23: Product Polish — About, User Guide & Onboarding Intro ✅ Complete (PR #59)
 
-- [ ] Task 23.1: Pre-onboarding intro page (scrollable guide + "Get Started" button — shown before 4-step onboarding)
-- [ ] Task 23.2: About card in Settings (logo, version via package_info_plus, developer name/email/website, links)
-- [ ] Task 23.3: Add `package_info_plus` dependency + version provider
-- [ ] Task 23.4: User Guide screen (flat scrollable, pushed route from About — same content accessible post-onboarding)
-- [ ] Task 23.5: User Guide content — English (What is Saranidhi, The Science, Your Birth Bird, Daily Rhythm, How to Use, Best Practices, Dashboard Guide, Benefits, FAQ)
-- [ ] Task 23.6: Wire navigation: About → User Guide, About → Privacy Policy (url_launcher)
-- [ ] Task 23.7: Consistent dialog sizing — birth star + location edit popups use same AlertDialog pattern with adaptive height
-- [ ] Task 23.8: Tamil translation for About + Guide + Intro content (all new ARB keys)
+- [x] Task 23.1: Pre-onboarding intro page (scrollable guide + "Get Started" button — shown before 4-step onboarding)
+- [x] Task 23.2: About card in Settings (logo, version via package_info_plus, developer name/email/website, links)
+- [x] Task 23.3: Add `package_info_plus` dependency + version provider
+- [x] Task 23.4: User Guide screen (flat scrollable, pushed route from About — same content accessible post-onboarding)
+- [x] Task 23.5: User Guide content — English (What is Saranidhi, The Science, Your Birth Bird, Daily Rhythm, How to Use, Best Practices, Dashboard Guide, Benefits, FAQ)
+- [x] Task 23.6: Wire navigation: About → User Guide, About → Privacy Policy (url_launcher)
+- [x] Task 23.7: Consistent dialog sizing — birth star + location edit popups use same AlertDialog pattern with adaptive height
+- [x] Task 23.8: Tamil translation for About + Guide + Intro content (all new ARB keys)
 
 ---
 

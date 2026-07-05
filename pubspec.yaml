@@ -39,6 +39,10 @@ dependencies:
   share_plus: ^10.1.4
   file_picker: ^8.3.7
 
+  # App info & linking
+  package_info_plus: ^8.3.0
+  url_launcher: ^6.3.1
+
   # Icons
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.3.0
