@@ -308,7 +308,7 @@
 
 ---
 
-## Sprint 24: UX Polish — Empty States, Loading & Error Handling
+## Sprint 24: UX Polish — Empty States, Loading & Error Handling 🚧 In Progress
 
 - [ ] Task 24.1: Journal empty state — friendly "get started" message with illustration when no entries exist
 - [ ] Task 24.2: Analytics empty state — guidance message when insufficient data for charts

@@ -661,6 +661,48 @@ abstract class AppLocalizations {
 
   /// Validation error prefix on import
   String get importInvalidFile;
+
+  /// Journal empty state title when no entries exist
+  String get journalEmptyTitle;
+
+  /// Journal empty state subtitle
+  String get journalEmptySubtitle;
+
+  /// Journal empty state action hint
+  String get journalEmptyHint;
+
+  /// Analytics empty state title
+  String get analyticsEmptyTitle;
+
+  /// Analytics empty state subtitle
+  String get analyticsEmptySubtitle;
+
+  /// Generic error title
+  String get errorSomethingWentWrong;
+
+  /// Generic error subtitle
+  String get errorTryAgainLater;
+
+  /// Explore tab empty state title for selected date
+  String get exploreNoEntriesTitle;
+
+  /// Explore tab empty state hint
+  String get exploreNoEntriesHint;
+
+  /// Streak zero-state title for new users
+  String get streakZeroTitle;
+
+  /// Streak zero-state subtitle
+  String get streakZeroSubtitle;
+
+  /// Streak onboarding step 1
+  String get streakStep1;
+
+  /// Streak onboarding step 2
+  String get streakStep2;
+
+  /// Streak onboarding step 3
+  String get streakStep3;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

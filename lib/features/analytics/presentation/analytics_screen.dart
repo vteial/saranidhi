@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
+import 'package:saranidhi/core/widgets/empty_state_widget.dart';
 import 'package:saranidhi/features/analytics/domain/analytics_calculator.dart';
 import 'package:saranidhi/features/analytics/providers/analytics_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -19,10 +20,28 @@ class AnalyticsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isWide = screenWidth >= 600;
+    final weeklyAsync = ref.watch(weeklyAnalyticsProvider);
+    final l10n = AppLocalizations.of(context);
+
+    // Show comprehensive empty state when no weekly data exists
+    // (indicates the user has never logged any entries)
+    final showFullEmptyState = weeklyAsync.when(
+      data: (weeks) => weeks.isEmpty,
+      loading: () => false,
+      error: (_, __) => false,
+    );
 
     return Scaffold(
-      appBar: BrandedAppBar(title: AppLocalizations.of(context).analyticsTitle),
-      body: SingleChildScrollView(
+      appBar: BrandedAppBar(title: l10n.analyticsTitle),
+      body: showFullEmptyState
+          ? Center(
+              child: EmptyStateWidget(
+                icon: Icons.insights_rounded,
+                title: l10n.analyticsEmptyTitle,
+                subtitle: l10n.analyticsEmptySubtitle,
+              ),
+            )
+          : SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -722,12 +741,24 @@ Card _emptyCard(ThemeData theme, String title, String hint) {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            hint,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Icon(
+                Icons.info_outline,
+                size: 16,
+                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  hint,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

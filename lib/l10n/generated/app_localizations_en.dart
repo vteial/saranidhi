@@ -641,4 +641,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get importInvalidFile => 'Invalid export file';
+
+  @override
+  String get journalEmptyTitle => 'Begin Your Breath Journey';
+
+  @override
+  String get journalEmptySubtitle => 'Track your nostril dominance throughout the day to discover your natural alignment with cosmic rhythms.';
+
+  @override
+  String get journalEmptyHint => 'Start by selecting your nostril flow above';
+
+  @override
+  String get analyticsEmptyTitle => 'Your Insights Await';
+
+  @override
+  String get analyticsEmptySubtitle => 'Log a few breath entries in the Journal tab to unlock patterns, trends, and personalized insights about your practice.';
+
+  @override
+  String get errorSomethingWentWrong => 'Something went wrong';
+
+  @override
+  String get errorTryAgainLater => 'An unexpected error occurred. Please try again.';
+
+  @override
+  String get exploreNoEntriesTitle => 'No entries on this day';
+
+  @override
+  String get exploreNoEntriesHint => 'Navigate to this date\'s Journal tab to log past entries, or explore other dates.';
+
+  @override
+  String get streakZeroTitle => 'Build Your Streak';
+
+  @override
+  String get streakZeroSubtitle => 'Consistency is the key to alignment awareness.';
+
+  @override
+  String get streakStep1 => 'Log your breath flow once per day';
+
+  @override
+  String get streakStep2 => 'Each aligned day adds to your streak';
+
+  @override
+  String get streakStep3 => 'Watch your consistency grow over time';
 }
