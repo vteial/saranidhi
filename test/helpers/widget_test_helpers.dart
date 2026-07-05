@@ -11,11 +11,9 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Wraps a widget in MaterialApp with localizations for isolated widget testing.
 ///
-/// If [overrides] are provided, wraps in a [ProviderScope] for Riverpod.
-Widget testableWidget(
-  Widget child, {
-  List<Override> overrides = const [],
-}) {
+/// Pass Riverpod provider overrides via [overrides] for widgets that
+/// watch providers (e.g., WisdomCard).
+Widget testableWidget(Widget child, {dynamic overrides}) {
   final widget = MaterialApp(
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
@@ -23,8 +21,11 @@ Widget testableWidget(
     home: Scaffold(body: SingleChildScrollView(child: child)),
   );
 
-  if (overrides.isNotEmpty) {
-    return ProviderScope(overrides: overrides, child: widget);
+  if (overrides != null) {
+    return ProviderScope(
+      overrides: (overrides as List).cast(),
+      child: widget,
+    );
   }
   return ProviderScope(overrides: const [], child: widget);
 }
