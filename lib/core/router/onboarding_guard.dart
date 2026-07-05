@@ -6,7 +6,7 @@ import 'package:saranidhi/features/onboarding/presentation/onboarding_screen.dar
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 
 /// Whether the user has dismissed the intro screen and is in the onboarding flow.
-late final _introSeenProvider = NotifierProvider<_IntroSeenNotifier, bool>(
+final _introSeenProvider = NotifierProvider<_IntroSeenNotifier, bool>(
   _IntroSeenNotifier.new,
 );
 
