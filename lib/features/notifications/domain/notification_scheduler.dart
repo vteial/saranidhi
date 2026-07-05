@@ -102,8 +102,9 @@ class NotificationScheduler {
 
     // Calculate Pakshi day result for bird state per yama
     final lunarPhaseResult = LunarPhaseCalculator.calculate(today);
+    final weekday = PakshiCalculator.dartWeekdayToSunBased(today.weekday);
     final pakshiDay = PakshiCalculator.calculate(
-      weekday: today.weekday,
+      weekday: weekday,
       lunarPhase: lunarPhaseResult.phase,
     );
 
@@ -222,7 +223,7 @@ class NotificationScheduler {
     final rahuResult = RahuKaalCalculator.calculate(
       sunrise: sunResult.sunrise,
       sunset: sunResult.sunset,
-      weekday: today.weekday,
+      weekday: PakshiCalculator.dartWeekdayToSunBased(today.weekday),
     );
 
     final notifications = <ScheduledNotification>[];

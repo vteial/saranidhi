@@ -280,16 +280,29 @@
 
 ---
 
-## Sprint 22: Widget Test Coverage + Web Polish
+## Sprint 22: Widget Test Coverage + Web Polish ✅ Complete (PR #56)
 
-- [ ] Task 22.1: BirthBirdCard widget test
-- [ ] Task 22.2: RahuKaalCard widget test
-- [ ] Task 22.3: FullDaySchedule widget test
-- [ ] Task 22.4: NostrilDominanceChart + HoldTimeCard widget tests
-- [ ] Task 22.5: StreakFlameWidget + TrendWidget + SevenDayRibbonWidget tests
-- [ ] Task 22.6: YamaAccuracyWidget + WisdomCard widget tests
-- [ ] Task 22.7: Fix Drift WASM worker CORS/loading errors on Vercel (console TypeErrors at startup)
-- [ ] Task 22.8: Add Noto Color Emoji font asset to suppress Flutter Web missing characters warning
+- [x] Task 22.1: BirthBirdCard widget test
+- [x] Task 22.2: RahuKaalCard widget test
+- [x] Task 22.3: FullDaySchedule widget test
+- [x] Task 22.4: NostrilDominanceChart + HoldTimeCard widget tests
+- [x] Task 22.5: StreakFlameWidget + TrendWidget + SevenDayRibbonWidget tests
+- [x] Task 22.6: YamaAccuracyWidget + WisdomCard widget tests
+- [x] Task 22.7: Vercel COOP/COEP headers for Drift WASM (partial — console errors remain on preview, verify on staging)
+- [x] Task 22.8: Custom flutter_bootstrap.js with useColorEmoji:true for emoji font preloading
+- [x] Task 22.9: Two-tier CI strategy (ci.yml fast PRs, ci-full.yml on merge)
+- [x] Task 22.10: Fix notification scheduler weekday conversion bug (Dart weekday → sun-based)
+
+---
+
+## Sprint 23: Product Polish — About & User Guide
+
+- [ ] Task 23.1: About card in Settings (logo, version via package_info_plus, developer, links)
+- [ ] Task 23.2: User Guide screen (in-app, scrollable, sectioned)
+- [ ] Task 23.3: Link About → User Guide, About → Privacy Policy
+- [ ] Task 23.4: Add `package_info_plus` dependency for dynamic version display
+- [ ] Task 23.5: User Guide content (app story, how it works, daily practice, benefits, FAQ)
+- [ ] Task 23.6: Tamil translation for About + Guide content
 
 ---
 

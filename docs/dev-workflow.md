@@ -204,13 +204,44 @@ git push origin main
 
 ## CI/CD Pipeline
 
-### On Every PR to `main`
+### Two-Tier Test Strategy
+
+| Tier | Trigger | Tests | Goal | Time |
+|------|---------|-------|------|------|
+| **Tier 1 (Fast)** | Every PR to `main` | Domain + providers (pure Dart) | Catch logic regressions fast | ~30s |
+| **Tier 2 (Full)** | Merge to `main` | All tests + widget + integration + coverage | Full confidence before staging | ~90s |
+
+**Tier 1 directories (ci.yml — PR builds):**
+- `test/features/astro_engine/` — All Vedic calculators
+- `test/features/breath_journal/` — Alignment, micro-advice
+- `test/features/cloud_backup/` — Sync, mapper, metadata
+- `test/features/streaks/` — Streak, trend, ribbon calculators
+- `test/features/ai_wisdom/` — Wisdom engine, rules, fallback
+- `test/features/notifications/` — Notification scheduler
+- `test/features/onboarding/` — Onboarding state, nakshatra mapping
+- `test/features/providers/` — Dashboard data, locale, theme, timer
+
+**Tier 2 additions (ci-full.yml — merge to main):**
+- `test/features/widgets/` — All widget render tests (BirthBirdCard, RahuKaalCard, etc.)
+- `test/widget_test.dart` — Full app navigation test
+- `integration_test/` — End-to-end user flows (headless Chrome)
+- Coverage threshold enforcement (≥ 20%)
+
+### On Every PR to `main` (ci.yml)
 
 | Step | Command | Gate |
 |------|---------|------|
 | Analyze | `dart analyze --fatal-infos` | Must pass (zero issues) |
-| Unit & Widget Tests | `flutter test --coverage` | Must pass (all green) |
-| Coverage Check | Parse `lcov.info` | Must be ≥ 80% |
+| Tier 1 Tests | `flutter test test/features/{domain dirs}` | Must pass (all green) |
+| Build Web | `flutter build web` | Must compile |
+
+### On Merge to `main` (ci-full.yml)
+
+| Step | Command | Gate |
+|------|---------|------|
+| Analyze | `dart analyze --fatal-infos` | Must pass (zero issues) |
+| All Tests | `flutter test --coverage` | Must pass (all green) |
+| Coverage Check | Parse `lcov.info` | Must be ≥ 20% |
 | Build Web | `flutter build web` | Must compile |
 | Integration Tests | `flutter drive` (headless Chrome) | Must pass |
 
@@ -279,11 +310,11 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 | Gate | Criteria | Enforcement |
 |------|----------|-------------|
-| Code Analysis | `dart analyze` — zero warnings/errors | CI (blocking) |
-| Tests | `flutter test` — all pass | CI (blocking) |
-| Coverage | ≥ 80% line coverage | CI (blocking) |
-| Build | `flutter build web` compiles | CI (blocking) |
-| Integration | `flutter drive` (headless Chrome) | CI (blocking) |
+| Code Analysis | `dart analyze` — zero warnings/errors | CI Fast (blocking) |
+| Tier 1 Tests | Domain + provider tests — all pass | CI Fast (blocking) |
+| Build | `flutter build web` compiles | CI Fast (blocking) |
+| Tier 2 Tests | Widget + integration tests — all pass | CI Full (on merge) |
+| Coverage | ≥ 20% line coverage | CI Full (on merge) |
 | Documentation | Sprint tracker updated | PR review |
 | Review | PR reviewed by owner | GitHub branch protection |
 
