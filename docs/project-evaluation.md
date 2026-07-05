@@ -52,6 +52,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Pakshi Accuracy (DOB-Based Calculation)** | Moon longitude calculator (Jean Meeus ELP 2000/82), Lahiri Ayanamsa, Nakshatra-from-DOB, onboarding UX redesign (5→4 steps with dual-path "Find Your Bird"), extended birth bird attributes (friends/enemies/planet/direction/colour), Indian-only cities, OnboardingGuard Navigator for web pickers | ✅ Complete (100%) — Sprint 21 |
 | **Widget Test Coverage + Web Polish** | 10 widget tests, two-tier CI (ci.yml fast/ci-full.yml complete), COOP/COEP headers, emoji preload, notification weekday fix | ✅ Complete (100%) — Sprint 22 |
 | **Product Polish — About, User Guide & Onboarding Intro** | Pre-onboarding intro, About card (version+links), User Guide (9 sections), locale-aware privacy policy, dialog consistency, Settings layout alignment | ✅ Complete (100%) — Sprint 23 |
+| **UX Polish — Empty States, Loading & Error Handling** | Reusable EmptyStateWidget, ShimmerLoading skeleton cards, ErrorBoundary/ErrorFallback, journal empty state, analytics empty state, explore tab historical empty state, streak zero-state onboarding card, reactive analytics providers | ✅ Complete (100%) — Sprint 24 |
 | **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
@@ -131,6 +132,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Get Started button not responding | OnboardingGuard passed callback through Navigator's cached route — ref became stale | Made IntroScreen a ConsumerWidget + added ValueKey to each Navigator for proper element replacement | Sprint 23 |
 | Settings back button misaligned on wide screens | AppBar spanned full viewport while content constrained to 1200px | Replaced with SliverAppBar inside ConstrainedBox using CustomScrollView | Sprint 23 |
 | Double divider above Notifications | BackupActionsWidget and SyncDeviceConfigWidget had separate dividers | Consolidated into single group with one divider | Sprint 23 |
+| `avoid_redundant_argument_values` lint in ShimmerLoading | `LinearGradient` constructor specified `begin: Alignment.centerLeft` and `end: Alignment.centerRight` (already defaults) | Removed redundant arguments | Sprint 24 |
+| Analytics not refreshing after journal entry | Analytics `FutureProvider`s watched `journalRepositoryProvider` (static), not the journal entries stream; cached stale result | Added `await ref.watch(journalEntriesProvider.future)` to create reactive dependency on all 5 analytics providers | Sprint 24 |
 
 ---
 
@@ -162,6 +165,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 0 (test expectations updated, no new tests) | ✅ Complete |
 | Sprint 22 | Widget Test Coverage + Web Polish | #56 | 62 (widget tests) | ✅ Complete |
 | Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 0 (UI features, no new tests) | ✅ Complete |
+| Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 0 (UI polish + provider fix, test updated) | ✅ Complete |
 
 ---
 

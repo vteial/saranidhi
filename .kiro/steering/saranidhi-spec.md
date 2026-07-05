@@ -79,5 +79,7 @@ inclusion: auto
 - **Preset cities:** Indian only (Chennai, Mumbai, Delhi, Bangalore, Hyderabad, Kolkata)
 - **Pre-onboarding intro:** IntroScreen shown via OnboardingGuard before 4-step onboarding. Uses `introSeenProvider` (NotifierProvider) + Navigator ValueKeys for proper widget replacement.
 - **About/User Guide:** About card uses `package_info_plus` for version, `url_launcher` for email/website/privacy links. Privacy Policy served as locale-aware static HTML (`privacy-en.html` / `privacy-ta.html`) via `Uri.base.origin`.
+- **Reusable UX widgets (`lib/core/widgets/`):** `EmptyStateWidget` (empty states), `ShimmerLoading` (loading skeleton), `ErrorBoundary`/`ErrorFallback` (error handling). Use these instead of `CircularProgressIndicator` for loading or blank screens for errors.
+- **Analytics reactivity:** All analytics `FutureProvider`s watch `journalEntriesProvider.future` to auto-refresh. Never add a new analytics provider without this dependency.
 
 ---

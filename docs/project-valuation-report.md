@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 23 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~59.0 Hours
-**Pull Requests Merged:** 59
+**Sprints Delivered:** 24 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~61.5 Hours
+**Pull Requests Merged:** 61
 **Automated Test Coverage:** 410+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -152,6 +152,12 @@
 | `5ba67be` | Kiro Agent | 2026-07-05 10:30 | fix(ui): align Settings back button with content on wide screens |
 | `c83437a` | Kiro Agent | 2026-07-05 10:45 | fix(i18n): correct Tamil name — இயலரசு |
 | `d649010` | Eialarasu | 2026-07-05 11:00 | **Merge PR #59 — Sprint 23 Complete** |
+| `00fbd23` | Eialarasu | 2026-07-05 12:00 | **Merge PR #60 — Sprint 23 Docs** |
+| `de31b9a` | Kiro Agent | 2026-07-05 13:30 | feat(sprint24): UX Polish — empty states, loading & error handling |
+| `ebf0f02` | Kiro Agent | 2026-07-05 13:45 | fix: remove redundant default arguments in ShimmerLoading |
+| `1bd89f8` | Kiro Agent | 2026-07-05 14:30 | fix: analytics providers reactively refresh when journal entries change |
+| `a468c2d` | Kiro Agent | 2026-07-05 15:00 | docs: mark Sprint 24 complete (PR #61) |
+| `1ff0a26` | Eialarasu | 2026-07-05 15:15 | **Merge PR #61 — Sprint 24 Complete** |
 
 ---
 
@@ -178,7 +184,8 @@
 | Day 6 (cont.) | 2026-07-04 | 17:00 - 20:30 | ~2.5 | Sprint 21 |
 | Day 7 | 2026-07-05 | 03:00 - 06:00 | ~3.0 | Sprint 22 |
 | Day 7 (cont.) | 2026-07-05 | 08:00 - 11:00 | ~3.5 | Sprint 23 |
-| | | **Subtotal** | **~52.0** | |
+| Day 7 (cont.) | 2026-07-05 | 13:00 - 15:15 | ~2.5 | Sprint 24 |
+| | | **Subtotal** | **~54.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -198,9 +205,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 52.0 |
+| Active coding & debugging (AI-assisted) | 54.5 |
 | Infrastructure & admin ops | 7.0 |
-| **Total** | **~59.0** |
+| **Total** | **~61.5** |
 
 ---
 
@@ -232,6 +239,7 @@
 | Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 348+ | ✅ Complete |
 | Sprint 22 | Widget Test Coverage + Web Polish | #56 | 410+ | ✅ Complete |
 | Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 410+ | ✅ Complete |
+| Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 410+ | ✅ Complete |
 
 ---
 
@@ -347,6 +355,14 @@
 - **Locale-aware Privacy Policy** — `privacy-en.html` + `privacy-ta.html` with dynamic URL via `Uri.base.origin`
 - **Settings layout improvements** — SliverAppBar inside ConstrainedBox for aligned back button, About card in personalSection (left column)
 - **`package_info_plus` + `url_launcher`** dependencies for version display and external link launching
+- **Reusable `EmptyStateWidget`** — configurable icon + title + subtitle + optional action button for consistent empty states across the app
+- **`ShimmerLoading` widget** — animated gradient skeleton cards mimicking dashboard layout (responsive: two-column on ≥600px), replaces CircularProgressIndicator on Today/Explore tabs
+- **`ErrorBoundary` / `ErrorFallback` widgets** — graceful error handling with cloud-off icon, "Something went wrong" message, and retry button
+- **Journal empty state** — decorative breath icon with ring + "Begin Your Breath Journey" + upward arrow hint pointing to entry widget
+- **Analytics full empty state** — `EmptyStateWidget` with "Your Insights Await" when no entries exist; individual cards use enhanced `_emptyCard()` with info icon
+- **Explore tab historical empty state** — centered icon + "No entries on this day" + guidance hint for selected dates with no entries
+- **Streak zero-state improvement** — motivational "Build Your Streak" onboarding card with 3 steps for new users (replaces dimmed flame + "0 days")
+- **Reactive analytics providers** — all analytics `FutureProvider`s now watch `journalEntriesProvider.future` for automatic refresh when entries change (fixes stale cache bug)
 
 ---
 
