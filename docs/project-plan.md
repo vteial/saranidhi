@@ -319,7 +319,38 @@ Step 1: "Find Your Bird"
 
 ---
 
-## 6. CI/CD Pipeline
+## 6d. UX Polish Infrastructure (Sprint 24)
+
+### Reusable Widget Library (`lib/core/widgets/`)
+
+| Widget | Purpose | Pattern |
+|--------|---------|---------|
+| `EmptyStateWidget` | Configurable empty state (icon + title + subtitle + optional action) | Used by Journal, Analytics, Explore |
+| `ShimmerLoading` | Animated gradient skeleton cards mimicking dashboard layout | Replaces `CircularProgressIndicator` on loading |
+| `ErrorBoundary` | Stateful widget catching errors in child subtree | Wraps sections for graceful degradation |
+| `ErrorFallback` | Standalone error display (cloud-off icon, message, retry) | Used in AsyncValue.when() error handlers |
+
+### Loading State Strategy
+
+| State | Previous | Sprint 24 |
+|-------|----------|-----------|
+| Dashboard loading | `CircularProgressIndicator` | `ShimmerLoading` (animated skeleton matching card layout) |
+| Analytics loading | `SizedBox.shrink()` (invisible) | Shows loading shimmer, then cards appear |
+| Error states | Raw error text + retry button | `ErrorFallback` with friendly message + retry |
+
+### Empty State Design Principles
+
+1. **Motivational tone** — guide users toward first action, never shame for empty data
+2. **Visual hierarchy** — prominent icon, clear title, supportive subtitle
+3. **Actionable hints** — point users to what to do next (e.g., arrow toward entry widget)
+4. **Consistent styling** — all empty states use theme colors at reduced opacity
+5. **Responsive** — adapts to narrow/wide layouts
+
+### Reactive Analytics Fix
+
+Analytics `FutureProvider`s now include `await ref.watch(journalEntriesProvider.future)` as a reactive dependency, ensuring they auto-refresh when journal entries change (add/delete). This eliminates the stale cache problem where analytics showed "empty" state until page reload.
+
+---
 
 ### On Every PR to `main`
 ```
