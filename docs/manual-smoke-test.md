@@ -19,127 +19,145 @@
 
 ## Section A: Calculation Accuracy (vs Align27)
 
-Compare our app's output with Align27 for the **same date, same location (Chennai)**.
-
-| ID | Scenario | What to Check | Expected | Tolerance |
-|----|----------|---------------|----------|-----------|
-| A-01 | Sunrise time | Home → Birth Bird Card or Full Day Schedule | Match Align27 | ±2 min |
-| A-02 | Sunset time | Home → Full Day Schedule (night section start) | Match Align27 | ±2 min |
-| A-03 | Current Pakshi bird state | Home → Birth Bird Card → state name | Match Align27 Panja Pakshi for Owl | Exact |
-| A-04 | Align27 validation row | Home → Full Day Schedule → Align27 row | Ruling bird matches what Align27 shows | Exact |
-| A-05 | Rahu Kaal window | Home → Rahu Kaal Card → time range | Match Align27 Rahu Kaal start/end | ±2 min |
-| A-06 | Active Yama | Home → Birth Bird Card → yama progress | Correct yama number for current time | ±1 min |
-| A-07 | Lunar phase (waxing/waning) | Affects bird sequence — verify bird state matches expected for current phase | Match Align27 moon phase | Same day |
-
-### How to Verify A-03/A-04 (Pakshi)
-
-1. Open Align27 → Panja Pakshi section
-2. Note the ruling bird + your birth bird's state for current time
-3. Open Saranidhi → Home → Birth Bird Card shows YOUR owl's state
-4. Full Day Schedule → Align27 row shows the ruling bird
-5. Both should match Align27's display
+| ID | Scenario | Expected | Tolerance |
+|----|----------|----------|-----------|
+| A-01 | Sunrise time matches Align27 | ±2 min | ±2 min |
+| A-02 | Sunset time matches Align27 | ±2 min | ±2 min |
+| A-03 | Birth bird state matches Align27 (Owl for Pushya) | Exact state name | Exact |
+| A-04 | Rahu Kaal start/end matches Align27 | ±2 min | ±2 min |
+| A-05 | Lunar phase (waxing/waning) correct for today | Matches Align27 | Same day |
 
 ---
 
 ## Section B: Core User Flow
 
-| ID | Scenario | Steps | Expected Outcome |
-|----|----------|-------|-----------------|
-| B-01 | Fresh install onboarding | Clear data → app shows Welcome → enter name → select Pushya → select Chennai → select Local → Complete Setup | Dashboard appears with Birth Bird Card |
-| B-02 | Log aligned breath | Journal → select the nostril matching expected flow → timer → complete → Log | Entry saved, "aligned" shown, streak increments |
-| B-03 | Log unaligned breath | Journal → select opposite nostril → timer → complete → Log | Entry saved, "not aligned" shown, micro-advice displayed |
-| B-04 | Timer full cycle | Journal → select flow → tap timer → complete inhale/hold/exhale | Each phase shows live seconds |
-| B-05 | Streak updates | Log aligned breath today → Home → streak shows ≥1 | Streak flame shows "X days", ribbon shows today as aligned |
-| B-06 | Journal history | Journal → scroll down → History section | Previous entries listed, grouped by date |
-| B-07 | Wisdom card | Home → scroll down → Daily Wisdom card | Non-empty wisdom text |
-| B-08 | Pull-to-refresh | Home → pull down from top | Spinner appears, dashboard reloads |
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| B-01 | Fresh onboarding (clear data → complete 4-step flow) | Dashboard appears with Birth Bird Card |
+| B-02 | Log aligned breath (correct nostril → timer → submit) | "Aligned" shown, streak increments |
+| B-03 | Log unaligned breath (wrong nostril → timer → submit) | "Not aligned" shown, micro-advice displayed |
+| B-04 | Timer full cycle (inhale → hold → exhale → complete) | Each phase shows live seconds, results display |
+| B-05 | Streak updates after aligned entry | Flame shows ≥1 days, ribbon shows today aligned |
+| B-06 | Journal history shows past entries | Entries listed, grouped by date |
+| B-07 | Pull-to-refresh on Home | Spinner appears, data reloads |
 
 ---
 
-## Section C: Settings & Data Integrity
+## Section C: Settings & Data
 
-| ID | Scenario | Steps | Expected Outcome |
-|----|----------|-------|-----------------|
-| C-01 | Theme switch | Settings → Appearance → tap Dark | Entire app switches to dark mode immediately |
-| C-02 | Color accent | Settings → Color Accent → tap Emerald | Color scheme changes throughout app |
-| C-03 | Language switch EN→TA | Settings → Language → tap தமிழ் | All labels switch to Tamil |
-| C-04 | Language switch TA→EN | Settings → Language → tap English | All labels revert to English |
-| C-05 | Language persists | Switch to Tamil → reload app | App loads in Tamil |
-| C-06 | Profile edit name | Settings → Profile → edit icon → change name → save | Name updated, persists after reload |
-| C-07 | Profile birth star change | Settings → Profile → edit → change birth star → confirm warning | Bird updates to new star's bird |
-| C-08 | Clear all data | Settings → Clear All Data → confirm | App resets to Welcome onboarding screen |
-| C-09 | Data persists across reload | Log entry → reload browser/app | Entry still in journal history, streak preserved |
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| C-01 | Theme switch (Light → Dark) | Entire app switches immediately |
+| C-02 | Language switch (EN → TA → EN) | All labels change, persists on reload |
+| C-03 | Change location (Chennai → Mumbai) | Sunrise/sunset times change |
+| C-04 | Clear all data | App resets to onboarding |
+| C-05 | Data persists across browser reload | Entries + streak preserved |
 
 ---
 
-## Section D: Tamil Translation Quality
+## Section D: Dashboard Features (Sprints 14–24)
 
-| ID | Check | Where | Expected |
-|----|-------|-------|----------|
-| D-01 | Bird names in Tamil | Home → Birth Bird Card (Tamil mode) | கழுகு/ஆந்தை/காகம்/சேவல்/மயில் |
-| D-02 | Bird state names in Tamil | Home → Birth Bird Card (Tamil mode) | ஆளுகை/உண்ணுதல்/நடத்தல்/தூக்கம்/மரணம் |
-| D-03 | Guidance text in Tamil | Home → Birth Bird Card guidance | State-specific Tamil guidance |
-| D-04 | Breath options in Tamil | Journal tab (Tamil mode) | சூரிய (வலது) / சந்திர (இடது) / சுழுமுனை |
-| D-05 | Settings labels in Tamil | Settings tab (Tamil mode) | தோற்றம், மொழி, அறிவிப்புகள் visible |
-| D-06 | Schedule labels in Tamil | Home → Full Day Schedule (Tamil mode) | இன்றைய அட்டவணை, சிறந்த நேரம் |
-| D-07 | Nakshatra in Tamil | Settings → Profile (Tamil mode) | புஷ்யம் (Pushya) |
-
----
-
-## Section E: Edge Cases
-
-| ID | Scenario | Steps | Expected Outcome |
-|----|----------|-------|-----------------|
-| E-01 | Before sunrise | Check app before 5:30 AM IST | Night yama active, birth bird night state shown |
-| E-02 | After sunset | Check app after 18:30 IST | Night yama active, night schedule visible (Y6-Y10) |
-| E-03 | Different city (London) | Settings → edit location → London | Sunrise/sunset times change dramatically |
-| E-04 | Multiple entries same day | Log 3 breath entries in one day | All appear in history, streak counts correctly |
-| E-05 | App reload mid-timer | Start timer → reload browser | Timer resets (expected — no persistence) |
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| D-01 | Birth Bird Card shows state + guidance | Bird emoji + name + state + progress bar |
+| D-02 | Rahu Kaal Card shows time window | Red when active, amber when soon |
+| D-03 | Full Day Schedule (10 yamas, day + night) | 5 day yamas + 5 night yamas with bird states |
+| D-04 | Nostril Pattern with next switch countdown | Solar/Lunar per yama, countdown visible |
+| D-05 | Shimmer loading on first load (hard refresh) | Animated skeleton cards appear briefly |
+| D-06 | Error fallback (disconnect network → retry) | Cloud-off icon + retry button |
+| D-07 | Hold Time Card | Average hold or "No entries today" |
+| D-08 | Streak zero-state (clear data, before first entry) | "Build Your Streak" motivational card |
+| D-09 | Daily Wisdom card shows text | Non-empty wisdom content |
+| D-10 | 7-Day Ribbon shows last 7 days | Circles with check/X/dash indicators |
 
 ---
 
-## Section F: Dashboard Features (Sprint 14-15)
+## Section E: Home Tabs (Today / Explore)
 
-| ID | Scenario | Steps | Expected Outcome |
-|----|----------|-------|-----------------|
-| F-01 | Birth Bird Card displays | Home → top card | Shows bird emoji + name + state + guidance + progress bar |
-| F-02 | Yama progress accurate | Home → Birth Bird Card → progress bar | Bar matches time elapsed in current yama |
-| F-03 | Rahu Kaal Card | Home → Rahu Kaal section | Shows correct time window, red when active |
-| F-04 | Full Day Schedule (day) | Home → Today's Schedule | 5 daytime yamas with bird states + color dots |
-| F-05 | Full Day Schedule (night) | Home → Night Schedule section | 5 nighttime yamas (Y6-Y10) with bird states |
-| F-06 | Align27 comparison row | Home → bottom of schedule | Shows ruling bird for current yama |
-| F-07 | Nostril Dominance Chart | Home → Nostril Pattern | 5 yamas with Solar/Lunar pattern, current highlighted |
-| F-08 | Next switch countdown | Home → Nostril Pattern → bottom | "Next switch: in X min" displayed |
-| F-09 | Hold Time Card | Home → Today's Hold | Shows average hold or "No entries today" |
-| F-10 | State emojis in schedule | Home → Today's Schedule → each row | 👑🍽️🚶💤💀 next to bird emoji |
-| F-11 | Responsive layout (wide) | View on iMac/iPad | Two-column: Bird+Rahu, Nostril+Schedule, Hold+Streak |
-| F-12 | Responsive layout (narrow) | View on iPhone SE | Single column, all cards stacked |
-| F-13 | Night state after sunset | Check after 18:30 | Birth Bird Card shows night state + night guidance |
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| E-01 | Today tab is default on app open | Shows live data cards |
+| E-02 | Explore tab shows date selector + calendar | Date arrows, month grid visible |
+| E-03 | Pick past date in Explore → schedule changes | Birth bird state reflects past date |
+| E-04 | Pick date with no entries → empty state shows | "No entries on this day" card |
+| E-05 | Best Times This Week card (on today) | Shows next Ruling yama windows |
+| E-06 | 30-Day Trend shows alignment percentage | Progress bar + percentage |
+
+---
+
+## Section F: Analytics
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| F-01 | Analytics empty state (no entries) | "Your Insights Await" full-screen message |
+| F-02 | After logging entries → analytics shows data | Weekly/monthly cards populate |
+| F-03 | Yama Performance breakdown | Bar chart sorted by practice frequency |
+| F-04 | Hold Time Progression | Weekly/monthly averages + trend direction |
+| F-05 | CSV export button | Downloads/shows CSV data |
+
+---
+
+## Section G: Onboarding & About
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| G-01 | Pre-onboarding intro screen shows | Scrollable guide + "Get Started" button |
+| G-02 | DOB calculation path in onboarding | Enter date+time → nakshatra auto-calculated |
+| G-03 | Manual nakshatra selection path | Dropdown → bird shows immediately |
+| G-04 | About card in Settings | Logo, version, developer name, links |
+| G-05 | User Guide accessible from About | Flat scrollable 9-section guide |
+
+---
+
+## Section H: Tamil Translation
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| H-01 | Bird names in Tamil mode | கழுகு/ஆந்தை/காகம்/சேவல்/மயில் |
+| H-02 | Dashboard labels in Tamil | All cards show Tamil text |
+| H-03 | Journal page in Tamil | Breath options, timer, history in Tamil |
+| H-04 | Empty states in Tamil | Journal/Analytics/Explore empty text in Tamil |
+
+---
+
+## Section I: Edge Cases
+
+| ID | Scenario | Expected Outcome |
+|----|----------|-----------------|
+| I-01 | After sunset (nighttime) | Night yama active, night state shown |
+| I-02 | Multiple entries same day | All appear in history, streak correct |
+| I-03 | Browser reload mid-timer | Timer resets (expected) |
+| I-04 | Responsive layout (≥600px) | Two-column cards |
+| I-05 | Responsive layout (<600px) | Single column stacked |
 
 ---
 
 ## Pass Criteria
 
-| Category | Required to Pass |
-|----------|-----------------|
-| Section A (Accuracy) | All 7 checks pass within tolerance |
-| Section B (Core Flow) | All 8 scenarios pass |
-| Section C (Settings) | All 9 scenarios pass |
-| Section D (Tamil) | At least 6 of 7 pass |
-| Section E (Edge Cases) | All 5 pass |
-| Section F (Dashboard) | All 13 pass |
+| Section | Required |
+|---------|----------|
+| A: Accuracy (5 checks) | All pass within tolerance |
+| B: Core Flow (7 checks) | All pass |
+| C: Settings (5 checks) | All pass |
+| D: Dashboard (10 checks) | All pass |
+| E: Home Tabs (6 checks) | All pass |
+| F: Analytics (5 checks) | All pass |
+| G: Onboarding & About (5 checks) | All pass |
+| H: Tamil (4 checks) | At least 3 of 4 pass |
+| I: Edge Cases (5 checks) | All pass |
 
-**Overall Verdict:** ALL sections must pass for `/release` production deployment.
+**Total: 52 scenarios**
+
+**Overall Verdict:** ALL sections must pass for production release.
 
 ---
 
 ## Execution Notes
 
-- Execute on **[saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app)** (staging from `main`)
-- Compare with **Align27** on same device at same time
-- Record results in `docs/smoke-test-results.md`
-- Any failures → logged as issues for hotfix
-- **Must pass before `/release` PR is created**
+- Execute on staging URL after sprint merge
+- Compare Section A with Align27 on same device at same time
+- Record results in `docs/smoke-test-results-v{version}.md`
+- Any failures → logged for hotfix before release tag
 
 ---
 
