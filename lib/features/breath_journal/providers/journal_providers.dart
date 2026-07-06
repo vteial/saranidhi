@@ -65,7 +65,7 @@ class BreathEntryNotifier extends Notifier<BreathEntryState> {
   void selectFlow(BreathFlow flow) {
     // Read cached profile location (defaults to Chennai if not yet loaded)
     final locationAsync = ref.read(profileLocationProvider);
-    final location = locationAsync.valueOrNull ?? const ProfileLocation();
+    final location = locationAsync.value ?? const ProfileLocation();
 
     final utcOffset = TimezoneUtils.offsetForLocation(
       latitude: location.latitude,
