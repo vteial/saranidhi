@@ -331,28 +331,18 @@
 
 ---
 
-## Sprint 26: App Store Prep — What's New, Icons & Branding (Backlog)
+## Sprint 26: Daily Engagement & Delight
 
 - [ ] Task 26.1: "What's New" screen on version update (shown once after app update, dismissible)
-- [ ] Task 26.2: App icon variants for all required sizes (iOS, macOS, Android adaptive)
-- [ ] Task 26.3: Splash/launch screen with branding (replace default white)
-- [ ] Task 26.4: Store screenshots generation guide (key screens in light+dark, EN+TA)
-- [ ] Task 26.5: Update `docs/store-listing.md` with final copy (EN + TA descriptions)
-- [ ] Task 26.6: Tag `v1.2.0-web` with all Sprint 20–25 features for production baseline
+- [ ] Task 26.2: Celebration animations — streak milestone celebrations (7, 30, 100 days)
+- [ ] Task 26.3: Breath timer presets (4-7-8, box breathing, custom patterns)
+- [ ] Task 26.4: Daily summary card at end of day (entries logged, alignment %, best yama)
+- [ ] Task 26.5: Pin/star favourite entries for quick reference
+- [ ] Task 26.6: Quick-log from notification — tap notification to pre-fill entry (mobile)
 
 ---
 
-## Sprint 27: Daily Engagement & Delight (Backlog)
-
-- [ ] Task 27.1: Celebration animations — streak milestone celebrations (7, 30, 100 days)
-- [ ] Task 27.2: Breath timer presets (4-7-8, box breathing, custom patterns)
-- [ ] Task 27.3: Daily summary card at end of day (entries logged, alignment %, best yama)
-- [ ] Task 27.4: Pin/star favourite entries for quick reference
-- [ ] Task 27.5: Quick-log from notification — tap notification to pre-fill entry (mobile)
-
----
-
-## Sprint E2E: Automated End-to-End Testing (Backlog)
+## Sprint E2E: Automated End-to-End Testing (Backlog — based on time & situation)
 
 - [ ] Task E2E.1: Set up Playwright (or equivalent) for Flutter Web E2E tests
 - [ ] Task E2E.2: Automate critical path scenarios from smoke test (onboarding, log entry, streak)
@@ -361,15 +351,16 @@
 
 ---
 
-## Sprint X: App Store Submission (Deferred — Target ~Aug/Sep 2026)
+## Sprint X: App Store Prep & Submission (Deferred — Target ~Aug/Sep 2026)
 
 - [ ] Task X.1: Set up Apple Developer + Google Play accounts
-- [ ] Task X.2: Build release iOS + macOS app
-- [ ] Task X.3: Build release Android app (if needed)
-- [ ] Task X.4: Screenshots + store listing submission (see docs/store-listing.md)
-- [ ] Task X.5: Submit for review
-- [ ] Task X.6: Verify live + tag v1.0.0
-- [ ] Task X.7: Changelog / What's New screen (for returning users after updates)
+- [ ] Task X.2: App icon variants for all required sizes (iOS, macOS, Android adaptive)
+- [ ] Task X.3: Splash/launch screen with branding (replace default white)
+- [ ] Task X.4: Store screenshots generation guide (key screens in light+dark, EN+TA)
+- [ ] Task X.5: Update `docs/store-listing.md` with final copy (EN + TA descriptions)
+- [ ] Task X.6: Build release iOS + macOS + Android apps
+- [ ] Task X.7: Submit for review
+- [ ] Task X.8: Verify live + tag v1.0.0-mobile
 
 ---
 
