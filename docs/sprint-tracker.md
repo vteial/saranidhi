@@ -319,7 +319,7 @@
 
 ---
 
-## Sprint 25: Performance, Accessibility & Smoke Test Refresh
+## Sprint 25: Performance, Accessibility & Smoke Test Refresh 🚧 In Progress
 
 - [ ] Task 25.1: Fix notification timezone — derive from profile location instead of hardcoded IST
 - [ ] Task 25.2: Keyboard/focus navigation for web (Tab traversal, Enter to submit on Journal)

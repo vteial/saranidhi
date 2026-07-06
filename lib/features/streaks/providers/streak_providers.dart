@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:drift/drift.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
@@ -171,7 +172,6 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   // Read profile for birth bird and location
   var lat = 13.08; // Default: Chennai
   var lng = 80.27;
-  const utcOffset = 5.5;
 
   final profiles = await db.select(db.profiles).get();
   if (profiles.isNotEmpty) {
@@ -184,6 +184,11 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     if (profile.locationLat != null) lat = profile.locationLat!;
     if (profile.locationLng != null) lng = profile.locationLng!;
   }
+
+  final utcOffset = TimezoneUtils.offsetForLocation(
+    latitude: lat,
+    longitude: lng,
+  );
 
   // Calculate sunrise/sunset for the selected date
   final sunResult = SunriseCalculator.calculate(

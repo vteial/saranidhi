@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saranidhi/core/providers/profile_location_provider.dart';
+import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/breath_journal/data/journal_repository.dart';
@@ -61,16 +63,20 @@ class BreathEntryNotifier extends Notifier<BreathEntryState> {
 
   /// Select a breath flow and check alignment.
   void selectFlow(BreathFlow flow) {
-    // Default location: Chennai, India (will come from profile in Sprint 6)
-    const latitude = 13.08;
-    const longitude = 80.27;
-    const utcOffset = 5.5;
+    // Read cached profile location (defaults to Chennai if not yet loaded)
+    final locationAsync = ref.read(profileLocationProvider);
+    final location = locationAsync.valueOrNull ?? const ProfileLocation();
+
+    final utcOffset = TimezoneUtils.offsetForLocation(
+      latitude: location.latitude,
+      longitude: location.longitude,
+    );
 
     final alignment = AlignmentChecker.check(
       actualFlow: flow,
       time: DateTime.now(),
-      latitude: latitude,
-      longitude: longitude,
+      latitude: location.latitude,
+      longitude: location.longitude,
       utcOffset: utcOffset,
     );
 
