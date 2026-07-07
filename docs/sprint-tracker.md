@@ -319,15 +319,15 @@
 
 ---
 
-## Sprint 25: Performance, Accessibility & Smoke Test Refresh 🚧 In Progress
+## Sprint 25: Performance, Accessibility & Smoke Test Refresh ✅ Complete (PR #63)
 
-- [ ] Task 25.1: Fix notification timezone — derive from profile location instead of hardcoded IST
-- [ ] Task 25.2: Keyboard/focus navigation for web (Tab traversal, Enter to submit on Journal)
-- [ ] Task 25.3: Semantic labels audit — verify all interactive widgets have proper Semantics for screen readers
-- [ ] Task 25.4: Haptic feedback on breath entry selection + timer tap (mobile, no-op on web)
-- [ ] Task 25.5: Lazy-load Explore tab data (defer night yama calc until tab is selected)
-- [ ] Task 25.6: Update `docs/manual-smoke-test.md` — slimmer critical-path version covering Sprints 14–24 (~55 scenarios)
-- [ ] Task 25.7: Restructure smoke test results — archive v1.0.0, create summary index, prepare v1.2.0 checklist
+- [x] Task 25.1: Fix notification timezone — derive from profile location instead of hardcoded IST
+- [x] Task 25.2: Keyboard/focus navigation for web (Tab traversal, Enter to submit on Journal)
+- [x] Task 25.3: Semantic labels audit — verify all interactive widgets have proper Semantics for screen readers
+- [x] Task 25.4: Haptic feedback on breath entry selection + timer tap (mobile, no-op on web)
+- [x] Task 25.5: Lazy-load Explore tab data (defer night yama calc until tab is selected)
+- [x] Task 25.6: Update `docs/manual-smoke-test.md` — slimmer critical-path version covering Sprints 14–24 (~55 scenarios)
+- [x] Task 25.7: Restructure smoke test results — archive v1.0.0, create summary index, prepare v1.2.0 checklist
 
 ---
 
