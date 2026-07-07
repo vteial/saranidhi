@@ -1,3 +1,4 @@
+import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
@@ -11,6 +12,7 @@ class AlignmentResult {
     required this.activeYama,
     required this.activeBird,
     required this.activeBirdState,
+    this.actionWindow,
   });
 
   /// The cosmically expected flow direction for the current time.
@@ -27,6 +29,10 @@ class AlignmentResult {
 
   /// The active bird state.
   final PakshiState? activeBirdState;
+
+  /// The current action window (derived from bird state).
+  /// Used for context-dependent Sushumna alignment logic.
+  final ActionWindow? actionWindow;
 }
 
 /// Determines the expected breath flow and checks alignment.
@@ -38,7 +44,10 @@ class AlignmentResult {
 /// - Odd Yamas (1, 3, 5) → Solar (Right nostril expected)
 /// - Even Yamas (2, 4) → Lunar (Left nostril expected)
 ///
-/// Sushumna (both) is always considered aligned regardless of expected flow.
+/// **Sushumna (both) — context-dependent (Sprint 27):**
+/// - Yoga window (Sleeping/Dying states) → Fully aligned (spiritual practice)
+/// - Artha window (Ruling/Walking states) → Blocked (opposes material action)
+/// - Kriya window (Eating state) → Blocked (opposes nourishment/physical)
 class AlignmentChecker {
   const AlignmentChecker._();
 
@@ -74,10 +83,6 @@ class AlignmentChecker {
     // If outside daylight hours, default to lunar
     final expectedFlow = _expectedFlowForYama(activeYamaSegment?.index);
 
-    // Sushumna is always considered aligned
-    final isAligned =
-        actualFlow == BreathFlow.sushumna || actualFlow == expectedFlow;
-
     // Get Pakshi info
     final weekday = PakshiCalculator.dartWeekdayToSunBased(time.weekday);
     // Default to waxing for now — lunar phase integration happens via provider
@@ -88,10 +93,22 @@ class AlignmentChecker {
 
     PakshiBird? activeBird;
     PakshiState? activeBirdState;
+    ActionWindow? actionWindow;
+
     if (activeYamaSegment != null) {
       final pakshiEntry = pakshiResult.forYama(activeYamaSegment.index);
       activeBird = pakshiEntry.bird;
       activeBirdState = pakshiEntry.state;
+      actionWindow = ActionWindow.fromBirdState(activeBirdState);
+    }
+
+    // Determine alignment based on flow type
+    final bool isAligned;
+    if (actualFlow == BreathFlow.sushumna) {
+      // Context-dependent Sushumna: aligned only in Yoga window
+      isAligned = actionWindow?.isSushumnaAligned ?? false;
+    } else {
+      isAligned = actualFlow == expectedFlow;
     }
 
     return AlignmentResult(
@@ -100,6 +117,7 @@ class AlignmentChecker {
       activeYama: activeYamaSegment?.index,
       activeBird: activeBird,
       activeBirdState: activeBirdState,
+      actionWindow: actionWindow,
     );
   }
 

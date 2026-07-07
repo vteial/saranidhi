@@ -4,10 +4,12 @@ import 'package:drift/drift.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/database_provider.dart';
+import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/rahu_kaal_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/tattva_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 import 'package:saranidhi/features/streaks/data/streak_repository.dart';
 import 'package:saranidhi/features/streaks/domain/seven_day_ribbon.dart';
@@ -43,6 +45,8 @@ class DashboardData {
     this.pakshiNight,
     this.birthBirdNightState,
     this.isNight = false,
+    this.activeHora,
+    this.activeTattva,
   });
 
   final StreakResult streak;
@@ -97,6 +101,12 @@ class DashboardData {
 
   /// Whether current time is after sunset (nighttime).
   final bool isNight;
+
+  /// Current active planetary hour (Hora).
+  final HoraResult? activeHora;
+
+  /// Current active element (Tattva).
+  final TattvaResult? activeTattva;
 }
 
 /// The currently selected date for the dashboard.
@@ -384,5 +394,68 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     pakshiNight: pakshiNight,
     birthBirdNightState: birthBirdNightState,
     isNight: isNight,
+    activeHora: _computeHora(
+      now: now,
+      isToday: isToday,
+      sunrise: sunrise,
+      sunset: sunset,
+      lat: lat,
+      lng: lng,
+      utcOffset: utcOffset,
+      selectedDate: selectedDate,
+    ),
+    activeTattva: _computeTattva(
+      now: now,
+      isToday: isToday,
+      activeYama: activeYamaSegment,
+    ),
   );
 });
+
+
+
+/// Computes the active Hora for the current time (only when viewing today).
+HoraResult? _computeHora({
+  required DateTime now,
+  required bool isToday,
+  required DateTime? sunrise,
+  required DateTime? sunset,
+  required double lat,
+  required double lng,
+  required double utcOffset,
+  required DateTime selectedDate,
+}) {
+  if (!isToday || sunrise == null || sunset == null) return null;
+
+  // Need next sunrise for night hora calculation
+  final tomorrow = now.add(const Duration(days: 1));
+  final tomorrowSun = SunriseCalculator.calculate(
+    date: tomorrow,
+    latitude: lat,
+    longitude: lng,
+    utcOffset: utcOffset,
+  );
+  if (tomorrowSun == null) return null;
+
+  final weekday = PakshiCalculator.dartWeekdayToSunBased(
+    selectedDate.weekday,
+  );
+
+  return HoraCalculator.activeHora(
+    time: now,
+    sunrise: sunrise,
+    sunset: sunset,
+    nextSunrise: tomorrowSun.sunrise,
+    weekday: weekday,
+  );
+}
+
+/// Computes the active Tattva for the current time (only when viewing today).
+TattvaResult? _computeTattva({
+  required DateTime now,
+  required bool isToday,
+  required YamaSegment? activeYama,
+}) {
+  if (!isToday || activeYama == null) return null;
+  return TattvaCalculator.activeTattva(time: now, yamaSegment: activeYama);
+}

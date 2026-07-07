@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
+import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/tattva_calculator.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -120,6 +122,16 @@ class BirthBirdCard extends StatelessWidget {
                 ),
               ),
             ],
+
+            // Hora + Tattva sub-row (visible when data available)
+            if (data.activeHora != null || data.activeTattva != null) ...[
+              const SizedBox(height: 8),
+              _HoraTattvaRow(
+                hora: data.activeHora,
+                tattva: data.activeTattva,
+                theme: theme,
+              ),
+            ],
           ],
         ),
       ),
@@ -157,4 +169,106 @@ class BirthBirdCard extends StatelessWidget {
       null => '',
     };
   }
+}
+
+
+
+/// Subtle sub-row showing the current planetary hour and active element.
+class _HoraTattvaRow extends StatelessWidget {
+  const _HoraTattvaRow({
+    required this.hora,
+    required this.tattva,
+    required this.theme,
+  });
+
+  final HoraResult? hora;
+  final TattvaResult? tattva;
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
+    return Row(
+      children: [
+        if (hora != null) ...[
+          Text(
+            _horaEmoji(hora!.planet),
+            style: const TextStyle(fontSize: 12),
+          ),
+          const SizedBox(width: 4),
+          Text(
+            _localizedPlanet(hora!.planet, l10n),
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+        ],
+        if (hora != null && tattva != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
+              '\u2022',
+              style: TextStyle(
+                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+                fontSize: 10,
+              ),
+            ),
+          ),
+        if (tattva != null) ...[
+          Text(
+            _tattvaEmoji(tattva!.tattva),
+            style: const TextStyle(fontSize: 12),
+          ),
+          const SizedBox(width: 4),
+          Text(
+            _localizedTattva(tattva!.tattva, l10n),
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  String _localizedPlanet(HoraPlanet planet, AppLocalizations l10n) {
+    return switch (planet) {
+      HoraPlanet.sun => l10n.planetSun,
+      HoraPlanet.moon => l10n.planetMoon,
+      HoraPlanet.mars => l10n.planetMars,
+      HoraPlanet.mercury => l10n.planetMercury,
+      HoraPlanet.jupiter => l10n.planetJupiter,
+      HoraPlanet.venus => l10n.planetVenus,
+      HoraPlanet.saturn => l10n.planetSaturn,
+    };
+  }
+
+  String _localizedTattva(Tattva tattva, AppLocalizations l10n) {
+    return switch (tattva) {
+      Tattva.earth => l10n.tattvaEarth,
+      Tattva.water => l10n.tattvaWater,
+      Tattva.fire => l10n.tattvaFire,
+      Tattva.air => l10n.tattvaAir,
+      Tattva.ether => l10n.tattvaEther,
+    };
+  }
+
+  String _horaEmoji(HoraPlanet planet) => switch (planet) {
+    HoraPlanet.sun => '\u2600\uFE0F',
+    HoraPlanet.moon => '\uD83C\uDF19',
+    HoraPlanet.mars => '\u2642\uFE0F',
+    HoraPlanet.mercury => '\u263F',
+    HoraPlanet.jupiter => '\u2643',
+    HoraPlanet.venus => '\u2640\uFE0F',
+    HoraPlanet.saturn => '\u2644',
+  };
+
+  String _tattvaEmoji(Tattva tattva) => switch (tattva) {
+    Tattva.earth => '\uD83C\uDF0D',
+    Tattva.water => '\uD83D\uDCA7',
+    Tattva.fire => '\uD83D\uDD25',
+    Tattva.air => '\uD83D\uDCA8',
+    Tattva.ether => '\u2728',
+  };
 }

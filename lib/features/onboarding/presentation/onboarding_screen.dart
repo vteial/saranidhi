@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:saranidhi/core/l10n/locale_provider.dart';
+import 'package:saranidhi/core/utils/nakshatra_l10n.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -29,13 +31,22 @@ class OnboardingScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                // Progress indicator
-                Semantics(
-                  label: 'Step ${state.currentStep + 1} of ${state.totalSteps}',
-                  child: LinearProgressIndicator(
-                    value: (state.currentStep + 1) / state.totalSteps,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
+                // Language toggle + progress row
+                Row(
+                  children: [
+                    Expanded(
+                      child: Semantics(
+                        label:
+                            'Step ${state.currentStep + 1} of ${state.totalSteps}',
+                        child: LinearProgressIndicator(
+                          value: (state.currentStep + 1) / state.totalSteps,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    _LanguageToggle(),
+                  ],
                 ),
                 const SizedBox(height: 24),
 
@@ -206,7 +217,7 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Find Your Bird', style: theme.textTheme.titleLarge),
+        Text(l10n.findYourBirdTitle, style: theme.textTheme.titleLarge),
         const SizedBox(height: 8),
         Text(
           l10n.birthStarHint,
@@ -220,16 +231,16 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
         SizedBox(
           width: double.infinity,
           child: SegmentedButton<_BirdPathMode>(
-            segments: const [
+            segments: [
               ButtonSegment(
                 value: _BirdPathMode.knowNakshatra,
-                label: Text('I know my star'),
-                icon: Icon(Icons.stars),
+                label: Text(l10n.iKnowMyStar),
+                icon: const Icon(Icons.stars),
               ),
               ButtonSegment(
                 value: _BirdPathMode.calculateFromDOB,
-                label: Text('Calculate from DOB'),
-                icon: Icon(Icons.auto_awesome),
+                label: Text(l10n.calculateFromDob),
+                icon: const Icon(Icons.auto_awesome),
               ),
             ],
             selected: {_mode},
@@ -297,7 +308,7 @@ class _NakshatraListPath extends StatelessWidget {
         final nakshatra = allNakshatras[index];
         final isSelected = state.selectedNakshatra == nakshatra;
         return ListTile(
-          title: Text(nakshatra),
+          title: Text(NakshatraL10n.trilingualDisplay(nakshatra)),
           trailing: isSelected
               ? Icon(Icons.check_circle, color: theme.colorScheme.primary)
               : null,
@@ -352,6 +363,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final state = widget.state;
     final notifier = widget.notifier;
 
@@ -365,9 +377,9 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
             title: Text(
               state.birthDate != null
                   ? '${state.birthDate!.day}/${state.birthDate!.month}/${state.birthDate!.year}'
-                  : 'Select date',
+                  : l10n.selectDate,
             ),
-            subtitle: const Text('Birth date'),
+            subtitle: Text(l10n.birthDateLabel),
             trailing: const Icon(Icons.chevron_right),
             onTap: _pickDate,
             contentPadding: EdgeInsets.zero,
@@ -381,9 +393,9 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
               state.birthTimeOfDay != null
                   ? '${state.birthTimeOfDay!.hour.toString().padLeft(2, '0')}:'
                       '${state.birthTimeOfDay!.minute.toString().padLeft(2, '0')}'
-                  : 'Select time (optional)',
+                  : l10n.selectTimeOptional,
             ),
-            subtitle: const Text('Birth time (for precise nakshatra)'),
+            subtitle: Text(l10n.birthTimeLabel),
             trailing: const Icon(Icons.chevron_right),
             onTap: _pickTime,
             contentPadding: EdgeInsets.zero,
@@ -428,7 +440,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
               child: FilledButton.icon(
                 onPressed: notifier.calculateFromDOB,
                 icon: const Icon(Icons.auto_awesome),
-                label: const Text('Calculate Nakshatra'),
+                label: Text(l10n.calculateNakshatra),
               ),
             ),
           ],
@@ -521,7 +533,7 @@ class _LocationStep extends StatelessWidget {
             Text(l10n.yourLocation, style: theme.textTheme.titleLarge),
             const SizedBox(height: 8),
             Text(
-              'Where are you now? (for daily sunrise/sunset)',
+              l10n.locationSubtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -677,3 +689,28 @@ const _presetCities = [
   _PresetCity('Hyderabad', 17.39, 78.49),
   _PresetCity('Kolkata', 22.57, 88.36),
 ];
+
+
+
+/// Compact language toggle (EN/TA) for onboarding screens.
+class _LanguageToggle extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentLocale = ref.watch(localeProvider);
+
+    return SegmentedButton<AppLocale>(
+      segments: const [
+        ButtonSegment(value: AppLocale.english, label: Text('EN')),
+        ButtonSegment(value: AppLocale.tamil, label: Text('TA')),
+      ],
+      selected: {currentLocale},
+      onSelectionChanged: (selection) {
+        ref.read(localeProvider.notifier).setLocale(selection.first);
+      },
+      style: const ButtonStyle(
+        visualDensity: VisualDensity.compact,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+    );
+  }
+}

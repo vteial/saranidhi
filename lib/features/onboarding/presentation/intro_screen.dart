@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/router/onboarding_guard.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -18,12 +19,42 @@ class IntroScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
+    final currentLocale = ref.watch(localeProvider);
 
     return Scaffold(
       body: ResponsiveWrapper(
         child: SafeArea(
           child: Column(
             children: [
+              // Language toggle at top-right
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8, right: 8),
+                  child: SegmentedButton<AppLocale>(
+                    segments: const [
+                      ButtonSegment(
+                        value: AppLocale.english,
+                        label: Text('EN'),
+                      ),
+                      ButtonSegment(
+                        value: AppLocale.tamil,
+                        label: Text('TA'),
+                      ),
+                    ],
+                    selected: {currentLocale},
+                    onSelectionChanged: (selection) {
+                      ref
+                          .read(localeProvider.notifier)
+                          .setLocale(selection.first);
+                    },
+                    style: const ButtonStyle(
+                      visualDensity: VisualDensity.compact,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                  ),
+                ),
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(24),
