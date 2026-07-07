@@ -20,7 +20,7 @@ dependencies:
   go_router: ^17.2.3
 
   # Local Database
-  drift: ^2.33.0
+  drift: ^2.34.0
   sqlite3_flutter_libs: ^0.6.0
   drift_flutter: ^0.3.0
 
@@ -65,7 +65,7 @@ dev_dependencies:
   riverpod_generator: ^4.0.2
   freezed: ^3.0.6
   json_serializable: ^6.9.5
-  drift_dev: ^2.33.0
+  drift_dev: ^2.34.0
 
   # Testing
   mocktail: ^1.0.4
