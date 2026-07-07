@@ -216,7 +216,7 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Find Your Bird', style: theme.textTheme.titleLarge),
+        Text(l10n.findYourBirdTitle, style: theme.textTheme.titleLarge),
         const SizedBox(height: 8),
         Text(
           l10n.birthStarHint,
@@ -233,13 +233,13 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
             segments: const [
               ButtonSegment(
                 value: _BirdPathMode.knowNakshatra,
-                label: Text('I know my star'),
-                icon: Icon(Icons.stars),
+                label: Text(l10n.iKnowMyStar),
+                icon: const Icon(Icons.stars),
               ),
               ButtonSegment(
                 value: _BirdPathMode.calculateFromDOB,
-                label: Text('Calculate from DOB'),
-                icon: Icon(Icons.auto_awesome),
+                label: Text(l10n.calculateFromDob),
+                icon: const Icon(Icons.auto_awesome),
               ),
             ],
             selected: {_mode},
@@ -362,6 +362,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final state = widget.state;
     final notifier = widget.notifier;
 
@@ -375,9 +376,9 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
             title: Text(
               state.birthDate != null
                   ? '${state.birthDate!.day}/${state.birthDate!.month}/${state.birthDate!.year}'
-                  : 'Select date',
+                  : l10n.selectDate,
             ),
-            subtitle: const Text('Birth date'),
+            subtitle: Text(l10n.birthDateLabel),
             trailing: const Icon(Icons.chevron_right),
             onTap: _pickDate,
             contentPadding: EdgeInsets.zero,
@@ -391,9 +392,9 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
               state.birthTimeOfDay != null
                   ? '${state.birthTimeOfDay!.hour.toString().padLeft(2, '0')}:'
                       '${state.birthTimeOfDay!.minute.toString().padLeft(2, '0')}'
-                  : 'Select time (optional)',
+                  : l10n.selectTimeOptional,
             ),
-            subtitle: const Text('Birth time (for precise nakshatra)'),
+            subtitle: Text(l10n.birthTimeLabel),
             trailing: const Icon(Icons.chevron_right),
             onTap: _pickTime,
             contentPadding: EdgeInsets.zero,
@@ -438,7 +439,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
               child: FilledButton.icon(
                 onPressed: notifier.calculateFromDOB,
                 icon: const Icon(Icons.auto_awesome),
-                label: const Text('Calculate Nakshatra'),
+                label: Text(l10n.calculateNakshatra),
               ),
             ),
           ],
@@ -531,7 +532,7 @@ class _LocationStep extends StatelessWidget {
             Text(l10n.yourLocation, style: theme.textTheme.titleLarge),
             const SizedBox(height: 8),
             Text(
-              'Where are you now? (for daily sunrise/sunset)',
+              l10n.locationSubtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),

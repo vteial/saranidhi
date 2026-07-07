@@ -769,5 +769,24 @@
   "selectBirthTime": "Select birth time (optional)",
   "@selectBirthTime": { "description": "DOB time picker label" },
   "recalculateButton": "Calculate",
-  "@recalculateButton": { "description": "DOB recalculate confirm button" }
+  "@recalculateButton": { "description": "DOB recalculate confirm button" },
+
+  "findYourBirdTitle": "Find Your Bird",
+  "@findYourBirdTitle": { "description": "Onboarding step 2 title" },
+  "iKnowMyStar": "I know my star",
+  "@iKnowMyStar": { "description": "Segmented button: manual nakshatra selection" },
+  "calculateFromDob": "Calculate from DOB",
+  "@calculateFromDob": { "description": "Segmented button: auto-calculate from date of birth" },
+  "selectDate": "Select date",
+  "@selectDate": { "description": "DOB date field placeholder" },
+  "birthDateLabel": "Birth date",
+  "@birthDateLabel": { "description": "DOB date field subtitle" },
+  "selectTimeOptional": "Select time (optional)",
+  "@selectTimeOptional": { "description": "DOB time field placeholder" },
+  "birthTimeLabel": "Birth time (for precise nakshatra)",
+  "@birthTimeLabel": { "description": "DOB time field subtitle" },
+  "calculateNakshatra": "Calculate Nakshatra",
+  "@calculateNakshatra": { "description": "DOB calculate button" },
+  "locationSubtitle": "Where are you now? (for daily sunrise/sunset)",
+  "@locationSubtitle": { "description": "Location step instruction text" }
 }

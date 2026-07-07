@@ -407,5 +407,15 @@
   "recalculateFromDob": "பிறந்த தேதியிலிருந்து கணக்கிடு",
   "selectBirthDate": "பிறந்த தேதியை தேர்வு செய்யவும்",
   "selectBirthTime": "பிறந்த நேரம் (விருப்பமானால்)",
-  "recalculateButton": "கணக்கிடு"
+  "recalculateButton": "கணக்கிடு",
+
+  "findYourBirdTitle": "உங்கள் பறவையை கண்டறியுங்கள்",
+  "iKnowMyStar": "நட்சத்திரம் தெரியும்",
+  "calculateFromDob": "பிறந்த தேதியிலிருந்து கணக்கிடு",
+  "selectDate": "தேதியை தேர்வு செய்யவும்",
+  "birthDateLabel": "பிறந்த தேதி",
+  "selectTimeOptional": "நேரம் தேர்வு செய்யவும் (விருப்பமானால்)",
+  "birthTimeLabel": "பிறந்த நேரம் (துல்லியமான நட்சத்திரத்திற்கு)",
+  "calculateNakshatra": "நட்சத்திரம் கணக்கிடு",
+  "locationSubtitle": "நீங்கள் இப்போது எங்கே உள்ளீர்கள்? (தினசரி சூரிய உதயம்/அஸ்தமனத்திற்கு)"
 }
