@@ -264,6 +264,7 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 22 | 62 | 410 | 10 widget test files (BirthBirdCard, RahuKaalCard, FullDaySchedule, NostrilDominanceChart, HoldTimeCard, StreakFlame, Trend, SevenDayRibbon, YamaAccuracy, WisdomCard) + shared widget_test_helpers.dart |
 | Sprint 23 | 0 | 410 | UI features (IntroScreen, AboutCard, UserGuide, dialog consistency), no new test files |
 | Sprint 24 | 0 | 410 | UX polish (empty states, shimmer loading, error boundary); streak_flame_widget_test updated for zero-state behavior change, no new test files |
+| Sprint 25 | 0 | 410 | Performance/accessibility polish (timezone, keyboard, haptics, semantics); no new test files, existing tests unaffected |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 

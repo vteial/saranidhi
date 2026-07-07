@@ -81,5 +81,11 @@ inclusion: auto
 - **About/User Guide:** About card uses `package_info_plus` for version, `url_launcher` for email/website/privacy links. Privacy Policy served as locale-aware static HTML (`privacy-en.html` / `privacy-ta.html`) via `Uri.base.origin`.
 - **Reusable UX widgets (`lib/core/widgets/`):** `EmptyStateWidget` (empty states), `ShimmerLoading` (loading skeleton), `ErrorBoundary`/`ErrorFallback` (error handling). Use these instead of `CircularProgressIndicator` for loading or blank screens for errors.
 - **Analytics reactivity:** All analytics `FutureProvider`s watch `journalEntriesProvider.future` to auto-refresh. Never add a new analytics provider without this dependency.
+- **Timezone derivation:** Never hardcode `utcOffset`. Use `TimezoneUtils.offsetForLocation(lat, lng)` which handles Indian bounding box (IST) and longitude-based approximation for other locations.
+- **Profile location:** Use `profileLocationProvider` (FutureProvider) for cached access to profile lat/lng. Invalidate both `profileLocationProvider` and `dashboardDataProvider` after any profile location/birth star change.
+- **Safari compatibility:** Never use `canvasKitVariant: "chromium"` in `flutter_bootstrap.js`. Never add COOP/COEP headers — Drift WASM works without them using fallback worker mode.
+- **Keyboard shortcuts (web):** Use `CallbackShortcuts` + `Focus(autofocus: true)`, NOT `KeyboardListener` with inline `FocusNode`.
+- **Haptic feedback:** Use `HapticFeedback.lightImpact()` / `.mediumImpact()` from `flutter/services.dart` — automatically no-op on web.
+- **Night schedule:** Always compute and display night yamas (Y6–Y10) regardless of current time. Active marker only highlights during actual nighttime.
 
 ---
