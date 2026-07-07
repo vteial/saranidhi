@@ -97,7 +97,7 @@
 
 ---
 
-## Section G: Onboarding & About
+## Section G: Onboarding, About & Engagement
 
 | ID | Scenario | Expected Outcome |
 |----|----------|-----------------|
@@ -106,6 +106,11 @@
 | G-03 | Manual nakshatra selection path | Dropdown → bird shows immediately |
 | G-04 | About card in Settings | Logo, version, developer name, links |
 | G-05 | User Guide accessible from About | Flat scrollable 9-section guide |
+| G-06 | What's New screen on first v1.2.0 launch | Feature list with dismiss button, shown once |
+| G-07 | Timer preset selector visible | Horizontal chips (Manual, 4-7-8, Box, etc.) |
+| G-08 | Daily summary card after logging entry | Entries count, alignment %, avg hold shown |
+| G-09 | Streak celebration at milestone (7 days) | Animated overlay with confetti emojis |
+| G-10 | Pin/star an entry in journal history | Star icon toggles, persists on reload |
 
 ---
 
@@ -142,11 +147,11 @@
 | D: Dashboard (10 checks) | All pass |
 | E: Home Tabs (6 checks) | All pass |
 | F: Analytics (5 checks) | All pass |
-| G: Onboarding & About (5 checks) | All pass |
+| G: Onboarding, About & Engagement (10 checks) | At least 8 of 10 pass |
 | H: Tamil (4 checks) | At least 3 of 4 pass |
 | I: Edge Cases (5 checks) | All pass |
 
-**Total: 52 scenarios**
+**Total: 57 scenarios**
 
 **Overall Verdict:** ALL sections must pass for production release.
 

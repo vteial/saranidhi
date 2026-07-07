@@ -97,7 +97,7 @@
 
 ---
 
-## Section G: Onboarding & About
+## Section G: Onboarding, About & Engagement
 
 | ID | Scenario | Pass? | Notes |
 |----|----------|-------|-------|
@@ -106,6 +106,11 @@
 | G-03 | Manual nakshatra selection | | |
 | G-04 | About card in Settings | | |
 | G-05 | User Guide from About | | |
+| G-06 | What's New screen (v1.2.0) | | |
+| G-07 | Timer preset selector | | |
+| G-08 | Daily summary card | | |
+| G-09 | Streak celebration (milestone) | | |
+| G-10 | Pin/star entry | | |
 
 ---
 
@@ -142,7 +147,7 @@
 | D: Dashboard | | |
 | E: Home Tabs | | |
 | F: Analytics | | |
-| G: Onboarding | | |
+| G: Onboarding & Engagement | | |
 | H: Tamil | | |
 | I: Edge Cases | | |
 
@@ -156,7 +161,10 @@
 |-----------|--------|----------|
 | All smoke test sections pass | ⬜ | |
 | CI pipeline passes | ⬜ | |
+| No open critical/blocker issues | ⬜ | |
 | Owner sign-off | ⬜ | |
+
+**Total scenarios:** 57
 
 **Release tag:** `v1.2.0-web` — ⬜ Pending
 

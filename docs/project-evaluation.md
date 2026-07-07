@@ -54,6 +54,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Product Polish — About, User Guide & Onboarding Intro** | Pre-onboarding intro, About card (version+links), User Guide (9 sections), locale-aware privacy policy, dialog consistency, Settings layout alignment | ✅ Complete (100%) — Sprint 23 |
 | **UX Polish — Empty States, Loading & Error Handling** | Reusable EmptyStateWidget, ShimmerLoading skeleton cards, ErrorBoundary/ErrorFallback, journal empty state, analytics empty state, explore tab historical empty state, streak zero-state onboarding card, reactive analytics providers | ✅ Complete (100%) — Sprint 24 |
 | **Performance, Accessibility & Smoke Test Refresh** | TimezoneUtils (dynamic UTC offset), ProfileLocationProvider, keyboard Enter submit, haptic feedback, Semantics audit, night schedule always visible, Safari CanvasKit fix, COOP/COEP removal, location change reactivity, sqlparser pin, smoke test plan rewrite (52 scenarios), versioned results | ✅ Complete (100%) — Sprint 25 |
+| **Daily Engagement & Delight** | What's New screen (version-tracked, dismissible), Streak celebrations (7/30/100/365 milestones), Breath timer presets (4-7-8, Box, Energize, Calm), Daily summary card (entries/alignment/hold), Pin/star entries (isPinned column), Quick-log from notification (payload + tap handler) | ✅ Complete (100%) — Sprint 26 |
 | **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
@@ -174,6 +175,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 0 (UI features, no new tests) | ✅ Complete |
 | Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 0 (UI polish + provider fix, test updated) | ✅ Complete |
 | Sprint 25 | Performance, Accessibility & Smoke Test Refresh | #63 | 0 (accessibility/perf polish, docs) | ✅ Complete |
+| Sprint 26 | Daily Engagement & Delight | #65 | 0 (new feature widgets, no tests yet) | ✅ Complete |
 
 ---
 

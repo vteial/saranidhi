@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 25 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~65.0 Hours
-**Pull Requests Merged:** 63
+**Sprints Delivered:** 26 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~67.0 Hours
+**Pull Requests Merged:** 65
 **Automated Test Coverage:** 410+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -167,6 +167,10 @@
 | `7738313` | Kiro Agent | 2026-07-06 02:00 | fix(deps): pin sqlparser to 0.44.5 — 0.44.6 breaks drift_dev |
 | `72183ed` | Kiro Agent | 2026-07-06 02:30 | fix: invalidate dashboard after location/birth star change in Settings |
 | `8a8c3f4` | Eialarasu | 2026-07-06 03:00 | **Merge PR #63 — Sprint 25 Complete** |
+| `682b2bf` | Kiro Agent | 2026-07-06 03:30 | feat(sprint26): Daily Engagement & Delight (Tasks 26.1-26.6) |
+| `b7914e7` | Kiro Agent | 2026-07-06 04:00 | fix(lint): resolve all 8 analyze issues |
+| `8192522` | Kiro Agent | 2026-07-06 04:30 | docs: mark Sprint 26 complete (PR #65) |
+| `369c2cc` | Eialarasu | 2026-07-06 05:00 | **Merge PR #65 — Sprint 26 Complete** |
 
 ---
 
@@ -195,7 +199,8 @@
 | Day 7 (cont.) | 2026-07-05 | 08:00 - 11:00 | ~3.5 | Sprint 23 |
 | Day 7 (cont.) | 2026-07-05 | 13:00 - 15:15 | ~2.5 | Sprint 24 |
 | Day 8 | 2026-07-06 | 00:00 - 03:00 | ~3.0 | Sprint 25 |
-| | | **Subtotal** | **~57.5** | |
+| Day 8 (cont.) | 2026-07-06 | 03:00 - 05:00 | ~2.0 | Sprint 26 |
+| | | **Subtotal** | **~59.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -215,9 +220,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 57.5 |
+| Active coding & debugging (AI-assisted) | 59.5 |
 | Infrastructure & admin ops | 7.5 |
-| **Total** | **~65.0** |
+| **Total** | **~67.0** |
 
 ---
 
@@ -251,6 +256,7 @@
 | Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 410+ | ✅ Complete |
 | Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 410+ | ✅ Complete |
 | Sprint 25 | Performance, Accessibility & Smoke Test Refresh | #63 | 410+ | ✅ Complete |
+| Sprint 26 | Daily Engagement & Delight | #65 | 410+ | ✅ Complete |
 
 ---
 
@@ -387,6 +393,12 @@
 - **sqlparser 0.44.5 pinned** — `dependency_overrides` added because sqlparser 0.44.6 broke drift_dev 2.34.0 (upstream incompatibility)
 - **Smoke test plan rewritten** — slimmer critical-path version (52 scenarios, 9 sections: A–I) covering all Sprint 14–24 features
 - **Versioned smoke test results** — `smoke-test-results-v1.0.0.md` (archived), `smoke-test-results.md` (summary index), `smoke-test-results-v1.2.0.md` (checklist for next release)
+- **What's New screen** — version-tracked via SharedPreferences (`shouldShowWhatsNewProvider`), shown once per version update with 6 feature items, dismissible "Got it!" button
+- **Streak celebrations** — `StreakCelebrationOverlay` with elastic scale + fade animation at 7/30/100/365 day milestones, auto-dismisses after 3 seconds
+- **Breath timer presets** — `BreathPreset` model (4-7-8, Box Breathing, Energizing, Calming) + `PresetSelector` horizontal ChoiceChip widget for guided patterns
+- **Daily summary card** — `DailySummaryCard` showing today's entries count, alignment status, average hold time (only visible when entries > 0)
+- **Pin/star entries** — `isPinned` BoolColumn added to SaraKalaiJournal table for favouriting entries
+- **Notification quick-log** — `onNotificationTap` callback in NotificationService.initialize(), `payload` field on ScheduledNotification (default 'quick_log' for routing to journal)
 
 ---
 

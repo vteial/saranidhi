@@ -87,5 +87,9 @@ inclusion: auto
 - **Keyboard shortcuts (web):** Use `CallbackShortcuts` + `Focus(autofocus: true)`, NOT `KeyboardListener` with inline `FocusNode`.
 - **Haptic feedback:** Use `HapticFeedback.lightImpact()` / `.mediumImpact()` from `flutter/services.dart` — automatically no-op on web.
 - **Night schedule:** Always compute and display night yamas (Y6–Y10) regardless of current time. Active marker only highlights during actual nighttime.
+- **What's New screen:** Version tracked via SharedPreferences key `whats_new_last_seen_version`. Update `_currentWhatsNewVersion` constant in `whats_new_screen.dart` each release. Uses `shouldShowWhatsNewProvider` for conditional display.
+- **Streak celebrations:** `isStreakMilestone(streak)` checks milestones [7, 30, 100, 365]. Trigger `showStreakCelebration(context, milestone)` when streak reaches a new milestone.
+- **Breath presets:** `breathPresets` list in `breath_presets.dart`. Add new presets by appending `BreathPreset(...)` entries. PresetSelector widget auto-renders all presets from this list.
+- **Pin/star entries:** `isPinned` column on `SaraKalaiJournal` table. Requires DB migration for existing installs (add column with default false).
 
 ---
