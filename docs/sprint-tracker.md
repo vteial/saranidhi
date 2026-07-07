@@ -331,14 +331,14 @@
 
 ---
 
-## Sprint 26: Daily Engagement & Delight
+## Sprint 26: Daily Engagement & Delight ✅ Complete (PR #65)
 
-- [ ] Task 26.1: "What's New" screen on version update (shown once after app update, dismissible)
-- [ ] Task 26.2: Celebration animations — streak milestone celebrations (7, 30, 100 days)
-- [ ] Task 26.3: Breath timer presets (4-7-8, box breathing, custom patterns)
-- [ ] Task 26.4: Daily summary card at end of day (entries logged, alignment %, best yama)
-- [ ] Task 26.5: Pin/star favourite entries for quick reference
-- [ ] Task 26.6: Quick-log from notification — tap notification to pre-fill entry (mobile)
+- [x] Task 26.1: "What's New" screen on version update (shown once after app update, dismissible)
+- [x] Task 26.2: Celebration animations — streak milestone celebrations (7, 30, 100 days)
+- [x] Task 26.3: Breath timer presets (4-7-8, box breathing, custom patterns)
+- [x] Task 26.4: Daily summary card at end of day (entries logged, alignment %, best yama)
+- [x] Task 26.5: Pin/star favourite entries for quick reference
+- [x] Task 26.6: Quick-log from notification — tap notification to pre-fill entry (mobile)
 
 ---
 

@@ -13,6 +13,7 @@ class ScheduledNotification {
     required this.body,
     required this.scheduledTime,
     this.yamaIndex,
+    this.payload,
   });
 
   final int id;
@@ -20,6 +21,9 @@ class ScheduledNotification {
   final String body;
   final DateTime scheduledTime;
   final YamaIndex? yamaIndex;
+
+  /// Optional payload for deep linking (e.g., 'quick_log' to open journal).
+  final String? payload;
 }
 
 /// Notification preferences.

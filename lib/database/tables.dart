@@ -44,6 +44,7 @@ class SaraKalaiJournal extends Table {
   TextColumn get activeBirdState => text().nullable()();
   TextColumn get activeElement => text().nullable()();
   TextColumn get notes => text().nullable()();
+  BoolColumn get isPinned => boolean().withDefault(const Constant(false))();
 
   @override
   Set<Column> get primaryKey => {id};

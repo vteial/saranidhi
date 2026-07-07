@@ -32,7 +32,10 @@ class NotificationService {
   /// Initialize the notification plugin with platform settings.
   ///
   /// Call once at app startup (e.g., in main.dart before runApp).
-  Future<void> initialize() async {
+  /// [onNotificationTap] is called when the user taps a notification.
+  Future<void> initialize({
+    void Function(String? payload)? onNotificationTap,
+  }) async {
     if (_initialized) return;
     if (kIsWeb) {
       _initialized = true;
@@ -58,7 +61,12 @@ class NotificationService {
       macOS: darwinSettings,
     );
 
-    await _plugin.initialize(initSettings);
+    await _plugin.initialize(
+      initSettings,
+      onDidReceiveNotificationResponse: (response) {
+        onNotificationTap?.call(response.payload);
+      },
+    );
     _initialized = true;
     debugPrint('[Notifications] Initialized');
   }
@@ -110,6 +118,7 @@ class NotificationService {
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
+      payload: notification.payload ?? 'quick_log',
     );
   }
 
