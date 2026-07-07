@@ -342,15 +342,15 @@
 
 ---
 
-## Sprint 27: Layer 1 Gap Fixes — Diagnostic Foundation 🚧 In Progress
+## Sprint 27: Layer 1 Gap Fixes — Diagnostic Foundation ✅ Complete (PR #68)
 
-- [ ] Task 27.1: Sushumna context-dependent alignment — ActionWindow enum (Artha/Kriya/Yoga), bird-state-to-window mapping, modified AlignmentChecker returns aligned only in Yoga window (Sleeping/Dying states)
-- [ ] Task 27.2: Guided nostril test — 3-step interactive modal (exhale test → isolation test → auto-populate flow selection) before manual logging
-- [ ] Task 27.3: Dynamic location on app open — GPS ping on mobile (2s timeout, 50km threshold to trigger update), web silently falls back to profile city
-- [ ] Task 27.4: Hora + Tattva display in Birth Bird card — subtle sub-row showing current planetary hour + active element cycle
-- [ ] Task 27.5: Reference table in User Guide — 27 nakshatras, 7 planets, 5 elements in English + Tamil + Sanskrit (always bilingual)
-- [ ] Task 27.6: Language switch in onboarding — EN/TA toggle at top-right corner of Intro + all 4 onboarding steps
-- [ ] Task 27.7: DOB recalculation from Settings — "Recalculate from DOB" option in profile section (reuses NakshatraCalculator)
+- [x] Task 27.1: Sushumna context-dependent alignment — ActionWindow enum (Artha/Kriya/Yoga), bird-state-to-window mapping, modified AlignmentChecker returns aligned only in Yoga window (Sleeping/Dying states)
+- [x] Task 27.2: Guided nostril test — 3-step interactive modal (exhale test → isolation test → auto-populate flow selection) before manual logging
+- [x] Task 27.3: Dynamic location on app open — GPS ping on mobile (2s timeout, 50km threshold to trigger update), web silently falls back to profile city
+- [x] Task 27.4: Hora + Tattva display in Birth Bird card — subtle sub-row showing current planetary hour + active element cycle
+- [x] Task 27.5: Reference table in User Guide — 27 nakshatras, 7 planets, 5 elements in English + Tamil + Sanskrit (always bilingual)
+- [x] Task 27.6: Language switch in onboarding — EN/TA toggle at top-right corner of Intro + all 4 onboarding steps
+- [x] Task 27.7: DOB recalculation from Settings — "Recalculate from DOB" option in profile section (reuses NakshatraCalculator)
 
 ---
 
