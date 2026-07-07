@@ -53,6 +53,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Widget Test Coverage + Web Polish** | 10 widget tests, two-tier CI (ci.yml fast/ci-full.yml complete), COOP/COEP headers, emoji preload, notification weekday fix | ✅ Complete (100%) — Sprint 22 |
 | **Product Polish — About, User Guide & Onboarding Intro** | Pre-onboarding intro, About card (version+links), User Guide (9 sections), locale-aware privacy policy, dialog consistency, Settings layout alignment | ✅ Complete (100%) — Sprint 23 |
 | **UX Polish — Empty States, Loading & Error Handling** | Reusable EmptyStateWidget, ShimmerLoading skeleton cards, ErrorBoundary/ErrorFallback, journal empty state, analytics empty state, explore tab historical empty state, streak zero-state onboarding card, reactive analytics providers | ✅ Complete (100%) — Sprint 24 |
+| **Performance, Accessibility & Smoke Test Refresh** | TimezoneUtils (dynamic UTC offset), ProfileLocationProvider, keyboard Enter submit, haptic feedback, Semantics audit, night schedule always visible, Safari CanvasKit fix, COOP/COEP removal, location change reactivity, sqlparser pin, smoke test plan rewrite (52 scenarios), versioned results | ✅ Complete (100%) — Sprint 25 |
 | **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
@@ -134,6 +135,12 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Double divider above Notifications | BackupActionsWidget and SyncDeviceConfigWidget had separate dividers | Consolidated into single group with one divider | Sprint 23 |
 | `avoid_redundant_argument_values` lint in ShimmerLoading | `LinearGradient` constructor specified `begin: Alignment.centerLeft` and `end: Alignment.centerRight` (already defaults) | Removed redundant arguments | Sprint 24 |
 | Analytics not refreshing after journal entry | Analytics `FutureProvider`s watched `journalRepositoryProvider` (static), not the journal entries stream; cached stale result | Added `await ref.watch(journalEntriesProvider.future)` to create reactive dependency on all 5 analytics providers | Sprint 24 |
+| Safari white page (all non-Chrome browsers) | `canvasKitVariant: "chromium"` in `flutter_bootstrap.js` forced Chrome-only CanvasKit renderer | Removed `canvasKitVariant` config; Flutter auto-detects correct renderer per browser | Sprint 25 |
+| Safari WASM initialization failure | `Cross-Origin-Opener-Policy: same-origin` header blocked Safari's SharedArrayBuffer support | Removed COOP/COEP headers from `vercel.json`; Drift WASM uses fallback worker mode | Sprint 25 |
+| Dashboard not updating after location change | `dashboardDataProvider` and `profileLocationProvider` not invalidated after profile edit in Settings | Added `ref.invalidate()` calls after location and birth star saves | Sprint 25 |
+| Night schedule hidden during daytime | Night yamas only computed when `isToday && now.isAfter(sunset)` or before sunrise | Merged daytime-today case into else branch that always computes night schedule for display | Sprint 25 |
+| `KeyboardListener` broken on web | Inline `FocusNode()` in stateless widget doesn't work reliably | Replaced with `CallbackShortcuts` + `Focus(autofocus: true)` (proper Flutter keyboard API) | Sprint 25 |
+| sqlparser 0.44.6 incompatibility | New sqlparser release removed `.when()` method that drift_dev 2.34.0 uses | Added `dependency_overrides: sqlparser: 0.44.5` as temporary pin | Sprint 25 |
 
 ---
 
@@ -166,6 +173,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 22 | Widget Test Coverage + Web Polish | #56 | 62 (widget tests) | ✅ Complete |
 | Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 0 (UI features, no new tests) | ✅ Complete |
 | Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 0 (UI polish + provider fix, test updated) | ✅ Complete |
+| Sprint 25 | Performance, Accessibility & Smoke Test Refresh | #63 | 0 (accessibility/perf polish, docs) | ✅ Complete |
 
 ---
 

@@ -352,6 +352,42 @@ Analytics `FutureProvider`s now include `await ref.watch(journalEntriesProvider.
 
 ---
 
+## 6e. Performance & Accessibility Infrastructure (Sprint 25)
+
+### Timezone Derivation
+
+All hardcoded `const utcOffset = 5.5` removed. New `TimezoneUtils.offsetForLocation(lat, lng)` derives UTC offset:
+- **Indian bounding box** (lat 6°–36°, lng 68°–98°) → always returns IST (5.5)
+- **Other locations** → `longitude / 15` rounded to nearest 0.5
+
+`ProfileLocationProvider` (FutureProvider) caches the profile's lat/lng for synchronous access from the breath alignment checker.
+
+### Safari/Cross-Browser Compatibility
+
+| Issue | Root Cause | Fix |
+|-------|-----------|-----|
+| White page on Safari | `canvasKitVariant: "chromium"` forced Chrome-only renderer | Removed — Flutter auto-detects |
+| WASM init failure on Safari | COOP/COEP headers broke SharedArrayBuffer | Removed headers; Drift uses fallback worker mode |
+
+**Rule:** Never force browser-specific rendering in `flutter_bootstrap.js`. Let Flutter auto-detect.
+
+### Keyboard & Accessibility
+
+- `CallbackShortcuts` + `Focus(autofocus: true)` is the correct Flutter pattern for web keyboard shortcuts (not `KeyboardListener` with inline `FocusNode`)
+- All interactive widgets should have `Semantics(button: true, label, hint/selected)` for screen reader support
+- `HapticFeedback.lightImpact()` / `.mediumImpact()` from `flutter/services.dart` is automatically no-op on web
+
+### Provider Invalidation Pattern
+
+When profile data changes (location, birth star), always invalidate dependent providers:
+```dart
+ref
+  ..invalidate(profileLocationProvider)
+  ..invalidate(dashboardDataProvider);
+```
+
+---
+
 ### On Every PR to `main`
 ```
 dart analyze              → Must pass (zero warnings)

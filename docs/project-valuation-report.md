@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 24 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~61.5 Hours
-**Pull Requests Merged:** 61
+**Sprints Delivered:** 25 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~65.0 Hours
+**Pull Requests Merged:** 63
 **Automated Test Coverage:** 410+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -158,6 +158,15 @@
 | `1bd89f8` | Kiro Agent | 2026-07-05 14:30 | fix: analytics providers reactively refresh when journal entries change |
 | `a468c2d` | Kiro Agent | 2026-07-05 15:00 | docs: mark Sprint 24 complete (PR #61) |
 | `1ff0a26` | Eialarasu | 2026-07-05 15:15 | **Merge PR #61 — Sprint 24 Complete** |
+| `ca16d76` | Eialarasu | 2026-07-05 16:00 | **Merge PR #62 — Sprint 24 Docs** |
+| `88b18bb` | Kiro Agent | 2026-07-06 00:30 | feat(sprint25): Performance & Accessibility polish (Tasks 25.1-25.5) |
+| `6305c58` | Kiro Agent | 2026-07-06 00:45 | docs(sprint25): Smoke test plan refresh + versioned results (Tasks 25.6-25.7) |
+| `f3cc480` | Kiro Agent | 2026-07-06 01:00 | fix(web): remove COOP/COEP headers causing Safari white screen |
+| `a999233` | Kiro Agent | 2026-07-06 01:15 | fix(web): remove canvasKitVariant 'chromium' — breaks Safari |
+| `e8df498` | Kiro Agent | 2026-07-06 01:30 | fix: night schedule always visible + Enter key uses CallbackShortcuts |
+| `7738313` | Kiro Agent | 2026-07-06 02:00 | fix(deps): pin sqlparser to 0.44.5 — 0.44.6 breaks drift_dev |
+| `72183ed` | Kiro Agent | 2026-07-06 02:30 | fix: invalidate dashboard after location/birth star change in Settings |
+| `8a8c3f4` | Eialarasu | 2026-07-06 03:00 | **Merge PR #63 — Sprint 25 Complete** |
 
 ---
 
@@ -185,7 +194,8 @@
 | Day 7 | 2026-07-05 | 03:00 - 06:00 | ~3.0 | Sprint 22 |
 | Day 7 (cont.) | 2026-07-05 | 08:00 - 11:00 | ~3.5 | Sprint 23 |
 | Day 7 (cont.) | 2026-07-05 | 13:00 - 15:15 | ~2.5 | Sprint 24 |
-| | | **Subtotal** | **~54.5** | |
+| Day 8 | 2026-07-06 | 00:00 - 03:00 | ~3.0 | Sprint 25 |
+| | | **Subtotal** | **~57.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -205,9 +215,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 54.5 |
-| Infrastructure & admin ops | 7.0 |
-| **Total** | **~61.5** |
+| Active coding & debugging (AI-assisted) | 57.5 |
+| Infrastructure & admin ops | 7.5 |
+| **Total** | **~65.0** |
 
 ---
 
@@ -240,6 +250,7 @@
 | Sprint 22 | Widget Test Coverage + Web Polish | #56 | 410+ | ✅ Complete |
 | Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 410+ | ✅ Complete |
 | Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 410+ | ✅ Complete |
+| Sprint 25 | Performance, Accessibility & Smoke Test Refresh | #63 | 410+ | ✅ Complete |
 
 ---
 
@@ -363,6 +374,19 @@
 - **Explore tab historical empty state** — centered icon + "No entries on this day" + guidance hint for selected dates with no entries
 - **Streak zero-state improvement** — motivational "Build Your Streak" onboarding card with 3 steps for new users (replaces dimmed flame + "0 days")
 - **Reactive analytics providers** — all analytics `FutureProvider`s now watch `journalEntriesProvider.future` for automatic refresh when entries change (fixes stale cache bug)
+- **`TimezoneUtils` utility** — derives UTC offset from profile latitude/longitude (Indian bounding box returns IST 5.5, others use longitude/15 rounded to 0.5)
+- **`ProfileLocationProvider`** — cached FutureProvider for synchronous access to profile location (used by breath alignment checker, notifications, dashboard)
+- **Dynamic timezone** — all 4 hardcoded `const utcOffset = 5.5` instances replaced with `TimezoneUtils.offsetForLocation()` (notification_providers, streak_providers, journal_providers)
+- **Keyboard navigation (web)** — `CallbackShortcuts` + `Focus(autofocus: true)` on Journal screen; Enter key submits entry when timer is complete
+- **Haptic feedback** — `HapticFeedback.lightImpact()` on breath flow button selection, `HapticFeedback.mediumImpact()` on timer tap (no-op on web via flutter/services.dart)
+- **Semantic labels** — `Semantics(button, label, selected/hint)` on breath flow buttons and breath timer card for screen reader accessibility
+- **Night schedule always visible** — full 10-yama schedule (Y1–Y10) shown during daytime too; active marker only highlights at night
+- **Safari compatibility fix** — removed `canvasKitVariant: "chromium"` from `flutter_bootstrap.js` (forced Chrome-only CanvasKit that crashed Safari)
+- **COOP/COEP headers removed** — `Cross-Origin-Opener-Policy: same-origin` broke iOS/macOS Safari; Drift WASM uses fallback worker mode without SharedArrayBuffer
+- **Location change reactivity** — `dashboardDataProvider` and `profileLocationProvider` invalidated after profile location/birth star edit in Settings (no reload needed)
+- **sqlparser 0.44.5 pinned** — `dependency_overrides` added because sqlparser 0.44.6 broke drift_dev 2.34.0 (upstream incompatibility)
+- **Smoke test plan rewritten** — slimmer critical-path version (52 scenarios, 9 sections: A–I) covering all Sprint 14–24 features
+- **Versioned smoke test results** — `smoke-test-results-v1.0.0.md` (archived), `smoke-test-results.md` (summary index), `smoke-test-results-v1.2.0.md` (checklist for next release)
 
 ---
 
