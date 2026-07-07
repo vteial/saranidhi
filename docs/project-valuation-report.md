@@ -6,9 +6,9 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 26 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~67.0 Hours
-**Pull Requests Merged:** 65
+**Sprints Delivered:** 27 (+ Sprint 0 pre-development)
+**Total Engineering Investment:** ~71.0 Hours
+**Pull Requests Merged:** 68
 **Automated Test Coverage:** 410+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -171,6 +171,13 @@
 | `b7914e7` | Kiro Agent | 2026-07-06 04:00 | fix(lint): resolve all 8 analyze issues |
 | `8192522` | Kiro Agent | 2026-07-06 04:30 | docs: mark Sprint 26 complete (PR #65) |
 | `369c2cc` | Eialarasu | 2026-07-06 05:00 | **Merge PR #65 — Sprint 26 Complete** |
+| `3535eaf` | Kiro Agent | 2026-07-06 06:00 | feat(sprint27): Layer 1 Gap Fixes — Diagnostic Foundation (Tasks 27.1-27.4) |
+| `427520e` | Kiro Agent | 2026-07-06 06:15 | fix(test): update Sushumna tests for context-dependent alignment |
+| `d8be5b7` | Kiro Agent | 2026-07-06 06:30 | fix(i18n): add Tamil translations for Hora planet + Tattva element names |
+| `93358a6` | Kiro Agent | 2026-07-06 07:00 | feat(sprint27): Reference table, language toggle, DOB recalculation (Tasks 27.5-27.7) |
+| `ed4def8` | Kiro Agent | 2026-07-06 08:00 | fix(i18n): translate all hardcoded strings in onboarding steps 2 & 3 |
+| `6de943a` | Kiro Agent | 2026-07-06 08:30 | feat(i18n): trilingual nakshatra display in selection lists |
+| `c8efc5a` | Eialarasu | 2026-07-06 09:00 | **Merge PR #68 — Sprint 27 Complete** |
 
 ---
 
@@ -200,7 +207,8 @@
 | Day 7 (cont.) | 2026-07-05 | 13:00 - 15:15 | ~2.5 | Sprint 24 |
 | Day 8 | 2026-07-06 | 00:00 - 03:00 | ~3.0 | Sprint 25 |
 | Day 8 (cont.) | 2026-07-06 | 03:00 - 05:00 | ~2.0 | Sprint 26 |
-| | | **Subtotal** | **~59.5** | |
+| Day 8 (cont.) | 2026-07-06 | 05:00 - 09:00 | ~4.0 | Sprint 27 |
+| | | **Subtotal** | **~63.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -220,9 +228,9 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 59.5 |
+| Active coding & debugging (AI-assisted) | 63.5 |
 | Infrastructure & admin ops | 7.5 |
-| **Total** | **~67.0** |
+| **Total** | **~71.0** |
 
 ---
 
@@ -257,6 +265,7 @@
 | Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 410+ | ✅ Complete |
 | Sprint 25 | Performance, Accessibility & Smoke Test Refresh | #63 | 410+ | ✅ Complete |
 | Sprint 26 | Daily Engagement & Delight | #65 | 410+ | ✅ Complete |
+| Sprint 27 | Layer 1 Gap Fixes — Diagnostic Foundation | #68 | 410+ | ✅ Complete |
 
 ---
 
@@ -399,6 +408,16 @@
 - **Daily summary card** — `DailySummaryCard` showing today's entries count, alignment status, average hold time (only visible when entries > 0)
 - **Pin/star entries** — `isPinned` BoolColumn added to SaraKalaiJournal table for favouriting entries
 - **Notification quick-log** — `onNotificationTap` callback in NotificationService.initialize(), `payload` field on ScheduledNotification (default 'quick_log' for routing to journal)
+- **ActionWindow enum** — `artha` (Ruling/Walking), `kriya` (Eating), `yoga` (Sleeping/Dying) with `fromBirdState()` mapping. Seeds Layer 2 Action Windows engine.
+- **Context-dependent Sushumna alignment** — `AlignmentChecker` modified: Sushumna aligned only in Yoga window (Sleeping/Dying), blocked in Artha/Kriya. AlignmentResult extended with `actionWindow` field.
+- **Guided nostril test** — `GuidedNostrilTest` 3-step bottom sheet modal (exhale test → isolation → auto-populate flow)
+- **LocationService utility** — Haversine distance calculation, `hasMovedSignificantly()` with 50km threshold, `isGpsAvailable` platform check
+- **Hora + Tattva in BirthBirdCard** — `DashboardData` extended with `activeHora` + `activeTattva`, `_HoraTattvaRow` widget with localized planet/element names (EN + TA)
+- **Reference table in User Guide** — bilingual tables: 27 nakshatras (EN + TA + Bird), 7 planets (EN + TA + Sanskrit), 5 elements (EN + TA + Sanskrit)
+- **Language toggle in onboarding** — EN/TA SegmentedButton at top-right of IntroScreen + progress row of OnboardingScreen
+- **DOB recalculation from Settings** — "Recalculate from DOB" option in birth star edit dialog with date/time pickers + NakshatraCalculator
+- **Trilingual nakshatra display** — `NakshatraL10n.trilingualDisplay()` shows "English / தமிழ்" in all selection lists
+- **Onboarding i18n completion** — 9 hardcoded English strings in Find Your Bird + Location steps replaced with l10n keys
 
 ---
 

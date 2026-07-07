@@ -13,7 +13,7 @@ Each production release requires a passing smoke test before tagging. Results ar
 | Version | Date | Tester | Scenarios | Verdict | Results File |
 |---------|------|--------|-----------|---------|--------------|
 | v1.0.0-web | 2026-07-02 | Eialarasu | 42 (Sections A-E) | ✅ PASS | [v1.0.0](smoke-test-results-v1.0.0.md) |
-| v1.2.0-web | Pending | Eialarasu | 57 (Sections A-I) | ⬜ Pending | [v1.2.0](smoke-test-results-v1.2.0.md) |
+| v1.2.0-web | Pending | Eialarasu | 62 (Sections A-I) | ⬜ Pending | [v1.2.0](smoke-test-results-v1.2.0.md) |
 
 ---
 

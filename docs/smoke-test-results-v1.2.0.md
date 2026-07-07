@@ -103,14 +103,19 @@
 |----|----------|-------|-------|
 | G-01 | Pre-onboarding intro | | |
 | G-02 | DOB calculation path | | |
-| G-03 | Manual nakshatra selection | | |
+| G-03 | Manual nakshatra selection (trilingual) | | |
 | G-04 | About card in Settings | | |
-| G-05 | User Guide from About | | |
+| G-05 | User Guide + Reference tables | | |
 | G-06 | What's New screen (v1.2.0) | | |
 | G-07 | Timer preset selector | | |
 | G-08 | Daily summary card | | |
 | G-09 | Streak celebration (milestone) | | |
 | G-10 | Pin/star entry | | |
+| G-11 | Language switch in onboarding | | |
+| G-12 | Hora + Tattva in Birth Bird card | | |
+| G-13 | Sushumna context alignment | | |
+| G-14 | DOB recalculation from Settings | | |
+| G-15 | Reference table bilingual | | |
 
 ---
 
@@ -164,7 +169,7 @@
 | No open critical/blocker issues | ⬜ | |
 | Owner sign-off | ⬜ | |
 
-**Total scenarios:** 57
+**Total scenarios:** 62
 
 **Release tag:** `v1.2.0-web` — ⬜ Pending
 

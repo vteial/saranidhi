@@ -91,5 +91,9 @@ inclusion: auto
 - **Streak celebrations:** `isStreakMilestone(streak)` checks milestones [7, 30, 100, 365]. Trigger `showStreakCelebration(context, milestone)` when streak reaches a new milestone.
 - **Breath presets:** `breathPresets` list in `breath_presets.dart`. Add new presets by appending `BreathPreset(...)` entries. PresetSelector widget auto-renders all presets from this list.
 - **Pin/star entries:** `isPinned` column on `SaraKalaiJournal` table. Requires DB migration for existing installs (add column with default false).
+- **ActionWindow enum:** `fromBirdState(PakshiState)` mapping — Ruling/Walking→Artha, Eating→Kriya, Sleeping/Dying→Yoga. Sushumna aligned ONLY in Yoga window.
+- **Trilingual nakshatra lists:** Always use `NakshatraL10n.trilingualDisplay()` for nakshatra selection (shows "English / தமிழ்"). Never show single-language-only in selection lists.
+- **Onboarding language toggle:** IntroScreen + OnboardingScreen must always have EN/TA SegmentedButton accessible for users to switch before completing setup.
+- **Hora/Tattva in dashboard:** Compute `activeHora` + `activeTattva` in `dashboardDataProvider` (only when viewing today). Use `_computeHora()` and `_computeTattva()` helpers.
 
 ---
