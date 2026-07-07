@@ -331,7 +331,7 @@
 
 ---
 
-## Sprint 26: Daily Engagement & Delight
+## Sprint 26: Daily Engagement & Delight 🚧 In Progress
 
 - [ ] Task 26.1: "What's New" screen on version update (shown once after app update, dismissible)
 - [ ] Task 26.2: Celebration animations — streak milestone celebrations (7, 30, 100 days)

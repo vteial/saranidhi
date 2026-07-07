@@ -332,5 +332,45 @@
   "streakZeroSubtitle": "நிலைத்தன்மை ஒத்திசைவு விழிப்புணர்வின் திறவுகோல்.",
   "streakStep1": "நாளுக்கு ஒருமுறை உங்கள் மூச்சு ஓட்டத்தை பதிவு செய்யுங்கள்",
   "streakStep2": "ஒவ்வொரு ஒத்திசைவு நாளும் உங்கள் தொடரில் சேரும்",
-  "streakStep3": "காலப்போக்கில் உங்கள் நிலைத்தன்மை வளர்வதை பாருங்கள்"
+  "streakStep3": "காலப்போக்கில் உங்கள் நிலைத்தன்மை வளர்வதை பாருங்கள்",
+
+  "celebrationTitle": "அம்மா!",
+  "celebrationMilestone": "{days} நாள் தொடர்!",
+  "celebrationTapToDismiss": "மூட எங்கும் தொடவும்",
+  "celebrationWeek": "ஒரு வார நிலையான பயிற்சி. பழக்கம் உருவாகிறது!",
+  "celebrationMonth": "ஒரு மாத ஒத்திசைவு விழிப்புணர்வு. நம்பமுடியாத அர்ப்பணிப்பு!",
+  "celebration100": "100 நாட்கள்! தினசரி தாளத்தை கற்றுவிட்டீர்கள். உண்மையான பயிற்சியாளர்.",
+  "celebrationYear": "ஒரு வருட பயிற்சி. நீங்களே மூச்சு. நமஸ்தே.",
+  "celebrationGeneric": "தொடருங்கள்! ஒவ்வொரு நாளும் முக்கியம்.",
+
+  "presetManual": "கையால்",
+  "preset478": "4-7-8",
+  "presetBox": "பெட்டி",
+  "presetEnergizing": "சக்தி",
+  "presetCalming": "அமைதி",
+  "presetTimerTitle": "வழிகாட்டி: {name}",
+
+  "dailySummaryTitle": "இன்றைய பயிற்சி",
+  "dailySummaryEntries": "பதிவுகள்",
+  "dailySummaryAlignment": "ஒத்திசைவு",
+  "dailySummaryHold": "சராசரி நிறுத்தம்",
+
+  "pinEntry": "பின்",
+  "unpinEntry": "நீக்கு",
+  "pinnedEntries": "பின் செய்தவை",
+
+  "whatsNewTitle": "புதியது என்ன",
+  "whatsNewDismiss": "புரிந்தது!",
+  "whatsNewCelebrations": "தொடர் கொண்டாட்டங்கள்",
+  "whatsNewCelebrationsDesc": "7, 30, அல்லது 100 நாட்கள் எட்டுங்கள் கொண்டாட்டம் பெறுங்கள்!",
+  "whatsNewTimerPresets": "மூச்சு முன்னமைப்புகள்",
+  "whatsNewTimerPresetsDesc": "4-7-8, பெட்டி மூச்சு, அல்லது மற்ற வழிகாட்டி முறைகளை தேர்வு செய்யுங்கள்.",
+  "whatsNewDailySummary": "தினசரி சுருக்கம்",
+  "whatsNewDailySummaryDesc": "பதிவுகள், ஒத்திசைவு, நிறுத்த நேரத்தை ஒரே பார்வையில் பாருங்கள்.",
+  "whatsNewPinEntries": "பிடித்த பதிவுகளை பின் செய்",
+  "whatsNewPinEntriesDesc": "உங்கள் சிறந்த தருணங்களை விரைவான பார்வைக்கு நட்சத்திரமிடுங்கள்.",
+  "whatsNewNightSchedule": "இரவு அட்டவணை எப்போதும் தெரியும்",
+  "whatsNewNightScheduleDesc": "முழு 10-யாம அட்டவணை (பகல் + இரவு) எல்லா நேரங்களிலும் காட்டப்படும்.",
+  "whatsNewPerformance": "Safari மற்றும் செயல்திறன் சரிசெய்தல்கள்",
+  "whatsNewPerformanceDesc": "பயன்பாடு இப்போது எல்லா உலாவிகளிலும் வேலை செய்கிறது. வேகமாக ஏற்றம்."
 }
