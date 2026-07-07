@@ -42,17 +42,16 @@ Lightweight entry point — creates the branch and marks the sprint active.
 
 ### `/finish-sprint`
 
-Closes the sprint — delivers the code and merges.
+Closes the sprint — delivers the code for user to merge.
 
 1. Commit all remaining changes
 2. Push branch to remote
 3. Create PR targeting `main`
 4. Update `docs/sprint-tracker.md` → ✅ Complete (PR #N)
-5. Verify CI passes
-6. **Merge PR** — sprint is officially closed
-7. Ask: *"Run /project-update now or later?"*
-8. Update `docs/testing-plan.md` — add test count entry for the sprint
-9. Update `docs/manual-smoke-test.md` — add scenarios for new features (if any)
+5. Push tracker update to PR branch
+6. **Tell user PR is ready for merge** — Kiro NEVER merges directly
+7. User reviews + merges (sprint officially closed)
+8. Ask: *"Run /project-update now or later?"*
 
 ### `/project-update`
 
@@ -66,50 +65,42 @@ Runs **after merge** on a separate docs-only branch to avoid CI code failures.
    - `docs/testing-plan.md` — test count progression, scenarios awaiting coverage
    - `docs/dev-workflow.md` — any threshold/process changes
    - `.kiro/steering/saranidhi-spec.md` — tech stack updates
+   - **`docs/manual-smoke-test.md`** — add scenarios for new features (mandatory)
+   - **`docs/smoke-test-results-v{X.Y.Z}.md`** — update checklist if scenarios added (mandatory)
+   - **User Guide content** — refresh guide sections affected by sprint changes (mandatory)
 3. Commit, push, create docs-only PR
-4. Merge docs PR (CI won't fail since no code changes)
+4. **User reviews and merges**
 
 **Hours estimation rule:** Use AI-estimated active time + 20% buffer (owner-approved).
+
+**Mandatory additions (per new protocol):** Every /project-update MUST include User Guide refresh + smoke test plan update. These are not optional.
 
 ### `/plan`
 
 Strategic brainstorming and sprint plan revision — forward-looking.
 
-1. Review current state (sprint tracker, release plan, what's done)
-2. Discuss trade-offs, priorities, new features, scope cuts
-3. Once aligned, update:
-   - `docs/sprint-tracker.md` — redefine upcoming sprints
+1. Brainstorm with user (conversation in Kiro Web)
+2. Confirm scope and decisions
+3. Create branch from `main` (e.g., `plan/sprint-N` or `plan/v2-roadmap`)
+4. Update:
+   - `docs/sprint-tracker.md` — define upcoming sprints
    - `docs/release-1.0-plan.md` — adjust milestones
-4. Committed on a feature branch → PR (may include code if CI skip needed)
+   - `.kiro/design.md`, `.kiro/product.md`, `.kiro/structure.md` — if architecture changes
+5. Commit, push, create PR
+6. **User reviews and merges** (Kiro never pushes directly to main)
 
-**Examples:**
-- `/plan` "Re-scope remaining sprints for beta release"
-- `/plan` "Add data export feature, push deployment back"
-- `/plan` "Cut cloud backup from 1.0, move to 1.1"
+**Protocol:** All write operations go through PRs. Only the user merges to main.
 
 ---
 
 ### `/delegate`
 
-Assigns secondary tasks (testing, documentation, refactoring) to external AI agents (e.g., Google Jules) while sprint development continues in Kiro Web.
+**(Paused)** — Previously used for delegating to Google Jules. Currently all work handled directly by Kiro.
 
-**Delegation rules:**
-1. Delegated tasks operate on **separate branches** from sprint work
-2. Delegated agents may **only modify files in their assigned scope** (e.g., `test/` only)
-3. Sprint PRs take **merge priority** — delegated PRs merge after
-4. If sprint changes affect delegated work, delegated agent rebases
-5. Task brief lives in `docs/` for reference (e.g., `docs/jules-test-coverage-task.md`)
-
-**Current delegations:**
-
-| Agent | Task | Scope | Branch Pattern | Status |
-|-------|------|-------|----------------|--------|
-| Google Jules | Test coverage (20% → 60%+) | `test/` only | `test/*-coverage` | Active |
-
-**Coordination protocol:**
-```
-Sprint PR merged to main → Jules rebases if needed → Jules PR merged → Coverage improves
-```
+Delegation rules remain available for future use if needed:
+1. Delegated tasks operate on separate branches
+2. Only modify files in assigned scope
+3. Sprint PRs take merge priority
 
 ---
 
@@ -324,8 +315,8 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 - [ ] CI passed on `main` branch
 - [ ] Vercel deployment succeeded at saranidhi.vercel.app
-- [ ] App navigates correctly (Home, Journal, Settings)
-- [ ] No console errors in browser DevTools
+- [ ] App navigates correctly (Home, Journal, Analytics — Settings via gear icon)
+- [ ] No console errors in browser DevTools (source map 404s are acceptable)
 - [ ] New features render as expected
 - [ ] Sprint tracker updated with ✅
 
