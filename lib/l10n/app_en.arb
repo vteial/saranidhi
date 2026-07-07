@@ -760,5 +760,14 @@
   "tattvaAir": "Vayu",
   "@tattvaAir": { "description": "Air tattva name" },
   "tattvaEther": "Akasha",
-  "@tattvaEther": { "description": "Ether tattva name" }
+  "@tattvaEther": { "description": "Ether tattva name" },
+
+  "recalculateFromDob": "Recalculate from DOB",
+  "@recalculateFromDob": { "description": "Recalculate birth star from date of birth option" },
+  "selectBirthDate": "Select birth date",
+  "@selectBirthDate": { "description": "DOB date picker label" },
+  "selectBirthTime": "Select birth time (optional)",
+  "@selectBirthTime": { "description": "DOB time picker label" },
+  "recalculateButton": "Calculate",
+  "@recalculateButton": { "description": "DOB recalculate confirm button" }
 }

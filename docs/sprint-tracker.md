@@ -348,6 +348,9 @@
 - [ ] Task 27.2: Guided nostril test — 3-step interactive modal (exhale test → isolation test → auto-populate flow selection) before manual logging
 - [ ] Task 27.3: Dynamic location on app open — GPS ping on mobile (2s timeout, 50km threshold to trigger update), web silently falls back to profile city
 - [ ] Task 27.4: Hora + Tattva display in Birth Bird card — subtle sub-row showing current planetary hour + active element cycle
+- [ ] Task 27.5: Reference table in User Guide — 27 nakshatras, 7 planets, 5 elements in English + Tamil + Sanskrit (always bilingual)
+- [ ] Task 27.6: Language switch in onboarding — EN/TA toggle at top-right corner of Intro + all 4 onboarding steps
+- [ ] Task 27.7: DOB recalculation from Settings — "Recalculate from DOB" option in profile section (reuses NakshatraCalculator)
 
 ---
 

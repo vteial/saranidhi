@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -29,13 +30,22 @@ class OnboardingScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                // Progress indicator
-                Semantics(
-                  label: 'Step ${state.currentStep + 1} of ${state.totalSteps}',
-                  child: LinearProgressIndicator(
-                    value: (state.currentStep + 1) / state.totalSteps,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
+                // Language toggle + progress row
+                Row(
+                  children: [
+                    Expanded(
+                      child: Semantics(
+                        label:
+                            'Step ${state.currentStep + 1} of ${state.totalSteps}',
+                        child: LinearProgressIndicator(
+                          value: (state.currentStep + 1) / state.totalSteps,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    _LanguageToggle(),
+                  ],
                 ),
                 const SizedBox(height: 24),
 
@@ -677,3 +687,28 @@ const _presetCities = [
   _PresetCity('Hyderabad', 17.39, 78.49),
   _PresetCity('Kolkata', 22.57, 88.36),
 ];
+
+
+
+/// Compact language toggle (EN/TA) for onboarding screens.
+class _LanguageToggle extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentLocale = ref.watch(localeProvider);
+
+    return SegmentedButton<AppLocale>(
+      segments: const [
+        ButtonSegment(value: AppLocale.english, label: Text('EN')),
+        ButtonSegment(value: AppLocale.tamil, label: Text('TA')),
+      ],
+      selected: {currentLocale},
+      onSelectionChanged: (selection) {
+        ref.read(localeProvider.notifier).setLocale(selection.first);
+      },
+      style: const ButtonStyle(
+        visualDensity: VisualDensity.compact,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+    );
+  }
+}
