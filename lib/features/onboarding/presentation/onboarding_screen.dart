@@ -235,12 +235,12 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
               ButtonSegment(
                 value: _BirdPathMode.knowNakshatra,
                 label: Text(l10n.iKnowMyStar),
-                icon: const Icon(Icons.stars),
+                icon: Icon(Icons.stars),
               ),
               ButtonSegment(
                 value: _BirdPathMode.calculateFromDOB,
                 label: Text(l10n.calculateFromDob),
-                icon: const Icon(Icons.auto_awesome),
+                icon: Icon(Icons.auto_awesome),
               ),
             ],
             selected: {_mode},
