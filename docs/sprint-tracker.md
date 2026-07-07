@@ -342,6 +342,15 @@
 
 ---
 
+## Sprint 27: Layer 1 Gap Fixes — Diagnostic Foundation
+
+- [ ] Task 27.1: Sushumna context-dependent alignment — ActionWindow enum (Artha/Kriya/Yoga), bird-state-to-window mapping, modified AlignmentChecker returns aligned only in Yoga window (Sleeping/Dying states)
+- [ ] Task 27.2: Guided nostril test — 3-step interactive modal (exhale test → isolation test → auto-populate flow selection) before manual logging
+- [ ] Task 27.3: Dynamic location on app open — GPS ping on mobile (2s timeout, 50km threshold to trigger update), web silently falls back to profile city
+- [ ] Task 27.4: Hora + Tattva display in Birth Bird card — subtle sub-row showing current planetary hour + active element cycle
+
+---
+
 ## Sprint E2E: Automated End-to-End Testing (Backlog — based on time & situation)
 
 - [ ] Task E2E.1: Set up Playwright (or equivalent) for Flutter Web E2E tests
