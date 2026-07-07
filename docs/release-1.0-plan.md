@@ -100,4 +100,43 @@ Saranidhi aims to be a **daily-use spiritual breath companion** that provides ge
 
 ---
 
+## v1.2.0-web Release (Current — Pending Smoke Test)
+
+**Status:** Development complete (Sprints 24–27). Smoke test pending.
+
+| Deliverable | Sprint |
+|-------------|--------|
+| Empty states, shimmer loading, error handling | Sprint 24 |
+| Safari fix, timezone, accessibility, keyboard nav | Sprint 25 |
+| What's New, celebrations, timer presets, daily summary, pin/star | Sprint 26 |
+| Sushumna context alignment, guided nostril test, Hora/Tattva, reference table, onboarding i18n, DOB recalc, trilingual nakshatras | Sprint 27 |
+
+---
+
+## v1.3.0-web — Layer 2: Action Windows (Sprints 28–29)
+
+**Goal:** Transform raw bird state data into practical lifestyle recommendations.
+
+| Sprint | Deliverables |
+|--------|-------------|
+| Sprint 28 | ActionWindowEngine (24h schedule), Rahu Kaal guardrail, unit tests |
+| Sprint 29 | 24h Action Bar, Current Mode Focus Card, expansion sheet, Today tab integration |
+
+**Success criteria:** User opens app and sees "Negotiate now" / "Eat & recover" / "Meditate" — no technical jargon needed.
+
+---
+
+## v2.0.0-web — Layer 3: Prasanam Oracle (Sprints 30–31)
+
+**Goal:** Point-in-time micro-oracle for critical decision-making.
+
+| Sprint | Deliverables |
+|--------|-------------|
+| Sprint 30 | Prasanam calculation engine (3 vectors), PrasanamHistory table, oracle score, guidance matrix |
+| Sprint 31 | FAB trigger, query input + validation gate + intention anchor, result card, history timeline, post-event notes |
+
+**Success criteria:** User asks "Should I sign the lease?" → instant tactical prediction with confidence score + clear guidance.
+
+---
+
 [← Back to Root](../README.md)

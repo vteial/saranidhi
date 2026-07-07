@@ -24,17 +24,23 @@ saranidhi/
 
 | File | Role |
 |------|------|
-| `core/router/app_router.dart` | GoRouter config — 4 branches (Home, Journal, Settings, Analytics) + onboarding route |
+| `core/router/app_router.dart` | GoRouter config — 3 branches (Home, Journal, Analytics) + Settings route + onboarding route |
 | `core/router/shell_scaffold.dart` | Bottom NavigationBar with responsive 1200px constraint |
 | `core/router/onboarding_guard.dart` | Redirects to onboarding if profile not complete |
 | `core/theme/app_theme.dart` | Material 3 theme definitions (8 variants) |
 | `core/theme/theme_provider.dart` | Theme state with SharedPreferences persistence |
 | `core/l10n/locale_provider.dart` | Locale state (en/ta) with persistence |
 | `core/utils/responsive_wrapper.dart` | 1200px max-width centering wrapper |
-| `core/utils/branded_app_bar.dart` | Shared AppBar with logo (responsive) |
+| `core/utils/branded_app_bar.dart` | Shared AppBar with logo + Settings gear icon |
 | `core/utils/bird_emoji.dart` | Bird emoji utility for consistent Pakshi display |
 | `core/utils/pakshi_l10n.dart` | Localized bird/state names |
-| `core/utils/nakshatra_l10n.dart` | Localized nakshatra names (27 Tamil translations) |
+| `core/utils/nakshatra_l10n.dart` | Trilingual nakshatra names (27 EN + TA + Sanskrit) |
+| `core/utils/timezone_utils.dart` | UTC offset from lat/lng (Indian bounding box → IST) |
+| `core/providers/profile_location_provider.dart` | Cached profile lat/lng FutureProvider |
+| `core/services/location_service.dart` | Haversine distance + 50km threshold |
+| `core/widgets/empty_state_widget.dart` | Reusable empty state (icon + title + subtitle) |
+| `core/widgets/shimmer_loading.dart` | Animated skeleton loading cards |
+| `core/widgets/error_boundary.dart` | ErrorBoundary + ErrorFallback widgets |
 
 ### Database
 
@@ -57,6 +63,9 @@ saranidhi/
 | `tattva_calculator.dart` | Element cycles within yamas |
 | `lunar_phase_calculator.dart` | Waxing/waning from synodic month |
 | `oracle_calculator.dart` | 10% floor lockout during Rahu Kaal |
+| `action_window.dart` | ActionWindow enum + fromBirdState() mapping (seeds Layer 2) |
+| `action_window_engine.dart` | Full 24h window schedule calculation (v1.3) |
+| `prasanam_engine.dart` | 3-vector oracle score calculation (v2.0) |
 
 #### home (Dashboard)
 | File | Role |
