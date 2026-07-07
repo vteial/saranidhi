@@ -70,6 +70,12 @@ dev_dependencies:
   # Testing
   mocktail: ^1.0.4
 
+# Pin sqlparser to 0.44.5 — version 0.44.6 (released 2026-07-06) removed
+# the .when() method on DartPlaceholder that drift_dev 2.34.0 depends on.
+# This is a transient upstream issue; remove once drift_dev publishes a fix.
+dependency_overrides:
+  sqlparser: 0.44.5
+
 flutter:
   uses-material-design: true
   generate: true
