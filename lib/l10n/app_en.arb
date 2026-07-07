@@ -734,5 +734,31 @@
   "adviceSushumnaAligned": "Sushumna is active during a Yoga window — perfect alignment! Deep meditation and spiritual practice are highly favored now.",
   "@adviceSushumnaAligned": { "description": "Sushumna aligned in Yoga window advice" },
   "adviceSushumnaBlocked": "Sushumna is active but the current window calls for outward action. The balanced state opposes material or physical tasks — consider waiting for the next Yoga window.",
-  "@adviceSushumnaBlocked": { "description": "Sushumna blocked in Artha/Kriya window advice" }
+  "@adviceSushumnaBlocked": { "description": "Sushumna blocked in Artha/Kriya window advice" },
+
+  "planetSun": "Sun",
+  "@planetSun": { "description": "Sun hora planet name" },
+  "planetMoon": "Moon",
+  "@planetMoon": { "description": "Moon hora planet name" },
+  "planetMars": "Mars",
+  "@planetMars": { "description": "Mars hora planet name" },
+  "planetMercury": "Mercury",
+  "@planetMercury": { "description": "Mercury hora planet name" },
+  "planetJupiter": "Jupiter",
+  "@planetJupiter": { "description": "Jupiter hora planet name" },
+  "planetVenus": "Venus",
+  "@planetVenus": { "description": "Venus hora planet name" },
+  "planetSaturn": "Saturn",
+  "@planetSaturn": { "description": "Saturn hora planet name" },
+
+  "tattvaEarth": "Prithvi",
+  "@tattvaEarth": { "description": "Earth tattva name" },
+  "tattvaWater": "Apas",
+  "@tattvaWater": { "description": "Water tattva name" },
+  "tattvaFire": "Tejas",
+  "@tattvaFire": { "description": "Fire tattva name" },
+  "tattvaAir": "Vayu",
+  "@tattvaAir": { "description": "Air tattva name" },
+  "tattvaEther": "Akasha",
+  "@tattvaEther": { "description": "Ether tattva name" }
 }

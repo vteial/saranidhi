@@ -187,6 +187,8 @@ class _HoraTattvaRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Row(
       children: [
         if (hora != null) ...[
@@ -196,7 +198,7 @@ class _HoraTattvaRow extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            hora!.planet.displayName,
+            _localizedPlanet(hora!.planet, l10n),
             style: theme.textTheme.labelSmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -220,7 +222,7 @@ class _HoraTattvaRow extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            tattva!.tattva.sanskritName,
+            _localizedTattva(tattva!.tattva, l10n),
             style: theme.textTheme.labelSmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -228,6 +230,28 @@ class _HoraTattvaRow extends StatelessWidget {
         ],
       ],
     );
+  }
+
+  String _localizedPlanet(HoraPlanet planet, AppLocalizations l10n) {
+    return switch (planet) {
+      HoraPlanet.sun => l10n.planetSun,
+      HoraPlanet.moon => l10n.planetMoon,
+      HoraPlanet.mars => l10n.planetMars,
+      HoraPlanet.mercury => l10n.planetMercury,
+      HoraPlanet.jupiter => l10n.planetJupiter,
+      HoraPlanet.venus => l10n.planetVenus,
+      HoraPlanet.saturn => l10n.planetSaturn,
+    };
+  }
+
+  String _localizedTattva(Tattva tattva, AppLocalizations l10n) {
+    return switch (tattva) {
+      Tattva.earth => l10n.tattvaEarth,
+      Tattva.water => l10n.tattvaWater,
+      Tattva.fire => l10n.tattvaFire,
+      Tattva.air => l10n.tattvaAir,
+      Tattva.ether => l10n.tattvaEther,
+    };
   }
 
   String _horaEmoji(HoraPlanet planet) => switch (planet) {
