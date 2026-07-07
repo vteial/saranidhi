@@ -48,7 +48,7 @@ class IntroScreen extends ConsumerWidget {
                           .read(localeProvider.notifier)
                           .setLocale(selection.first);
                     },
-                    style: ButtonStyle(
+                    style: const ButtonStyle(
                       visualDensity: VisualDensity.compact,
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
