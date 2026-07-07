@@ -231,7 +231,7 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
         SizedBox(
           width: double.infinity,
           child: SegmentedButton<_BirdPathMode>(
-            segments: const [
+            segments: [
               ButtonSegment(
                 value: _BirdPathMode.knowNakshatra,
                 label: Text(l10n.iKnowMyStar),
