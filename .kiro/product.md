@@ -49,6 +49,21 @@ Saranidhi ("The Treasure House of Breath") is a spiritual life-guidance app enab
 - As a user, I can switch between English and Tamil instantly
 - As a user, daily wisdom shows in my chosen language
 
+### Action Windows (v1.3.0 — Layer 2)
+- As a user, I see a color-coded 24h timeline showing when to act, nourish, or meditate
+- As a user, I see a "Current Mode" card with lifestyle guidance ("Negotiate now" / "Eat & recover" / "Meditate")
+- As a user, I see blocked windows during Rahu Kaal (with clear warning)
+- As a user, I can tap the card to see raw details (Pakshi state, Hora, Tattva)
+
+### Prasanam Oracle (v2.0.0 — Layer 3)
+- As a user, I can ask a critical question and get an instant tactical prediction
+- As a user, the app validates my breath state is fresh before calculating (30-min gate)
+- As a user, I hold a 3-second intention anchor before the calculation runs
+- As a user, I see a clear tiered result (Strong Yes / Favorable / Caution / Delay / Hard No)
+- As a user, I see the diagnostic snapshot (breath, bird, hora, tattva) that drove the prediction
+- As a user, I can browse past queries chronologically and add outcome notes
+- As a user, Rahu Kaal + Dying state triggers a mandatory "Hard No" floor lockout
+
 ## Non-Functional Requirements
 
 - Fully offline-capable (all calculations are pure Dart, no network needed)
