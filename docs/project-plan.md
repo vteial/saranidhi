@@ -388,6 +388,41 @@ ref
 
 ---
 
+## 6f. Layer 1 Gap Fixes — Diagnostic Foundation (Sprint 27)
+
+### ActionWindow Architecture (Seeds Layer 2)
+
+The `ActionWindow` enum provides the bridge between raw Pakshi bird states and lifestyle recommendations:
+
+```
+PakshiState → ActionWindow.fromBirdState() → ActionWindow (artha/kriya/yoga)
+```
+
+| Bird State | Action Window | Sushumna Alignment |
+|-----------|---------------|-------------------|
+| Ruling | Artha (Material) | Blocked (0.0) |
+| Walking | Artha (Material) | Blocked (0.0) |
+| Eating | Kriya (Nourishment) | Blocked (0.0) |
+| Sleeping | Yoga (Spiritual) | Aligned (1.0) |
+| Dying | Yoga (Spiritual) | Aligned (1.0) |
+
+This mapping is the **core of Layer 2** (Action Windows Engine) — when Layer 2 is built, the UI layer just renders the already-computed window type.
+
+### Hora + Tattva Integration
+
+`DashboardData` now includes `activeHora` (HoraResult) and `activeTattva` (TattvaResult). These are computed from existing calculators (`HoraCalculator.activeHora()`, `TattvaCalculator.activeTattva()`) only when viewing today. The BirthBirdCard shows them as a subtle sub-row.
+
+### Guided Diagnostic Test
+
+The `GuidedNostrilTest` widget provides a structured 3-step verification flow:
+1. Exhale test (gross detection)
+2. Isolation test (fine confirmation)
+3. Auto-populate result
+
+This replaces blind manual selection for users unsure of their dominant nostril.
+
+---
+
 ### On Every PR to `main`
 ```
 dart analyze              → Must pass (zero warnings)

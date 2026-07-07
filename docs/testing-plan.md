@@ -266,6 +266,7 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 24 | 0 | 410 | UX polish (empty states, shimmer loading, error boundary); streak_flame_widget_test updated for zero-state behavior change, no new test files |
 | Sprint 25 | 0 | 410 | Performance/accessibility polish (timezone, keyboard, haptics, semantics); no new test files, existing tests unaffected |
 | Sprint 26 | 0 | 410 | Daily engagement features (What's New, celebrations, presets, summary, pin, quick-log); new widgets not yet wired into existing tests |
+| Sprint 27 | 0 | 410 | Layer 1 gap fixes (ActionWindow, Sushumna alignment, Hora/Tattva, guided test, i18n); alignment_checker_test updated for context-dependent Sushumna |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 

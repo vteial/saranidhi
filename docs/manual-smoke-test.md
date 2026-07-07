@@ -103,14 +103,19 @@
 |----|----------|-----------------|
 | G-01 | Pre-onboarding intro screen shows | Scrollable guide + "Get Started" button |
 | G-02 | DOB calculation path in onboarding | Enter date+time → nakshatra auto-calculated |
-| G-03 | Manual nakshatra selection path | Dropdown → bird shows immediately |
+| G-03 | Manual nakshatra selection path | Trilingual list (EN / TA) → bird shows immediately |
 | G-04 | About card in Settings | Logo, version, developer name, links |
-| G-05 | User Guide accessible from About | Flat scrollable 9-section guide |
+| G-05 | User Guide accessible from About | Flat scrollable guide + Reference tables at bottom |
 | G-06 | What's New screen on first v1.2.0 launch | Feature list with dismiss button, shown once |
 | G-07 | Timer preset selector visible | Horizontal chips (Manual, 4-7-8, Box, etc.) |
 | G-08 | Daily summary card after logging entry | Entries count, alignment %, avg hold shown |
 | G-09 | Streak celebration at milestone (7 days) | Animated overlay with confetti emojis |
 | G-10 | Pin/star an entry in journal history | Star icon toggles, persists on reload |
+| G-11 | Language switch in onboarding | EN/TA toggle at top-right, all text changes |
+| G-12 | Hora + Tattva sub-row in Birth Bird card | Planet emoji + name • Element emoji + Sanskrit name |
+| G-13 | Sushumna during Sleeping/Dying → aligned | "Aligned" result with Yoga window advice |
+| G-14 | DOB recalculation from Settings | Profile → edit star → "Recalculate from DOB" → date/time → updates |
+| G-15 | Reference table in User Guide | Bilingual tables (planets, elements, 27 nakshatras) |
 
 ---
 
@@ -147,11 +152,11 @@
 | D: Dashboard (10 checks) | All pass |
 | E: Home Tabs (6 checks) | All pass |
 | F: Analytics (5 checks) | All pass |
-| G: Onboarding, About & Engagement (10 checks) | At least 8 of 10 pass |
+| G: Onboarding, About & Engagement (15 checks) | At least 12 of 15 pass |
 | H: Tamil (4 checks) | At least 3 of 4 pass |
 | I: Edge Cases (5 checks) | All pass |
 
-**Total: 57 scenarios**
+**Total: 62 scenarios**
 
 **Overall Verdict:** ALL sections must pass for production release.
 
