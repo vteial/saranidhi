@@ -342,7 +342,7 @@
 
 ---
 
-## Sprint 27: Layer 1 Gap Fixes — Diagnostic Foundation
+## Sprint 27: Layer 1 Gap Fixes — Diagnostic Foundation 🚧 In Progress
 
 - [ ] Task 27.1: Sushumna context-dependent alignment — ActionWindow enum (Artha/Kriya/Yoga), bird-state-to-window mapping, modified AlignmentChecker returns aligned only in Yoga window (Sleeping/Dying states)
 - [ ] Task 27.2: Guided nostril test — 3-step interactive modal (exhale test → isolation test → auto-populate flow selection) before manual logging
