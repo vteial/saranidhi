@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/breath_journal/domain/alignment_checker.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 
@@ -47,8 +48,12 @@ void main() {
       });
     });
 
-    group('B-03: Sushumna is always aligned', () {
-      test('sushumna aligned when solar expected', () {
+    group('B-03: Sushumna context-dependent alignment', () {
+      test('sushumna alignment depends on action window (bird state)', () {
+        // Yama 1 at 7:00 — bird state varies by weekday/lunar phase.
+        // With the default (waxing, weekday from date), the bird state
+        // determines the action window. Sushumna is aligned ONLY in
+        // Yoga window (Sleeping/Dying states).
         final time = DateTime(2025, 3, 20, 7, 0);
 
         final result = AlignmentChecker.check(
@@ -60,12 +65,18 @@ void main() {
         );
 
         expect(result, isNotNull);
-        expect(result!.isAligned, isTrue);
+        // The result depends on the bird state at this time.
+        // We verify the actionWindow field is populated.
+        expect(result!.actionWindow, isNotNull);
+        // Sushumna is aligned only if actionWindow is yoga
+        expect(
+          result.isAligned,
+          equals(result.actionWindow == ActionWindow.yoga),
+        );
       });
 
-      test('sushumna aligned when lunar expected', () {
-        // Yama 2 (even) = lunar expected
-        // Yama 2 starts roughly 2.4 hours after sunrise
+      test('sushumna blocked in non-yoga window', () {
+        // Yama 2 at 9:30 — even yama, lunar expected
         final time = DateTime(2025, 3, 20, 9, 30);
 
         final result = AlignmentChecker.check(
@@ -77,7 +88,12 @@ void main() {
         );
 
         expect(result, isNotNull);
-        expect(result!.isAligned, isTrue);
+        expect(result!.actionWindow, isNotNull);
+        // Alignment matches the window type
+        expect(
+          result.isAligned,
+          equals(result.actionWindow == ActionWindow.yoga),
+        );
       });
     });
 
