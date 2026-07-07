@@ -240,10 +240,7 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                   itemCount: allNakshatras.length,
                   itemBuilder: (context, i) => ListTile(
                     title: Text(
-                      NakshatraL10n.localizedDisplay(
-                        allNakshatras[i],
-                        isTamil: l10n.localeName == 'ta',
-                      ),
+                      NakshatraL10n.trilingualDisplay(allNakshatras[i]),
                     ),
                     dense: true,
                     onTap: () => Navigator.of(ctx).pop(allNakshatras[i]),

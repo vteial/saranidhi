@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:saranidhi/core/l10n/locale_provider.dart';
+import 'package:saranidhi/core/utils/nakshatra_l10n.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -307,7 +308,7 @@ class _NakshatraListPath extends StatelessWidget {
         final nakshatra = allNakshatras[index];
         final isSelected = state.selectedNakshatra == nakshatra;
         return ListTile(
-          title: Text(nakshatra),
+          title: Text(NakshatraL10n.trilingualDisplay(nakshatra)),
           trailing: isSelected
               ? Icon(Icons.check_circle, color: theme.colorScheme.primary)
               : null,

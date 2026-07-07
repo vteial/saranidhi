@@ -1,7 +1,8 @@
 /// Tamil names for the 27 Nakshatras.
 ///
-/// Display format in Tamil mode: "புஷ்யம் (Pushya)"
-/// Display format in English mode: "Pushya"
+/// Display format trilingual: "Pushya / புஷ்யம் (Pushyami)"
+/// Display format Tamil mode: "புஷ்யம் (Pushya)"
+/// Display format English mode: "Pushya"
 class NakshatraL10n {
   const NakshatraL10n._();
 
@@ -9,6 +10,12 @@ class NakshatraL10n {
   /// Returns null if the nakshatra is not recognized.
   static String? tamilName(String nakshatra) {
     return _tamilNames[nakshatra.toLowerCase().trim()];
+  }
+
+  /// Returns the Sanskrit name for a given nakshatra.
+  /// Returns null if the nakshatra is not recognized.
+  static String? sanskritName(String nakshatra) {
+    return _sanskritNames[nakshatra.toLowerCase().trim()];
   }
 
   /// Returns a localized display string for the nakshatra.
@@ -19,6 +26,15 @@ class NakshatraL10n {
     final tamil = tamilName(nakshatra);
     if (tamil == null) return nakshatra;
     return '$tamil ($nakshatra)';
+  }
+
+  /// Returns a trilingual display string for nakshatra selection lists.
+  /// Format: "English / தமிழ்"
+  /// Always shows both languages for clarity regardless of app language.
+  static String trilingualDisplay(String nakshatra) {
+    final tamil = tamilName(nakshatra);
+    if (tamil == null) return nakshatra;
+    return '$nakshatra / $tamil';
   }
 
   static const Map<String, String> _tamilNames = {
@@ -49,5 +65,35 @@ class NakshatraL10n {
     'purva bhadrapada': 'பூரட்டாதி',
     'uttara bhadrapada': 'உத்திரட்டாதி',
     'revati': 'ரேவதி',
+  };
+
+  static const Map<String, String> _sanskritNames = {
+    'ashwini': 'Ashvini',
+    'bharani': 'Bharani',
+    'krittika': 'Krittika',
+    'rohini': 'Rohini',
+    'mrigashira': 'Mrigashirsha',
+    'ardra': 'Ardra',
+    'punarvasu': 'Punarvasu',
+    'pushya': 'Pushyami',
+    'ashlesha': 'Ashlesha',
+    'magha': 'Magha',
+    'purva phalguni': 'Purva Phalguni',
+    'uttara phalguni': 'Uttara Phalguni',
+    'hasta': 'Hasta',
+    'chitra': 'Chitra',
+    'swati': 'Svati',
+    'vishakha': 'Vishakha',
+    'anuradha': 'Anuradha',
+    'jyeshtha': 'Jyeshtha',
+    'mula': 'Mula',
+    'purva ashadha': 'Purva Ashadha',
+    'uttara ashadha': 'Uttara Ashadha',
+    'shravana': 'Shravana',
+    'dhanishta': 'Dhanishta',
+    'shatabhisha': 'Shatabhisha',
+    'purva bhadrapada': 'Purva Bhadrapada',
+    'uttara bhadrapada': 'Uttara Bhadrapada',
+    'revati': 'Revati',
   };
 }
