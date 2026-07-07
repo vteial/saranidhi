@@ -238,7 +238,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
       weekday: weekday,
     );
 
-    // ─── Night Yama calculations (only when viewing today) ──────────────
+    // ─── Night Yama calculations ──────────────────────────────────────
     if (isToday && now.isAfter(sunResult.sunset)) {
       isNight = true;
       final tomorrow = now.add(const Duration(days: 1));
@@ -299,8 +299,9 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
               [activeNightYama.index.index];
         }
       }
-    } else if (!isToday) {
-      // For historical/future dates, calculate night yamas for display only
+    } else {
+      // Daytime today or non-today dates: always compute night schedule
+      // for display (no active yama highlighted during daytime)
       final nextDay = selectedDate.add(const Duration(days: 1));
       final nextDaySunResult = SunriseCalculator.calculate(
         date: nextDay,

@@ -109,19 +109,18 @@ class JournalScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: BrandedAppBar(title: l10n.breathJournalTitle),
-      body: KeyboardListener(
-        focusNode: FocusNode(),
-        autofocus: true,
-        onKeyEvent: (event) {
-          // Enter key submits the entry when timer is complete
-          if (event is KeyDownEvent &&
-              event.logicalKey == LogicalKeyboardKey.enter &&
-              !entryState.isSubmitting &&
-              timerState.phase == TimerPhase.complete) {
-            _submitEntry(ref, timerState);
-          }
+      body: CallbackShortcuts(
+        bindings: {
+          const SingleActivator(LogicalKeyboardKey.enter): () {
+            if (!entryState.isSubmitting &&
+                timerState.phase == TimerPhase.complete) {
+              _submitEntry(ref, timerState);
+            }
+          },
         },
-        child: SingleChildScrollView(
+        child: Focus(
+          autofocus: true,
+          child: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: isWide
             ? Row(
@@ -144,6 +143,7 @@ class JournalScreen extends ConsumerWidget {
                   const JournalHistoryList(),
                 ],
               ),
+      ),
       ),
       ),
     );
