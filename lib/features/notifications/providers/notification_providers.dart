@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/notifications/data/notification_service.dart';
@@ -115,7 +116,10 @@ class NotificationPrefsNotifier extends Notifier<NotificationPreferences> {
     final profile = profiles.first;
     final lat = profile.locationLat ?? 13.08; // Default: Chennai
     final lng = profile.locationLng ?? 80.27;
-    const utcOffset = 5.5; // IST — TODO: derive from timezone
+    final utcOffset = TimezoneUtils.offsetForLocation(
+      latitude: lat,
+      longitude: lng,
+    );
 
     // Generate and schedule
     final birthBird = profile.birthBird != null
@@ -149,7 +153,10 @@ final notificationRefreshProvider = FutureProvider<void>((ref) async {
   final profile = profiles.first;
   final lat = profile.locationLat ?? 13.08;
   final lng = profile.locationLng ?? 80.27;
-  const utcOffset = 5.5;
+  final utcOffset = TimezoneUtils.offsetForLocation(
+    latitude: lat,
+    longitude: lng,
+  );
 
   final birthBird = profile.birthBird != null
       ? PakshiBird.values

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
@@ -108,7 +109,18 @@ class JournalScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: BrandedAppBar(title: l10n.breathJournalTitle),
-      body: SingleChildScrollView(
+      body: CallbackShortcuts(
+        bindings: {
+          const SingleActivator(LogicalKeyboardKey.enter): () {
+            if (!entryState.isSubmitting &&
+                timerState.phase == TimerPhase.complete) {
+              _submitEntry(ref, timerState);
+            }
+          },
+        },
+        child: Focus(
+          autofocus: true,
+          child: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: isWide
             ? Row(
@@ -131,6 +143,8 @@ class JournalScreen extends ConsumerWidget {
                   const JournalHistoryList(),
                 ],
               ),
+      ),
+      ),
       ),
     );
   }
