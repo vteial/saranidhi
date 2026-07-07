@@ -9,32 +9,38 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Planned
-- Sprint 20: UI Polish + Home Layout Redesign (Today/Explore tabs)
-- Sprint 21: Pakshi Accuracy (DOB-based Moon longitude calculation)
-- Sprint 22: Widget Test Coverage (10 test files)
+### Planned (v1.3.0 — Layer 2: Action Windows)
+- Sprint 28: ActionWindowEngine (24h schedule, Rahu guardrail)
+- Sprint 29: 24h Action Bar, Current Mode Focus Card, expansion sheet
 
-### Added (on staging, not yet released to production)
-- **Analytics tab** (4th bottom nav) with 6 insight cards (Sprint 19)
-- Weekly alignment summary, monthly patterns, streak insights
-- Yama performance breakdown, hold time progression, CSV export
-- **Historical View** (Sprint 18)
-- Date selector on Home, calendar month view, best times this week
-- Browse any past/future date's Pakshi schedule
-- **Notifications** (Sprint 17)
-- Real local notifications (flutter_local_notifications)
-- Personalized bird state alerts, Rahu Kaal, morning summary
-- 4 configurable toggles
-- **Tamil Wisdom** (Sprint 17) — 52+ proverbs, locale-aware
-- **iCloud Sync architecture** (Sprint 16)
-- CloudKit record-level sync, primary device conflict resolution
-- **macOS target** (Sprint 16) — full scaffold with CloudKit
-- **Night Yamas** (Sprint 15) — full 24h Pakshi coverage
+### Planned (v2.0.0 — Layer 3: Prasanam Oracle)
+- Sprint 30: Prasanam calculation engine (3 vectors, oracle score)
+- Sprint 31: FAB trigger, query input, result card, history timeline
+
+---
+
+## [1.2.0-web] — 2026-07-06 (Pending smoke test)
+
+### Added
+- **Empty states & shimmer loading** (Sprint 24) — friendly empty states for journal, analytics, explore; animated skeleton loading cards; error boundary widgets
+- **Daily Engagement** (Sprint 26) — What's New screen (version-tracked), streak celebrations (7/30/100/365 days), breath timer presets (4-7-8, Box, Energize, Calm), daily summary card, pin/star entries, quick-log from notification
+- **Layer 1 Gap Fixes** (Sprint 27) — ActionWindow enum (Artha/Kriya/Yoga), context-dependent Sushumna alignment, guided nostril test (3-step modal), Hora + Tattva display in Birth Bird card, reference table in User Guide (bilingual), language toggle in onboarding, DOB recalculation from Settings, trilingual nakshatra display
+- **Accessibility** (Sprint 25) — keyboard Enter key submit, haptic feedback, Semantics audit
+
+### Fixed
+- Safari white page — removed canvasKitVariant 'chromium' (broke all non-Chrome browsers)
+- COOP/COEP headers removed — broke Safari WASM initialization
+- Analytics not refreshing after journal entry (reactive providers)
+- Dashboard not updating after location change (provider invalidation)
+- Night schedule now always visible (not just at nighttime)
+- Notification timezone derived from profile location (no more hardcoded IST)
+- Onboarding steps 2 & 3 fully translated to Tamil
+- sqlparser 0.44.6 compatibility (pinned to 0.44.5)
 
 ### Changed
-- Dashboard provider parameterized by selected date
-- Notification preferences expanded from 2 to 4 toggles
-- ICloudBackupRepository upgraded from stub to real CloudKit service
+- Smoke test plan rewritten: slimmer 62-scenario critical-path (9 sections)
+- Versioned smoke test results (per-release files)
+- Sprint tracker expanded with v2.0 roadmap (Sprints 28–31)
 
 ---
 

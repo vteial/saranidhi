@@ -21,11 +21,14 @@ The app teaches users to treat their daily breath patterns as a form of divine w
 
 Saranidhi helps you:
 
-- **Track your breath** — Log which nostril is dominant (left/right/both), with optional duration tracking
-- **Align with cosmic rhythms** — Compare your breath flow to the expected pattern from Siva Swarodaya
-- **Build consistency** — Streaks, 7-day ribbons, and 30-day trend tracking
-- **Receive guidance** — On-device AI insights and traditional wisdom matched to your current state
-- **Know your time** — Panja Pakshi bird states, Rahu Kaal awareness, Hora strength, Tattva cycles
+- **Track your breath** — Log which nostril is dominant (Solar/Lunar/Sushumna), with guided nostril test and duration tracking
+- **Align with cosmic rhythms** — Context-dependent alignment (Sushumna aligned in Yoga windows, blocked in Artha/Kriya)
+- **See your cosmic state** — Planetary hour (Hora), element cycle (Tattva), and Action Window displayed live
+- **Build consistency** — Streaks with milestone celebrations (7/30/100 days), 7-day ribbons, 30-day trends
+- **Receive guidance** — Rules-based wisdom matched to your current bird state, in English or Tamil
+- **Know your time** — Panja Pakshi bird states (day + night), Rahu Kaal awareness, full 10-yama 24h schedule
+- **Plan ahead** — Browse any date's schedule, "Best Times This Week", calendar month view
+- **Analyze patterns** — Weekly/monthly analytics, hold time progression, yama performance, CSV export
 
 ---
 
@@ -33,11 +36,13 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.1.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | Latest main | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 19 | — |
-| **Total PRs** | 48 | — |
-| **Engineering Hours** | ~45.5h | AI-assisted (Kiro) |
+| **Production** | v1.0.0-web (Sprint 13) | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | v1.2.0-web (Sprint 27) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
+| **Sprints Delivered** | 27 | — |
+| **Total PRs** | 70 | — |
+| **Engineering Hours** | ~71h | AI-assisted (Kiro) |
+
+**Next release:** v1.2.0-web (pending smoke test) → v1.3.0 (Action Windows) → v2.0.0 (Prasanam Oracle)
 
 ---
 
@@ -47,20 +52,27 @@ Saranidhi helps you:
 ┌─────────────────────────────────────────────────────┐
 │  PRESENTATION LAYER                                  │
 │  Flutter Widgets + Riverpod 3 + GoRouter             │
+│  3 tabs: Home | Journal | Analytics                  │
+│  Settings via gear icon (AppBar action)              │
+│  Prasanam FAB on Today tab (v2.0 planned)            │
 ├─────────────────────────────────────────────────────┤
 │  DOMAIN LAYER (Pure Dart)                            │
-│  Vedic Math: Sunrise, Yama, Rahu, Hora, Pakshi      │
-│  Entities: Freezed models                            │
+│  Vedic Math: Sunrise, Yama, Rahu, Hora, Pakshi,     │
+│  Tattva, LunarPhase, ActionWindow, Oracle            │
+│  Analytics: Streak, Trend, Weekly, Monthly, HoldTime │
+│  Wisdom: RulesEngine, FallbackHandler (EN + TA)      │
 ├─────────────────────────────────────────────────────┤
 │  DATA LAYER                                          │
 │  ┌─────────────────┐  ┌──────────────────────────┐ │
 │  │ LocalRepository  │  │ CloudBackupRepository    │ │
-│  │ (Drift/SQLite)   │  │ iOS: iCloud              │ │
-│  │                  │  │ Android/Web: Google Drive │ │
+│  │ (Drift/SQLite)   │  │ iOS: iCloud (CloudKit)   │ │
+│  │ Web: WASM SQLite  │  │ Android: stub            │ │
 │  └─────────────────┘  └──────────────────────────┘ │
 ├─────────────────────────────────────────────────────┤
-│  AI LAYER                                            │
-│  Mobile: On-device LLM │ Web: Rules-based engine    │
+│  PLATFORM LAYER                                      │
+│  iOS/macOS: CloudKit MethodChannel + Notifications   │
+│  Web: Drift WASM (sqlite3.wasm + drift_worker.js)    │
+│  All: flutter_local_notifications                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -78,31 +90,29 @@ Saranidhi helps you:
 
 | Layer | Choice |
 |-------|--------|
-| Framework | Flutter (iOS, Android, Web) |
-| State Management | Riverpod 3 (@riverpod code gen) |
-| Routing | GoRouter (StatefulShellRoute) |
-| Local Database | Drift (SQLite) |
+| Framework | Flutter 3.44+ (iOS, Android, Web, macOS) |
+| State Management | Riverpod 3 (NotifierProvider, FutureProvider) |
+| Routing | GoRouter (StatefulShellRoute, 3 branches) |
+| Local Database | Drift (SQLite on mobile, WASM on web) |
 | Models | Freezed + json_serializable |
-| Cloud Backup | iCloud (iOS) / Google Drive (Android, Web) |
-| Local AI | On-device LLM (mobile) / Rules engine (web) |
-| Theming | Material 3 (Light, Dark, Emerald, Gold) |
-| Localization | EN, TA (ARB files) |
-| Linting | very_good_analysis |
-| CI/CD | GitHub Actions |
-| Cloud Sync | iCloud (CloudKit) via MethodChannel |
-| macOS | Flutter macOS target (shared codebase) |
+| Cloud Sync | iCloud (CloudKit via MethodChannel) |
 | Notifications | flutter_local_notifications (zonedSchedule) |
+| Theming | Material 3 (4 colors × Light/Dark + System = 9 modes) |
+| Localization | English + Tamil (ARB files, 200+ keys) |
+| Linting | very_good_analysis (zero infos allowed) |
+| CI/CD | GitHub Actions (two-tier: fast PRs + full on merge) |
+| Hosting | Vercel (staging + production + PR previews) |
 
 ---
 
 ## Platform Support
 
-| Platform | Storage | Cloud Backup | AI |
-|----------|---------|--------------|-----|
-| iOS | SQLite | iCloud (Apple Sign-In) | On-device |
-| Android | SQLite | Google Drive (Google Sign-In) | On-device |
-| Web | IndexedDB/sql.js | Google Drive (Google Sign-In) | Rules-based |
-| macOS | SQLite | iCloud (Apple Sign-In) | Rules-based |
+| Platform | Storage | Cloud Sync | Notifications |
+|----------|---------|------------|---------------|
+| iOS | SQLite | iCloud (CloudKit) | flutter_local_notifications |
+| macOS | SQLite | iCloud (CloudKit) | flutter_local_notifications |
+| Android | SQLite | Stub (future) | flutter_local_notifications |
+| Web | WASM SQLite (sqlite3.wasm) | N/A | N/A (no-op) |
 
 ---
 
