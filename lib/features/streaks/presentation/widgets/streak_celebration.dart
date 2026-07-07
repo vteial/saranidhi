@@ -40,7 +40,7 @@ class _StreakCelebrationOverlayState extends State<StreakCelebrationOverlay>
       vsync: this,
       duration: const Duration(milliseconds: 600),
     );
-    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
+    _scaleAnimation = Tween<double>(begin: 0.5, end: 1).animate(
       CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
     );
     _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
@@ -67,7 +67,7 @@ class _StreakCelebrationOverlayState extends State<StreakCelebrationOverlay>
 
     return GestureDetector(
       onTap: widget.onDismiss,
-      child: Container(
+      child: ColoredBox(
         color: Colors.black54,
         child: Center(
           child: FadeTransition(
@@ -149,7 +149,6 @@ class _StreakCelebrationOverlayState extends State<StreakCelebrationOverlay>
 void showStreakCelebration(BuildContext context, int milestone) {
   showDialog<void>(
     context: context,
-    barrierDismissible: true,
     barrierColor: Colors.transparent,
     builder: (ctx) => StreakCelebrationOverlay(
       milestone: milestone,

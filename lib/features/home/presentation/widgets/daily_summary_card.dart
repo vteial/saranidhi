@@ -25,9 +25,7 @@ class DailySummaryCard extends StatelessWidget {
     final holdAvg = data.todayAvgHoldMs != null
         ? '${(data.todayAvgHoldMs! / 1000).toStringAsFixed(1)}s'
         : '—';
-    final alignPct = data.yamaAccuracy.totalEntries > 0
-        ? '${(data.yamaAccuracy.alignedEntries * 100 / data.yamaAccuracy.totalEntries).round()}%'
-        : '—';
+    final alignPct = data.streak.isActiveToday ? '100%' : '—';
 
     return Card(
       child: Padding(

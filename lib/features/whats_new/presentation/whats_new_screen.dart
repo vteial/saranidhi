@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Key for storing the last seen app version in SharedPreferences.
 const _lastSeenVersionKey = 'whats_new_last_seen_version';
@@ -44,7 +43,7 @@ class WhatsNewScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              const Spacer(flex: 1),
+              const Spacer(),
               // Header
               Icon(
                 Icons.auto_awesome,
@@ -115,7 +114,7 @@ class WhatsNewScreen extends ConsumerWidget {
                 ),
               ),
 
-              const Spacer(flex: 1),
+              const Spacer(),
 
               // Dismiss button
               SizedBox(
@@ -125,7 +124,7 @@ class WhatsNewScreen extends ConsumerWidget {
                     await markWhatsNewSeen();
                     ref.invalidate(shouldShowWhatsNewProvider);
                     if (context.mounted) {
-                      Navigator.of(context).maybePop();
+                      await Navigator.of(context).maybePop();
                     }
                   },
                   icon: const Icon(Icons.arrow_forward),
