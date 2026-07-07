@@ -2,6 +2,7 @@ import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:saranidhi/core/providers/profile_location_provider.dart';
 import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/core/utils/nakshatra_l10n.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
@@ -10,6 +11,7 @@ import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/cloud_backup/providers/sync_trigger_service.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays and allows editing of the user profile.
@@ -258,6 +260,9 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
         );
       }
 
+      // Refresh dashboard for new birth bird
+      ref.invalidate(dashboardDataProvider);
+
       setState(() {});
     });
   }
@@ -301,6 +306,12 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                         ),
                       ),
                     );
+
+                    // Refresh dashboard and location cache for new timezone
+                    ref
+                      ..invalidate(profileLocationProvider)
+                      ..invalidate(dashboardDataProvider);
+
                     setState(() {});
                   },
                 ),
