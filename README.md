@@ -193,6 +193,7 @@ Feature branch → PR → main (staging) → /release PR → prod (production)
 - [Mobile Release Guide](docs/mobile-release-guide.md) — iOS/Android build & submission steps (for Sprint X)
 - [Security Review](docs/security-review.md) — Architecture security assessment, data protection
 - [Offline Verification](docs/offline-verification.md) — Offline capability matrix, zero-network verification
+- [Testing Plan](docs/testing-plan.md) — Test scenario backlog + test count progression
 - [Project Evaluation](docs/project-evaluation.md) — Feature scorecard, quality metrics, defect log
 - [Project Valuation Report](docs/project-valuation-report.md) — Time investment, commit timeline, sprint delivery
 - [Changelog](CHANGELOG.md) — Release history and notable changes
