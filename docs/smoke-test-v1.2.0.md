@@ -22,11 +22,11 @@
 
 | ID | Scenario | Expected | Our App | Align27 | Pass? | Notes |
 |----|----------|----------|---------|---------|-------|-------|
-| A-01 | Sunrise time | ±2 min | | |  | |
-| A-02 | Sunset time | ±2 min | | |  | |
+| A-01 | Sunrise time | ±2 min | 5:48 | 5:48 |  Yes | |
+| A-02 | Sunset time | ±2 min | 18:40 | 19:39 | Yes | |
 | A-03 | Birth bird state (Owl for Pushya) | Exact | Pushya | Pushya | Yes | |
 | A-04 | Rahu Kaal start/end | ±2 min | 12:14 - 13:50 | 12:18 - 13:54|  Yes | |
-| A-05 | Lunar phase (waxing/waning) | Same day |  |  |  | |
+| A-05 | Lunar phase (waxing/waning) | Same day |  Waning | Waning | Yes | |
 
 ---
 
@@ -65,7 +65,7 @@
 | D-03 | Full Day Schedule (10 yamas) | 5 day + 5 night yamas with bird states | Yes | |
 | D-04 | Nostril Pattern + countdown | Solar/Lunar per yama, countdown visible | Yes | |
 | D-05 | Shimmer loading (hard refresh) | Animated skeleton cards briefly | Yes | |
-| D-06 | Error fallback (disconnect → retry) | Cloud-off icon + retry button | | |
+| D-06 | Error fallback (disconnect → retry) | Cloud-off icon + retry button | Skipped | Requires network disconnect simulation |
 | D-07 | Hold Time Card | Average hold or "No entries today" | Yes | |
 | D-08 | Streak zero-state (before first entry) | "Build Your Streak" motivational card | Yes | |
 | D-09 | Daily Wisdom card | Non-empty wisdom text | Yes | |
@@ -79,7 +79,7 @@
 |----|----------|-----------------|-------|-------|
 | E-01 | Today tab is default on app open | Shows live data cards | Yes | |
 | E-02 | Explore tab shows date selector + calendar | Date arrows, month grid visible | Yes | |
-| E-03 | Pick past date → schedule changes | Bird state reflects past date | | |
+| E-03 | Pick past date → schedule changes | Bird state reflects past date | Yes | |
 | E-04 | Date with no entries → empty state | "No entries on this day" card | Yes | |
 | E-05 | Best Times This Week (on today) | Next Ruling yama windows | Yes | |
 | E-06 | 30-Day Trend | Progress bar + percentage | Yes | |
@@ -107,14 +107,14 @@
 | G-03 | Manual nakshatra selection | Trilingual list (EN / TA) → bird shows | Yes | |
 | G-04 | About card in Settings | Logo, version, developer, links | Yes | |
 | G-05 | User Guide + Reference tables | Scrollable guide + bilingual tables | Yes | |
-| G-06 | What's New screen (v1.2.0) | Feature list, dismiss button, shown once | No | |
-| G-07 | Timer preset selector | Chips: Manual, 4-7-8, Box, etc. | No | |
+| G-06 | What's New screen (v1.2.0) | Feature list, dismiss button, shown once | No | What's New not wired |
+| G-07 | Timer preset selector | Chips: Manual, 4-7-8, Box, etc. | No | Presets not wired |
 | G-08 | Daily summary card (after entry) | Entries count, alignment %, avg hold | Yes | |
-| G-09 | Streak celebration (milestone) | Animated overlay with emojis | | |
-| G-10 | Pin/star entry | Star toggles, persists on reload | | |
+| G-09 | Streak celebration (milestone) | Animated overlay with emojis | No | Celebrations not wired |
+| G-10 | Pin/star entry | Star toggles, persists on reload | No | Pin/star Not wired|
 | G-11 | Language switch in onboarding | EN/TA toggle, all text changes | Yes | |
 | G-12 | Hora + Tattva in Birth Bird card | Planet + element sub-row | Yes | |
-| G-13 | Sushumna during Sleeping/Dying | "Aligned" + Yoga window advice | | |
+| G-13 | Sushumna during Sleeping/Dying | "Aligned" + Yoga window advice | No | Bug: AlignmentChecker uses hardcoded waxing phase instead of actual lunar phase |
 | G-14 | DOB recalculation from Settings | Edit star → "Recalculate from DOB" → works | Yes | |
 | G-15 | Reference table in User Guide | Bilingual (planets, elements, nakshatras) | Yes | |
 
@@ -147,11 +147,11 @@
 
 | Section | Scenarios | Required | Result |
 |---------|-----------|----------|--------|
-| A: Accuracy | 5 | All pass within tolerance | |
+| A: Accuracy | 5 | All pass within tolerance | 5 |
 | B: Core Flow | 7 | All pass | 7 |
 | C: Settings | 5 | All pass | 5 |
 | D: Dashboard | 10 | All pass | 9 |
-| E: Home Tabs | 6 | All pass | |
+| E: Home Tabs | 6 | All pass | 6 |
 | F: Analytics | 5 | All pass | 5 |
 | G: Onboarding & Engagement | 15 | At least 12 of 15 | |
 | H: Tamil | 4 | At least 3 of 4 | 3 |
