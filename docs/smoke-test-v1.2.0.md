@@ -6,8 +6,8 @@
 
 | Parameter | Value |
 |-----------|-------|
-| **Tester** | |
-| **Date** | |
+| **Tester** | Eialarasu |
+| **Date** | 2026-07-07 |
 | **Device** | |
 | **Browser/OS** | |
 | **Location** | Chennai (13.08, 80.27) |
@@ -159,7 +159,7 @@
 
 **Total: 62 scenarios**
 
-**Overall: ⬜ PENDING**
+**Overall: 🔄 IN PROGRESS**
 
 ---
 
