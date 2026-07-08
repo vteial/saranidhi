@@ -21,11 +21,28 @@ The app teaches users to treat their daily breath patterns as a form of divine w
 
 Saranidhi helps you:
 
-- **Track your breath** — Log which nostril is dominant (left/right/both), with optional duration tracking
-- **Align with cosmic rhythms** — Compare your breath flow to the expected pattern from Siva Swarodaya
-- **Build consistency** — Streaks, 7-day ribbons, and 30-day trend tracking
-- **Receive guidance** — On-device AI insights and traditional wisdom matched to your current state
-- **Know your time** — Panja Pakshi bird states, Rahu Kaal awareness, Hora strength, Tattva cycles
+- **Track your breath** — Log which nostril is dominant (Solar/Lunar/Sushumna), with guided nostril test and duration tracking
+- **Align with cosmic rhythms** — Context-dependent alignment (Sushumna aligned in Yoga windows, blocked in Artha/Kriya)
+- **See your cosmic state** — Planetary hour (Hora), element cycle (Tattva), and Action Window displayed live
+- **Build consistency** — Streaks with milestone celebrations (7/30/100 days), 7-day ribbons, 30-day trends
+- **Receive guidance** — Rules-based wisdom matched to your current bird state, in English or Tamil
+- **Know your time** — Panja Pakshi bird states (day + night), Rahu Kaal awareness, full 10-yama 24h schedule
+- **Plan ahead** — Browse any date's schedule, "Best Times This Week", calendar month view
+- **Analyze patterns** — Weekly/monthly analytics, hold time progression, yama performance, CSV export
+
+---
+
+## Current Status
+
+| Milestone | Version | URL |
+|-----------|---------|-----|
+| **Production** | v1.0.0-web (Sprint 13) | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | v1.2.0-web (Sprint 27) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
+| **Sprints Delivered** | 27 | — |
+| **Total PRs** | 70 | — |
+| **Engineering Hours** | ~71h | AI-assisted (Kiro) |
+
+**Next release:** v1.2.0-web (pending smoke test) → v1.3.0 (Action Windows) → v2.0.0 (Prasanam Oracle)
 
 ---
 
@@ -35,20 +52,27 @@ Saranidhi helps you:
 ┌─────────────────────────────────────────────────────┐
 │  PRESENTATION LAYER                                  │
 │  Flutter Widgets + Riverpod 3 + GoRouter             │
+│  3 tabs: Home | Journal | Analytics                  │
+│  Settings via gear icon (AppBar action)              │
+│  Prasanam FAB on Today tab (v2.0 planned)            │
 ├─────────────────────────────────────────────────────┤
 │  DOMAIN LAYER (Pure Dart)                            │
-│  Vedic Math: Sunrise, Yama, Rahu, Hora, Pakshi      │
-│  Entities: Freezed models                            │
+│  Vedic Math: Sunrise, Yama, Rahu, Hora, Pakshi,     │
+│  Tattva, LunarPhase, ActionWindow, Oracle            │
+│  Analytics: Streak, Trend, Weekly, Monthly, HoldTime │
+│  Wisdom: RulesEngine, FallbackHandler (EN + TA)      │
 ├─────────────────────────────────────────────────────┤
 │  DATA LAYER                                          │
 │  ┌─────────────────┐  ┌──────────────────────────┐ │
 │  │ LocalRepository  │  │ CloudBackupRepository    │ │
-│  │ (Drift/SQLite)   │  │ iOS: iCloud              │ │
-│  │                  │  │ Android/Web: Google Drive │ │
+│  │ (Drift/SQLite)   │  │ iOS: iCloud (CloudKit)   │ │
+│  │ Web: WASM SQLite  │  │ Android: stub            │ │
 │  └─────────────────┘  └──────────────────────────┘ │
 ├─────────────────────────────────────────────────────┤
-│  AI LAYER                                            │
-│  Mobile: On-device LLM │ Web: Rules-based engine    │
+│  PLATFORM LAYER                                      │
+│  iOS/macOS: CloudKit MethodChannel + Notifications   │
+│  Web: Drift WASM (sqlite3.wasm + drift_worker.js)    │
+│  All: flutter_local_notifications                    │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -66,27 +90,29 @@ Saranidhi helps you:
 
 | Layer | Choice |
 |-------|--------|
-| Framework | Flutter (iOS, Android, Web) |
-| State Management | Riverpod 3 (@riverpod code gen) |
-| Routing | GoRouter (StatefulShellRoute) |
-| Local Database | Drift (SQLite) |
+| Framework | Flutter 3.44+ (iOS, Android, Web, macOS) |
+| State Management | Riverpod 3 (NotifierProvider, FutureProvider) |
+| Routing | GoRouter (StatefulShellRoute, 3 branches) |
+| Local Database | Drift (SQLite on mobile, WASM on web) |
 | Models | Freezed + json_serializable |
-| Cloud Backup | iCloud (iOS) / Google Drive (Android, Web) |
-| Local AI | On-device LLM (mobile) / Rules engine (web) |
-| Theming | Material 3 (Light, Dark, Emerald, Gold) |
-| Localization | EN, TA (ARB files) |
-| Linting | very_good_analysis |
-| CI/CD | GitHub Actions |
+| Cloud Sync | iCloud (CloudKit via MethodChannel) |
+| Notifications | flutter_local_notifications (zonedSchedule) |
+| Theming | Material 3 (4 colors × Light/Dark + System = 9 modes) |
+| Localization | English + Tamil (ARB files, 200+ keys) |
+| Linting | very_good_analysis (zero infos allowed) |
+| CI/CD | GitHub Actions (two-tier: fast PRs + full on merge) |
+| Hosting | Vercel (staging + production + PR previews) |
 
 ---
 
 ## Platform Support
 
-| Platform | Storage | Cloud Backup | AI |
-|----------|---------|--------------|-----|
-| iOS | SQLite | iCloud (Apple Sign-In) | On-device |
-| Android | SQLite | Google Drive (Google Sign-In) | On-device |
-| Web | IndexedDB/sql.js | Google Drive (Google Sign-In) | Rules-based |
+| Platform | Storage | Cloud Sync | Notifications |
+|----------|---------|------------|---------------|
+| iOS | SQLite | iCloud (CloudKit) | flutter_local_notifications |
+| macOS | SQLite | iCloud (CloudKit) | flutter_local_notifications |
+| Android | SQLite | Stub (future) | flutter_local_notifications |
+| Web | WASM SQLite (sqlite3.wasm) | N/A | N/A (no-op) |
 
 ---
 
@@ -113,8 +139,11 @@ saranidhi/
 
 ### Prerequisites
 
-- Flutter SDK (latest stable)
-- Dart SDK (bundled with Flutter)
+- Flutter SDK (stable channel, ≥3.44)
+- Dart SDK ≥3.12.1 (bundled with Flutter)
+- Xcode 15+ (for iOS/macOS builds + CloudKit)
+
+> For full iMac setup instructions, see [docs/dev-setup.md](docs/dev-setup.md).
 
 ### Getting Started
 
@@ -132,13 +161,18 @@ dart run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
-### Sprint Workflow
+### Development Workflow
+
+```
+Feature branch → PR → main (staging) → /release PR → prod (production)
+```
 
 1. Branch from `main`: `feature/sprintX-topic`
 2. Develop with TDD (unit tests for domain logic)
 3. Run validation: `dart analyze && flutter test`
-4. Create PR targeting `main`
-5. Merge after CI passes
+4. Create PR targeting `main` — Vercel creates preview URL
+5. Merge after CI passes → auto-deploys to [staging](https://saranidhi-staging.vercel.app)
+6. When ready: `/release` PR from `main` → `prod` → deploys to [production](https://saranidhi.vercel.app)
 
 ---
 
@@ -146,16 +180,23 @@ flutter run
 
 - [User Guide](docs/user-guide.md) — What is Saranidhi, its aim, how it helps, and feature overview
 - [Project Plan](docs/project-plan.md) — Features, architecture, deployment targets
-- [Release 1.0 Plan](docs/release-1.0-plan.md) — Sprint-to-release milestones
+- [Release Plan](docs/release-1.0-plan.md) — Phased release milestones (5 phases)
 - [Sprint Tracker](docs/sprint-tracker.md) — Current progress
 - [Testing Plan](docs/testing-plan.md) — Test strategy and scenarios
-- [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, rollback strategies, quality gates
+- [Smoke Test History](docs/smoke-test-results.md) — Release index linking to per-version test files
+- [Smoke Test v1.2.0](docs/smoke-test-v1.2.0.md) — Current smoke test (plan + results in one file)
+- [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, protocols (`/start-sprint`, `/finish-sprint`, `/release`)
+- [Dev Setup](docs/dev-setup.md) — iMac development environment setup (10-step guide)
+- [Deployment Guide](docs/deployment.md) — Prod/Staging/Preview architecture, rollback, monitoring
+- [iCloud Sync Testing](docs/icloud-sync-testing.md) — Multi-device CloudKit sync verification guide
+- [Store Listing](docs/store-listing.md) — App Store & Play Store listing text (for Sprint X)
+- [Mobile Release Guide](docs/mobile-release-guide.md) — iOS/Android build & submission steps (for Sprint X)
 - [Security Review](docs/security-review.md) — Architecture security assessment, data protection
 - [Offline Verification](docs/offline-verification.md) — Offline capability matrix, zero-network verification
-- [Manual Smoke Test](docs/manual-smoke-test.md) — Pre-production manual QA scenarios
-- [Smoke Test Results](docs/smoke-test-results.md) — Execution results (production pass gate)
+- [Testing Plan](docs/testing-plan.md) — Test scenario backlog + test count progression
 - [Project Evaluation](docs/project-evaluation.md) — Feature scorecard, quality metrics, defect log
 - [Project Valuation Report](docs/project-valuation-report.md) — Time investment, commit timeline, sprint delivery
+- [Changelog](CHANGELOG.md) — Release history and notable changes
 
 ---
 

@@ -46,9 +46,9 @@ class ShellScaffold extends StatelessWidget {
                 label: l10n.journalTab,
               ),
               NavigationDestination(
-                icon: const Icon(Icons.settings_outlined),
-                selectedIcon: const Icon(Icons.settings),
-                label: l10n.settingsTab,
+                icon: const Icon(Icons.insights_outlined),
+                selectedIcon: const Icon(Icons.insights),
+                label: l10n.analyticsTitle,
               ),
             ],
           ),

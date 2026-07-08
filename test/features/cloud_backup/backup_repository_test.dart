@@ -71,33 +71,37 @@ void main() {
     });
   });
 
-  group('ICloudBackupRepository (stub)', () {
+  group('ICloudBackupRepository', () {
     late ICloudBackupRepository repo;
 
     setUp(() {
       repo = ICloudBackupRepository();
     });
 
-    test('backup fails when not authenticated', () async {
+    test('backup fails when not on Apple platform', () async {
       final result = await repo.backup([1, 2, 3]);
       expect(result.success, isFalse);
     });
 
-    test('signIn succeeds (stub)', () async {
+    test('signIn returns false on non-Apple platform', () async {
       final result = await repo.signIn();
-      expect(result, isTrue);
+      // On Linux/web test runner, iCloud is not supported
+      expect(result, isFalse);
     });
 
-    test('backup succeeds after signIn', () async {
-      await repo.signIn();
-      final result = await repo.backup([4, 5, 6, 7]);
-      expect(result.success, isTrue);
-      expect(result.sizeBytes, equals(4));
+    test('isAuthenticated returns false on non-Apple platform', () async {
+      final result = await repo.isAuthenticated();
+      expect(result, isFalse);
     });
 
-    test('deleteBackup succeeds', () async {
+    test('deleteBackup fails on non-Apple platform', () async {
       final result = await repo.deleteBackup();
-      expect(result.success, isTrue);
+      // Platform check returns failure message on non-Apple
+      expect(result.success, isFalse);
+    });
+
+    test('isSupported is false on test platform', () {
+      expect(repo.isSupported, isFalse);
     });
   });
 

@@ -45,26 +45,56 @@ class _EmptyHistory extends StatelessWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     return Padding(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
       child: Column(
         children: [
-          Icon(
-            Icons.history,
-            size: 48,
-            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            l10n.noEntries,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
+          // Decorative breath icon with ring
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
+              border: Border.all(
+                color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                width: 2,
+              ),
+            ),
+            child: Icon(
+              Icons.air_rounded,
+              size: 40,
+              color: theme.colorScheme.primary.withValues(alpha: 0.6),
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 20),
           Text(
-            l10n.firstEntryHint,
-            style: theme.textTheme.bodySmall?.copyWith(
+            l10n.journalEmptyTitle,
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: theme.colorScheme.onSurface,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l10n.journalEmptySubtitle,
+            style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          // Subtle guidance arrow pointing up toward the entry widget
+          Icon(
+            Icons.keyboard_arrow_up_rounded,
+            size: 28,
+            color: theme.colorScheme.primary.withValues(alpha: 0.5),
+          ),
+          Text(
+            l10n.journalEmptyHint,
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: theme.colorScheme.primary.withValues(alpha: 0.7),
+              fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,
           ),

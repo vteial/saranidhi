@@ -97,6 +97,28 @@ void main() {
         expect(result.start.hour, equals(10));
         expect(result.start.minute, equals(30));
       });
+
+      test('Verify all 7 weekdays match correct segments', () {
+        final segments = {
+          0: 8, // Sun
+          1: 2, // Mon
+          2: 7, // Tue
+          3: 5, // Wed
+          4: 6, // Thu
+          5: 4, // Fri
+          6: 3, // Sat
+        };
+
+        for (final entry in segments.entries) {
+          final result = RahuKaalCalculator.calculate(
+            sunrise: sunrise,
+            sunset: sunset,
+            weekday: entry.key,
+          );
+          final expectedStart = sunrise.add(Duration(minutes: (entry.value - 1) * 90));
+          expect(result.start, equals(expectedStart), reason: 'Weekday ${entry.key} should use segment ${entry.value}');
+        }
+      });
     });
 
     group('isActive', () {

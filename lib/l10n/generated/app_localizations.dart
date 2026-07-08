@@ -62,6 +62,12 @@ abstract class AppLocalizations {
   /// Settings tab label
   String get settingsTab;
 
+  /// Today sub-tab label on Home screen
+  String get todayTab;
+
+  /// Explore sub-tab label on Home screen
+  String get exploreTab;
+
   /// Dashboard app bar title
   String get dashboardTitle;
 
@@ -577,6 +583,126 @@ abstract class AppLocalizations {
 
   /// Empty state for today's hold card
   String get noEntriesToday;
+
+  /// Night yamas section header
+  String get nightYamas;
+
+  /// Night guidance for Ruling state
+  String get guidanceNightRuling;
+
+  /// Night guidance for Eating state
+  String get guidanceNightEating;
+
+  /// Night guidance for Walking state
+  String get guidanceNightWalking;
+
+  /// Night guidance for Sleeping state
+  String get guidanceNightSleeping;
+
+  /// Night guidance for Dying state
+  String get guidanceNightDying;
+
+  /// Note shown in nostril chart during nighttime
+  String get nightNoNostrilPattern;
+
+  /// Export/import section title in settings
+  String get dataExportImportTitle;
+
+  /// Export/import section subtitle
+  String get dataExportImportSubtitle;
+
+  /// Export button label
+  String get exportAllData;
+
+  /// Export in progress label
+  String get exporting;
+
+  /// Export success snackbar
+  String get exportSuccess;
+
+  /// Import button label
+  String get importData;
+
+  /// Import in progress label
+  String get importing;
+
+  /// Import confirmation dialog title
+  String get importConfirmTitle;
+
+  /// Import confirmation dialog message
+  String get importConfirmMessage;
+
+  /// Label for export date in summary
+  String get importExportedOn;
+
+  /// Profile count label in import summary
+  String get importProfiles;
+
+  /// Journal entry count in import summary
+  String get importJournalEntries;
+
+  /// Breath session count in import summary
+  String get importBreathSessions;
+
+  /// Import warning text
+  String get importWarning;
+
+  /// Import confirmation button
+  String get importConfirmButton;
+
+  /// Import success snackbar
+  String get importSuccess;
+
+  /// Import failure prefix
+  String get importFailed;
+
+  /// File read error on import
+  String get importFailedReadFile;
+
+  /// Validation error prefix on import
+  String get importInvalidFile;
+
+  /// Journal empty state title when no entries exist
+  String get journalEmptyTitle;
+
+  /// Journal empty state subtitle
+  String get journalEmptySubtitle;
+
+  /// Journal empty state action hint
+  String get journalEmptyHint;
+
+  /// Analytics empty state title
+  String get analyticsEmptyTitle;
+
+  /// Analytics empty state subtitle
+  String get analyticsEmptySubtitle;
+
+  /// Generic error title
+  String get errorSomethingWentWrong;
+
+  /// Generic error subtitle
+  String get errorTryAgainLater;
+
+  /// Explore tab empty state title for selected date
+  String get exploreNoEntriesTitle;
+
+  /// Explore tab empty state hint
+  String get exploreNoEntriesHint;
+
+  /// Streak zero-state title for new users
+  String get streakZeroTitle;
+
+  /// Streak zero-state subtitle
+  String get streakZeroSubtitle;
+
+  /// Streak onboarding step 1
+  String get streakStep1;
+
+  /// Streak onboarding step 2
+  String get streakStep2;
+
+  /// Streak onboarding step 3
+  String get streakStep3;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

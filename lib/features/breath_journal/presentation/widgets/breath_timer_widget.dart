@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -44,6 +45,7 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
   }
 
   void _onTap() {
+    HapticFeedback.mediumImpact();
     final timerState = ref.read(breathTimerNotifierProvider);
     final notifier = ref.read(breathTimerNotifierProvider.notifier);
 
@@ -90,49 +92,54 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
         timerState.phase != TimerPhase.idle &&
         timerState.phase != TimerPhase.complete;
 
-    return Card(
-      child: InkWell(
-        onTap: _onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Icon(
-                _phaseIcon(timerState.phase),
-                size: 40,
-                color: theme.colorScheme.primary,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                _phaseLabel(timerState.phase, l10n),
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
+    return Semantics(
+      button: true,
+      label: _phaseLabel(timerState.phase, l10n),
+      hint: _phaseInstruction(timerState.phase, l10n),
+      child: Card(
+        child: InkWell(
+          onTap: _onTap,
+          borderRadius: BorderRadius.circular(12),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Icon(
+                  _phaseIcon(timerState.phase),
+                  size: 40,
+                  color: theme.colorScheme.primary,
                 ),
-              ),
-              // Live seconds display
-              if (isRunning) ...[
-                const SizedBox(height: 8),
+                const SizedBox(height: 12),
                 Text(
-                  '${_displaySeconds}s',
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    color: theme.colorScheme.primary,
+                  _phaseLabel(timerState.phase, l10n),
+                  style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              ],
-              const SizedBox(height: 4),
-              Text(
-                _phaseInstruction(timerState.phase, l10n),
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
+                // Live seconds display
+                if (isRunning) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    '${_displaySeconds}s',
+                    style: theme.textTheme.headlineMedium?.copyWith(
+                      color: theme.colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 4),
+                Text(
+                  _phaseInstruction(timerState.phase, l10n),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
                 ),
-              ),
-              if (timerState.phase == TimerPhase.complete) ...[
-                const SizedBox(height: 12),
-                _TimerResults(timerState: timerState, l10n: l10n),
+                if (timerState.phase == TimerPhase.complete) ...[
+                  const SizedBox(height: 12),
+                  _TimerResults(timerState: timerState, l10n: l10n),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),

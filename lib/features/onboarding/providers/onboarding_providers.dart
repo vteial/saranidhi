@@ -1,8 +1,11 @@
 import 'package:drift/drift.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/database/database_provider.dart';
+import 'package:saranidhi/features/astro_engine/domain/nakshatra_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
+import 'package:saranidhi/features/cloud_backup/providers/sync_trigger_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
@@ -47,6 +50,13 @@ class OnboardingState {
     this.displayName = '',
     this.selectedNakshatra,
     this.birthBird,
+    this.birthDate,
+    this.birthTimeOfDay,
+    this.birthPlaceName,
+    this.birthPlaceLat,
+    this.birthPlaceLng,
+    this.calculatedNakshatra,
+    this.isNearBoundary = false,
     this.latitude,
     this.longitude,
     this.locationName,
@@ -58,19 +68,39 @@ class OnboardingState {
   final String displayName;
   final String? selectedNakshatra;
   final PakshiBird? birthBird;
+  // DOB fields (Sprint 21)
+  final DateTime? birthDate;
+  final TimeOfDay? birthTimeOfDay;
+  final String? birthPlaceName;
+  final double? birthPlaceLat;
+  final double? birthPlaceLng;
+  // Auto-calculated result (Sprint 21)
+  final NakshatraResult? calculatedNakshatra;
+  final bool isNearBoundary;
+  // Current location (for sunrise/sunset)
   final double? latitude;
   final double? longitude;
   final String? locationName;
   final String storageMode;
   final bool isSaving;
 
-  int get totalSteps => 4; // Welcome, Birth Star, Location, Storage Mode
+  int get totalSteps => 4; // Welcome, Find Your Bird, Location, Storage Mode
+
+  /// Whether the nakshatra was auto-calculated from DOB.
+  bool get isAutoCalculated => calculatedNakshatra != null;
 
   OnboardingState copyWith({
     int? currentStep,
     String? displayName,
     String? selectedNakshatra,
     PakshiBird? birthBird,
+    DateTime? birthDate,
+    TimeOfDay? birthTimeOfDay,
+    String? birthPlaceName,
+    double? birthPlaceLat,
+    double? birthPlaceLng,
+    NakshatraResult? calculatedNakshatra,
+    bool? isNearBoundary,
     double? latitude,
     double? longitude,
     String? locationName,
@@ -82,6 +112,13 @@ class OnboardingState {
       displayName: displayName ?? this.displayName,
       selectedNakshatra: selectedNakshatra ?? this.selectedNakshatra,
       birthBird: birthBird ?? this.birthBird,
+      birthDate: birthDate ?? this.birthDate,
+      birthTimeOfDay: birthTimeOfDay ?? this.birthTimeOfDay,
+      birthPlaceName: birthPlaceName ?? this.birthPlaceName,
+      birthPlaceLat: birthPlaceLat ?? this.birthPlaceLat,
+      birthPlaceLng: birthPlaceLng ?? this.birthPlaceLng,
+      calculatedNakshatra: calculatedNakshatra ?? this.calculatedNakshatra,
+      isNearBoundary: isNearBoundary ?? this.isNearBoundary,
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
       locationName: locationName ?? this.locationName,
@@ -126,6 +163,66 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
     state = state.copyWith(selectedNakshatra: nakshatra, birthBird: bird);
   }
 
+  void setBirthDate(DateTime date) {
+    state = state.copyWith(birthDate: date);
+  }
+
+  void setBirthTime(TimeOfDay time) {
+    state = state.copyWith(birthTimeOfDay: time);
+  }
+
+  void setBirthPlace({
+    required double latitude,
+    required double longitude,
+    required String name,
+  }) {
+    state = state.copyWith(
+      birthPlaceLat: latitude,
+      birthPlaceLng: longitude,
+      birthPlaceName: name,
+    );
+  }
+
+  /// Calculates the birth nakshatra from DOB data and updates the
+  /// selected nakshatra + birth bird accordingly.
+  ///
+  /// Requires at least `birthDate` to be set. If `birthTimeOfDay` is
+  /// not set, defaults to 12:00 noon (midday approximation).
+  void calculateFromDOB() {
+    if (state.birthDate == null) return;
+
+    // Build the UTC DateTime from DOB fields
+    final date = state.birthDate!;
+    final time = state.birthTimeOfDay ?? const TimeOfDay(hour: 12, minute: 0);
+
+    // Construct birth moment in UTC (approximate — no timezone conversion
+    // for birth place, as the Moon moves ~0.5°/hour which is well within
+    // a nakshatra's 13.33° span for most timezone offsets)
+    final birthMoment = DateTime.utc(
+      date.year,
+      date.month,
+      date.day,
+      time.hour,
+      time.minute,
+    );
+
+    // Calculate nakshatra
+    final result = NakshatraCalculator.calculate(birthMoment);
+
+    // Map to bird
+    final bird = PakshiCalculator.birthBirdFromNakshatraSafe(
+      result.standardName,
+    );
+
+    // Update state: set calculated result + override manual selection
+    state = state.copyWith(
+      calculatedNakshatra: result,
+      isNearBoundary: result.isNearBoundary,
+      selectedNakshatra: result.displayName,
+      birthBird: bird,
+    );
+  }
+
   void setLocation({
     required double latitude,
     required double longitude,
@@ -148,22 +245,43 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
 
     final db = ref.read(appDatabaseProvider);
     final now = DateTime.now().millisecondsSinceEpoch;
+    final id = _uuid.v4();
 
     await db
         .into(db.profiles)
         .insert(
           ProfilesCompanion.insert(
-            id: _uuid.v4(),
+            id: id,
             displayName: Value(state.displayName),
             birthStarNakshatra: Value(state.selectedNakshatra),
             birthBird: Value(state.birthBird?.name),
             locationLat: Value(state.latitude),
             locationLng: Value(state.longitude),
+            birthDateEpoch: Value(
+              state.birthDate?.millisecondsSinceEpoch,
+            ),
+            birthTime: Value(
+              state.birthTimeOfDay != null
+                  ? '${state.birthTimeOfDay!.hour.toString().padLeft(2, '0')}:'
+                      '${state.birthTimeOfDay!.minute.toString().padLeft(2, '0')}'
+                  : null,
+            ),
+            birthPlaceName: Value(state.birthPlaceName),
+            birthPlaceLat: Value(state.birthPlaceLat),
+            birthPlaceLng: Value(state.birthPlaceLng),
             storageMode: Value(state.storageMode),
             createdAt: now,
             updatedAt: now,
           ),
         );
+
+    // Push new profile to iCloud if sync enabled
+    final profile = await (db.select(db.profiles)
+          ..where((t) => t.id.equals(id)))
+        .getSingleOrNull();
+    if (profile != null) {
+      await ref.read(syncTriggerServiceProvider).onProfileUpdated(profile);
+    }
 
     await ref.read(onboardingCompleteProvider.notifier).markComplete();
     state = state.copyWith(isSaving: false);

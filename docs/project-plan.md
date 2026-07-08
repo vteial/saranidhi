@@ -214,7 +214,214 @@ Contextual guidance layer delivering personalized spiritual coaching.
 
 ---
 
-## 6. CI/CD Pipeline
+## 6a. Navigation Architecture (as of Sprint 20)
+
+### Bottom Navigation (3 tabs)
+| Tab | Route | Screen |
+|-----|-------|--------|
+| Home | `/` | HomeScreen (Today/Explore sub-tabs) |
+| Journal | `/journal` | JournalScreen |
+| Analytics | `/analytics` | AnalyticsScreen |
+
+### Top-Right Actions
+| Icon | Route | Access |
+|------|-------|--------|
+| Gear (⚙️) | `/settings` | Pushed route via `context.push` — full-screen with back button |
+
+### Home Sub-Tabs (TabBarView)
+| Tab | Content | Purpose |
+|-----|---------|---------|
+| Today (default) | Bird, Rahu, Schedule, Nostril, Wisdom, Hold+Streak, Ribbon | Focused live data |
+| Explore | Date Selector, Calendar, Historical Entries, Best Times, Trend | Date navigation + history |
+
+---
+
+## 6b. Data Export/Import Architecture (Sprint 20)
+
+### Export Format (JSON)
+```json
+{
+  "version": 1,
+  "exportedAt": "2026-07-04T12:00:00.000Z",
+  "profiles": [...],
+  "journal": [...],
+  "sessions": [...],
+  "birds": [...],
+  "preferences": {
+    "theme_accent": "defaultPurple",
+    "theme_brightness": "system",
+    "app_locale": "en",
+    "storage_mode": "local",
+    "notify_ruling": true,
+    ...
+  }
+}
+```
+
+### Import Flow
+1. File picker (`.json` only)
+2. Validation (`DatabaseExporter.validateExportData`)
+3. Summary dialog (record counts + export date)
+4. Destructive import (clear all → insert rows → restore preferences)
+5. Provider invalidation (6 providers cascaded)
+
+### Dependencies
+| Package | Purpose |
+|---------|---------|
+| `share_plus` | Share sheet / download on export |
+| `file_picker` | JSON file selection on import |
+
+---
+
+## 6c. Nakshatra Calculation Architecture (Sprint 21)
+
+### DOB-Based Birth Bird Derivation
+
+The classic Sara Kalai approach: birth bird is **fixed from birth** (natal chart), while daily rhythm (yamas, sunrise/sunset) follows **current geographical position**.
+
+#### Calculation Pipeline
+```
+DOB (date + time) → IST assumed (UTC+5:30)
+    → Julian Day Number
+    → Moon Longitude (Jean Meeus ELP 2000/82, pure Dart)
+    → Lahiri Ayanamsa correction (sidereal longitude)
+    → Nakshatra index (sidereal_longitude ÷ 13.33°)
+    → Birth Bird (nakshatra → bird mapping)
+```
+
+#### Key Design Decisions
+| Decision | Rationale |
+|----------|-----------|
+| IST assumption for all births | Moon moves ~0.5°/hour; India's ±30min timezone span is negligible vs 13.33° nakshatra width |
+| No separate birth place field | Removes UX friction; accuracy impact < 0.25° for anywhere in India |
+| ~0.5° tolerance acceptable | Boundary warning shown when Moon is within 1° of nakshatra edge |
+| Pure Dart (no ephemeris files) | Zero network dependency, works offline, small binary size |
+
+#### Onboarding Dual-Path UI
+```
+Step 1: "Find Your Bird"
+├── Path A: "I know my star" → Nakshatra list (27 items) → Bird
+└── Path B: "Calculate from DOB" → Date + Time pickers → Calculate → Bird
+```
+
+#### OnboardingGuard Navigator Pattern
+`MaterialApp.builder` renders widgets **above** the GoRouter Navigator. The `OnboardingGuard` wraps `OnboardingScreen` in its own `Navigator` widget so that `showDatePicker`/`showTimePicker` have a valid overlay to push dialog routes onto (required for Flutter Web).
+
+### Profiles Table — Sprint 21 Columns
+
+| Column | Type | Notes |
+|--------|------|-------|
+| birth_date_epoch | INTEGER | DOB as Unix epoch ms (nullable) |
+| birth_time | TEXT | "HH:mm" format (nullable) |
+| birth_place_name | TEXT | City name (nullable — not used in current flow) |
+| birth_place_lat | REAL | Birth latitude (nullable — not used in current flow) |
+| birth_place_lng | REAL | Birth longitude (nullable — not used in current flow) |
+
+---
+
+## 6d. UX Polish Infrastructure (Sprint 24)
+
+### Reusable Widget Library (`lib/core/widgets/`)
+
+| Widget | Purpose | Pattern |
+|--------|---------|---------|
+| `EmptyStateWidget` | Configurable empty state (icon + title + subtitle + optional action) | Used by Journal, Analytics, Explore |
+| `ShimmerLoading` | Animated gradient skeleton cards mimicking dashboard layout | Replaces `CircularProgressIndicator` on loading |
+| `ErrorBoundary` | Stateful widget catching errors in child subtree | Wraps sections for graceful degradation |
+| `ErrorFallback` | Standalone error display (cloud-off icon, message, retry) | Used in AsyncValue.when() error handlers |
+
+### Loading State Strategy
+
+| State | Previous | Sprint 24 |
+|-------|----------|-----------|
+| Dashboard loading | `CircularProgressIndicator` | `ShimmerLoading` (animated skeleton matching card layout) |
+| Analytics loading | `SizedBox.shrink()` (invisible) | Shows loading shimmer, then cards appear |
+| Error states | Raw error text + retry button | `ErrorFallback` with friendly message + retry |
+
+### Empty State Design Principles
+
+1. **Motivational tone** — guide users toward first action, never shame for empty data
+2. **Visual hierarchy** — prominent icon, clear title, supportive subtitle
+3. **Actionable hints** — point users to what to do next (e.g., arrow toward entry widget)
+4. **Consistent styling** — all empty states use theme colors at reduced opacity
+5. **Responsive** — adapts to narrow/wide layouts
+
+### Reactive Analytics Fix
+
+Analytics `FutureProvider`s now include `await ref.watch(journalEntriesProvider.future)` as a reactive dependency, ensuring they auto-refresh when journal entries change (add/delete). This eliminates the stale cache problem where analytics showed "empty" state until page reload.
+
+---
+
+## 6e. Performance & Accessibility Infrastructure (Sprint 25)
+
+### Timezone Derivation
+
+All hardcoded `const utcOffset = 5.5` removed. New `TimezoneUtils.offsetForLocation(lat, lng)` derives UTC offset:
+- **Indian bounding box** (lat 6°–36°, lng 68°–98°) → always returns IST (5.5)
+- **Other locations** → `longitude / 15` rounded to nearest 0.5
+
+`ProfileLocationProvider` (FutureProvider) caches the profile's lat/lng for synchronous access from the breath alignment checker.
+
+### Safari/Cross-Browser Compatibility
+
+| Issue | Root Cause | Fix |
+|-------|-----------|-----|
+| White page on Safari | `canvasKitVariant: "chromium"` forced Chrome-only renderer | Removed — Flutter auto-detects |
+| WASM init failure on Safari | COOP/COEP headers broke SharedArrayBuffer | Removed headers; Drift uses fallback worker mode |
+
+**Rule:** Never force browser-specific rendering in `flutter_bootstrap.js`. Let Flutter auto-detect.
+
+### Keyboard & Accessibility
+
+- `CallbackShortcuts` + `Focus(autofocus: true)` is the correct Flutter pattern for web keyboard shortcuts (not `KeyboardListener` with inline `FocusNode`)
+- All interactive widgets should have `Semantics(button: true, label, hint/selected)` for screen reader support
+- `HapticFeedback.lightImpact()` / `.mediumImpact()` from `flutter/services.dart` is automatically no-op on web
+
+### Provider Invalidation Pattern
+
+When profile data changes (location, birth star), always invalidate dependent providers:
+```dart
+ref
+  ..invalidate(profileLocationProvider)
+  ..invalidate(dashboardDataProvider);
+```
+
+---
+
+## 6f. Layer 1 Gap Fixes — Diagnostic Foundation (Sprint 27)
+
+### ActionWindow Architecture (Seeds Layer 2)
+
+The `ActionWindow` enum provides the bridge between raw Pakshi bird states and lifestyle recommendations:
+
+```
+PakshiState → ActionWindow.fromBirdState() → ActionWindow (artha/kriya/yoga)
+```
+
+| Bird State | Action Window | Sushumna Alignment |
+|-----------|---------------|-------------------|
+| Ruling | Artha (Material) | Blocked (0.0) |
+| Walking | Artha (Material) | Blocked (0.0) |
+| Eating | Kriya (Nourishment) | Blocked (0.0) |
+| Sleeping | Yoga (Spiritual) | Aligned (1.0) |
+| Dying | Yoga (Spiritual) | Aligned (1.0) |
+
+This mapping is the **core of Layer 2** (Action Windows Engine) — when Layer 2 is built, the UI layer just renders the already-computed window type.
+
+### Hora + Tattva Integration
+
+`DashboardData` now includes `activeHora` (HoraResult) and `activeTattva` (TattvaResult). These are computed from existing calculators (`HoraCalculator.activeHora()`, `TattvaCalculator.activeTattva()`) only when viewing today. The BirthBirdCard shows them as a subtle sub-row.
+
+### Guided Diagnostic Test
+
+The `GuidedNostrilTest` widget provides a structured 3-step verification flow:
+1. Exhale test (gross detection)
+2. Isolation test (fine confirmation)
+3. Auto-populate result
+
+This replaces blind manual selection for users unsure of their dominant nostril.
+
+---
 
 ### On Every PR to `main`
 ```

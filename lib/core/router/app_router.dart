@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:saranidhi/core/router/shell_scaffold.dart';
+import 'package:saranidhi/features/analytics/presentation/analytics_screen.dart';
 import 'package:saranidhi/features/home/presentation/home_screen.dart';
 import 'package:saranidhi/features/journal/presentation/journal_screen.dart';
 import 'package:saranidhi/features/onboarding/presentation/onboarding_screen.dart';
@@ -14,6 +15,9 @@ abstract class AppRoutes {
   /// Breath Journal route.
   static const journal = '/journal';
 
+  /// Analytics route.
+  static const analytics = '/analytics';
+
   /// Settings route.
   static const settings = '/settings';
 
@@ -25,7 +29,8 @@ abstract class AppRoutes {
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _journalNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'journal');
-final _settingsNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'settings');
+final _analyticsNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'analytics');
 
 /// Custom fade-through transition for tab pages.
 CustomTransitionPage<void> _fadeTransitionPage({
@@ -70,6 +75,15 @@ final GoRouter appRouter = GoRouter(
         transitionDuration: const Duration(milliseconds: 350),
       ),
     ),
+    // Settings as a top-level route (accessed via gear icon in app bar)
+    GoRoute(
+      path: AppRoutes.settings,
+      parentNavigatorKey: _rootNavigatorKey,
+      pageBuilder: (context, state) => _fadeTransitionPage(
+        child: const SettingsScreen(),
+        state: state,
+      ),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ShellScaffold(navigationShell: navigationShell);
@@ -100,12 +114,12 @@ final GoRouter appRouter = GoRouter(
           ],
         ),
         StatefulShellBranch(
-          navigatorKey: _settingsNavigatorKey,
+          navigatorKey: _analyticsNavigatorKey,
           routes: [
             GoRoute(
-              path: AppRoutes.settings,
+              path: AppRoutes.analytics,
               pageBuilder: (context, state) => _fadeTransitionPage(
-                child: const SettingsScreen(),
+                child: const AnalyticsScreen(),
                 state: state,
               ),
             ),

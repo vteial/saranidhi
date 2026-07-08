@@ -42,15 +42,16 @@ Lightweight entry point — creates the branch and marks the sprint active.
 
 ### `/finish-sprint`
 
-Closes the sprint — delivers the code and merges.
+Closes the sprint — delivers the code for user to merge.
 
 1. Commit all remaining changes
 2. Push branch to remote
 3. Create PR targeting `main`
 4. Update `docs/sprint-tracker.md` → ✅ Complete (PR #N)
-5. Verify CI passes
-6. **Merge PR** — sprint is officially closed
-7. Ask: *"Run /project-update now or later?"*
+5. Push tracker update to PR branch
+6. **Tell user PR is ready for merge** — Kiro NEVER merges directly
+7. User reviews + merges (sprint officially closed)
+8. Ask: *"Run /project-update now or later?"*
 
 ### `/project-update`
 
@@ -64,26 +65,42 @@ Runs **after merge** on a separate docs-only branch to avoid CI code failures.
    - `docs/testing-plan.md` — test count progression, scenarios awaiting coverage
    - `docs/dev-workflow.md` — any threshold/process changes
    - `.kiro/steering/saranidhi-spec.md` — tech stack updates
+   - **`docs/manual-smoke-test.md`** — add scenarios for new features (mandatory)
+   - **`docs/smoke-test-results-v{X.Y.Z}.md`** — update checklist if scenarios added (mandatory)
+   - **User Guide content** — refresh guide sections affected by sprint changes (mandatory)
 3. Commit, push, create docs-only PR
-4. Merge docs PR (CI won't fail since no code changes)
+4. **User reviews and merges**
 
 **Hours estimation rule:** Use AI-estimated active time + 20% buffer (owner-approved).
+
+**Mandatory additions (per new protocol):** Every /project-update MUST include User Guide refresh + smoke test plan update. These are not optional.
 
 ### `/plan`
 
 Strategic brainstorming and sprint plan revision — forward-looking.
 
-1. Review current state (sprint tracker, release plan, what's done)
-2. Discuss trade-offs, priorities, new features, scope cuts
-3. Once aligned, update:
-   - `docs/sprint-tracker.md` — redefine upcoming sprints
+1. Brainstorm with user (conversation in Kiro Web)
+2. Confirm scope and decisions
+3. Create branch from `main` (e.g., `plan/sprint-N` or `plan/v2-roadmap`)
+4. Update:
+   - `docs/sprint-tracker.md` — define upcoming sprints
    - `docs/release-1.0-plan.md` — adjust milestones
-4. Committed on a feature branch → PR (may include code if CI skip needed)
+   - `.kiro/design.md`, `.kiro/product.md`, `.kiro/structure.md` — if architecture changes
+5. Commit, push, create PR
+6. **User reviews and merges** (Kiro never pushes directly to main)
 
-**Examples:**
-- `/plan` "Re-scope remaining sprints for beta release"
-- `/plan` "Add data export feature, push deployment back"
-- `/plan` "Cut cloud backup from 1.0, move to 1.1"
+**Protocol:** All write operations go through PRs. Only the user merges to main.
+
+---
+
+### `/delegate`
+
+**(Paused)** — Previously used for delegating to Google Jules. Currently all work handled directly by Kiro.
+
+Delegation rules remain available for future use if needed:
+1. Delegated tasks operate on separate branches
+2. Only modify files in assigned scope
+3. Sprint PRs take merge priority
 
 ---
 
@@ -103,39 +120,48 @@ Quick-fix protocol for defects found after merge.
 
 ### `/release`
 
-Promotes `main` (staging) to `prod` (production) via a tracked PR.
+Two-phase production promotion with smoke test quality gate.
 
-1. Create PR from `main` → `prod`
-2. PR title: `Release: vX.Y.Z — <summary>`
-3. PR body: release notes structured as:
+#### Phase 1: `/release-start`
+
+Prepares the smoke test execution.
+
+1. Kiro creates branch `release/vX.Y.Z` from `main`
+2. Ensures `docs/smoke-test-vX.Y.Z.md` exists (plan + results template)
+3. Creates PR targeting `main`
+4. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
+5. User commits results (Pass/Fail + Notes) to the same branch
+6. User reviews and merges PR → smoke test results now on `main`
+
+#### Phase 2: `/release-complete`
+
+Promotes to production after smoke test passes.
+
+1. Kiro validates the smoke test PR is merged to `main`
+2. Kiro creates PR from `main` → `prod` with release notes:
    - **What's New** — features added since last release
    - **Fixes** — bugs resolved
    - **Known Issues** — anything still pending
    - **Sprint(s)** — which sprints are included
-4. Review the PR (final sanity check)
-5. Merge → Vercel auto-deploys `prod` to `saranidhi.vercel.app`
-6. Tag the release on `prod`:
-   ```bash
-   git checkout prod && git pull
-   git tag vX.Y.Z
-   git push origin vX.Y.Z
-   ```
-7. (Optional) Create GitHub Release from the tag with the same notes
+3. User reviews the release PR (final sanity check)
+4. User merges → Vercel auto-deploys `prod` to `saranidhi.vercel.app`
+5. User creates **GitHub Release** from UI:
+   - Tag: `vX.Y.Z-web`
+   - Target: `prod` branch
+   - Release notes: same as PR body
+   - Publish
+
+**Rules:**
+- Kiro NEVER pushes to `main` or `prod` directly
+- Kiro NEVER creates tags — user does via GitHub Release UI
+- If smoke test has failures → hotfix PR first → re-test → then `/release-complete`
+- All smoke test results must show PASS before `/release-complete` is issued
 
 **Versioning:**
 - `vX.Y.Z-web` where:
-  - **X** = major (breaking changes, redesigns)
+  - **X** = major (breaking changes, new layers)
   - **Y** = minor (new sprint features)
   - **Z** = patch (hotfixes, minor tweaks)
-- Examples:
-  - `v1.1.0-web` — Sprint 14 features (birth bird dashboard)
-  - `v1.1.1-web` — Hotfix after Sprint 14
-  - `v1.2.0-web` — Sprint 15 features (night yamas)
-
-**When to release:**
-- After each sprint merge (or batch of sprints) when staging is verified
-- Not every merge to `main` needs a production release
-- Release when you're confident the staging version is stable
 
 ---
 
@@ -174,13 +200,44 @@ git push origin main
 
 ## CI/CD Pipeline
 
-### On Every PR to `main`
+### Two-Tier Test Strategy
+
+| Tier | Trigger | Tests | Goal | Time |
+|------|---------|-------|------|------|
+| **Tier 1 (Fast)** | Every PR to `main` | Domain + providers (pure Dart) | Catch logic regressions fast | ~30s |
+| **Tier 2 (Full)** | Merge to `main` | All tests + widget + integration + coverage | Full confidence before staging | ~90s |
+
+**Tier 1 directories (ci.yml — PR builds):**
+- `test/features/astro_engine/` — All Vedic calculators
+- `test/features/breath_journal/` — Alignment, micro-advice
+- `test/features/cloud_backup/` — Sync, mapper, metadata
+- `test/features/streaks/` — Streak, trend, ribbon calculators
+- `test/features/ai_wisdom/` — Wisdom engine, rules, fallback
+- `test/features/notifications/` — Notification scheduler
+- `test/features/onboarding/` — Onboarding state, nakshatra mapping
+- `test/features/providers/` — Dashboard data, locale, theme, timer
+
+**Tier 2 additions (ci-full.yml — merge to main):**
+- `test/features/widgets/` — All widget render tests (BirthBirdCard, RahuKaalCard, etc.)
+- `test/widget_test.dart` — Full app navigation test
+- `integration_test/` — End-to-end user flows (headless Chrome)
+- Coverage threshold enforcement (≥ 20%)
+
+### On Every PR to `main` (ci.yml)
 
 | Step | Command | Gate |
 |------|---------|------|
 | Analyze | `dart analyze --fatal-infos` | Must pass (zero issues) |
-| Unit & Widget Tests | `flutter test --coverage` | Must pass (all green) |
-| Coverage Check | Parse `lcov.info` | Must be ≥ 80% |
+| Tier 1 Tests | `flutter test test/features/{domain dirs}` | Must pass (all green) |
+| Build Web | `flutter build web` | Must compile |
+
+### On Merge to `main` (ci-full.yml)
+
+| Step | Command | Gate |
+|------|---------|------|
+| Analyze | `dart analyze --fatal-infos` | Must pass (zero issues) |
+| All Tests | `flutter test --coverage` | Must pass (all green) |
+| Coverage Check | Parse `lcov.info` | Must be ≥ 20% |
 | Build Web | `flutter build web` | Must compile |
 | Integration Tests | `flutter drive` (headless Chrome) | Must pass |
 
@@ -197,11 +254,11 @@ git push origin main
 
 ## Deployment Architecture
 
-| Environment | Branch | Platform | URL | Auto-Deploy |
-|-------------|--------|----------|-----|-------------|
-| Staging | `main` | Vercel | Preview URL | Yes (on merge) |
-| Production Web | `prod` | Vercel | saranidhi.vercel.app | Yes (on push to prod) |
-| PR Preview | PR branches | Vercel | Auto-generated per PR | Yes (on PR) |
+| Environment | Branch | Platform | URL | Auto-Deploy | Data |
+|-------------|--------|----------|-----|-------------|------|
+| Production | `prod` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | On `/release` PR merge | Existing |
+| Staging | `main` | Vercel (2nd project) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) | On merge to main | Existing |
+| Preview | PR branches | Vercel | Auto-generated per PR | On PR open/update | Fresh |
 | Production iOS | `main` | App Store | — | Manual |
 | Production Android | `main` | Play Store | — | Manual |
 
@@ -209,6 +266,7 @@ git push origin main
 
 - **Coverage gate:** Set to 20% (lowered from 25% in Sprint 14 — UI-heavy sprint). Domain layer is ~95% covered; UI/presentation layer brings blended average to ~24%. Will increase as widget test coverage improves.
 - **UI verification:** Always verify on Vercel preview before merging UI changes. Never merge UI blind.
+- **Settings navigation:** Settings is a pushed route (gear icon in top-right), not a bottom nav tab. Bottom nav has 3 tabs: Home, Journal, Analytics.
 
 ---
 
@@ -248,11 +306,11 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 | Gate | Criteria | Enforcement |
 |------|----------|-------------|
-| Code Analysis | `dart analyze` — zero warnings/errors | CI (blocking) |
-| Tests | `flutter test` — all pass | CI (blocking) |
-| Coverage | ≥ 80% line coverage | CI (blocking) |
-| Build | `flutter build web` compiles | CI (blocking) |
-| Integration | `flutter drive` (headless Chrome) | CI (blocking) |
+| Code Analysis | `dart analyze` — zero warnings/errors | CI Fast (blocking) |
+| Tier 1 Tests | Domain + provider tests — all pass | CI Fast (blocking) |
+| Build | `flutter build web` compiles | CI Fast (blocking) |
+| Tier 2 Tests | Widget + integration tests — all pass | CI Full (on merge) |
+| Coverage | ≥ 20% line coverage | CI Full (on merge) |
 | Documentation | Sprint tracker updated | PR review |
 | Review | PR reviewed by owner | GitHub branch protection |
 
@@ -262,8 +320,8 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 - [ ] CI passed on `main` branch
 - [ ] Vercel deployment succeeded at saranidhi.vercel.app
-- [ ] App navigates correctly (Home, Journal, Settings)
-- [ ] No console errors in browser DevTools
+- [ ] App navigates correctly (Home, Journal, Analytics — Settings via gear icon)
+- [ ] No console errors in browser DevTools (source map 404s are acceptable)
 - [ ] New features render as expected
 - [ ] Sprint tracker updated with ✅
 

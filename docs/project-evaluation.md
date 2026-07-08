@@ -43,7 +43,20 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Smoke Test Execution & i18n** | Manual smoke test (34 scenarios), Pakshi algorithm rewrite (authentic tables), complete Tamil localization (130+ keys, 3 pages), nakshatra Tamil names | ✅ Complete (100%) — Sprint 12 |
 | **Web Production Deployment** | Vercel production (saranidhi.vercel.app), privacy policy, deployment docs, smoke test gate, release tag v1.0.0-web | ✅ Complete (100%) — Sprint 13 |
 | **Personalized Dashboard + Deployment Safety** | Birth bird hero card, full-day schedule with state emojis, Rahu Kaal, nostril dominance, hold time tracking, responsive layout, prod branch gate | ✅ Complete (100%) — Sprint 14 |
-| **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint 15 |
+| **Night Yamas + 24h Coverage** | Night yama calculator, 9 nighttime Pakshi tables, 10-yama full-day view, BirthBirdCard night support, night guidance, 3-tier deployment (prod/staging/preview) | ✅ Complete (100%) — Sprint 15 |
+| **iCloud Sync + macOS Target** | CloudKit sync service (MethodChannel), sync engine (pull→merge→push), native Swift plugins (iOS+macOS), sync-on-open widget, push-after-write triggers, primary device conflict resolution UI, macOS platform scaffold, dev environment setup guide | ✅ Complete (100%) — Sprint 16 |
+| **Notifications + Daily Engagement** | Real local notifications (flutter_local_notifications), personalized bird state alerts, Rahu Kaal start/end notifications, morning summary at sunrise, 4 configurable toggles, Tamil wisdom library (52+ proverbs), locale-aware Daily Wisdom | ✅ Complete (100%) — Sprint 17 |
+| **Historical View + Planning** | Date-parameterized dashboard, date selector (arrows + picker + Tomorrow/Today), Best Times This Week (7-day Ruling scan), historical entries card, calendar month view with entry indicators | ✅ Complete (100%) — Sprint 18 |
+| **Analytics + Export** | Analytics screen (4th tab), weekly alignment summary, monthly patterns (best/worst day, active yamas), CSV export, streak insights (gaps, consistency), yama performance breakdown, hold time progression (trend, personal best) | ✅ Complete (100%) — Sprint 19 |
+| **UI Polish + Home Layout Redesign** | Home Today/Explore sub-tabs, responsive two-column audit (all screens), redundant widget cleanup, full JSON data export/import, Settings moved to top-right gear icon, schedule column reorder, vibrant bird logo, SVG favicon | ✅ Complete (100%) — Sprint 20 |
+| **Pakshi Accuracy (DOB-Based Calculation)** | Moon longitude calculator (Jean Meeus ELP 2000/82), Lahiri Ayanamsa, Nakshatra-from-DOB, onboarding UX redesign (5→4 steps with dual-path "Find Your Bird"), extended birth bird attributes (friends/enemies/planet/direction/colour), Indian-only cities, OnboardingGuard Navigator for web pickers | ✅ Complete (100%) — Sprint 21 |
+| **Widget Test Coverage + Web Polish** | 10 widget tests, two-tier CI (ci.yml fast/ci-full.yml complete), COOP/COEP headers, emoji preload, notification weekday fix | ✅ Complete (100%) — Sprint 22 |
+| **Product Polish — About, User Guide & Onboarding Intro** | Pre-onboarding intro, About card (version+links), User Guide (9 sections), locale-aware privacy policy, dialog consistency, Settings layout alignment | ✅ Complete (100%) — Sprint 23 |
+| **UX Polish — Empty States, Loading & Error Handling** | Reusable EmptyStateWidget, ShimmerLoading skeleton cards, ErrorBoundary/ErrorFallback, journal empty state, analytics empty state, explore tab historical empty state, streak zero-state onboarding card, reactive analytics providers | ✅ Complete (100%) — Sprint 24 |
+| **Performance, Accessibility & Smoke Test Refresh** | TimezoneUtils (dynamic UTC offset), ProfileLocationProvider, keyboard Enter submit, haptic feedback, Semantics audit, night schedule always visible, Safari CanvasKit fix, COOP/COEP removal, location change reactivity, sqlparser pin, smoke test plan rewrite (52 scenarios), versioned results | ✅ Complete (100%) — Sprint 25 |
+| **Daily Engagement & Delight** | What's New screen (version-tracked, dismissible), Streak celebrations (7/30/100/365 milestones), Breath timer presets (4-7-8, Box, Energize, Calm), Daily summary card (entries/alignment/hold), Pin/star entries (isPinned column), Quick-log from notification (payload + tap handler) | ✅ Complete (100%) — Sprint 26 |
+| **Layer 1 Gap Fixes — Diagnostic Foundation** | ActionWindow enum (Artha/Kriya/Yoga) + bird-state mapping, context-dependent Sushumna alignment, guided nostril test (3-step modal), LocationService (Haversine 50km), Hora + Tattva in BirthBirdCard, Reference table (bilingual), language toggle in onboarding, DOB recalculation from Settings, trilingual nakshatra display, onboarding i18n completion | ✅ Complete (100%) — Sprint 27 |
+| **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
 
@@ -55,7 +68,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total test assertions | 201 (as of Sprint 8) |
+| Total test assertions | 410 (as of Sprint 22) |
 | Pass rate | 100% |
 | Static analysis | `dart analyze` — zero issues |
 | CI enforcement | GitHub Actions (analyze + test + coverage + build web + integration) |
@@ -75,6 +88,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 7 | 18 (context payload, rules engine, fallback, library) | 201 |
 | Sprint 10 | 63 (new test suites) | 264 |
 | Sprint 12 | 0 (test rewrite, same count) | 264 |
+| Sprint 20 | 84 (widget/integration test updates) | 348 |
+| Sprint 22 | 62 (10 widget tests × ~6 assertions) | 410 |
 
 ### Resolved Defects
 
@@ -102,6 +117,32 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Settings page English strings | StorageModeSelector, BackupActionsWidget, color accents hardcoded English | Replaced with l10n calls, added 14+ new ARB keys | Sprint 12 |
 | Timer/Pacer English labels | BreathTimerWidget and QuickSyncPacer used hardcoded English | Added 22 new l10n keys for timer phases, instructions, pacer | Sprint 12 |
 | Micro-advice in English only | MicroAdvice domain class returns English | Localized at presentation layer with 5 new advice ARB keys | Sprint 12 |
+| Widget tests expect '30-Day Trend' on Home | TrendWidget moved from Today tab to Explore tab in layout redesign | Updated widget_test.dart and integration test to assert Today/Explore sub-tab labels instead | Sprint 20 |
+| `cascade_invocations` lint failures | Multiple `ref.invalidate()` calls on same receiver without cascade | Used `ref..invalidate()` cascade syntax | Sprint 20 |
+| `unnecessary_import` lint (dart:typed_data) | `Uint8List` already re-exported by `drift` and `flutter/foundation` | Removed redundant `dart:typed_data` imports | Sprint 20 |
+| `directives_ordering` lint (share_plus) | `share_plus` sorts after `saranidhi` alphabetically, breaking section grouping | Put all `package:` imports in single alphabetically-sorted section | Sprint 20 |
+| Settings page full-width on desktop | Settings pushed route was outside ShellScaffold's ResponsiveWrapper | Wrapped body with `Center` + `ConstrainedBox(maxWidth: 1200)` | Sprint 20 |
+| Import data not reflecting immediately | Only `dashboardDataProvider` invalidated after JSON import | Added cascade invalidation of 6 providers (dashboard, journal, theme, locale, notifications, onboarding) | Sprint 20 |
+| Settings background color inconsistency | Scaffold inside ResponsiveWrapper only covered 1200px; outer area was white | Used full-width Scaffold for theme background, constrained only body content | Sprint 20 |
+| Missing favicon in browser tab | `index.html` referenced `favicon.png` which didn't exist | Added `web/favicon.svg` (SVG logo) + updated link tag with PNG fallback | Sprint 20 |
+| Date/time pickers crash on Flutter Web | OnboardingGuard renders OnboardingScreen via `MaterialApp.builder` — outside GoRouter Navigator; `showDatePicker` has no Navigator to push dialog route | Wrapped OnboardingScreen in its own `Navigator` widget inside OnboardingGuard | Sprint 21 |
+| `context.go()` TypeError after saveProfile on web | After onboarding completes, guard swaps widget tree; `context.go(AppRoutes.home)` tries to use GoRouter from dead Navigator context | Removed explicit navigation — OnboardingGuard handles transition automatically via provider state | Sprint 21 |
+| Location step layout shift on wide screens | `SingleChildScrollView` content centered in `Expanded` when short (before selection), snapped to left when tall (after selection) | Wrapped with `Align(alignment: Alignment.topLeft)` to pin content consistently | Sprint 21 |
+| Hardcoded 'Analytics' bottom nav label | NavigationDestination label was English-only string literal | Replaced with `l10n.analyticsTitle` (key exists in both EN/TA ARB files) | Sprint 21 |
+| Non-Indian cities in preset lists | London, New York, Singapore, Sydney included — irrelevant for Indian birth-based app | Removed; kept only Chennai, Mumbai, Delhi, Bangalore, Hyderabad, Kolkata | Sprint 21 |
+| `avoid_redundant_argument_values` lint warnings | `useRootNavigator: true` explicitly passed to `showDatePicker`/`showTimePicker` (already default) | Removed redundant arguments | Sprint 21 |
+| Notification scheduler wrong weekday format | Passing Dart's DateTime.weekday (1=Mon..7=Sun) directly to PakshiCalculator/RahuKaalCalculator which expect 0=Sun..6=Sat | Wrapped with PakshiCalculator.dartWeekdayToSunBased() | Sprint 22 |
+| Get Started button not responding | OnboardingGuard passed callback through Navigator's cached route — ref became stale | Made IntroScreen a ConsumerWidget + added ValueKey to each Navigator for proper element replacement | Sprint 23 |
+| Settings back button misaligned on wide screens | AppBar spanned full viewport while content constrained to 1200px | Replaced with SliverAppBar inside ConstrainedBox using CustomScrollView | Sprint 23 |
+| Double divider above Notifications | BackupActionsWidget and SyncDeviceConfigWidget had separate dividers | Consolidated into single group with one divider | Sprint 23 |
+| `avoid_redundant_argument_values` lint in ShimmerLoading | `LinearGradient` constructor specified `begin: Alignment.centerLeft` and `end: Alignment.centerRight` (already defaults) | Removed redundant arguments | Sprint 24 |
+| Analytics not refreshing after journal entry | Analytics `FutureProvider`s watched `journalRepositoryProvider` (static), not the journal entries stream; cached stale result | Added `await ref.watch(journalEntriesProvider.future)` to create reactive dependency on all 5 analytics providers | Sprint 24 |
+| Safari white page (all non-Chrome browsers) | `canvasKitVariant: "chromium"` in `flutter_bootstrap.js` forced Chrome-only CanvasKit renderer | Removed `canvasKitVariant` config; Flutter auto-detects correct renderer per browser | Sprint 25 |
+| Safari WASM initialization failure | `Cross-Origin-Opener-Policy: same-origin` header blocked Safari's SharedArrayBuffer support | Removed COOP/COEP headers from `vercel.json`; Drift WASM uses fallback worker mode | Sprint 25 |
+| Dashboard not updating after location change | `dashboardDataProvider` and `profileLocationProvider` not invalidated after profile edit in Settings | Added `ref.invalidate()` calls after location and birth star saves | Sprint 25 |
+| Night schedule hidden during daytime | Night yamas only computed when `isToday && now.isAfter(sunset)` or before sunrise | Merged daytime-today case into else branch that always computes night schedule for display | Sprint 25 |
+| `KeyboardListener` broken on web | Inline `FocusNode()` in stateless widget doesn't work reliably | Replaced with `CallbackShortcuts` + `Focus(autofocus: true)` (proper Flutter keyboard API) | Sprint 25 |
+| sqlparser 0.44.6 incompatibility | New sqlparser release removed `.when()` method that drift_dev 2.34.0 uses | Added `dependency_overrides: sqlparser: 0.44.5` as temporary pin | Sprint 25 |
 
 ---
 
@@ -124,6 +165,19 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 12 | Smoke Test Execution & Fixes | #21, #22, #23 | 0 (test rewrite, same count) | ✅ Complete |
 | Sprint 13 | Web Production Deployment | #25, #26 | 0 (deployment/docs only) | ✅ Complete |
 | Sprint 14 | Birth Bird Dashboard + Rahu Kaal + Nostril Chart | #29 | 0 (UI widgets, no new tests) | ✅ Complete |
+| Sprint 15 | Night Yamas + Full 24h View | #33, #34 | 0 (night tables + deployment docs) | ✅ Complete |
+| Sprint 16 | iCloud Sync + macOS Target | #39 | 3 test files (mapper, metadata, service) | ✅ Complete |
+| Sprint 17 | Notifications + Daily Engagement | #41 | 0 (existing scheduler tests cover logic) | ✅ Complete |
+| Sprint 18 | Historical View + Planning | #44 | 0 (UI widgets, no new tests) | ✅ Complete |
+| Sprint 19 | Analytics + Export | #46 | 0 (analytics calculator, no new tests) | ✅ Complete |
+| Sprint 20 | UI Polish + Home Layout Redesign | #51 | 84 (widget test updates + new assertions) | ✅ Complete |
+| Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 0 (test expectations updated, no new tests) | ✅ Complete |
+| Sprint 22 | Widget Test Coverage + Web Polish | #56 | 62 (widget tests) | ✅ Complete |
+| Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 0 (UI features, no new tests) | ✅ Complete |
+| Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 0 (UI polish + provider fix, test updated) | ✅ Complete |
+| Sprint 25 | Performance, Accessibility & Smoke Test Refresh | #63 | 0 (accessibility/perf polish, docs) | ✅ Complete |
+| Sprint 26 | Daily Engagement & Delight | #65 | 0 (new feature widgets, no tests yet) | ✅ Complete |
+| Sprint 27 | Layer 1 Gap Fixes — Diagnostic Foundation | #68 | 0 (domain + UI, Sushumna test updated) | ✅ Complete |
 
 ---
 

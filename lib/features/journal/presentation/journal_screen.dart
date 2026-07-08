@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
@@ -29,91 +30,121 @@ class JournalScreen extends ConsumerWidget {
     final hasSelection = entryState.selectedFlow != null;
     final alignment = entryState.alignmentResult;
     final l10n = AppLocalizations.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isWide = screenWidth >= 600;
+
+    final entryPanel = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Two-click breath entry
+        const BreathEntryWidget(),
+        const SizedBox(height: 16),
+
+        // Alignment result + micro-advice
+        const AlignmentResultWidget(),
+
+        // Show timer and pacer only after selection
+        if (hasSelection) ...[
+          const SizedBox(height: 16),
+          const BreathTimerWidget(),
+          const SizedBox(height: 12),
+
+          // Quick Sync Pacer (show if not aligned)
+          if (alignment != null && !alignment.isAligned)
+            const QuickSyncPacer(),
+
+          const SizedBox(height: 16),
+
+          // Submit button — only enabled after timer completes
+          Semantics(
+            button: true,
+            label: timerState.phase == TimerPhase.complete
+                ? l10n.logBreathEntry
+                : l10n.completeTimerToLog,
+            child: FilledButton.icon(
+              onPressed:
+                  entryState.isSubmitting ||
+                      timerState.phase != TimerPhase.complete
+                  ? null
+                  : () => _submitEntry(ref, timerState),
+              icon: entryState.isSubmitting
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.save),
+              label: Text(
+                entryState.isSubmitting
+                    ? l10n.saving
+                    : timerState.phase == TimerPhase.complete
+                    ? l10n.logBreathEntry
+                    : l10n.completeTimerToLog,
+              ),
+            ),
+          ),
+        ],
+
+        // Success message
+        if (entryState.lastEntryId != null) ...[
+          const SizedBox(height: 12),
+          Card(
+            color: Theme.of(
+              context,
+            ).colorScheme.primaryContainer.withValues(alpha: 0.3),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                children: [
+                  const Icon(Icons.check, size: 20),
+                  const SizedBox(width: 8),
+                  Text(l10n.entryLoggedSuccess),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ],
+    );
 
     return Scaffold(
       appBar: BrandedAppBar(title: l10n.breathJournalTitle),
-      body: SingleChildScrollView(
+      body: CallbackShortcuts(
+        bindings: {
+          const SingleActivator(LogicalKeyboardKey.enter): () {
+            if (!entryState.isSubmitting &&
+                timerState.phase == TimerPhase.complete) {
+              _submitEntry(ref, timerState);
+            }
+          },
+        },
+        child: Focus(
+          autofocus: true,
+          child: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Two-click breath entry
-            const BreathEntryWidget(),
-            const SizedBox(height: 16),
-
-            // Alignment result + micro-advice
-            const AlignmentResultWidget(),
-
-            // Show timer and pacer only after selection
-            if (hasSelection) ...[
-              const SizedBox(height: 16),
-              const BreathTimerWidget(),
-              const SizedBox(height: 12),
-
-              // Quick Sync Pacer (show if not aligned)
-              if (alignment != null && !alignment.isAligned)
-                const QuickSyncPacer(),
-
-              const SizedBox(height: 16),
-
-              // Submit button — only enabled after timer completes
-              Semantics(
-                button: true,
-                label: timerState.phase == TimerPhase.complete
-                    ? l10n.logBreathEntry
-                    : l10n.completeTimerToLog,
-                child: FilledButton.icon(
-                  onPressed:
-                      entryState.isSubmitting ||
-                          timerState.phase != TimerPhase.complete
-                      ? null
-                      : () => _submitEntry(ref, timerState),
-                  icon: entryState.isSubmitting
-                      ? const SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : const Icon(Icons.save),
-                  label: Text(
-                    entryState.isSubmitting
-                        ? l10n.saving
-                        : timerState.phase == TimerPhase.complete
-                        ? l10n.logBreathEntry
-                        : l10n.completeTimerToLog,
-                  ),
-                ),
+        child: isWide
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Left column: entry controls
+                  Expanded(child: entryPanel),
+                  const SizedBox(width: 16),
+                  // Right column: journal history
+                  const Expanded(child: JournalHistoryList()),
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  entryPanel,
+                  const SizedBox(height: 24),
+                  const Divider(),
+                  const SizedBox(height: 8),
+                  const JournalHistoryList(),
+                ],
               ),
-            ],
-
-            // Success message
-            if (entryState.lastEntryId != null) ...[
-              const SizedBox(height: 12),
-              Card(
-                color: Theme.of(
-                  context,
-                ).colorScheme.primaryContainer.withValues(alpha: 0.3),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.check, size: 20),
-                      const SizedBox(width: 8),
-                      Text(l10n.entryLoggedSuccess),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-
-            const SizedBox(height: 24),
-            const Divider(),
-            const SizedBox(height: 8),
-
-            // Journal history
-            const JournalHistoryList(),
-          ],
-        ),
+      ),
+      ),
       ),
     );
   }

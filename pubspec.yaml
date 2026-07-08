@@ -20,7 +20,7 @@ dependencies:
   go_router: ^17.2.3
 
   # Local Database
-  drift: ^2.33.0
+  drift: ^2.34.0
   sqlite3_flutter_libs: ^0.6.0
   drift_flutter: ^0.3.0
 
@@ -35,9 +35,21 @@ dependencies:
   path_provider: ^2.1.5
   path: ^1.9.1
 
+  # File sharing & picking
+  share_plus: ^10.1.4
+  file_picker: ^8.3.7
+
+  # App info & linking
+  package_info_plus: ^8.3.0
+  url_launcher: ^6.3.1
+
   # Icons
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.3.0
+
+  # Local Notifications (iOS, macOS, Android)
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.10.0
 
 dev_dependencies:
   flutter_test:
@@ -53,10 +65,16 @@ dev_dependencies:
   riverpod_generator: ^4.0.2
   freezed: ^3.0.6
   json_serializable: ^6.9.5
-  drift_dev: ^2.33.0
+  drift_dev: ^2.34.0
 
   # Testing
   mocktail: ^1.0.4
+
+# Pin sqlparser to 0.44.5 — version 0.44.6 (released 2026-07-06) removed
+# the .when() method on DartPlaceholder that drift_dev 2.34.0 depends on.
+# This is a transient upstream issue; remove once drift_dev publishes a fix.
+dependency_overrides:
+  sqlparser: 0.44.5
 
 flutter:
   uses-material-design: true

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
@@ -34,6 +35,7 @@ class BreathEntryWidget extends ConsumerWidget {
                   isSelected: isSelected,
                   label: _localizedFlowLabel(flow, l10n),
                   onTap: () {
+                    HapticFeedback.lightImpact();
                     ref
                         .read(breathEntryNotifierProvider.notifier)
                         .selectFlow(flow);
@@ -73,45 +75,51 @@ class _FlowButton extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Material(
-      color: isSelected ? colorScheme.primaryContainer : colorScheme.surface,
-      borderRadius: BorderRadius.circular(16),
-      elevation: isSelected ? 4 : 1,
-      child: InkWell(
-        onTap: onTap,
+    return Semantics(
+      button: true,
+      label: label,
+      selected: isSelected,
+      child: Material(
+        color: isSelected ? colorScheme.primaryContainer : colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: isSelected
-                  ? colorScheme.primary
-                  : colorScheme.outlineVariant,
-              width: isSelected ? 2 : 1,
-            ),
-          ),
-          child: Column(
-            children: [
-              Icon(
-                _iconForFlow(flow),
-                size: 32,
+        elevation: isSelected ? 4 : 1,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(16),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
                 color: isSelected
                     ? colorScheme.primary
-                    : colorScheme.onSurfaceVariant,
+                    : colorScheme.outlineVariant,
+                width: isSelected ? 2 : 1,
               ),
-              const SizedBox(height: 8),
-              Text(
-                label,
-                style: theme.textTheme.labelLarge?.copyWith(
+            ),
+            child: Column(
+              children: [
+                Icon(
+                  _iconForFlow(flow),
+                  size: 32,
                   color: isSelected
                       ? colorScheme.primary
                       : colorScheme.onSurfaceVariant,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+                const SizedBox(height: 8),
+                Text(
+                  label,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: isSelected
+                        ? colorScheme.primary
+                        : colorScheme.onSurfaceVariant,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),

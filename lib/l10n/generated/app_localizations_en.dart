@@ -19,6 +19,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTab => 'Settings';
 
   @override
+  String get todayTab => 'Today';
+
+  @override
+  String get exploreTab => 'Explore';
+
+  @override
   String get dashboardTitle => 'Saranidhi';
 
   @override
@@ -557,4 +563,124 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noEntriesToday => 'No entries yet today';
+
+  @override
+  String get nightYamas => 'Night Schedule';
+
+  @override
+  String get guidanceNightRuling => 'Night Ruling \u2014 powerful time for meditation and spiritual practice.';
+
+  @override
+  String get guidanceNightEating => 'Night nourishment \u2014 absorb wisdom, journal reflections.';
+
+  @override
+  String get guidanceNightWalking => 'Neutral night period \u2014 light reading or gentle stretching.';
+
+  @override
+  String get guidanceNightSleeping => 'Deep rest period \u2014 ideal for sleep.';
+
+  @override
+  String get guidanceNightDying => 'Night\'s lowest ebb \u2014 sleep deeply, let go completely.';
+
+  @override
+  String get nightNoNostrilPattern => 'Night \u2014 no expected nostril pattern';
+
+  @override
+  String get dataExportImportTitle => 'Data Export / Import';
+
+  @override
+  String get dataExportImportSubtitle => 'Transfer your data between devices or create a manual backup as a JSON file.';
+
+  @override
+  String get exportAllData => 'Export All Data';
+
+  @override
+  String get exporting => 'Exporting...';
+
+  @override
+  String get exportSuccess => 'Data exported successfully';
+
+  @override
+  String get importData => 'Import Data';
+
+  @override
+  String get importing => 'Importing...';
+
+  @override
+  String get importConfirmTitle => 'Import Data?';
+
+  @override
+  String get importConfirmMessage => 'This will replace ALL existing data with the imported file.';
+
+  @override
+  String get importExportedOn => 'Exported on';
+
+  @override
+  String get importProfiles => 'Profiles';
+
+  @override
+  String get importJournalEntries => 'Journal entries';
+
+  @override
+  String get importBreathSessions => 'Breath sessions';
+
+  @override
+  String get importWarning => 'This action cannot be undone.';
+
+  @override
+  String get importConfirmButton => 'Import';
+
+  @override
+  String get importSuccess => 'Data imported successfully';
+
+  @override
+  String get importFailed => 'Import failed';
+
+  @override
+  String get importFailedReadFile => 'Could not read selected file';
+
+  @override
+  String get importInvalidFile => 'Invalid export file';
+
+  @override
+  String get journalEmptyTitle => 'Begin Your Breath Journey';
+
+  @override
+  String get journalEmptySubtitle => 'Track your nostril dominance throughout the day to discover your natural alignment with cosmic rhythms.';
+
+  @override
+  String get journalEmptyHint => 'Start by selecting your nostril flow above';
+
+  @override
+  String get analyticsEmptyTitle => 'Your Insights Await';
+
+  @override
+  String get analyticsEmptySubtitle => 'Log a few breath entries in the Journal tab to unlock patterns, trends, and personalized insights about your practice.';
+
+  @override
+  String get errorSomethingWentWrong => 'Something went wrong';
+
+  @override
+  String get errorTryAgainLater => 'An unexpected error occurred. Please try again.';
+
+  @override
+  String get exploreNoEntriesTitle => 'No entries on this day';
+
+  @override
+  String get exploreNoEntriesHint => 'Navigate to this date\'s Journal tab to log past entries, or explore other dates.';
+
+  @override
+  String get streakZeroTitle => 'Build Your Streak';
+
+  @override
+  String get streakZeroSubtitle => 'Consistency is the key to alignment awareness.';
+
+  @override
+  String get streakStep1 => 'Log your breath flow once per day';
+
+  @override
+  String get streakStep2 => 'Each aligned day adds to your streak';
+
+  @override
+  String get streakStep3 => 'Watch your consistency grow over time';
 }

@@ -272,6 +272,214 @@ class PakshiCalculator {
     }
   }
 
+  // ═══════════════════════════════════════════════════════════════════════
+  // BRIGHT HALF (Shukla Paksha) — Nighttime Tables
+  // ═══════════════════════════════════════════════════════════════════════
+
+  /// Group A: Sunday & Tuesday (Bright Half, Nighttime)
+  static const List<List<PakshiState>> _brightNightGroupA = [
+    // Vulture:  Dying, Ruling, Sleeping, Eating, Walking
+    [_d, _r, _s, _e, _w],
+    // Owl:      Sleeping, Eating, Walking, Dying, Ruling
+    [_s, _e, _w, _d, _r],
+    // Crow:     Eating, Walking, Ruling, Sleeping, Dying
+    [_e, _w, _r, _s, _d],
+    // Cock:     Walking, Sleeping, Dying, Ruling, Eating
+    [_w, _s, _d, _r, _e],
+    // Peacock:  Ruling, Dying, Eating, Walking, Sleeping
+    [_r, _d, _e, _w, _s],
+  ];
+
+  /// Group B: Monday, Wednesday & Saturday (Bright Half, Nighttime)
+  static const List<List<PakshiState>> _brightNightGroupB = [
+    // Vulture:  Walking, Sleeping, Dying, Ruling, Eating
+    [_w, _s, _d, _r, _e],
+    // Owl:      Dying, Ruling, Sleeping, Eating, Walking
+    [_d, _r, _s, _e, _w],
+    // Crow:     Ruling, Dying, Eating, Walking, Sleeping
+    [_r, _d, _e, _w, _s],
+    // Cock:     Eating, Walking, Ruling, Sleeping, Dying
+    [_e, _w, _r, _s, _d],
+    // Peacock:  Sleeping, Eating, Walking, Dying, Ruling
+    [_s, _e, _w, _d, _r],
+  ];
+
+  /// Group C: Thursday (Bright Half, Nighttime)
+  static const List<List<PakshiState>> _brightNightGroupC = [
+    // Vulture:  Ruling, Dying, Eating, Walking, Sleeping
+    [_r, _d, _e, _w, _s],
+    // Owl:      Eating, Walking, Ruling, Sleeping, Dying
+    [_e, _w, _r, _s, _d],
+    // Crow:     Dying, Ruling, Sleeping, Eating, Walking
+    [_d, _r, _s, _e, _w],
+    // Cock:     Sleeping, Eating, Walking, Dying, Ruling
+    [_s, _e, _w, _d, _r],
+    // Peacock:  Walking, Sleeping, Dying, Ruling, Eating
+    [_w, _s, _d, _r, _e],
+  ];
+
+  /// Group D: Friday (Bright Half, Nighttime)
+  static const List<List<PakshiState>> _brightNightGroupD = [
+    // Vulture:  Eating, Walking, Ruling, Sleeping, Dying
+    [_e, _w, _r, _s, _d],
+    // Owl:      Walking, Sleeping, Dying, Ruling, Eating
+    [_w, _s, _d, _r, _e],
+    // Crow:     Sleeping, Eating, Walking, Dying, Ruling
+    [_s, _e, _w, _d, _r],
+    // Cock:     Dying, Ruling, Sleeping, Eating, Walking
+    [_d, _r, _s, _e, _w],
+    // Peacock:  Ruling, Dying, Eating, Walking, Sleeping
+    [_r, _d, _e, _w, _s],
+  ];
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // DARK HALF (Krishna Paksha) — Nighttime Tables
+  // ═══════════════════════════════════════════════════════════════════════
+
+  /// Group A: Sunday & Tuesday (Dark Half, Nighttime)
+  static const List<List<PakshiState>> _darkNightGroupA = [
+    // Vulture:  Sleeping, Walking, Dying, Eating, Ruling
+    [_s, _w, _d, _e, _r],
+    // Owl:      Eating, Dying, Walking, Ruling, Sleeping
+    [_e, _d, _w, _r, _s],
+    // Crow:     Walking, Ruling, Eating, Sleeping, Dying
+    [_w, _r, _e, _s, _d],
+    // Cock:     Dying, Sleeping, Ruling, Dying, Eating
+    [_d, _s, _r, _d, _e],
+    // Peacock:  Ruling, Eating, Sleeping, Walking, Walking
+    [_r, _e, _s, _w, _w],
+  ];
+
+  /// Group B: Monday & Saturday (Dark Half, Nighttime)
+  static const List<List<PakshiState>> _darkNightGroupB = [
+    // Vulture:  Ruling, Eating, Sleeping, Walking, Dying
+    [_r, _e, _s, _w, _d],
+    // Owl:      Sleeping, Walking, Dying, Eating, Ruling
+    [_s, _w, _d, _e, _r],
+    // Crow:     Dying, Sleeping, Ruling, Dying, Eating
+    [_d, _s, _r, _d, _e],
+    // Cock:     Eating, Ruling, Walking, Sleeping, Walking
+    [_e, _r, _w, _s, _w],
+    // Peacock:  Walking, Dying, Eating, Ruling, Sleeping
+    [_w, _d, _e, _r, _s],
+  ];
+
+  /// Group C: Wednesday (Dark Half, Nighttime)
+  static const List<List<PakshiState>> _darkNightGroupC = [
+    // Vulture:  Eating, Ruling, Sleeping, Dying, Walking
+    [_e, _r, _s, _d, _w],
+    // Owl:      Walking, Dying, Eating, Ruling, Sleeping
+    [_w, _d, _e, _r, _s],
+    // Crow:     Dying, Eating, Walking, Sleeping, Ruling
+    [_d, _e, _w, _s, _r],
+    // Cock:     Ruling, Sleeping, Dying, Walking, Eating
+    [_r, _s, _d, _w, _e],
+    // Peacock:  Sleeping, Walking, Ruling, Eating, Dying
+    [_s, _w, _r, _e, _d],
+  ];
+
+  /// Group D: Thursday (Dark Half, Nighttime)
+  static const List<List<PakshiState>> _darkNightGroupD = [
+    // Vulture:  Dying, Walking, Ruling, Eating, Sleeping
+    [_d, _w, _r, _e, _s],
+    // Owl:      Ruling, Eating, Sleeping, Walking, Dying
+    [_r, _e, _s, _w, _d],
+    // Crow:     Sleeping, Dying, Eating, Ruling, Walking
+    [_s, _d, _e, _r, _w],
+    // Cock:     Eating, Ruling, Walking, Dying, Ruling
+    [_e, _r, _w, _d, _r],
+    // Peacock:  Walking, Sleeping, Dying, Sleeping, Eating
+    [_w, _s, _d, _s, _e],
+  ];
+
+  /// Group E: Friday (Dark Half, Nighttime)
+  static const List<List<PakshiState>> _darkNightGroupE = [
+    // Vulture:  Walking, Sleeping, Dying, Ruling, Eating
+    [_w, _s, _d, _r, _e],
+    // Owl:      Dying, Eating, Ruling, Sleeping, Walking
+    [_d, _e, _r, _s, _w],
+    // Crow:     Eating, Walking, Sleeping, Dying, Ruling
+    [_e, _w, _s, _d, _r],
+    // Cock:     Ruling, Dying, Eating, Walking, Sleeping
+    [_r, _d, _e, _w, _s],
+    // Peacock:  Sleeping, Ruling, Walking, Eating, Dying
+    [_s, _r, _w, _e, _d],
+  ];
+
+  /// Returns the correct NIGHTTIME state table for the given [weekday]
+  /// and [lunarPhase].
+  static List<List<PakshiState>> _getNightStateTable({
+    required int weekday,
+    required LunarPhase lunarPhase,
+  }) {
+    if (lunarPhase == LunarPhase.waxing) {
+      return switch (weekday) {
+        0 || 2 => _brightNightGroupA,
+        1 || 3 || 6 => _brightNightGroupB,
+        4 => _brightNightGroupC,
+        5 => _brightNightGroupD,
+        _ => _brightNightGroupA, // unreachable
+      };
+    } else {
+      return switch (weekday) {
+        0 || 2 => _darkNightGroupA,
+        1 || 6 => _darkNightGroupB,
+        3 => _darkNightGroupC,
+        4 => _darkNightGroupD,
+        5 => _darkNightGroupE,
+        _ => _darkNightGroupA, // unreachable
+      };
+    }
+  }
+
+  /// Calculates the night Pakshi assignment for a given [weekday]
+  /// and [lunarPhase].
+  ///
+  /// [weekday] is 0=Sunday through 6=Saturday (use [dartWeekdayToSunBased]
+  /// to convert from Dart's DateTime.weekday).
+  ///
+  /// Returns a [PakshiDayResult] containing:
+  /// - `entries`: The ruling bird for each night Yama.
+  /// - `stateTable`: Full 2D table of all birds' states per night Yama.
+  static PakshiDayResult calculateNight({
+    required int weekday,
+    required LunarPhase lunarPhase,
+  }) {
+    if (weekday < 0 || weekday > 6) {
+      throw ArgumentError.value(
+        weekday,
+        'weekday',
+        'Must be 0 (Sunday) through 6 (Saturday)',
+      );
+    }
+
+    final stateTable = _getNightStateTable(
+      weekday: weekday,
+      lunarPhase: lunarPhase,
+    );
+
+    // Build entries: for each Yama, find the bird whose state is Ruling.
+    final entries = <PakshiResult>[];
+    for (var yamaIdx = 0; yamaIdx < 5; yamaIdx++) {
+      PakshiBird? rulingBird;
+      for (var birdIdx = 0; birdIdx < 5; birdIdx++) {
+        if (stateTable[birdIdx][yamaIdx] == PakshiState.ruling) {
+          rulingBird = PakshiBird.values[birdIdx];
+          break;
+        }
+      }
+      entries.add(
+        PakshiResult(
+          bird: rulingBird ?? PakshiBird.vulture,
+          state: PakshiState.ruling,
+          yama: YamaIndex.values[yamaIdx],
+        ),
+      );
+    }
+
+    return PakshiDayResult(entries: entries, stateTable: stateTable);
+  }
+
   /// Calculates the full-day Pakshi assignment for a given [weekday]
   /// and [lunarPhase].
   ///

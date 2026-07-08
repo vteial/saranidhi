@@ -8,6 +8,12 @@ class Profiles extends Table {
   TextColumn get birthBird => text().nullable()();
   RealColumn get locationLat => real().nullable()();
   RealColumn get locationLng => real().nullable()();
+  // DOB fields for accurate nakshatra calculation (Sprint 21)
+  IntColumn get birthDateEpoch => integer().nullable()();
+  TextColumn get birthTime => text().nullable()();
+  TextColumn get birthPlaceName => text().nullable()();
+  RealColumn get birthPlaceLat => real().nullable()();
+  RealColumn get birthPlaceLng => real().nullable()();
   TextColumn get theme => text().withDefault(const Constant('light'))();
   TextColumn get language => text().withDefault(const Constant('en'))();
   TextColumn get storageMode => text().withDefault(const Constant('local'))();
@@ -38,6 +44,7 @@ class SaraKalaiJournal extends Table {
   TextColumn get activeBirdState => text().nullable()();
   TextColumn get activeElement => text().nullable()();
   TextColumn get notes => text().nullable()();
+  BoolColumn get isPinned => boolean().withDefault(const Constant(false))();
 
   @override
   Set<Column> get primaryKey => {id};
