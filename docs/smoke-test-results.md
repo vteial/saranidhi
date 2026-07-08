@@ -9,7 +9,7 @@ Each production release has a single smoke test file containing both the plan (s
 | Version | Date | Tester | Scenarios | Verdict | File |
 |---------|------|--------|-----------|---------|------|
 | v1.0.0-web | 2026-07-02 | Eialarasu | 42 | ✅ PASS | [v1.0.0](smoke-test-v1.0.0.md) |
-| v1.2.0-web | Pending | Eialarasu | 62 | ⬜ Pending | [v1.2.0](smoke-test-v1.2.0.md) |
+| v1.2.0-web | 2026-07-08 | Eialarasu | 62 | ✅ PASS | [v1.2.0](smoke-test-v1.2.0.md) |
 
 ## Process
 

@@ -8,7 +8,7 @@
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
 **Sprints Delivered:** 27 (+ Sprint 0 pre-development)
 **Total Engineering Investment:** ~71.0 Hours
-**Pull Requests Merged:** 68
+**Pull Requests Merged:** 74
 **Automated Test Coverage:** 410+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
