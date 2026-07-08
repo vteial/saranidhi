@@ -100,9 +100,9 @@ Saranidhi aims to be a **daily-use spiritual breath companion** that provides ge
 
 ---
 
-## v1.2.0-web Release (Current — Pending Smoke Test)
+## v1.2.0-web Release (✅ Released — 2026-07-08)
 
-**Status:** Development complete (Sprints 24–27). Smoke test pending.
+**Status:** Released to production. Tag: `v1.2.0-web`
 
 | Deliverable | Sprint |
 |-------------|--------|

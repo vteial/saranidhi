@@ -32,15 +32,15 @@ main ─────────────────────────
 
 ## Sprint Protocols
 
-### `/start-sprint`
+### `/sprint-start`
 
 Lightweight entry point — creates the branch and marks the sprint active.
 
 1. Create feature branch from `main` (`feature/sprintN-<topic>`)
-2. Update `docs/sprint-tracker.md` — mark sprint as "(Current Sprint)"
+2. Update `docs/sprint-tracker.md` — mark sprint as "🚧 In Progress"
 3. Begin implementation
 
-### `/finish-sprint`
+### `/sprint-finish`
 
 Closes the sprint — delivers the code for user to merge.
 
@@ -51,11 +51,11 @@ Closes the sprint — delivers the code for user to merge.
 5. Push tracker update to PR branch
 6. **Tell user PR is ready for merge** — Kiro NEVER merges directly
 7. User reviews + merges (sprint officially closed)
-8. Ask: *"Run /project-update now or later?"*
+8. Ask: *"Run /sprint-update now or later?"*
 
-### `/project-update`
+### `/sprint-update`
 
-Runs **after merge** on a separate docs-only branch to avoid CI code failures.
+Runs **after sprint merge** on a separate docs-only branch to avoid CI code failures.
 
 1. Create branch from `main` (`docs/sprintN-update`)
 2. Update all clerical docs:
@@ -65,15 +65,14 @@ Runs **after merge** on a separate docs-only branch to avoid CI code failures.
    - `docs/testing-plan.md` — test count progression, scenarios awaiting coverage
    - `docs/dev-workflow.md` — any threshold/process changes
    - `.kiro/steering/saranidhi-spec.md` — tech stack updates
-   - **`docs/manual-smoke-test.md`** — add scenarios for new features (mandatory)
-   - **`docs/smoke-test-results-v{X.Y.Z}.md`** — update checklist if scenarios added (mandatory)
+   - **`docs/smoke-test-vX.Y.Z.md`** — add scenarios for new features (mandatory)
    - **User Guide content** — refresh guide sections affected by sprint changes (mandatory)
 3. Commit, push, create docs-only PR
 4. **User reviews and merges**
 
 **Hours estimation rule:** Use AI-estimated active time + 20% buffer (owner-approved).
 
-**Mandatory additions (per new protocol):** Every /project-update MUST include User Guide refresh + smoke test plan update. These are not optional.
+**Mandatory additions:** Every /sprint-update MUST include User Guide refresh + smoke test plan update. These are not optional.
 
 ### `/plan`
 
@@ -120,7 +119,7 @@ Quick-fix protocol for defects found after merge.
 
 ### `/release`
 
-Two-phase production promotion with smoke test quality gate.
+Three-phase production promotion with smoke test quality gate.
 
 #### Phase 1: `/release-start`
 
@@ -133,7 +132,7 @@ Prepares the smoke test execution.
 5. User commits results (Pass/Fail + Notes) to the same branch
 6. User reviews and merges PR → smoke test results now on `main`
 
-#### Phase 2: `/release-complete`
+#### Phase 2: `/release-finish`
 
 Promotes to production after smoke test passes.
 
@@ -151,11 +150,24 @@ Promotes to production after smoke test passes.
    - Release notes: same as PR body
    - Publish
 
+#### Phase 3: `/release-update`
+
+Post-release documentation closure (light touch-up).
+
+1. Kiro creates branch from `main` (`docs/release-vX.Y.Z-update`)
+2. Update:
+   - `docs/smoke-test-results.md` — mark version as ✅ PASS with date
+   - `CHANGELOG.md` — set release date (remove "Pending")
+   - `docs/project-valuation-report.md` — update PR count + release tag entry
+   - `docs/release-1.0-plan.md` — mark release milestone as ✅ Complete
+3. Commit, push, create docs-only PR
+4. **User reviews and merges**
+
 **Rules:**
 - Kiro NEVER pushes to `main` or `prod` directly
 - Kiro NEVER creates tags — user does via GitHub Release UI
-- If smoke test has failures → hotfix PR first → re-test → then `/release-complete`
-- All smoke test results must show PASS before `/release-complete` is issued
+- If smoke test has failures → hotfix PR first → re-test → then `/release-finish`
+- All smoke test results must show PASS before `/release-finish` is issued
 
 **Versioning:**
 - `vX.Y.Z-web` where:
