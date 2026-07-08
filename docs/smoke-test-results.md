@@ -1,40 +1,23 @@
 [← Back to Root](../README.md)
 
-# Saranidhi — Smoke Test Results (Release History)
+# Saranidhi — Smoke Test History
 
-## Overview
-
-Each production release requires a passing smoke test before tagging. Results are recorded per-version for traceability and regression comparison.
-
----
+Each production release has a single smoke test file containing both the plan (scenarios + expected outcomes) and the execution results.
 
 ## Release History
 
-| Version | Date | Tester | Scenarios | Verdict | Results File |
-|---------|------|--------|-----------|---------|--------------|
-| v1.0.0-web | 2026-07-02 | Eialarasu | 42 (Sections A-E) | ✅ PASS | [v1.0.0](smoke-test-results-v1.0.0.md) |
-| v1.2.0-web | Pending | Eialarasu | 62 (Sections A-I) | ⬜ Pending | [v1.2.0](smoke-test-results-v1.2.0.md) |
-
----
+| Version | Date | Tester | Scenarios | Verdict | File |
+|---------|------|--------|-----------|---------|------|
+| v1.0.0-web | 2026-07-02 | Eialarasu | 42 | ✅ PASS | [v1.0.0](smoke-test-v1.0.0.md) |
+| v1.2.0-web | Pending | Eialarasu | 62 | ⬜ Pending | [v1.2.0](smoke-test-v1.2.0.md) |
 
 ## Process
 
-1. Sprint merged to `main` → staging auto-deploys
-2. Tester executes smoke test on staging using `docs/manual-smoke-test.md`
-3. Results recorded in `docs/smoke-test-results-v{X.Y.Z}.md`
-4. ALL sections must pass → tag release version
-5. Any failures → hotfix PR → re-test failed scenarios → update results
-
----
-
-## Production Gate Checklist
-
-Before tagging a release:
-
-- [ ] All smoke test sections pass
-- [ ] CI pipeline passes (analyze + test + build)
-- [ ] No open critical/blocker issues
-- [ ] Owner sign-off
+1. Sprint merged → staging auto-deploys
+2. Open `docs/smoke-test-v{X.Y.Z}.md` — scenarios + results in one file
+3. Execute on staging, fill in Pass?/Notes columns
+4. ALL sections pass → tag release → production
+5. Any failures → hotfix → re-test failed scenarios
 
 ---
 
