@@ -183,8 +183,8 @@ Feature branch → PR → main (staging) → /release PR → prod (production)
 - [Release Plan](docs/release-1.0-plan.md) — Phased release milestones (5 phases)
 - [Sprint Tracker](docs/sprint-tracker.md) — Current progress
 - [Testing Plan](docs/testing-plan.md) — Test strategy and scenarios
-- [Manual Smoke Test](docs/manual-smoke-test.md) — Pre-production manual QA scenarios
-- [Smoke Test Results](docs/smoke-test-results.md) — Execution results (production pass gate)
+- [Smoke Test History](docs/smoke-test-results.md) — Release index linking to per-version test files
+- [Smoke Test v1.2.0](docs/smoke-test-v1.2.0.md) — Current smoke test (plan + results in one file)
 - [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, protocols (`/start-sprint`, `/finish-sprint`, `/release`)
 - [Dev Setup](docs/dev-setup.md) — iMac development environment setup (10-step guide)
 - [Deployment Guide](docs/deployment.md) — Prod/Staging/Preview architecture, rollback, monitoring
