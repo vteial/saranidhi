@@ -120,43 +120,48 @@ Quick-fix protocol for defects found after merge.
 
 ### `/release`
 
-Promotes `main` (staging) to `prod` (production) via a tracked PR.
+Two-phase production promotion with smoke test quality gate.
 
-1. Create PR from `main` → `prod`
-2. PR title: `Release: vX.Y.Z — <summary>`
-3. PR body: release notes structured as:
+#### Phase 1: `/release-start`
+
+Prepares the smoke test execution.
+
+1. Kiro creates branch `release/vX.Y.Z` from `main`
+2. Ensures `docs/smoke-test-vX.Y.Z.md` exists (plan + results template)
+3. Creates PR targeting `main`
+4. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
+5. User commits results (Pass/Fail + Notes) to the same branch
+6. User reviews and merges PR → smoke test results now on `main`
+
+#### Phase 2: `/release-complete`
+
+Promotes to production after smoke test passes.
+
+1. Kiro validates the smoke test PR is merged to `main`
+2. Kiro creates PR from `main` → `prod` with release notes:
    - **What's New** — features added since last release
    - **Fixes** — bugs resolved
    - **Known Issues** — anything still pending
    - **Sprint(s)** — which sprints are included
-4. **Verify manual smoke test passes** on staging (saranidhi-staging.vercel.app)
-   - Execute `docs/manual-smoke-test.md` scenarios
-   - Record results in `docs/smoke-test-results.md`
-   - All sections must pass before merge
-5. Review the PR (final sanity check)
-6. Merge → Vercel auto-deploys `prod` to `saranidhi.vercel.app`
-7. Tag the release on `prod`:
-   ```bash
-   git checkout prod && git pull
-   git tag vX.Y.Z
-   git push origin vX.Y.Z
-   ```
-8. (Optional) Create GitHub Release from the tag with the same notes
+3. User reviews the release PR (final sanity check)
+4. User merges → Vercel auto-deploys `prod` to `saranidhi.vercel.app`
+5. User creates **GitHub Release** from UI:
+   - Tag: `vX.Y.Z-web`
+   - Target: `prod` branch
+   - Release notes: same as PR body
+   - Publish
+
+**Rules:**
+- Kiro NEVER pushes to `main` or `prod` directly
+- Kiro NEVER creates tags — user does via GitHub Release UI
+- If smoke test has failures → hotfix PR first → re-test → then `/release-complete`
+- All smoke test results must show PASS before `/release-complete` is issued
 
 **Versioning:**
 - `vX.Y.Z-web` where:
-  - **X** = major (breaking changes, redesigns)
+  - **X** = major (breaking changes, new layers)
   - **Y** = minor (new sprint features)
   - **Z** = patch (hotfixes, minor tweaks)
-- Examples:
-  - `v1.1.0-web` — Sprint 14 features (birth bird dashboard)
-  - `v1.1.1-web` — Hotfix after Sprint 14
-  - `v1.2.0-web` — Sprint 15 features (night yamas)
-
-**When to release:**
-- After each sprint merge (or batch of sprints) when staging is verified
-- Not every merge to `main` needs a production release
-- Release when you're confident the staging version is stable
 
 ---
 
