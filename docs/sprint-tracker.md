@@ -10,7 +10,7 @@
 - [x] Task 0.2: Create Kiro steering files (`pr-workflow.md`, `saranidhi-spec.md`)
 - [x] Task 0.3: Create `README.md` with project overview, name etymology, architecture, and tech stack
 - [x] Task 0.4: Create `docs/project-plan.md` with full feature modules, data schema, and deployment architecture
-- [x] Task 0.5: Create `docs/release-1.0-plan.md` with sprint-to-release mapping and milestones
+- [x] Task 0.5: Create `docs/roadmap.md` with sprint-to-release mapping and milestones
 - [x] Task 0.6: Create `docs/sprint-tracker.md` (this file)
 - [x] Task 0.7: Create `docs/testing-plan.md` with test strategy and scenario matrix
 - [x] Task 0.8: Create app logo SVG (`public/logo.svg`)
@@ -162,7 +162,7 @@
 - [x] Task 11.2: Create `docs/smoke-test-results.md` template (ready for manual execution)
 - [x] Task 11.3: Add CI `paths-ignore` for docs-only branches (skip quality gates on .md/.kiro changes)
 - [x] Task 11.4: Add `/plan` protocol to `docs/dev-workflow.md`
-- [x] Task 11.5: Revise `docs/release-1.0-plan.md` — updated sprint mapping (11–14), move cloud backup/auth to 1.1
+- [x] Task 11.5: Revise `docs/roadmap.md` — updated sprint mapping (11–14), move cloud backup/auth to 1.1
 - [x] Task 11.6: Update `docs/sprint-tracker.md` with Sprints 12–14 definitions
 - [x] Task 11.7: Improve Tamil translations (deferred to Sprint 12 — completed via PR #21 + #22)
 
