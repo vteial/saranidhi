@@ -7,8 +7,8 @@
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
 **Sprints Delivered:** 27 (+ Sprint 0 pre-development)
-**Total Engineering Investment:** ~71.0 Hours
-**Pull Requests Merged:** 68
+**Total Engineering Investment:** ~75.0 Hours
+**Pull Requests Merged:** 74
 **Automated Test Coverage:** 410+ assertions (unit + widget + integration)
 **Production Web Release:** v1.0.0-web
 
@@ -208,7 +208,8 @@
 | Day 8 | 2026-07-06 | 00:00 - 03:00 | ~3.0 | Sprint 25 |
 | Day 8 (cont.) | 2026-07-06 | 03:00 - 05:00 | ~2.0 | Sprint 26 |
 | Day 8 (cont.) | 2026-07-06 | 05:00 - 09:00 | ~4.0 | Sprint 27 |
-| | | **Subtotal** | **~63.5** | |
+| Day 9 | 2026-07-07-08 | Various | ~4.0 | Smoke test + v1.2.0 release + docs audit |
+| | | **Subtotal** | **~67.5** | |
 
 *Note: This project is developed with AI-assisted coding (Kiro Agent), resulting in significantly compressed development timelines compared to traditional development.*
 
@@ -230,7 +231,8 @@
 |----------|-------|
 | Active coding & debugging (AI-assisted) | 63.5 |
 | Infrastructure & admin ops | 7.5 |
-| **Total** | **~71.0** |
+| Smoke test & release ops | 4.0 |
+| **Total** | **~75.0** |
 
 ---
 
