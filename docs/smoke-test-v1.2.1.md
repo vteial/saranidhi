@@ -38,7 +38,7 @@
 | 15 | User Guide back button | Settings → About → User Guide | Back button matches Settings style (SliverAppBar) | Yes |
 | 16 | Monthly Patterns dedup | Analytics → Monthly Patterns | "Needs Attention" hidden if same as "Best Day" | Yes |
 | 17 | App version in About | Settings → About card | Shows "v1.2.1(1)" instead of 'v1.2.1' | No | 
-| 18 | Export has version fields | Settings → Export → open JSON | Contains "appVersion": "1.2.1", "schemaVersion": 3 | |
+| 18 | Export has version fields | Settings → Export → open JSON | Contains "appVersion": "1.2.1", "schemaVersion": 3 | Yes |
 | 19 | DB migration (no crash) | Load app with existing data | App loads, pinned entries persist | Yes |
 
 ---
@@ -47,17 +47,17 @@
 
 | # | Scenario | Steps | Expected | Pass? |
 |---|----------|-------|----------|-------|
-| 20 | App loads | Open URL | Dashboard loads without error | |
-| 21 | Bird Card displays | Today tab | Birth bird + state + guidance text visible | |
-| 22 | Rahu Kaal timing | Today tab | Rahu time window shows reasonable IST time | |
-| 23 | Full day schedule | Today tab | 10 yamas (5 day + 5 night) with states | |
-| 24 | Log Solar entry | Journal → Solar → timer → complete → log | Entry saved, appears in history | |
-| 25 | Log Lunar entry | Journal → Lunar → timer → complete → log | Entry saved, aligned/not-aligned shown | |
-| 26 | Streak updates | After logging entry | Streak count reflects new entry | |
-| 27 | Theme switch | Settings → Dark mode | UI switches without crash | |
-| 28 | Language switch (Tamil) | Settings → Tamil | All visible text switches to Tamil | |
-| 29 | Date navigation | Explore → tap ← / → arrows | Schedule updates for selected date | |
-| 30 | Export/Import | Settings → Export → download file | Valid JSON file downloads | |
+| 20 | App loads | Open URL | Dashboard loads without error | Yes |
+| 21 | Bird Card displays | Today tab | Birth bird + state + guidance text visible | Yes |
+| 22 | Rahu Kaal timing | Today tab | Rahu time window shows reasonable IST time | Yes |
+| 23 | Full day schedule | Today tab | 10 yamas (5 day + 5 night) with states | Yes |
+| 24 | Log Solar entry | Journal → Solar → timer → complete → log | Entry saved, appears in history | Yes |
+| 25 | Log Lunar entry | Journal → Lunar → timer → complete → log | Entry saved, aligned/not-aligned shown | Yes |
+| 26 | Streak updates | After logging entry | Streak count reflects new entry | Yes |
+| 27 | Theme switch | Settings → Dark mode | UI switches without crash | Yes |
+| 28 | Language switch (Tamil) | Settings → Tamil | All visible text switches to Tamil | Yes |
+| 29 | Date navigation | Explore → tap ← / → arrows | Schedule updates for selected date | Yes |
+| 30 | Export/Import | Settings → Export → download file | Valid JSON file downloads | Yes |
 
 ---
 
@@ -65,7 +65,7 @@
 
 | Total | Passed | Failed | Blocked |
 |-------|--------|--------|---------|
-| 30 | | | |
+| 30 | 29 | 1 | 0 |
 
 ### Failures (if any)
 
