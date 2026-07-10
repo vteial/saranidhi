@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
-import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
