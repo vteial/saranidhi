@@ -601,4 +601,35 @@ class PakshiCalculator {
     'uttara bhadrapada',
     'revati',
   };
+
+  /// Swap table for birth bird based on lunar phase.
+  ///
+  /// In Panja Pakshi Shastra, the birth bird derived from nakshatra
+  /// represents the waxing (Shukla Paksha) bird. During waning
+  /// (Krishna Paksha), the bird swaps according to the mirror mapping:
+  /// - Vulture (1) ↔ Peacock (5)
+  /// - Owl (2) ↔ Rooster (4)
+  /// - Crow (3) stays Crow (3)
+  ///
+  /// Source: suzhimunai.wordpress.com (Tamil Panchapakshi reference)
+  static const Map<PakshiBird, PakshiBird> _waningSwapTable = {
+    PakshiBird.vulture: PakshiBird.peacock,
+    PakshiBird.owl: PakshiBird.rooster,
+    PakshiBird.crow: PakshiBird.crow,
+    PakshiBird.rooster: PakshiBird.owl,
+    PakshiBird.peacock: PakshiBird.vulture,
+  };
+
+  /// Returns the effective birth bird for the given lunar phase.
+  ///
+  /// During waxing (Shukla Paksha), the birth bird is the natal bird
+  /// directly from nakshatra. During waning (Krishna Paksha), the bird
+  /// swaps per the traditional mirror mapping.
+  static PakshiBird birthBirdForPhase(
+    PakshiBird natalBird,
+    LunarPhase phase,
+  ) {
+    if (phase == LunarPhase.waxing) return natalBird;
+    return _waningSwapTable[natalBird] ?? natalBird;
+  }
 }

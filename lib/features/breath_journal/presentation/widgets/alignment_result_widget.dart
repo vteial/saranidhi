@@ -20,6 +20,11 @@ class AlignmentResultWidget extends ConsumerWidget {
       return const SizedBox.shrink();
     }
 
+    // Sushumna: don't show alignment result — it's a sacred observation moment
+    if (selectedFlow == BreathFlow.sushumna) {
+      return const SizedBox.shrink();
+    }
+
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final isAligned = alignment.isAligned;

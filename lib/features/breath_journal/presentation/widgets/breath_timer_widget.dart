@@ -138,6 +138,27 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
                   const SizedBox(height: 12),
                   _TimerResults(timerState: timerState, l10n: l10n),
                 ],
+                // Reset/Cancel button during active phases
+                if (isRunning) ...[
+                  const SizedBox(height: 12),
+                  TextButton.icon(
+                    onPressed: () {
+                      _stopwatch
+                        ..stop()
+                        ..reset();
+                      _stopDisplayTimer();
+                      ref.read(breathTimerNotifierProvider.notifier).reset();
+                      setState(() {
+                        _displaySeconds = 0;
+                      });
+                    },
+                    icon: const Icon(Icons.stop_circle_outlined, size: 18),
+                    label: Text(l10n.cancelTimer),
+                    style: TextButton.styleFrom(
+                      foregroundColor: theme.colorScheme.error,
+                    ),
+                  ),
+                ],
               ],
             ),
           ),

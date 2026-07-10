@@ -19,7 +19,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [1.2.0-web] — 2026-07-06 (Pending smoke test)
+## [1.2.0-web] — 2026-07-08
 
 ### Added
 - **Empty states & shimmer loading** (Sprint 24) — friendly empty states for journal, analytics, explore; animated skeleton loading cards; error boundary widgets
@@ -85,6 +85,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-[Unreleased]: https://github.com/vteial/saranidhi/compare/v1.1.0-web...main
+[Unreleased]: https://github.com/vteial/saranidhi/compare/v1.2.0-web...main
+[1.2.0-web]: https://github.com/vteial/saranidhi/compare/v1.1.0-web...v1.2.0-web
 [1.1.0-web]: https://github.com/vteial/saranidhi/compare/v1.0.0-web...v1.1.0-web
 [1.0.0-web]: https://github.com/vteial/saranidhi/releases/tag/v1.0.0-web

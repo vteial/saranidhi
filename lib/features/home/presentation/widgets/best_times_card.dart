@@ -9,6 +9,7 @@ import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// A single "best time" entry for one day.
 class BestTimeEntry {
@@ -99,6 +100,7 @@ class BestTimesCard extends ConsumerWidget {
     final bestTimesAsync = ref.watch(bestTimesProvider);
     final dashboardAsync = ref.watch(dashboardDataProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return bestTimesAsync.when(
       data: (entries) {
@@ -120,7 +122,7 @@ class BestTimesCard extends ConsumerWidget {
                     Text(birdEmoji, style: const TextStyle(fontSize: 18)),
                     const SizedBox(width: 8),
                     Text(
-                      'Best Times This Week',
+                      l10n.bestTimesTitle,
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -156,14 +158,16 @@ class _BestTimeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final now = DateTime.now();
     final isToday = entry.date.year == now.year &&
         entry.date.month == now.month &&
         entry.date.day == now.day;
 
     final dayLabel = isToday
-        ? 'Today'
-        : DateFormat('EEE, MMM d').format(entry.date);
+        ? l10n.today
+        : DateFormat('EEE, MMM d', Localizations.localeOf(context).languageCode)
+            .format(entry.date);
 
     final timeRange =
         '${_formatTime(entry.rulingYamaStart)} – ${_formatTime(entry.rulingYamaEnd)}';

@@ -23,7 +23,7 @@ class BirthBirdCard extends StatelessWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
 
-    final bird = data.birthBird;
+    final bird = data.effectiveBirthBird ?? data.birthBird;
     if (bird == null) return const SizedBox.shrink();
 
     // Determine state based on day/night
@@ -245,12 +245,13 @@ class _HoraTattvaRow extends StatelessWidget {
   }
 
   String _localizedTattva(Tattva tattva, AppLocalizations l10n) {
+    // Show "English / Sanskrit" format (e.g., "Earth / Prithvi")
     return switch (tattva) {
-      Tattva.earth => l10n.tattvaEarth,
-      Tattva.water => l10n.tattvaWater,
-      Tattva.fire => l10n.tattvaFire,
-      Tattva.air => l10n.tattvaAir,
-      Tattva.ether => l10n.tattvaEther,
+      Tattva.earth => l10n.tattvaEarthEnglish,
+      Tattva.water => l10n.tattvaWaterEnglish,
+      Tattva.fire => l10n.tattvaFireEnglish,
+      Tattva.air => l10n.tattvaAirEnglish,
+      Tattva.ether => l10n.tattvaEtherEnglish,
     };
   }
 

@@ -237,13 +237,16 @@ class _MonthlyPatternsCard extends ConsumerWidget {
                   color: theme.colorScheme.primary,
                   theme: theme,
                 ),
-                _PatternRow(
-                  icon: Icons.trending_down,
-                  label: l10n.needsAttention,
-                  value: patterns.worstDay ?? '—',
-                  color: theme.colorScheme.error,
-                  theme: theme,
-                ),
+                // Hide "Needs Attention" if it's the same day as "Best Day"
+                if (patterns.worstDay != null &&
+                    patterns.worstDay != patterns.bestDay)
+                  _PatternRow(
+                    icon: Icons.trending_down,
+                    label: l10n.needsAttention,
+                    value: patterns.worstDay!,
+                    color: theme.colorScheme.error,
+                    theme: theme,
+                  ),
                 _PatternRow(
                   icon: Icons.star,
                   label: l10n.mostActiveYama,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:saranidhi/core/utils/bird_emoji.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
-import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -19,7 +18,7 @@ class FullDaySchedule extends StatelessWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
 
-    final bird = data.birthBird;
+    final bird = data.effectiveBirthBird ?? data.birthBird;
     final pakshiDay = data.pakshiDay;
     final yamaResult = data.yamaResult;
     if (bird == null || pakshiDay == null || yamaResult == null) {
@@ -100,26 +99,7 @@ class FullDaySchedule extends StatelessWidget {
                 ),
             ],
 
-            const Divider(height: 16),
-
-            // Align27 comparison row for current yama (day or night)
-            if (!data.isNight && activeYamaIndex != null) ...[
-              _Align27Row(
-                pakshiDay: pakshiDay,
-                activeYamaIndex: activeYamaIndex,
-                l10n: l10n,
-                theme: theme,
-              ),
-            ] else if (data.isNight &&
-                activeNightYamaIndex != null &&
-                data.pakshiNight != null) ...[
-              _NightAlign27Row(
-                pakshiNight: data.pakshiNight!,
-                activeNightYamaIndex: activeNightYamaIndex,
-                l10n: l10n,
-                theme: theme,
-              ),
-            ],
+            // Removed Align27 comparison section (Sprint 27.5)
           ],
         ),
       ),
@@ -244,93 +224,6 @@ class _StateIndicator extends StatelessWidget {
       width: 10,
       height: 10,
       decoration: BoxDecoration(shape: BoxShape.circle, color: color),
-    );
-  }
-}
-
-class _Align27Row extends StatelessWidget {
-  const _Align27Row({
-    required this.pakshiDay,
-    required this.activeYamaIndex,
-    required this.l10n,
-    required this.theme,
-  });
-
-  final PakshiDayResult pakshiDay;
-  final YamaIndex activeYamaIndex;
-  final AppLocalizations l10n;
-  final ThemeData theme;
-
-  @override
-  Widget build(BuildContext context) {
-    final entry = pakshiDay.forYama(activeYamaIndex);
-    final rulingBird = entry.bird;
-    final birdEmoji = BirdEmoji.forBird(rulingBird);
-    final birdName = rulingBird.localizedName(l10n);
-    final stateName = entry.state.localizedName(l10n);
-
-    return Row(
-      children: [
-        Text(birdEmoji, style: const TextStyle(fontSize: 14)),
-        const SizedBox(width: 6),
-        Expanded(
-          child: Text(
-            l10n.align27Shows(birdName, stateName),
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _NightAlign27Row extends StatelessWidget {
-  const _NightAlign27Row({
-    required this.pakshiNight,
-    required this.activeNightYamaIndex,
-    required this.l10n,
-    required this.theme,
-  });
-
-  final PakshiDayResult pakshiNight;
-  final NightYamaIndex activeNightYamaIndex;
-  final AppLocalizations l10n;
-  final ThemeData theme;
-
-  @override
-  Widget build(BuildContext context) {
-    // Find the ruling bird for this night yama
-    final yamaIdx = activeNightYamaIndex.index;
-    PakshiBird? rulingBird;
-    for (var birdIdx = 0; birdIdx < 5; birdIdx++) {
-      if (pakshiNight.stateTable[birdIdx][yamaIdx] == PakshiState.ruling) {
-        rulingBird = PakshiBird.values[birdIdx];
-        break;
-      }
-    }
-    rulingBird ??= PakshiBird.vulture;
-
-    final birdEmoji = BirdEmoji.forBird(rulingBird);
-    final birdName = rulingBird.localizedName(l10n);
-    final stateName = PakshiState.ruling.localizedName(l10n);
-
-    return Row(
-      children: [
-        Text(birdEmoji, style: const TextStyle(fontSize: 14)),
-        const SizedBox(width: 6),
-        Expanded(
-          child: Text(
-            l10n.align27Shows(birdName, stateName),
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

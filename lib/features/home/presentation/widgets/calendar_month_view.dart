@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The displayed month for the calendar view.
 final calendarMonthProvider =
@@ -106,7 +107,15 @@ class CalendarMonthView extends ConsumerWidget {
             // Weekday headers
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+              children: [
+                AppLocalizations.of(context).daySun,
+                AppLocalizations.of(context).dayMon,
+                AppLocalizations.of(context).dayTue,
+                AppLocalizations.of(context).dayWed,
+                AppLocalizations.of(context).dayThu,
+                AppLocalizations.of(context).dayFri,
+                AppLocalizations.of(context).daySat,
+              ]
                   .map(
                     (d) => SizedBox(
                       width: 32,

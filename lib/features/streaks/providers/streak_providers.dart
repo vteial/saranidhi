@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/kuligai_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/rahu_kaal_calculator.dart';
@@ -30,11 +31,13 @@ class DashboardData {
     required this.ribbon,
     required this.yamaAccuracy,
     this.birthBird,
+    this.effectiveBirthBird,
     this.birthBirdState,
     this.pakshiDay,
     this.yamaResult,
     this.activeYama,
     this.rahuKaal,
+    this.kuligaiKaal,
     this.lunarPhase,
     this.todayAvgHoldMs,
     this.todayEntryCount = 0,
@@ -57,6 +60,10 @@ class DashboardData {
   /// User's birth bird from profile.
   final PakshiBird? birthBird;
 
+  /// Effective birth bird after lunar phase swap.
+  /// During waning, certain birds swap (Vulture↔Peacock, Owl↔Rooster).
+  final PakshiBird? effectiveBirthBird;
+
   /// Current state of user's birth bird.
   final PakshiState? birthBirdState;
 
@@ -71,6 +78,9 @@ class DashboardData {
 
   /// Rahu Kaal window.
   final RahuKaalResult? rahuKaal;
+
+  /// Kuligai Kaal window.
+  final KuligaiKaalResult? kuligaiKaal;
 
   /// Current lunar phase.
   final LunarPhase? lunarPhase;
@@ -168,6 +178,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   YamaResult? yamaResult;
   YamaSegment? activeYamaSegment;
   RahuKaalResult? rahuKaal;
+  KuligaiKaalResult? kuligaiKaal;
   LunarPhase? lunarPhase;
   double? todayAvgHoldMs;
   var todayEntryCount = 0;
@@ -235,14 +246,26 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
 
     // Get birth bird state for current/active yama
     if (birthBird != null && activeYamaSegment != null) {
-      birthBirdState = pakshiDay.stateForBird(
+      // Apply lunar phase swap for birth bird
+      final effectiveBird = PakshiCalculator.birthBirdForPhase(
         birthBird,
+        lunarPhase,
+      );
+      birthBirdState = pakshiDay.stateForBird(
+        effectiveBird,
         activeYamaSegment.index,
       );
     }
 
     // Calculate Rahu Kaal
     rahuKaal = RahuKaalCalculator.calculate(
+      sunrise: sunResult.sunrise,
+      sunset: sunResult.sunset,
+      weekday: weekday,
+    );
+
+    // Calculate Kuligai Kaal
+    kuligaiKaal = KuligaiKaalCalculator.calculate(
       sunrise: sunResult.sunrise,
       sunset: sunResult.sunset,
       weekday: weekday,
@@ -272,7 +295,12 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
         );
 
         if (birthBird != null && activeNightYama != null) {
-          birthBirdNightState = pakshiNight.stateTable[birthBird.index]
+          final effectiveNightBird = PakshiCalculator.birthBirdForPhase(
+            birthBird,
+            lunarPhase,
+          );
+          birthBirdNightState = pakshiNight
+              .stateTable[effectiveNightBird.index]
               [activeNightYama.index.index];
         }
       }
@@ -305,7 +333,12 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
         );
 
         if (birthBird != null && activeNightYama != null) {
-          birthBirdNightState = pakshiNight.stateTable[birthBird.index]
+          final effectiveNightBird = PakshiCalculator.birthBirdForPhase(
+            birthBird,
+            yesterdayLunarPhase,
+          );
+          birthBirdNightState = pakshiNight
+              .stateTable[effectiveNightBird.index]
               [activeNightYama.index.index];
         }
       }
@@ -379,11 +412,15 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     ribbon: ribbon,
     yamaAccuracy: yamaAccuracy,
     birthBird: birthBird,
+    effectiveBirthBird: birthBird != null && lunarPhase != null
+        ? PakshiCalculator.birthBirdForPhase(birthBird, lunarPhase)
+        : birthBird,
     birthBirdState: birthBirdState,
     pakshiDay: pakshiDay,
     yamaResult: yamaResult,
     activeYama: activeYamaSegment,
     rahuKaal: rahuKaal,
+    kuligaiKaal: kuligaiKaal,
     lunarPhase: lunarPhase,
     todayAvgHoldMs: todayAvgHoldMs,
     todayEntryCount: todayEntryCount,

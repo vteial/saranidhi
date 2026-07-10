@@ -12,13 +12,13 @@ Saranidhi aims to be a **daily-use spiritual breath companion** that provides ge
 
 | Milestone | Status |
 |-----------|--------|
-| Web production (v1.1.0-web) | ✅ Live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| Web production (v1.2.0-web) | ✅ Live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | Staging environment | ✅ Live at [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| Core Pakshi engine (day + night) | ✅ Authentic 2D tables (daytime + nighttime) |
-| Full Tamil + English | ✅ 180+ ARB keys |
-| Smoke test passed | ✅ All sections |
-| 15 sprints delivered | ✅ 35 PRs merged |
-| Production safety gate | ✅ `prod` branch + `/release` protocol |
+| Core Pakshi engine (day + night) | ✅ Authentic 2D tables + Hora + Tattva |
+| Full Tamil + English | ✅ 200+ ARB keys |
+| Smoke test passed | ✅ 62 scenarios (v1.2.0) |
+| 27 sprints delivered | ✅ 76 PRs merged |
+| Production safety gate | ✅ `prod` branch + `/release-start/finish/update` protocol |
 
 ---
 
@@ -100,9 +100,9 @@ Saranidhi aims to be a **daily-use spiritual breath companion** that provides ge
 
 ---
 
-## v1.2.0-web Release (Current — Pending Smoke Test)
+## v1.2.0-web Release (✅ Released — 2026-07-08)
 
-**Status:** Development complete (Sprints 24–27). Smoke test pending.
+**Status:** Released to production. Tag: `v1.2.0-web`
 
 | Deliverable | Sprint |
 |-------------|--------|

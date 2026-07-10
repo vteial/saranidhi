@@ -8,7 +8,6 @@ import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart'
 import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
 import 'package:saranidhi/features/home/presentation/widgets/best_times_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
-import 'package:saranidhi/features/home/presentation/widgets/calendar_month_view.dart';
 import 'package:saranidhi/features/home/presentation/widgets/date_selector.dart';
 import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
 import 'package:saranidhi/features/home/presentation/widgets/historical_entries_card.dart';
@@ -70,10 +69,6 @@ class _ExploreContent extends ConsumerWidget {
             const DateSelector(),
             const SizedBox(height: 12),
 
-            // Calendar month view
-            const CalendarMonthView(),
-            const SizedBox(height: 12),
-
             // Selected date's Pakshi schedule
             if (isWide)
               Row(
@@ -84,14 +79,26 @@ class _ExploreContent extends ConsumerWidget {
                   if (data.birthBird != null && data.rahuKaal != null)
                     const SizedBox(width: 12),
                   if (data.rahuKaal != null)
-                    Expanded(child: RahuKaalCard(rahuKaal: data.rahuKaal!)),
+                    Expanded(child: RahuKaalCard(
+                      rahuKaal: data.rahuKaal!,
+                      kuligaiKaal: data.kuligaiKaal,
+                      sunrise: data.sunrise,
+                      sunset: data.sunset,
+                      lunarPhase: data.lunarPhase,
+                    )),
                 ],
               )
             else ...[
               if (data.birthBird != null) BirthBirdCard(data: data),
               if (data.birthBird != null) const SizedBox(height: 12),
               if (data.rahuKaal != null)
-                RahuKaalCard(rahuKaal: data.rahuKaal!),
+                RahuKaalCard(
+                  rahuKaal: data.rahuKaal!,
+                  kuligaiKaal: data.kuligaiKaal,
+                  sunrise: data.sunrise,
+                  sunset: data.sunset,
+                  lunarPhase: data.lunarPhase,
+                ),
               if (data.rahuKaal != null) const SizedBox(height: 12),
             ],
 

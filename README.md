@@ -180,7 +180,7 @@ Feature branch → PR → main (staging) → /release PR → prod (production)
 
 - [User Guide](docs/user-guide.md) — What is Saranidhi, its aim, how it helps, and feature overview
 - [Project Plan](docs/project-plan.md) — Features, architecture, deployment targets
-- [Release Plan](docs/release-1.0-plan.md) — Phased release milestones (5 phases)
+- [Roadmap](docs/roadmap.md) — Product roadmap and release milestones
 - [Sprint Tracker](docs/sprint-tracker.md) — Current progress
 - [Testing Plan](docs/testing-plan.md) — Test strategy and scenarios
 - [Smoke Test History](docs/smoke-test-results.md) — Release index linking to per-version test files

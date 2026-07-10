@@ -10,7 +10,7 @@
 - [x] Task 0.2: Create Kiro steering files (`pr-workflow.md`, `saranidhi-spec.md`)
 - [x] Task 0.3: Create `README.md` with project overview, name etymology, architecture, and tech stack
 - [x] Task 0.4: Create `docs/project-plan.md` with full feature modules, data schema, and deployment architecture
-- [x] Task 0.5: Create `docs/release-1.0-plan.md` with sprint-to-release mapping and milestones
+- [x] Task 0.5: Create `docs/roadmap.md` with sprint-to-release mapping and milestones
 - [x] Task 0.6: Create `docs/sprint-tracker.md` (this file)
 - [x] Task 0.7: Create `docs/testing-plan.md` with test strategy and scenario matrix
 - [x] Task 0.8: Create app logo SVG (`public/logo.svg`)
@@ -162,7 +162,7 @@
 - [x] Task 11.2: Create `docs/smoke-test-results.md` template (ready for manual execution)
 - [x] Task 11.3: Add CI `paths-ignore` for docs-only branches (skip quality gates on .md/.kiro changes)
 - [x] Task 11.4: Add `/plan` protocol to `docs/dev-workflow.md`
-- [x] Task 11.5: Revise `docs/release-1.0-plan.md` — updated sprint mapping (11–14), move cloud backup/auth to 1.1
+- [x] Task 11.5: Revise `docs/roadmap.md` — updated sprint mapping (11–14), move cloud backup/auth to 1.1
 - [x] Task 11.6: Update `docs/sprint-tracker.md` with Sprints 12–14 definitions
 - [x] Task 11.7: Improve Tamil translations (deferred to Sprint 12 — completed via PR #21 + #22)
 
@@ -354,12 +354,27 @@
 
 ---
 
-## Sprint E2E: Automated End-to-End Testing (Backlog — based on time & situation)
+## Sprint 27.5: Bugfix + UX Polish (Production Testing Fixes) — Complete (PR #78) ✅
 
-- [ ] Task E2E.1: Set up Playwright (or equivalent) for Flutter Web E2E tests
-- [ ] Task E2E.2: Automate critical path scenarios from smoke test (onboarding, log entry, streak)
-- [ ] Task E2E.3: Integrate E2E tests into CI (run on merge to main)
-- [ ] Task E2E.4: Visual regression snapshots for key screens
+- [x] Task 27.5.1: DB migration — `isPinned` column ALTER TABLE for existing installs
+- [x] Task 27.5.2: Lunar phase hardcoded in AlignmentChecker → use `LunarPhaseCalculator.phaseForDate()`
+- [x] Task 27.5.3: Birth bird swaps with lunar phase (waxing↔waning) — Vulture↔Peacock, Owl↔Rooster, Crow stays
+- [x] Task 27.5.4: Kuligai Kaal calculation + display alongside Rahu Kaal
+- [x] Task 27.5.5: Enhanced Rahu card (add sunrise/sunset + moon phase + Kuligai)
+- [x] Task 27.5.6: Remove Align27 references from app UI (full day schedule row)
+- [x] Task 27.5.7: Sushumna UX redesign — disable timer, show meditation advice, log as moment
+- [x] Task 27.5.8: Reorder nostril buttons: Lunar (Left) → Sushumna (Both) → Solar (Right)
+- [x] Task 27.5.9: Timer reset/cancel button during active phases
+- [x] Task 27.5.10: Export: add app version + schema version to JSON
+- [x] Task 27.5.11: Import: validate version before proceeding
+- [x] Task 27.5.12: `AppConstants` class — centralize global app data
+- [x] Task 27.5.13: Tattva display: "English / Sanskrit" format (EN + TA)
+- [x] Task 27.5.14: "Best Times This Week" card not translated
+- [x] Task 27.5.15: Calendar month view not translated to Tamil
+- [x] Task 27.5.16: DOB calculation result text translation
+- [x] Task 27.5.17: User Guide back button alignment (match Settings pattern)
+- [x] Task 27.5.18: Monthly Patterns: hide "Needs Attention" if same as "Best Day"
+- [x] Task 27.5.19: Create `docs/third-party-comparison.md` (bird state mapping + sources)
 
 ---
 
@@ -404,6 +419,15 @@
 - [ ] Task 31.5: Prasanam history timeline — accessible from Explore tab, chronological past queries
 - [ ] Task 31.6: Post-event outcome notes — tap old query → add reflective notes on real-world outcome
 - [ ] Task 31.7: Tamil translations for Prasanam UI + guidance text
+
+---
+
+## Sprint E2E: Automated End-to-End Testing (Backlog — based on time & situation)
+
+- [ ] Task E2E.1: Set up Playwright (or equivalent) for Flutter Web E2E tests
+- [ ] Task E2E.2: Automate critical path scenarios from smoke test (onboarding, log entry, streak)
+- [ ] Task E2E.3: Integrate E2E tests into CI (run on merge to main)
+- [ ] Task E2E.4: Visual regression snapshots for key screens
 
 ---
 
