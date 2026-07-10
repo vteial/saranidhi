@@ -99,16 +99,7 @@ class FullDaySchedule extends StatelessWidget {
                 ),
             ],
 
-            const Divider(height: 16),
-
-            // Ruling bird info for current yama
-            if (!data.isNight && activeYamaIndex != null) ...[
-              // Removed Align27 comparison row (Sprint 27.5)
-            ] else if (data.isNight &&
-                activeNightYamaIndex != null &&
-                data.pakshiNight != null) ...[
-              // Removed Align27 comparison row (Sprint 27.5)
-            ],
+            // Removed Align27 comparison section (Sprint 27.5)
           ],
         ),
       ),

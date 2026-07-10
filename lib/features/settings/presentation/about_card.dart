@@ -2,14 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:saranidhi/core/utils/app_constants.dart';
 import 'package:saranidhi/features/settings/presentation/user_guide_screen.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Provides app version info from package_info_plus.
+/// Falls back to AppConstants.appVersion if platform info is unavailable.
 final appVersionProvider = FutureProvider<String>((ref) async {
-  final info = await PackageInfo.fromPlatform();
-  return '${info.version} (${info.buildNumber})';
+  try {
+    final info = await PackageInfo.fromPlatform();
+    // On web, buildNumber may be empty; version may be '1.0.0' from pubspec
+    final version = info.version.isNotEmpty ? info.version : AppConstants.appVersion;
+    final build = info.buildNumber.isNotEmpty ? ' (${info.buildNumber})' : '';
+    return '$version$build';
+  } on Exception {
+    return AppConstants.appVersion;
+  }
 });
 
 /// Apple-style About card displayed in Settings.
@@ -50,7 +59,7 @@ class AboutCard extends ConsumerWidget {
               ),
               loading: () => const SizedBox(height: 14),
               error: (_, __) => Text(
-                'v1.0.0',
+                'v${AppConstants.appVersion}',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),

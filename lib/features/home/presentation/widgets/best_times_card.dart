@@ -158,13 +158,14 @@ class _BestTimeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final now = DateTime.now();
     final isToday = entry.date.year == now.year &&
         entry.date.month == now.month &&
         entry.date.day == now.day;
 
     final dayLabel = isToday
-        ? 'Today'
+        ? l10n.today
         : DateFormat('EEE, MMM d').format(entry.date);
 
     final timeRange =

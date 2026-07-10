@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
+import 'package:saranidhi/core/utils/app_constants.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -44,9 +45,9 @@ class DatabaseExporter {
     final preferences = await _exportPreferences();
 
     final exportData = <String, dynamic>{
-      'version': 1,
-      'appVersion': '1.2.1',
-      'schemaVersion': 3,
+      'version': AppConstants.exportVersion,
+      'appVersion': AppConstants.appVersion,
+      'schemaVersion': AppConstants.schemaVersion,
       'exportedAt': DateTime.now().toIso8601String(),
       'profiles': profiles.map(_profileToMap).toList(),
       'journal': journal.map(_journalToMap).toList(),

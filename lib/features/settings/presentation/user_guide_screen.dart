@@ -17,7 +17,9 @@ class UserGuideScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButton(),
         title: Text(l10n.guideTitle),
+        centerTitle: true,
       ),
       body: ResponsiveWrapper(
         child: SingleChildScrollView(
