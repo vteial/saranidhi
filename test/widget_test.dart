@@ -80,25 +80,21 @@ void main() {
 
     // Navigate to Journal tab
     await tester.tap(find.text('Journal'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pumpAndSettle();
     expect(find.text('Breath Journal'), findsOneWidget);
 
     // Navigate to Settings via gear icon
     await tester.tap(find.byIcon(Icons.settings_outlined));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pumpAndSettle();
     expect(find.text('Settings'), findsOneWidget);
 
     // Go back from Settings
     await tester.tap(find.byType(BackButton).first);
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pumpAndSettle();
 
     // Navigate to Home tab
     await tester.tap(find.text('Home'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pumpAndSettle();
     // Verify Today tab content is still visible
     expect(find.text('Today'), findsOneWidget);
     expect(find.text('3 days'), findsOneWidget);
