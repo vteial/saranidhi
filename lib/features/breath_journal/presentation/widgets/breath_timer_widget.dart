@@ -143,8 +143,9 @@ class _BreathTimerWidgetState extends ConsumerState<BreathTimerWidget> {
                   const SizedBox(height: 12),
                   TextButton.icon(
                     onPressed: () {
-                      _stopwatch.stop();
-                      _stopwatch.reset();
+                      _stopwatch
+                        ..stop()
+                        ..reset();
                       _stopDisplayTimer();
                       ref.read(breathTimerNotifierProvider.notifier).reset();
                       setState(() {

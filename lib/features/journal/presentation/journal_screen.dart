@@ -219,12 +219,6 @@ class JournalScreen extends ConsumerWidget {
 
   /// Submit a Sushumna entry as a "moment" (no timer data — duration tracking only).
   void _submitSushumna(WidgetRef ref) {
-    ref
-        .read(breathEntryNotifierProvider.notifier)
-        .submitEntry(
-          inhaleDurationMs: null,
-          holdDurationMs: null,
-          exhaleDurationMs: null,
-        );
+    ref.read(breathEntryNotifierProvider.notifier).submitEntry();
   }
 }
