@@ -33,8 +33,15 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(profiles, profiles.birthPlaceLng);
       }
       if (from < 3) {
-        // Sprint 26: Add isPinned column to journal entries
-        await m.addColumn(saraKalaiJournal, saraKalaiJournal.isPinned);
+        // Sprint 26: Add isPinned column to journal entries.
+        // Use try-catch because the column may already exist — it was part
+        // of the table definition since Sprint 26 (schema v2 period), so
+        // databases created fresh at v2 already have it via createAll().
+        try {
+          await m.addColumn(saraKalaiJournal, saraKalaiJournal.isPinned);
+        } on Exception {
+          // Column already exists — safe to ignore
+        }
       }
     },
   );
