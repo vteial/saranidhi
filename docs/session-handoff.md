@@ -23,22 +23,35 @@
 
 ## Open Backlog (Sprint 27.5)
 
-| # | Item | Type | Effort |
-|---|------|------|--------|
-| 1 | DB migration — `isPinned` column needs ALTER TABLE | Bugfix | 20 min |
-| 2 | Lunar phase hardcoded in AlignmentChecker (`LunarPhase.waxing`) | Bugfix | 5 min |
-| 3 | Calendar month view not translated to Tamil | i18n | 15 min |
-| 4 | DOB calculation result text needs translation | i18n | 10 min |
-| 5 | Export: add app version + schema version to JSON | Feature | 20 min |
-| 6 | Import: validate version before proceeding | Feature | 15 min |
-| 7 | Kuligai Kaal calculation + display | Feature | 30 min |
-| 8 | Enhanced Rahu card (sunrise/sunset + moon phase + Kuligai) | UX | 20 min |
-| 9 | Remove Align27 references from app UI (full day schedule row) | Cleanup | 15 min |
-| 10 | Create `docs/third-party-comparison.md` (bird state mapping) | Internal doc | 10 min |
+| # | Item | Type | Priority |
+|---|------|------|----------|
+| 1 | DB migration — `isPinned` column needs ALTER TABLE | Bugfix | Medium |
+| 2 | Lunar phase hardcoded in AlignmentChecker (`LunarPhase.waxing`) | Bugfix | **HIGH** |
+| 3 | Calendar month view not translated to Tamil | i18n | Low |
+| 4 | DOB calculation result text needs translation | i18n | Low |
+| 5 | Export: add app version + schema version to JSON | Feature | Medium |
+| 6 | Import: validate version before proceeding | Feature | Medium |
+| 7 | Kuligai Kaal calculation + display | Feature | Medium |
+| 8 | Enhanced Rahu card (sunrise/sunset + moon phase + Kuligai) | UX | Medium |
+| 9 | Remove Align27 references from app UI (full day schedule row) | Cleanup | Medium |
+| 10 | Create `docs/third-party-comparison.md` (bird state mapping + sources) | Internal doc | Low |
+| 11 | "Best Times This Week" card not translated | i18n | Low |
+| 12 | User Guide back button alignment (match Settings pattern) | UX | Low |
+| 13 | Monthly Patterns: hide "Needs Attention" if same as "Best Day" | Bugfix | Low |
+| 14 | `AppConstants` class — centralize global app data (name, version, dev, contact) | Refactor | Medium |
+| 15 | Birth bird swaps with lunar phase (waxing↔waning) — Vulture↔Peacock, Owl↔Rooster, Crow stays | Bugfix | **HIGH** |
+| 16 | Timer reset/cancel button during active phases | UX | Medium |
+| 17 | Reorder nostril buttons: Lunar (Left) → Sushumna (Both) → Solar (Right) | UX | Medium |
+| 18 | Sushumna: disable timer, show meditation advice, log as moment (duration tracking) | Feature | Medium |
+| 19 | Tattva display: show "English / Sanskrit" format (e.g., "Air / Vayu", "காற்று / Vayu") | UX | Low |
 
-**Estimated total:** ~2.5–3h
+**Sources:**
+- #15: https://suzhimunai.wordpress.com/category/பஞ்ச-பட்சி-சாஸ்திரம்/
+- #18: Owner's Sara Kalai workshop knowledge + Siva Swarodaya references (dasarpai.com, swarayoga.org)
 
-**Trigger:** User issues `/sprint-start` after 2-day prod testing completes.
+**Estimated total:** ~5–6h
+
+**Trigger:** User issues `/sprint-start` when ready.
 
 ---
 
@@ -102,6 +115,8 @@ These exist as code but aren't connected to the app UI yet:
 | Google Drive sync | Deferred to v1.1+ | Architecture stub exists |
 | On-device LLM | Removed from plan | Rules-based engine sufficient |
 | Kuligai segment offsets | Confirmed | Sun=7, Mon=6, Tue=5, Wed=4, Thu=3, Fri=2, Sat=1 |
+| Birth bird phase swap mapping | Confirmed | Waxing: V-O-C-R-P, Waning: P-R-C-O-V (mirror 1↔5, 2↔4, 3 stays) |
+| Sushumna = sacred observation | Confirmed | No breath holding, only meditation. Brief state (~4 min max). Log duration, not timer data. |
 
 ---
 
