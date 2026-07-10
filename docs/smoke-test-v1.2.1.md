@@ -2,7 +2,7 @@
 
 # Smoke Test — v1.2.1-web
 
-> Release: v1.2.1-web | Date: 2026-07-10 | Tester: ___________
+> Release: v1.2.1-web | Date: 2026-07-10 | Tester: Eialarasu
 
 ---
 
@@ -11,8 +11,8 @@
 | Item | Value |
 |------|-------|
 | URL | https://saranidhi.vercel.app |
-| Browser | |
-| Device | |
+| Browser | Chrome |
+| Device | iMac |
 | Profile | Pushya / Chennai |
 
 ---
@@ -21,25 +21,25 @@
 
 | # | Scenario | Steps | Expected | Pass? |
 |---|----------|-------|----------|-------|
-| 1 | Birth bird phase swap | Check Bird Card → compare bird name with current moon phase | Waning: Owl→Rooster swap. Waxing: Owl stays Owl | |
-| 2 | Moon phase on Rahu card | Check enhanced Rahu card | Shows waxing/waning emoji + label | |
-| 3 | Kuligai Kaal display | Check Rahu card | Shows "Kuligai: HH:MM - HH:MM" (different from Rahu) | |
-| 4 | Sunrise/Sunset on Rahu card | Check Rahu card | Shows ☀️ HH:MM / HH:MM | |
-| 5 | Align27 row removed | Today's Schedule card | No "Align27: Bird / State" italic row at bottom | |
-| 6 | Divider after Night Schedule removed | Today + Explore → Schedule card | No horizontal line after last night yama | |
-| 7 | Sushumna: no timer | Journal → tap Sushumna | Meditation card shown, no timer, direct Log button | |
-| 8 | Sushumna: no alignment shown | Journal → tap Sushumna | No "Not Aligned" / "Aligned" card | |
-| 9 | Nostril button order | Journal screen | Left-to-right: Lunar → Sushumna → Solar | |
-| 10 | Timer cancel button | Journal → tap Solar → start inhale | Red "Cancel" button appears below timer | |
-| 11 | Tattva format | Bird Card sub-row | Shows "Earth / Prithvi" (English / Sanskrit) | |
-| 12 | Best Times translated (Tamil) | Switch to Tamil → Explore → Best Times | Title: "இந்த வார சிறந்த நேரங்கள்", rows: "இன்று" | |
-| 13 | Calendar removed from Explore | Explore tab | No inline calendar month grid | |
-| 14 | DateSelector: Today button | Explore → DateSelector row | Shows "Today" button (not "Tomorrow") | |
-| 15 | User Guide back button | Settings → About → User Guide | Back button matches Settings style (SliverAppBar) | |
-| 16 | Monthly Patterns dedup | Analytics → Monthly Patterns | "Needs Attention" hidden if same as "Best Day" | |
-| 17 | App version in About | Settings → About card | Shows "v1.2.1" (not v1.0.0) | |
+| 1 | Birth bird phase swap | Check Bird Card → compare bird name with current moon phase | Waning: Owl→Rooster swap. Waxing: Owl stays Owl | Yes |
+| 2 | Moon phase on Rahu card | Check enhanced Rahu card | Shows waxing/waning emoji + label | Yes |
+| 3 | Kuligai Kaal display | Check Rahu card | Shows "Kuligai: HH:MM - HH:MM" (different from Rahu) | Yes |
+| 4 | Sunrise/Sunset on Rahu card | Check Rahu card | Shows ☀️ HH:MM / HH:MM | Yes |
+| 5 | Align27 row removed | Today's Schedule card | No "Align27: Bird / State" italic row at bottom | Yes |
+| 6 | Divider after Night Schedule removed | Today + Explore → Schedule card | No horizontal line after last night yama | Yes |
+| 7 | Sushumna: no timer | Journal → tap Sushumna | Meditation card shown, no timer, direct Log button | Yes |
+| 8 | Sushumna: no alignment shown | Journal → tap Sushumna | No "Not Aligned" / "Aligned" card | Yes |
+| 9 | Nostril button order | Journal screen | Left-to-right: Lunar → Sushumna → Solar | Yes |
+| 10 | Timer cancel button | Journal → tap Solar → start inhale | Red "Cancel" button appears below timer | Yes |
+| 11 | Tattva format | Bird Card sub-row | Shows "Earth / Prithvi" (English / Sanskrit) | Yes |
+| 12 | Best Times translated (Tamil) | Switch to Tamil → Explore → Best Times | Title: "இந்த வார சிறந்த நேரங்கள்", rows: "இன்று" | Yes |
+| 13 | Calendar removed from Explore | Explore tab | No inline calendar month grid | Yes |
+| 14 | DateSelector: Today button | Explore → DateSelector row | Shows "Today" button (not "Tomorrow") | Yes |
+| 15 | User Guide back button | Settings → About → User Guide | Back button matches Settings style (SliverAppBar) | Yes |
+| 16 | Monthly Patterns dedup | Analytics → Monthly Patterns | "Needs Attention" hidden if same as "Best Day" | Yes |
+| 17 | App version in About | Settings → About card | Shows "v1.2.1(1)" instead of 'v1.2.1' | No | 
 | 18 | Export has version fields | Settings → Export → open JSON | Contains "appVersion": "1.2.1", "schemaVersion": 3 | |
-| 19 | DB migration (no crash) | Load app with existing data | App loads, pinned entries persist | |
+| 19 | DB migration (no crash) | Load app with existing data | App loads, pinned entries persist | Yes |
 
 ---
 
