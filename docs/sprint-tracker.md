@@ -378,15 +378,6 @@
 
 ---
 
-## Sprint E2E: Automated End-to-End Testing (Backlog — based on time & situation)
-
-- [ ] Task E2E.1: Set up Playwright (or equivalent) for Flutter Web E2E tests
-- [ ] Task E2E.2: Automate critical path scenarios from smoke test (onboarding, log entry, streak)
-- [ ] Task E2E.3: Integrate E2E tests into CI (run on merge to main)
-- [ ] Task E2E.4: Visual regression snapshots for key screens
-
----
-
 ## Sprint 28: Layer 2 Engine — Action Windows Calculation (v1.3.0)
 
 - [ ] Task 28.1: ActionWindowEngine class — compute 24h action window schedule from sunrise/sunset + Pakshi states
@@ -428,6 +419,15 @@
 - [ ] Task 31.5: Prasanam history timeline — accessible from Explore tab, chronological past queries
 - [ ] Task 31.6: Post-event outcome notes — tap old query → add reflective notes on real-world outcome
 - [ ] Task 31.7: Tamil translations for Prasanam UI + guidance text
+
+---
+
+## Sprint E2E: Automated End-to-End Testing (Backlog — based on time & situation)
+
+- [ ] Task E2E.1: Set up Playwright (or equivalent) for Flutter Web E2E tests
+- [ ] Task E2E.2: Automate critical path scenarios from smoke test (onboarding, log entry, streak)
+- [ ] Task E2E.3: Integrate E2E tests into CI (run on merge to main)
+- [ ] Task E2E.4: Visual regression snapshots for key screens
 
 ---
 
