@@ -354,6 +354,30 @@
 
 ---
 
+## Sprint 27.5: Bugfix + UX Polish (Production Testing Fixes)
+
+- [ ] Task 27.5.1: DB migration — `isPinned` column ALTER TABLE for existing installs
+- [ ] Task 27.5.2: Lunar phase hardcoded in AlignmentChecker → use `LunarPhaseCalculator.phaseForDate()`
+- [ ] Task 27.5.3: Birth bird swaps with lunar phase (waxing↔waning) — Vulture↔Peacock, Owl↔Rooster, Crow stays
+- [ ] Task 27.5.4: Kuligai Kaal calculation + display alongside Rahu Kaal
+- [ ] Task 27.5.5: Enhanced Rahu card (add sunrise/sunset + moon phase + Kuligai)
+- [ ] Task 27.5.6: Remove Align27 references from app UI (full day schedule row)
+- [ ] Task 27.5.7: Sushumna UX redesign — disable timer, show meditation advice, log as moment
+- [ ] Task 27.5.8: Reorder nostril buttons: Lunar (Left) → Sushumna (Both) → Solar (Right)
+- [ ] Task 27.5.9: Timer reset/cancel button during active phases
+- [ ] Task 27.5.10: Export: add app version + schema version to JSON
+- [ ] Task 27.5.11: Import: validate version before proceeding
+- [ ] Task 27.5.12: `AppConstants` class — centralize global app data
+- [ ] Task 27.5.13: Tattva display: "English / Sanskrit" format (EN + TA)
+- [ ] Task 27.5.14: "Best Times This Week" card not translated
+- [ ] Task 27.5.15: Calendar month view not translated to Tamil
+- [ ] Task 27.5.16: DOB calculation result text translation
+- [ ] Task 27.5.17: User Guide back button alignment (match Settings pattern)
+- [ ] Task 27.5.18: Monthly Patterns: hide "Needs Attention" if same as "Best Day"
+- [ ] Task 27.5.19: Create `docs/third-party-comparison.md` (bird state mapping + sources)
+
+---
+
 ## Sprint E2E: Automated End-to-End Testing (Backlog — based on time & situation)
 
 - [ ] Task E2E.1: Set up Playwright (or equivalent) for Flutter Web E2E tests
