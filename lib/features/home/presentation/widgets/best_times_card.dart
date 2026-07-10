@@ -166,7 +166,8 @@ class _BestTimeRow extends StatelessWidget {
 
     final dayLabel = isToday
         ? l10n.today
-        : DateFormat('EEE, MMM d').format(entry.date);
+        : DateFormat('EEE, MMM d', Localizations.localeOf(context).languageCode)
+            .format(entry.date);
 
     final timeRange =
         '${_formatTime(entry.rulingYamaStart)} – ${_formatTime(entry.rulingYamaEnd)}';
