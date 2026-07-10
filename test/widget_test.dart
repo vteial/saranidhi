@@ -104,7 +104,7 @@ void main() {
     // Verify Today tab content is still visible
     expect(find.text('Today'), findsOneWidget);
     expect(find.text('3 days'), findsOneWidget);
-  }, skip: 'Stream provider settling issue — deferred to Sprint 28');
+  }, skip: true); // Stream provider settling issue — deferred to Sprint 28
 }
 
 class _AlwaysTrueNotifier extends OnboardingCompleteNotifier {
