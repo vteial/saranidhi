@@ -354,7 +354,7 @@
 
 ---
 
-## Sprint 27.5: Bugfix + UX Polish (Production Testing Fixes)
+## Sprint 27.5: Bugfix + UX Polish (Production Testing Fixes) — In Progress 🔄
 
 - [ ] Task 27.5.1: DB migration — `isPinned` column ALTER TABLE for existing installs
 - [ ] Task 27.5.2: Lunar phase hardcoded in AlignmentChecker → use `LunarPhaseCalculator.phaseForDate()`
