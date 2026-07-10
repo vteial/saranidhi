@@ -37,7 +37,7 @@
 | 14 | DateSelector: Today button | Explore → DateSelector row | Shows "Today" button (not "Tomorrow") | Yes |
 | 15 | User Guide back button | Settings → About → User Guide | Back button matches Settings style (SliverAppBar) | Yes |
 | 16 | Monthly Patterns dedup | Analytics → Monthly Patterns | "Needs Attention" hidden if same as "Best Day" | Yes |
-| 17 | App version in About | Settings → About card | Shows "v1.2.1(1)" instead of 'v1.2.1' | No | 
+| 17 | App version in About | Settings → About card | Shows "v1.2.1(1)" instead of 'v1.2.1' | Accepted | 
 | 18 | Export has version fields | Settings → Export → open JSON | Contains "appVersion": "1.2.1", "schemaVersion": 3 | Yes |
 | 19 | DB migration (no crash) | Load app with existing data | App loads, pinned entries persist | Yes |
 
@@ -71,17 +71,17 @@
 
 | # | Issue | Severity | Action |
 |---|-------|----------|--------|
-| | | | |
+| 17 | Version shows `v1.2.1(1)` not `v1.2.1` | Low (cosmetic) | Accepted — build number display is valid |
 
 ---
 
 ### Sign-off
 
-- [ ] All critical path scenarios pass
-- [ ] All Sprint 27.5 specific tests pass
-- [ ] Ready for production release
+- [x] All critical path scenarios pass
+- [x] All Sprint 27.5 specific tests pass (1 accepted cosmetic)
+- [x] Ready for production release
 
-Tester: ___________ | Date: ___________
+Tester: Eialarasu | Date: 2026-07-10
 
 ---
 
