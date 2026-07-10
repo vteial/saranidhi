@@ -91,7 +91,7 @@ void main() {
     expect(find.text('Settings'), findsOneWidget);
 
     // Go back from Settings
-    await tester.tap(find.byType(BackButton));
+    await tester.tap(find.byType(BackButton).first);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
