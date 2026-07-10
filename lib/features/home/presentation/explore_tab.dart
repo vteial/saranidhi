@@ -84,14 +84,26 @@ class _ExploreContent extends ConsumerWidget {
                   if (data.birthBird != null && data.rahuKaal != null)
                     const SizedBox(width: 12),
                   if (data.rahuKaal != null)
-                    Expanded(child: RahuKaalCard(rahuKaal: data.rahuKaal!)),
+                    Expanded(child: RahuKaalCard(
+                      rahuKaal: data.rahuKaal!,
+                      kuligaiKaal: data.kuligaiKaal,
+                      sunrise: data.sunrise,
+                      sunset: data.sunset,
+                      lunarPhase: data.lunarPhase,
+                    )),
                 ],
               )
             else ...[
               if (data.birthBird != null) BirthBirdCard(data: data),
               if (data.birthBird != null) const SizedBox(height: 12),
               if (data.rahuKaal != null)
-                RahuKaalCard(rahuKaal: data.rahuKaal!),
+                RahuKaalCard(
+                  rahuKaal: data.rahuKaal!,
+                  kuligaiKaal: data.kuligaiKaal,
+                  sunrise: data.sunrise,
+                  sunset: data.sunset,
+                  lunarPhase: data.lunarPhase,
+                ),
               if (data.rahuKaal != null) const SizedBox(height: 12),
             ],
 

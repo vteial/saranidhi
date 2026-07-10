@@ -45,6 +45,8 @@ class DatabaseExporter {
 
     final exportData = <String, dynamic>{
       'version': 1,
+      'appVersion': '1.2.1',
+      'schemaVersion': 3,
       'exportedAt': DateTime.now().toIso8601String(),
       'profiles': profiles.map(_profileToMap).toList(),
       'journal': journal.map(_journalToMap).toList(),
@@ -137,6 +139,7 @@ class DatabaseExporter {
           activeBirdState: Value(map['activeBirdState'] as String?),
           activeElement: Value(map['activeElement'] as String?),
           notes: Value(map['notes'] as String?),
+          isPinned: Value(map['isPinned'] as bool? ?? false),
         ),
       );
     }
@@ -201,6 +204,13 @@ class DatabaseExporter {
       final version = data['version'] as int?;
       if (version == null) return 'Missing version field';
       if (version > 1) return 'Unsupported version: $version';
+
+      // Check schema version compatibility (Sprint 27.5)
+      final schemaVersion = data['schemaVersion'] as int?;
+      if (schemaVersion != null && schemaVersion > 3) {
+        return 'Exported from a newer app version (schema $schemaVersion). '
+            'Please update the app before importing.';
+      }
 
       if (data['profiles'] is! List) return 'Missing or invalid profiles data';
       if (data['journal'] is! List) return 'Missing or invalid journal data';
@@ -306,6 +316,7 @@ class DatabaseExporter {
     'activeBirdState': j.activeBirdState,
     'activeElement': j.activeElement,
     'notes': j.notes,
+    'isPinned': j.isPinned,
   };
 
   Map<String, dynamic> _sessionToMap(BreathSession s) => {

@@ -18,7 +18,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -31,6 +31,10 @@ class AppDatabase extends _$AppDatabase {
         await m.addColumn(profiles, profiles.birthPlaceName);
         await m.addColumn(profiles, profiles.birthPlaceLat);
         await m.addColumn(profiles, profiles.birthPlaceLng);
+      }
+      if (from < 3) {
+        // Sprint 26: Add isPinned column to journal entries
+        await m.addColumn(saraKalaiJournal, saraKalaiJournal.isPinned);
       }
     },
   );

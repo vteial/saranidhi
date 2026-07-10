@@ -19,7 +19,7 @@ class FullDaySchedule extends StatelessWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
 
-    final bird = data.birthBird;
+    final bird = data.effectiveBirthBird ?? data.birthBird;
     final pakshiDay = data.pakshiDay;
     final yamaResult = data.yamaResult;
     if (bird == null || pakshiDay == null || yamaResult == null) {
@@ -102,23 +102,13 @@ class FullDaySchedule extends StatelessWidget {
 
             const Divider(height: 16),
 
-            // Align27 comparison row for current yama (day or night)
+            // Ruling bird info for current yama
             if (!data.isNight && activeYamaIndex != null) ...[
-              _Align27Row(
-                pakshiDay: pakshiDay,
-                activeYamaIndex: activeYamaIndex,
-                l10n: l10n,
-                theme: theme,
-              ),
+              // Removed Align27 comparison row (Sprint 27.5)
             ] else if (data.isNight &&
                 activeNightYamaIndex != null &&
                 data.pakshiNight != null) ...[
-              _NightAlign27Row(
-                pakshiNight: data.pakshiNight!,
-                activeNightYamaIndex: activeNightYamaIndex,
-                l10n: l10n,
-                theme: theme,
-              ),
+              // Removed Align27 comparison row (Sprint 27.5)
             ],
           ],
         ),

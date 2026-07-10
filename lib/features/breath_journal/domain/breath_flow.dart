@@ -1,13 +1,13 @@
 /// Represents the expected or actual breath flow direction.
 enum BreathFlow {
-  /// Right nostril dominant — Solar / Pingala channel.
-  solar,
-
   /// Left nostril dominant — Lunar / Ida channel.
   lunar,
 
   /// Both nostrils equally active — Sushumna channel.
-  sushumna;
+  sushumna,
+
+  /// Right nostril dominant — Solar / Pingala channel.
+  solar;
 
   /// Display name for UI.
   String get displayName => switch (this) {

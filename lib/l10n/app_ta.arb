@@ -417,5 +417,21 @@
   "selectTimeOptional": "நேரம் தேர்வு செய்யவும் (விருப்பமானால்)",
   "birthTimeLabel": "பிறந்த நேரம் (துல்லியமான நட்சத்திரத்திற்கு)",
   "calculateNakshatra": "நட்சத்திரம் கணக்கிடு",
-  "locationSubtitle": "நீங்கள் இப்போது எங்கே உள்ளீர்கள்? (தினசரி சூரிய உதயம்/அஸ்தமனத்திற்கு)"
+  "locationSubtitle": "நீங்கள் இப்போது எங்கே உள்ளீர்கள்? (தினசரி சூரிய உதயம்/அஸ்தமனத்திற்கு)",
+
+  "kuligaiKaalTitle": "குளிகை",
+  "moonWaxing": "வளர்பிறை",
+  "moonWaning": "தேய்பிறை",
+  "bestTimesTitle": "இந்த வார சிறந்த நேரங்கள்",
+  "sushumnaAdvice": "சுழுமுனை செயலில் — புனித கவனிப்பு. அமைதியாக அமர்ந்து தியானியுங்கள்.",
+  "cancelTimer": "ரத்து",
+  "tattvaEarthEnglish": "நிலம் / பிருத்வி",
+  "tattvaWaterEnglish": "நீர் / அபஸ்",
+  "tattvaFireEnglish": "நெருப்பு / தேஜஸ்",
+  "tattvaAirEnglish": "காற்று / வாயு",
+  "tattvaEtherEnglish": "ஆகாயம் / ஆகாசம்",
+  "calculatedNakshatra": "கணக்கிடப்பட்டது: {name}",
+  "moonSiderealLongitude": "சந்திர சைடீரியல் தீர்க்கரேகை: {degrees}\u00B0",
+  "nearBoundaryWarning": "நட்சத்திர எல்லையில் — பிறந்த நேர துல்லியம் முக்கியம். உறுதியில்லையெனில் பஞ்சாங்கத்துடன் சரிபார்க்கவும்.",
+  "importVersionMismatch": "இந்த கோப்பு புதிய பதிப்பிலிருந்து (v{version}) ஏற்றுமதி செய்யப்பட்டது. இறக்குமதிக்கு முன் பயன்பாட்டை புதுப்பிக்கவும்."
 }
