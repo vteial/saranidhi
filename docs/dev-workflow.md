@@ -83,7 +83,7 @@ Strategic brainstorming and sprint plan revision — forward-looking.
 3. Create branch from `main` (e.g., `plan/sprint-N` or `plan/v2-roadmap`)
 4. Update:
    - `docs/sprint-tracker.md` — define upcoming sprints
-   - `docs/release-1.0-plan.md` — adjust milestones
+   - `docs/roadmap.md` — adjust milestones
    - `.kiro/design.md`, `.kiro/product.md`, `.kiro/structure.md` — if architecture changes
 5. Commit, push, create PR
 6. **User reviews and merges** (Kiro never pushes directly to main)
