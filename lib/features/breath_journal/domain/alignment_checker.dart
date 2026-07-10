@@ -1,4 +1,5 @@
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
+import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
@@ -85,10 +86,10 @@ class AlignmentChecker {
 
     // Get Pakshi info
     final weekday = PakshiCalculator.dartWeekdayToSunBased(time.weekday);
-    // Default to waxing for now — lunar phase integration happens via provider
+    final lunarPhase = LunarPhaseCalculator.phaseForDate(time);
     final pakshiResult = PakshiCalculator.calculate(
       weekday: weekday,
-      lunarPhase: LunarPhase.waxing,
+      lunarPhase: lunarPhase,
     );
 
     PakshiBird? activeBird;

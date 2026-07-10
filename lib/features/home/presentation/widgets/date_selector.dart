@@ -73,12 +73,12 @@ class DateSelector extends ConsumerWidget {
             visualDensity: VisualDensity.compact,
           ),
 
-          // Quick buttons for non-today views
+          // Quick "Today" button — always visible for quick reset to today
           if (isToday)
             TextButton.icon(
-              onPressed: () => _changeDate(ref, 1),
-              icon: const Icon(Icons.arrow_forward, size: 16),
-              label: const Text('Tomorrow'),
+              onPressed: null, // Already on today — disabled as indicator
+              icon: const Icon(Icons.today, size: 16),
+              label: const Text('Today'),
               style: TextButton.styleFrom(
                 visualDensity: VisualDensity.compact,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
