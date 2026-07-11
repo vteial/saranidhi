@@ -4,6 +4,7 @@ import 'package:drift/drift.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/database_provider.dart';
+import 'package:saranidhi/features/astro_engine/domain/emakandam_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/kuligai_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
@@ -38,6 +39,7 @@ class DashboardData {
     this.activeYama,
     this.rahuKaal,
     this.kuligaiKaal,
+    this.emakandam,
     this.lunarPhase,
     this.todayAvgHoldMs,
     this.todayEntryCount = 0,
@@ -81,6 +83,9 @@ class DashboardData {
 
   /// Kuligai Kaal window.
   final KuligaiKaalResult? kuligaiKaal;
+
+  /// Emakandam window.
+  final EmakandamResult? emakandam;
 
   /// Current lunar phase.
   final LunarPhase? lunarPhase;
@@ -179,6 +184,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   YamaSegment? activeYamaSegment;
   RahuKaalResult? rahuKaal;
   KuligaiKaalResult? kuligaiKaal;
+  EmakandamResult? emakandam;
   LunarPhase? lunarPhase;
   double? todayAvgHoldMs;
   var todayEntryCount = 0;
@@ -266,6 +272,13 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
 
     // Calculate Kuligai Kaal
     kuligaiKaal = KuligaiKaalCalculator.calculate(
+      sunrise: sunResult.sunrise,
+      sunset: sunResult.sunset,
+      weekday: weekday,
+    );
+
+    // Calculate Emakandam
+    emakandam = EmakandamCalculator.calculate(
       sunrise: sunResult.sunrise,
       sunset: sunResult.sunset,
       weekday: weekday,
@@ -421,6 +434,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     activeYama: activeYamaSegment,
     rahuKaal: rahuKaal,
     kuligaiKaal: kuligaiKaal,
+    emakandam: emakandam,
     lunarPhase: lunarPhase,
     todayAvgHoldMs: todayAvgHoldMs,
     todayEntryCount: todayEntryCount,

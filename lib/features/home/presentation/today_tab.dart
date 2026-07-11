@@ -79,9 +79,11 @@ class _TodayContent extends ConsumerWidget {
                       Expanded(child: RahuKaalCard(
                         rahuKaal: data.rahuKaal!,
                         kuligaiKaal: data.kuligaiKaal,
+                        emakandam: data.emakandam,
                         sunrise: data.sunrise,
                         sunset: data.sunset,
                         lunarPhase: data.lunarPhase,
+                        activeHora: data.activeHora,
                       )),
                   ],
                 ),
@@ -93,9 +95,11 @@ class _TodayContent extends ConsumerWidget {
                 RahuKaalCard(
                   rahuKaal: data.rahuKaal!,
                   kuligaiKaal: data.kuligaiKaal,
+                  emakandam: data.emakandam,
                   sunrise: data.sunrise,
                   sunset: data.sunset,
                   lunarPhase: data.lunarPhase,
+                  activeHora: data.activeHora,
                 ),
             ],
             const SizedBox(height: 12),

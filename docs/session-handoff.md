@@ -7,17 +7,17 @@
 
 ---
 
-## Current State (as of 2026-07-10)
+## Current State (as of 2026-07-11)
 
 | Item | Status |
 |------|--------|
-| **Production** | v1.2.0-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | Latest main at [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints delivered** | 27.5 |
-| **Total PRs** | 78 |
-| **Engineering hours** | ~80h |
-| **User mode** | Preview tested, ready for merge |
-| **Next sprint** | Sprint 28 (Layer 2 — Action Windows Engine) |
+| **Production** | v1.2.1-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | Latest main (Sprint 28 merged) |
+| **Sprints delivered** | 28 |
+| **Total PRs** | 95 |
+| **Engineering hours** | ~84h |
+| **User mode** | Preview tested, ready for release |
+| **Next release** | v1.2.2-web (Sprint 28 features) |
 
 ---
 
@@ -122,10 +122,9 @@ These exist as code but aren't connected to the app UI yet:
 
 ## Next Session: Start Here
 
-1. Merge PR #78 (Sprint 27.5) → v1.2.1-web release
-2. Quick smoke test on production after merge (re-test fixed items)
-3. `/release-start` v1.2.1 if smoke passes
-4. Then: Sprint 28 (Layer 2 — Action Windows Engine)
+1. `/release-start` v1.2.2 (Sprint 28 features)
+2. Smoke test → merge → `/release-finish` → main→prod
+3. Then: Sprint 29 (Layer 2 Engine — Action Windows)
 
 ---
 
