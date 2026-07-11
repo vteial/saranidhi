@@ -378,7 +378,7 @@
 
 ---
 
-## Sprint 28: UI Polish + UX Consistency
+## Sprint 28: UI Polish + UX Consistency — In Progress 🔄
 
 - [ ] Task 28.1: Best Times card — reorder columns (Y# first, ⏰ time range, date last + "Today" badge right-aligned). Fixes Tamil column width issue.
 - [ ] Task 28.2: Journal history — show today's entries by default, expand older dates on tap (pagination/lazy load)
