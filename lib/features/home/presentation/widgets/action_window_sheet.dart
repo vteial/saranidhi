@@ -39,7 +39,6 @@ class _ActionWindowSheetContent extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return DraggableScrollableSheet(
-      expand: false,
       initialChildSize: 0.5,
       minChildSize: 0.3,
       maxChildSize: 0.85,

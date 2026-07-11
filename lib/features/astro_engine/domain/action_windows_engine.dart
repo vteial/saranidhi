@@ -116,7 +116,7 @@ class ActionWindowsEngine {
   /// Applies Rahu Kaal guardrail to segments.
   ///
   /// Any Artha or Kriya segment that overlaps with Rahu Kaal gets
-  /// its [isBlockedByRahu] flag set to true. Yoga segments are unaffected
+  /// its `isBlockedByRahu` flag set to true. Yoga segments are unaffected
   /// (spiritual practice during Rahu is actually favorable).
   static List<ActionWindowSegment> applyRahuGuardrail({
     required List<ActionWindowSegment> segments,

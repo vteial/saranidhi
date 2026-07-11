@@ -2,7 +2,7 @@ import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 
 /// A consolidated temporal block representing a contiguous Action Window.
 ///
-/// The [ActionWindowsEngine] merges adjacent yamas that share the same
+/// The `ActionWindowsEngine` merges adjacent yamas that share the same
 /// [ActionWindow] type into single segments, reducing notification noise
 /// and providing clear lifestyle guidance blocks.
 class ActionWindowSegment {
