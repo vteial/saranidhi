@@ -6,10 +6,10 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 29 (+ Sprint 0 pre-development + Sprint 27.5 hotfix)
-**Total Engineering Investment:** ~86.0 Hours
-**Pull Requests Merged:** 102
-**Automated Test Coverage:** 410+ assertions (unit + widget + integration)
+**Sprints Delivered:** 30 (+ Sprint 0 pre-development + Sprint 27.5 hotfix)
+**Total Engineering Investment:** ~89.0 Hours
+**Pull Requests Merged:** 104
+**Automated Test Coverage:** 420+ assertions (unit + widget + integration)
 **Production Web Release:** v1.2.2-web
 
 ---
@@ -271,6 +271,7 @@
 | Sprint 27.5 | Bugfix + UX Polish (Production Testing Fixes) | #78 | 410+ | ✅ Complete |
 | Sprint 28 | UI Polish + UX Consistency | #95 | 410+ | ✅ Complete |
 | Sprint 29 | Foundation — Terminology, PWA, Tech Debt | #102 | 410+ | ✅ Complete |
+| Sprint 30 | Action Windows Engine + UI | #104 | 420+ | ✅ Complete |
 
 ---
 
@@ -431,6 +432,17 @@
 - **PWA icons regenerated** — 4 PNGs (192, 512, maskable-192, maskable-512) from `public/logo.svg` with proper Saranidhi branding + safe-zone padding for maskable
 - **Widget test navigation un-skipped** — removed `skip: true` from tab navigation test; uses explicit `pump()` to avoid stream-based pumpAndSettle timeout
 - **DB migration PRAGMA pattern** — replaced try-catch with `PRAGMA table_info()` column existence check before `addColumn` (deterministic, no swallowed exceptions)
+- **ActionWindowsEngine** — consolidation algorithm that merges consecutive yamas sharing the same ActionWindow (Artha/Kriya/Yoga) into single temporal segments, reducing notification spam
+- **ActionWindowSegment model** — window type, start, end, birdStateName, duration, contains(), isBlockedByRahu flag, copyWithRahuBlocked()
+- **Rahu Kaal guardrail** — `applyRahuGuardrail()` marks overlapping Artha/Kriya segments as blocked (Yoga unaffected — spiritual practice during Rahu is favorable)
+- **DashboardData extended** — `actionWindowSegments` (24h consolidated list) + `activeActionWindow` (current segment) fields computed in dashboardDataProvider
+- **24h Action Bar widget** — color-coded horizontal timeline (green=Artha, blue=Kriya, purple=Yoga) with current-time marker, diagonal stripe overlay for Rahu-blocked areas, legend
+- **Current Mode Focus Card** — shows active action window name, lifestyle advice, time remaining, Rahu warning badge; tappable to expand
+- **ActionWindowSheet** — modal bottom sheet with current segment detail (highlighted) + full day schedule list with NOW indicator and Rahu warnings
+- **Today tab Layer 2 integration** — Action Bar + Focus Card inserted above Bird/Rahu cards (gracefully hidden when no segments available)
+- **Window-based notification scheduling** — `generateWindowNotifications()` method schedules at window boundaries only (not every yama), 48h rolling horizon, bilingual EN + TA titles/bodies
+- **Action window Tamil translations** — focusCardArthaAdvice, focusCardKriyaAdvice, focusCardYogaAdvice, focusCardRahuBlocked, actionWindowSheetTitle, actionWindowSheetSchedule
+- **ActionWindowsEngine unit tests** — 9 tests covering segment model, consolidation (all birds, both lunar phases, merge correctness, full 24h coverage, empty input), Rahu guardrail, activeSegment lookup
 
 ---
 
