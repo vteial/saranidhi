@@ -11,13 +11,13 @@
 
 | Item | Status |
 |------|--------|
-| **Production** | v1.2.1-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | Latest main (Sprint 28 merged) |
+| **Production** | v1.2.2-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | Latest main (in sync with prod) |
 | **Sprints delivered** | 28 |
-| **Total PRs** | 95 |
+| **Total PRs** | 98 |
 | **Engineering hours** | ~84h |
-| **User mode** | Preview tested, ready for release |
-| **Next release** | v1.2.2-web (Sprint 28 features) |
+| **User mode** | Daily use — production stable |
+| **Next sprint** | Sprint 29 (Layer 2 Engine — Action Windows) |
 
 ---
 
@@ -122,9 +122,9 @@ These exist as code but aren't connected to the app UI yet:
 
 ## Next Session: Start Here
 
-1. `/release-start` v1.2.2 (Sprint 28 features)
-2. Smoke test → merge → `/release-finish` → main→prod
-3. Then: Sprint 29 (Layer 2 Engine — Action Windows)
+1. `/sprint-start` Sprint 29 (Layer 2 Engine — Action Windows Calculation)
+2. After merge: v1.3.0-web release
+3. Then: Sprint 30 (Layer 2 UI — Action Windows Display)
 
 ---
 
