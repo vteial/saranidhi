@@ -392,16 +392,16 @@
 
 ---
 
-## Sprint 29: Foundation — Terminology, PWA, Tech Debt (v1.3.0) — In Progress 🔄
+## Sprint 29: Foundation — Terminology, PWA, Tech Debt (v1.3.0) — Complete (PR #102) ✅
 
-- [ ] Task 29.1: Terminology l10n — map Siddha/Swarodaya standard terms (Ida/Idakalai, Pingala/Pingalai, Suzhumunai, Pakshi states) to ARB files from `docs/research/saranidhi-terminology-*.md`
-- [ ] Task 29.2: UI copy audit — update User Guide, tooltips, dashboard headers to match terminology standard
-- [ ] Task 29.3: User Guide — add Swara Pada Gamana (Grounding foot step rule) section
-- [ ] Task 29.4: User Guide — add Swara-Ahara (Dietary Chronobiology) section
-- [ ] Task 29.5: PWA manifest.json — update name, description, theme_color, background_color
-- [ ] Task 29.6: PWA icons — generate Saranidhi logo PNGs (192, 512, maskable) from SVG
-- [ ] Task 29.7: Widget test fix — resolve stream-based provider settling issue (un-skip navigation tests)
-- [ ] Task 29.8: DB migration strategy — replace try-catch with PRAGMA table_info() check
+- [x] Task 29.1: Terminology l10n — map Siddha/Swarodaya standard terms (Ida/Idakalai, Pingala/Pingalai, Suzhumunai, Pakshi states) to ARB files from `docs/research/saranidhi-terminology-*.md`
+- [x] Task 29.2: UI copy audit — update User Guide, tooltips, dashboard headers to match terminology standard
+- [x] Task 29.3: User Guide — add Swara Pada Gamana (Grounding foot step rule) section
+- [x] Task 29.4: User Guide — add Swara-Ahara (Dietary Chronobiology) section
+- [x] Task 29.5: PWA manifest.json — update name, description, theme_color, background_color
+- [x] Task 29.6: PWA icons — generate Saranidhi logo PNGs (192, 512, maskable) from SVG
+- [x] Task 29.7: Widget test fix — resolve stream-based provider settling issue (un-skip navigation tests)
+- [x] Task 29.8: DB migration strategy — replace try-catch with PRAGMA table_info() check
 
 ---
 
