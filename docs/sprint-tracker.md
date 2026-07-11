@@ -378,47 +378,58 @@
 
 ---
 
-## Sprint 28: Layer 2 Engine — Action Windows Calculation (v1.3.0)
+## Sprint 28: UI Polish + UX Consistency
 
-- [ ] Task 28.1: ActionWindowEngine class — compute 24h action window schedule from sunrise/sunset + Pakshi states
-- [ ] Task 28.2: Rahu Kaal guardrail — auto-block Artha/Kriya windows during Rahu Kaal (10% floor lockout)
-- [ ] Task 28.3: ActionWindowSchedule model — list of timed windows with type, start, end, blocked status
-- [ ] Task 28.4: Integrate ActionWindowEngine into dashboardDataProvider (compute alongside existing data)
-- [ ] Task 28.5: Unit tests for ActionWindowEngine (all bird states, Rahu overlap, Sushumna override)
-
----
-
-## Sprint 29: Layer 2 UI — Action Windows Display (v1.3.0)
-
-- [ ] Task 29.1: 24h Action Bar widget — color-coded horizontal timeline (green=Artha, blue=Kriya, purple=Yoga, red=Blocked)
-- [ ] Task 29.2: "Current Mode" Focus Card — lifestyle recommendation replacing technical jargon ("Negotiate now" vs "Ruling")
-- [ ] Task 29.3: Expansion sheet — tap Focus Card → animated bottom sheet with raw Pakshi/Hora/Tattva details
-- [ ] Task 29.4: Today tab integration — Action Bar at top + Focus Card above existing cards
-- [ ] Task 29.5: Tamil translations for all action window guidance text
+- [ ] Task 28.1: Best Times card — reorder columns (Y# first, ⏰ time range, date last + "Today" badge right-aligned). Fixes Tamil column width issue.
+- [ ] Task 28.2: Journal history — show today's entries by default, expand older dates on tap (pagination/lazy load)
+- [ ] Task 28.3: DOB result text — translate "Calculated:" and "Moon sidereal longitude:" to Tamil (onboarding_screen.dart hardcoded strings)
+- [ ] Task 28.4: Rahu card — add Emakandam (எமகண்டம்) calculator + reorder layout: Row1=Rahu Kaal, Row2=Kuligai+Emakandam, Row3=sunrise/sunset+moon phase
+- [ ] Task 28.5: Rename "Today's Schedule" → "☀️ Day Schedule" (pairs with 🌙 Night Schedule)
+- [ ] Task 28.6: Analytics Yama Performance — "Yama 1" → "Y1" for consistency
 
 ---
 
-## Sprint 30: Layer 3 Engine — Prasanam Oracle Calculation (v2.0.0)
+## Sprint 29: Layer 2 Engine — Action Windows Calculation (v1.3.0)
 
-- [ ] Task 30.1: PrasanamHistory Drift table + schema migration
-- [ ] Task 30.2: Vector 1 — Saram × Tattva harmony matrix (Solar→Fire/Air, Lunar→Earth/Water, Sushumna→Ether)
-- [ ] Task 30.3: Vector 2 — Saram × Bird State scoring (with 10% floor lockout on Sleeping/Dying)
-- [ ] Task 30.4: Vector 3 — Question category × Hora compatibility (commerce/conflict/travel/health → planet match)
-- [ ] Task 30.5: Oracle score algorithm — compound 3 vectors → 0.0–1.0 final score
-- [ ] Task 30.6: Deterministic guidance matrix — score tiers → advice card text (Strong Yes / Favorable / Caution / Delay / Hard No)
-- [ ] Task 30.7: 30-minute validation gate — check last journal entry recency before allowing query
+- [ ] Task 29.1: ActionWindowEngine class — compute 24h action window schedule from sunrise/sunset + Pakshi states
+- [ ] Task 29.2: Rahu Kaal guardrail — auto-block Artha/Kriya windows during Rahu Kaal (10% floor lockout)
+- [ ] Task 29.3: ActionWindowSchedule model — list of timed windows with type, start, end, blocked status
+- [ ] Task 29.4: Integrate ActionWindowEngine into dashboardDataProvider (compute alongside existing data)
+- [ ] Task 29.5: Unit tests for ActionWindowEngine (all bird states, Rahu overlap, Sushumna override)
 
 ---
 
-## Sprint 31: Layer 3 UI — Prasanam Oracle Interface (v2.0.0)
+## Sprint 30: Layer 2 UI — Action Windows Display (v1.3.0)
 
-- [ ] Task 31.1: FAB on Today tab — distinctive oracle icon (🔮), launches Prasanam flow
-- [ ] Task 31.2: Query input screen — free-text field + 3-second intention anchor animation
-- [ ] Task 31.3: Validation gate UI — trigger Guided Nostril Test if no recent entry
-- [ ] Task 31.4: Oracle result card — score gauge + tiered advice + diagnostic snapshot display
-- [ ] Task 31.5: Prasanam history timeline — accessible from Explore tab, chronological past queries
-- [ ] Task 31.6: Post-event outcome notes — tap old query → add reflective notes on real-world outcome
-- [ ] Task 31.7: Tamil translations for Prasanam UI + guidance text
+- [ ] Task 30.1: 24h Action Bar widget — color-coded horizontal timeline (green=Artha, blue=Kriya, purple=Yoga, red=Blocked)
+- [ ] Task 30.2: "Current Mode" Focus Card — lifestyle recommendation replacing technical jargon ("Negotiate now" vs "Ruling")
+- [ ] Task 30.3: Expansion sheet — tap Focus Card → animated bottom sheet with raw Pakshi/Hora/Tattva details
+- [ ] Task 30.4: Today tab integration — Action Bar at top + Focus Card above existing cards
+- [ ] Task 30.5: Tamil translations for all action window guidance text
+
+---
+
+## Sprint 31: Layer 3 Engine — Prasanam Oracle Calculation (v2.0.0)
+
+- [ ] Task 31.1: PrasanamHistory Drift table + schema migration
+- [ ] Task 31.2: Vector 1 — Saram × Tattva harmony matrix (Solar→Fire/Air, Lunar→Earth/Water, Sushumna→Ether)
+- [ ] Task 31.3: Vector 2 — Saram × Bird State scoring (with 10% floor lockout on Sleeping/Dying)
+- [ ] Task 31.4: Vector 3 — Question category × Hora compatibility (commerce/conflict/travel/health → planet match)
+- [ ] Task 31.5: Oracle score algorithm — compound 3 vectors → 0.0–1.0 final score
+- [ ] Task 31.6: Deterministic guidance matrix — score tiers → advice card text (Strong Yes / Favorable / Caution / Delay / Hard No)
+- [ ] Task 31.7: 30-minute validation gate — check last journal entry recency before allowing query
+
+---
+
+## Sprint 32: Layer 3 UI — Prasanam Oracle Interface (v2.0.0)
+
+- [ ] Task 32.1: FAB on Today tab — distinctive oracle icon (🔮), launches Prasanam flow
+- [ ] Task 32.2: Query input screen — free-text field + 3-second intention anchor animation
+- [ ] Task 32.3: Validation gate UI — trigger Guided Nostril Test if no recent entry
+- [ ] Task 32.4: Oracle result card — score gauge + tiered advice + diagnostic snapshot display
+- [ ] Task 32.5: Prasanam history timeline — accessible from Explore tab, chronological past queries
+- [ ] Task 32.6: Post-event outcome notes — tap old query → add reflective notes on real-world outcome
+- [ ] Task 32.7: Tamil translations for Prasanam UI + guidance text
 
 ---
 

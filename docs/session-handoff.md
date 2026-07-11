@@ -122,10 +122,9 @@ These exist as code but aren't connected to the app UI yet:
 
 ## Next Session: Start Here
 
-1. Merge PR #78 (Sprint 27.5) → v1.2.1-web release
-2. Quick smoke test on production after merge (re-test fixed items)
-3. `/release-start` v1.2.1 if smoke passes
-4. Then: Sprint 28 (Layer 2 — Action Windows Engine)
+1. `/sprint-start` Sprint 28 (UI Polish + UX Consistency)
+2. After merge: quick smoke test → v1.3.0-web release
+3. Then: Sprint 29 (Layer 2 Engine — Action Windows)
 
 ---
 
