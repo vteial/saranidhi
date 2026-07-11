@@ -405,19 +405,19 @@
 
 ---
 
-## Sprint 30: Action Windows Engine + UI (v1.3.0) — In Progress 🔄
+## Sprint 30: Action Windows Engine + UI (v1.3.0) — Complete (PR #104) ✅
 
-- [ ] Task 30.1: ActionWindowsEngine — yama-to-window consolidation algorithm (merge consecutive matching windows)
-- [ ] Task 30.2: ActionWindowSegment model — window type, start, end, birdStateName, duration, contains()
-- [ ] Task 30.3: Rahu Kaal guardrail — auto-block Artha/Kriya windows during Rahu (score clamp to 10%)
-- [ ] Task 30.4: Integrate into dashboardDataProvider — compute 24h consolidated segments
-- [ ] Task 30.5: 24h Action Bar widget — color-coded horizontal timeline (green=Artha, blue=Kriya, purple=Yoga, red=Blocked)
-- [ ] Task 30.6: Current Mode Focus Card — lifestyle recommendation ("Negotiate now" / "Rest and reflect")
-- [ ] Task 30.7: Expansion sheet — tap Focus Card → bottom sheet with raw Pakshi/Hora/Tattva details
-- [ ] Task 30.8: Today tab integration — Action Bar at top + Focus Card above existing cards
-- [ ] Task 30.9: Notification scheduling — 48h rolling queue using consolidated window boundaries
-- [ ] Task 30.10: Tamil translations for action window guidance text (bilingual notifications)
-- [ ] Task 30.11: Unit tests for ActionWindowsEngine (all bird states, Rahu overlap, consolidation)
+- [x] Task 30.1: ActionWindowsEngine — yama-to-window consolidation algorithm (merge consecutive matching windows)
+- [x] Task 30.2: ActionWindowSegment model — window type, start, end, birdStateName, duration, contains()
+- [x] Task 30.3: Rahu Kaal guardrail — auto-block Artha/Kriya windows during Rahu (score clamp to 10%)
+- [x] Task 30.4: Integrate into dashboardDataProvider — compute 24h consolidated segments
+- [x] Task 30.5: 24h Action Bar widget — color-coded horizontal timeline (green=Artha, blue=Kriya, purple=Yoga, red=Blocked)
+- [x] Task 30.6: Current Mode Focus Card — lifestyle recommendation ("Negotiate now" / "Rest and reflect")
+- [x] Task 30.7: Expansion sheet — tap Focus Card → bottom sheet with raw Pakshi/Hora/Tattva details
+- [x] Task 30.8: Today tab integration — Action Bar at top + Focus Card above existing cards
+- [x] Task 30.9: Notification scheduling — 48h rolling queue using consolidated window boundaries
+- [x] Task 30.10: Tamil translations for action window guidance text (bilingual notifications)
+- [x] Task 30.11: Unit tests for ActionWindowsEngine (all bird states, Rahu overlap, consolidation)
 
 ---
 
