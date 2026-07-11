@@ -339,5 +339,41 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ---
 
+## Lessons Learned / Gotchas
+
+> Captured from production incidents and CI failures. Refer to these before making similar changes.
+
+### DB Migrations (v1.2.1 hotfix — PR #81)
+
+**Problem:** `Drift.m.addColumn()` throws "duplicate column name" if the column was already in the table definition before the schema version was bumped.
+
+**Rule:** Always wrap `addColumn()` in try-catch, OR use `PRAGMA table_info()` to check column existence before ALTER TABLE. Never add a column to the schema definition without simultaneously bumping the schema version in the same PR.
+
+### CI Scope Expansion (PRs #81–#93)
+
+**Problem:** Adding `pull_request: [prod]` to `ci-full.yml` exposed 3 pre-existing test failures (widget test, integration test) that were never caught.
+
+**Rule:** Before expanding CI triggers, run the full test suite via `workflow_dispatch` and confirm green. Fix failures FIRST, then add new triggers.
+
+### Flutter Widget Tests + Stream Providers
+
+**Problem:** `pumpAndSettle()` times out (10s default) when providers are overridden with `Stream.value(...)` because streams keep the Flutter scheduler permanently active.
+
+**Rule:** Use `pump()` + `pump(Duration(seconds: 1))` for navigation steps in tests that use stream-based provider overrides. Only use `pumpAndSettle()` for the initial app load. Skip navigation tests if the stream issue can't be resolved (deferred to Sprint 29).
+
+### Integration Tests Must Match UI
+
+**Problem:** IntroScreen was added in Sprint 23 but integration_test/app_test.dart still expected OnboardingScreen text.
+
+**Rule:** Every sprint that changes onboarding, navigation flow, or screen titles MUST update `integration_test/app_test.dart` and `test/widget_test.dart` in the same PR.
+
+### Release Protocol — Never Skip main→prod
+
+**Problem:** During v1.2.1 release, the `main→prod` PR was incorrectly skipped because `prod` branch wasn't visible in a shallow clone.
+
+**Rule:** The `prod` branch ALWAYS exists. Vercel production deploys from `prod`, staging from `main`. The `/release-finish` protocol MUST create a PR from `main` → `prod`. Never assume it doesn't exist.
+
+---
+
 [← Back to Root](../README.md)
 

@@ -35,11 +35,17 @@ class FullDaySchedule extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              l10n.todaysSchedule,
-              style: theme.textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              children: [
+                const Text('\u2600\uFE0F', style: TextStyle(fontSize: 14)),
+                const SizedBox(width: 6),
+                Text(
+                  l10n.daySchedule,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 12),
 
