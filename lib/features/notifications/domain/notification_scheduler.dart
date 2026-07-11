@@ -1,3 +1,5 @@
+import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
+import 'package:saranidhi/features/astro_engine/domain/action_window_segment.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/rahu_kaal_calculator.dart';
@@ -325,5 +327,87 @@ class NotificationScheduler {
       prefs: prefs,
       birthBird: birthBird,
     );
+  }
+
+  /// Generates action window boundary notifications for the next 48 hours.
+  ///
+  /// Consolidates yama-level states into window transitions and schedules
+  /// alerts only at window boundaries (not at every yama change).
+  /// This keeps notification count within OS limits (iOS: 64 max).
+  static List<ScheduledNotification> generateWindowNotifications({
+    required List<ActionWindowSegment> segments,
+    required String languageCode,
+    int idStart = 200,
+  }) {
+    final now = DateTime.now();
+    final horizon = now.add(const Duration(hours: 48));
+    final notifications = <ScheduledNotification>[];
+    var id = idStart;
+
+    for (final segment in segments) {
+      // Only schedule future notifications within 48h horizon
+      if (segment.start.isBefore(now) || segment.start.isAfter(horizon)) {
+        continue;
+      }
+
+      notifications.add(
+        ScheduledNotification(
+          id: id++,
+          title: _windowNotificationTitle(segment.window, languageCode),
+          body: _windowNotificationBody(
+            segment.window,
+            segment.birdStateName,
+            languageCode,
+          ),
+          scheduledTime: segment.start,
+          payload: 'action_window',
+        ),
+      );
+    }
+
+    return notifications;
+  }
+
+  static String _windowNotificationTitle(
+    ActionWindow window,
+    String languageCode,
+  ) {
+    if (languageCode == 'ta') {
+      return switch (window) {
+        ActionWindow.artha => 'அர்த்த சாளரம் — செயல் & கவனம்',
+        ActionWindow.kriya => 'கிரியா சாளரம் — ஊட்டம் & ஓய்வு',
+        ActionWindow.yoga => 'யோக சாளரம் — சீரமைப்பு & அமைதி',
+      };
+    }
+    return switch (window) {
+      ActionWindow.artha => 'Artha Window — Action & Focus',
+      ActionWindow.kriya => 'Kriya Window — Nourishment & Rest',
+      ActionWindow.yoga => 'Yoga Window — Realignment & Peace',
+    };
+  }
+
+  static String _windowNotificationBody(
+    ActionWindow window,
+    String birdState,
+    String languageCode,
+  ) {
+    if (languageCode == 'ta') {
+      return switch (window) {
+        ActionWindow.artha =>
+          'பறவை $birdState நிலையில் — முடிவுகள், பேச்சுவார்த்தைக்கு உகந்த நேரம்.',
+        ActionWindow.kriya =>
+          'பறவை $birdState நிலையில் — உணவு, உடற்பயிற்சி, படிப்புக்கு ஏற்ற நேரம்.',
+        ActionWindow.yoga =>
+          'பறவை $birdState நிலையில் — தியானம், மூச்சு பயிற்சி, ஓய்வுக்கு சிறந்த நேரம்.',
+      };
+    }
+    return switch (window) {
+      ActionWindow.artha =>
+        'Bird in $birdState state — ideal for decisions, execution, negotiations.',
+      ActionWindow.kriya =>
+        'Bird in $birdState state — ideal for meals, exercise, studying.',
+      ActionWindow.yoga =>
+        'Bird in $birdState state — ideal for meditation, breath work, rest.',
+    };
   }
 }

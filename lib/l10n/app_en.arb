@@ -910,5 +910,18 @@
   "termSwaraPadaGamana": "Swara Pada Gamana",
   "@termSwaraPadaGamana": { "description": "Grounding foot step ritual" },
   "termSwaraAhara": "Swara-Ahara",
-  "@termSwaraAhara": { "description": "Dietary chronobiology — digestive fire alignment" }
+  "@termSwaraAhara": { "description": "Dietary chronobiology — digestive fire alignment" },
+
+  "focusCardArthaAdvice": "Negotiate, decide, execute. Your bird is in action mode \u2014 material tasks are cosmically favored.",
+  "@focusCardArthaAdvice": { "description": "Focus card guidance for Artha window" },
+  "focusCardKriyaAdvice": "Nourish body and mind. Eat mindfully, exercise, study, or absorb information.",
+  "@focusCardKriyaAdvice": { "description": "Focus card guidance for Kriya window" },
+  "focusCardYogaAdvice": "Turn inward. Rest, meditate, practice breath work, or brainstorm. Avoid new commitments.",
+  "@focusCardYogaAdvice": { "description": "Focus card guidance for Yoga window" },
+  "focusCardRahuBlocked": "Rahu Kaal active \u2014 avoid starting anything new. Observe and reflect until it passes.",
+  "@focusCardRahuBlocked": { "description": "Focus card warning when Rahu blocks the window" },
+  "actionWindowSheetTitle": "Action Window Details",
+  "@actionWindowSheetTitle": { "description": "Bottom sheet title" },
+  "actionWindowSheetSchedule": "Today\u2019s Schedule",
+  "@actionWindowSheetSchedule": { "description": "Schedule section header in bottom sheet" }
 }
