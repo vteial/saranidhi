@@ -104,10 +104,11 @@ class SettingsScreen extends ConsumerWidget {
           },
         ),
 
-        const Divider(height: 32),
-
-        // About
-        const AboutCard(),
+        // About card — only in wide layout (left column)
+        if (isWide) ...[
+          const Divider(height: 32),
+          const AboutCard(),
+        ],
       ],
     );
 
@@ -171,6 +172,9 @@ class SettingsScreen extends ConsumerWidget {
                             personalSection,
                             const Divider(height: 32),
                             dataSection,
+                            // About card at the bottom on narrow screens
+                            const Divider(height: 32),
+                            const AboutCard(),
                           ],
                         ),
                 ),

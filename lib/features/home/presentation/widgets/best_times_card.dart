@@ -164,10 +164,10 @@ class _BestTimeRow extends StatelessWidget {
         entry.date.month == now.month &&
         entry.date.day == now.day;
 
-    final dayLabel = isToday
-        ? l10n.today
-        : DateFormat('EEE, MMM d', Localizations.localeOf(context).languageCode)
-            .format(entry.date);
+    final dayLabel = DateFormat(
+      'MMM d, EEE',
+      Localizations.localeOf(context).languageCode,
+    ).format(entry.date);
 
     final timeRange =
         '${_formatTime(entry.rulingYamaStart)} – ${_formatTime(entry.rulingYamaEnd)}';
@@ -176,19 +176,17 @@ class _BestTimeRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
+          // Yama number (first column — consistency principle)
           SizedBox(
-            width: 100,
+            width: 28,
             child: Text(
-              dayLabel,
+              'Y${entry.yamaNumber}',
               style: theme.textTheme.bodySmall?.copyWith(
-                fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
-                color: isToday
-                    ? theme.colorScheme.primary
-                    : theme.colorScheme.onSurface,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          // Time icon + range
           Icon(
             Icons.access_time,
             size: 14,
@@ -202,12 +200,31 @@ class _BestTimeRow extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          Text(
-            'Y${entry.yamaNumber}',
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
+          // Day label (flexible)
+          Expanded(
+            child: Text(
+              dayLabel,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
             ),
           ),
+          // "Today" badge on right
+          if (isToday)
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                l10n.today,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
         ],
       ),
     );

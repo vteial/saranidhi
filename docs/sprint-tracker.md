@@ -378,14 +378,17 @@
 
 ---
 
-## Sprint 28: UI Polish + UX Consistency
+## Sprint 28: UI Polish + UX Consistency — In Progress 🔄
 
 - [ ] Task 28.1: Best Times card — reorder columns (Y# first, ⏰ time range, date last + "Today" badge right-aligned). Fixes Tamil column width issue.
 - [ ] Task 28.2: Journal history — show today's entries by default, expand older dates on tap (pagination/lazy load)
 - [ ] Task 28.3: DOB result text — translate "Calculated:" and "Moon sidereal longitude:" to Tamil (onboarding_screen.dart hardcoded strings)
-- [ ] Task 28.4: Rahu card — add Emakandam (எமகண்டம்) calculator + reorder layout: Row1=Rahu Kaal, Row2=Kuligai+Emakandam, Row3=sunrise/sunset+moon phase
+- [ ] Task 28.4: Rahu card — add Emakandam (எமகண்டம்) calculator + reorder layout: Row1=Rahu Kaal, Row2=Kuligai+Emakandam, Row3=sunrise/sunset+moon phase, Row4=Tithi+Hora
 - [ ] Task 28.5: Rename "Today's Schedule" → "☀️ Day Schedule" (pairs with 🌙 Night Schedule)
 - [ ] Task 28.6: Analytics Yama Performance — "Yama 1" → "Y1" for consistency
+- [ ] Task 28.7: Explore tab — Rahu card height match Bird card (IntrinsicHeight + stretch)
+- [ ] Task 28.8: Best Times — day format change to "MMM d, EEE" (e.g., "Jul 12, Sat")
+- [ ] Task 28.9: Settings — move About card to bottom on narrow screens (after Clear All Data)
 
 ---
 

@@ -494,9 +494,9 @@ class _YamaPerformanceCard extends ConsumerWidget {
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 52,
+                          width: 28,
                           child: Text(
-                            '${l10n.yamaPrefix} $yamaNum',
+                            'Y$yamaNum',
                             style: theme.textTheme.bodySmall,
                           ),
                         ),
