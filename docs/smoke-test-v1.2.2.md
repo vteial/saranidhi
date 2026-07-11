@@ -2,7 +2,7 @@
 
 # Smoke Test Plan — v1.2.2-web
 
-> Release: v1.2.2-web | Date: __________ | Tester: __________
+> Release: v1.2.2-web | Date: 2026-07-11 | Tester: Eialarasu
 
 ---
 
@@ -11,8 +11,8 @@
 | Item | Value |
 |------|-------|
 | URL | https://saranidhi.vercel.app |
-| Browser | |
-| Device | |
+| Browser | Chrome, Safari |
+| Device | iMac, iPad Mini |
 | Profile | Pushya / Chennai |
 
 ---
@@ -70,11 +70,11 @@
 
 ### Sign-off
 
-- [ ] All Sprint 28 specific tests pass
-- [ ] All critical path scenarios pass
-- [ ] Ready for production release
+- [x] All Sprint 28 specific tests pass
+- [x] All critical path scenarios pass
+- [x] Ready for production release
 
-Tester: __________ | Date: __________
+Tester: Eialarasu | Date: 2026-07-11
 
 ---
 
