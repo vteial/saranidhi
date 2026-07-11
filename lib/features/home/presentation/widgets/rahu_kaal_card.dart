@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 
+import 'package:saranidhi/features/astro_engine/domain/emakandam_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/kuligai_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/rahu_kaal_calculator.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Enhanced Rahu Kaal card showing Rahu Kaal, Kuligai Kaal,
-/// sunrise/sunset times, and current moon phase.
+/// Emakandam, sunrise/sunset times, and current moon phase.
 ///
-/// - Red/orange highlight when Rahu Kaal currently active.
-/// - Amber hint when starting within 1 hour.
-/// - Subtle info display otherwise.
+/// Layout:
+/// - Row 1: Rahu Kaal (main, with urgency styling)
+/// - Row 2: Kuligai + Emakandam
+/// - Row 3: Sunrise/Sunset + Moon Phase
 class RahuKaalCard extends StatelessWidget {
   const RahuKaalCard({
     required this.rahuKaal,
     this.kuligaiKaal,
+    this.emakandam,
     this.sunrise,
     this.sunset,
     this.lunarPhase,
@@ -23,6 +26,7 @@ class RahuKaalCard extends StatelessWidget {
 
   final RahuKaalResult rahuKaal;
   final KuligaiKaalResult? kuligaiKaal;
+  final EmakandamResult? emakandam;
   final DateTime? sunrise;
   final DateTime? sunset;
   final LunarPhase? lunarPhase;
@@ -101,7 +105,32 @@ class RahuKaalCard extends StatelessWidget {
               ],
             ),
 
-            // Additional info row: Kuligai, Sunrise/Sunset, Moon Phase
+            // Row 2: Kuligai + Emakandam
+            if (kuligaiKaal != null || emakandam != null) ...[
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 16,
+                runSpacing: 4,
+                children: [
+                  if (kuligaiKaal != null)
+                    _InfoChip(
+                      emoji: '\u26A0\uFE0F',
+                      label:
+                          '${l10n.kuligaiKaalTitle}: ${_formatTime(kuligaiKaal!.start)} - ${_formatTime(kuligaiKaal!.end)}',
+                      theme: theme,
+                    ),
+                  if (emakandam != null)
+                    _InfoChip(
+                      emoji: '\u26A0\uFE0F',
+                      label:
+                          '${l10n.emakandamTitle}: ${_formatTime(emakandam!.start)} - ${_formatTime(emakandam!.end)}',
+                      theme: theme,
+                    ),
+                ],
+              ),
+            ],
+
+            // Row 3: Sunrise/Sunset + Moon Phase
             const SizedBox(height: 8),
             Wrap(
               spacing: 16,
@@ -125,15 +154,6 @@ class RahuKaalCard extends StatelessWidget {
                     label: lunarPhase == LunarPhase.waxing
                         ? l10n.moonWaxing
                         : l10n.moonWaning,
-                    theme: theme,
-                  ),
-
-                // Kuligai Kaal
-                if (kuligaiKaal != null)
-                  _InfoChip(
-                    emoji: '\u26A0\uFE0F',
-                    label:
-                        '${l10n.kuligaiKaalTitle}: ${_formatTime(kuligaiKaal!.start)} - ${_formatTime(kuligaiKaal!.end)}',
                     theme: theme,
                   ),
               ],

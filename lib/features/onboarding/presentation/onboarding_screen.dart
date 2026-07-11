@@ -461,7 +461,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            'Calculated: ${state.calculatedNakshatra!.displayName}',
+                            l10n.calculatedNakshatra(state.calculatedNakshatra!.displayName),
                             style: theme.textTheme.titleSmall?.copyWith(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
@@ -472,8 +472,9 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Moon sidereal longitude: '
-                      '${state.calculatedNakshatra!.siderealLongitude.toStringAsFixed(2)}\u00B0',
+                      l10n.moonSiderealLongitude(
+                        state.calculatedNakshatra!.siderealLongitude.toStringAsFixed(2),
+                      ),
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
@@ -490,8 +491,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
                           const SizedBox(width: 4),
                           Expanded(
                             child: Text(
-                              'Near nakshatra boundary \u2014 birth time accuracy '
-                              'is important. Verify with a panchangam if unsure.',
+                              l10n.nearBoundaryWarning,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: theme.colorScheme.error,
                               ),

@@ -82,6 +82,7 @@ class _ExploreContent extends ConsumerWidget {
                     Expanded(child: RahuKaalCard(
                       rahuKaal: data.rahuKaal!,
                       kuligaiKaal: data.kuligaiKaal,
+                      emakandam: data.emakandam,
                       sunrise: data.sunrise,
                       sunset: data.sunset,
                       lunarPhase: data.lunarPhase,
@@ -95,6 +96,7 @@ class _ExploreContent extends ConsumerWidget {
                 RahuKaalCard(
                   rahuKaal: data.rahuKaal!,
                   kuligaiKaal: data.kuligaiKaal,
+                  emakandam: data.emakandam,
                   sunrise: data.sunrise,
                   sunset: data.sunset,
                   lunarPhase: data.lunarPhase,

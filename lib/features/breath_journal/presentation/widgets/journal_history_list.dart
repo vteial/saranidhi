@@ -104,10 +104,17 @@ class _EmptyHistory extends StatelessWidget {
   }
 }
 
-class _HistoryContent extends StatelessWidget {
+class _HistoryContent extends StatefulWidget {
   const _HistoryContent({required this.entries});
 
   final List<SaraKalaiJournalData> entries;
+
+  @override
+  State<_HistoryContent> createState() => _HistoryContentState();
+}
+
+class _HistoryContentState extends State<_HistoryContent> {
+  final Set<String> _expandedDates = {};
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +123,7 @@ class _HistoryContent extends StatelessWidget {
 
     // Group by date
     final grouped = <String, List<SaraKalaiJournalData>>{};
-    for (final entry in entries) {
+    for (final entry in widget.entries) {
       final date = DateTime.fromMillisecondsSinceEpoch(entry.timestamp);
       final key =
           '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
@@ -125,31 +132,77 @@ class _HistoryContent extends StatelessWidget {
 
     final sortedKeys = grouped.keys.toList()..sort((a, b) => b.compareTo(a));
 
+    // Today's key
+    final today = DateTime.now();
+    final todayKey =
+        '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
           child: Text(
-            l10n.historyCount(entries.length),
+            l10n.historyCount(widget.entries.length),
             style: theme.textTheme.titleSmall,
           ),
         ),
         ...sortedKeys.map((dateKey) {
           final dayEntries = grouped[dateKey]!;
+          final isToday = dateKey == todayKey;
+          final isExpanded = isToday || _expandedDates.contains(dateKey);
+
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Text(
-                  _formatDateLabel(dateKey, l10n),
-                  style: theme.textTheme.labelMedium?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
+              // Date header — tappable for older dates
+              InkWell(
+                onTap: isToday
+                    ? null
+                    : () {
+                        setState(() {
+                          if (_expandedDates.contains(dateKey)) {
+                            _expandedDates.remove(dateKey);
+                          } else {
+                            _expandedDates.add(dateKey);
+                          }
+                        });
+                      },
+                borderRadius: BorderRadius.circular(4),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Row(
+                    children: [
+                      Text(
+                        _formatDateLabel(dateKey, l10n),
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                      if (!isToday) ...[
+                        const SizedBox(width: 4),
+                        Text(
+                          '(${dayEntries.length})',
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                        const Spacer(),
+                        Icon(
+                          isExpanded
+                              ? Icons.expand_less
+                              : Icons.expand_more,
+                          size: 18,
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ],
+                    ],
                   ),
                 ),
               ),
-              ...dayEntries.map((entry) => _EntryTile(entry: entry)),
+              // Entries — always visible for today, expandable for older
+              if (isExpanded)
+                ...dayEntries.map((entry) => _EntryTile(entry: entry)),
               const SizedBox(height: 8),
             ],
           );
