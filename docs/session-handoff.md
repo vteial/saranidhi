@@ -12,12 +12,12 @@
 | Item | Status |
 |------|--------|
 | **Production** | v1.2.2-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | Latest main (Sprint 29 merged) |
-| **Sprints delivered** | 29 |
-| **Total PRs** | 102 |
-| **Engineering hours** | ~86h |
+| **Staging** | Latest main (Sprint 30 merged — Action Windows) |
+| **Sprints delivered** | 30 |
+| **Total PRs** | 104 |
+| **Engineering hours** | ~89h |
 | **User mode** | Daily use — production stable |
-| **Next sprint** | Sprint 30 (Action Windows Engine + UI) |
+| **Next sprint** | v1.3.0-web release, then Sprint 31 (Numerology + NameBirdParser) |
 
 ---
 
@@ -121,10 +121,9 @@ These exist as code but aren't connected to the app UI yet:
 
 ## Next Session: Start Here
 
-1. `/release-start` v1.3.0-web (Sprint 29 + 30 combined)  
-   OR `/sprint-start` Sprint 30 (Action Windows Engine + UI)
-2. After Sprint 30 merge: v1.3.0-web release
-3. Then: Sprint 31 (Numerology + NameBirdParser)
+1. `/release-start` v1.3.0-web (Sprint 29 + 30 combined — Foundation + Action Windows)
+2. After release: Sprint 31 (Numerology — NameBirdParser, Navatara, Hora-Swara)
+3. Then: Sprint 32 (Prasanam Oracle UI) → v1.4.0-web release
 
 ---
 
