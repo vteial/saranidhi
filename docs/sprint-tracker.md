@@ -392,7 +392,7 @@
 
 ---
 
-## Sprint 29: Foundation — Terminology, PWA, Tech Debt (v1.3.0)
+## Sprint 29: Foundation — Terminology, PWA, Tech Debt (v1.3.0) — In Progress 🔄
 
 - [ ] Task 29.1: Terminology l10n — map Siddha/Swarodaya standard terms (Ida/Idakalai, Pingala/Pingalai, Suzhumunai, Pakshi states) to ARB files from `docs/research/saranidhi-terminology-*.md`
 - [ ] Task 29.2: UI copy audit — update User Guide, tooltips, dashboard headers to match terminology standard
