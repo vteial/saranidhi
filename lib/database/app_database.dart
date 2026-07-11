@@ -34,13 +34,16 @@ class AppDatabase extends _$AppDatabase {
       }
       if (from < 3) {
         // Sprint 26: Add isPinned column to journal entries.
-        // Use try-catch because the column may already exist — it was part
-        // of the table definition since Sprint 26 (schema v2 period), so
-        // databases created fresh at v2 already have it via createAll().
-        try {
+        // Check if column already exists using PRAGMA table_info() to avoid
+        // "duplicate column name" error on databases created fresh at v2+.
+        final columns = await customSelect(
+          "PRAGMA table_info('sara_kalai_journal')",
+        ).get();
+        final hasIsPinned = columns.any(
+          (row) => row.read<String>('name') == 'is_pinned',
+        );
+        if (!hasIsPinned) {
           await m.addColumn(saraKalaiJournal, saraKalaiJournal.isPinned);
-        } on Exception {
-          // Column already exists — safe to ignore
         }
       }
     },

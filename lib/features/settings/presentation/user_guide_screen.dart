@@ -64,6 +64,18 @@ class UserGuideScreen extends StatelessWidget {
                     body: l10n.guideBestBody,
                   ),
 
+                  // Section 6a: Swara Pada Gamana (Grounding Step)
+                  _Section(
+                    title: l10n.guidePadaGamanaTitle,
+                    body: l10n.guidePadaGamanaBody,
+                  ),
+
+                  // Section 6b: Swara-Ahara (Dietary Alignment)
+                  _Section(
+                    title: l10n.guideSwaraAharaTitle,
+                    body: l10n.guideSwaraAharaBody,
+                  ),
+
                   // Section 7: Understanding the Dashboard
                   _Section(
                     title: l10n.guideDashboardTitle,
