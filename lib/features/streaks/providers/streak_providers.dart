@@ -4,6 +4,9 @@ import 'package:drift/drift.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/database_provider.dart';
+import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
+import 'package:saranidhi/features/astro_engine/domain/action_window_segment.dart';
+import 'package:saranidhi/features/astro_engine/domain/action_windows_engine.dart';
 import 'package:saranidhi/features/astro_engine/domain/emakandam_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/kuligai_calculator.dart';
@@ -52,6 +55,8 @@ class DashboardData {
     this.isNight = false,
     this.activeHora,
     this.activeTattva,
+    this.actionWindowSegments,
+    this.activeActionWindow,
   });
 
   final StreakResult streak;
@@ -122,6 +127,12 @@ class DashboardData {
 
   /// Current active element (Tattva).
   final TattvaResult? activeTattva;
+
+  /// Consolidated 24h action window segments.
+  final List<ActionWindowSegment>? actionWindowSegments;
+
+  /// Currently active action window segment.
+  final ActionWindowSegment? activeActionWindow;
 }
 
 /// The currently selected date for the dashboard.
@@ -411,6 +422,43 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     todayAvgHoldMs = holdValues.reduce((a, b) => a + b) / holdValues.length;
   }
 
+  // ─── Action Windows computation ─────────────────────────────────────
+  List<ActionWindowSegment>? actionWindowSegments;
+  ActionWindowSegment? activeActionWindow;
+
+  final effectiveBird = birthBird != null && lunarPhase != null
+      ? PakshiCalculator.birthBirdForPhase(birthBird, lunarPhase)
+      : birthBird;
+
+  if (effectiveBird != null &&
+      pakshiDay != null &&
+      yamaResult != null &&
+      nightYamaResult != null &&
+      pakshiNight != null) {
+    var segments = ActionWindowsEngine.consolidate(
+      dayYamas: yamaResult.yamas,
+      nightYamas: nightYamaResult.yamas,
+      dayPakshi: pakshiDay,
+      nightPakshi: pakshiNight,
+      userBird: effectiveBird,
+    );
+
+    // Apply Rahu Kaal guardrail
+    if (rahuKaal != null) {
+      segments = ActionWindowsEngine.applyRahuGuardrail(
+        segments: segments,
+        rahuKaal: rahuKaal,
+      );
+    }
+
+    actionWindowSegments = segments;
+
+    // Find active segment (only when viewing today)
+    if (isToday) {
+      activeActionWindow = ActionWindowsEngine.activeSegment(segments, now);
+    }
+  }
+
   // Auto-invalidate every 30 seconds when viewing today
   if (isToday) {
     final timer = Timer(const Duration(seconds: 30), () {
@@ -460,6 +508,8 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
       isToday: isToday,
       activeYama: activeYamaSegment,
     ),
+    actionWindowSegments: actionWindowSegments,
+    activeActionWindow: activeActionWindow,
   );
 });
 
