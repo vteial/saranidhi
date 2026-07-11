@@ -165,7 +165,7 @@ class _BestTimeRow extends StatelessWidget {
         entry.date.day == now.day;
 
     final dayLabel = DateFormat(
-      'EEE, MMM d',
+      'MMM d, EEE',
       Localizations.localeOf(context).languageCode,
     ).format(entry.date);
 

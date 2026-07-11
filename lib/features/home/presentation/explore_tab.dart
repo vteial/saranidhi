@@ -71,23 +71,25 @@ class _ExploreContent extends ConsumerWidget {
 
             // Selected date's Pakshi schedule
             if (isWide)
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (data.birthBird != null)
-                    Expanded(child: BirthBirdCard(data: data)),
-                  if (data.birthBird != null && data.rahuKaal != null)
-                    const SizedBox(width: 12),
-                  if (data.rahuKaal != null)
-                    Expanded(child: RahuKaalCard(
-                      rahuKaal: data.rahuKaal!,
-                      kuligaiKaal: data.kuligaiKaal,
-                      emakandam: data.emakandam,
-                      sunrise: data.sunrise,
-                      sunset: data.sunset,
-                      lunarPhase: data.lunarPhase,
-                    )),
-                ],
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    if (data.birthBird != null)
+                      Expanded(child: BirthBirdCard(data: data)),
+                    if (data.birthBird != null && data.rahuKaal != null)
+                      const SizedBox(width: 12),
+                    if (data.rahuKaal != null)
+                      Expanded(child: RahuKaalCard(
+                        rahuKaal: data.rahuKaal!,
+                        kuligaiKaal: data.kuligaiKaal,
+                        emakandam: data.emakandam,
+                        sunrise: data.sunrise,
+                        sunset: data.sunset,
+                        lunarPhase: data.lunarPhase,
+                      )),
+                  ],
+                ),
               )
             else ...[
               if (data.birthBird != null) BirthBirdCard(data: data),
