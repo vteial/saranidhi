@@ -405,7 +405,7 @@
 
 ---
 
-## Sprint 30: Action Windows Engine + UI (v1.3.0)
+## Sprint 30: Action Windows Engine + UI (v1.3.0) — In Progress 🔄
 
 - [ ] Task 30.1: ActionWindowsEngine — yama-to-window consolidation algorithm (merge consecutive matching windows)
 - [ ] Task 30.2: ActionWindowSegment model — window type, start, end, birdStateName, duration, contains()
