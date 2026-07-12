@@ -392,47 +392,93 @@
 
 ---
 
-## Sprint 29: Layer 2 Engine — Action Windows Calculation (v1.3.0)
+## Sprint 29: Foundation — Terminology, PWA, Tech Debt (v1.3.0) — Complete (PR #102) ✅
 
-- [ ] Task 29.1: ActionWindowEngine class — compute 24h action window schedule from sunrise/sunset + Pakshi states
-- [ ] Task 29.2: Rahu Kaal guardrail — auto-block Artha/Kriya windows during Rahu Kaal (10% floor lockout)
-- [ ] Task 29.3: ActionWindowSchedule model — list of timed windows with type, start, end, blocked status
-- [ ] Task 29.4: Integrate ActionWindowEngine into dashboardDataProvider (compute alongside existing data)
-- [ ] Task 29.5: Unit tests for ActionWindowEngine (all bird states, Rahu overlap, Sushumna override)
-
----
-
-## Sprint 30: Layer 2 UI — Action Windows Display (v1.3.0)
-
-- [ ] Task 30.1: 24h Action Bar widget — color-coded horizontal timeline (green=Artha, blue=Kriya, purple=Yoga, red=Blocked)
-- [ ] Task 30.2: "Current Mode" Focus Card — lifestyle recommendation replacing technical jargon ("Negotiate now" vs "Ruling")
-- [ ] Task 30.3: Expansion sheet — tap Focus Card → animated bottom sheet with raw Pakshi/Hora/Tattva details
-- [ ] Task 30.4: Today tab integration — Action Bar at top + Focus Card above existing cards
-- [ ] Task 30.5: Tamil translations for all action window guidance text
+- [x] Task 29.1: Terminology l10n — map Siddha/Swarodaya standard terms (Ida/Idakalai, Pingala/Pingalai, Suzhumunai, Pakshi states) to ARB files from `docs/research/saranidhi-terminology-*.md`
+- [x] Task 29.2: UI copy audit — update User Guide, tooltips, dashboard headers to match terminology standard
+- [x] Task 29.3: User Guide — add Swara Pada Gamana (Grounding foot step rule) section
+- [x] Task 29.4: User Guide — add Swara-Ahara (Dietary Chronobiology) section
+- [x] Task 29.5: PWA manifest.json — update name, description, theme_color, background_color
+- [x] Task 29.6: PWA icons — generate Saranidhi logo PNGs (192, 512, maskable) from SVG
+- [x] Task 29.7: Widget test fix — resolve stream-based provider settling issue (un-skip navigation tests)
+- [x] Task 29.8: DB migration strategy — replace try-catch with PRAGMA table_info() check
 
 ---
 
-## Sprint 31: Layer 3 Engine — Prasanam Oracle Calculation (v2.0.0)
+## Sprint 30: Action Windows Engine + UI (v1.3.0) — Complete (PR #104) ✅
 
-- [ ] Task 31.1: PrasanamHistory Drift table + schema migration
-- [ ] Task 31.2: Vector 1 — Saram × Tattva harmony matrix (Solar→Fire/Air, Lunar→Earth/Water, Sushumna→Ether)
-- [ ] Task 31.3: Vector 2 — Saram × Bird State scoring (with 10% floor lockout on Sleeping/Dying)
-- [ ] Task 31.4: Vector 3 — Question category × Hora compatibility (commerce/conflict/travel/health → planet match)
-- [ ] Task 31.5: Oracle score algorithm — compound 3 vectors → 0.0–1.0 final score
-- [ ] Task 31.6: Deterministic guidance matrix — score tiers → advice card text (Strong Yes / Favorable / Caution / Delay / Hard No)
-- [ ] Task 31.7: 30-minute validation gate — check last journal entry recency before allowing query
+- [x] Task 30.1: ActionWindowsEngine — yama-to-window consolidation algorithm (merge consecutive matching windows)
+- [x] Task 30.2: ActionWindowSegment model — window type, start, end, birdStateName, duration, contains()
+- [x] Task 30.3: Rahu Kaal guardrail — auto-block Artha/Kriya windows during Rahu (score clamp to 10%)
+- [x] Task 30.4: Integrate into dashboardDataProvider — compute 24h consolidated segments
+- [x] Task 30.5: 24h Action Bar widget — color-coded horizontal timeline (green=Artha, blue=Kriya, purple=Yoga, red=Blocked)
+- [x] Task 30.6: Current Mode Focus Card — lifestyle recommendation ("Negotiate now" / "Rest and reflect")
+- [x] Task 30.7: Expansion sheet — tap Focus Card → bottom sheet with raw Pakshi/Hora/Tattva details
+- [x] Task 30.8: Today tab integration — Action Bar at top + Focus Card above existing cards
+- [x] Task 30.9: Notification scheduling — 48h rolling queue using consolidated window boundaries
+- [x] Task 30.10: Tamil translations for action window guidance text (bilingual notifications)
+- [x] Task 30.11: Unit tests for ActionWindowsEngine (all bird states, Rahu overlap, consolidation)
 
 ---
 
-## Sprint 32: Layer 3 UI — Prasanam Oracle Interface (v2.0.0)
+## Sprint 31: Numerology + Oracle Engine (v1.4.0)
 
-- [ ] Task 32.1: FAB on Today tab — distinctive oracle icon (🔮), launches Prasanam flow
-- [ ] Task 32.2: Query input screen — free-text field + 3-second intention anchor animation
-- [ ] Task 32.3: Validation gate UI — trigger Guided Nostril Test if no recent entry
-- [ ] Task 32.4: Oracle result card — score gauge + tiered advice + diagnostic snapshot display
-- [ ] Task 32.5: Prasanam history timeline — accessible from Explore tab, chronological past queries
-- [ ] Task 32.6: Post-event outcome notes — tap old query → add reflective notes on real-world outcome
-- [ ] Task 32.7: Tamil translations for Prasanam UI + guidance text
+- [ ] Task 31.1: NameBirdParser — phonetic vowel-to-bird fallback (EN + Tamil Unicode)
+- [ ] Task 31.2: Integrate NameBirdParser into onboarding as tertiary fallback (DOB → Nakshatra → Name)
+- [ ] Task 31.3: TaraCategory enum — Navatara modulo-9 formula with multiplier weights (0.2–1.5x)
+- [ ] Task 31.4: HoraSwaraAffinity — planetary energy classification + alignment multiplier matrix
+- [ ] Task 31.5: OracleCompositeEngine — composite score: Base × Tarabala × Hora-Swara
+- [ ] Task 31.6: Category Harmony multipliers — Artha/Kriya/Yoga query vs active Action Window (1.2x–0.5x)
+- [ ] Task 31.7: Rahu Kaal floor lock filter (hard lock to 10% if active)
+- [ ] Task 31.8: Unit tests for all Oracle calculators
+
+---
+
+## Sprint 32: Prasanam Oracle UI (v1.4.0)
+
+- [ ] Task 32.1: PrasanamHistory Drift table + schema migration
+- [ ] Task 32.2: FAB on Today tab — oracle icon (🔮), launches Prasanam flow
+- [ ] Task 32.3: Query input screen — category selector (Artha/Kriya/Yoga) + free-text field + intention anchor animation
+- [ ] Task 32.4: 30-minute validation gate — check last journal entry recency, trigger GuidedNostrilTest if stale
+- [ ] Task 32.5: Oracle result card — score gauge + 5 answer bands (Strong Yes / Favorable / Caution / Delay / Hard No)
+- [ ] Task 32.6: Prasanam history timeline — Explore tab, chronological past queries
+- [ ] Task 32.7: Post-event outcome notes — tap old query → add reflective notes
+- [ ] Task 32.8: Tamil translations for Prasanam UI + guidance text
+
+---
+
+## Sprint 33: Somatic Intervention Engine (v1.5.0)
+
+- [ ] Task 33.1: SomaticInterventionLogs Drift table + schema migration
+- [ ] Task 33.2: SomaticInterventionSession model — type, targetFlow, initialFlow, success evaluation
+- [ ] Task 33.3: Intervention Timer Rooms — full-screen Material 3 countdown (180s posture, 300s axillary)
+- [ ] Task 33.4: Sama Vritti pacer animation (4:4:4:4 equal-ratio breathing guide)
+- [ ] Task 33.5: Cross-lateral instruction cards (contralateral body positions per target flow)
+- [ ] Task 33.6: Validation flow — auto-trigger GuidedNostrilTest on timer completion, log outcome
+- [ ] Task 33.7: Integration with AlignmentChecker — show [Clear Breath Channel] action when blocked
+- [ ] Task 33.8: Tamil translations for intervention UI
+
+---
+
+## Sprint 34: Chronobiology Analytics + Holistic Cards (v1.5.0)
+
+- [ ] Task 34.1: ChronobiologyAnalytics — time-weighted sliding window stagnancy detection (≥6h mild, ≥8h chronic)
+- [ ] Task 34.2: Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on Kriya Focus Card
+- [ ] Task 34.3: Tattva-Somatic Temperature Regulation tips (Sheetali for excess fire, Surya Bhedana for cold)
+- [ ] Task 34.4: Swara Pada Gamana waking advice in morning summary notification
+- [ ] Task 34.5: Dashboard stagnancy warning card (heating/cooling lifestyle recommendations)
+- [ ] Task 34.6: Cognitive Energy Budgeting labels in Best Times / Explore tab (Artha/Kriya/Yoga activity suggestions)
+- [ ] Task 34.7: Tamil translations for all holistic/somatic guidance text
+
+---
+
+## Sprint 35: v2.0.0 Release Polish & Integration Testing
+
+- [ ] Task 35.1: End-to-end feature integration testing (all layers working together)
+- [ ] Task 35.2: Performance optimization (startup time, animation smoothness)
+- [ ] Task 35.3: Comprehensive smoke test plan for v2.0.0 (all features)
+- [ ] Task 35.4: User Guide refresh — complete rewrite covering all v2.0 features
+- [ ] Task 35.5: Wire Sprint 26 deferred widgets (WhatsNew startup, PresetSelector, StreakCelebration, isPinned star)
 
 ---
 

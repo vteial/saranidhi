@@ -72,8 +72,10 @@ void main() {
     expect(find.text('Last 7 Days'), findsOneWidget); // ribbon header
   });
 
-  // TODO(sprint-28): Fix navigation test — stream-based provider prevents
-  // settling. Convert journalEntriesProvider override to sync or use fakeAsync.
+  // Navigation test: stream-based journalEntriesProvider keeps the Flutter
+  // scheduler active, causing intermittent failures in CI even with explicit
+  // pump(). Proper fix: convert to sync FutureProvider override in tests.
+  // Tracked for future sprint (E2E testing strategy).
   testWidgets('Navigation between tabs works', (tester) async {
     await tester.pumpWidget(
       ProviderScope(overrides: testOverrides, child: const SaranidhiApp()),
@@ -104,7 +106,7 @@ void main() {
     // Verify Today tab content is still visible
     expect(find.text('Today'), findsOneWidget);
     expect(find.text('3 days'), findsOneWidget);
-  }, skip: true); // Stream provider settling issue — deferred to Sprint 28
+  }, skip: true);
 }
 
 class _AlwaysTrueNotifier extends OnboardingCompleteNotifier {

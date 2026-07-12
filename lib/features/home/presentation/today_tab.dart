@@ -7,7 +7,10 @@ import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.da
 import 'package:saranidhi/features/cloud_backup/domain/backup_repository.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
 import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
+import 'package:saranidhi/features/home/presentation/widgets/action_bar.dart';
+import 'package:saranidhi/features/home/presentation/widgets/action_window_sheet.dart';
 import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
+import 'package:saranidhi/features/home/presentation/widgets/focus_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
 import 'package:saranidhi/features/home/presentation/widgets/hold_time_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_chart.dart';
@@ -65,6 +68,30 @@ class _TodayContent extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Row 0: Action Bar (24h timeline) + Focus Card
+            if (data.actionWindowSegments != null &&
+                data.actionWindowSegments!.isNotEmpty &&
+                data.sunrise != null) ...[
+              ActionBar(
+                segments: data.actionWindowSegments!,
+                dayStart: data.sunrise!,
+                dayEnd: data.sunrise!.add(const Duration(hours: 24)),
+                currentTime: DateTime.now(),
+              ),
+              const SizedBox(height: 8),
+              if (data.activeActionWindow != null)
+                FocusCard(
+                  segment: data.activeActionWindow!,
+                  onTap: () => showActionWindowSheet(
+                    context,
+                    segment: data.activeActionWindow!,
+                    allSegments: data.actionWindowSegments!,
+                    userBird: data.effectiveBirthBird ?? data.birthBird,
+                  ),
+                ),
+              if (data.activeActionWindow != null) const SizedBox(height: 12),
+            ],
+
             // Row 1: Birth Bird + Rahu Kaal (two-column on wide)
             if (isWide)
               IntrinsicHeight(

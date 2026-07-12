@@ -11,13 +11,13 @@
 
 | Item | Status |
 |------|--------|
-| **Production** | v1.2.1-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | Latest main (Sprint 28 merged) |
-| **Sprints delivered** | 28 |
-| **Total PRs** | 95 |
-| **Engineering hours** | ~84h |
-| **User mode** | Preview tested, ready for release |
-| **Next release** | v1.2.2-web (Sprint 28 features) |
+| **Production** | v1.2.2-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | Latest main (Sprint 30 merged — Action Windows) |
+| **Sprints delivered** | 30 |
+| **Total PRs** | 104 |
+| **Engineering hours** | ~89h |
+| **User mode** | Daily use — production stable |
+| **Next sprint** | v1.3.0-web release, then Sprint 31 (Numerology + NameBirdParser) |
 
 ---
 
@@ -77,11 +77,10 @@
 - **Rationale:** Playwright is purpose-built for web, tests deployed URLs, independent CI, fast, visual regression built-in
 
 ### v2.0 Roadmap (Layers 2 & 3)
-- **v1.3.0:** Sprint 28–29 (Action Windows — 24h bar + Current Mode Focus Card)
-- **v2.0.0:** Sprint 30–31 (Prasanam Oracle — FAB trigger, 3-vector calculation)
-- **Oracle formula:** V1×0.35 + V2×0.40 + V3×0.25
-- **Prasanam trigger:** FAB on Today tab
-- **Output tiers:** Strong Yes (≥0.8) / Favorable (≥0.6) / Caution (≥0.4) / Delay (≥0.2) / Hard No (<0.2)
+- **v1.3.0:** Sprint 29–30 (Foundation + Action Windows Engine & UI)
+- **v1.4.0:** Sprint 31–32 (Numerology + Prasanam Oracle)
+- **v1.5.0:** Sprint 33–34 (Somatic Mastery + Chronobiology Analytics)
+- **v2.0.0:** Sprint 35 (Integration Polish + App Store Prep)
 
 ### Architecture Decisions
 - **ActionWindow enum:** Ruling/Walking→Artha, Eating→Kriya, Sleeping/Dying→Yoga
@@ -122,9 +121,9 @@ These exist as code but aren't connected to the app UI yet:
 
 ## Next Session: Start Here
 
-1. `/release-start` v1.2.2 (Sprint 28 features)
-2. Smoke test → merge → `/release-finish` → main→prod
-3. Then: Sprint 29 (Layer 2 Engine — Action Windows)
+1. `/release-start` v1.3.0-web (Sprint 29 + 30 combined — Foundation + Action Windows)
+2. After release: Sprint 31 (Numerology — NameBirdParser, Navatara, Hora-Swara)
+3. Then: Sprint 32 (Prasanam Oracle UI) → v1.4.0-web release
 
 ---
 
