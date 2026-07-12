@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:saranidhi/core/utils/bird_emoji.dart';
+import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window_segment.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
