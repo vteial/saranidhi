@@ -200,44 +200,42 @@ class _HoraTattvaRow extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        if (hora != null) ...[
-          Text(
-            _horaEmoji(hora!.planet),
-            style: const TextStyle(fontSize: 12),
-          ),
-          const SizedBox(width: 4),
-          Text(
-            _localizedPlanet(hora!.planet, l10n),
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-        ],
-        if (hora != null && tattva != null)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              '\u2022',
-              style: TextStyle(
-                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
-                fontSize: 10,
+        if (hora != null)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                _horaEmoji(hora!.planet),
+                style: const TextStyle(fontSize: 12),
               ),
-            ),
+              const SizedBox(width: 4),
+              Text(
+                _localizedPlanet(hora!.planet, l10n),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
-        if (tattva != null) ...[
-          Text(
-            _tattvaEmoji(tattva!.tattva),
-            style: const TextStyle(fontSize: 12),
+        if (tattva != null)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                _tattvaEmoji(tattva!.tattva),
+                style: const TextStyle(fontSize: 12),
+              ),
+              const SizedBox(width: 4),
+              Text(
+                _localizedTattva(tattva!.tattva, l10n),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 4),
-          Text(
-            _localizedTattva(tattva!.tattva, l10n),
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-        ],
       ],
     );
   }

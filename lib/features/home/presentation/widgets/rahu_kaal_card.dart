@@ -125,9 +125,8 @@ class RahuKaalCard extends StatelessWidget {
             // Row 2: Kuligai + Emakandam
             if (kuligaiKaal != null || emakandam != null) ...[
               const SizedBox(height: 8),
-              Wrap(
-                spacing: 16,
-                runSpacing: 4,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   if (kuligaiKaal != null)
                     _InfoChip(
@@ -149,9 +148,8 @@ class RahuKaalCard extends StatelessWidget {
 
             // Row 3: Sunrise/Sunset + Moon Phase
             const SizedBox(height: 8),
-            Wrap(
-              spacing: 16,
-              runSpacing: 4,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Sunrise / Sunset
                 if (sunrise != null && sunset != null)
@@ -178,9 +176,8 @@ class RahuKaalCard extends StatelessWidget {
 
             // Row 4: Weekday + Tithi + Hora planet
             const SizedBox(height: 8),
-            Wrap(
-              spacing: 16,
-              runSpacing: 4,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Weekday + Tithi
                 _InfoChip(
