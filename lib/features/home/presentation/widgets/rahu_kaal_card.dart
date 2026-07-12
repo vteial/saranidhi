@@ -84,7 +84,6 @@ class RahuKaalCard extends StatelessWidget {
               : isSoon
                   ? Colors.orange.withValues(alpha: 0.3)
                   : theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
-          width: 1,
         ),
       ),
       child: Padding(

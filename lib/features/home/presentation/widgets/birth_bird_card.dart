@@ -80,7 +80,7 @@ class BirthBirdCard extends StatelessWidget {
       color: stateColor.withValues(alpha: 0.14),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: stateColor.withValues(alpha: 0.25), width: 1),
+        side: BorderSide(color: stateColor.withValues(alpha: 0.25)),
       ),
       child: Container(
         decoration: BoxDecoration(
