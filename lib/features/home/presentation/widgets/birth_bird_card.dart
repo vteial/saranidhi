@@ -56,7 +56,7 @@ class BirthBirdCard extends StatelessWidget {
       final minutesLeft = remaining.inMinutes;
       yamaProgressText = l10n.yamaProgress(
         nightYama.index.index + 6,
-        '${minutesLeft}min',
+        l10n.durationMinutes(minutesLeft),
       );
     } else if (data.activeYama != null) {
       final activeYama = data.activeYama!;
@@ -69,7 +69,7 @@ class BirthBirdCard extends StatelessWidget {
       final minutesLeft = remaining.inMinutes;
       yamaProgressText = l10n.yamaProgress(
         activeYama.index.index + 1,
-        '${minutesLeft}min',
+        l10n.durationMinutes(minutesLeft),
       );
     }
 
