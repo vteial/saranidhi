@@ -86,7 +86,7 @@ class FocusCard extends StatelessWidget {
                     )
                   else
                     Text(
-                      '${minutesLeft}min',
+                      l10n.durationMinutes(minutesLeft),
                       style: theme.textTheme.labelMedium?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),

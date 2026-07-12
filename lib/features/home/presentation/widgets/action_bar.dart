@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window_segment.dart';
+import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// A 24h color-coded horizontal timeline showing consolidated Action Windows.
 ///
@@ -35,6 +36,8 @@ class ActionBar extends StatelessWidget {
 
     if (totalMs <= 0 || segments.isEmpty) return const SizedBox.shrink();
 
+    final l10n = AppLocalizations.of(context);
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -46,7 +49,7 @@ class ActionBar extends StatelessWidget {
                 Icon(Icons.timeline, size: 18, color: theme.colorScheme.primary),
                 const SizedBox(width: 6),
                 Text(
-                  'Action Windows',
+                  l10n.actionWindowsTitle,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -137,15 +140,15 @@ class ActionBar extends StatelessWidget {
               children: [
                 _LegendDot(
                   color: _windowColor(ActionWindow.artha, theme),
-                  label: 'Artha',
+                  label: l10n.termArtha,
                 ),
                 _LegendDot(
                   color: _windowColor(ActionWindow.kriya, theme),
-                  label: 'Kriya',
+                  label: l10n.termKriya,
                 ),
                 _LegendDot(
                   color: _windowColor(ActionWindow.yoga, theme),
-                  label: 'Yoga',
+                  label: l10n.termYoga,
                 ),
               ],
             ),
