@@ -65,7 +65,7 @@ class RahuKaalCard extends StatelessWidget {
       subtitle = l10n.rahuKaalSoon;
       icon = Icons.access_time_rounded;
     } else {
-      cardColor = theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5);
+      cardColor = theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);
       textColor = theme.colorScheme.onSurfaceVariant;
       subtitle = '';
       icon = Icons.info_outline_rounded;
@@ -76,6 +76,17 @@ class RahuKaalCard extends StatelessWidget {
 
     return Card(
       color: cardColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: isActive
+              ? theme.colorScheme.error.withValues(alpha: 0.3)
+              : isSoon
+                  ? Colors.orange.withValues(alpha: 0.3)
+                  : theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
+          width: 1,
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Column(
