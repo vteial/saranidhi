@@ -56,7 +56,7 @@ class BirthBirdCard extends StatelessWidget {
       final minutesLeft = remaining.inMinutes;
       yamaProgressText = l10n.yamaProgress(
         nightYama.index.index + 6,
-        '${minutesLeft}min',
+        l10n.durationMinutes(minutesLeft),
       );
     } else if (data.activeYama != null) {
       final activeYama = data.activeYama!;
@@ -69,7 +69,7 @@ class BirthBirdCard extends StatelessWidget {
       final minutesLeft = remaining.inMinutes;
       yamaProgressText = l10n.yamaProgress(
         activeYama.index.index + 1,
-        '${minutesLeft}min',
+        l10n.durationMinutes(minutesLeft),
       );
     }
 
@@ -77,8 +77,18 @@ class BirthBirdCard extends StatelessWidget {
         (!data.isNight && data.activeYama != null);
 
     return Card(
-      color: stateColor.withValues(alpha: 0.08),
-      child: Padding(
+      color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: stateColor.withValues(alpha: 0.25)),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border(
+            left: BorderSide(color: stateColor, width: 4),
+          ),
+        ),
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,44 +200,42 @@ class _HoraTattvaRow extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        if (hora != null) ...[
-          Text(
-            _horaEmoji(hora!.planet),
-            style: const TextStyle(fontSize: 12),
-          ),
-          const SizedBox(width: 4),
-          Text(
-            _localizedPlanet(hora!.planet, l10n),
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-        ],
-        if (hora != null && tattva != null)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              '\u2022',
-              style: TextStyle(
-                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
-                fontSize: 10,
+        if (hora != null)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                _horaEmoji(hora!.planet),
+                style: const TextStyle(fontSize: 12),
               ),
-            ),
+              const SizedBox(width: 4),
+              Text(
+                _localizedPlanet(hora!.planet, l10n),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
-        if (tattva != null) ...[
-          Text(
-            _tattvaEmoji(tattva!.tattva),
-            style: const TextStyle(fontSize: 12),
+        if (tattva != null)
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                _tattvaEmoji(tattva!.tattva),
+                style: const TextStyle(fontSize: 12),
+              ),
+              const SizedBox(width: 4),
+              Text(
+                _localizedTattva(tattva!.tattva, l10n),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 4),
-          Text(
-            _localizedTattva(tattva!.tattva, l10n),
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
-          ),
-        ],
       ],
     );
   }

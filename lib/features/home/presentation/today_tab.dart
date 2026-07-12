@@ -86,6 +86,7 @@ class _TodayContent extends ConsumerWidget {
                     context,
                     segment: data.activeActionWindow!,
                     allSegments: data.actionWindowSegments!,
+                    userBird: data.effectiveBirthBird ?? data.birthBird,
                   ),
                 ),
               if (data.activeActionWindow != null) const SizedBox(height: 12),

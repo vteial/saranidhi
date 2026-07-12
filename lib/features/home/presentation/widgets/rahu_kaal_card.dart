@@ -65,7 +65,7 @@ class RahuKaalCard extends StatelessWidget {
       subtitle = l10n.rahuKaalSoon;
       icon = Icons.access_time_rounded;
     } else {
-      cardColor = theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5);
+      cardColor = theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.7);
       textColor = theme.colorScheme.onSurfaceVariant;
       subtitle = '';
       icon = Icons.info_outline_rounded;
@@ -76,6 +76,16 @@ class RahuKaalCard extends StatelessWidget {
 
     return Card(
       color: cardColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: isActive
+              ? theme.colorScheme.error.withValues(alpha: 0.3)
+              : isSoon
+                  ? Colors.orange.withValues(alpha: 0.3)
+                  : theme.colorScheme.outlineVariant.withValues(alpha: 0.5),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Column(
@@ -115,9 +125,8 @@ class RahuKaalCard extends StatelessWidget {
             // Row 2: Kuligai + Emakandam
             if (kuligaiKaal != null || emakandam != null) ...[
               const SizedBox(height: 8),
-              Wrap(
-                spacing: 16,
-                runSpacing: 4,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   if (kuligaiKaal != null)
                     _InfoChip(
@@ -139,9 +148,8 @@ class RahuKaalCard extends StatelessWidget {
 
             // Row 3: Sunrise/Sunset + Moon Phase
             const SizedBox(height: 8),
-            Wrap(
-              spacing: 16,
-              runSpacing: 4,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Sunrise / Sunset
                 if (sunrise != null && sunset != null)
@@ -168,9 +176,8 @@ class RahuKaalCard extends StatelessWidget {
 
             // Row 4: Weekday + Tithi + Hora planet
             const SizedBox(height: 8),
-            Wrap(
-              spacing: 16,
-              runSpacing: 4,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Weekday + Tithi
                 _InfoChip(
@@ -212,10 +219,10 @@ class RahuKaalCard extends StatelessWidget {
 
     if (lunarResult.phase == LunarPhase.waxing) {
       tithiNum = (tithiIndex % 15).floor() + 1;
-      pakshaLabel = 'Shukla';
+      pakshaLabel = l10n.tithiShukla;
     } else {
       tithiNum = ((tithiIndex - 15) % 15).floor() + 1;
-      pakshaLabel = 'Krishna';
+      pakshaLabel = l10n.tithiKrishna;
     }
 
     return '$pakshaLabel $tithiNum';

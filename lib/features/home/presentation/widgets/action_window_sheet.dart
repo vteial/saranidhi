@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:saranidhi/core/utils/bird_emoji.dart';
+import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window_segment.dart';
+import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Shows the expansion bottom sheet with raw Pakshi/Hora/Tattva details
@@ -10,6 +13,7 @@ void showActionWindowSheet(
   BuildContext context, {
   required ActionWindowSegment segment,
   required List<ActionWindowSegment> allSegments,
+  PakshiBird? userBird,
 }) {
   showModalBottomSheet<void>(
     context: context,
@@ -20,6 +24,7 @@ void showActionWindowSheet(
     builder: (context) => _ActionWindowSheetContent(
       segment: segment,
       allSegments: allSegments,
+      userBird: userBird,
     ),
   );
 }
@@ -28,24 +33,26 @@ class _ActionWindowSheetContent extends StatelessWidget {
   const _ActionWindowSheetContent({
     required this.segment,
     required this.allSegments,
+    this.userBird,
   });
 
   final ActionWindowSegment segment;
   final List<ActionWindowSegment> allSegments;
+  final PakshiBird? userBird;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
 
-    return DraggableScrollableSheet(
-      initialChildSize: 0.55,
-      minChildSize: 0.3,
-      maxChildSize: 0.85,
-      builder: (context, scrollController) => Padding(
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: screenHeight * 0.8),
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         child: ListView(
-          controller: scrollController,
+          shrinkWrap: true,
           children: [
             // Drag handle
             Center(
@@ -53,21 +60,55 @@ class _ActionWindowSheetContent extends StatelessWidget {
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+                  color: theme.colorScheme.onSurfaceVariant
+                      .withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
-            // Title
-            Text(
-              l10n.actionWindowSheetTitle,
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
+            // Bird hero row (fills the empty space with large bird)
+            if (userBird != null) ...[
+              Row(
+                children: [
+                  Text(
+                    BirdEmoji.forBird(userBird!),
+                    style: const TextStyle(fontSize: 48),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.actionWindowSheetTitle,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          '${userBird!.localizedName(l10n)} \u2014 ${l10n.actionWindowSheetSchedule}',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 16),
+              const SizedBox(height: 14),
+            ] else ...[
+              Text(
+                l10n.actionWindowSheetTitle,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 14),
+            ],
 
             // Current segment detail
             _SegmentDetailCard(
@@ -76,7 +117,7 @@ class _ActionWindowSheetContent extends StatelessWidget {
               theme: theme,
               l10n: l10n,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 14),
 
             // Full day schedule
             Text(
@@ -152,14 +193,14 @@ class _SegmentDetailCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  _windowName(segment.window),
+                  _localizedWindowName(segment.window, l10n),
                   style: theme.textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: isCurrent ? color : null,
                   ),
                 ),
                 Text(
-                  '${segment.birdStateName} \u2022 ${durationMin}min',
+                  '${_localizedBirdState(segment.birdStateName, l10n)} \u2022 ${_localizedDuration(durationMin, l10n)}',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -217,12 +258,36 @@ class _SegmentDetailCard extends StatelessWidget {
     };
   }
 
-  String _windowName(ActionWindow window) {
+  /// Returns localized window name using l10n keys.
+  String _localizedWindowName(ActionWindow window, AppLocalizations l10n) {
     return switch (window) {
-      ActionWindow.artha => 'Artha',
-      ActionWindow.kriya => 'Kriya',
-      ActionWindow.yoga => 'Yoga',
+      ActionWindow.artha => l10n.termArtha,
+      ActionWindow.kriya => l10n.termKriya,
+      ActionWindow.yoga => l10n.termYoga,
     };
+  }
+
+  /// Localizes bird state names that are stored as English display names.
+  /// Splits on "/" for merged segments (e.g., "Ruling/Walking" → "ஆளுகை/நடத்தல்").
+  String _localizedBirdState(String rawStates, AppLocalizations l10n) {
+    final parts = rawStates.split('/');
+    return parts.map((s) => _singleStateLocalized(s.trim(), l10n)).join('/');
+  }
+
+  String _singleStateLocalized(String state, AppLocalizations l10n) {
+    return switch (state.toLowerCase()) {
+      'ruling' => l10n.ruling,
+      'eating' => l10n.eating,
+      'walking' => l10n.walking,
+      'sleeping' => l10n.sleeping,
+      'dying' => l10n.dying,
+      _ => state,
+    };
+  }
+
+  /// Localized duration display (e.g., "154min" → "154நிமி" in Tamil).
+  String _localizedDuration(int minutes, AppLocalizations l10n) {
+    return l10n.durationMinutes(minutes);
   }
 
   String _formatTime(DateTime time) {

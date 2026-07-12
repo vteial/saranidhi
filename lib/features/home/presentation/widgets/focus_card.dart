@@ -37,8 +37,18 @@ class FocusCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        color: color.withValues(alpha: 0.1),
-        child: Padding(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: color.withValues(alpha: 0.3)),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border(
+              left: BorderSide(color: color, width: 4),
+            ),
+          ),
           padding: const EdgeInsets.all(14),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +86,7 @@ class FocusCard extends StatelessWidget {
                     )
                   else
                     Text(
-                      '${minutesLeft}min',
+                      l10n.durationMinutes(minutesLeft),
                       style: theme.textTheme.labelMedium?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
