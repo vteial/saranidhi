@@ -68,15 +68,15 @@ class _ActionWindowSheetContent extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-            // Bird hero row (fills the empty space)
+            // Bird hero row (fills the empty space with large bird)
             if (userBird != null) ...[
               Row(
                 children: [
                   Text(
                     BirdEmoji.forBird(userBird!),
-                    style: const TextStyle(fontSize: 28),
+                    style: const TextStyle(fontSize: 48),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,9 +87,10 @@ class _ActionWindowSheetContent extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        const SizedBox(height: 2),
                         Text(
                           '${userBird!.localizedName(l10n)} \u2014 ${l10n.actionWindowSheetSchedule}',
-                          style: theme.textTheme.bodySmall?.copyWith(
+                          style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
                         ),
@@ -199,7 +200,7 @@ class _SegmentDetailCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${_localizedBirdState(segment.birdStateName, l10n)} \u2022 ${durationMin}min',
+                  '${_localizedBirdState(segment.birdStateName, l10n)} \u2022 ${_localizedDuration(durationMin, l10n)}',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -282,6 +283,11 @@ class _SegmentDetailCard extends StatelessWidget {
       'dying' => l10n.dying,
       _ => state,
     };
+  }
+
+  /// Localized duration display (e.g., "154min" → "154நிமி" in Tamil).
+  String _localizedDuration(int minutes, AppLocalizations l10n) {
+    return l10n.durationMinutes(minutes);
   }
 
   String _formatTime(DateTime time) {

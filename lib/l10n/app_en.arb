@@ -923,5 +923,7 @@
   "actionWindowSheetTitle": "Action Window Details",
   "@actionWindowSheetTitle": { "description": "Bottom sheet title" },
   "actionWindowSheetSchedule": "Today\u2019s Schedule",
-  "@actionWindowSheetSchedule": { "description": "Schedule section header in bottom sheet" }
+  "@actionWindowSheetSchedule": { "description": "Schedule section header in bottom sheet" },
+  "durationMinutes": "{count}min",
+  "@durationMinutes": { "description": "Localized duration in minutes", "placeholders": { "count": { "type": "int" } } }
 }

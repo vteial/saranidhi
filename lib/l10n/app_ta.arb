@@ -492,5 +492,6 @@
   "focusCardYogaAdvice": "உள்நோக்கி திரும்புங்கள். ஓய்வு, தியானம், மூச்சு பயிற்சி, மூளைச்சலவை. புதிய உறுதிப்பாடுகளைத் தவிர்க்கவும்.",
   "focusCardRahuBlocked": "ராகு காலம் செயலில் — புதிதாக எதையும் தொடங்காதீர்கள். கடந்து போகும் வரை கவனியுங்கள், சிந்தியுங்கள்.",
   "actionWindowSheetTitle": "செயல் சாளர விவரங்கள்",
-  "actionWindowSheetSchedule": "இன்றைய அட்டவணை"
+  "actionWindowSheetSchedule": "இன்றைய அட்டவணை",
+  "durationMinutes": "{count}நிமி"
 }
