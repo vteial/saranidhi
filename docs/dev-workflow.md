@@ -126,11 +126,13 @@ Three-phase production promotion with smoke test quality gate.
 Prepares the smoke test execution.
 
 1. Kiro creates branch `release/vX.Y.Z` from `main`
-2. Ensures `docs/smoke-test-vX.Y.Z.md` exists (plan + results template)
-3. Creates PR targeting `main`
-4. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
-5. User commits results (Pass/Fail + Notes) to the same branch
-6. User reviews and merges PR → smoke test results now on `main`
+2. **Bumps `version:` in `pubspec.yaml`** to match the release (e.g., `1.3.0+1`)
+   - This ensures the About card (via `package_info_plus`) shows the correct version during smoke testing AND in production
+3. Ensures `docs/smoke-test-vX.Y.Z.md` exists (plan + results template)
+4. Creates PR targeting `main`
+5. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
+6. User commits results (Pass/Fail + Notes) to the same branch
+7. User reviews and merges PR → smoke test results + version bump now on `main`
 
 #### Phase 2: `/release-finish`
 
@@ -372,6 +374,12 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 **Problem:** During v1.2.1 release, the `main→prod` PR was incorrectly skipped because `prod` branch wasn't visible in a shallow clone.
 
 **Rule:** The `prod` branch ALWAYS exists. Vercel production deploys from `prod`, staging from `main`. The `/release-finish` protocol MUST create a PR from `main` → `prod`. Never assume it doesn't exist.
+
+### Release Protocol — Always Bump pubspec.yaml Version (v1.3.0 — PR #111)
+
+**Problem:** v1.3.0 was deployed to production but the About card showed `v1.2.1 (1)` because `pubspec.yaml` version was never bumped during the release cycle.
+
+**Rule:** The `/release-start` protocol MUST bump `version:` in `pubspec.yaml` as the **first step** on the release branch (before smoke test). This ensures the version is correct in staging preview testing AND production. Never ship a release where `pubspec.yaml` doesn't match the release tag.
 
 ---
 
