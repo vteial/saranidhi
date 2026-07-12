@@ -925,5 +925,9 @@
   "actionWindowSheetSchedule": "Today\u2019s Schedule",
   "@actionWindowSheetSchedule": { "description": "Schedule section header in bottom sheet" },
   "durationMinutes": "{count}min",
-  "@durationMinutes": { "description": "Localized duration in minutes", "placeholders": { "count": { "type": "int" } } }
+  "@durationMinutes": { "description": "Localized duration in minutes", "placeholders": { "count": { "type": "int" } } },
+  "tithiShukla": "Shukla",
+  "@tithiShukla": { "description": "Waxing moon fortnight (Shukla Paksha)" },
+  "tithiKrishna": "Krishna",
+  "@tithiKrishna": { "description": "Waning moon fortnight (Krishna Paksha)" }
 }

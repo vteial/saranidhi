@@ -219,10 +219,10 @@ class RahuKaalCard extends StatelessWidget {
 
     if (lunarResult.phase == LunarPhase.waxing) {
       tithiNum = (tithiIndex % 15).floor() + 1;
-      pakshaLabel = 'Shukla';
+      pakshaLabel = l10n.tithiShukla;
     } else {
       tithiNum = ((tithiIndex - 15) % 15).floor() + 1;
-      pakshaLabel = 'Krishna';
+      pakshaLabel = l10n.tithiKrishna;
     }
 
     return '$pakshaLabel $tithiNum';

@@ -493,5 +493,7 @@
   "focusCardRahuBlocked": "ராகு காலம் செயலில் — புதிதாக எதையும் தொடங்காதீர்கள். கடந்து போகும் வரை கவனியுங்கள், சிந்தியுங்கள்.",
   "actionWindowSheetTitle": "செயல் சாளர விவரங்கள்",
   "actionWindowSheetSchedule": "இன்றைய அட்டவணை",
-  "durationMinutes": "{count}நிமி"
+  "durationMinutes": "{count}நிமி",
+  "tithiShukla": "சுக்ல",
+  "tithiKrishna": "கிருஷ்ண"
 }
