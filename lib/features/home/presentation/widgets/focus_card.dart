@@ -37,10 +37,10 @@ class FocusCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        color: color.withValues(alpha: 0.12),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: color.withValues(alpha: 0.3), width: 1.5),
+          side: BorderSide(color: color.withValues(alpha: 0.3)),
         ),
         child: Container(
           decoration: BoxDecoration(

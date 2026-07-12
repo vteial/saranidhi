@@ -77,7 +77,7 @@ class BirthBirdCard extends StatelessWidget {
         (!data.isNight && data.activeYama != null);
 
     return Card(
-      color: stateColor.withValues(alpha: 0.14),
+      color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(color: stateColor.withValues(alpha: 0.25)),
