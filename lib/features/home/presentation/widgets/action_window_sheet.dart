@@ -46,11 +46,11 @@ class _ActionWindowSheetContent extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return DraggableScrollableSheet(
-      initialChildSize: 0.55,
-      minChildSize: 0.3,
-      maxChildSize: 0.85,
+      initialChildSize: 0.75,
+      minChildSize: 0.4,
+      maxChildSize: 0.9,
       builder: (context, scrollController) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: ListView(
           controller: scrollController,
           children: [
@@ -66,7 +66,7 @@ class _ActionWindowSheetContent extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
 
             // Bird hero row (fills the empty space with large bird)
             if (userBird != null) ...[
