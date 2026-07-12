@@ -45,14 +45,14 @@ class _ActionWindowSheetContent extends StatelessWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
 
-    return DraggableScrollableSheet(
-      initialChildSize: 0.75,
-      minChildSize: 0.4,
-      maxChildSize: 0.9,
-      builder: (context, scrollController) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: screenHeight * 0.8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         child: ListView(
-          controller: scrollController,
+          shrinkWrap: true,
           children: [
             // Drag handle
             Center(
@@ -66,7 +66,7 @@ class _ActionWindowSheetContent extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
 
             // Bird hero row (fills the empty space with large bird)
             if (userBird != null) ...[
