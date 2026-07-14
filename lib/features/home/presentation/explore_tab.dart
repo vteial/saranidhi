@@ -13,7 +13,6 @@ import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.d
 import 'package:saranidhi/features/home/presentation/widgets/historical_entries_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_chart.dart';
 import 'package:saranidhi/features/home/presentation/widgets/rahu_kaal_card.dart';
-import 'package:saranidhi/features/prasanam/presentation/widgets/prasanam_history_card.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/trend_widget.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 
@@ -129,10 +128,6 @@ class _ExploreContent extends ConsumerWidget {
 
             // 30-day trend
             TrendWidget(trend: data.trend),
-            const SizedBox(height: 12),
-
-            // Prasanam Oracle history timeline
-            const PrasanamHistoryCard(),
           ],
         ),
       ),

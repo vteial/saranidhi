@@ -14,6 +14,7 @@ import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/guided_nostril_test.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/features/prasanam/presentation/widgets/oracle_result_card.dart';
+import 'package:saranidhi/features/prasanam/presentation/widgets/prasanam_history_card.dart';
 import 'package:saranidhi/features/prasanam/providers/prasanam_providers.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -152,6 +153,10 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
                 label: Text(l10n.prasanamAskAnother),
               ),
             ],
+
+            // History section — always visible below form/result
+            const SizedBox(height: 24),
+            const PrasanamHistoryCard(),
           ],
         ),
       ),
