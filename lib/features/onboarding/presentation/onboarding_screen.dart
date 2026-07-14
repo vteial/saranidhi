@@ -7,6 +7,7 @@ import 'package:saranidhi/core/utils/nakshatra_l10n.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/features/astro_engine/domain/name_bird_parser.dart';
+import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -299,8 +300,8 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
               final name = widget.state.displayName;
               if (name.isNotEmpty) {
                 final bird = NameBirdParser.parse(name);
-                // Use the first nakshatra of the bird's group to set via existing API
-                const birdToNakshatra = {
+                // Use the first nakshatra of the bird's group
+                final birdToNakshatra = {
                   PakshiBird.vulture: 'ashwini',
                   PakshiBird.owl: 'bharani',
                   PakshiBird.crow: 'krittika',
