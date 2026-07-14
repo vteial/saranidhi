@@ -111,8 +111,7 @@ class _PrasanamHistoryTile extends ConsumerWidget {
       ),
       confirmDismiss: (_) => _confirmDelete(context, l10n),
       onDismissed: (_) {
-        final repo = ref.read(prasanamRepositoryProvider);
-        repo.deleteQuery(query.id);
+        ref.read(prasanamRepositoryProvider).deleteQuery(query.id);
         ref.invalidate(prasanamHistoryProvider);
       },
       child: InkWell(
