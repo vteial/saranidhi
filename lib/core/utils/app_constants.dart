@@ -13,7 +13,7 @@ abstract final class AppConstants {
   static const String appVersion = '1.2.1';
 
   /// Database schema version (matches app_database.dart).
-  static const int schemaVersion = 3;
+  static const int schemaVersion = 4;
 
   /// Export format version.
   static const int exportVersion = 1;

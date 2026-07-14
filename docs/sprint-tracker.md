@@ -436,7 +436,7 @@
 
 ---
 
-## Sprint 32: Prasanam Oracle UI (v1.4.0)
+## Sprint 32: Prasanam Oracle UI (v1.4.0) — In Progress 🔄
 
 - [ ] Task 32.1: PrasanamHistory Drift table + schema migration
 - [ ] Task 32.2: FAB on Today tab — oracle icon (🔮), launches Prasanam flow
