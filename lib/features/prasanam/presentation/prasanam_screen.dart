@@ -45,6 +45,10 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
   String _guidanceEn = '';
   String _guidanceTa = '';
   bool _isFloorLocked = false;
+  bool _isSaved = false;
+  String _swaraUsed = '';
+  String _birdStateUsed = '';
+  String _actionWindowUsed = '';
 
   late final AnimationController _intentionAnimController;
   late final Animation<double> _pulseAnimation;
@@ -113,7 +117,34 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
                 category: _selectedCategory,
                 queryText: _queryController.text,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
+              // Save to History button (Option C: user decides)
+              if (!_isSaved)
+                FilledButton.icon(
+                  onPressed: _saveToHistory,
+                  icon: const Icon(Icons.bookmark_add_outlined),
+                  label: Text(l10n.prasanamSaveToHistory),
+                )
+              else
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.check_circle,
+                      size: 18,
+                      color: theme.colorScheme.primary,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      l10n.prasanamSaved,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              const SizedBox(height: 16),
               // Ask Another button
               OutlinedButton.icon(
                 onPressed: _resetForNewQuery,
@@ -343,36 +374,45 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
       actualSwara: swara.name,
     );
 
-    // Save to history
-    final repo = ref.read(prasanamRepositoryProvider);
-    await repo.insertQuery(
-      category: _selectedCategory.name,
-      queryText: _queryController.text,
-      score: result.score,
-      band: result.band.name,
-      guidanceEn: result.englishGuidance,
-      guidanceTa: result.tamilGuidance,
-      isFloorLocked: result.isFloorLocked,
-      swara: swara.name,
-      birdState: currentBirdState.name,
-      actionWindow: currentWindow.name,
-    );
-
+    // Store result — saving to history is user-initiated (Option C)
     setState(() {
       _score = result.score;
       _band = result.band;
       _guidanceEn = result.englishGuidance;
       _guidanceTa = result.tamilGuidance;
       _isFloorLocked = result.isFloorLocked;
+      _swaraUsed = swara.name;
+      _birdStateUsed = currentBirdState.name;
+      _actionWindowUsed = currentWindow.name;
       _showResult = true;
       _isEvaluating = false;
+      _isSaved = false;
     });
+  }
+
+  /// Saves the current reading to history (user-initiated).
+  Future<void> _saveToHistory() async {
+    final repo = ref.read(prasanamRepositoryProvider);
+    await repo.insertQuery(
+      category: _selectedCategory.name,
+      queryText: _queryController.text,
+      score: _score,
+      band: _band.name,
+      guidanceEn: _guidanceEn,
+      guidanceTa: _guidanceTa,
+      isFloorLocked: _isFloorLocked,
+      swara: _swaraUsed,
+      birdState: _birdStateUsed,
+      actionWindow: _actionWindowUsed,
+    );
+    setState(() => _isSaved = true);
   }
 
   void _resetForNewQuery() {
     setState(() {
       _showResult = false;
       _isEvaluating = false;
+      _isSaved = false;
       _queryController.clear();
     });
   }
