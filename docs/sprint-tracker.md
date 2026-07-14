@@ -436,16 +436,16 @@
 
 ---
 
-## Sprint 32: Prasanam Oracle UI (v1.4.0) — In Progress 🔄
+## Sprint 32: Prasanam Oracle UI (v1.4.0) — Complete (PR #118) ✅
 
-- [ ] Task 32.1: PrasanamHistory Drift table + schema migration
-- [ ] Task 32.2: FAB on Today tab — oracle icon (🔮), launches Prasanam flow
-- [ ] Task 32.3: Query input screen — category selector (Artha/Kriya/Yoga) + free-text field + intention anchor animation
-- [ ] Task 32.4: 30-minute validation gate — check last journal entry recency, trigger GuidedNostrilTest if stale
-- [ ] Task 32.5: Oracle result card — score gauge + 5 answer bands (Strong Yes / Favorable / Caution / Delay / Hard No)
-- [ ] Task 32.6: Prasanam history timeline — Explore tab, chronological past queries
-- [ ] Task 32.7: Post-event outcome notes — tap old query → add reflective notes
-- [ ] Task 32.8: Tamil translations for Prasanam UI + guidance text
+- [x] Task 32.1: PrasanamHistory Drift table + schema migration
+- [x] Task 32.2: FAB on Today tab — oracle icon (🔮), launches Prasanam flow
+- [x] Task 32.3: Query input screen — category selector (Artha/Kriya/Yoga) + free-text field + intention anchor animation
+- [x] Task 32.4: 30-minute validation gate — check last journal entry recency, trigger GuidedNostrilTest if stale
+- [x] Task 32.5: Oracle result card — score gauge + 5 answer bands (Strong Yes / Favorable / Caution / Delay / Hard No)
+- [x] Task 32.6: Prasanam history timeline — on Prasanam screen, chronological past queries
+- [x] Task 32.7: Post-event outcome notes — tap old query → add reflective notes
+- [x] Task 32.8: Tamil translations for Prasanam UI + guidance text
 
 ---
 
