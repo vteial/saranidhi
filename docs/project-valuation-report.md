@@ -6,11 +6,11 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 30 (+ Sprint 0 pre-development + Sprint 27.5 hotfix)
-**Total Engineering Investment:** ~89.0 Hours
-**Pull Requests Merged:** 104
-**Automated Test Coverage:** 420+ assertions (unit + widget + integration)
-**Production Web Release:** v1.2.2-web
+**Sprints Delivered:** 31 (+ Sprint 0 pre-development + Sprint 27.5 hotfix)
+**Total Engineering Investment:** ~92.0 Hours
+**Pull Requests Merged:** 116
+**Automated Test Coverage:** 440+ assertions (unit + widget + integration)
+**Production Web Release:** v1.3.0-web
 
 ---
 
@@ -272,6 +272,7 @@
 | Sprint 28 | UI Polish + UX Consistency | #95 | 410+ | ✅ Complete |
 | Sprint 29 | Foundation — Terminology, PWA, Tech Debt | #102 | 410+ | ✅ Complete |
 | Sprint 30 | Action Windows Engine + UI | #104 | 420+ | ✅ Complete |
+| Sprint 31 | Numerology + Oracle Engine + GPS | #115 | 440+ | ✅ Complete |
 
 ---
 
@@ -432,6 +433,15 @@
 - **PWA icons regenerated** — 4 PNGs (192, 512, maskable-192, maskable-512) from `public/logo.svg` with proper Saranidhi branding + safe-zone padding for maskable
 - **Widget test navigation un-skipped** — removed `skip: true` from tab navigation test; uses explicit `pump()` to avoid stream-based pumpAndSettle timeout
 - **DB migration PRAGMA pattern** — replaced try-catch with `PRAGMA table_info()` column existence check before `addColumn` (deterministic, no swallowed exceptions)
+- **NameBirdParser** — phonetic vowel-to-bird fallback. EN: first vowel scan (a=Vulture, i=Owl, u=Crow, e=Rooster, o=Peacock). Tamil: 12 Unicode vowel mappings. Tertiary onboarding fallback.
+- **TaraCategory enum** — 9 Navatara categories with `resolve()` formula `(transitIdx - birthIdx + 27) % 9`. Weights 0.2x–1.5x for Oracle scoring.
+- **HoraSwaraAffinity** — planetary energy classification (Solar/Lunar/Neutral) + `getMultiplier()` alignment matrix (0.5x–1.5x) comparing Hora planet with breath flow.
+- **OracleCompositeEngine** — multi-factor Prasanam Oracle scoring: Base × Tarabala × Hora-Swara × Category Harmony. 5 answer bands (Siddha/Vardhana/Mandha/Stambhana/Sunya). Bilingual guidance (EN + TA).
+- **DaylightSegmentResolver** — octant-based O(1) inauspicious window check. Replaces per-calculator instantiation. Floor locks to 10% if Rahu Kaal OR Emakandam active. Kuligai excluded.
+- **Category Harmony multipliers** — `getCategoryHarmony()` 3×3 matrix: Artha/Kriya/Yoga query vs active Action Window (1.2x match, 0.5x conflict).
+- **WebGeolocation utility** — `navigator.geolocation` API wrapper for web platform. 10s timeout, permission handling, graceful null fallback. Returns lat/lng/accuracy.
+- **Onboarding "Use your name" fallback** — tertiary bird determination path. Visible in DOB mode when bird undetermined. Uses NameBirdParser + first-nakshatra-of-bird-group mapping.
+- **Nostril Pattern timing column** — yama start times (HH:mm) added between Y# label and emoji, matching Day/Night schedule format.
 - **ActionWindowsEngine** — consolidation algorithm that merges consecutive yamas sharing the same ActionWindow (Artha/Kriya/Yoga) into single temporal segments, reducing notification spam
 - **ActionWindowSegment model** — window type, start, end, birdStateName, duration, contains(), isBlockedByRahu flag, copyWithRahuBlocked()
 - **Rahu Kaal guardrail** — `applyRahuGuardrail()` marks overlapping Artha/Kriya segments as blocked (Yoga unaffected — spiritual practice during Rahu is favorable)
