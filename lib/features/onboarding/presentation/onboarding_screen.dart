@@ -6,6 +6,7 @@ import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/utils/nakshatra_l10n.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
+import 'package:saranidhi/features/astro_engine/domain/name_bird_parser.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -264,6 +265,47 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
                   notifier: widget.notifier,
                 ),
         ),
+
+        // Tertiary fallback: use name to determine bird
+        if (widget.state.birthBird == null &&
+            _mode == _BirdPathMode.calculateFromDOB) ...[
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '\u2014\u2014\u2014  ',
+                style: TextStyle(
+                  color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
+                ),
+              ),
+              Text(
+                l10n.orLabel,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              Text(
+                '  \u2014\u2014\u2014',
+                style: TextStyle(
+                  color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          TextButton.icon(
+            onPressed: () {
+              final name = widget.state.displayName;
+              if (name.isNotEmpty) {
+                final bird = NameBirdParser.parse(name);
+                widget.notifier.setBirthBird(bird.name);
+              }
+            },
+            icon: const Icon(Icons.person_outline, size: 18),
+            label: Text(l10n.useYourName),
+          ),
+        ],
 
         // Bird result card (shown regardless of path once determined)
         if (widget.state.birthBird != null) ...[
