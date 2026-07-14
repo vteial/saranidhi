@@ -121,9 +121,10 @@ These exist as code but aren't connected to the app UI yet:
 
 ## Next Session: Start Here
 
-1. `/sprint-start` Sprint 31 (Numerology — NameBirdParser, Navatara, Hora-Swara)
+1. `/sprint-start` Sprint 31 (Numerology + Oracle Engine + GPS)
 2. After Sprint 31 + 32: v1.4.0-web release
 3. Then: Sprint 33 (Somatic Mastery — Intervention Rooms)
+4. Sprint 36 (Accuracy Investigation) — requires user data collection first
 
 ---
 
