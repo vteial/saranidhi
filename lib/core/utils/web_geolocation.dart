@@ -1,5 +1,4 @@
-// ignore: avoid_web_libraries_in_flutter
-// Uses dart:js_interop and package:web for browser geolocation API (web-only).
+// Web-only: uses dart:js_interop and package:web for navigator.geolocation API.
 import 'dart:async';
 import 'dart:js_interop';
 
