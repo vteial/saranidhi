@@ -38,9 +38,6 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
   final _queryController = TextEditingController();
   bool _showResult = false;
   bool _isEvaluating = false;
-  bool _awaitingNostrilInput = false;
-  BreathFlow? _confirmedSwara;
-  String? _savedQueryId;
 
   // Oracle result fields
   int _score = 0;
@@ -241,7 +238,7 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
     final recentEntries = await journalRepo.getRecentEntries(limit: 1);
     final now = DateTime.now();
 
-    bool needsNostrilTest = true;
+    var needsNostrilTest = true;
     BreathFlow? lastSwara;
 
     if (recentEntries.isNotEmpty) {
@@ -261,19 +258,12 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
 
     if (needsNostrilTest) {
       // Show guided nostril test
-      setState(() {
-        _isEvaluating = false;
-        _awaitingNostrilInput = true;
-      });
+      setState(() => _isEvaluating = false);
 
       if (!mounted) return;
       showGuidedNostrilTest(
         context,
-        onResult: (flow) {
-          _confirmedSwara = flow;
-          _awaitingNostrilInput = false;
-          _evaluateOracle(flow);
-        },
+        onResult: _evaluateOracle,
       );
       return;
     }
@@ -324,7 +314,7 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
     // Use birth nakshatra index and current transit (same day → same index)
     // Simplified: use the weight from TaraCategory based on weekday
     final tarabalaMultiplier = TaraCategory.janma.weight; // Default 1.0
-    // TODO: Integrate proper transit nakshatra lookup when available
+    // TODO(kiro): Integrate proper transit nakshatra lookup when available.
 
     // Get Hora-Swara affinity
     final nextSunrise = sunrise.add(const Duration(hours: 24));
@@ -355,7 +345,7 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
 
     // Save to history
     final repo = ref.read(prasanamRepositoryProvider);
-    final queryId = await repo.insertQuery(
+    await repo.insertQuery(
       category: _selectedCategory.name,
       queryText: _queryController.text,
       score: result.score,
@@ -376,7 +366,6 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
       _isFloorLocked = result.isFloorLocked;
       _showResult = true;
       _isEvaluating = false;
-      _savedQueryId = queryId;
     });
   }
 
@@ -385,8 +374,6 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
       _showResult = false;
       _isEvaluating = false;
       _queryController.clear();
-      _confirmedSwara = null;
-      _savedQueryId = null;
     });
   }
 }

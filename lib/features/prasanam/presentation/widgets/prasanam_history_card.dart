@@ -86,7 +86,6 @@ class _PrasanamHistoryTile extends ConsumerWidget {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final locale = Localizations.localeOf(context);
-    final isTamil = locale.languageCode == 'ta';
 
     final timestamp = DateTime.fromMillisecondsSinceEpoch(query.timestamp);
     final dateFormat = DateFormat('MMM d, HH:mm', locale.languageCode);
