@@ -421,7 +421,7 @@
 
 ---
 
-## Sprint 31: Numerology + Oracle Engine + GPS (v1.4.0)
+## Sprint 31: Numerology + Oracle Engine + GPS (v1.4.0) — In Progress 🔄
 
 - [ ] Task 31.1: NameBirdParser — phonetic vowel-to-bird fallback (EN + Tamil Unicode)
 - [ ] Task 31.2: Integrate NameBirdParser into onboarding as tertiary fallback (DOB → Nakshatra → Name) — subtle "Use your name" link below DOB section

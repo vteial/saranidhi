@@ -496,5 +496,7 @@
   "actionWindowSheetSchedule": "இன்றைய அட்டவணை",
   "durationMinutes": "{count}நிமி",
   "tithiShukla": "சுக்ல",
-  "tithiKrishna": "கிருஷ்ண"
+  "tithiKrishna": "கிருஷ்ண",
+  "orLabel": "அல்லது",
+  "useYourName": "பிறந்த தேதி தெரியவில்லையா? உங்கள் பெயரைப் பயன்படுத்துங்கள்"
 }

@@ -104,6 +104,7 @@ class _NostrilRow extends StatelessWidget {
     final emoji = isSolar ? '\u2600\uFE0F' : '\uD83C\uDF19';
     final flowLabel = isSolar ? l10n.solar : l10n.lunar;
     final yamaLabel = 'Y$yamaNumber';
+    final timeStr = _formatTime(yama.start);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -114,6 +115,16 @@ class _NostrilRow extends StatelessWidget {
             child: Text(
               yamaLabel,
               style: theme.textTheme.bodySmall?.copyWith(
+                fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 44,
+            child: Text(
+              timeStr,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
                 fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
               ),
             ),
@@ -146,5 +157,11 @@ class _NostrilRow extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _formatTime(DateTime time) {
+    final h = time.hour.toString().padLeft(2, '0');
+    final m = time.minute.toString().padLeft(2, '0');
+    return '$h:$m';
   }
 }

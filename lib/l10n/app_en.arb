@@ -931,5 +931,9 @@
   "tithiShukla": "Shukla",
   "@tithiShukla": { "description": "Waxing moon fortnight (Shukla Paksha)" },
   "tithiKrishna": "Krishna",
-  "@tithiKrishna": { "description": "Waning moon fortnight (Krishna Paksha)" }
+  "@tithiKrishna": { "description": "Waning moon fortnight (Krishna Paksha)" },
+  "orLabel": "or",
+  "@orLabel": { "description": "Separator label between options" },
+  "useYourName": "Don\u2019t know DOB? Use your name",
+  "@useYourName": { "description": "Tertiary fallback link in onboarding to derive bird from name" }
 }
