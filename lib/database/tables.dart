@@ -69,6 +69,27 @@ class BreathSessions extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Prasanam Oracle query history.
+class PrasanamHistory extends Table {
+  TextColumn get id => text()();
+  IntColumn get timestamp => integer()();
+  TextColumn get category => text()();
+  TextColumn get queryText => text().withDefault(const Constant(''))();
+  IntColumn get score => integer()();
+  TextColumn get band => text()();
+  TextColumn get guidanceEn => text()();
+  TextColumn get guidanceTa => text()();
+  BoolColumn get isFloorLocked => boolean().withDefault(const Constant(false))();
+  TextColumn get swara => text().nullable()();
+  TextColumn get birdState => text().nullable()();
+  TextColumn get actionWindow => text().nullable()();
+  TextColumn get outcomeNotes => text().nullable()();
+  IntColumn get outcomeTimestamp => integer().nullable()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
 /// Bird reference library for Panja Pakshi.
 class BirdLibrary extends Table {
   TextColumn get id => text()();

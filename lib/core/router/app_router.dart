@@ -5,6 +5,7 @@ import 'package:saranidhi/features/analytics/presentation/analytics_screen.dart'
 import 'package:saranidhi/features/home/presentation/home_screen.dart';
 import 'package:saranidhi/features/journal/presentation/journal_screen.dart';
 import 'package:saranidhi/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:saranidhi/features/prasanam/presentation/prasanam_screen.dart';
 import 'package:saranidhi/features/settings/presentation/settings_screen.dart';
 
 /// Application route paths.
@@ -14,6 +15,9 @@ abstract class AppRoutes {
 
   /// Breath Journal route.
   static const journal = '/journal';
+
+  /// Prasanam Oracle route.
+  static const prasanam = '/prasanam';
 
   /// Analytics route.
   static const analytics = '/analytics';
@@ -29,6 +33,8 @@ abstract class AppRoutes {
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
 final _journalNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'journal');
+final _prasanamNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'prasanam');
 final _analyticsNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'analytics');
 
@@ -108,6 +114,18 @@ final GoRouter appRouter = GoRouter(
               path: AppRoutes.journal,
               pageBuilder: (context, state) => _fadeTransitionPage(
                 child: const JournalScreen(),
+                state: state,
+              ),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _prasanamNavigatorKey,
+          routes: [
+            GoRoute(
+              path: AppRoutes.prasanam,
+              pageBuilder: (context, state) => _fadeTransitionPage(
+                child: const PrasanamScreen(),
                 state: state,
               ),
             ),
