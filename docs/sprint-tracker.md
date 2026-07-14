@@ -421,18 +421,18 @@
 
 ---
 
-## Sprint 31: Numerology + Oracle Engine + GPS (v1.4.0) — In Progress 🔄
+## Sprint 31: Numerology + Oracle Engine + GPS (v1.4.0) — Complete (PR #115) ✅
 
-- [ ] Task 31.1: NameBirdParser — phonetic vowel-to-bird fallback (EN + Tamil Unicode)
-- [ ] Task 31.2: Integrate NameBirdParser into onboarding as tertiary fallback (DOB → Nakshatra → Name) — subtle "Use your name" link below DOB section
-- [ ] Task 31.3: TaraCategory enum — Navatara modulo-9 formula with multiplier weights (0.2–1.5x)
-- [ ] Task 31.4: HoraSwaraAffinity — planetary energy classification + alignment multiplier matrix
-- [ ] Task 31.5: OracleCompositeEngine — composite score: Base × Tarabala × Hora-Swara
-- [ ] Task 31.6: Category Harmony multipliers — Artha/Kriya/Yoga query vs active Action Window (1.2x–0.5x)
-- [ ] Task 31.7: Inauspicious windows floor lock — hard lock to 10% if Rahu Kaal OR Emakandam active (Kuligai excluded). Uses DaylightSegmentResolver octant lookup.
-- [ ] Task 31.8: GPS auto-location for web — `navigator.geolocation` API with permission prompt, update profile if >5km from stored location
-- [ ] Task 31.9: Unit tests for all Oracle calculators + NameBirdParser
-- [ ] Task 31.10: Nostril Pattern table — add yama timing column (match Day/Night schedule format)
+- [x] Task 31.1: NameBirdParser — phonetic vowel-to-bird fallback (EN + Tamil Unicode)
+- [x] Task 31.2: Integrate NameBirdParser into onboarding as tertiary fallback (DOB → Nakshatra → Name) — subtle "Use your name" link below DOB section
+- [x] Task 31.3: TaraCategory enum — Navatara modulo-9 formula with multiplier weights (0.2–1.5x)
+- [x] Task 31.4: HoraSwaraAffinity — planetary energy classification + alignment multiplier matrix
+- [x] Task 31.5: OracleCompositeEngine — composite score: Base × Tarabala × Hora-Swara
+- [x] Task 31.6: Category Harmony multipliers — Artha/Kriya/Yoga query vs active Action Window (1.2x–0.5x)
+- [x] Task 31.7: Inauspicious windows floor lock — hard lock to 10% if Rahu Kaal OR Emakandam active (Kuligai excluded). Uses DaylightSegmentResolver octant lookup.
+- [x] Task 31.8: GPS auto-location for web — `navigator.geolocation` API with permission prompt, update profile if >5km from stored location
+- [x] Task 31.9: Unit tests for all Oracle calculators + NameBirdParser
+- [x] Task 31.10: Nostril Pattern table — add yama timing column (match Day/Night schedule format)
 
 ---
 
