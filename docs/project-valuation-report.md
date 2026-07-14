@@ -229,10 +229,10 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (AI-assisted) | 63.5 |
+| Active coding & debugging (AI-assisted) | 66.5 |
 | Infrastructure & admin ops | 7.5 |
 | Smoke test & release ops | 4.0 |
-| **Total** | **~75.0** |
+| **Total** | **~78.0** |
 
 ---
 
@@ -273,6 +273,7 @@
 | Sprint 29 | Foundation — Terminology, PWA, Tech Debt | #102 | 410+ | ✅ Complete |
 | Sprint 30 | Action Windows Engine + UI | #104 | 420+ | ✅ Complete |
 | Sprint 31 | Numerology + Oracle Engine + GPS | #115 | 440+ | ✅ Complete |
+| Sprint 32 | Prasanam Oracle UI | #118 | 440+ | ✅ Complete |
 
 ---
 

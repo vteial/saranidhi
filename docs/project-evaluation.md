@@ -56,6 +56,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | **Performance, Accessibility & Smoke Test Refresh** | TimezoneUtils (dynamic UTC offset), ProfileLocationProvider, keyboard Enter submit, haptic feedback, Semantics audit, night schedule always visible, Safari CanvasKit fix, COOP/COEP removal, location change reactivity, sqlparser pin, smoke test plan rewrite (52 scenarios), versioned results | ✅ Complete (100%) — Sprint 25 |
 | **Daily Engagement & Delight** | What's New screen (version-tracked, dismissible), Streak celebrations (7/30/100/365 milestones), Breath timer presets (4-7-8, Box, Energize, Calm), Daily summary card (entries/alignment/hold), Pin/star entries (isPinned column), Quick-log from notification (payload + tap handler) | ✅ Complete (100%) — Sprint 26 |
 | **Layer 1 Gap Fixes — Diagnostic Foundation** | ActionWindow enum (Artha/Kriya/Yoga) + bird-state mapping, context-dependent Sushumna alignment, guided nostril test (3-step modal), LocationService (Haversine 50km), Hora + Tattva in BirthBirdCard, Reference table (bilingual), language toggle in onboarding, DOB recalculation from Settings, trilingual nakshatra display, onboarding i18n completion | ✅ Complete (100%) — Sprint 27 |
+| **Prasanam Oracle UI** | PrasanamHistory Drift table (schema v4), dedicated bottom nav tab (4th: Oracle), query input screen (category selector + descriptions + free-text + intention animation), 30-min validation gate (GuidedNostrilTest if stale), Oracle result card (score gauge + 5 answer bands), user-initiated "Save to History", Prasanam history timeline (co-located on Oracle screen), swipe-to-delete history, post-event outcome notes dialog, current window status banner (Rahu/Emakandam warning or favorable indicator), DatabaseExporter updated for export/import, full Tamil translations (40+ keys) | ✅ Complete (100%) — Sprint 32 |
 | **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
 
 ---
@@ -178,6 +179,12 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 25 | Performance, Accessibility & Smoke Test Refresh | #63 | 0 (accessibility/perf polish, docs) | ✅ Complete |
 | Sprint 26 | Daily Engagement & Delight | #65 | 0 (new feature widgets, no tests yet) | ✅ Complete |
 | Sprint 27 | Layer 1 Gap Fixes — Diagnostic Foundation | #68 | 0 (domain + UI, Sushumna test updated) | ✅ Complete |
+| Sprint 27.5 | Bugfix + UX Polish (Production Testing Fixes) | #78 | 0 (bugfixes, no new tests) | ✅ Complete |
+| Sprint 28 | UI Polish + UX Consistency | #95 | 0 (UI polish) | ✅ Complete |
+| Sprint 29 | Foundation — Terminology, PWA, Tech Debt | #102 | 0 (terminology + PWA) | ✅ Complete |
+| Sprint 30 | Action Windows Engine + UI | #104 | 10 (ActionWindowsEngine unit tests) | ✅ Complete |
+| Sprint 31 | Numerology + Oracle Engine + GPS | #115 | 20 (Oracle + NameBird tests) | ✅ Complete |
+| Sprint 32 | Prasanam Oracle UI | #118 | 0 (UI feature, uses existing engine tests) | ✅ Complete |
 
 ---
 
