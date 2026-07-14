@@ -97,9 +97,27 @@ class _PrasanamHistoryTile extends ConsumerWidget {
     final hasOutcome = query.outcomeNotes != null &&
         query.outcomeNotes!.isNotEmpty;
 
-    return InkWell(
-      onTap: () => _showOutcomeDialog(context, ref),
-      borderRadius: BorderRadius.circular(8),
+    return Dismissible(
+      key: ValueKey(query.id),
+      direction: DismissDirection.endToStart,
+      background: Container(
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 16),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.error.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(Icons.delete_outline, color: theme.colorScheme.error),
+      ),
+      confirmDismiss: (_) => _confirmDelete(context, l10n),
+      onDismissed: (_) {
+        final repo = ref.read(prasanamRepositoryProvider);
+        repo.deleteQuery(query.id);
+        ref.invalidate(prasanamHistoryProvider);
+      },
+      child: InkWell(
+        onTap: () => _showOutcomeDialog(context, ref),
+        borderRadius: BorderRadius.circular(8),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
@@ -174,6 +192,30 @@ class _PrasanamHistoryTile extends ConsumerWidget {
               ),
           ],
         ),
+      ),
+    ),
+    );
+  }
+
+  Future<bool?> _confirmDelete(BuildContext context, AppLocalizations l10n) {
+    return showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.prasanamDeleteTitle),
+        content: Text(l10n.prasanamDeleteMessage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(l10n.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(ctx).colorScheme.error,
+            ),
+            child: Text(l10n.prasanamDeleteConfirm),
+          ),
+        ],
       ),
     );
   }

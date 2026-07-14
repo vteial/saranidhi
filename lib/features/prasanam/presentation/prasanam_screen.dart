@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/providers/profile_location_provider.dart';
 import 'package:saranidhi/core/utils/timezone_utils.dart';
+import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_swara_affinity.dart';
@@ -83,16 +84,17 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.prasanamTitle),
-        centerTitle: true,
-      ),
+      appBar: BrandedAppBar(title: l10n.prasanamTitle),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (!_showResult) ...[
+              // Current window status banner
+              _buildWindowStatusBanner(theme, l10n),
+              const SizedBox(height: 16),
+
               // Intention anchor animation
               _buildIntentionAnchor(theme, l10n),
               const SizedBox(height: 24),
@@ -163,6 +165,108 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
     );
   }
 
+  /// Shows current Action Window status — good/bad timing indicator.
+  Widget _buildWindowStatusBanner(ThemeData theme, AppLocalizations l10n) {
+    final dashboardAsync = ref.watch(dashboardDataProvider);
+
+    return dashboardAsync.when(
+      data: (data) {
+        final activeWindow = data.activeActionWindow;
+        final rahuKaal = data.rahuKaal;
+        final now = DateTime.now();
+
+        // Check if Rahu Kaal or Emakandam is active
+        final isRahuActive = rahuKaal != null &&
+            !now.isBefore(rahuKaal.start) &&
+            now.isBefore(rahuKaal.end);
+        final isEmakandamActive = data.emakandam != null &&
+            !now.isBefore(data.emakandam!.start) &&
+            now.isBefore(data.emakandam!.end);
+
+        if (isRahuActive || isEmakandamActive) {
+          final name = isRahuActive
+              ? l10n.prasanamWindowRahu
+              : l10n.prasanamWindowEmakandam;
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.error.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: theme.colorScheme.error.withValues(alpha: 0.3),
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.warning_amber_rounded,
+                  size: 20,
+                  color: theme.colorScheme.error,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    name,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.error,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
+        // Show current action window as favorable
+        if (activeWindow != null) {
+          final windowLabel = _windowLabel(activeWindow.window, l10n);
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.green.withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: Colors.green.withValues(alpha: 0.3),
+              ),
+            ),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.check_circle_outline,
+                  size: 20,
+                  color: Colors.green,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    windowLabel,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: Colors.green.shade800,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return const SizedBox.shrink();
+      },
+      loading: () => const SizedBox.shrink(),
+      error: (_, __) => const SizedBox.shrink(),
+    );
+  }
+
+  String _windowLabel(ActionWindow window, AppLocalizations l10n) {
+    return switch (window) {
+      ActionWindow.artha => l10n.prasanamWindowArtha,
+      ActionWindow.kriya => l10n.prasanamWindowKriya,
+      ActionWindow.yoga => l10n.prasanamWindowYoga,
+    };
+  }
+
   /// Animated intention anchor — helps user center before querying.
   Widget _buildIntentionAnchor(ThemeData theme, AppLocalizations l10n) {
     return Center(
@@ -229,8 +333,25 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
             setState(() => _selectedCategory = selection.first);
           },
         ),
+        const SizedBox(height: 8),
+        // Contextual meaning for selected category
+        Text(
+          _categoryDescription(_selectedCategory, l10n),
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
       ],
     );
+  }
+
+  String _categoryDescription(QueryCategory category, AppLocalizations l10n) {
+    return switch (category) {
+      QueryCategory.artha => l10n.prasanamCategoryArthaDesc,
+      QueryCategory.kriya => l10n.prasanamCategoryKriyaDesc,
+      QueryCategory.yoga => l10n.prasanamCategoryYogaDesc,
+    };
   }
 
   /// Free-text query input field.

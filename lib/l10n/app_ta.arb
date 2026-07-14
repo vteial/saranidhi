@@ -528,5 +528,17 @@
   "prasanamOutcomeDate": "தேதி",
   "prasanamOutcomeCategory": "வகை",
   "prasanamOutcomeNotesLabel": "என்ன நடந்தது?",
-  "prasanamOutcomeNotesHint": "வழிகாட்டுதல் சரியானதா என்று சிந்தியுங்கள்..."
+  "prasanamOutcomeNotesHint": "வழிகாட்டுதல் சரியானதா என்று சிந்தியுங்கள்...",
+  "prasanamTab": "ஆரக்கிள்",
+  "prasanamDeleteTitle": "வாசிப்பை நீக்கு",
+  "prasanamDeleteMessage": "இந்த ஆரக்கிள் வாசிப்பை வரலாற்றிலிருந்து நீக்கவா?",
+  "prasanamDeleteConfirm": "நீக்கு",
+  "prasanamCategoryArthaDesc": "வணிகம், நிதி, பேச்சுவார்த்தை, பொருள் முடிவுகள்",
+  "prasanamCategoryKriyaDesc": "செயல்கள், பயணம், உடல்நலம், நடைமுறை பணிகள்",
+  "prasanamCategoryYogaDesc": "ஆன்மீக பயிற்சி, தியானம், உள்ளுணர்வு",
+  "prasanamWindowRahu": "ராகு காலம் செயல்படுகிறது \u2014 மதிப்பெண் 10% பூட்டப்பட்டுள்ளது",
+  "prasanamWindowEmakandam": "எமகண்டம் செயல்படுகிறது \u2014 மதிப்பெண் 10% பூட்டப்பட்டுள்ளது",
+  "prasanamWindowArtha": "அர்த்த சாளரம் \u2014 பொருள் கேள்விகளுக்கு சாதகமான",
+  "prasanamWindowKriya": "கிரியா சாளரம் \u2014 செயல் கேள்விகளுக்கு சாதகமான",
+  "prasanamWindowYoga": "யோக சாளரம் \u2014 ஆன்மீக கேள்விகளுக்கு சாதகமான"
 }

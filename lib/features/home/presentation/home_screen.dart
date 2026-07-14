@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/home/presentation/explore_tab.dart';
 import 'package:saranidhi/features/home/presentation/today_tab.dart';
-import 'package:saranidhi/features/prasanam/presentation/prasanam_screen.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -44,17 +43,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     if (!_tabController.indexIsChanging && _tabController.index == 0) {
       ref.read(selectedDateProvider.notifier).select(DateTime.now());
     }
-    // Rebuild to show/hide FAB based on tab
-    setState(() {});
-  }
-
-  /// Launches the Prasanam Oracle screen.
-  void _launchPrasanam(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => const PrasanamScreen(),
-      ),
-    );
   }
 
   @override
@@ -86,13 +74,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
           ExploreTab(),
         ],
       ),
-      floatingActionButton: _tabController.index == 0
-          ? FloatingActionButton(
-              onPressed: () => _launchPrasanam(context),
-              tooltip: l10n.prasanamFabTooltip,
-              child: const Icon(Icons.auto_awesome),
-            )
-          : null,
     );
   }
 }
