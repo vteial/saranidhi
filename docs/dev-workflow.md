@@ -338,7 +338,7 @@ git push origin main
 
 - **Coverage gate:** Set to 20% (lowered from 25% in Sprint 14 — UI-heavy sprint). Domain layer is ~95% covered; UI/presentation layer brings blended average to ~24%. Will increase as widget test coverage improves.
 - **UI verification:** Always verify on Vercel preview before merging UI changes. Never merge UI blind.
-- **Settings navigation:** Settings is a pushed route (gear icon in top-right), not a bottom nav tab. Bottom nav has 3 tabs: Home, Journal, Analytics.
+- **Settings navigation:** Settings is a pushed route (gear icon in top-right), not a bottom nav tab. Bottom nav has 4 tabs: Home, Journal, Oracle, Analytics.
 
 ---
 

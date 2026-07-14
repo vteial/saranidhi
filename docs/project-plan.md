@@ -423,6 +423,54 @@ This replaces blind manual selection for users unsure of their dominant nostril.
 
 ---
 
+## 6g. Prasanam Oracle UI Architecture (Sprint 32)
+
+### Navigation
+
+Prasanam Oracle is the **4th bottom nav tab** (Home | Journal | Oracle | Analytics), accessible from any screen. The FAB approach was replaced with a dedicated tab for discoverability and daily-use pattern.
+
+### Data Model
+
+New Drift table `PrasanamHistory` (schema v4):
+- `id`, `timestamp`, `category`, `queryText`, `score`, `band`, `guidanceEn`, `guidanceTa`, `isFloorLocked`, `swara`, `birdState`, `actionWindow`, `outcomeNotes`, `outcomeTimestamp`
+
+### Oracle Flow
+
+```
+User opens Oracle tab
+    → Window status banner (favorable/void-locked)
+    → Category selector (Artha/Kriya/Yoga) + contextual description
+    → Free-text intention field (optional)
+    → "Ask the Oracle" button
+    → 30-min validation gate:
+        ├── Recent journal entry (≤30min) → use recorded swara
+        └── Stale/none → trigger GuidedNostrilTest bottom sheet
+    → OracleCompositeEngine.evaluate() → PrasanamResult
+    → Result card (score gauge + band + guidance)
+    → "Save to History" button (user-initiated, not auto-save)
+```
+
+### Key Design Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| User-initiated save (Option C) | Respects mental/silent Prasanam tradition — casual queries leave no trace |
+| History co-located on Oracle screen | Same pattern as Journal — feature owns its own history |
+| Window status banner (not blocking) | Informational friction — user sees but isn't prevented from querying |
+| Swipe-to-delete history | Clean up old readings (same UX as journal delete) |
+| Category descriptions | First-time users need context for Artha/Kriya/Yoga meaning |
+
+### Future: Sacred Consultation UX (Post v1.4)
+
+Planned intentional friction to prevent casual/playful misuse:
+- Cooldown period (2-4h between queries)
+- Pre-query breath ritual (3-breath centering)
+- Intention anchor hold duration (10-15s meditation)
+- Daily query limit (max 2-3/day)
+- Deity/mantra invocation prompt
+
+---
+
 ### On Every PR to `main`
 ```
 dart analyze              → Must pass (zero warnings)
