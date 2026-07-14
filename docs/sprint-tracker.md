@@ -429,7 +429,7 @@
 - [ ] Task 31.4: HoraSwaraAffinity — planetary energy classification + alignment multiplier matrix
 - [ ] Task 31.5: OracleCompositeEngine — composite score: Base × Tarabala × Hora-Swara
 - [ ] Task 31.6: Category Harmony multipliers — Artha/Kriya/Yoga query vs active Action Window (1.2x–0.5x)
-- [ ] Task 31.7: Rahu Kaal floor lock filter (hard lock to 10% if active)
+- [ ] Task 31.7: Inauspicious windows floor lock — hard lock to 10% if Rahu Kaal OR Emakandam active (Kuligai excluded). Uses DaylightSegmentResolver octant lookup.
 - [ ] Task 31.8: GPS auto-location for web — `navigator.geolocation` API with permission prompt, update profile if >5km from stored location
 - [ ] Task 31.9: Unit tests for all Oracle calculators + NameBirdParser
 - [ ] Task 31.10: Nostril Pattern table — add yama timing column (match Day/Night schedule format)
