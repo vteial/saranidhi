@@ -30,7 +30,7 @@ class NameBirdParser {
     if (tamilBird != null) return tamilBird;
 
     // 2. Scan for the first English vowel sound
-    final vowelRegExp = RegExp(r'[aeiou]');
+    final vowelRegExp = RegExp('[aeiou]');
     final match = vowelRegExp.firstMatch(cleaned);
     if (match == null) {
       return PakshiBird.vulture; // Default fallback

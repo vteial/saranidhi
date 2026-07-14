@@ -299,7 +299,17 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
               final name = widget.state.displayName;
               if (name.isNotEmpty) {
                 final bird = NameBirdParser.parse(name);
-                widget.notifier.setBirthBird(bird.name);
+                // Use the first nakshatra of the bird's group to set via existing API
+                const birdToNakshatra = {
+                  PakshiBird.vulture: 'ashwini',
+                  PakshiBird.owl: 'bharani',
+                  PakshiBird.crow: 'krittika',
+                  PakshiBird.rooster: 'rohini',
+                  PakshiBird.peacock: 'mrigashira',
+                };
+                widget.notifier.setNakshatra(
+                  birdToNakshatra[bird] ?? 'ashwini',
+                );
               }
             },
             icon: const Icon(Icons.person_outline, size: 18),

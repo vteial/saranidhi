@@ -1,7 +1,22 @@
-// ignore_for_file: avoid_web_libraries_in_flutter
+// ignore: avoid_web_libraries_in_flutter
+// Uses dart:js_interop and package:web for browser geolocation API (web-only).
 import 'dart:async';
 import 'dart:js_interop';
+
 import 'package:web/web.dart' as web;
+
+/// Simple position data class.
+class GeolocationPosition {
+  const GeolocationPosition({
+    required this.latitude,
+    required this.longitude,
+    required this.accuracy,
+  });
+
+  final double latitude;
+  final double longitude;
+  final double accuracy;
+}
 
 /// Web-only geolocation service using the browser's navigator.geolocation API.
 ///
@@ -21,9 +36,7 @@ class WebGeolocation {
     final completer = Completer<GeolocationPosition?>();
 
     try {
-      final geolocation = web.window.navigator.geolocation;
-
-      geolocation.getCurrentPosition(
+      web.window.navigator.geolocation.getCurrentPosition(
         ((web.GeolocationPosition pos) {
           completer.complete(GeolocationPosition(
             latitude: pos.coords.latitude,
@@ -46,17 +59,4 @@ class WebGeolocation {
 
     return completer.future;
   }
-}
-
-/// Simple position data class.
-class GeolocationPosition {
-  final double latitude;
-  final double longitude;
-  final double accuracy;
-
-  const GeolocationPosition({
-    required this.latitude,
-    required this.longitude,
-    required this.accuracy,
-  });
 }

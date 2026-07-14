@@ -104,7 +104,7 @@ class _NostrilRow extends StatelessWidget {
     final emoji = isSolar ? '\u2600\uFE0F' : '\uD83C\uDF19';
     final flowLabel = isSolar ? l10n.solar : l10n.lunar;
     final yamaLabel = 'Y$yamaNumber';
-    final timeStr = '${_formatTime(yama.start)}';
+    final timeStr = _formatTime(yama.start);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
