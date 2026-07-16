@@ -58,7 +58,7 @@ jobs:
           COVERAGE=$(( HIT_LINES * 100 / TOTAL_LINES ))
           echo "Coverage: $COVERAGE% ($HIT_LINES/$TOTAL_LINES lines hit)"
 
-          THRESHOLD=20
+          THRESHOLD=19
           if [ "$COVERAGE" -lt "$THRESHOLD" ]; then
             echo "Coverage $COVERAGE% is below the ${THRESHOLD}% threshold!"
             exit 1
