@@ -107,6 +107,15 @@ Watch your alignment streak grow day by day. A 7-day visual ribbon shows your re
 ### 🦚 Panja Pakshi Oracle
 Know your birth bird and its current state at any moment. See at a glance whether this is a time to act boldly (Ruling) or rest quietly (Sleeping). The Oracle Readiness score synthesizes all cosmic factors into a single actionable number.
 
+### 🔮 Prasanam Oracle
+A sacred consultation tool for life decisions. Select your query category (Artha for material, Kriya for action, Yoga for spiritual), center your intention, and receive a multi-factor composite score:
+
+- **Score Gauge** (0–100) — synthesizes bird state, hora-swara alignment, tarabala, and category harmony
+- **5 Answer Bands** — Strong Yes (Siddha), Favorable (Vardhana), Caution (Mandha), Delay (Stambhana), Hard No (Sunya)
+- **Validation Gate** — requires fresh breath awareness (within 30 minutes) before consultation
+- **Window Status** — shows if current timing is favorable or void-locked (Rahu Kaal / Emakandam)
+- **History** — optionally save readings for post-event reflection and outcome tracking
+
 ### ⏰ Smart Reminders
 Receive gentle nudges at each Yama transition — the exact moment when cosmic energy shifts. Each notification carries a piece of traditional wisdom tailored to your current bird state.
 

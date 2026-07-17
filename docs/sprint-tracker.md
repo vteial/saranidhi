@@ -421,29 +421,31 @@
 
 ---
 
-## Sprint 31: Numerology + Oracle Engine (v1.4.0)
+## Sprint 31: Numerology + Oracle Engine + GPS (v1.4.0) — Complete (PR #115) ✅
 
-- [ ] Task 31.1: NameBirdParser — phonetic vowel-to-bird fallback (EN + Tamil Unicode)
-- [ ] Task 31.2: Integrate NameBirdParser into onboarding as tertiary fallback (DOB → Nakshatra → Name)
-- [ ] Task 31.3: TaraCategory enum — Navatara modulo-9 formula with multiplier weights (0.2–1.5x)
-- [ ] Task 31.4: HoraSwaraAffinity — planetary energy classification + alignment multiplier matrix
-- [ ] Task 31.5: OracleCompositeEngine — composite score: Base × Tarabala × Hora-Swara
-- [ ] Task 31.6: Category Harmony multipliers — Artha/Kriya/Yoga query vs active Action Window (1.2x–0.5x)
-- [ ] Task 31.7: Rahu Kaal floor lock filter (hard lock to 10% if active)
-- [ ] Task 31.8: Unit tests for all Oracle calculators
+- [x] Task 31.1: NameBirdParser — phonetic vowel-to-bird fallback (EN + Tamil Unicode)
+- [x] Task 31.2: Integrate NameBirdParser into onboarding as tertiary fallback (DOB → Nakshatra → Name) — subtle "Use your name" link below DOB section
+- [x] Task 31.3: TaraCategory enum — Navatara modulo-9 formula with multiplier weights (0.2–1.5x)
+- [x] Task 31.4: HoraSwaraAffinity — planetary energy classification + alignment multiplier matrix
+- [x] Task 31.5: OracleCompositeEngine — composite score: Base × Tarabala × Hora-Swara
+- [x] Task 31.6: Category Harmony multipliers — Artha/Kriya/Yoga query vs active Action Window (1.2x–0.5x)
+- [x] Task 31.7: Inauspicious windows floor lock — hard lock to 10% if Rahu Kaal OR Emakandam active (Kuligai excluded). Uses DaylightSegmentResolver octant lookup.
+- [x] Task 31.8: GPS auto-location for web — `navigator.geolocation` API with permission prompt, update profile if >5km from stored location
+- [x] Task 31.9: Unit tests for all Oracle calculators + NameBirdParser
+- [x] Task 31.10: Nostril Pattern table — add yama timing column (match Day/Night schedule format)
 
 ---
 
-## Sprint 32: Prasanam Oracle UI (v1.4.0)
+## Sprint 32: Prasanam Oracle UI (v1.4.0) — Complete (PR #118) ✅
 
-- [ ] Task 32.1: PrasanamHistory Drift table + schema migration
-- [ ] Task 32.2: FAB on Today tab — oracle icon (🔮), launches Prasanam flow
-- [ ] Task 32.3: Query input screen — category selector (Artha/Kriya/Yoga) + free-text field + intention anchor animation
-- [ ] Task 32.4: 30-minute validation gate — check last journal entry recency, trigger GuidedNostrilTest if stale
-- [ ] Task 32.5: Oracle result card — score gauge + 5 answer bands (Strong Yes / Favorable / Caution / Delay / Hard No)
-- [ ] Task 32.6: Prasanam history timeline — Explore tab, chronological past queries
-- [ ] Task 32.7: Post-event outcome notes — tap old query → add reflective notes
-- [ ] Task 32.8: Tamil translations for Prasanam UI + guidance text
+- [x] Task 32.1: PrasanamHistory Drift table + schema migration
+- [x] Task 32.2: FAB on Today tab — oracle icon (🔮), launches Prasanam flow
+- [x] Task 32.3: Query input screen — category selector (Artha/Kriya/Yoga) + free-text field + intention anchor animation
+- [x] Task 32.4: 30-minute validation gate — check last journal entry recency, trigger GuidedNostrilTest if stale
+- [x] Task 32.5: Oracle result card — score gauge + 5 answer bands (Strong Yes / Favorable / Caution / Delay / Hard No)
+- [x] Task 32.6: Prasanam history timeline — on Prasanam screen, chronological past queries
+- [x] Task 32.7: Post-event outcome notes — tap old query → add reflective notes
+- [x] Task 32.8: Tamil translations for Prasanam UI + guidance text
 
 ---
 
@@ -479,6 +481,21 @@
 - [ ] Task 35.3: Comprehensive smoke test plan for v2.0.0 (all features)
 - [ ] Task 35.4: User Guide refresh — complete rewrite covering all v2.0 features
 - [ ] Task 35.5: Wire Sprint 26 deferred widgets (WhatsNew startup, PresetSelector, StreakCelebration, isPinned star)
+
+---
+
+## Sprint 36: Panja Pakshi Accuracy Investigation & Calibration
+
+> **Prerequisite:** User collects 7-day Align27 data (Task 36.1) + Tamil Panchangam data (Task 36.2) BEFORE sprint starts.
+
+- [ ] Task 36.1: Data Collection — capture 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Rooster/Pushya [USER TASK]
+- [ ] Task 36.2: Data Collection — capture same 7 days from Tamil Panchangam (drikpanchang.com or physical calendar) [USER TASK]
+- [ ] Task 36.3: Saranidhi Diagnostic Dump — generate matching 7-day output programmatically (bird states, sunrise/sunset, lunar phase, weekday)
+- [ ] Task 36.4: Three-Way Comparison Matrix — align Saranidhi vs Align27 vs Panchangam, identify exact divergence points
+- [ ] Task 36.5: Root Cause Diagnosis — determine if divergence is from (a) lookup tables, (b) lunar phase calculation, (c) weekday convention, (d) bird-phase swap timing
+- [ ] Task 36.6: Calibration Fix — implement correction based on diagnosis (table update / phase logic / day-start convention)
+- [ ] Task 36.7: Verification — re-run 7-day comparison after fix, confirm match with most authentic source
+- [ ] Task 36.8: Document findings in `docs/research/accuracy-calibration.md`
 
 ---
 

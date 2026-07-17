@@ -6,19 +6,20 @@ part 'app_database.g.dart';
 
 /// The main application database powered by Drift.
 ///
-/// Contains all four schema tables:
+/// Contains all schema tables:
 /// - [Profiles] — user profile and preferences
 /// - [SaraKalaiJournal] — breath journal entries
 /// - [BreathSessions] — detailed breath session recordings
 /// - [BirdLibrary] — Panja Pakshi bird reference data
+/// - [PrasanamHistory] — Prasanam Oracle query history
 @DriftDatabase(
-  tables: [Profiles, SaraKalaiJournal, BreathSessions, BirdLibrary],
+  tables: [Profiles, SaraKalaiJournal, BreathSessions, BirdLibrary, PrasanamHistory],
 )
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -44,6 +45,17 @@ class AppDatabase extends _$AppDatabase {
         );
         if (!hasIsPinned) {
           await m.addColumn(saraKalaiJournal, saraKalaiJournal.isPinned);
+        }
+      }
+      if (from < 4) {
+        // Sprint 32: Create Prasanam Oracle history table.
+        // Check if table already exists to avoid errors on databases
+        // that were created fresh at schema v3+.
+        final tables = await customSelect(
+          "SELECT name FROM sqlite_master WHERE type='table' AND name='prasanam_history'",
+        ).get();
+        if (tables.isEmpty) {
+          await m.createTable(prasanamHistory);
         }
       }
     },

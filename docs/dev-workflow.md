@@ -30,6 +30,64 @@ main ─────────────────────────
 
 ---
 
+## Pre-PR Quality Gate (v1.3.0 Retrospective)
+
+> Added after the v1.3.0 release required 3 hotfix PRs due to preventable issues.
+> These checks MUST be performed before pushing any PR that adds/modifies UI widgets.
+
+### 1. Tamil Mode Verification
+
+**Why:** 6 of 11 hotfix issues in v1.3.0 were hardcoded English strings missed in Tamil mode.
+
+**Rule:** Before pushing, Kiro must mentally verify (or user must visually confirm on preview):
+- [ ] All `Text()` widgets in new/modified files use `l10n.*` keys (not literal strings)
+- [ ] Run grep check: `grep -n "Text(" <new_file>.dart | grep -v "l10n\.\|style:\|const \|TextStyle\|emoji"` — any matches with English text > 3 chars = bug
+- [ ] Duration/unit suffixes use l10n keys (e.g., `l10n.durationMinutes(n)` not `'${n}min'`)
+- [ ] Paksha/state/window names use l10n keys (not hardcoded 'Ruling', 'Artha', 'Krishna')
+
+### 2. Visual QA Before Sprint Finish
+
+**Why:** Card styling, alignment, empty space issues only surface when a human looks at the app.
+
+**Rule:** Before issuing `/sprint-finish`:
+- [ ] User checks Vercel preview on narrow screen (mobile viewport)
+- [ ] User checks Vercel preview on wide screen (tablet/desktop)
+- [ ] User opens any new bottom sheets/dialogs/modals
+- [ ] User switches to Tamil and repeats all above
+- [ ] New cards visually match the weight/style of existing cards
+
+**Process:** Issues found → fixes go into the SAME PR branch (not a separate hotfix). Only issue `/sprint-finish` after preview testing passes.
+
+### 3. l10n Completeness Check
+
+**Why:** New ARB keys were added to English but Tamil equivalents were incomplete or had wrong Unicode characters.
+
+**Rule:** For every new key added to `app_en.arb`:
+- [ ] Corresponding key exists in `app_ta.arb` with proper Tamil text
+- [ ] No mixed-script characters (e.g., Kannada `ಮ` in Tamil text)
+- [ ] Placeholders (`{count}`, `{name}`) match between EN and TA files
+
+### 4. flutter analyze Clean
+
+**Why:** Multiple CI failures from redundant arguments, unused imports, comment_references.
+
+**Rule:** Before committing new widget files:
+- [ ] No `width: 1` or `expand: false` or `initialChildSize: 0.5` (default values)
+- [ ] Doc comments use backticks (`` `ClassName` ``) for cross-file references, not `[ClassName]`
+- [ ] All imports are actually used; extension imports included (e.g., `pakshi_l10n.dart`)
+- [ ] No `@override` on non-overridden methods
+
+### 5. Known Flaky Tests
+
+**Why:** Widget navigation test was un-skipped without fixing the root cause, causing CI failure.
+
+**Rule:** A skipped test can only be un-skipped when:
+- [ ] The **root cause** is resolved (not just the symptom)
+- [ ] The test passes 3 consecutive CI runs on a feature branch
+- [ ] If root cause is architectural → defer to dedicated test infrastructure sprint
+
+---
+
 ## Sprint Protocols
 
 ### `/sprint-start`
@@ -280,7 +338,7 @@ git push origin main
 
 - **Coverage gate:** Set to 20% (lowered from 25% in Sprint 14 — UI-heavy sprint). Domain layer is ~95% covered; UI/presentation layer brings blended average to ~24%. Will increase as widget test coverage improves.
 - **UI verification:** Always verify on Vercel preview before merging UI changes. Never merge UI blind.
-- **Settings navigation:** Settings is a pushed route (gear icon in top-right), not a bottom nav tab. Bottom nav has 3 tabs: Home, Journal, Analytics.
+- **Settings navigation:** Settings is a pushed route (gear icon in top-right), not a bottom nav tab. Bottom nav has 4 tabs: Home, Journal, Oracle, Analytics.
 
 ---
 

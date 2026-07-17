@@ -95,5 +95,8 @@ inclusion: auto
 - **Trilingual nakshatra lists:** Always use `NakshatraL10n.trilingualDisplay()` for nakshatra selection (shows "English / தமிழ்"). Never show single-language-only in selection lists.
 - **Onboarding language toggle:** IntroScreen + OnboardingScreen must always have EN/TA SegmentedButton accessible for users to switch before completing setup.
 - **Hora/Tattva in dashboard:** Compute `activeHora` + `activeTattva` in `dashboardDataProvider` (only when viewing today). Use `_computeHora()` and `_computeTattva()` helpers.
+- **Prasanam Oracle:** Dedicated 4th bottom nav tab (`/prasanam`). Uses `OracleCompositeEngine.evaluate()` from Sprint 31. History saved to `PrasanamHistory` Drift table (schema v4). Save is user-initiated (not auto-save). Oracle history co-located on Prasanam screen (not Explore tab).
+- **Bottom navigation:** 4 tabs — Home | Journal | Oracle | Analytics. Settings via top-right gear icon (pushed route).
+- **Prasanam sacred UX (future):** Post-v1.4 planned — cooldown period, pre-query breath ritual, daily limit, deity invocation prompt, session quality scoring. Current implementation is informational friction only (intention animation + window status banner).
 
 ---

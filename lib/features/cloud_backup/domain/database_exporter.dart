@@ -40,6 +40,7 @@ class DatabaseExporter {
     final journal = await _db.select(_db.saraKalaiJournal).get();
     final sessions = await _db.select(_db.breathSessions).get();
     final birds = await _db.select(_db.birdLibrary).get();
+    final prasanam = await _db.select(_db.prasanamHistory).get();
 
     // Export user preferences from SharedPreferences
     final preferences = await _exportPreferences();
@@ -53,6 +54,7 @@ class DatabaseExporter {
       'journal': journal.map(_journalToMap).toList(),
       'sessions': sessions.map(_sessionToMap).toList(),
       'birds': birds.map(_birdToMap).toList(),
+      'prasanam': prasanam.map(_prasanamToMap).toList(),
       'preferences': preferences,
     };
 
@@ -88,6 +90,7 @@ class DatabaseExporter {
     await _db.delete(_db.saraKalaiJournal).go();
     await _db.delete(_db.breathSessions).go();
     await _db.delete(_db.birdLibrary).go();
+    await _db.delete(_db.prasanamHistory).go();
     await _db.delete(_db.profiles).go();
 
     // Import profiles
@@ -181,6 +184,30 @@ class DatabaseExporter {
       );
     }
 
+    // Import Prasanam history
+    final prasanamList = data['prasanam'] as List<dynamic>? ?? [];
+    for (final p in prasanamList) {
+      final map = p as Map<String, dynamic>;
+      await _db.into(_db.prasanamHistory).insert(
+        PrasanamHistoryCompanion.insert(
+          id: map['id'] as String,
+          timestamp: map['timestamp'] as int,
+          category: map['category'] as String,
+          queryText: Value(map['queryText'] as String? ?? ''),
+          score: map['score'] as int,
+          band: map['band'] as String,
+          guidanceEn: map['guidanceEn'] as String,
+          guidanceTa: map['guidanceTa'] as String,
+          isFloorLocked: Value(map['isFloorLocked'] as bool? ?? false),
+          swara: Value(map['swara'] as String?),
+          birdState: Value(map['birdState'] as String?),
+          actionWindow: Value(map['actionWindow'] as String?),
+          outcomeNotes: Value(map['outcomeNotes'] as String?),
+          outcomeTimestamp: Value(map['outcomeTimestamp'] as int?),
+        ),
+      );
+    }
+
     // Import preferences
     final preferences = data['preferences'] as Map<String, dynamic>?;
     if (preferences != null) {
@@ -206,9 +233,9 @@ class DatabaseExporter {
       if (version == null) return 'Missing version field';
       if (version > 1) return 'Unsupported version: $version';
 
-      // Check schema version compatibility (Sprint 27.5)
+      // Check schema version compatibility (Sprint 32)
       final schemaVersion = data['schemaVersion'] as int?;
-      if (schemaVersion != null && schemaVersion > 3) {
+      if (schemaVersion != null && schemaVersion > 4) {
         return 'Exported from a newer app version (schema $schemaVersion). '
             'Please update the app before importing.';
       }
@@ -236,6 +263,7 @@ class DatabaseExporter {
       'journal': (data['journal'] as List?)?.length ?? 0,
       'sessions': (data['sessions'] as List?)?.length ?? 0,
       'birds': (data['birds'] as List?)?.length ?? 0,
+      'prasanam': (data['prasanam'] as List?)?.length ?? 0,
     };
   }
 
@@ -340,5 +368,22 @@ class DatabaseExporter {
     'birdName': b.birdName,
     'nakshatraGroup': b.nakshatraGroup,
     'favorited': b.favorited,
+  };
+
+  Map<String, dynamic> _prasanamToMap(PrasanamHistoryData p) => {
+    'id': p.id,
+    'timestamp': p.timestamp,
+    'category': p.category,
+    'queryText': p.queryText,
+    'score': p.score,
+    'band': p.band,
+    'guidanceEn': p.guidanceEn,
+    'guidanceTa': p.guidanceTa,
+    'isFloorLocked': p.isFloorLocked,
+    'swara': p.swara,
+    'birdState': p.birdState,
+    'actionWindow': p.actionWindow,
+    'outcomeNotes': p.outcomeNotes,
+    'outcomeTimestamp': p.outcomeTimestamp,
   };
 }

@@ -267,6 +267,11 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 25 | 0 | 410 | Performance/accessibility polish (timezone, keyboard, haptics, semantics); no new test files, existing tests unaffected |
 | Sprint 26 | 0 | 410 | Daily engagement features (What's New, celebrations, presets, summary, pin, quick-log); new widgets not yet wired into existing tests |
 | Sprint 27 | 0 | 410 | Layer 1 gap fixes (ActionWindow, Sushumna alignment, Hora/Tattva, guided test, i18n); alignment_checker_test updated for context-dependent Sushumna |
+| Sprint 28 | 0 | 410 | UI polish + UX consistency; no new test files |
+| Sprint 29 | 0 | 410 | Terminology, PWA, tech debt; widget test un-skipped (stream settling fix) |
+| Sprint 30 | 10 | 420 | ActionWindowsEngine unit tests (consolidation, Rahu overlap, bird state mapping) |
+| Sprint 31 | 20 | 440 | OracleCompositeEngine + TaraCategory + HoraSwaraAffinity + NameBirdParser unit tests |
+| Sprint 32 | 0 | 440 | Prasanam Oracle UI (uses existing engine tests); no new test files — UI feature with DashboardData/existing Oracle test coverage |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 

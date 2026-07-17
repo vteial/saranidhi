@@ -121,7 +121,7 @@ class _DataExportImportWidgetState
       final jsonString = await exporter.exportToJsonString();
       final bytes = Uint8List.fromList(utf8.encode(jsonString));
 
-      final dateStr = DateFormat('yyyy-MM-dd').format(DateTime.now());
+      final dateStr = DateFormat('yyyy-MM-dd-HHmm').format(DateTime.now());
       final filename = 'saranidhi_backup_$dateStr.json';
 
       if (kIsWeb) {

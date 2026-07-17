@@ -7,17 +7,17 @@
 
 ---
 
-## Current State (as of 2026-07-12)
+## Current State (as of 2026-07-14)
 
 | Item | Status |
 |------|--------|
 | **Production** | v1.3.0-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | Latest main (in sync with prod) |
-| **Sprints delivered** | 30 |
-| **Total PRs** | 109 |
-| **Engineering hours** | ~90h |
+| **Staging** | Latest main (Sprint 32 merged) |
+| **Sprints delivered** | 32 |
+| **Total PRs** | 118 |
+| **Engineering hours** | ~95h |
 | **User mode** | Daily use — production stable |
-| **Next sprint** | Sprint 31 (Numerology — NameBirdParser, Navatara, Hora-Swara) |
+| **Next action** | v1.4.0-web release (Sprint 31 + 32) |
 
 ---
 
@@ -108,6 +108,8 @@ These exist as code but aren't connected to the app UI yet:
 
 | Topic | Status | Notes |
 |-------|--------|-------|
+| Prasanam sacred consultation UX | Deferred to post-v1.4 | Cooldown period, breath ritual, daily limit, deity invocation, session quality scoring |
+| Home tab restructure (Today / Past / Future) | Deferred to post-v1.4 | Past = what happened, Future = planning. Explore tab concept evolves. |
 | Wire Sprint 26 widgets | Deferred | Do after Sprint 27.5 bugfixes or as part of Layer 2 UI sprint |
 | Ayanamsa variants (Raman, KP, Vakya) | Deferred to v2.0 | Lahiri sufficient for 99% |
 | GPS auto-location (geolocator package) | Deferred to App Store sprint | LocationService math exists, native GPS not added |
@@ -121,9 +123,10 @@ These exist as code but aren't connected to the app UI yet:
 
 ## Next Session: Start Here
 
-1. `/sprint-start` Sprint 31 (Numerology — NameBirdParser, Navatara, Hora-Swara)
-2. After Sprint 31 + 32: v1.4.0-web release
-3. Then: Sprint 33 (Somatic Mastery — Intervention Rooms)
+1. `/release-start` v1.4.0-web (Sprint 31 + 32 merged)
+2. After release: Sprint 33 (Somatic Mastery — Intervention Rooms)
+3. Sprint 36 (Accuracy Investigation) — requires user data collection first
+4. Post-v1.4 planning session: Home tab restructure (Today / Past / Future), Prasanam sacred consultation UX (cooldown, breath ritual, daily limit)
 
 ---
 
