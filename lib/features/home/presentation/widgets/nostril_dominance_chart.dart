@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:saranidhi/features/astro_engine/domain/nostril_pattern.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -109,8 +111,9 @@ class _NostrilRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Odd yamas (1,3,5) = Solar, Even yamas (2,4) = Lunar
-    final yamaNumber = yama.index.index + 1;
-    final isSolar = yamaNumber.isOdd;
+    // Now uses tithi-based pattern from NostrilPattern utility
+    final expectedFlow = NostrilPattern.expectedFlowForYama(yama.index);
+    final isSolar = expectedFlow == BreathFlow.solar;
     final emoji = isSolar ? '\u2600\uFE0F' : '\uD83C\uDF19';
     final flowLabel = isSolar ? l10n.solar : l10n.lunar;
     final yamaLabel = 'Y$yamaNumber';

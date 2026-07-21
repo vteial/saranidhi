@@ -449,7 +449,7 @@
 
 ---
 
-## Sprint 33: Panja Pakshi Accuracy Fix (v1.4.1)
+## Sprint 33: Panja Pakshi Accuracy Fix (v1.4.1) — In Progress 🔄
 
 > **Critical:** Birth bird derivation is wrong for ~50% of users (those born during Krishna Paksha).
 > All downstream calculations (daily schedule, alignment, Oracle score) are affected.
