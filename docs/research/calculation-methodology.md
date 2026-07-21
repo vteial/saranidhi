@@ -54,20 +54,24 @@ Birth bird depends on **two factors**:
 - Table lookup: Pushya in Dark Half → **Cock (Rooster)**
 - Permanent bird: **Cock** (matches Align27)
 
-### Current Implementation (INCORRECT — to be fixed Sprint 36)
+### Current Implementation (CORRECT — Sprint 33)
 
-- Uses ONLY Bright Half table: Pushya → Owl
-- Then applies monthly "swap" based on current lunar phase (Owl↔Rooster)
-- This is wrong — the swap concept was from suzhimunai blog (misinterpreted)
-- Result: shows Owl during waxing, Rooster during waning (instead of always Rooster)
+Birth bird depends on **two factors**:
+1. Moon's Nakshatra at birth (which of 27 lunar mansions)
+2. Birth Paksha (was the moon waxing or waning at the moment of birth?)
 
-### Fix Plan (Sprint 36)
+Two lookup tables (Bright Half + Dark Half) per Prof. Pulippani.
+The resulting bird is **permanent** — never changes with current lunar phase.
 
-1. Determine birth Paksha from DOB (use LunarPhaseCalculator on birth date)
-2. Implement two nakshatra→bird lookup tables (bright + dark)
-3. Store permanent bird from correct table based on birth Paksha
-4. Remove `birthBirdForPhase()` swap logic entirely
-5. Keep current lunar phase for state table selection (daily schedule still varies by phase)
+**API:** `PakshiCalculator.birthBirdFromNakshatraAndPaksha(nakshatra, birthPaksha)`
+
+### Fix Applied (Sprint 33)
+
+1. ✅ Dual nakshatra→bird lookup tables implemented (Bright + Dark)
+2. ✅ Birth Paksha determined from DOB via `birthPakshaFromDOB()`
+3. ✅ `birthBirdForPhase()` swap logic neutralized (always returns natal bird)
+4. ✅ Onboarding + Settings use correct dual-table derivation
+5. ✅ Manual "I know my star" path still uses Bright Half as default (no DOB available)
 
 ---
 
@@ -134,11 +138,17 @@ Pure Dart implementation using:
 ### Source
 - **Siva Swarodaya** — Sutras 52–56
 
-### Current Implementation (SIMPLIFIED)
+### Current Implementation (CORRECT — Sprint 33)
 
-Simple odd/even rule:
-- Odd yamas (Y1, Y3, Y5): Solar (Right / Pingala)
-- Even yamas (Y2, Y4): Lunar (Left / Ida)
+Tithi-based starting nostril per Siva Swarodaya (Sutras 52–56):
+- **Shukla Paksha**: Days 1-3 start Lunar, 4-6 start Solar, 7-9 start Lunar, 10-12 start Solar, 13-15 start Lunar
+- **Krishna Paksha**: Days 1-3 start Solar, 4-6 start Lunar, 7-9 start Solar, 10-12 start Lunar, 13-15 start Solar
+
+After the starting nostril, it alternates each yama (odd yamas keep start, even yamas switch).
+
+**API:** `NostrilPattern.expectedFlowForYama(yamaIndex, date: date)`
+
+### Accuracy Status: ✅ Correct (tithi-based per Siva Swarodaya)
 
 ### Correct Traditional Method (Sprint 36 accuracy target)
 
@@ -266,7 +276,10 @@ Score = BaseBirdScore × TarabalaMultiplier × HoraSwaraMultiplier × CategoryHa
 - Category Harmony: Query category vs active Action Window (0.5x to 1.2x)
 - Floor lock: Rahu Kaal or Emakandam → hard lock to 10%
 
-### Accuracy Status: ⚠️ Tarabala multiplier not yet integrated (needs transit nakshatra)
+### Accuracy Status: ✅ Correct — Tarabala integrated (Sprint 33)
+
+Transit nakshatra computed from current Moon position via `NakshatraCalculator.calculate(now)`.
+Birth nakshatra from user profile. `TaraCategory.resolve(birthIndex, transitIndex).weight` gives the multiplier.
 
 ---
 
@@ -289,14 +302,16 @@ Rahu Kaal overlay blocks Artha/Kriya windows (clamped to 10% effectiveness).
 
 ---
 
-## Known Issues & Sprint 36 Targets
+## Known Issues & Remaining Accuracy Targets
 
-| Issue | Impact | Fix |
-|-------|--------|-----|
-| Birth bird uses only Bright Half table | Wrong bird for ~50% of users (those born in Krishna Paksha) | Two-table lookup + birth Paksha determination |
-| Monthly bird swap logic | Bird identity changes incorrectly with current lunar phase | Remove `birthBirdForPhase()` entirely |
-| Nostril pattern simplified | ~30% incorrect predictions (tithi-dependent) | Implement tithi-based starting nostril |
-| Tarabala defaulted to 1.0 | Oracle score missing a key multiplier | Integrate transit nakshatra lookup |
+| Issue | Impact | Status |
+|-------|--------|--------|
+| ~~Birth bird uses only Bright Half table~~ | ~~Wrong bird for ~50% of users~~ | ✅ Fixed Sprint 33 |
+| ~~Monthly bird swap logic~~ | ~~Bird identity changes incorrectly~~ | ✅ Fixed Sprint 33 |
+| ~~Nostril pattern simplified~~ | ~~~30% incorrect predictions~~ | ✅ Fixed Sprint 33 |
+| ~~Tarabala defaulted to 1.0~~ | ~~Oracle score missing key multiplier~~ | ✅ Fixed Sprint 33 |
+| Manual "I know my star" uses Bright Half only | May be wrong if user born in Krishna Paksha | Low (user should use DOB path for accuracy) |
+| Daily state table selection by current lunar phase | Needs validation against Align27 | Sprint 37 (calibration) |
 
 ---
 
