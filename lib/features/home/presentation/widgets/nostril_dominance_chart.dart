@@ -116,6 +116,7 @@ class _NostrilRow extends StatelessWidget {
     final isSolar = expectedFlow == BreathFlow.solar;
     final emoji = isSolar ? '\u2600\uFE0F' : '\uD83C\uDF19';
     final flowLabel = isSolar ? l10n.solar : l10n.lunar;
+    final yamaNumber = yama.index.index + 1;
     final yamaLabel = 'Y$yamaNumber';
     final timeStr = _formatTime(yama.start);
 
