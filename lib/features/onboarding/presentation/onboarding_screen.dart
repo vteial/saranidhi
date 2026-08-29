@@ -11,13 +11,14 @@ import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
-/// The first-run onboarding flow (4 steps).
+/// The first-run onboarding flow (5 steps).
 ///
 /// Steps:
 /// 0. Welcome (name)
-/// 1. Find Your Bird (dual-path: know nakshatra OR calculate from DOB)
+/// 1. Find Your Bird (3 paths: know nakshatra / calculate from DOB / from name)
 /// 2. Your Location (current city for sunrise/sunset)
 /// 3. Data Storage (local / icloud / gdrive)
+/// 4. Summary (review + edit before completing)
 class OnboardingScreen extends ConsumerWidget {
   const OnboardingScreen({super.key});
 
@@ -60,6 +61,7 @@ class OnboardingScreen extends ConsumerWidget {
                     1 => _FindYourBirdStep(state: state, notifier: notifier),
                     2 => _LocationStep(state: state, notifier: notifier),
                     3 => _StorageModeStep(state: state, notifier: notifier),
+                    4 => _SummaryStep(state: state, notifier: notifier),
                     _ => const SizedBox.shrink(),
                   },
                 ),
@@ -771,6 +773,151 @@ class _StorageModeStep extends StatelessWidget {
           onTap: () => notifier.setStorageMode('gdrive'),
         ),
       ],
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Step 4: Summary (review + confirm)
+// ---------------------------------------------------------------------------
+
+class _SummaryStep extends StatelessWidget {
+  const _SummaryStep({required this.state, required this.notifier});
+  final OnboardingState state;
+  final OnboardingNotifier notifier;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
+
+    // Bird value + derivation source
+    final birdValue = state.birthBird != null
+        ? '${state.birthBird!.localizedName(l10n)}  •  ${_derivationSource(l10n)}'
+        : l10n.summaryNotSet;
+
+    // Location value
+    final locationValue = state.locationName != null
+        ? '${state.locationName} '
+            '(${state.latitude?.toStringAsFixed(2)}, '
+            '${state.longitude?.toStringAsFixed(2)})'
+        : l10n.summaryNotSet;
+
+    // Storage value
+    final storageValue = switch (state.storageMode) {
+      'icloud' => l10n.icloud,
+      'gdrive' => l10n.googleDrive,
+      _ => l10n.localOnly,
+    };
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l10n.onboardingSummaryTitle, style: theme.textTheme.titleLarge),
+          const SizedBox(height: 8),
+          Text(
+            l10n.onboardingSummarySubtitle,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 16),
+          _SummaryRow(
+            icon: Icons.person_outline,
+            label: l10n.summaryName,
+            value: state.displayName.isNotEmpty
+                ? state.displayName
+                : l10n.summaryNotSet,
+            onEdit: () => notifier.goToStep(0),
+            editLabel: l10n.editAction,
+          ),
+          _SummaryRow(
+            icon: Icons.stars,
+            label: l10n.summaryBird,
+            value: birdValue,
+            onEdit: () => notifier.goToStep(1),
+            editLabel: l10n.editAction,
+          ),
+          _SummaryRow(
+            icon: Icons.location_on_outlined,
+            label: l10n.summaryLocation,
+            value: locationValue,
+            onEdit: () => notifier.goToStep(2),
+            editLabel: l10n.editAction,
+          ),
+          _SummaryRow(
+            icon: Icons.storage_outlined,
+            label: l10n.summaryStorage,
+            value: storageValue,
+            onEdit: () => notifier.goToStep(3),
+            editLabel: l10n.editAction,
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _derivationSource(AppLocalizations l10n) {
+    if (state.calculatedNakshatra != null) return l10n.summaryDerivedFromDob;
+    if (state.selectedNakshatra != null) return l10n.summaryDerivedFromStar;
+    return l10n.summaryDerivedFromName;
+  }
+}
+
+class _SummaryRow extends StatelessWidget {
+  const _SummaryRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.onEdit,
+    required this.editLabel,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final VoidCallback onEdit;
+  final String editLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Row(
+          children: [
+            Icon(icon, color: theme.colorScheme.primary, size: 22),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    value,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            TextButton(
+              onPressed: onEdit,
+              child: Text(editLabel),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

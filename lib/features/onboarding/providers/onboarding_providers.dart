@@ -84,7 +84,7 @@ class OnboardingState {
   final String storageMode;
   final bool isSaving;
 
-  int get totalSteps => 4; // Welcome, Find Your Bird, Location, Storage Mode
+  int get totalSteps => 5; // Welcome, Find Bird, Location, Storage, Summary
 
   /// Whether the nakshatra was auto-calculated from DOB.
   bool get isAutoCalculated => calculatedNakshatra != null;
@@ -149,6 +149,13 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
   void previousStep() {
     if (state.currentStep > 0) {
       state = state.copyWith(currentStep: state.currentStep - 1);
+    }
+  }
+
+  /// Jumps directly to a specific step (used by the summary page "Edit" links).
+  void goToStep(int step) {
+    if (step >= 0 && step < state.totalSteps) {
+      state = state.copyWith(currentStep: step);
     }
   }
 
