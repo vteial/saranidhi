@@ -512,14 +512,15 @@
 > **Spec reference:** `docs/research/advanced_somatic_mastery.md` §1 + §3 (fully specified —
 > Dart domain models, Drift schema, cross-lateral mapping table, timer durations, state machine).
 
-- [ ] Task 35.1: SomaticInterventionLogs Drift table + schema migration
-- [ ] Task 35.2: SomaticInterventionSession model — type, targetFlow, initialFlow, success evaluation
-- [ ] Task 35.3: Intervention Timer Rooms — full-screen Material 3 countdown (180s posture, 300s axillary)
-- [ ] Task 35.4: Sama Vritti pacer animation (4:4:4:4 equal-ratio breathing guide)
-- [ ] Task 35.5: Cross-lateral instruction cards (contralateral body positions per target flow)
-- [ ] Task 35.6: Validation flow — auto-trigger GuidedNostrilTest on timer completion, log outcome
-- [ ] Task 35.7: Integration with AlignmentChecker — show [Clear Breath Channel] action when blocked
-- [ ] Task 35.8: Tamil translations for intervention UI
+- [x] Task 35.1: SomaticInterventionLogs Drift table + schema migration *(schema v4→5; idempotent onUpgrade checks sqlite_master; SomaticInterventionRepository)*
+- [x] Task 35.2: SomaticInterventionSession model — type, targetFlow, initialFlow, success evaluation *(+ CrossLateralMapping, BodySide, InterventionType durations)*
+- [x] Task 35.3: Intervention Timer Rooms — full-screen Material 3 countdown (180s posture, 300s axillary) *(SomaticTimerRoom)*
+- [x] Task 35.4: Sama Vritti pacer animation (4:4:4:4 equal-ratio breathing guide) *(SamaVrittiPacer)*
+- [x] Task 35.5: Cross-lateral instruction cards (contralateral body positions per target flow) *(CrossLateralInstructionCard)*
+- [x] Task 35.6: Validation flow — auto-trigger GuidedNostrilTest on timer completion, log outcome *(wired in SomaticTimerRoom._onCompleted → repo.insertLog)*
+- [x] Task 35.7: Integration with AlignmentChecker — show [Clear Breath Channel] action when blocked *(AlignmentResultWidget + InterventionSelectorSheet)*
+- [x] Task 35.8: Tamil translations for intervention UI *(19 keys EN+TA, parity + no mixed-script verified)*
+- [x] Task 35.9: Unit tests (SomaticInterventionSession domain) + user-guide.md feature section + spec status update
 
 ---
 
