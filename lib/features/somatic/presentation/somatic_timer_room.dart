@@ -14,8 +14,8 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// Full-screen guided intervention room: shows the contralateral instruction,
 /// the Sama Vritti breathing pacer, and a high-contrast countdown timer.
 ///
-/// On timer completion it auto-launches the post-session [GuidedNostrilTest]
-/// (Task 35.6), evaluates success, and writes a [SomaticInterventionLog].
+/// On timer completion it auto-launches the post-session `GuidedNostrilTest`
+/// (Task 35.6), evaluates success, and writes a `SomaticInterventionLog`.
 ///
 /// See `docs/research/advanced_somatic_mastery.md` §1.2–1.3.
 class SomaticTimerRoom extends ConsumerStatefulWidget {
@@ -63,10 +63,7 @@ class _SomaticTimerRoomState extends ConsumerState<SomaticTimerRoom> {
     _finished = true;
 
     // Launch post-session verification (Task 35.6).
-    showGuidedNostrilTest(
-      context,
-      onResult: (flow) => _recordOutcome(flow),
-    );
+    showGuidedNostrilTest(context, onResult: _recordOutcome);
   }
 
   Future<void> _recordOutcome(BreathFlow flow) async {
