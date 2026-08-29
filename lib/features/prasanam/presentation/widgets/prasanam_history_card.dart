@@ -219,6 +219,7 @@ class _PrasanamHistoryTileState extends ConsumerState<_PrasanamHistoryTile> {
           ],
         ),
       ),
+        ),
       ),
     );
   }
