@@ -738,6 +738,8 @@
   "@nostrilTestResultTitle": { "description": "Step 3 result title" },
   "nostrilTestConfirm": "Use This Flow",
   "@nostrilTestConfirm": { "description": "Confirm and use detected flow" },
+  "nostrilTestRestart": "Start over",
+  "@nostrilTestRestart": { "description": "Reset the guided nostril test to step 1" },
   "guideMeButton": "Guide me",
   "@guideMeButton": { "description": "Button to launch guided nostril test" },
 
