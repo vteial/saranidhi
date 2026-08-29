@@ -449,22 +449,23 @@
 
 ---
 
-## Sprint 33: Panja Pakshi Accuracy Fix (v1.4.1) — In Progress 🔄
+## Sprint 33: Panja Pakshi Accuracy Fix (v1.4.1) — Complete (PR #126) ✅
 
 > **Critical:** Birth bird derivation is wrong for ~50% of users (those born during Krishna Paksha).
 > All downstream calculations (daily schedule, alignment, Oracle score) are affected.
 > Source: Prof. Pulippani's dual-table system confirmed via vedastro.org + Align27 validation.
 
-- [ ] Task 33.1: Dual nakshatra→bird lookup tables — implement Bright Half + Dark Half tables per Pulippani (Chapter 2, Tables 1–2)
-- [ ] Task 33.2: Birth Paksha determination — compute lunar phase at DOB using `LunarPhaseCalculator.phaseForDate(birthDate)` to determine if user was born during Shukla or Krishna Paksha
-- [ ] Task 33.3: Correct birth bird derivation — use birth Paksha to select correct table (Bright or Dark), store permanent bird in profile
-- [ ] Task 33.4: Remove `birthBirdForPhase()` swap logic — bird identity is permanent, remove monthly swap from `dashboardDataProvider` and all references
-- [ ] Task 33.5: Onboarding update — when user selects nakshatra manually OR calculates from DOB, derive birth Paksha and use correct table. Show derived bird with Paksha context ("Your bird: Rooster (Krishna Paksha)")
-- [ ] Task 33.6: Existing user migration — on app load, if profile has DOB, recalculate bird using correct dual-table; if no DOB, keep existing bird (manual selection assumed correct)
-- [ ] Task 33.7: Nostril pattern — implement tithi-based starting nostril per Siva Swarodaya (Sutras 52–56): Shukla days 1-3 start Lunar, 4-6 start Solar, alternating; Krishna reverses
-- [ ] Task 33.8: Tarabala multiplier — integrate transit nakshatra lookup into Oracle composite engine (replace default 1.0)
-- [ ] Task 33.9: Unit tests — dual-table derivation, birth Paksha determination, nostril tithi logic, Tarabala calculations
-- [ ] Task 33.10: Update `docs/research/calculation-methodology.md` — mark issues as resolved, document new correct implementation
+- [x] Task 33.1: Dual nakshatra→bird lookup tables — implement Bright Half + Dark Half tables per Pulippani (Chapter 2, Tables 1–2)
+- [x] Task 33.2: Birth Paksha determination — compute lunar phase at DOB using `LunarPhaseCalculator.phaseForDate(birthDate)` to determine if user was born during Shukla or Krishna Paksha
+- [x] Task 33.3: Correct birth bird derivation — use birth Paksha to select correct table (Bright or Dark), store permanent bird in profile
+- [x] Task 33.4: Remove `birthBirdForPhase()` swap logic — bird identity is permanent, remove monthly swap from `dashboardDataProvider` and all references
+- [x] Task 33.5: Onboarding update — when user selects nakshatra manually OR calculates from DOB, derive birth Paksha and use correct table. Show derived bird with Paksha context ("Your bird: Rooster (Krishna Paksha)")
+- [x] Task 33.6: Existing user migration — on app load, if profile has DOB, recalculate bird using correct dual-table; if no DOB, keep existing bird (manual selection assumed correct)
+- [x] Task 33.7: Nostril pattern — implement tithi-based starting nostril per Siva Swarodaya (Sutras 52–56): Shukla days 1-3 start Lunar, 4-6 start Solar, alternating; Krishna reverses
+- [x] Task 33.8: Tarabala multiplier — integrate transit nakshatra lookup into Oracle composite engine (replace default 1.0)
+- [x] Task 33.9: Unit tests — dual-table derivation, birth Paksha determination, nostril tithi logic, Tarabala calculations
+- [x] Task 33.10: Update `docs/research/calculation-methodology.md` — mark issues as resolved, document new correct implementation
+- [x] Task 33.11: Five Birds reference table (EN/Tamil/Sanskrit) added to User Guide
 
 ---
 
