@@ -184,6 +184,17 @@ class _ReferenceSection extends StatelessWidget {
           _buildElementsTable(theme),
           const SizedBox(height: 16),
 
+          // Five Birds (Pakshi)
+          Text(
+            'Five Birds (Pakshi) / \u0B90\u0BA8\u0BCD\u0BA4\u0BC1 \u0BAA\u0BB1\u0BB5\u0BC8\u0B95\u0BB3\u0BCD (\u0BAA\u0B9F\u0BCD\u0B9A\u0BBF)',
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 8),
+          _buildBirdsTable(theme),
+          const SizedBox(height: 16),
+
           // Nakshatras → Bird
           Text(
             'Nakshatras & Birds / \u0BA8\u0B9F\u0BCD\u0B9A\u0BA4\u0BCD\u0BA4\u0BBF\u0BB0\u0BAE\u0BCD & \u0BAA\u0BB1\u0BB5\u0BC8',
@@ -195,6 +206,47 @@ class _ReferenceSection extends StatelessWidget {
           _buildNakshatraTable(theme),
         ],
       ),
+    );
+  }
+
+  Widget _buildBirdsTable(ThemeData theme) {
+    const birds = [
+      // emoji, English, Tamil, Sanskrit
+      ['\uD83E\uDD85', 'Vulture', '\u0B95\u0BB4\u0BC1\u0B95\u0BC1', 'Gridhra'],
+      ['\uD83E\uDD89', 'Owl', '\u0B86\u0BA8\u0BCD\u0BA4\u0BC8', 'Uluka'],
+      ['\uD83D\uDC26\u200D\u2B1B', 'Crow', '\u0B95\u0BBE\u0B95\u0BAE\u0BCD', 'Kaka'],
+      ['\uD83D\uDC13', 'Rooster', '\u0B9A\u0BC7\u0BB5\u0BB2\u0BCD', 'Kukkuta'],
+      ['\uD83E\uDD9A', 'Peacock', '\u0BAE\u0BAF\u0BBF\u0BB2\u0BCD', 'Mayura'],
+    ];
+
+    return Table(
+      columnWidths: const {
+        0: FixedColumnWidth(30),
+        1: FlexColumnWidth(),
+        2: FlexColumnWidth(),
+        3: FlexColumnWidth(),
+      },
+      children: [
+        TableRow(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surfaceContainerHighest,
+          ),
+          children: [
+            _cell('', theme, bold: true),
+            _cell('English', theme, bold: true),
+            _cell('\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD', theme, bold: true),
+            _cell('Sanskrit', theme, bold: true),
+          ],
+        ),
+        ...birds.map((b) => TableRow(
+          children: [
+            _cell(b[0], theme),
+            _cell(b[1], theme),
+            _cell(b[2], theme),
+            _cell(b[3], theme),
+          ],
+        )),
+      ],
     );
   }
 

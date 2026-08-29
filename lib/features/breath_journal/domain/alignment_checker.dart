@@ -1,5 +1,6 @@
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/nostril_pattern.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
@@ -122,17 +123,11 @@ class AlignmentChecker {
     );
   }
 
-  /// Determines expected flow based on Yama index.
-  /// Odd yamas (1,3,5) → Solar; Even yamas (2,4) → Lunar.
-  /// Outside daylight → Lunar (default).
+  /// Determines expected flow based on Yama index and current tithi.
+  ///
+  /// Uses the shared [NostrilPattern] utility which implements the
+  /// tithi-based starting nostril per Siva Swarodaya (Sutras 52–56).
   static BreathFlow _expectedFlowForYama(YamaIndex? yama) {
-    if (yama == null) return BreathFlow.lunar;
-    return switch (yama) {
-      YamaIndex.yama1 => BreathFlow.solar,
-      YamaIndex.yama2 => BreathFlow.lunar,
-      YamaIndex.yama3 => BreathFlow.solar,
-      YamaIndex.yama4 => BreathFlow.lunar,
-      YamaIndex.yama5 => BreathFlow.solar,
-    };
+    return NostrilPattern.expectedFlowForYama(yama);
   }
 }

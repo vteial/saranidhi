@@ -7,17 +7,17 @@
 
 ---
 
-## Current State (as of 2026-07-14)
+## Current State (as of 2026-07-16)
 
 | Item | Status |
 |------|--------|
-| **Production** | v1.3.0-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | Latest main (Sprint 32 merged) |
+| **Production** | v1.4.0-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | Latest main (v1.4.0 + coverage fix merged) |
 | **Sprints delivered** | 32 |
-| **Total PRs** | 118 |
+| **Total PRs** | 123 |
 | **Engineering hours** | ~95h |
 | **User mode** | Daily use — production stable |
-| **Next action** | v1.4.0-web release (Sprint 31 + 32) |
+| **Next action** | `/plan` for post-v1.4 sprint (Sprint 33 or accuracy fix) |
 
 ---
 
@@ -79,8 +79,9 @@
 ### v2.0 Roadmap (Layers 2 & 3)
 - **v1.3.0:** Sprint 29–30 (Foundation + Action Windows Engine & UI)
 - **v1.4.0:** Sprint 31–32 (Numerology + Prasanam Oracle)
-- **v1.5.0:** Sprint 33–34 (Somatic Mastery + Chronobiology Analytics)
-- **v2.0.0:** Sprint 35 (Integration Polish + App Store Prep)
+- **v1.4.1:** Sprint 33 (Panja Pakshi Accuracy Fix)
+- **v1.5.0:** Sprint 34–35 (Somatic Mastery + Chronobiology Analytics)
+- **v2.0.0:** Sprint 36 (Integration Polish + App Store Prep)
 
 ### Architecture Decisions
 - **ActionWindow enum:** Ruling/Walking→Artha, Eating→Kriya, Sleeping/Dying→Yoga
@@ -123,10 +124,10 @@ These exist as code but aren't connected to the app UI yet:
 
 ## Next Session: Start Here
 
-1. `/release-start` v1.4.0-web (Sprint 31 + 32 merged)
-2. After release: Sprint 33 (Somatic Mastery — Intervention Rooms)
-3. Sprint 36 (Accuracy Investigation) — requires user data collection first
-4. Post-v1.4 planning session: Home tab restructure (Today / Past / Future), Prasanam sacred consultation UX (cooldown, breath ritual, daily limit)
+1. `/plan` for next sprint — options: Sprint 33 (Somatic Intervention) or Sprint 36 (Accuracy Fix, now higher priority)
+2. Post-v1.4 planning topics: Home tab restructure (Today / Past / Future), Prasanam sacred consultation UX, onboarding redesign (3 tabs + summary page)
+3. Sprint 36 (Accuracy Investigation) — birth bird dual-table fix, nostril pattern tithi-based, Tarabala integration
+4. UX backlog: GuidedNostrilTest button order, desktop delete for Oracle history, wire WebGeolocation
 
 ---
 

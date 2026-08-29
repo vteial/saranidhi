@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:saranidhi/features/astro_engine/domain/nostril_pattern.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -63,6 +65,9 @@ class NostrilDominanceChart extends StatelessWidget {
               _NostrilRow(
                 yama: yama,
                 isActive: yama.index == activeYamaIndex,
+                // Use the selected date (from sunrise) so the pattern
+                // reflects the viewed date's tithi, not always today.
+                date: data.sunrise ?? DateTime.now(),
                 l10n: l10n,
                 theme: theme,
               ),
@@ -97,22 +102,28 @@ class _NostrilRow extends StatelessWidget {
   const _NostrilRow({
     required this.yama,
     required this.isActive,
+    required this.date,
     required this.l10n,
     required this.theme,
   });
 
   final YamaSegment yama;
   final bool isActive;
+  final DateTime date;
   final AppLocalizations l10n;
   final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
-    // Odd yamas (1,3,5) = Solar, Even yamas (2,4) = Lunar
-    final yamaNumber = yama.index.index + 1;
-    final isSolar = yamaNumber.isOdd;
+    // Tithi-based pattern for the viewed date (not always today)
+    final expectedFlow = NostrilPattern.expectedFlowForYama(
+      yama.index,
+      date: date,
+    );
+    final isSolar = expectedFlow == BreathFlow.solar;
     final emoji = isSolar ? '\u2600\uFE0F' : '\uD83C\uDF19';
     final flowLabel = isSolar ? l10n.solar : l10n.lunar;
+    final yamaNumber = yama.index.index + 1;
     final yamaLabel = 'Y$yamaNumber';
     final timeStr = _formatTime(yama.start);
 
