@@ -117,6 +117,27 @@ Pure Dart implementation using:
 
 ### Accuracy: ±2 minutes (validated against timeanddate.com for Chennai)
 
+### Location Source (Sprint 34)
+
+Sunrise/sunset — and therefore the entire daily Pakshi rhythm (yamas, Rahu
+Kaal, nostril windows) — depend on the user's **current** geographic
+position, not their birth place. (Birth place/time is used only for the
+permanent birth-bird derivation; see §1.)
+
+- **Stored location:** the profile's `locationLat` / `locationLng`
+  (default Chennai `13.08, 80.27`). Editable in Settings.
+- **Auto-update on web:** on app open, the browser Geolocation API is
+  queried (`WebGeolocation.getCurrentPosition`, wired via
+  `LocationOnOpenWidget`). If the reported position is **more than 5 km**
+  from the stored location (Haversine distance via
+  `LocationService.hasMovedSignificantly`), the profile location is updated
+  silently and the user sees a one-time notice. This keeps timings accurate
+  when travelling without a manual Settings edit.
+- **Mobile/desktop:** the geolocation facade resolves to a no-op stub
+  (`web_geolocation_stub.dart`); the stored profile location is used as-is.
+- **Permission denied / unavailable / timeout (10 s):** falls back silently
+  to the stored location — no error is shown.
+
 ---
 
 ## 4. Yama Calculation (5 Day + 5 Night Segments)
