@@ -4,9 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/providers/profile_location_provider.dart';
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/core/utils/timezone_utils.dart';
+import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_swara_affinity.dart';
+import 'package:saranidhi/features/astro_engine/domain/nakshatra_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/oracle_engine.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
@@ -467,11 +469,25 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
     final activeWindow = dashboardData.activeActionWindow;
     final currentWindow = activeWindow?.window ?? ActionWindow.artha;
 
-    // Get Tarabala multiplier using TaraCategory
-    // Use birth nakshatra index and current transit (same day → same index)
-    // Simplified: use the weight from TaraCategory based on weekday
-    final tarabalaMultiplier = TaraCategory.janma.weight; // Default 1.0
-    // TODO(kiro): Integrate proper transit nakshatra lookup when available.
+    // Get Tarabala multiplier — uses birth nakshatra vs current transit nakshatra
+    final transitNakshatra = NakshatraCalculator.calculate(now);
+    final birthNakshatraName = await _getProfileNakshatra(ref);
+    final double tarabalaMultiplier;
+    if (birthNakshatraName != null) {
+      final birthIndex = Nakshatra.values.indexWhere(
+        (n) => n.standardName == birthNakshatraName.toLowerCase(),
+      );
+      if (birthIndex >= 0) {
+        tarabalaMultiplier = TaraCategory.resolve(
+          birthIndex,
+          transitNakshatra.nakshatra.index,
+        ).weight;
+      } else {
+        tarabalaMultiplier = 1.0;
+      }
+    } else {
+      tarabalaMultiplier = 1.0;
+    }
 
     // Get Hora-Swara affinity
     final nextSunrise = sunrise.add(const Duration(hours: 24));
@@ -532,6 +548,14 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
       actionWindow: _actionWindowUsed,
     );
     setState(() => _isSaved = true);
+  }
+
+  /// Gets the birth nakshatra name from the user's profile.
+  Future<String?> _getProfileNakshatra(WidgetRef ref) async {
+    final db = ref.read(appDatabaseProvider);
+    final profiles = await db.select(db.profiles).get();
+    if (profiles.isEmpty) return null;
+    return profiles.first.birthStarNakshatra;
   }
 
   void _resetForNewQuery() {

@@ -646,5 +646,115 @@ void main() {
         expect(identical, isFalse);
       });
     });
+
+    group('Sprint 33: Dual-table birth bird derivation', () {
+      test('Pushya + Shukla Paksha = Owl (Bright Half table)', () {
+        final bird = PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+          'pushya',
+          LunarPhase.waxing,
+        );
+        expect(bird, equals(PakshiBird.owl));
+      });
+
+      test('Pushya + Krishna Paksha = Rooster (Dark Half table)', () {
+        final bird = PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+          'pushya',
+          LunarPhase.waning,
+        );
+        expect(bird, equals(PakshiBird.rooster));
+      });
+
+      test('Ashwini + Shukla = Vulture, Ashwini + Krishna = Peacock', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+            'ashwini',
+            LunarPhase.waxing,
+          ),
+          equals(PakshiBird.vulture),
+        );
+        expect(
+          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+            'ashwini',
+            LunarPhase.waning,
+          ),
+          equals(PakshiBird.peacock),
+        );
+      });
+
+      test('Revati + Shukla = Peacock, Revati + Krishna = Vulture', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+            'revati',
+            LunarPhase.waxing,
+          ),
+          equals(PakshiBird.peacock),
+        );
+        expect(
+          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+            'revati',
+            LunarPhase.waning,
+          ),
+          equals(PakshiBird.vulture),
+        );
+      });
+
+      test('Hasta + Shukla = Crow, Hasta + Krishna = Crow (same for Crow)', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+            'hasta',
+            LunarPhase.waxing,
+          ),
+          equals(PakshiBird.crow),
+        );
+        expect(
+          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+            'hasta',
+            LunarPhase.waning,
+          ),
+          equals(PakshiBird.crow),
+        );
+      });
+
+      test('unknown nakshatra returns null', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+            'unknown',
+            LunarPhase.waxing,
+          ),
+          isNull,
+        );
+      });
+
+      test('birthBirdForPhase always returns natal bird (no swap)', () {
+        // Verify swap logic is disabled — bird is permanent
+        expect(
+          PakshiCalculator.birthBirdForPhase(PakshiBird.owl, LunarPhase.waning),
+          equals(PakshiBird.owl), // NOT rooster
+        );
+        expect(
+          PakshiCalculator.birthBirdForPhase(
+            PakshiBird.vulture,
+            LunarPhase.waning,
+          ),
+          equals(PakshiBird.vulture), // NOT peacock
+        );
+      });
+    });
+
+    group('Sprint 33: Birth Paksha determination', () {
+      test('Oct 27, 1975 8PM IST = Krishna Paksha (waning)', () {
+        // User Eialarasu's DOB — known to be Krishna Paksha
+        final birthDate = DateTime.utc(1975, 10, 27, 14, 30); // 8PM IST
+        final paksha = PakshiCalculator.birthPakshaFromDOB(birthDate);
+        expect(paksha, equals(LunarPhase.waning));
+      });
+
+      test('Jan 6, 2000 = Shukla Paksha (reference new moon + 0 days)', () {
+        // Reference new moon date — should be very early waxing
+        final birthDate = DateTime.utc(2000, 1, 7);
+        final paksha = PakshiCalculator.birthPakshaFromDOB(birthDate);
+        expect(paksha, equals(LunarPhase.waxing));
+      });
+    });
   });
 }

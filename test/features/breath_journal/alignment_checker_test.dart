@@ -11,10 +11,10 @@ void main() {
     const utc = 5.5;
 
     group('B-01: Solar flow when Solar expected', () {
-      test('is aligned during Yama 1 (odd = solar expected)', () {
-        // Yama 1 starts at sunrise (~6:10 in Chennai equinox)
-        // Use a time well within Yama 1
-        final time = DateTime(2025, 3, 20, 7, 0);
+      test('is aligned during Yama 1 (tithi-based solar expected)', () {
+        // Use a date where tithi-based logic starts with Solar
+        // April 2, 2025 is Shukla day 4 (block 1 = Solar start)
+        final time = DateTime(2025, 4, 2, 7, 0);
 
         final result = AlignmentChecker.check(
           actualFlow: BreathFlow.solar,
@@ -32,7 +32,8 @@ void main() {
 
     group('B-02: Lunar flow when Solar expected', () {
       test('is not aligned during Yama 1', () {
-        final time = DateTime(2025, 3, 20, 7, 0);
+        // Same date as B-01 (Solar expected for Yama 1)
+        final time = DateTime(2025, 4, 2, 7, 0);
 
         final result = AlignmentChecker.check(
           actualFlow: BreathFlow.lunar,
@@ -98,8 +99,10 @@ void main() {
     });
 
     group('Expected flow by Yama', () {
-      test('Yama 2 expects lunar flow', () {
-        final time = DateTime(2025, 3, 20, 9, 30);
+      test('Yama 2 expects lunar flow (on Solar-start day)', () {
+        // April 2, 2025: Solar starts Y1, so Y2 = Lunar
+        // Yama 2 at ~9:30 AM Chennai
+        final time = DateTime(2025, 4, 2, 9, 30);
 
         final result = AlignmentChecker.check(
           actualFlow: BreathFlow.lunar,

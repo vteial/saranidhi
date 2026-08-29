@@ -1,3 +1,4 @@
+import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 
 /// The five birds of Panja Pakshi Shastra.
@@ -536,100 +537,185 @@ class PakshiCalculator {
 
   /// Maps a birth nakshatra to its corresponding Pakshi bird.
   /// Returns null if the nakshatra is not recognized.
+  ///
+  /// Uses the BRIGHT HALF (Shukla) table as default for backward
+  /// compatibility when birth Paksha is unknown.
+  /// For correct derivation, use [birthBirdFromNakshatraAndPaksha].
   static PakshiBird? birthBirdFromNakshatraSafe(String nakshatra) {
     final lower = nakshatra.toLowerCase().trim();
-    if (_vultureNakshatras.contains(lower)) return PakshiBird.vulture;
-    if (_owlNakshatras.contains(lower)) return PakshiBird.owl;
-    if (_crowNakshatras.contains(lower)) return PakshiBird.crow;
-    if (_roosterNakshatras.contains(lower)) return PakshiBird.rooster;
-    if (_peacockNakshatras.contains(lower)) return PakshiBird.peacock;
-    return null;
+    return _lookupBrightHalf(lower);
   }
 
   /// Maps a birth nakshatra to its corresponding Pakshi bird.
   ///
-  /// The 27 nakshatras are grouped into 5 sets of ~5-6 each.
+  /// Uses the BRIGHT HALF (Shukla) table as default.
+  /// For correct derivation, use [birthBirdFromNakshatraAndPaksha].
   static PakshiBird birthBirdFromNakshatra(String nakshatra) {
     final lower = nakshatra.toLowerCase().trim();
-    if (_vultureNakshatras.contains(lower)) return PakshiBird.vulture;
-    if (_owlNakshatras.contains(lower)) return PakshiBird.owl;
-    if (_crowNakshatras.contains(lower)) return PakshiBird.crow;
-    if (_roosterNakshatras.contains(lower)) return PakshiBird.rooster;
-    if (_peacockNakshatras.contains(lower)) return PakshiBird.peacock;
-    throw ArgumentError.value(nakshatra, 'nakshatra', 'Unknown nakshatra name');
+    final bird = _lookupBrightHalf(lower);
+    if (bird == null) {
+      throw ArgumentError.value(
+        nakshatra,
+        'nakshatra',
+        'Unknown nakshatra name',
+      );
+    }
+    return bird;
   }
 
-  // Nakshatra-to-bird mappings (traditional grouping)
-  static const Set<String> _vultureNakshatras = {
+  /// Correctly derives the permanent birth bird using BOTH the nakshatra
+  /// AND the birth Paksha (lunar phase at the time of birth).
+  ///
+  /// This is the authoritative derivation per Prof. Pulippani's
+  /// *Biorhythms of Natal Moon* (Tables 1 & 2).
+  ///
+  /// - Born during Shukla Paksha (waxing) → use Bright Half table
+  /// - Born during Krishna Paksha (waning) → use Dark Half table
+  ///
+  /// The resulting bird is PERMANENT — it never changes with the
+  /// current lunar phase.
+  static PakshiBird? birthBirdFromNakshatraAndPaksha(
+    String nakshatra,
+    LunarPhase birthPaksha,
+  ) {
+    final lower = nakshatra.toLowerCase().trim();
+    return switch (birthPaksha) {
+      LunarPhase.waxing => _lookupBrightHalf(lower),
+      LunarPhase.waning => _lookupDarkHalf(lower),
+    };
+  }
+
+  /// Determines the birth Paksha (Shukla or Krishna) from the date of birth.
+  ///
+  /// Uses [LunarPhaseCalculator] to determine if the moon was waxing or
+  /// waning at the time of birth. This is used alongside the nakshatra
+  /// to derive the correct permanent birth bird.
+  static LunarPhase birthPakshaFromDOB(DateTime dateOfBirth) {
+    return LunarPhaseCalculator.phaseForDate(dateOfBirth);
+  }
+
+  static PakshiBird? _lookupBrightHalf(String lower) {
+    if (_brightVultureNakshatras.contains(lower)) return PakshiBird.vulture;
+    if (_brightOwlNakshatras.contains(lower)) return PakshiBird.owl;
+    if (_brightCrowNakshatras.contains(lower)) return PakshiBird.crow;
+    if (_brightRoosterNakshatras.contains(lower)) return PakshiBird.rooster;
+    if (_brightPeacockNakshatras.contains(lower)) return PakshiBird.peacock;
+    return null;
+  }
+
+  static PakshiBird? _lookupDarkHalf(String lower) {
+    if (_darkVultureNakshatras.contains(lower)) return PakshiBird.vulture;
+    if (_darkOwlNakshatras.contains(lower)) return PakshiBird.owl;
+    if (_darkCrowNakshatras.contains(lower)) return PakshiBird.crow;
+    if (_darkRoosterNakshatras.contains(lower)) return PakshiBird.rooster;
+    if (_darkPeacockNakshatras.contains(lower)) return PakshiBird.peacock;
+    return null;
+  }
+
+  // ─── Nakshatra-to-bird mappings ────────────────────────────────────────
+
+  // BRIGHT HALF (Shukla Paksha) — used when user was born during waxing moon.
+  // Source: Prof. Pulippani, Table 1 — "Biorhythms of Natal Moon"
+  static const Set<String> _brightVultureNakshatras = {
     'ashwini',
     'bharani',
     'krittika',
     'rohini',
     'mrigashira',
-    'ardra',
   };
 
-  static const Set<String> _owlNakshatras = {
+  static const Set<String> _brightOwlNakshatras = {
+    'ardra',
     'punarvasu',
     'pushya',
     'ashlesha',
     'magha',
-    'purva phalguni',
-    'uttara phalguni',
   };
 
-  static const Set<String> _crowNakshatras = {
+  static const Set<String> _brightCrowNakshatras = {
+    'purva phalguni',
+    'uttara phalguni',
     'hasta',
     'chitra',
     'swati',
-    'vishakha',
-    'anuradha',
   };
 
-  static const Set<String> _roosterNakshatras = {
+  static const Set<String> _brightRoosterNakshatras = {
+    'vishakha',
+    'anuradha',
     'jyeshtha',
     'mula',
     'purva ashadha',
+  };
+
+  static const Set<String> _brightPeacockNakshatras = {
     'uttara ashadha',
     'shravana',
     'dhanishta',
-  };
-
-  static const Set<String> _peacockNakshatras = {
     'shatabhisha',
     'purva bhadrapada',
     'uttara bhadrapada',
     'revati',
   };
 
-  /// Swap table for birth bird based on lunar phase.
-  ///
-  /// In Panja Pakshi Shastra, the birth bird derived from nakshatra
-  /// represents the waxing (Shukla Paksha) bird. During waning
-  /// (Krishna Paksha), the bird swaps according to the mirror mapping:
-  /// - Vulture (1) ↔ Peacock (5)
-  /// - Owl (2) ↔ Rooster (4)
-  /// - Crow (3) stays Crow (3)
-  ///
-  /// Source: suzhimunai.wordpress.com (Tamil Panchapakshi reference)
-  static const Map<PakshiBird, PakshiBird> _waningSwapTable = {
-    PakshiBird.vulture: PakshiBird.peacock,
-    PakshiBird.owl: PakshiBird.rooster,
-    PakshiBird.crow: PakshiBird.crow,
-    PakshiBird.rooster: PakshiBird.owl,
-    PakshiBird.peacock: PakshiBird.vulture,
+  // DARK HALF (Krishna Paksha) — used when user was born during waning moon.
+  // Source: Prof. Pulippani, Table 2 — "Biorhythms of Natal Moon"
+  // Nakshatras are assigned in reverse order from Revati.
+  static const Set<String> _darkVultureNakshatras = {
+    'revati',
+    'uttara bhadrapada',
+    'purva bhadrapada',
+    'shatabhisha',
+    'dhanishta',
   };
 
-  /// Returns the effective birth bird for the given lunar phase.
+  static const Set<String> _darkOwlNakshatras = {
+    'shravana',
+    'uttara ashadha',
+    'purva ashadha',
+    'mula',
+    'jyeshtha',
+  };
+
+  static const Set<String> _darkCrowNakshatras = {
+    'anuradha',
+    'vishakha',
+    'swati',
+    'chitra',
+    'hasta',
+  };
+
+  static const Set<String> _darkRoosterNakshatras = {
+    'uttara phalguni',
+    'purva phalguni',
+    'magha',
+    'ashlesha',
+    'pushya',
+  };
+
+  static const Set<String> _darkPeacockNakshatras = {
+    'punarvasu',
+    'ardra',
+    'mrigashira',
+    'rohini',
+    'krittika',
+    'bharani',
+    'ashwini',
+  };
+
+  /// @deprecated Use [birthBirdFromNakshatraAndPaksha] instead.
+  /// Birth bird is PERMANENT — it does NOT swap with current lunar phase.
+  /// This method is kept temporarily for backward compatibility but always
+  /// returns the natal bird unchanged.
   ///
-  /// During waxing (Shukla Paksha), the birth bird is the natal bird
-  /// directly from nakshatra. During waning (Krishna Paksha), the bird
-  /// swaps per the traditional mirror mapping.
+  /// The previous swap logic (Sprint 27.5) was based on an incorrect
+  /// interpretation. The correct system uses dual lookup tables at birth
+  /// time, not monthly swapping.
   static PakshiBird birthBirdForPhase(
     PakshiBird natalBird,
     LunarPhase phase,
   ) {
-    if (phase == LunarPhase.waxing) return natalBird;
-    return _waningSwapTable[natalBird] ?? natalBird;
+    // Birth bird is permanent — no swap.
+    return natalBird;
   }
 }

@@ -370,9 +370,13 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
 
                       final result =
                           NakshatraCalculator.calculate(birthMoment);
+                      // Use dual-table: determine birth Paksha + correct table
+                      final birthPaksha =
+                          PakshiCalculator.birthPakshaFromDOB(birthMoment);
                       final bird =
-                          PakshiCalculator.birthBirdFromNakshatraSafe(
+                          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
                         result.standardName,
+                        birthPaksha,
                       );
 
                       // Save to profile

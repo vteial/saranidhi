@@ -157,9 +157,11 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
   }
 
   void setNakshatra(String nakshatra) {
-    PakshiBird? bird;
-    final validBird = PakshiCalculator.birthBirdFromNakshatraSafe(nakshatra);
-    bird = validBird;
+    // Manual path: user knows their nakshatra but we don't know birth Paksha.
+    // Default to Bright Half table (Shukla). This may be incorrect for ~50%
+    // of users born during Krishna Paksha — but without DOB we cannot know.
+    // User Guide should recommend DOB path for accuracy.
+    final bird = PakshiCalculator.birthBirdFromNakshatraSafe(nakshatra);
     state = state.copyWith(selectedNakshatra: nakshatra, birthBird: bird);
   }
 
@@ -186,6 +188,10 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
   /// Calculates the birth nakshatra from DOB data and updates the
   /// selected nakshatra + birth bird accordingly.
   ///
+  /// Uses the DUAL-TABLE system: determines birth Paksha from the DOB,
+  /// then uses the correct table (Bright or Dark half) to derive the
+  /// permanent birth bird.
+  ///
   /// Requires at least `birthDate` to be set. If `birthTimeOfDay` is
   /// not set, defaults to 12:00 noon (midday approximation).
   void calculateFromDOB() {
@@ -209,9 +215,13 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
     // Calculate nakshatra
     final result = NakshatraCalculator.calculate(birthMoment);
 
-    // Map to bird
-    final bird = PakshiCalculator.birthBirdFromNakshatraSafe(
+    // Determine birth Paksha (was moon waxing or waning at birth?)
+    final birthPaksha = PakshiCalculator.birthPakshaFromDOB(birthMoment);
+
+    // Map to bird using the CORRECT table based on birth Paksha
+    final bird = PakshiCalculator.birthBirdFromNakshatraAndPaksha(
       result.standardName,
+      birthPaksha,
     );
 
     // Update state: set calculated result + override manual selection
