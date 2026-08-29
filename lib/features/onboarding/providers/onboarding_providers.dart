@@ -89,6 +89,20 @@ class OnboardingState {
   /// Whether the nakshatra was auto-calculated from DOB.
   bool get isAutoCalculated => calculatedNakshatra != null;
 
+  /// Whether a birth bird has been determined via any of the three paths
+  /// (known nakshatra, DOB calculation, or name).
+  bool get hasBird => birthBird != null;
+
+  /// Whether a current location (for sunrise/sunset) has been set.
+  bool get hasLocation => latitude != null && longitude != null;
+
+  /// Whether every required step has a value, so setup can be completed.
+  ///
+  /// Required: a birth bird (Find Your Bird step) and a current location
+  /// (Location step). Storage mode always has a default, and display name
+  /// is optional.
+  bool get isComplete => hasBird && hasLocation;
+
   OnboardingState copyWith({
     int? currentStep,
     String? displayName,

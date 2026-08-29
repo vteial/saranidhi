@@ -1059,5 +1059,14 @@
   "@birdUpdatedNotice": { "description": "One-time notice when auto-recalculation changes the birth bird", "placeholders": { "bird": { "type": "String" } } },
 
   "locationUpdatedNotice": "Location updated to your current position. Timings refreshed.",
-  "@locationUpdatedNotice": { "description": "One-time notice when app auto-updates location on open after the user has moved" }
+  "@locationUpdatedNotice": { "description": "One-time notice when app auto-updates location on open after the user has moved" },
+
+  "onboardingIstAssumption": "IST (UTC+5:30) is assumed for all Indian births. The Moon moves ~0.5\u00B0/hour \u2014 negligible within India\u2019s timezone span vs a nakshatra\u2019s 13.33\u00B0 width.",
+  "@onboardingIstAssumption": { "description": "Info note in the DOB birth-bird path explaining the IST timezone assumption" },
+
+  "summaryIncompleteBird": "Please set your birth bird before completing setup. Tap Edit on \u201CBirth Bird\u201D to choose your star, date of birth, or name.",
+  "@summaryIncompleteBird": { "description": "Warning on the summary step when no birth bird has been determined" },
+
+  "summaryIncompleteLocation": "Please set your location before completing setup. Tap Edit on \u201CLocation\u201D to select your city.",
+  "@summaryIncompleteLocation": { "description": "Warning on the summary step when no location has been set" }
 }

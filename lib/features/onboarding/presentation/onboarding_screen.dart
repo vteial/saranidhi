@@ -84,7 +84,7 @@ class OnboardingScreen extends ConsumerWidget {
                       )
                     else
                       FilledButton(
-                        onPressed: state.isSaving
+                        onPressed: (state.isSaving || !state.isComplete)
                             ? null
                             : () async {
                                 await notifier.saveProfile();
@@ -444,9 +444,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'IST (UTC+5:30) is assumed for all Indian births. '
-                      'The Moon moves ~0.5\u00B0/hour \u2014 negligible within '
-                      'India\u2019s timezone span vs a nakshatra\u2019s 13.33\u00B0 width.',
+                      l10n.onboardingIstAssumption,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
@@ -853,6 +851,36 @@ class _SummaryStep extends StatelessWidget {
             onEdit: () => notifier.goToStep(3),
             editLabel: l10n.editAction,
           ),
+          if (!state.isComplete) ...[
+            const SizedBox(height: 8),
+            Card(
+              color: theme.colorScheme.errorContainer,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.warning_amber_rounded,
+                      size: 18,
+                      color: theme.colorScheme.onErrorContainer,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        !state.hasBird
+                            ? l10n.summaryIncompleteBird
+                            : l10n.summaryIncompleteLocation,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.onErrorContainer,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
