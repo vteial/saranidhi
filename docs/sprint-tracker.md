@@ -474,13 +474,13 @@
 > Clears the UX/migration backlog from v1.4.0/v1.4.1 preview + prod testing.
 > Leads with the missing auto-recalculation (Task 33.6 was never actually implemented).
 
-- [ ] Task 34.1: Auto-recalculate birth bird on app load — if profile has `birthDateEpoch`, recompute via `birthBirdFromNakshatraAndPaksha()` and update if different from stored value. Show a one-time notice ("Your bird has been updated to {Bird} based on corrected calculations") when a change occurs.
-- [ ] Task 34.2: Onboarding — 3 equal-weight tabs: "I know my star" / "Calculate from DOB" / "Calculate from name" (promote NameBirdParser from subtle link to co-equal tab)
-- [ ] Task 34.3: Onboarding — summary confirmation page: shows name, derived bird (+ how it was derived: nakshatra/DOB/name), location, storage mode. Each row has "Edit" to jump back; final "Complete Setup" button.
-- [ ] Task 34.4: GuidedNostrilTest — add reset/restart button + reorder buttons to anatomical order: Lunar (Left) → Sushumna (Both) → Solar (Right)
-- [ ] Task 34.5: Oracle history — desktop delete: trash icon on hover (mouse), keep swipe-to-delete for touch. Both trigger same confirmation dialog.
-- [ ] Task 34.6: Wire WebGeolocation into app startup — call `WebGeolocation.getCurrentPosition()` on app open (web), update profile location if >5km from stored. Graceful fallback if permission denied.
-- [ ] Task 34.7: Unit tests (auto-recalc logic, name-path derivation) + update calculation-methodology.md / user-guide.md for onboarding changes
+- [x] Task 34.1: Auto-recalculate birth bird on app load — if profile has `birthDateEpoch`, recompute via `birthBirdFromNakshatraAndPaksha()` and update if different from stored value. Show a one-time notice ("Your bird has been updated to {Bird} based on corrected calculations") when a change occurs. *(`BirdMigrationService` + `birdMigrationProvider` + `BirdMigrationOnLoadWidget` wired into main.dart.)*
+- [x] Task 34.2: Onboarding — 3 equal-weight tabs: "I know my star" / "Calculate from DOB" / "Calculate from name" (promote NameBirdParser from subtle link to co-equal tab)
+- [x] Task 34.3: Onboarding — summary confirmation page: shows name, derived bird (+ how it was derived: nakshatra/DOB/name), location, storage mode. Each row has "Edit" to jump back; final "Complete Setup" button. *(New step 4; totalSteps 4→5; `goToStep()`.)*
+- [x] Task 34.4: GuidedNostrilTest — add reset/restart button + reorder buttons to anatomical order: Lunar (Left) → Sushumna (Both) → Solar (Right)
+- [x] Task 34.5: Oracle history — desktop delete: trash icon on hover (mouse), keep swipe-to-delete for touch. Both trigger same confirmation dialog.
+- [x] Task 34.6: Wire WebGeolocation into app startup — call `WebGeolocation.getCurrentPosition()` on app open (web), update profile location if >5km from stored. Graceful fallback if permission denied. *(Conditional-export facade `geolocation.dart` + stub keeps mobile builds clean; `LocationOnOpenService`/`Widget`.)*
+- [x] Task 34.7: Unit tests (`location_service_test.dart`; auto-recalc + name-path derivation already covered by existing pakshi/oracle tests) + updated calculation-methodology.md / user-guide.md for onboarding + location changes
 
 ---
 
