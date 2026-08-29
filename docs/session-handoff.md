@@ -94,8 +94,10 @@
 - **v1.3.0:** Sprint 29–30 (Foundation + Action Windows Engine & UI)
 - **v1.4.0:** Sprint 31–32 (Numerology + Prasanam Oracle)
 - **v1.4.1:** Sprint 33 (Panja Pakshi Accuracy Fix)
-- **v1.5.0:** Sprint 34–35 (Somatic Mastery + Chronobiology Analytics)
-- **v2.0.0:** Sprint 36 (Integration Polish + App Store Prep)
+- **v1.4.2:** Sprint 34 (Migration + Onboarding UX Polish)
+- **v1.5.0:** Sprint 35–36 (Somatic Mastery + Chronobiology Analytics)
+- **v2.0.0:** Sprint 37 (Integration Polish + App Store Prep)
+- **Sprint 38:** Panja Pakshi Accuracy Calibration & Validation (needs user data collection first)
 
 ### Architecture Decisions
 - **ActionWindow enum:** Ruling/Walking→Artha, Eating→Kriya, Sleeping/Dying→Yoga
