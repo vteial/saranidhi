@@ -187,8 +187,8 @@ class _WelcomeStepState extends State<_WelcomeStep> {
 // Step 1: Find Your Bird (dual-path — know nakshatra OR calculate from DOB)
 // ---------------------------------------------------------------------------
 
-/// Enum for the two paths in the Find Your Bird step.
-enum _BirdPathMode { knowNakshatra, calculateFromDOB }
+/// Enum for the three paths in the Find Your Bird step.
+enum _BirdPathMode { knowNakshatra, calculateFromDOB, calculateFromName }
 
 class _FindYourBirdStep extends StatefulWidget {
   const _FindYourBirdStep({required this.state, required this.notifier});
@@ -230,20 +230,35 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
         ),
         const SizedBox(height: 16),
 
-        // Segmented button toggle
+        // Three equal-weight tabs — short labels so all fit on narrow screens
         SizedBox(
           width: double.infinity,
           child: SegmentedButton<_BirdPathMode>(
+            showSelectedIcon: false,
             segments: [
               ButtonSegment(
                 value: _BirdPathMode.knowNakshatra,
-                label: Text(l10n.iKnowMyStar),
-                icon: const Icon(Icons.stars),
+                label: Text(
+                  l10n.iKnowMyStarShort,
+                  style: const TextStyle(fontSize: 12),
+                ),
+                icon: const Icon(Icons.stars, size: 16),
               ),
               ButtonSegment(
                 value: _BirdPathMode.calculateFromDOB,
-                label: Text(l10n.calculateFromDob),
-                icon: const Icon(Icons.auto_awesome),
+                label: Text(
+                  l10n.calculateFromDobShort,
+                  style: const TextStyle(fontSize: 12),
+                ),
+                icon: const Icon(Icons.auto_awesome, size: 16),
+              ),
+              ButtonSegment(
+                value: _BirdPathMode.calculateFromName,
+                label: Text(
+                  l10n.calculateFromName,
+                  style: const TextStyle(fontSize: 12),
+                ),
+                icon: const Icon(Icons.person_outline, size: 16),
               ),
             ],
             selected: {_mode},
@@ -256,67 +271,21 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
 
         // Path content
         Expanded(
-          child: _mode == _BirdPathMode.knowNakshatra
-              ? _NakshatraListPath(
-                  state: widget.state,
-                  notifier: widget.notifier,
-                )
-              : _DOBCalculatePath(
-                  state: widget.state,
-                  notifier: widget.notifier,
-                ),
+          child: switch (_mode) {
+            _BirdPathMode.knowNakshatra => _NakshatraListPath(
+                state: widget.state,
+                notifier: widget.notifier,
+              ),
+            _BirdPathMode.calculateFromDOB => _DOBCalculatePath(
+                state: widget.state,
+                notifier: widget.notifier,
+              ),
+            _BirdPathMode.calculateFromName => _NameCalculatePath(
+                state: widget.state,
+                notifier: widget.notifier,
+              ),
+          },
         ),
-
-        // Tertiary fallback: use name to determine bird
-        if (widget.state.birthBird == null &&
-            _mode == _BirdPathMode.calculateFromDOB) ...[
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '\u2014\u2014\u2014  ',
-                style: TextStyle(
-                  color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
-                ),
-              ),
-              Text(
-                l10n.orLabel,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-              ),
-              Text(
-                '  \u2014\u2014\u2014',
-                style: TextStyle(
-                  color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          TextButton.icon(
-            onPressed: () {
-              final name = widget.state.displayName;
-              if (name.isNotEmpty) {
-                final bird = NameBirdParser.parse(name);
-                // Use the first nakshatra of the bird's group
-                final birdToNakshatra = {
-                  PakshiBird.vulture: 'ashwini',
-                  PakshiBird.owl: 'bharani',
-                  PakshiBird.crow: 'krittika',
-                  PakshiBird.rooster: 'rohini',
-                  PakshiBird.peacock: 'mrigashira',
-                };
-                widget.notifier.setNakshatra(
-                  birdToNakshatra[bird] ?? 'ashwini',
-                );
-              }
-            },
-            icon: const Icon(Icons.person_outline, size: 18),
-            label: Text(l10n.useYourName),
-          ),
-        ],
 
         // Bird result card (shown regardless of path once determined)
         if (widget.state.birthBird != null) ...[
@@ -564,6 +533,117 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
               ),
             ),
           ],
+        ],
+      ),
+    );
+  }
+}
+
+/// Sub-path: derive bird from name (vowel method).
+///
+/// Uses [NameBirdParser] on the entered name. This is a fallback method,
+/// less precise than nakshatra or DOB. Maps the derived bird to the first
+/// nakshatra of that bird's group so the profile stores a valid nakshatra.
+class _NameCalculatePath extends StatefulWidget {
+  const _NameCalculatePath({required this.state, required this.notifier});
+  final OnboardingState state;
+  final OnboardingNotifier notifier;
+
+  @override
+  State<_NameCalculatePath> createState() => _NameCalculatePathState();
+}
+
+class _NameCalculatePathState extends State<_NameCalculatePath> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.state.displayName);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _deriveBird() {
+    final name = _controller.text.trim();
+    if (name.isEmpty) return;
+    final bird = NameBirdParser.parse(name);
+    // Map bird → first nakshatra of that bird's Bright-Half group so the
+    // profile stores a valid nakshatra string.
+    const birdToNakshatra = {
+      PakshiBird.vulture: 'ashwini',
+      PakshiBird.owl: 'ardra',
+      PakshiBird.crow: 'purva phalguni',
+      PakshiBird.rooster: 'vishakha',
+      PakshiBird.peacock: 'uttara ashadha',
+    };
+    widget.notifier.setNakshatra(birdToNakshatra[bird] ?? 'ashwini');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.nameMethodHint,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _controller,
+            decoration: InputDecoration(
+              labelText: l10n.yourName,
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.person_outline),
+            ),
+            onChanged: widget.notifier.setDisplayName,
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton.icon(
+              onPressed: _deriveBird,
+              icon: const Icon(Icons.auto_awesome),
+              label: Text(l10n.deriveBirdFromName),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Card(
+            color: theme.colorScheme.surfaceContainerHighest,
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    size: 18,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      l10n.nameMethodNote,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
