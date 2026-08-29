@@ -496,7 +496,7 @@
 
 ---
 
-## Sprint 35: Somatic Intervention Engine (v1.5.0) — In Progress 🔄
+## Sprint 35: Somatic Intervention Engine (v1.5.0) — Complete (PR #132) ✅
 
 > **Release batching decision (owner-approved):** Sprint 34 (was v1.4.2) and Sprint 35
 > are bundled into a **single v1.5.0 release**. Sprint 34 is already merged to `main`/staging
