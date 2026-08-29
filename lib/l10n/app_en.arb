@@ -1068,5 +1068,62 @@
   "@summaryIncompleteBird": { "description": "Warning on the summary step when no birth bird has been determined" },
 
   "summaryIncompleteLocation": "Please set your location before completing setup. Tap Edit on \u201CLocation\u201D to select your city.",
-  "@summaryIncompleteLocation": { "description": "Warning on the summary step when no location has been set" }
+  "@summaryIncompleteLocation": { "description": "Warning on the summary step when no location has been set" },
+
+  "somaticRoomTitle": "Clear Your Breath Channel",
+  "@somaticRoomTitle": { "description": "Title of the full-screen somatic intervention timer room" },
+
+  "somaticRoomHint": "Stay in position and breathe with the pacer until the timer ends.",
+  "@somaticRoomHint": { "description": "Hint below the countdown in the somatic timer room" },
+
+  "somaticSideLeft": "left",
+  "@somaticSideLeft": { "description": "Body side (left) used inside somatic instruction sentences" },
+
+  "somaticSideRight": "right",
+  "@somaticSideRight": { "description": "Body side (right) used inside somatic instruction sentences" },
+
+  "somaticInstructionPosture": "Lie on your {side} side (lateral recumbency) to open the opposite nostril.",
+  "@somaticInstructionPosture": { "description": "Posture-shift instruction", "placeholders": { "side": { "type": "String" } } },
+
+  "somaticInstructionAxillary": "Apply firm pressure under your {side} armpit to open the opposite nostril.",
+  "@somaticInstructionAxillary": { "description": "Axillary-pressure instruction", "placeholders": { "side": { "type": "String" } } },
+
+  "somaticSuccessNotice": "Breath channel cleared — your nostril flow now matches the target.",
+  "@somaticSuccessNotice": { "description": "Shown when the post-intervention flow matches the target" },
+
+  "somaticRetryNotice": "Flow not shifted yet. You can rest and try another protocol.",
+  "@somaticRetryNotice": { "description": "Shown when the post-intervention flow does not match the target" },
+
+  "pacerInhale": "Inhale",
+  "@pacerInhale": { "description": "Sama Vritti pacer phase label — inhale" },
+
+  "pacerHold": "Hold",
+  "@pacerHold": { "description": "Sama Vritti pacer phase label — hold" },
+
+  "pacerExhale": "Exhale",
+  "@pacerExhale": { "description": "Sama Vritti pacer phase label — exhale" },
+
+  "clearBreathChannel": "Clear Breath Channel",
+  "@clearBreathChannel": { "description": "Action button shown when a breath entry is unaligned, opening the somatic intervention selector" },
+
+  "somaticSelectorTitle": "Shift Your Breath Channel",
+  "@somaticSelectorTitle": { "description": "Title of the intervention protocol selector bottom sheet" },
+
+  "somaticSelectorSubtitle": "Choose a guided protocol to gently move your nostril flow toward the aligned state.",
+  "@somaticSelectorSubtitle": { "description": "Subtitle of the intervention protocol selector" },
+
+  "somaticProtocolPosture": "Posture Shift",
+  "@somaticProtocolPosture": { "description": "Name of the lateral-recumbency intervention protocol" },
+
+  "somaticProtocolPostureDesc": "Lie on one side (lateral recumbency) to open the opposite nostril.",
+  "@somaticProtocolPostureDesc": { "description": "Description of the posture-shift protocol" },
+
+  "somaticProtocolAxillary": "Axillary Pressure",
+  "@somaticProtocolAxillary": { "description": "Name of the axillary-pressure intervention protocol" },
+
+  "somaticProtocolAxillaryDesc": "Apply pressure under the opposite armpit (Yoga Danda technique).",
+  "@somaticProtocolAxillaryDesc": { "description": "Description of the axillary-pressure protocol" },
+
+  "somaticMinutes": "{minutes} min",
+  "@somaticMinutes": { "description": "Duration label in minutes for an intervention protocol", "placeholders": { "minutes": { "type": "int" } } }
 }

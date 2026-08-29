@@ -101,6 +101,14 @@ Within each breath cycle, the five elements (Earth, Water, Fire, Air, Ether) rot
 ### 🫁 Breath Journal (Sara Kalai)
 Log your current breath flow with just two taps. See instantly whether you're aligned with the cosmic pattern. Optionally time your breath to track inhale, hold, and exhale durations. A **guided nostril test** walks you through checking your dominant flow — Lunar (left), Sushumna (both), or Solar (right) — with a **Start over** button to reset at any point.
 
+### 🌬️ Clear Breath Channel (Somatic Intervention)
+When you log a breath and it's **not aligned** with the cosmic expectation, a **Clear Breath Channel** action appears. It offers two gentle, time-bound protocols to shift your dominant nostril toward the aligned state:
+
+- **Posture Shift (3 min)** — lie on one side (lateral recumbency). Because breathing channels respond to *contralateral* pressure, lying on one side opens the *opposite* nostril.
+- **Axillary Pressure (5 min)** — apply firm pressure under the opposite armpit (the classic Yoga Danda technique).
+
+A full-screen room guides you with the correct body position, a **Sama Vritti** breathing pacer (equal-ratio 4:4:4:4 — inhale, hold, exhale, hold), and a high-contrast countdown. When the timer ends, the app re-runs the guided nostril test to verify whether your flow shifted, and records the session so you can review what works for you over time.
+
 ### 🔥 Streak & Consistency
 Watch your alignment streak grow day by day. A 7-day visual ribbon shows your recent history. A 30-day trend reveals your deeper patterns. The longer your streak, the more attuned you become.
 

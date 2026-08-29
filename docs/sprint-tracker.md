@@ -469,7 +469,11 @@
 
 ---
 
-## Sprint 34: Migration + Onboarding UX Polish (v1.4.2) — Complete (PR #131) ✅
+## Sprint 34: Migration + Onboarding UX Polish — Complete (PR #131) ✅ — bundled into v1.5.0
+
+> **Note:** Merged to `main`/staging but NOT released as a standalone v1.4.2.
+> Bundled with Sprint 35 into a single **v1.5.0** release (owner decision). The prior
+> "v1.4.2" label is retained only in `smoke-test-v1.4.2.md` (scenarios carried into v1.5.0).
 
 > Clears the UX/migration backlog from v1.4.0/v1.4.1 preview + prod testing.
 > Leads with the missing auto-recalculation (Task 33.6 was never actually implemented).
@@ -492,16 +496,31 @@
 
 ---
 
-## Sprint 35: Somatic Intervention Engine (v1.5.0)
+## Sprint 35: Somatic Intervention Engine (v1.5.0) — Complete (PR #132) ✅
 
-- [ ] Task 35.1: SomaticInterventionLogs Drift table + schema migration
-- [ ] Task 35.2: SomaticInterventionSession model — type, targetFlow, initialFlow, success evaluation
-- [ ] Task 35.3: Intervention Timer Rooms — full-screen Material 3 countdown (180s posture, 300s axillary)
-- [ ] Task 35.4: Sama Vritti pacer animation (4:4:4:4 equal-ratio breathing guide)
-- [ ] Task 35.5: Cross-lateral instruction cards (contralateral body positions per target flow)
-- [ ] Task 35.6: Validation flow — auto-trigger GuidedNostrilTest on timer completion, log outcome
-- [ ] Task 35.7: Integration with AlignmentChecker — show [Clear Breath Channel] action when blocked
-- [ ] Task 35.8: Tamil translations for intervention UI
+> **Release batching decision (owner-approved):** Sprint 34 (was v1.4.2) and Sprint 35
+> are bundled into a **single v1.5.0 release**. Sprint 34 is already merged to `main`/staging
+> but NOT released separately — v1.4.2 does not ship on its own. One combined smoke test on
+> staging covers BOTH sprints (Sprint 34 deferred items + all of Sprint 35), then one
+> `/release-start` → `/release-finish` cycle for v1.5.0. Batch capped at two sprints.
+>
+> **Smoke-test structure:** carry the `smoke-test-v1.4.2.md` scenarios (34.1 auto-recalc still
+> to be verified) forward into `smoke-test-v1.5.0.md`, appended with Sprint 35 sections.
+> **CRITICAL gate:** Task 35.1 schema migration must be smoke-tested for BOTH fresh install
+> and upgrade-from-existing-profile (migration is historically the highest-risk area).
+>
+> **Spec reference:** `docs/research/advanced_somatic_mastery.md` §1 + §3 (fully specified —
+> Dart domain models, Drift schema, cross-lateral mapping table, timer durations, state machine).
+
+- [x] Task 35.1: SomaticInterventionLogs Drift table + schema migration *(schema v4→5; idempotent onUpgrade checks sqlite_master; SomaticInterventionRepository)*
+- [x] Task 35.2: SomaticInterventionSession model — type, targetFlow, initialFlow, success evaluation *(+ CrossLateralMapping, BodySide, InterventionType durations)*
+- [x] Task 35.3: Intervention Timer Rooms — full-screen Material 3 countdown (180s posture, 300s axillary) *(SomaticTimerRoom)*
+- [x] Task 35.4: Sama Vritti pacer animation (4:4:4:4 equal-ratio breathing guide) *(SamaVrittiPacer)*
+- [x] Task 35.5: Cross-lateral instruction cards (contralateral body positions per target flow) *(CrossLateralInstructionCard)*
+- [x] Task 35.6: Validation flow — auto-trigger GuidedNostrilTest on timer completion, log outcome *(wired in SomaticTimerRoom._onCompleted → repo.insertLog)*
+- [x] Task 35.7: Integration with AlignmentChecker — show [Clear Breath Channel] action when blocked *(AlignmentResultWidget + InterventionSelectorSheet)*
+- [x] Task 35.8: Tamil translations for intervention UI *(19 keys EN+TA, parity + no mixed-script verified)*
+- [x] Task 35.9: Unit tests (SomaticInterventionSession domain) + user-guide.md feature section + spec status update
 
 ---
 

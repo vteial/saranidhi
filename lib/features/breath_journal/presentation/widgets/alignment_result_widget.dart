@@ -4,6 +4,7 @@ import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/features/breath_journal/domain/alignment_checker.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/features/somatic/presentation/widgets/intervention_selector_sheet.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Displays the alignment result with micro-advice after breath selection.
@@ -81,6 +82,24 @@ class AlignmentResultWidget extends ConsumerWidget {
                 '${_localizedYamaLabel(alignment, l10n)}',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
+            // When unaligned, offer a guided somatic intervention to shift the
+            // breath channel toward the expected flow.
+            if (!isAligned &&
+                alignment.expectedFlow != BreathFlow.sushumna) ...[
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () => showInterventionSelector(
+                    context,
+                    targetFlow: alignment.expectedFlow.nostril,
+                    initialFlow: selectedFlow.nostril,
+                  ),
+                  icon: const Icon(Icons.self_improvement),
+                  label: Text(l10n.clearBreathChannel),
                 ),
               ),
             ],
