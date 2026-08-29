@@ -1101,5 +1101,29 @@
   "@pacerHold": { "description": "Sama Vritti pacer phase label — hold" },
 
   "pacerExhale": "Exhale",
-  "@pacerExhale": { "description": "Sama Vritti pacer phase label — exhale" }
+  "@pacerExhale": { "description": "Sama Vritti pacer phase label — exhale" },
+
+  "clearBreathChannel": "Clear Breath Channel",
+  "@clearBreathChannel": { "description": "Action button shown when a breath entry is unaligned, opening the somatic intervention selector" },
+
+  "somaticSelectorTitle": "Shift Your Breath Channel",
+  "@somaticSelectorTitle": { "description": "Title of the intervention protocol selector bottom sheet" },
+
+  "somaticSelectorSubtitle": "Choose a guided protocol to gently move your nostril flow toward the aligned state.",
+  "@somaticSelectorSubtitle": { "description": "Subtitle of the intervention protocol selector" },
+
+  "somaticProtocolPosture": "Posture Shift",
+  "@somaticProtocolPosture": { "description": "Name of the lateral-recumbency intervention protocol" },
+
+  "somaticProtocolPostureDesc": "Lie on one side (lateral recumbency) to open the opposite nostril.",
+  "@somaticProtocolPostureDesc": { "description": "Description of the posture-shift protocol" },
+
+  "somaticProtocolAxillary": "Axillary Pressure",
+  "@somaticProtocolAxillary": { "description": "Name of the axillary-pressure intervention protocol" },
+
+  "somaticProtocolAxillaryDesc": "Apply pressure under the opposite armpit (Yoga Danda technique).",
+  "@somaticProtocolAxillaryDesc": { "description": "Description of the axillary-pressure protocol" },
+
+  "somaticMinutes": "{minutes} min",
+  "@somaticMinutes": { "description": "Duration label in minutes for an intervention protocol", "placeholders": { "minutes": { "type": "int" } } }
 }

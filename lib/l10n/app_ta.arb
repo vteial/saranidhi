@@ -590,5 +590,21 @@
 
   "pacerHold": "நிறுத்தவும்",
 
-  "pacerExhale": "மூச்சை விடவும்"
+  "pacerExhale": "மூச்சை விடவும்",
+
+  "clearBreathChannel": "மூச்சு நாளத்தை தெளிவாக்கு",
+
+  "somaticSelectorTitle": "உங்கள் மூச்சு நாளத்தை மாற்றுங்கள்",
+
+  "somaticSelectorSubtitle": "உங்கள் நாசி ஓட்டத்தை பொருந்திய நிலைக்கு மெதுவாக நகர்த்த ஒரு வழிகாட்டப்பட்ட நெறிமுறையைத் தேர்ந்தெடுக்கவும்.",
+
+  "somaticProtocolPosture": "நிலை மாற்றம்",
+
+  "somaticProtocolPostureDesc": "எதிர் நாசியைத் திறக்க ஒரு பக்கமாகப் படுத்துக் கொள்ளுங்கள்.",
+
+  "somaticProtocolAxillary": "அக்குள் அழுத்தம்",
+
+  "somaticProtocolAxillaryDesc": "எதிர் அக்குள் கீழ் அழுத்தம் கொடுங்கள் (யோக தண்ட நுட்பம்).",
+
+  "somaticMinutes": "{minutes} நிமிடம்"
 }
