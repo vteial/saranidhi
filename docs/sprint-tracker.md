@@ -469,7 +469,7 @@
 
 ---
 
-## Sprint 34: Migration + Onboarding UX Polish (v1.4.2)
+## Sprint 34: Migration + Onboarding UX Polish (v1.4.2) — In Progress 🔄
 
 > Clears the UX/migration backlog from v1.4.0/v1.4.1 preview + prod testing.
 > Leads with the missing auto-recalculation (Task 33.6 was never actually implemented).

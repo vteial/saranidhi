@@ -1017,5 +1017,8 @@
   "prasanamWindowKriya": "Kriya window \u2014 favorable for action queries",
   "@prasanamWindowKriya": { "description": "Kriya window status" },
   "prasanamWindowYoga": "Yoga window \u2014 favorable for spiritual queries",
-  "@prasanamWindowYoga": { "description": "Yoga window status" }
+  "@prasanamWindowYoga": { "description": "Yoga window status" },
+
+  "birdUpdatedNotice": "Your bird has been updated to {bird} based on corrected calculations.",
+  "@birdUpdatedNotice": { "description": "One-time notice when auto-recalculation changes the birth bird", "placeholders": { "bird": { "type": "String" } } }
 }
