@@ -1056,5 +1056,8 @@
   "@prasanamWindowYoga": { "description": "Yoga window status" },
 
   "birdUpdatedNotice": "Your bird has been updated to {bird} based on corrected calculations.",
-  "@birdUpdatedNotice": { "description": "One-time notice when auto-recalculation changes the birth bird", "placeholders": { "bird": { "type": "String" } } }
+  "@birdUpdatedNotice": { "description": "One-time notice when auto-recalculation changes the birth bird", "placeholders": { "bird": { "type": "String" } } },
+
+  "locationUpdatedNotice": "Location updated to your current position. Timings refreshed.",
+  "@locationUpdatedNotice": { "description": "One-time notice when app auto-updates location on open after the user has moved" }
 }
