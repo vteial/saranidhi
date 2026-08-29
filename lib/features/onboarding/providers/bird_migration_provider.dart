@@ -10,7 +10,7 @@ final birdMigrationServiceProvider = Provider<BirdMigrationService>((ref) {
 
 /// Runs the birth-bird recalculation once on app load and exposes the result.
 ///
-/// Consumed by [BirdMigrationOnLoadWidget] to show a one-time notice when
+/// Consumed by `BirdMigrationOnLoadWidget` to show a one-time notice when
 /// the bird changes. Auto-runs when first watched.
 final birdMigrationProvider = FutureProvider<BirdMigrationResult>((ref) async {
   final service = ref.watch(birdMigrationServiceProvider);

@@ -38,8 +38,9 @@ class _LocationOnOpenWidgetState extends ConsumerState<LocationOnOpenWidget> {
     if (!result.updated || !mounted) return;
 
     // Refresh location-dependent data so timings reflect the new position.
-    ref.invalidate(profileLocationProvider);
-    ref.invalidate(dashboardDataProvider);
+    ref
+      ..invalidate(profileLocationProvider)
+      ..invalidate(dashboardDataProvider);
 
     if (!mounted) return;
     final l10n = AppLocalizations.of(context);

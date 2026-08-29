@@ -25,8 +25,6 @@ class BirdMigrationOnLoadWidget extends ConsumerStatefulWidget {
 
 class _BirdMigrationOnLoadWidgetState
     extends ConsumerState<BirdMigrationOnLoadWidget> {
-  bool _noticeShown = false;
-
   @override
   void initState() {
     super.initState();

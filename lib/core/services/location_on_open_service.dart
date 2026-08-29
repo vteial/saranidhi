@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
 import 'package:saranidhi/core/services/location_service.dart';
 import 'package:saranidhi/core/utils/geolocation.dart';
@@ -31,7 +32,7 @@ class LocationUpdateResult {
 /// stored profile location if the user has moved significantly
 /// (>5 km) from their last saved position.
 ///
-/// On non-web platforms this is a no-op (the [WebGeolocation] facade
+/// On non-web platforms this is a no-op (the `WebGeolocation` facade
 /// resolves to a stub that returns null).
 ///
 /// Rationale: sunrise/sunset and the daily Pakshi rhythm follow the
@@ -45,7 +46,7 @@ class LocationOnOpenService {
 
   /// Distance beyond which we consider the user to have moved and update
   /// the stored profile location.
-  static const double thresholdKm = 5.0;
+  static const double thresholdKm = 5;
 
   /// Checks the current position (web only) and updates the profile if moved.
   ///

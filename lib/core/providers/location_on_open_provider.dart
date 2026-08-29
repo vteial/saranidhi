@@ -10,7 +10,7 @@ final locationOnOpenServiceProvider = Provider<LocationOnOpenService>((ref) {
 
 /// Runs the web geolocation check once on app open and exposes the result.
 ///
-/// Consumed by [LocationOnOpenWidget] to refresh location-dependent
+/// Consumed by `LocationOnOpenWidget` to refresh location-dependent
 /// providers when the user has moved significantly. Auto-runs when watched.
 final locationOnOpenProvider = FutureProvider<LocationUpdateResult>((ref) async {
   final service = ref.watch(locationOnOpenServiceProvider);
