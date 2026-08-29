@@ -12,14 +12,22 @@ part 'app_database.g.dart';
 /// - [BreathSessions] — detailed breath session recordings
 /// - [BirdLibrary] — Panja Pakshi bird reference data
 /// - [PrasanamHistory] — Prasanam Oracle query history
+/// - [SomaticInterventionLogs] — guided breath-channel intervention sessions
 @DriftDatabase(
-  tables: [Profiles, SaraKalaiJournal, BreathSessions, BirdLibrary, PrasanamHistory],
+  tables: [
+    Profiles,
+    SaraKalaiJournal,
+    BreathSessions,
+    BirdLibrary,
+    PrasanamHistory,
+    SomaticInterventionLogs,
+  ],
 )
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -56,6 +64,17 @@ class AppDatabase extends _$AppDatabase {
         ).get();
         if (tables.isEmpty) {
           await m.createTable(prasanamHistory);
+        }
+      }
+      if (from < 5) {
+        // Sprint 35: Create Somatic Intervention logs table.
+        // Check if table already exists to avoid errors on databases
+        // that were created fresh at schema v4+.
+        final tables = await customSelect(
+          "SELECT name FROM sqlite_master WHERE type='table' AND name='somatic_intervention_logs'",
+        ).get();
+        if (tables.isEmpty) {
+          await m.createTable(somaticInterventionLogs);
         }
       }
     },
