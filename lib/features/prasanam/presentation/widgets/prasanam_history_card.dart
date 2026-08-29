@@ -76,13 +76,22 @@ class PrasanamHistoryCard extends ConsumerWidget {
   }
 }
 
-class _PrasanamHistoryTile extends ConsumerWidget {
+class _PrasanamHistoryTile extends ConsumerStatefulWidget {
   const _PrasanamHistoryTile({required this.query});
 
   final PrasanamHistoryData query;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_PrasanamHistoryTile> createState() =>
+      _PrasanamHistoryTileState();
+}
+
+class _PrasanamHistoryTileState extends ConsumerState<_PrasanamHistoryTile> {
+  bool _hovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final query = widget.query;
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final locale = Localizations.localeOf(context);
@@ -97,26 +106,26 @@ class _PrasanamHistoryTile extends ConsumerWidget {
     final hasOutcome = query.outcomeNotes != null &&
         query.outcomeNotes!.isNotEmpty;
 
-    return Dismissible(
-      key: ValueKey(query.id),
-      direction: DismissDirection.endToStart,
-      background: Container(
-        alignment: Alignment.centerRight,
-        padding: const EdgeInsets.only(right: 16),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.error.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(8),
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovering = true),
+      onExit: (_) => setState(() => _hovering = false),
+      child: Dismissible(
+        key: ValueKey(query.id),
+        direction: DismissDirection.endToStart,
+        background: Container(
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.only(right: 16),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.error.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(Icons.delete_outline, color: theme.colorScheme.error),
         ),
-        child: Icon(Icons.delete_outline, color: theme.colorScheme.error),
-      ),
-      confirmDismiss: (_) => _confirmDelete(context, l10n),
-      onDismissed: (_) {
-        ref.read(prasanamRepositoryProvider).deleteQuery(query.id);
-        ref.invalidate(prasanamHistoryProvider);
-      },
-      child: InkWell(
-        onTap: () => _showOutcomeDialog(context, ref),
-        borderRadius: BorderRadius.circular(8),
+        confirmDismiss: (_) => _confirmDelete(context, l10n),
+        onDismissed: (_) => _deleteQuery(),
+        child: InkWell(
+          onTap: () => _showOutcomeDialog(context, ref),
+          borderRadius: BorderRadius.circular(8),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
@@ -189,11 +198,35 @@ class _PrasanamHistoryTile extends ConsumerWidget {
                 size: 18,
                 color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
               ),
+            // Desktop delete: trash icon appears on hover (mouse only).
+            // Touch users keep swipe-to-delete.
+            if (_hovering) ...[
+              const SizedBox(width: 4),
+              IconButton(
+                icon: Icon(
+                  Icons.delete_outline,
+                  size: 18,
+                  color: theme.colorScheme.error,
+                ),
+                tooltip: l10n.prasanamDeleteConfirm,
+                visualDensity: VisualDensity.compact,
+                onPressed: () async {
+                  final confirmed = await _confirmDelete(context, l10n);
+                  if (confirmed ?? false) _deleteQuery();
+                },
+              ),
+            ],
           ],
         ),
       ),
-    ),
+        ),
+      ),
     );
+  }
+
+  void _deleteQuery() {
+    ref.read(prasanamRepositoryProvider).deleteQuery(widget.query.id);
+    ref.invalidate(prasanamHistoryProvider);
   }
 
   Future<bool?> _confirmDelete(BuildContext context, AppLocalizations l10n) {
@@ -222,10 +255,10 @@ class _PrasanamHistoryTile extends ConsumerWidget {
   void _showOutcomeDialog(BuildContext context, WidgetRef ref) {
     showOutcomeNotesDialog(
       context,
-      query: query,
+      query: widget.query,
       onSave: (notes) async {
         final repo = ref.read(prasanamRepositoryProvider);
-        await repo.updateOutcomeNotes(id: query.id, notes: notes);
+        await repo.updateOutcomeNotes(id: widget.query.id, notes: notes);
         ref.invalidate(prasanamHistoryProvider);
       },
     );

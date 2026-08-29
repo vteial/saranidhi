@@ -8,6 +8,8 @@ import 'package:saranidhi/core/theme/app_theme.dart';
 import 'package:saranidhi/core/theme/theme_provider.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/sync_on_open_widget.dart';
 import 'package:saranidhi/features/notifications/data/notification_service.dart';
+import 'package:saranidhi/features/onboarding/presentation/widgets/bird_migration_on_load_widget.dart';
+import 'package:saranidhi/features/onboarding/presentation/widgets/location_on_open_widget.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 void main() async {
@@ -41,7 +43,11 @@ class SaranidhiApp extends ConsumerWidget {
       routerConfig: appRouter,
       builder: (context, child) {
         return SyncOnOpenWidget(
-          child: OnboardingGuard(child: child ?? const SizedBox.shrink()),
+          child: BirdMigrationOnLoadWidget(
+            child: LocationOnOpenWidget(
+              child: OnboardingGuard(child: child ?? const SizedBox.shrink()),
+            ),
+          ),
         );
       },
     );

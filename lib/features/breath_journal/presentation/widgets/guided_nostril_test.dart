@@ -61,6 +61,22 @@ class _GuidedNostrilTestState extends State<GuidedNostrilTest> {
           if (_step == 0) _buildStep1(theme, l10n),
           if (_step == 1) _buildStep2(theme, l10n),
           if (_step == 2) _buildStep3(theme, l10n),
+
+          // Reset/restart — available once the user has moved past step 1
+          if (_step > 0) ...[
+            const SizedBox(height: 12),
+            TextButton.icon(
+              onPressed: () {
+                HapticFeedback.lightImpact();
+                setState(() {
+                  _step = 0;
+                  _exhaleResult = null;
+                });
+              },
+              icon: const Icon(Icons.refresh, size: 18),
+              label: Text(l10n.nostrilTestRestart),
+            ),
+          ],
         ],
       ),
     );
@@ -92,23 +108,9 @@ class _GuidedNostrilTestState extends State<GuidedNostrilTest> {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 24),
+        // Anatomical order: Lunar (Left) → Sushumna (Both) → Solar (Right)
         Row(
           children: [
-            Expanded(
-              child: _ChoiceButton(
-                label: l10n.nostrilTestRight,
-                icon: Icons.wb_sunny_outlined,
-                onTap: () {
-                  HapticFeedback.lightImpact();
-                  setState(() {
-                    _exhaleResult = BreathFlow.solar;
-                    _step = 1;
-                  });
-                },
-                theme: theme,
-              ),
-            ),
-            const SizedBox(width: 12),
             Expanded(
               child: _ChoiceButton(
                 label: l10n.nostrilTestLeft,
@@ -133,6 +135,21 @@ class _GuidedNostrilTestState extends State<GuidedNostrilTest> {
                   setState(() {
                     _exhaleResult = BreathFlow.sushumna;
                     _step = 2; // Skip isolation for Sushumna
+                  });
+                },
+                theme: theme,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _ChoiceButton(
+                label: l10n.nostrilTestRight,
+                icon: Icons.wb_sunny_outlined,
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  setState(() {
+                    _exhaleResult = BreathFlow.solar;
+                    _step = 1;
                   });
                 },
                 theme: theme,
