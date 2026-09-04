@@ -1,10 +1,10 @@
 # Smoke Test — v1.5.0-web
 
 **Release:** v1.5.0-web (**bundled**: Sprint 34 — Migration + Onboarding UX Polish, and Sprint 35 — Somatic Intervention Engine)
-**Date:** _TBD_
+**Date:** 2026-09-05 (release-start)
 **Tester:** Eialarasu + Kiro
 **Device/Browser:** Desktop browser + mobile
-**URL:** https://saranidhi-staging.vercel.app (staging)
+**URL:** https://saranidhi-staging.vercel.app (staging) — verify version reads **1.5.0** on the release branch build
 
 > **Focus:** This release bundles two sprints. Sprint 34 (UX/migration polish) and
 > Sprint 35 (Somatic Intervention Engine). The **CRITICAL** validation is the

@@ -19,6 +19,41 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.5.0-web] — _pending release_
+
+> Bundled release of Sprint 34 (Migration + Onboarding UX Polish) and
+> Sprint 35 (Somatic Intervention Engine).
+
+### Added
+- **Somatic Intervention Engine** (Sprint 35): guided, time-bound protocols to
+  shift the breath channel when a breath entry is unaligned. A
+  **Clear Breath Channel** action opens a selector (Posture Shift 3 min /
+  Axillary Pressure 5 min); a full-screen room shows the contralateral
+  instruction, a Sama Vritti (4:4:4:4) breathing pacer, and a countdown; on
+  completion the guided nostril test verifies the result and the session is
+  logged (`SomaticInterventionLogs`, schema v5).
+- **Auto-recalculate birth bird on app load** (Sprint 34): existing profiles
+  with a stored DOB are corrected to the dual-table bird with a one-time
+  notice; manual (no-DOB) profiles are left untouched.
+- **Onboarding redesign** (Sprint 34): three co-equal tabs (I know my star /
+  Calculate from DOB / Calculate from name), a summary confirmation step with
+  per-row edit, and Complete-Setup validation (requires bird + location).
+- **Web geolocation on startup** (Sprint 34): auto-updates the stored location
+  when moved >5 km (silent, one-time notice); city picker remains the fallback.
+- **Guided nostril test**: Start-over reset + anatomical button order
+  (Lunar / Sushumna / Solar).
+- **Oracle history desktop delete**: hover trash icon (mouse) alongside
+  swipe-to-delete (touch).
+
+### Fixed
+- Onboarding DOB tab IST-assumption note is now localized (Tamil).
+
+### Changed
+- Database schema bumped to v5 (adds `somatic_intervention_logs`; idempotent
+  migration safe for both fresh install and upgrade from v4).
+
+---
+
 ## [1.2.0-web] — 2026-07-08
 
 ### Added
