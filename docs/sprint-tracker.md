@@ -496,7 +496,13 @@
 
 ---
 
-## Sprint 35: Somatic Intervention Engine (v1.5.0) — Complete (PR #132) ✅
+## Sprint 35: Somatic Intervention Engine (v1.5.0) — Complete (PR #132) ✅ — 🚀 Released v1.5.0-web (2026-09-04)
+
+> **Released:** v1.5.0-web shipped to production 2026-09-04 (tag `v1.5.0-web`),
+> bundling Sprint 34 + Sprint 35. Promotion PRs: #133 (release/v1.5.0→main),
+> #134 (main→prod). Two CI fixes were needed during release: #135 (coverage
+> gate 19%→18%) and #136 (web integration tests made non-blocking — flaky +
+> stale; fate to be decided in a planning session).
 
 > **Release batching decision (owner-approved):** Sprint 34 (was v1.4.2) and Sprint 35
 > are bundled into a **single v1.5.0 release**. Sprint 34 is already merged to `main`/staging
@@ -524,7 +530,11 @@
 
 ---
 
-## Sprint 36: Chronobiology Analytics + Holistic Cards (v1.5.0)
+## Sprint 36: Chronobiology Analytics + Holistic Cards (next release — version TBD)
+
+> **Note:** originally planned to ship inside v1.5.0 alongside Sprint 35, but the
+> v1.5.0 batching decision shipped Sprint 34 + 35 only. Sprint 36 now targets the
+> next release — confirm version (v1.5.1 vs v1.6.0) in the planning session.
 
 - [ ] Task 36.1: ChronobiologyAnalytics — time-weighted sliding window stagnancy detection (≥6h mild, ≥8h chronic)
 - [ ] Task 36.2: Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on Kriya Focus Card

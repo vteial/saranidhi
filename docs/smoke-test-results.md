@@ -16,7 +16,7 @@ Each production release has a single smoke test file containing both the plan (s
 | v1.4.0-web | 2026-07-16 | Eialarasu + Kiro | 41 | ✅ PASS (3 accepted) | [v1.4.0](smoke-test-v1.4.0.md) |
 | v1.4.1-web | 2026-08-27 | Eialarasu + Kiro | 21 | ✅ PASS | [v1.4.1](smoke-test-v1.4.1.md) |
 | v1.4.2-web | 2026-07-14 | Eialarasu + Kiro | 33 | ✅ PASS (2 accepted, 7 deferred) | [v1.4.2](smoke-test-v1.4.2.md) |
-| v1.5.0-web | _TBD_ | Eialarasu + Kiro | 35 | ⏳ Pending (bundles Sprint 34 + 35) | [v1.5.0](smoke-test-v1.5.0.md) |
+| v1.5.0-web | 2026-09-04 | Eialarasu + Kiro (Antigravity QA) | 35 | ✅ PASS (1 accepted, 6 deferred) | [v1.5.0](smoke-test-v1.5.0.md) |
 
 ## Process
 
