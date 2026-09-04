@@ -19,7 +19,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [1.5.0-web] — _pending release_
+## [1.5.0-web] — 2026-09-04
 
 > Bundled release of Sprint 34 (Migration + Onboarding UX Polish) and
 > Sprint 35 (Somatic Intervention Engine).
