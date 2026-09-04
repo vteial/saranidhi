@@ -32,14 +32,16 @@ class InterventionSelectorSheet extends StatelessWidget {
       initialFlow: initialFlow,
     );
 
-    // Close the sheet, then open the full-screen timer room.
-    Navigator.of(context).pop();
-    Navigator.of(context).push(
-      MaterialPageRoute<bool>(
-        fullscreenDialog: true,
-        builder: (_) => SomaticTimerRoom(session: session),
-      ),
-    );
+    // Close the sheet, then open the full-screen timer room over the root
+    // navigator so the bottom shell navigation bar is hidden.
+    Navigator.of(context, rootNavigator: true)
+      ..pop()
+      ..push(
+        MaterialPageRoute<bool>(
+          fullscreenDialog: true,
+          builder: (_) => SomaticTimerRoom(session: session),
+        ),
+      );
   }
 
   @override
@@ -166,6 +168,7 @@ void showInterventionSelector(
 }) {
   showModalBottomSheet<void>(
     context: context,
+    useRootNavigator: true,
     isScrollControlled: true,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
