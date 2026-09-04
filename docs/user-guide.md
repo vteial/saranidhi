@@ -99,7 +99,15 @@ Within each breath cycle, the five elements (Earth, Water, Fire, Air, Ether) rot
 ## Features at a Glance
 
 ### 🫁 Breath Journal (Sara Kalai)
-Log your current breath flow with just two taps. See instantly whether you're aligned with the cosmic pattern. Optionally time your breath to track inhale, hold, and exhale durations.
+Log your current breath flow with just two taps. See instantly whether you're aligned with the cosmic pattern. Optionally time your breath to track inhale, hold, and exhale durations. A **guided nostril test** walks you through checking your dominant flow — Lunar (left), Sushumna (both), or Solar (right) — with a **Start over** button to reset at any point.
+
+### 🌬️ Clear Breath Channel (Somatic Intervention)
+When you log a breath and it's **not aligned** with the cosmic expectation, a **Clear Breath Channel** action appears. It offers two gentle, time-bound protocols to shift your dominant nostril toward the aligned state:
+
+- **Posture Shift (3 min)** — lie on one side (lateral recumbency). Because breathing channels respond to *contralateral* pressure, lying on one side opens the *opposite* nostril.
+- **Axillary Pressure (5 min)** — apply firm pressure under the opposite armpit (the classic Yoga Danda technique).
+
+A full-screen room guides you with the correct body position, a **Sama Vritti** breathing pacer (equal-ratio 4:4:4:4 — inhale, hold, exhale, hold), and a high-contrast countdown. When the timer ends, the app re-runs the guided nostril test to verify whether your flow shifted, and records the session so you can review what works for you over time.
 
 ### 🔥 Streak & Consistency
 Watch your alignment streak grow day by day. A 7-day visual ribbon shows your recent history. A 30-day trend reveals your deeper patterns. The longer your streak, the more attuned you become.
@@ -114,7 +122,7 @@ A sacred consultation tool for life decisions. Select your query category (Artha
 - **5 Answer Bands** — Strong Yes (Siddha), Favorable (Vardhana), Caution (Mandha), Delay (Stambhana), Hard No (Sunya)
 - **Validation Gate** — requires fresh breath awareness (within 30 minutes) before consultation
 - **Window Status** — shows if current timing is favorable or void-locked (Rahu Kaal / Emakandam)
-- **History** — optionally save readings for post-event reflection and outcome tracking
+- **History** — optionally save readings for post-event reflection and outcome tracking. Delete an entry by swiping it on touch devices, or by hovering over it and clicking the trash icon on desktop
 
 ### ⏰ Smart Reminders
 Receive gentle nudges at each Yama transition — the exact moment when cosmic energy shifts. Each notification carries a piece of traditional wisdom tailored to your current bird state.
@@ -141,17 +149,26 @@ Full support for English and Tamil (தமிழ்), honoring the Tamil origins
 ### Step 1: Open Saranidhi
 On first launch, a gentle onboarding guides you through setup.
 
-### Step 2: Enter Your Birth Star
-Select your Nakshatra (lunar mansion). This determines your birth bird for Panja Pakshi calculations. If you don't know it, you can skip and add it later.
+### Step 2: Find Your Birth Bird
+Choose one of three ways to determine your birth bird — presented as three co-equal tabs:
+
+- **I know my star** — Pick your Nakshatra (lunar mansion) directly.
+- **Calculate from DOB** *(most accurate)* — Enter your date of birth, time, and birth place. Saranidhi computes your exact Nakshatra and, using your birth lunar phase (Paksha), derives your permanent birth bird from the correct Bright/Dark half table.
+- **Calculate from name** — A quick fallback that maps the first vowel sound of your name to a bird when you don't know your star or DOB.
+
+> **Tip:** The DOB path is the most reliable, because the birth bird depends on both your Nakshatra *and* whether the moon was waxing or waning at birth.
 
 ### Step 3: Allow Location
-Saranidhi uses your location to calculate precise sunrise and sunset times for your area. This ensures all Yama, Hora, and Rahu calculations are accurate to your exact position.
+Saranidhi uses your **current** location to calculate precise sunrise and sunset times for your area, keeping all Yama, Hora, and Rahu calculations accurate to your exact position. On the web, if you travel more than 5 km from your saved location, the app quietly updates it on next open and shows a brief notice (your birth bird never changes — only the daily rhythm follows your position). You can always edit the location manually in Settings.
 
 ### Step 4: Choose Your Storage
 - **Local Only** — Data stays on your device. Maximum privacy. (Mobile only)
 - **Cloud Backup** — Data backs up to your iCloud (iOS) or Google Drive (Android/Web). Your data, your account.
 
-### Step 5: Breathe
+### Step 5: Review & Confirm
+A summary page shows everything you entered — birth bird, location, and storage choice. Each row has an **Edit** button so you can jump back and adjust any answer before tapping **Complete Setup**.
+
+### Step 6: Breathe
 Close one nostril. Notice which side flows more freely. Tap to log. That's your first entry in the Treasure House of Breath.
 
 ---

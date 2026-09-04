@@ -90,6 +90,31 @@ class PrasanamHistory extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Somatic intervention session logs (Sprint 35).
+///
+/// Tracks guided, time-bound protocols used to actively shift the user's
+/// breath channel (nostril dominance) when the diagnostic layer flags them
+/// as unaligned. Each row records the protocol type, the target/initial
+/// flow, the flow resolved after the post-session verification, and whether
+/// the intervention succeeded.
+class SomaticInterventionLogs extends Table {
+  TextColumn get id => text()();
+  IntColumn get timestamp => integer()();
+  // 'postureShift' or 'axillaryPressure'
+  TextColumn get protocolType => text()();
+  // 'left' or 'right'
+  TextColumn get targetFlow => text()();
+  // 'left' or 'right'
+  TextColumn get initialFlow => text()();
+  // Logged after the post-intervention GuidedNostrilTest (null if cancelled).
+  TextColumn get resolvedFlow => text().nullable()();
+  BoolColumn get isSuccess => boolean().withDefault(const Constant(false))();
+  IntColumn get durationSeconds => integer()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
 /// Bird reference library for Panja Pakshi.
 class BirdLibrary extends Table {
   TextColumn get id => text()();

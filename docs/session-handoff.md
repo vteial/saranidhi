@@ -7,17 +7,31 @@
 
 ---
 
-## Current State (as of 2026-07-16)
+## Current State (as of 2026-08-27)
 
 | Item | Status |
 |------|--------|
-| **Production** | v1.4.0-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | Latest main (v1.4.0 + coverage fix merged) |
-| **Sprints delivered** | 32 |
-| **Total PRs** | 123 |
-| **Engineering hours** | ~95h |
+| **Production** | v1.4.1-web live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | Latest main (v1.4.1 merged) |
+| **Sprints delivered** | 33 |
+| **Total PRs** | 128 |
+| **Engineering hours** | ~102h |
 | **User mode** | Daily use — production stable |
-| **Next action** | `/plan` for post-v1.4 sprint (Sprint 33 or accuracy fix) |
+| **Next action** | `/plan` for Sprint 34 |
+
+---
+
+## ⚠️ Priority Backlog for Next Sprint
+
+| # | Item | Type | Priority |
+|---|------|------|----------|
+| A | **Auto-recalculate birth bird on app load** — Task 33.6 was never implemented. Existing profiles with stored DOB keep stale bird until manual "Recalculate from DOB". Add on-load check: if `birthDateEpoch` present, recompute via `birthBirdFromNakshatraAndPaksha()` and update if changed. | Bugfix | **HIGH** |
+| B | Onboarding 3 tabs (I know my star / DOB / Name) + summary confirmation page | UX | Medium |
+| C | GuidedNostrilTest: reset button + reorder (Left, Both, Right) | UX | Medium |
+| D | Oracle history: desktop delete (hover trash icon — swipe is mobile-only) | UX | Medium |
+| E | Wire WebGeolocation into app startup (built Sprint 31, not connected) | Feature | Low |
+| F | Prasanam sacred consultation UX (cooldown, breath ritual, daily limit) | UX | Medium |
+| G | Home tab restructure (Today / Past / Future) | UX | Low |
 
 ---
 
@@ -80,8 +94,10 @@
 - **v1.3.0:** Sprint 29–30 (Foundation + Action Windows Engine & UI)
 - **v1.4.0:** Sprint 31–32 (Numerology + Prasanam Oracle)
 - **v1.4.1:** Sprint 33 (Panja Pakshi Accuracy Fix)
-- **v1.5.0:** Sprint 34–35 (Somatic Mastery + Chronobiology Analytics)
-- **v2.0.0:** Sprint 36 (Integration Polish + App Store Prep)
+- **v1.4.2:** Sprint 34 (Migration + Onboarding UX Polish)
+- **v1.5.0:** Sprint 35–36 (Somatic Mastery + Chronobiology Analytics)
+- **v2.0.0:** Sprint 37 (Integration Polish + App Store Prep)
+- **Sprint 38:** Panja Pakshi Accuracy Calibration & Validation (needs user data collection first)
 
 ### Architecture Decisions
 - **ActionWindow enum:** Ruling/Walking→Artha, Eating→Kriya, Sleeping/Dying→Yoga

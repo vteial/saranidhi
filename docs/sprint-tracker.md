@@ -469,53 +469,95 @@
 
 ---
 
-## Sprint 34: Somatic Intervention Engine (v1.5.0)
+## Sprint 34: Migration + Onboarding UX Polish — Complete (PR #131) ✅ — bundled into v1.5.0
 
-- [ ] Task 34.1: SomaticInterventionLogs Drift table + schema migration
-- [ ] Task 34.2: SomaticInterventionSession model — type, targetFlow, initialFlow, success evaluation
-- [ ] Task 34.3: Intervention Timer Rooms — full-screen Material 3 countdown (180s posture, 300s axillary)
-- [ ] Task 34.4: Sama Vritti pacer animation (4:4:4:4 equal-ratio breathing guide)
-- [ ] Task 34.5: Cross-lateral instruction cards (contralateral body positions per target flow)
-- [ ] Task 34.6: Validation flow — auto-trigger GuidedNostrilTest on timer completion, log outcome
-- [ ] Task 34.7: Integration with AlignmentChecker — show [Clear Breath Channel] action when blocked
-- [ ] Task 34.8: Tamil translations for intervention UI
+> **Note:** Merged to `main`/staging but NOT released as a standalone v1.4.2.
+> Bundled with Sprint 35 into a single **v1.5.0** release (owner decision). The prior
+> "v1.4.2" label is retained only in `smoke-test-v1.4.2.md` (scenarios carried into v1.5.0).
 
----
+> Clears the UX/migration backlog from v1.4.0/v1.4.1 preview + prod testing.
+> Leads with the missing auto-recalculation (Task 33.6 was never actually implemented).
 
-## Sprint 35: Chronobiology Analytics + Holistic Cards (v1.5.0)
+- [x] Task 34.1: Auto-recalculate birth bird on app load — if profile has `birthDateEpoch`, recompute via `birthBirdFromNakshatraAndPaksha()` and update if different from stored value. Show a one-time notice ("Your bird has been updated to {Bird} based on corrected calculations") when a change occurs. *(`BirdMigrationService` + `birdMigrationProvider` + `BirdMigrationOnLoadWidget` wired into main.dart.)*
+- [x] Task 34.2: Onboarding — 3 equal-weight tabs: "I know my star" / "Calculate from DOB" / "Calculate from name" (promote NameBirdParser from subtle link to co-equal tab)
+- [x] Task 34.3: Onboarding — summary confirmation page: shows name, derived bird (+ how it was derived: nakshatra/DOB/name), location, storage mode. Each row has "Edit" to jump back; final "Complete Setup" button. *(New step 4; totalSteps 4→5; `goToStep()`.)*
+- [x] Task 34.4: GuidedNostrilTest — add reset/restart button + reorder buttons to anatomical order: Lunar (Left) → Sushumna (Both) → Solar (Right)
+- [x] Task 34.5: Oracle history — desktop delete: trash icon on hover (mouse), keep swipe-to-delete for touch. Both trigger same confirmation dialog.
+- [x] Task 34.6: Wire WebGeolocation into app startup — call `WebGeolocation.getCurrentPosition()` on app open (web), update profile location if >5km from stored. Graceful fallback if permission denied. *(Conditional-export facade `geolocation.dart` + stub keeps mobile builds clean; `LocationOnOpenService`/`Widget`.)*
+- [x] Task 34.7: Unit tests (`location_service_test.dart`; auto-recalc + name-path derivation already covered by existing pakshi/oracle tests) + updated calculation-methodology.md / user-guide.md for onboarding + location changes
 
-- [ ] Task 35.1: ChronobiologyAnalytics — time-weighted sliding window stagnancy detection (≥6h mild, ≥8h chronic)
-- [ ] Task 35.2: Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on Kriya Focus Card
-- [ ] Task 35.3: Tattva-Somatic Temperature Regulation tips (Sheetali for excess fire, Surya Bhedana for cold)
-- [ ] Task 35.4: Swara Pada Gamana waking advice in morning summary notification
-- [ ] Task 35.5: Dashboard stagnancy warning card (heating/cooling lifestyle recommendations)
-- [ ] Task 35.6: Cognitive Energy Budgeting labels in Best Times / Explore tab (Artha/Kriya/Yoga activity suggestions)
-- [ ] Task 35.7: Tamil translations for all holistic/somatic guidance text
+**Preview-testing fixes (folded into PR #131):**
+- [x] Localized the DOB tab's IST-assumption note (`onboardingIstAssumption`, EN + TA) — was a hardcoded English string.
+- [x] Gated onboarding **Complete Setup**: added `OnboardingState.isComplete` (requires birth bird + current location); button disabled until complete, summary shows a warning banner naming what is missing.
 
----
-
-## Sprint 36: v2.0.0 Release Polish & Integration Testing
-
-- [ ] Task 36.1: End-to-end feature integration testing (all layers working together)
-- [ ] Task 36.2: Performance optimization (startup time, animation smoothness)
-- [ ] Task 36.3: Comprehensive smoke test plan for v2.0.0 (all features)
-- [ ] Task 36.4: User Guide refresh — complete rewrite covering all v2.0 features
-- [ ] Task 36.5: Wire Sprint 26 deferred widgets (WhatsNew startup, PresetSelector, StreakCelebration, isPinned star)
+**Deferred / follow-up (NOT in PR #131):**
+- [ ] Task 34.8: Geolocation-first Location step — on web, attempt browser geolocation first with the **city picker as fallback** on denial/unavailable; keep the >5 km auto-update **silent**. Mobile/desktop keep the picker as source of truth. (Owner-confirmed strategy.)
+- [ ] Deferred manual verification: Task 34.1 auto-recalc (owner to test later).
 
 ---
 
-## Sprint 37: Panja Pakshi Accuracy Calibration & Validation
+## Sprint 35: Somatic Intervention Engine (v1.5.0) — Complete (PR #132) ✅
 
-> **Prerequisite:** User collects 7-day Align27 data (Task 36.1) + Tamil Panchangam data (Task 36.2) BEFORE sprint starts.
+> **Release batching decision (owner-approved):** Sprint 34 (was v1.4.2) and Sprint 35
+> are bundled into a **single v1.5.0 release**. Sprint 34 is already merged to `main`/staging
+> but NOT released separately — v1.4.2 does not ship on its own. One combined smoke test on
+> staging covers BOTH sprints (Sprint 34 deferred items + all of Sprint 35), then one
+> `/release-start` → `/release-finish` cycle for v1.5.0. Batch capped at two sprints.
+>
+> **Smoke-test structure:** carry the `smoke-test-v1.4.2.md` scenarios (34.1 auto-recalc still
+> to be verified) forward into `smoke-test-v1.5.0.md`, appended with Sprint 35 sections.
+> **CRITICAL gate:** Task 35.1 schema migration must be smoke-tested for BOTH fresh install
+> and upgrade-from-existing-profile (migration is historically the highest-risk area).
+>
+> **Spec reference:** `docs/research/advanced_somatic_mastery.md` §1 + §3 (fully specified —
+> Dart domain models, Drift schema, cross-lateral mapping table, timer durations, state machine).
 
-- [ ] Task 36.1: Data Collection — capture 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Rooster/Pushya [USER TASK]
-- [ ] Task 36.2: Data Collection — capture same 7 days from Tamil Panchangam (drikpanchang.com or physical calendar) [USER TASK]
-- [ ] Task 36.3: Saranidhi Diagnostic Dump — generate matching 7-day output programmatically (bird states, sunrise/sunset, lunar phase, weekday)
-- [ ] Task 36.4: Three-Way Comparison Matrix — align Saranidhi vs Align27 vs Panchangam, identify exact divergence points
-- [ ] Task 36.5: Root Cause Diagnosis — determine if divergence is from (a) lookup tables, (b) lunar phase calculation, (c) weekday convention, (d) bird-phase swap timing
-- [ ] Task 36.6: Calibration Fix — implement correction based on diagnosis (table update / phase logic / day-start convention)
-- [ ] Task 36.7: Verification — re-run 7-day comparison after fix, confirm match with most authentic source
-- [ ] Task 36.8: Document findings in `docs/research/accuracy-calibration.md`
+- [x] Task 35.1: SomaticInterventionLogs Drift table + schema migration *(schema v4→5; idempotent onUpgrade checks sqlite_master; SomaticInterventionRepository)*
+- [x] Task 35.2: SomaticInterventionSession model — type, targetFlow, initialFlow, success evaluation *(+ CrossLateralMapping, BodySide, InterventionType durations)*
+- [x] Task 35.3: Intervention Timer Rooms — full-screen Material 3 countdown (180s posture, 300s axillary) *(SomaticTimerRoom)*
+- [x] Task 35.4: Sama Vritti pacer animation (4:4:4:4 equal-ratio breathing guide) *(SamaVrittiPacer)*
+- [x] Task 35.5: Cross-lateral instruction cards (contralateral body positions per target flow) *(CrossLateralInstructionCard)*
+- [x] Task 35.6: Validation flow — auto-trigger GuidedNostrilTest on timer completion, log outcome *(wired in SomaticTimerRoom._onCompleted → repo.insertLog)*
+- [x] Task 35.7: Integration with AlignmentChecker — show [Clear Breath Channel] action when blocked *(AlignmentResultWidget + InterventionSelectorSheet)*
+- [x] Task 35.8: Tamil translations for intervention UI *(19 keys EN+TA, parity + no mixed-script verified)*
+- [x] Task 35.9: Unit tests (SomaticInterventionSession domain) + user-guide.md feature section + spec status update
+
+---
+
+## Sprint 36: Chronobiology Analytics + Holistic Cards (v1.5.0)
+
+- [ ] Task 36.1: ChronobiologyAnalytics — time-weighted sliding window stagnancy detection (≥6h mild, ≥8h chronic)
+- [ ] Task 36.2: Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on Kriya Focus Card
+- [ ] Task 36.3: Tattva-Somatic Temperature Regulation tips (Sheetali for excess fire, Surya Bhedana for cold)
+- [ ] Task 36.4: Swara Pada Gamana waking advice in morning summary notification
+- [ ] Task 36.5: Dashboard stagnancy warning card (heating/cooling lifestyle recommendations)
+- [ ] Task 36.6: Cognitive Energy Budgeting labels in Best Times / Explore tab (Artha/Kriya/Yoga activity suggestions)
+- [ ] Task 36.7: Tamil translations for all holistic/somatic guidance text
+
+---
+
+## Sprint 37: v2.0.0 Release Polish & Integration Testing
+
+- [ ] Task 37.1: End-to-end feature integration testing (all layers working together)
+- [ ] Task 37.2: Performance optimization (startup time, animation smoothness)
+- [ ] Task 37.3: Comprehensive smoke test plan for v2.0.0 (all features)
+- [ ] Task 37.4: User Guide refresh — complete rewrite covering all v2.0 features
+- [ ] Task 37.5: Wire Sprint 26 deferred widgets (WhatsNew startup, PresetSelector, StreakCelebration, isPinned star)
+
+---
+
+## Sprint 38: Panja Pakshi Accuracy Calibration & Validation
+
+> **Prerequisite:** User collects 7-day Align27 data (Task 38.1) + Tamil Panchangam data (Task 38.2) BEFORE sprint starts.
+
+- [ ] Task 38.1: Data Collection — capture 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Rooster/Pushya [USER TASK]
+- [ ] Task 38.2: Data Collection — capture same 7 days from Tamil Panchangam (drikpanchang.com or physical calendar) [USER TASK]
+- [ ] Task 38.3: Saranidhi Diagnostic Dump — generate matching 7-day output programmatically (bird states, sunrise/sunset, lunar phase, weekday)
+- [ ] Task 38.4: Three-Way Comparison Matrix — align Saranidhi vs Align27 vs Panchangam, identify exact divergence points
+- [ ] Task 38.5: Root Cause Diagnosis — determine if divergence is from (a) lookup tables, (b) lunar phase calculation, (c) weekday convention, (d) bird-phase swap timing
+- [ ] Task 38.6: Calibration Fix — implement correction based on diagnosis (table update / phase logic / day-start convention)
+- [ ] Task 38.7: Verification — re-run 7-day comparison after fix, confirm match with most authentic source
+- [ ] Task 38.8: Document findings in `docs/research/accuracy-calibration.md`
 
 ---
 

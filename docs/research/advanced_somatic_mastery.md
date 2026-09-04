@@ -6,6 +6,12 @@
 
 ## 1. Somatic Intervention Engine
 
+> **Status:** ✅ Implemented in Sprint 35 (v1.5.0). See `lib/features/somatic/`
+> (`domain/somatic_intervention_session.dart`, `data/somatic_intervention_repository.dart`,
+> `presentation/somatic_timer_room.dart` + widgets). The `[Clear Breath Channel]`
+> action is wired into `AlignmentResultWidget` (shown on unaligned breath entries),
+> and sessions are persisted to the `SomaticInterventionLogs` table (schema v5).
+
 The Somatic Intervention Engine handles guided, time-bound physiological protocols to help the user actively shift their breath channel (nostril dominance) when the diagnostic layer flags them as unaligned (`OracleStatus.blocked`).
 
 ### 1.1 Cross-Lateral Physiological Mapping

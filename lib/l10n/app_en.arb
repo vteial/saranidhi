@@ -738,6 +738,8 @@
   "@nostrilTestResultTitle": { "description": "Step 3 result title" },
   "nostrilTestConfirm": "Use This Flow",
   "@nostrilTestConfirm": { "description": "Confirm and use detected flow" },
+  "nostrilTestRestart": "Start over",
+  "@nostrilTestRestart": { "description": "Reset the guided nostril test to step 1" },
   "guideMeButton": "Guide me",
   "@guideMeButton": { "description": "Button to launch guided nostril test" },
 
@@ -787,6 +789,40 @@
   "@iKnowMyStar": { "description": "Segmented button: manual nakshatra selection" },
   "calculateFromDob": "Calculate from DOB",
   "@calculateFromDob": { "description": "Segmented button: auto-calculate from date of birth" },
+  "calculateFromName": "From name",
+  "@calculateFromName": { "description": "Tab: derive bird from name (vowel method)" },
+  "iKnowMyStarShort": "My star",
+  "@iKnowMyStarShort": { "description": "Short tab label for manual nakshatra selection" },
+  "calculateFromDobShort": "From DOB",
+  "@calculateFromDobShort": { "description": "Short tab label for DOB calculation" },
+  "nameMethodHint": "Enter your name — your bird is derived from the first vowel sound (traditional vowel method).",
+  "@nameMethodHint": { "description": "Hint text for name-based bird derivation" },
+  "nameMethodNote": "Note: the name method is a fallback and less precise than nakshatra or DOB.",
+  "@nameMethodNote": { "description": "Accuracy caveat for name method" },
+  "deriveBirdFromName": "Find My Bird",
+  "@deriveBirdFromName": { "description": "Button to derive bird from name" },
+  "onboardingSummaryTitle": "Review & Confirm",
+  "@onboardingSummaryTitle": { "description": "Summary step title" },
+  "onboardingSummarySubtitle": "Please review your details. Tap Edit to change anything.",
+  "@onboardingSummarySubtitle": { "description": "Summary step subtitle" },
+  "summaryName": "Name",
+  "@summaryName": { "description": "Summary row: name" },
+  "summaryBird": "Birth Bird",
+  "@summaryBird": { "description": "Summary row: bird" },
+  "summaryLocation": "Location",
+  "@summaryLocation": { "description": "Summary row: location" },
+  "summaryStorage": "Data Storage",
+  "@summaryStorage": { "description": "Summary row: storage mode" },
+  "summaryNotSet": "Not set",
+  "@summaryNotSet": { "description": "Placeholder when a field is empty" },
+  "summaryDerivedFromStar": "from birth star",
+  "@summaryDerivedFromStar": { "description": "Bird derivation source: manual nakshatra" },
+  "summaryDerivedFromDob": "from date of birth",
+  "@summaryDerivedFromDob": { "description": "Bird derivation source: DOB" },
+  "summaryDerivedFromName": "from name",
+  "@summaryDerivedFromName": { "description": "Bird derivation source: name" },
+  "editAction": "Edit",
+  "@editAction": { "description": "Edit button on summary rows" },
   "selectDate": "Select date",
   "@selectDate": { "description": "DOB date field placeholder" },
   "birthDateLabel": "Birth date",
@@ -1017,5 +1053,77 @@
   "prasanamWindowKriya": "Kriya window \u2014 favorable for action queries",
   "@prasanamWindowKriya": { "description": "Kriya window status" },
   "prasanamWindowYoga": "Yoga window \u2014 favorable for spiritual queries",
-  "@prasanamWindowYoga": { "description": "Yoga window status" }
+  "@prasanamWindowYoga": { "description": "Yoga window status" },
+
+  "birdUpdatedNotice": "Your bird has been updated to {bird} based on corrected calculations.",
+  "@birdUpdatedNotice": { "description": "One-time notice when auto-recalculation changes the birth bird", "placeholders": { "bird": { "type": "String" } } },
+
+  "locationUpdatedNotice": "Location updated to your current position. Timings refreshed.",
+  "@locationUpdatedNotice": { "description": "One-time notice when app auto-updates location on open after the user has moved" },
+
+  "onboardingIstAssumption": "IST (UTC+5:30) is assumed for all Indian births. The Moon moves ~0.5\u00B0/hour \u2014 negligible within India\u2019s timezone span vs a nakshatra\u2019s 13.33\u00B0 width.",
+  "@onboardingIstAssumption": { "description": "Info note in the DOB birth-bird path explaining the IST timezone assumption" },
+
+  "summaryIncompleteBird": "Please set your birth bird before completing setup. Tap Edit on \u201CBirth Bird\u201D to choose your star, date of birth, or name.",
+  "@summaryIncompleteBird": { "description": "Warning on the summary step when no birth bird has been determined" },
+
+  "summaryIncompleteLocation": "Please set your location before completing setup. Tap Edit on \u201CLocation\u201D to select your city.",
+  "@summaryIncompleteLocation": { "description": "Warning on the summary step when no location has been set" },
+
+  "somaticRoomTitle": "Clear Your Breath Channel",
+  "@somaticRoomTitle": { "description": "Title of the full-screen somatic intervention timer room" },
+
+  "somaticRoomHint": "Stay in position and breathe with the pacer until the timer ends.",
+  "@somaticRoomHint": { "description": "Hint below the countdown in the somatic timer room" },
+
+  "somaticSideLeft": "left",
+  "@somaticSideLeft": { "description": "Body side (left) used inside somatic instruction sentences" },
+
+  "somaticSideRight": "right",
+  "@somaticSideRight": { "description": "Body side (right) used inside somatic instruction sentences" },
+
+  "somaticInstructionPosture": "Lie on your {side} side (lateral recumbency) to open the opposite nostril.",
+  "@somaticInstructionPosture": { "description": "Posture-shift instruction", "placeholders": { "side": { "type": "String" } } },
+
+  "somaticInstructionAxillary": "Apply firm pressure under your {side} armpit to open the opposite nostril.",
+  "@somaticInstructionAxillary": { "description": "Axillary-pressure instruction", "placeholders": { "side": { "type": "String" } } },
+
+  "somaticSuccessNotice": "Breath channel cleared — your nostril flow now matches the target.",
+  "@somaticSuccessNotice": { "description": "Shown when the post-intervention flow matches the target" },
+
+  "somaticRetryNotice": "Flow not shifted yet. You can rest and try another protocol.",
+  "@somaticRetryNotice": { "description": "Shown when the post-intervention flow does not match the target" },
+
+  "pacerInhale": "Inhale",
+  "@pacerInhale": { "description": "Sama Vritti pacer phase label — inhale" },
+
+  "pacerHold": "Hold",
+  "@pacerHold": { "description": "Sama Vritti pacer phase label — hold" },
+
+  "pacerExhale": "Exhale",
+  "@pacerExhale": { "description": "Sama Vritti pacer phase label — exhale" },
+
+  "clearBreathChannel": "Clear Breath Channel",
+  "@clearBreathChannel": { "description": "Action button shown when a breath entry is unaligned, opening the somatic intervention selector" },
+
+  "somaticSelectorTitle": "Shift Your Breath Channel",
+  "@somaticSelectorTitle": { "description": "Title of the intervention protocol selector bottom sheet" },
+
+  "somaticSelectorSubtitle": "Choose a guided protocol to gently move your nostril flow toward the aligned state.",
+  "@somaticSelectorSubtitle": { "description": "Subtitle of the intervention protocol selector" },
+
+  "somaticProtocolPosture": "Posture Shift",
+  "@somaticProtocolPosture": { "description": "Name of the lateral-recumbency intervention protocol" },
+
+  "somaticProtocolPostureDesc": "Lie on one side (lateral recumbency) to open the opposite nostril.",
+  "@somaticProtocolPostureDesc": { "description": "Description of the posture-shift protocol" },
+
+  "somaticProtocolAxillary": "Axillary Pressure",
+  "@somaticProtocolAxillary": { "description": "Name of the axillary-pressure intervention protocol" },
+
+  "somaticProtocolAxillaryDesc": "Apply pressure under the opposite armpit (Yoga Danda technique).",
+  "@somaticProtocolAxillaryDesc": { "description": "Description of the axillary-pressure protocol" },
+
+  "somaticMinutes": "{minutes} min",
+  "@somaticMinutes": { "description": "Duration label in minutes for an intervention protocol", "placeholders": { "minutes": { "type": "int" } } }
 }
