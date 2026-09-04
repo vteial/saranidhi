@@ -2,7 +2,8 @@
 
 **Release:** v1.5.0-web (**bundled**: Sprint 34 — Migration + Onboarding UX Polish, and Sprint 35 — Somatic Intervention Engine)
 **Date:** 2026-09-05 (release-start)
-**Tester:** Eialarasu + Kiro
+**Tester:** Eialarasu + Kiro + Antigravity (QA)
+**Shipping Commit:** `969bb4f` (re-verified post-QA compile fix `55e33b5` + lint fix `969bb4f`)
 **Device/Browser:** Desktop browser + mobile
 **URL:** https://saranidhi-staging.vercel.app (staging) — verify version reads **1.5.0** on the release branch build
 
@@ -84,12 +85,12 @@
 
 | # | Scenario | Steps | Expected | Result |
 |---|----------|-------|----------|--------|
-| J1 | Clear Breath Channel action appears | Journal → log an **unaligned** breath (flow ≠ expected, not Sushumna) | Alignment card shows a **Clear Breath Channel** button | ✅ Pass |
+| J1 | Clear Breath Channel action appears | Journal → log an **unaligned** breath (flow ≠ expected, not Sushumna) | Alignment card shows a **Clear Breath Channel** button | ✅ Pass (re-confirmed on `969bb4f`) |
 | J2 | Not shown when aligned / Sushumna | Log an aligned entry, and a Sushumna entry | No Clear Breath Channel button | ✅ Pass |
-| J3 | Selector offers two protocols | Tap Clear Breath Channel | Bottom sheet: Posture Shift (3 min) + Axillary Pressure (5 min) | ✅ Pass |
-| J4 | Timer room — posture | Select Posture Shift | Full-screen room; correct **contralateral** instruction (target left → lie on right side, etc.); pacer animates; 3:00 countdown | ✅ Pass |
-| J5 | Timer room — axillary | Select Axillary Pressure | 5:00 countdown; instruction "opposite armpit" | ✅ Pass |
-| J6 | Validation + log on completion | Let timer finish → nostril test → log result | Auto nostril test launches; success/retry SnackBar; session written to DB (see H3) | ✅ Pass |
+| J3 | Selector offers two protocols | Tap Clear Breath Channel | Bottom sheet: Posture Shift (3 min) + Axillary Pressure (5 min) | ✅ Pass (re-confirmed on `969bb4f`) |
+| J4 | Timer room — posture | Select Posture Shift | Full-screen room; correct **contralateral** instruction (target left → lie on right side, etc.); pacer animates; 3:00 countdown; bottom nav bar hidden | ✅ Pass (re-confirmed on `969bb4f`) |
+| J5 | Timer room — axillary | Select Axillary Pressure | 5:00 countdown; instruction "opposite armpit"; bottom nav bar hidden | ✅ Pass (re-confirmed on `969bb4f`) |
+| J6 | Validation + log on completion | Let timer finish → nostril test → log result | Auto nostril test launches; success/retry SnackBar; session written to DB; returns cleanly with bottom nav restored | ✅ Pass (re-confirmed on `969bb4f`) |
 
 ### K. Sama Vritti Pacer (Task 35.4) — (2 scenarios)
 
@@ -110,7 +111,7 @@
 | # | Scenario | Steps | Expected | Result |
 |---|----------|-------|----------|--------|
 | M1 | All somatic UI localized | Tamil mode through the whole flow | Selector, instruction, room title/hint, success/retry all Tamil | ✅ Pass |
-| M2 | Cancel mid-timer | Open room → tap close | Returns without logging a success | ✅ Pass |
+| M2 | Cancel mid-timer | Open room → tap close | Returns cleanly without logging a success; bottom nav restored | ✅ Pass (re-confirmed on `969bb4f`) |
 
 ---
 
@@ -148,7 +149,7 @@
 
 **CRITICAL gates before `/release-start`:**
 - [x] H1 (upgrade migration) + H2 (fresh install) pass
-- [x] J1–J6 (intervention end-to-end) pass
+- [x] J1–J6 (intervention end-to-end) pass (re-confirmed on `969bb4f`)
 - [x] N5 shows version 1.5.0
 
 **Release decision:**
