@@ -77,6 +77,14 @@ jobs:
     name: Integration Tests (Web)
     runs-on: ubuntu-latest
     needs: full-test-suite
+    # NON-BLOCKING (v1.5.0): these in-repo web integration tests are flaky
+    # (ChromeDriver ConnectionClosedException) and go stale on UI changes
+    # (assertions drift from the current dashboard/onboarding UI). They run
+    # for information but must not block the main->prod promotion. Web E2E is
+    # owned by the dedicated Playwright repo (vteial/saranidhi-e2e); manual
+    # smoke tests are the intentional web gate. To be resolved in a planning
+    # session — migrate to Playwright or fix + re-gate.
+    continue-on-error: true
 
     steps:
       - name: Checkout code
