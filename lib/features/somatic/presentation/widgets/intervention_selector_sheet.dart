@@ -54,7 +54,8 @@ class InterventionSelectorSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [\n          Text(
+        children: [
+          Text(
             l10n.somaticSelectorTitle,
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
