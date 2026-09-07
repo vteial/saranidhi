@@ -149,7 +149,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-[Unreleased]: https://github.com/vteial/saranidhi/compare/v1.2.0-web...main
+[Unreleased]: https://github.com/vteial/saranidhi/compare/v1.6.0-web...main
+[1.6.0-web]: https://github.com/vteial/saranidhi/compare/v1.5.0-web...v1.6.0-web
+[1.5.0-web]: https://github.com/vteial/saranidhi/compare/v1.4.2-web...v1.5.0-web
 [1.2.0-web]: https://github.com/vteial/saranidhi/compare/v1.1.0-web...v1.2.0-web
 [1.1.0-web]: https://github.com/vteial/saranidhi/compare/v1.0.0-web...v1.1.0-web
 [1.0.0-web]: https://github.com/vteial/saranidhi/releases/tag/v1.0.0-web
