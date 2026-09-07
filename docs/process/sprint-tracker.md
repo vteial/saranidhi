@@ -27,14 +27,14 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 33 | Panja Pakshi Accuracy Fix (dual-table birth bird) | v1.4.1 | ✅ |
 | 34 | Migration + Onboarding UX Polish | *(bundled)* | ✅ |
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
-| 36 | Stability & Test Hardening | **v1.6.0** | ✅ (PR #141) |
+| 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** v1.5.0-web live in production (2026-09-04). **Sprint 36
-> (Stability & Test Hardening → v1.6.0) is complete** in PR #141 (CI Fast green:
-> Analyze/Tier 1 tests 403 passing/Build) and **awaiting owner merge to `main`**;
-> the v1.6.0 release then proceeds via `/release-start`. Further work is selected
-> from the [Sprint Backlog](sprint-backlog.md) during `/plan`.
+> **Current state:** **v1.6.0-web is now live in production (2026-09-07)**, tag
+> `v1.6.0-web`. Sprint 36 (Stability & Test Hardening) shipped via PR #141 (with
+> CI hotfixes #142/#143 and release PRs #144 release-start + #145 main→prod).
+> Further work is selected from the [Sprint Backlog](sprint-backlog.md) during
+> `/plan`.
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -589,7 +589,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] Task 35.9: Unit tests (SomaticInterventionSession domain) + user-guide.md feature section + spec status update
 
 ---
-## Sprint 36: Stability & Test Hardening (v1.6.0) — ✅ Complete (PR #141, awaiting merge)
+## Sprint 36: Stability & Test Hardening (v1.6.0) — ✅ Shipped v1.6.0-web (PR #141)
 
 > **Goal:** pay down the CI/testing debt exposed during the v1.5.0 release before
 > adding new features — so the product and its quality signals are trustworthy.
@@ -604,13 +604,13 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [ ] Task 36.7: **Housekeeping** — backfill the missing `v1.4.1-web` git tag. → **prepared for owner** (tag `v1.4.1-web` @ `bc959c0`); Kiro does not create tags.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** - on `main` (PR #141). _(owner/orchestrator - Kiro cannot merge)_
+- [x] **Code merged** - on `main` (PR #141). _(owner/orchestrator - Kiro cannot merge)_
 - [x] **PR link** - [#141](https://github.com/vteial/saranidhi/pull/141) (CI Fast green: Analyze / Tier 1 tests 403 passing / Build web; full-suite coverage 18→19 + re-gated integration tests validated on merge-to-main / prod promotion). _(owner/orchestrator)_
 - [x] **Docs updated** - dev-workflow Lessons/Gotchas (DB migration existence-check helper, integration-test fix + re-gate), any relevant docs.
 - [x] **Tests** - full suite intended green; skipped navigation test un-skipped; new migration-helper + auto-recalc + somatic-UI tests added (CI is the authoritative gate).
 - [x] **Smoke test** - verification scenarios added to `smoke-test-v1.6.0.md` (existing-profile upgrade auto-recalc + onboarding geolocation-first + migration idempotency + regression).
 - [x] **Valuation report** - Sprint 36 row added (+20% over AI-estimated time).
-- [ ] **Tracker updated** - status ✅. _(owner/orchestrator - flips only on merge)_
+- [x] **Tracker updated** - status ✅. _(owner/orchestrator - flips only on merge)_
 - [x] **User Guide** - `n/a`: internal hardening sprint with no user-facing capability change, so there is nothing new to document for end users (per the epic-boundary rule).
 
 > **Epic-boundary rule:** internal hardening sprint — User Guide update is `n/a`
