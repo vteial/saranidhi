@@ -603,16 +603,32 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [ ] Task 36.7: **Housekeeping** — backfill the missing `v1.4.1-web` git tag.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N).
-- [ ] **PR link** — #N (CI green: Analyze/Fast Tests/Build; integration tests green + re-gated).
-- [ ] **Docs updated** — dev-workflow Lessons/Gotchas (migration helper, integration-test fix), any relevant docs.
-- [ ] **Tests** — full suite green; skipped test un-skipped; new migration-helper + auto-recalc + somatic-UI tests added.
-- [ ] **Smoke test** — verification scenarios added to `smoke-test-v1.6.0.md` (esp. existing-profile upgrade + onboarding geolocation).
-- [ ] **Valuation report** — Sprint 36 row (+20% over AI-estimated time).
-- [ ] **Tracker updated** — status ✅.
+- [ ] **Code merged** - on `main` (PR #N). _(owner/orchestrator - Kiro cannot merge)_
+- [ ] **PR link** - #N (CI green: Analyze/Fast Tests/Build; integration tests green + re-gated). _(owner/orchestrator)_
+- [x] **Docs updated** - dev-workflow Lessons/Gotchas (DB migration existence-check helper, integration-test fix + re-gate), any relevant docs.
+- [x] **Tests** - full suite intended green; skipped navigation test un-skipped; new migration-helper + auto-recalc + somatic-UI tests added (CI is the authoritative gate).
+- [x] **Smoke test** - verification scenarios added to `smoke-test-v1.6.0.md` (existing-profile upgrade auto-recalc + onboarding geolocation-first + migration idempotency + regression).
+- [x] **Valuation report** - Sprint 36 row added (+20% over AI-estimated time).
+- [ ] **Tracker updated** - status ✅. _(owner/orchestrator - flips only on merge)_
+- [x] **User Guide** - `n/a`: internal hardening sprint with no user-facing capability change, so there is nothing new to document for end users (per the epic-boundary rule).
 
 > **Epic-boundary rule:** internal hardening sprint — User Guide update is `n/a`
-> (no user-facing capability change); note that reasoning at finish.
+> (no user-facing capability change); reasoning noted in the checklist above.
+
+> **Housekeeping - v1.4.1-web tag backfill (owner action):** the `v1.4.1-web`
+> GitHub Release/tag is missing. It should point at commit
+> `bc959c0ca2c69c427ae88f6f9c71762a66315083` ("release: v1.4.1-web production
+> deployment", PR #128 `main`→`prod`, on `origin/prod`), analogous to
+> `v1.4.0-web` pointing at the v1.4.0 `main`→`prod` merge (PR #123). **Kiro must
+> NOT create tags**; this is owner-only. Reference commands for the owner:
+>
+> ```bash
+> git tag v1.4.1-web bc959c0
+> git push origin v1.4.1-web
+> ```
+>
+> Or via the GitHub Release UI: **Tag** `v1.4.1-web`, **Target** `prod` @
+> `bc959c0`.
 
 ---
 

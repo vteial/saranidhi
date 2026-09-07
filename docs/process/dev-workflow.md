@@ -444,6 +444,22 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 **Rule:** The `/release-start` protocol MUST bump `version:` in `pubspec.yaml` as the **first step** on the release branch (before smoke test). This ensures the version is correct in staging preview testing AND production. Never ship a release where `pubspec.yaml` doesn't match the release tag.
 
+### DB Migration Existence-Check Helper (Sprint 36)
+
+**Problem:** Each `onUpgrade` step hand-rolled its own existence check (a raw `PRAGMA table_info()` loop for columns, a `sqlite_master` query for tables) before running `addColumn`/`createTable`. The checks drifted apart in style, were easy to omit, and an omitted guard re-introduces the v1.2.1 "duplicate column name" failure class whenever a migration re-runs on a DB that already has the object.
+
+**Rule:** Use the shared helpers in `lib/database/migration_helpers.dart` - `tableExists(migrator, name)` (backed by `sqlite_master`) and `columnExists(migrator, table, column)` (backed by `PRAGMA table_info`) - for every existence check in `onUpgrade`. The `from < 3` (is_pinned column), `from < 4` (prasanam_history table), and `from < 5` (somatic_intervention_logs table) steps in `app_database.dart` are refactored onto them; new migrations MUST guard through the same helpers rather than adding ad-hoc `PRAGMA`/`sqlite_master` code. The helpers are unit-tested against an in-memory Drift DB (`test/database/migration_helpers_test.dart`), so the guard behavior itself is covered.
+
+### Integration Test Fix + Re-gate (Sprint 36)
+
+**Problem:** The web integration job (`ci-full.yml`) started ChromeDriver on `:4444` with a bare `sleep 2` before running `flutter drive`, and the intermittent `ConnectionClosedException` on onboarding launch was a ChromeDriver startup/readiness race, not a real app failure. The job carried `continue-on-error: true`, so `Integration Tests (Web)` was not actually gating. Test assertions had also drifted from the current UI (asserting async card content such as `"Last 7 Days"` / `"3 days"` that only appears after a provider resolves).
+
+**Rules:**
+- Replace the bare `sleep` with a bounded ChromeDriver readiness poll: `curl` `localhost:4444/status` in a short loop (up to ~30s) and only proceed once it reports ready. This removes the startup race behind `ConnectionClosedException`.
+- Keep integration/widget assertions in sync with the current UI, and assert on **stable app-shell elements** that are always present (`"Saranidhi"`, `"Today"`, `"Explore"`) rather than async card content that depends on a provider having resolved.
+- **NEVER** use `pumpAndSettle()` with stream-based provider overrides - it times out because the stream keeps the scheduler active. Use `pump()` + `pump(Duration(seconds: 1))` for navigation steps (see the widget-test gotcha above).
+- `continue-on-error` was removed from the integration-test job, so `Integration Tests (Web)` is a real, trustworthy gate again. Do not re-add it to paper over a flake; fix the underlying readiness/assertion issue instead.
+
 ---
 
 [← Back to Root](../../README.md)
