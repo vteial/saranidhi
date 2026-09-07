@@ -460,6 +460,12 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - **NEVER** use `pumpAndSettle()` with stream-based provider overrides - it times out because the stream keeps the scheduler active. Use `pump()` + `pump(Duration(seconds: 1))` for navigation steps (see the widget-test gotcha above).
 - `continue-on-error` was removed from the integration-test job, so `Integration Tests (Web)` is a real, trustworthy gate again. Do not re-add it to paper over a flake; fix the underlying readiness/assertion issue instead.
 
+### Alignment Tests Must Derive Expected Flow From NostrilPattern (Sprint 36)
+
+**Problem:** Three `alignment_checker_test.dart` tests hardcoded a Solar/Lunar `expectedFlow` for a fixed date (April 2, 2025) and were date-dependent flaky. `AlignmentChecker.check` computes `expectedFlow` via `NostrilPattern.expectedFlowForYama(yama)` with NO date argument, so `NostrilPattern` falls back to `DateTime.now()`. The test's `time` argument only selects sunrise/sunset and which yama the clock lands in; it does not drive `expectedFlow`. The hardcoded expectations only held when the CI run date's tithi started Solar, so the suite failed on runs whose current tithi started Lunar. Choosing a different fixed date does not help because the fixed date has zero effect on `expectedFlow`.
+
+**Rule:** Alignment tests MUST derive their expected flow from `NostrilPattern.expectedFlowForYama(...)` called the same way production does (no date argument), then assert the relationship (aligned when actual matches, mis-aligned when actual is the opposite, and Yama 2 always the opposite of Yama 1). Never hardcode `BreathFlow.solar`/`BreathFlow.lunar` as the expected value for a fixed calendar date.
+
 ---
 
 [← Back to Root](../../README.md)
