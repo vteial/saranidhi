@@ -270,10 +270,13 @@ This framework describes the **collaboration model**. It cross-links to — and 
 | Doc | Owns |
 | :--- | :--- |
 | `AI_COLLABORATION_FRAMEWORK.md` (this doc) | Roles, handoffs, lifecycle, gates |
-| `docs/dev-workflow.md` | Protocol commands (`/plan`, `/sprint-*`, `/release-*`), branching, CI details, Lessons/Gotchas |
-| `docs/sprint-tracker.md` | Sprint status, task lists, release milestones |
-| `docs/smoke-test-*.md` + `docs/smoke-test-results.md` | Per-release test plans + results index |
+| `docs/README.md` | Documentation index / map (all docs by context) |
+| `docs/process/dev-workflow.md` | Protocol commands (`/plan`, `/sprint-*`, `/release-*`), branching, CI details, Lessons/Gotchas |
+| `docs/process/sprint-tracker.md` | Delivered + in-progress sprints, overview table, Definition of Done |
+| `docs/process/sprint-backlog.md` | Candidate/future work, epics, open decisions, ideas |
+| `docs/testing/releases/smoke-test-*.md` + `docs/testing/smoke-test-results.md` | Per-release test plans + results index |
 | `CHANGELOG.md` | Released version history |
 
-> **Freshness rule:** when a protocol or gate changes, update `docs/dev-workflow.md`
-> **and** this framework in the **same PR** so they never drift.
+> **Freshness rule:** when a protocol or gate changes, update
+> `docs/process/dev-workflow.md` **and** this framework in the **same PR** so they
+> never drift.

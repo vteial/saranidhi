@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Third-Party Comparison & Sources
 
@@ -77,4 +77,4 @@ visual cross-reference during the 6-month validation period. It showed
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

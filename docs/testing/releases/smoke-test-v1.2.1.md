@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../../README.md)
 
 # Smoke Test — v1.2.1-web
 
@@ -85,4 +85,4 @@ Tester: Eialarasu | Date: 2026-07-10
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../../README.md)

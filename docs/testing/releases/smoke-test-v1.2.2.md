@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../../README.md)
 
 # Smoke Test Plan — v1.2.2-web
 
@@ -78,4 +78,4 @@ Tester: Eialarasu | Date: 2026-07-11
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../../README.md)

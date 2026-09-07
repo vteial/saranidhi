@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — User Guide
 
@@ -236,4 +236,4 @@ The science of planetary hours, dividing each day and night into 24 segments, ea
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
