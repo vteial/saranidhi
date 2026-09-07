@@ -13,7 +13,10 @@ void main() {
       tester,
     ) async {
       await tester.pumpWidget(const ProviderScope(child: SaranidhiApp()));
-      await tester.pumpAndSettle();
+      // Stream-based providers never quiesce, so pumpAndSettle would time out.
+      // Pump once to build, then advance a frame for async init to surface.
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
       // First launch should show intro screen (pre-onboarding)
       expect(find.text('The Treasure House of Breath'), findsOneWidget);
@@ -29,16 +32,22 @@ void main() {
           child: const SaranidhiApp(),
         ),
       );
-      await tester.pumpAndSettle();
+      // Only onboardingCompleteProvider is overridden here, so the real
+      // dashboardDataProvider runs against an empty DB. Use pump() (not
+      // pumpAndSettle) and assert only on stable, always-present shell UI —
+      // never on async-loaded card content like the 7-day ribbon.
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
-      expect(find.text('Saranidhi'), findsOneWidget);
-      expect(find.text('Today'), findsOneWidget);
-      expect(find.text('Explore'), findsOneWidget);
-      expect(find.text('Last 7 Days'), findsOneWidget);
+      expect(find.text('Saranidhi'), findsOneWidget); // l10n.dashboardTitle
+      expect(find.text('Today'), findsOneWidget); // l10n.todayTab
+      expect(find.text('Explore'), findsOneWidget); // l10n.exploreTab
     });
 
-    // TODO(sprint-28): Fix navigation integration test — same stream settling
-    // issue as widget_test.dart. Skipped to unblock prod deployment.
+    // Sprint 36 (Task 36.1): un-skipped after fixing the stream-settling issue.
+    // Uses pump() + pump(Duration(seconds:1)) for every navigation step (never
+    // pumpAndSettle, which times out on the app's active stream providers) and
+    // asserts on stable shell/screen titles rather than async card content.
     testWidgets('Navigation between all tabs works', (tester) async {
       await tester.pumpWidget(
         ProviderScope(
@@ -48,27 +57,32 @@ void main() {
           child: const SaranidhiApp(),
         ),
       );
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
       // Navigate to Journal
       await tester.tap(find.text('Journal'));
-      await tester.pumpAndSettle();
-      expect(find.text('Breath Journal'), findsOneWidget);
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
+      expect(find.text('Breath Journal'), findsOneWidget); // l10n.breathJournalTitle
 
       // Navigate to Settings via gear icon
       await tester.tap(find.byIcon(Icons.settings_outlined));
-      await tester.pumpAndSettle();
-      expect(find.text('Settings'), findsOneWidget);
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
+      expect(find.text('Settings'), findsOneWidget); // l10n.settingsTitle
 
       // Go back from Settings
       await tester.tap(find.byType(BackButton).first);
-      await tester.pumpAndSettle();
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
 
-      // Navigate back to Home
+      // Navigate back to Home and assert on the stable app bar title.
       await tester.tap(find.text('Home'));
-      await tester.pumpAndSettle();
-      expect(find.text('Saranidhi'), findsOneWidget);
-    }, skip: true);
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
+      expect(find.text('Saranidhi'), findsOneWidget); // l10n.dashboardTitle
+    });
   });
 }
 
