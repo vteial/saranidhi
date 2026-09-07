@@ -1,6 +1,6 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
-# Saranidhi — Release Plan (Revised July 2026)
+# Saranidhi — Release Plan (Revised September 2026)
 
 ## Release Vision
 
@@ -12,13 +12,20 @@ Saranidhi aims to be a **daily-use spiritual breath companion** that provides ge
 
 | Milestone | Status |
 |-----------|--------|
-| Web production (v1.2.0-web) | ✅ Live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| Web production (**v1.5.0-web**) | ✅ Live at [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | Staging environment | ✅ Live at [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| Core Pakshi engine (day + night) | ✅ Authentic 2D tables + Hora + Tattva |
-| Full Tamil + English | ✅ 200+ ARB keys |
-| Smoke test passed | ✅ 62 scenarios (v1.2.0) |
-| 27 sprints delivered | ✅ 76 PRs merged |
+| Core Pakshi engine (day + night, dual-table birth bird) | ✅ Authentic 2D tables + Hora + Tattva + Action Windows + Prasanam Oracle |
+| Somatic Intervention Engine | ✅ Clear Breath Channel + guided protocols (Sprint 35) |
+| Full Tamil + English | ✅ 250+ ARB keys |
+| **35 sprints delivered** | ✅ ~138 PRs merged |
 | Production safety gate | ✅ `prod` branch + `/release-start/finish/update` protocol |
+
+> **Delivered since this plan's original phases:** v1.3.0 (Action Windows,
+> Sprints 28–29), v1.4.0 (Numerology + Prasanam Oracle, Sprints 30–32), v1.4.1
+> (Panja Pakshi accuracy fix, Sprint 33), **v1.5.0** (Onboarding UX + Somatic
+> Intervention Engine, Sprints 34–35). Future work (Sprint 36 Chronobiology,
+> 37 v2.0 Polish, 38 Accuracy Calibration, E2E, App Store) lives in the
+> [Sprint Backlog](../process/sprint-backlog.md).
 
 ---
 
@@ -139,4 +146,4 @@ Saranidhi aims to be a **daily-use spiritual breath companion** that provides ge
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Production Deployment Guide
 
@@ -160,4 +160,4 @@ Vercel's built-in analytics are privacy-friendly — no cookies, no personal dat
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

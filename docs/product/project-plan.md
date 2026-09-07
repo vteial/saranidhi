@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Master Project Plan & Architectural Blueprint
 
@@ -518,4 +518,4 @@ flutter build apk --release    → Upload to Play Store (manual, Sprint X)
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

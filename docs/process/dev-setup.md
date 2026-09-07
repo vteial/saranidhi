@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Local Development Environment Setup (macOS)
 
@@ -189,7 +189,7 @@ After Xcode CloudKit setup:
 4. Tap "Sync Now"
 5. Check [CloudKit Dashboard](https://icloud.developer.apple.com/) → Private DB
 
-See [docs/icloud-sync-testing.md](icloud-sync-testing.md) for full multi-device testing scenarios.
+See [docs/icloud-sync-testing.md](../deployment/icloud-sync-testing.md) for full multi-device testing scenarios.
 
 ---
 
@@ -219,4 +219,4 @@ For CloudKit sync (Sprint 16) and App Store submission (Sprint X):
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

@@ -1,6 +1,63 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Development Sprint Tracker
+
+Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
+live here; **candidate / future** work lives in the
+[Sprint Backlog](sprint-backlog.md). Each sprint carries a **Delivery Checklist
+(Definition of Done)** — see the template below.
+
+> Legend: ✅ Done · 🔄 In progress · ⬜ Not started · 🚀 Released
+
+---
+
+## Sprint Overview
+
+Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
+
+| Sprint | Theme | Release | Status |
+| :-- | :-- | :-- | :--: |
+| 0 | Pre-Development & Project Init | — | ✅ |
+| 1–13 | Scaffold → Core Pakshi engine → Web production | v1.0.0-web | ✅ |
+| 14–19 | Daily value, multi-device (iCloud), engagement, analytics | v1.1–v1.2 | ✅ |
+| 20–27 | Home redesign, Sara Kalai accuracy, polish, Sushumna/Hora/Tattva | v1.2.x | ✅ |
+| 28–29 | Layer 2 — Action Windows engine + UI | v1.3.0 | ✅ |
+| 30–32 | Numerology + Prasanam Oracle | v1.4.0 | ✅ |
+| 33 | Panja Pakshi Accuracy Fix (dual-table birth bird) | v1.4.1 | ✅ |
+| 34 | Migration + Onboarding UX Polish | *(bundled)* | ✅ |
+| 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
+| 36+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+
+> **Current state:** v1.5.0-web live in production (2026-09-04); no sprint in
+> progress. Next work is selected from the [Sprint Backlog](sprint-backlog.md)
+> during `/plan`.
+
+> **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
+> workflow and were merged via a mix of direct commits and early PRs; a clean
+> PR-per-sprint mapping does not exist for them. Recorded honestly rather than
+> back-filled.
+
+---
+
+## Delivery Checklist (Definition of Done)
+
+Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
+
+```markdown
+**Delivery Checklist:**
+- [ ] **Code merged** — on `main` (PR #N).
+- [ ] **PR link** — #N (CI green: Analyze/Fast Tests/Build).
+- [ ] **Docs updated** — user-guide / calc-methodology / relevant docs.
+- [ ] **Tests** — unit/widget suite green; new tests for new logic.
+- [ ] **Smoke test** — scenarios added to the next `smoke-test-v*.md`.
+- [ ] **Valuation report** — sprint row added (+20% over AI-estimated time).
+- [ ] **Tracker updated** — status ✅.
+```
+
+> **Epic-boundary rule:** stakeholder-facing docs (User Guide, valuation) are
+> updated when a sprint delivers a real capability shift; internal-only sprints
+> mark them `n/a` with a one-line reason.
 
 ---
 
@@ -529,68 +586,13 @@
 - [x] Task 35.9: Unit tests (SomaticInterventionSession domain) + user-guide.md feature section + spec status update
 
 ---
+## Future Sprints
 
-## Sprint 36: Chronobiology Analytics + Holistic Cards (next release — version TBD)
-
-> **Note:** originally planned to ship inside v1.5.0 alongside Sprint 35, but the
-> v1.5.0 batching decision shipped Sprint 34 + 35 only. Sprint 36 now targets the
-> next release — confirm version (v1.5.1 vs v1.6.0) in the planning session.
-
-- [ ] Task 36.1: ChronobiologyAnalytics — time-weighted sliding window stagnancy detection (≥6h mild, ≥8h chronic)
-- [ ] Task 36.2: Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on Kriya Focus Card
-- [ ] Task 36.3: Tattva-Somatic Temperature Regulation tips (Sheetali for excess fire, Surya Bhedana for cold)
-- [ ] Task 36.4: Swara Pada Gamana waking advice in morning summary notification
-- [ ] Task 36.5: Dashboard stagnancy warning card (heating/cooling lifestyle recommendations)
-- [ ] Task 36.6: Cognitive Energy Budgeting labels in Best Times / Explore tab (Artha/Kriya/Yoga activity suggestions)
-- [ ] Task 36.7: Tamil translations for all holistic/somatic guidance text
+Future and candidate sprints (36 Chronobiology, 37 v2.0 Polish, 38 Accuracy
+Calibration, E2E Automation, App Store Prep) now live in the
+**[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate back
+into this tracker (with a Delivery Checklist) when scheduled via `/plan`.
 
 ---
 
-## Sprint 37: v2.0.0 Release Polish & Integration Testing
-
-- [ ] Task 37.1: End-to-end feature integration testing (all layers working together)
-- [ ] Task 37.2: Performance optimization (startup time, animation smoothness)
-- [ ] Task 37.3: Comprehensive smoke test plan for v2.0.0 (all features)
-- [ ] Task 37.4: User Guide refresh — complete rewrite covering all v2.0 features
-- [ ] Task 37.5: Wire Sprint 26 deferred widgets (WhatsNew startup, PresetSelector, StreakCelebration, isPinned star)
-
----
-
-## Sprint 38: Panja Pakshi Accuracy Calibration & Validation
-
-> **Prerequisite:** User collects 7-day Align27 data (Task 38.1) + Tamil Panchangam data (Task 38.2) BEFORE sprint starts.
-
-- [ ] Task 38.1: Data Collection — capture 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Rooster/Pushya [USER TASK]
-- [ ] Task 38.2: Data Collection — capture same 7 days from Tamil Panchangam (drikpanchang.com or physical calendar) [USER TASK]
-- [ ] Task 38.3: Saranidhi Diagnostic Dump — generate matching 7-day output programmatically (bird states, sunrise/sunset, lunar phase, weekday)
-- [ ] Task 38.4: Three-Way Comparison Matrix — align Saranidhi vs Align27 vs Panchangam, identify exact divergence points
-- [ ] Task 38.5: Root Cause Diagnosis — determine if divergence is from (a) lookup tables, (b) lunar phase calculation, (c) weekday convention, (d) bird-phase swap timing
-- [ ] Task 38.6: Calibration Fix — implement correction based on diagnosis (table update / phase logic / day-start convention)
-- [ ] Task 38.7: Verification — re-run 7-day comparison after fix, confirm match with most authentic source
-- [ ] Task 38.8: Document findings in `docs/research/accuracy-calibration.md`
-
----
-
-## Sprint E2E: Automated End-to-End Testing (Backlog — based on time & situation)
-
-- [ ] Task E2E.1: Set up Playwright (or equivalent) for Flutter Web E2E tests
-- [ ] Task E2E.2: Automate critical path scenarios from smoke test (onboarding, log entry, streak)
-- [ ] Task E2E.3: Integrate E2E tests into CI (run on merge to main)
-- [ ] Task E2E.4: Visual regression snapshots for key screens
-
----
-
-## Sprint X: App Store Prep & Submission (Deferred — Target ~Aug/Sep 2026)
-
-- [ ] Task X.1: Set up Apple Developer + Google Play accounts
-- [ ] Task X.2: App icon variants for all required sizes (iOS, macOS, Android adaptive)
-- [ ] Task X.3: Splash/launch screen with branding (replace default white)
-- [ ] Task X.4: Store screenshots generation guide (key screens in light+dark, EN+TA)
-- [ ] Task X.5: Update `docs/store-listing.md` with final copy (EN + TA descriptions)
-- [ ] Task X.6: Build release iOS + macOS + Android apps
-- [ ] Task X.7: Submit for review
-- [ ] Task X.8: Verify live + tag v1.0.0-mobile
-
----
-
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Offline Functionality Verification (Sprint 10)
 
@@ -74,4 +74,4 @@ Saranidhi is designed as a **local-first, offline-capable** application. All cor
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

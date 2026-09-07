@@ -6,7 +6,7 @@ Thank you for your interest in contributing to Saranidhi!
 
 ## Development Setup
 
-See [docs/dev-setup.md](docs/dev-setup.md) for full environment setup instructions (macOS).
+See [docs/dev-setup.md](docs/process/dev-setup.md) for full environment setup instructions (macOS).
 
 **Quick start:**
 ```bash
@@ -70,7 +70,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 1. Ensure `flutter analyze --fatal-infos` passes (zero issues)
 2. Ensure `flutter test` passes (all green)
 3. Ensure `flutter build web` compiles
-4. Update `docs/sprint-tracker.md` if completing a sprint task
+4. Update `docs/process/sprint-tracker.md` if completing a sprint task
 5. PR description should include: what changed, how to verify, any blockers
 6. Wait for CI to pass + Vercel preview to deploy
 7. Verify visually on Vercel preview URL before requesting merge
