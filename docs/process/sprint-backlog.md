@@ -37,46 +37,49 @@ Small, ready-to-pick items surfaced during the v1.5.0 cycle:
   heatmap, or a shareable summary report); (2) move CSV to Settings alongside
   JSON; or (3) keep as-is. *(Owner-raised; CSV = human-readable/journal-only vs
   JSON = full machine backup — weigh before removing.)*
-- ⬜ **Geolocation-first onboarding (Task 34.8).** On web, try browser geolocation
-  first on the Location step, with the city picker as fallback; keep the >5 km
-  auto-update silent. Mobile/desktop keep the picker as source of truth.
-- ⬜ **Auto-recalc deep verify (Sprint 34.1).** Existing-profile upgrade path for
-  the on-load birth-bird recalculation still owed a proper verification.
+- 🔄 **Geolocation-first onboarding (Task 34.8).** Scheduled into **Sprint 36.6**.
+- 🔄 **Auto-recalc deep verify (Sprint 34.1).** Scheduled into **Sprint 36.4**.
 
 ---
 
 ## Planned Sprints
 
-### Sprint 36 — Chronobiology Analytics + Holistic Cards
-> Version TBD (v1.5.1 vs v1.6.0 — see Open Decisions). Spec:
-> [`research/advanced_somatic_mastery.md`](../research/advanced_somatic_mastery.md) §2.
+> **Sprint 36 (Stability & Test Hardening, v1.6.0) is now scheduled** — see the
+> [Sprint Tracker](sprint-tracker.md). The Chronobiology feature work that was
+> formerly Sprint 36 has shifted to **Sprint 37** below (and downstream sprints
+> renumbered accordingly).
 
-- ⬜ 36.1: ChronobiologyAnalytics — time-weighted sliding-window stagnancy detection (≥6h mild, ≥8h chronic)
-- ⬜ 36.2: Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on the Kriya Focus Card
-- ⬜ 36.3: Tattva-Somatic temperature-regulation tips (Sheetali for excess fire, Surya Bhedana for cold)
-- ⬜ 36.4: Swara Pada Gamana waking advice in the morning summary notification
-- ⬜ 36.5: Dashboard stagnancy warning card (heating/cooling lifestyle recommendations)
-- ⬜ 36.6: Cognitive Energy Budgeting labels in Best Times / Explore (Artha/Kriya/Yoga suggestions)
-- ⬜ 36.7: Tamil translations for all holistic/somatic guidance text
+### Sprint 37 — Chronobiology Analytics + Holistic Cards
+> Spec: [`research/advanced_somatic_mastery.md`](../research/advanced_somatic_mastery.md) §2.
+> *(Was Sprint 36 before the v1.6.0 stability sprint was inserted.)*
 
-### Sprint 37 — v2.0.0 Release Polish & Integration Testing
-- ⬜ 37.1: End-to-end feature integration testing (all layers together)
-- ⬜ 37.2: Performance optimization (startup time, animation smoothness)
-- ⬜ 37.3: Comprehensive smoke test plan for v2.0.0 (all features)
-- ⬜ 37.4: User Guide refresh — complete rewrite covering all v2.0 features
-- ⬜ 37.5: Wire Sprint 26 deferred widgets (WhatsNew startup, PresetSelector, StreakCelebration, isPinned star)
+- ⬜ 37.1: ChronobiologyAnalytics — time-weighted sliding-window stagnancy detection (≥6h mild, ≥8h chronic)
+- ⬜ 37.2: Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on the Kriya Focus Card
+- ⬜ 37.3: Tattva-Somatic temperature-regulation tips (Sheetali for excess fire, Surya Bhedana for cold)
+- ⬜ 37.4: Swara Pada Gamana waking advice in the morning summary notification
+- ⬜ 37.5: Dashboard stagnancy warning card (heating/cooling lifestyle recommendations)
+- ⬜ 37.6: Cognitive Energy Budgeting labels in Best Times / Explore (Artha/Kriya/Yoga suggestions)
+- ⬜ 37.7: Tamil translations for all holistic/somatic guidance text
 
-### Sprint 38 — Panja Pakshi Accuracy Calibration & Validation
-> **Prerequisite:** Owner collects 7-day Align27 (38.1) + Tamil Panchangam (38.2) data BEFORE the sprint starts.
+### Sprint 38 — v2.0.0 Release Polish & Integration Testing
+> *(Was Sprint 37.)*
+- ⬜ 38.1: End-to-end feature integration testing (all layers together)
+- ⬜ 38.2: Performance optimization (startup time, animation smoothness)
+- ⬜ 38.3: Comprehensive smoke test plan for v2.0.0 (all features)
+- ⬜ 38.4: User Guide refresh — complete rewrite covering all v2.0 features
+- ⬜ 38.5: Wire Sprint 26 deferred widgets (WhatsNew startup, PresetSelector, StreakCelebration, isPinned star)
 
-- ⬜ 38.1: Collect 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Rooster/Pushya *[owner task]*
-- ⬜ 38.2: Collect the same 7 days from a Tamil Panchangam (drikpanchang.com or physical calendar) *[owner task]*
-- ⬜ 38.3: Saranidhi diagnostic dump — generate matching 7-day output (bird states, sunrise/sunset, lunar phase, weekday)
-- ⬜ 38.4: Three-way comparison matrix — Saranidhi vs Align27 vs Panchangam; identify divergence points
-- ⬜ 38.5: Root-cause diagnosis — lookup tables / lunar-phase calc / weekday convention / phase-swap timing
-- ⬜ 38.6: Calibration fix based on diagnosis
-- ⬜ 38.7: Re-run the 7-day comparison; confirm match with the most authentic source
-- ⬜ 38.8: Document findings in `docs/research/accuracy-calibration.md`
+### Sprint 39 — Panja Pakshi Accuracy Calibration & Validation
+> *(Was Sprint 38.)* **Prerequisite:** Owner collects 7-day Align27 (39.1) + Tamil Panchangam (39.2) data BEFORE the sprint starts.
+
+- ⬜ 39.1: Collect 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Rooster/Pushya *[owner task]*
+- ⬜ 39.2: Collect the same 7 days from a Tamil Panchangam (drikpanchang.com or physical calendar) *[owner task]*
+- ⬜ 39.3: Saranidhi diagnostic dump — generate matching 7-day output (bird states, sunrise/sunset, lunar phase, weekday)
+- ⬜ 39.4: Three-way comparison matrix — Saranidhi vs Align27 vs Panchangam; identify divergence points
+- ⬜ 39.5: Root-cause diagnosis — lookup tables / lunar-phase calc / weekday convention / phase-swap timing
+- ⬜ 39.6: Calibration fix based on diagnosis
+- ⬜ 39.7: Re-run the 7-day comparison; confirm match with the most authentic source
+- ⬜ 39.8: Document findings in `docs/research/accuracy-calibration.md`
 
 ### Sprint E2E — Automated End-to-End Testing
 > Ties to the in-repo web integration tests (see Open Decisions — those are
@@ -103,18 +106,10 @@ Small, ready-to-pick items surfaced during the v1.5.0 cycle:
 
 ## Open Decisions (for `/plan`)
 
-- ⬜ **Fate of the in-repo web integration tests.** Currently **non-blocking**
-  (`continue-on-error`) because they are flaky (ChromeDriver
-  `ConnectionClosedException`) and stale (assert UI that changed in Sprints
-  34/35). Decide: (a) migrate to the Playwright E2E repo and delete from the main
-  repo, or (b) fix + stabilize + re-gate. *(Same class as the v1.2.1 lesson: keep
-  integration tests in sync with UI; don't expand CI scope without pre-validating.)*
-- ⬜ **Sprint 36 target version** — v1.5.1 vs v1.6.0 (orphaned when the v1.5.0
-  batching shipped only Sprints 34 + 35).
-- ⬜ **DB migration strategy** — a cleaner pattern than ad-hoc `sqlite_master`
-  existence checks (e.g., a small helper, or `PRAGMA table_info`).
-- ⬜ **`v1.4.1-web` tag backfill** — that version was released but never tagged
-  (minor housekeeping).
+- ✅ **Sprint 36 version** — resolved: **v1.6.0** (stability sprint; Chronobiology → Sprint 37).
+- ✅ **In-repo web integration tests** — resolved for now: **fix + re-gate in-repo** (Sprint 36.1); full migration to the Playwright E2E repo is deferred to a future failure/decision point.
+- 🔄 **DB migration strategy** — being addressed in **Sprint 36.3** (a small tested existence-check helper to replace ad-hoc `sqlite_master` checks).
+- 🔄 **`v1.4.1-web` tag backfill** — folded into **Sprint 36** housekeeping.
 
 ---
 

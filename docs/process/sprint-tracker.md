@@ -27,11 +27,13 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 33 | Panja Pakshi Accuracy Fix (dual-table birth bird) | v1.4.1 | ✅ |
 | 34 | Migration + Onboarding UX Polish | *(bundled)* | ✅ |
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
-| 36+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 36 | Stability & Test Hardening | **v1.6.0** | ⬜ Planned |
+| 37+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** v1.5.0-web live in production (2026-09-04); no sprint in
-> progress. Next work is selected from the [Sprint Backlog](sprint-backlog.md)
-> during `/plan`.
+> **Current state:** v1.5.0-web live in production (2026-09-04). **Sprint 36
+> (Stability & Test Hardening → v1.6.0) is planned** and scheduled below; run
+> `/sprint-start` to begin. Further work is selected from the
+> [Sprint Backlog](sprint-backlog.md) during `/plan`.
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -586,12 +588,40 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] Task 35.9: Unit tests (SomaticInterventionSession domain) + user-guide.md feature section + spec status update
 
 ---
+## Sprint 36: Stability & Test Hardening (v1.6.0) — ⬜ Planned
+
+> **Goal:** pay down the CI/testing debt exposed during the v1.5.0 release before
+> adding new features — so the product and its quality signals are trustworthy.
+> No new user-facing features; this is a hardening release. Priority-ordered.
+
+- [ ] Task 36.1: **Fix + re-gate the in-repo web integration tests.** Repair the two failing tests — the onboarding-launch `ConnectionClosedException` (ChromeDriver stability) and the stale dashboard assertion (`"Last 7…"` / current UI) — then remove `continue-on-error` so `Integration Tests (Web)` is a trustworthy gate again. *(Migration to the Playwright E2E repo is deferred to a future decision.)*
+- [ ] Task 36.2: **Un-skip the navigation widget test** (`test/widget_test.dart:109`, `skip: true`) — fix the stale `"3 days"` assertion and use a stable `pump()` pattern (no `pumpAndSettle` with stream providers), then remove the skip.
+- [ ] Task 36.3: **DB migration existence-check helper.** Add a small, unit-tested utility (e.g., `tableExists` / `columnExists` via `PRAGMA`/`sqlite_master`) to replace the ad-hoc per-migration checks; refactor existing migrations onto it. Addresses the #1 historical failure class (v1.2.1).
+- [ ] Task 36.4: **Deep-verify auto-recalc (Task 34.1) on the existing-profile upgrade path** + add a regression test proving an old-logic profile is corrected on load (and a no-DOB profile is left untouched).
+- [ ] Task 36.5: **Lift coverage + re-raise the gate.** Add unit/widget tests for the Sprint 35 somatic UI (timer room, pacer, selector, instruction card) to bring line coverage back to ≥19%, then raise `ci-full.yml` `THRESHOLD` 18 → 19.
+- [ ] Task 36.6: **Geolocation-first onboarding (Task 34.8).** On web, try browser geolocation first on the Location step with the city picker as fallback; keep the >5 km auto-update silent. Mobile/desktop keep the picker as source of truth.
+- [ ] Task 36.7: **Housekeeping** — backfill the missing `v1.4.1-web` git tag.
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Code merged** — on `main` (PR #N).
+- [ ] **PR link** — #N (CI green: Analyze/Fast Tests/Build; integration tests green + re-gated).
+- [ ] **Docs updated** — dev-workflow Lessons/Gotchas (migration helper, integration-test fix), any relevant docs.
+- [ ] **Tests** — full suite green; skipped test un-skipped; new migration-helper + auto-recalc + somatic-UI tests added.
+- [ ] **Smoke test** — verification scenarios added to `smoke-test-v1.6.0.md` (esp. existing-profile upgrade + onboarding geolocation).
+- [ ] **Valuation report** — Sprint 36 row (+20% over AI-estimated time).
+- [ ] **Tracker updated** — status ✅.
+
+> **Epic-boundary rule:** internal hardening sprint — User Guide update is `n/a`
+> (no user-facing capability change); note that reasoning at finish.
+
+---
+
 ## Future Sprints
 
-Future and candidate sprints (36 Chronobiology, 37 v2.0 Polish, 38 Accuracy
-Calibration, E2E Automation, App Store Prep) now live in the
-**[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate back
-into this tracker (with a Delivery Checklist) when scheduled via `/plan`.
+Future and candidate sprints (37 Chronobiology, 38 v2.0 Polish, 39 Accuracy
+Calibration, E2E Automation, App Store Prep) live in the
+**[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into
+this tracker (with a Delivery Checklist) when scheduled via `/plan`.
 
 ---
 
