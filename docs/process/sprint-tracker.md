@@ -27,12 +27,12 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 33 | Panja Pakshi Accuracy Fix (dual-table birth bird) | v1.4.1 | ✅ |
 | 34 | Migration + Onboarding UX Polish | *(bundled)* | ✅ |
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
-| 36 | Stability & Test Hardening | **v1.6.0** | ⬜ Planned |
+| 36 | Stability & Test Hardening | **v1.6.0** | 🔄 In Progress |
 | 37+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** v1.5.0-web live in production (2026-09-04). **Sprint 36
-> (Stability & Test Hardening → v1.6.0) is planned** and scheduled below; run
-> `/sprint-start` to begin. Further work is selected from the
+> (Stability & Test Hardening → v1.6.0) is in progress** on branch `sprint-36`
+> and detailed below. Further work is selected from the
 > [Sprint Backlog](sprint-backlog.md) during `/plan`.
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
@@ -588,7 +588,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] Task 35.9: Unit tests (SomaticInterventionSession domain) + user-guide.md feature section + spec status update
 
 ---
-## Sprint 36: Stability & Test Hardening (v1.6.0) — ⬜ Planned
+## Sprint 36: Stability & Test Hardening (v1.6.0) — 🔄 In Progress
 
 > **Goal:** pay down the CI/testing debt exposed during the v1.5.0 release before
 > adding new features — so the product and its quality signals are trustworthy.
