@@ -1,5 +1,3 @@
-import 'package:drift/drift.dart';
-
 /// Schema-introspection helpers for Drift migrations.
 ///
 /// These utilities make [MigrationStrategy.onUpgrade] steps idempotent by
@@ -12,6 +10,8 @@ import 'package:drift/drift.dart';
 /// its `customSelect` to introspect the schema, so they can be called directly
 /// from within `onUpgrade` and unit-tested against an in-memory database.
 library;
+
+import 'package:drift/drift.dart';
 
 /// Returns whether [tableName] contains a column named [columnName].
 ///
