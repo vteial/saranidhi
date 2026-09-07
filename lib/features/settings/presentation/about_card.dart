@@ -192,11 +192,15 @@ class _InfoRow extends StatelessWidget {
             Icon(icon, size: 20, color: theme.colorScheme.onSurfaceVariant),
             const SizedBox(width: 12),
             Text(label, style: theme.textTheme.bodySmall),
-            const Spacer(),
-            Text(
-              value,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: onTap != null ? theme.colorScheme.primary : null,
+            Expanded(
+              child: Text(
+                value,
+                textAlign: TextAlign.end,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: onTap != null ? theme.colorScheme.primary : null,
+                ),
               ),
             ),
             if (onTap != null) ...[
