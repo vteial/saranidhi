@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — iCloud Sync Multi-Device Testing Guide
 
@@ -169,4 +169,4 @@ flutter run -d iPhone
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

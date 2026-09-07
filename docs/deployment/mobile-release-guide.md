@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Mobile Release Build & Submission Guide
 
@@ -254,4 +254,4 @@ flutter analyze
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

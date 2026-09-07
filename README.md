@@ -36,13 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.0.0-web (Sprint 13) | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
-| **Staging** | v1.2.0-web (Sprint 27) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 27 | — |
-| **Total PRs** | 70 | — |
-| **Engineering Hours** | ~71h | AI-assisted (Kiro) |
+| **Production** | v1.5.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
+| **Sprints Delivered** | 35 | — |
+| **Total PRs** | 138 | — |
+| **Engineering Hours** | ~85h | AI-assisted (Kiro) |
 
-**Next release:** v1.2.0-web (pending smoke test) → v1.3.0 (Action Windows) → v2.0.0 (Prasanam Oracle)
+**Latest:** v1.5.0-web (Somatic Intervention Engine + Onboarding UX Polish, bundling Sprints 34–35).
+**Next:** selected from the [Sprint Backlog](docs/process/sprint-backlog.md) during `/plan` (Sprint 36 — Chronobiology, and others).
 
 ---
 
@@ -121,7 +122,7 @@ Saranidhi helps you:
 ```
 saranidhi/
 ├── .kiro/steering/          # Development conventions & app spec
-├── docs/                    # Project plan, sprint tracker, testing plan
+├── docs/                    # Docs grouped: process/ product/ testing/ deployment/ reference/ research/
 ├── public/                  # Static assets (logo, icons)
 ├── lib/                     # Flutter application source
 │   ├── core/                # Router, theme, utils, constants
@@ -143,7 +144,7 @@ saranidhi/
 - Dart SDK ≥3.12.1 (bundled with Flutter)
 - Xcode 15+ (for iOS/macOS builds + CloudKit)
 
-> For full iMac setup instructions, see [docs/dev-setup.md](docs/dev-setup.md).
+> For full iMac setup instructions, see [docs/process/dev-setup.md](docs/process/dev-setup.md).
 
 ### Getting Started
 
@@ -164,39 +165,33 @@ flutter run
 ### Development Workflow
 
 ```
-Feature branch → PR → main (staging) → /release PR → prod (production)
+Feature branch → PR → main (staging) → release PR → prod (production)
 ```
 
-1. Branch from `main`: `feature/sprintX-topic`
+1. `/plan` → brainstorm scope; `/sprint-start` branches from `main`
 2. Develop with TDD (unit tests for domain logic)
 3. Run validation: `dart analyze && flutter test`
-4. Create PR targeting `main` — Vercel creates preview URL
-5. Merge after CI passes → auto-deploys to [staging](https://saranidhi-staging.vercel.app)
-6. When ready: `/release` PR from `main` → `prod` → deploys to [production](https://saranidhi.vercel.app)
+4. Create PR targeting `main` — Vercel creates a preview URL
+5. `/sprint-finish` after preview/CI pass → **owner merges** → auto-deploys to [staging](https://saranidhi-staging.vercel.app)
+6. `/release-start` → smoke test → `/release-finish` (PR `main` → `prod`) → [production](https://saranidhi.vercel.app) → `/release-update`
+
+> Protocols, gates, and roles: [docs/process/dev-workflow.md](docs/process/dev-workflow.md) and [AI_COLLABORATION_FRAMEWORK.md](AI_COLLABORATION_FRAMEWORK.md). The **owner is the sole merge & release authority.**
 
 ---
 
 ## Documentation
 
-- [User Guide](docs/user-guide.md) — What is Saranidhi, its aim, how it helps, and feature overview
-- [Project Plan](docs/project-plan.md) — Features, architecture, deployment targets
-- [Roadmap](docs/roadmap.md) — Product roadmap and release milestones
-- [Sprint Tracker](docs/sprint-tracker.md) — Current progress
-- [Testing Plan](docs/testing-plan.md) — Test strategy and scenarios
-- [Smoke Test History](docs/smoke-test-results.md) — Release index linking to per-version test files
-- [Smoke Test v1.2.0](docs/smoke-test-v1.2.0.md) — Current smoke test (plan + results in one file)
-- [Dev Workflow](docs/dev-workflow.md) — CI/CD, deployment, protocols (`/start-sprint`, `/finish-sprint`, `/release`)
-- [Dev Setup](docs/dev-setup.md) — iMac development environment setup (10-step guide)
-- [Deployment Guide](docs/deployment.md) — Prod/Staging/Preview architecture, rollback, monitoring
-- [iCloud Sync Testing](docs/icloud-sync-testing.md) — Multi-device CloudKit sync verification guide
-- [Store Listing](docs/store-listing.md) — App Store & Play Store listing text (for Sprint X)
-- [Mobile Release Guide](docs/mobile-release-guide.md) — iOS/Android build & submission steps (for Sprint X)
-- [Security Review](docs/security-review.md) — Architecture security assessment, data protection
-- [Offline Verification](docs/offline-verification.md) — Offline capability matrix, zero-network verification
-- [Testing Plan](docs/testing-plan.md) — Test scenario backlog + test count progression
-- [Project Evaluation](docs/project-evaluation.md) — Feature scorecard, quality metrics, defect log
-- [Project Valuation Report](docs/project-valuation-report.md) — Time investment, commit timeline, sprint delivery
-- [Changelog](CHANGELOG.md) — Release history and notable changes
+📖 **Full index: [docs/README.md](docs/README.md)** — all docs grouped by context (process, product, testing, deployment, reference, research).
+
+Quick links:
+
+- [User Guide](docs/product/user-guide.md) — what Saranidhi is, its aim, and feature overview
+- [Roadmap](docs/product/roadmap.md) — release milestones · [Project Plan](docs/product/project-plan.md) — architecture blueprint
+- [Sprint Tracker](docs/process/sprint-tracker.md) — delivered + in-progress · [Sprint Backlog](docs/process/sprint-backlog.md) — future/candidate work
+- [Dev Workflow](docs/process/dev-workflow.md) — protocols, CI/CD, gates · [Dev Setup](docs/process/dev-setup.md)
+- [Smoke Test History](docs/testing/smoke-test-results.md) · [Testing Plan](docs/testing/testing-plan.md)
+- [AI Collaboration Framework](AI_COLLABORATION_FRAMEWORK.md) — the AI team operating model
+- [Changelog](CHANGELOG.md) — release history
 
 ---
 

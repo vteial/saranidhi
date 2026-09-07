@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../../README.md)
 
 # Saranidhi — Smoke Test v1.2.0-web
 
@@ -187,4 +187,4 @@
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../../README.md)

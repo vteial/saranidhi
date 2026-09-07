@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Project Valuation & Forensic Timeline Report
 
@@ -274,6 +274,14 @@
 | Sprint 30 | Action Windows Engine + UI | #104 | 420+ | ✅ Complete |
 | Sprint 31 | Numerology + Oracle Engine + GPS | #115 | 440+ | ✅ Complete |
 | Sprint 32 | Prasanam Oracle UI | #118 | 440+ | ✅ Complete |
+| Sprint 36 | Stability & Test Hardening (v1.6.0) | #N | 450+ | 🔄 In Progress |
+
+> **Sprint 36 note:** internal hardening sprint (integration-test re-gate, DB
+> migration existence-check helper, auto-recalc regression tests, somatic-UI
+> coverage to raise the gate 18 → 19, geolocation-first onboarding). PR is opened
+> by the owner/orchestrator (`#N` placeholder until assigned); status stays
+> **In Progress** until merged. Per the owner-approved convention, any effort
+> figure logged for this sprint is the AI-estimated time **+ 20%** buffer.
 
 ---
 
@@ -467,4 +475,4 @@ This report will be updated at the end of each sprint with:
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Project Evaluation Report
 
@@ -188,4 +188,4 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

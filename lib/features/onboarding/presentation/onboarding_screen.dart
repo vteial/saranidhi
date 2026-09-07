@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:saranidhi/core/l10n/locale_provider.dart';
+import 'package:saranidhi/core/utils/geolocation.dart';
 import 'package:saranidhi/core/utils/nakshatra_l10n.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
@@ -654,15 +656,65 @@ class _NameCalculatePathState extends State<_NameCalculatePath> {
 // Step 2: Your Location
 // ---------------------------------------------------------------------------
 
-class _LocationStep extends StatelessWidget {
+/// Status of the web geolocation-first attempt on the Location step.
+enum _GeoStatus { idle, detecting, detected, unavailable }
+
+/// Location step with a geolocation-first flow on web.
+///
+/// On web (`kIsWeb`), the step attempts browser geolocation via the
+/// `WebGeolocation` facade as soon as it is shown (when no location is set
+/// yet), and offers a manual retry. The `_presetCities` ChoiceChip picker is
+/// always rendered as the fallback for denial/unavailable and for non-web
+/// platforms (where the geolocation stub returns null). The >5km silent
+/// on-open behaviour lives in `LocationOnOpenService` and is untouched here.
+class _LocationStep extends StatefulWidget {
   const _LocationStep({required this.state, required this.notifier});
   final OnboardingState state;
   final OnboardingNotifier notifier;
 
   @override
+  State<_LocationStep> createState() => _LocationStepState();
+}
+
+class _LocationStepState extends State<_LocationStep> {
+  _GeoStatus _status = _GeoStatus.idle;
+
+  @override
+  void initState() {
+    super.initState();
+    // Geolocation-first: on web only, auto-attempt when nothing is set yet.
+    if (kIsWeb &&
+        widget.state.locationName == null &&
+        widget.state.latitude == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _detectLocation());
+    }
+  }
+
+  Future<void> _detectLocation() async {
+    if (!kIsWeb) return;
+    setState(() => _status = _GeoStatus.detecting);
+
+    final position = await WebGeolocation.getCurrentPosition();
+    if (!mounted) return;
+
+    if (position != null) {
+      final l10n = AppLocalizations.of(context);
+      widget.notifier.setLocation(
+        latitude: position.latitude,
+        longitude: position.longitude,
+        name: l10n.locationDetected,
+      );
+      setState(() => _status = _GeoStatus.detected);
+    } else {
+      setState(() => _status = _GeoStatus.unavailable);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
+    final state = widget.state;
     return Align(
       alignment: Alignment.topLeft,
       child: SingleChildScrollView(
@@ -677,8 +729,47 @@ class _LocationStep extends StatelessWidget {
                 color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
+            // Web-only geolocation-first affordance + non-intrusive status.
+            if (kIsWeb) ...[
+              const SizedBox(height: 16),
+              OutlinedButton.icon(
+                onPressed: _status == _GeoStatus.detecting
+                    ? null
+                    : _detectLocation,
+                icon: const Icon(Icons.my_location, size: 18),
+                label: Text(l10n.locationUseMyLocation),
+              ),
+              if (_status == _GeoStatus.detecting) ...[
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 14,
+                      height: 14,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      l10n.locationDetecting,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ] else if (_status == _GeoStatus.unavailable) ...[
+                const SizedBox(height: 8),
+                Text(
+                  l10n.locationUnavailable,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ],
             const SizedBox(height: 24),
-            // Preset cities for quick selection
+            // Preset cities for quick selection — always available as the
+            // fallback (denial/unavailable/non-web).
             Text(l10n.quickSelect, style: theme.textTheme.titleSmall),
             const SizedBox(height: 8),
             Wrap(
@@ -689,7 +780,7 @@ class _LocationStep extends StatelessWidget {
                 return ChoiceChip(
                   label: Text(city.name),
                   selected: isSelected,
-                  onSelected: (_) => notifier.setLocation(
+                  onSelected: (_) => widget.notifier.setLocation(
                     latitude: city.lat,
                     longitude: city.lng,
                     name: city.name,

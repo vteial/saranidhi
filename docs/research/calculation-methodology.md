@@ -1,4 +1,4 @@
-[← Back to Docs](../README.md)
+[← Back to Docs](../../README.md)
 
 # Saranidhi — Calculation Methodology & Sources
 
@@ -347,4 +347,4 @@ Rahu Kaal overlay blocks Artha/Kriya windows (clamped to 10% effectiveness).
 
 ---
 
-[← Back to Docs](../README.md)
+[← Back to Docs](../../README.md)

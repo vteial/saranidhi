@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — App Store & Play Store Listing
 
@@ -153,4 +153,4 @@ Demo instructions:
 
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)

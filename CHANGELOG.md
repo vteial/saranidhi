@@ -19,7 +19,36 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [1.5.0-web] — _pending release_
+## [1.6.0-web] — 2026-09-07
+
+> Sprint 36 — a Stability & Test Hardening release (internal quality and CI
+> hardening; no new user-facing features).
+
+### Added
+- **Geolocation-first onboarding**: on web, the Location step now tries browser
+  geolocation first, with the city picker as fallback (mobile/desktop keep the
+  picker as source of truth).
+
+### Changed
+- Re-gated the in-repo web integration tests (removed `continue-on-error`;
+  added a ChromeDriver readiness poll to fix the `ConnectionClosedException`
+  flake) so they are a trustworthy CI gate again.
+- Un-skipped the navigation widget test and made the `alignment_checker` tests
+  date-independent.
+- Added a reusable DB migration existence-check helper (`tableExists` /
+  `columnExists`) and refactored the schema `onUpgrade` steps onto it.
+- Added regression tests for existing-profile birth-bird auto-recalculation on
+  load.
+- Added widget/unit tests for the Sprint 35 somatic UI and raised the CI
+  coverage gate to 19%.
+
+### Fixed
+- Settings About-card row no longer overflows horizontally on narrow viewports
+  (value text now ellipsizes).
+
+---
+
+## [1.5.0-web] — 2026-09-04
 
 > Bundled release of Sprint 34 (Migration + Onboarding UX Polish) and
 > Sprint 35 (Somatic Intervention Engine).

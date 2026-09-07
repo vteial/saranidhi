@@ -1,6 +1,11 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # Saranidhi — Development Workflow
+
+> **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
+> — the AI team collaboration model (roles, handoffs, release lifecycle, and
+> CI/merge gates) that this workflow operates within. When a protocol or gate
+> changes, update **both** docs in the same PR so they never drift.
 
 ---
 
@@ -439,7 +444,29 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 **Rule:** The `/release-start` protocol MUST bump `version:` in `pubspec.yaml` as the **first step** on the release branch (before smoke test). This ensures the version is correct in staging preview testing AND production. Never ship a release where `pubspec.yaml` doesn't match the release tag.
 
+### DB Migration Existence-Check Helper (Sprint 36)
+
+**Problem:** Each `onUpgrade` step hand-rolled its own existence check (a raw `PRAGMA table_info()` loop for columns, a `sqlite_master` query for tables) before running `addColumn`/`createTable`. The checks drifted apart in style, were easy to omit, and an omitted guard re-introduces the v1.2.1 "duplicate column name" failure class whenever a migration re-runs on a DB that already has the object.
+
+**Rule:** Use the shared helpers in `lib/database/migration_helpers.dart` - `tableExists(db, name)` (backed by `sqlite_master`) and `columnExists(db, table, column)` (backed by `PRAGMA table_info`), where `db` is the `GeneratedDatabase` (pass `this` from inside `onUpgrade`) - for every existence check in `onUpgrade`. The `from < 3` (is_pinned column), `from < 4` (prasanam_history table), and `from < 5` (somatic_intervention_logs table) steps in `app_database.dart` are refactored onto them; new migrations MUST guard through the same helpers rather than adding ad-hoc `PRAGMA`/`sqlite_master` code. The helpers are unit-tested against an in-memory Drift DB (`test/database/migration_helpers_test.dart`), so the guard behavior itself is covered.
+
+### Integration Test Fix + Re-gate (Sprint 36)
+
+**Problem:** The web integration job (`ci-full.yml`) started ChromeDriver on `:4444` with a bare `sleep 2` before running `flutter drive`, and the intermittent `ConnectionClosedException` on onboarding launch was a ChromeDriver startup/readiness race, not a real app failure. The job carried `continue-on-error: true`, so `Integration Tests (Web)` was not actually gating. Test assertions had also drifted from the current UI (asserting async card content such as `"Last 7 Days"` / `"3 days"` that only appears after a provider resolves).
+
+**Rules:**
+- Replace the bare `sleep` with a bounded ChromeDriver readiness poll: `curl` `localhost:4444/status` in a short loop (up to ~30s) and only proceed once it reports ready. This removes the startup race behind `ConnectionClosedException`.
+- Keep integration/widget assertions in sync with the current UI, and assert on **stable app-shell elements** that are always present (`"Saranidhi"`, `"Today"`, `"Explore"`) rather than async card content that depends on a provider having resolved.
+- **NEVER** use `pumpAndSettle()` with stream-based provider overrides - it times out because the stream keeps the scheduler active. Use `pump()` + `pump(Duration(seconds: 1))` for navigation steps (see the widget-test gotcha above).
+- `continue-on-error` was removed from the integration-test job, so `Integration Tests (Web)` is a real, trustworthy gate again. Do not re-add it to paper over a flake; fix the underlying readiness/assertion issue instead.
+
+### Alignment Tests Must Derive Expected Flow From NostrilPattern (Sprint 36)
+
+**Problem:** Three `alignment_checker_test.dart` tests hardcoded a Solar/Lunar `expectedFlow` for a fixed date (April 2, 2025) and were date-dependent flaky. `AlignmentChecker.check` computes `expectedFlow` via `NostrilPattern.expectedFlowForYama(yama)` with NO date argument, so `NostrilPattern` falls back to `DateTime.now()`. The test's `time` argument only selects sunrise/sunset and which yama the clock lands in; it does not drive `expectedFlow`. The hardcoded expectations only held when the CI run date's tithi started Solar, so the suite failed on runs whose current tithi started Lunar. Choosing a different fixed date does not help because the fixed date has zero effect on `expectedFlow`.
+
+**Rule:** Alignment tests MUST derive their expected flow from `NostrilPattern.expectedFlowForYama(...)` called the same way production does (no date argument), then assert the relationship (aligned when actual matches, mis-aligned when actual is the opposite, and Yama 2 always the opposite of Yama 1). Never hardcode `BreathFlow.solar`/`BreathFlow.lunar` as the expected value for a fixed calendar date.
+
 ---
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
