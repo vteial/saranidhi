@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/features/onboarding/domain/bird_migration_service.dart';
+import 'package:saranidhi/features/onboarding/providers/bird_migration_provider.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/features/streaks/domain/seven_day_ribbon.dart';
 import 'package:saranidhi/features/streaks/domain/streak_calculator.dart';
@@ -13,6 +15,9 @@ import 'package:saranidhi/main.dart';
 void main() {
   final testOverrides = [
     onboardingCompleteProvider.overrideWith(() => _AlwaysTrueNotifier()),
+    birdMigrationProvider.overrideWith(
+      (ref) async => BirdMigrationResult.noChange,
+    ),
     journalEntriesProvider.overrideWith(
       (ref) => Stream.value(<SaraKalaiJournalData>[]),
     ),

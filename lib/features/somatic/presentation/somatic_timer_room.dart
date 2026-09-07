@@ -127,40 +127,55 @@ class _SomaticTimerRoomState extends ConsumerState<SomaticTimerRoom> {
                   onPressed: _cancel,
                 ),
               ),
-              Text(
-                l10n.somaticRoomTitle,
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
+              // Remaining content scrolls when the viewport is too short to
+              // fit the fixed-height children (e.g. small phones / the default
+              // test surface), avoiding a RenderFlex overflow. Spacers require
+              // a bounded-height parent, so inside the (unbounded) scroll view
+              // they are replaced with fixed SizedBox gaps.
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        l10n.somaticRoomTitle,
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      CrossLateralInstructionCard(
+                        type: session.type,
+                        bodySide: session.bodySide,
+                      ),
+                      const SizedBox(height: 24),
+                      const SamaVrittiPacer(),
+                      const SizedBox(height: 24),
+                      // High-contrast countdown
+                      Text(
+                        _formatTime(_remainingSeconds),
+                        style: theme.textTheme.displayLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontFeatures: const [FontFeature.tabularFigures()],
+                          color: theme.colorScheme.primary,
+                        ),
+                        // FontFeature comes from dart:ui, re-exported by
+                        // material.dart.
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        l10n.somaticRoomHint,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 24),
+                    ],
+                  ),
                 ),
-                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 16),
-              CrossLateralInstructionCard(
-                type: session.type,
-                bodySide: session.bodySide,
-              ),
-              const Spacer(),
-              const SamaVrittiPacer(),
-              const Spacer(),
-              // High-contrast countdown
-              Text(
-                _formatTime(_remainingSeconds),
-                style: theme.textTheme.displayLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontFeatures: const [FontFeature.tabularFigures()],
-                  color: theme.colorScheme.primary,
-                ),
-                // FontFeature comes from dart:ui, re-exported by material.dart.
-              ),
-              const SizedBox(height: 8),
-              Text(
-                l10n.somaticRoomHint,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 24),
             ],
           ),
         ),
