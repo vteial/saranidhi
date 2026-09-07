@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:saranidhi/core/providers/location_on_open_provider.dart';
+import 'package:saranidhi/core/services/location_on_open_service.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/features/onboarding/domain/bird_migration_service.dart';
@@ -18,6 +20,7 @@ void main() {
     birdMigrationProvider.overrideWith(
       (ref) async => BirdMigrationResult.noChange,
     ),
+    locationOnOpenProvider.overrideWith((ref) async => LocationUpdateResult.none),
     journalEntriesProvider.overrideWith(
       (ref) => Stream.value(<SaraKalaiJournalData>[]),
     ),
