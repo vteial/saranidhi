@@ -2,6 +2,11 @@
 
 # Saranidhi — Development Workflow
 
+> **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../AI_COLLABORATION_FRAMEWORK.md)
+> — the AI team collaboration model (roles, handoffs, release lifecycle, and
+> CI/merge gates) that this workflow operates within. When a protocol or gate
+> changes, update **both** docs in the same PR so they never drift.
+
 ---
 
 ## Sprint Development Flow
