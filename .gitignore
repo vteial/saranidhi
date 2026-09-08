@@ -86,3 +86,4 @@ playwright-report/
 # Misc
 *.log
 *.tmp
+.agents/

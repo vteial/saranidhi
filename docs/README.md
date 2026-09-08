@@ -21,8 +21,7 @@ team operating model that ties these together.
 ## 📦 product/ — what we're building
 | Doc | Purpose |
 |-----|---------|
-| [project-plan.md](product/project-plan.md) | Master plan & architectural blueprint |
-| [roadmap.md](product/roadmap.md) | Release milestones & phase plan |
+| [product-scope.md](product/product-scope.md) | Functional product scope — features, principles, vision |
 | [user-guide.md](product/user-guide.md) | In-app guide: what Saranidhi is, aim, features |
 
 ## 🧪 testing/ — test strategy & release verification
@@ -44,6 +43,7 @@ team operating model that ties these together.
 ## 📚 reference/ — standing reference
 | Doc | Purpose |
 |-----|---------|
+| [architecture.md](reference/architecture.md) | Technical architecture — engine algorithms, schema, platform, patterns |
 | [security-review.md](reference/security-review.md) | Architecture security assessment, data protection |
 | [third-party-comparison.md](reference/third-party-comparison.md) | Bird-state mapping vs Align27 / Tamil texts |
 

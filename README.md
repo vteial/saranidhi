@@ -186,7 +186,7 @@ Feature branch → PR → main (staging) → release PR → prod (production)
 Quick links:
 
 - [User Guide](docs/product/user-guide.md) — what Saranidhi is, its aim, and feature overview
-- [Roadmap](docs/product/roadmap.md) — release milestones · [Project Plan](docs/product/project-plan.md) — architecture blueprint
+- [Product Scope](docs/product/product-scope.md) — functional product scope · [Architecture](docs/reference/architecture.md) — technical architecture
 - [Sprint Tracker](docs/process/sprint-tracker.md) — delivered + in-progress · [Sprint Backlog](docs/process/sprint-backlog.md) — future/candidate work
 - [Dev Workflow](docs/process/dev-workflow.md) — protocols, CI/CD, gates · [Dev Setup](docs/process/dev-setup.md)
 - [Smoke Test History](docs/testing/smoke-test-results.md) · [Testing Plan](docs/testing/testing-plan.md)
