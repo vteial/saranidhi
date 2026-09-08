@@ -67,7 +67,7 @@ Use this table to see at a glance what is captured and to resume across sessions
 | # | Sara Kalai Topic | Capture Status | # Practices | Notes |
 |---|------------------|:--------------:|:-----------:|-------|
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
-| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 6 | Source: saravithai.pdf (pp. 3–4, 14). See CONF-002. |
+| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01. See CONF-002. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14). See CONF-003, CONF-004. |
 | 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 6 | Source: saravithai.pdf (pp. 4–5, 10–11). See CONF-005, CONF-006. |
 | 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 4–5, 12–13). See CONF-007, CONF-008. |
@@ -102,8 +102,8 @@ These are points where a single source is ambiguous, or where two sources confli
 | ID | Tier | Topic / Practice | Question / Ambiguity | Source | Decision (owner) | App impact | Status |
 |:--:|:--:|------------------|----------------------|--------|------------------|:----------:|:------:|
 | CONF-013 | 🔴 T1 | Topic 8: திதி திரிக தொடக்க சரம் | Reconcile Weekday Inception vs. 3-day Tithi Triad Inception rules when they conflict | Recorded Videos / Notes | _(prior note: `saravithai.pdf` uses Weekday; `sugam_tharum_swasa_kalai.pdf` uses Tithi triads.)_ | — | ⏳ Pending |
-| CONF-014 | 🔴 T1 | Topic 8: ஒரு மணி நேர சக்கர சரம் | Verify swara alternation cycle length (1 hour / 2.5 Nazhigais vs 1.5 hours / 3.75 Nazhigais) | Recorded Videos / Notes | _(prior note: `sugam_tharum_swasa_kalai.pdf` explicitly states 1 hour (24 cycles/day).)_ | — | ⏳ Pending |
-| CONF-018 | 🔴 T1 | Topic 10: பகல் இடது-இரவு வலது தாரக மந்திரம் | Verify how Daytime Left / Nighttime Right macro-seal reconciles with 1-hour alternation cycles and Weekday Inception | Recorded Videos / Notes | _(prior note: `sugam_tharum_swasa_kalai.pdf` calls this the master health axiom.)_ | — | ⏳ Pending |
+| CONF-014 | 🔴 T1 | Topic 8: ஒரு மணி நேர சக்கர சரம் | Verify swara alternation cycle length (1 hour / 2.5 Nazhigais vs 1.5 hours / 3.75 Nazhigais) | Recorded Videos / Notes | PROPOSED (Day 01 @ 63:55): Healer Baskar confirms standard cycle length is 1 hour ("1 hour கழித்து வரேங்க, அப்போ இடது பக்கம் போனா..."). Baseline alternation is 1 hour (2.5 Nazhigais / 24 cycles daily). | Configures swara scheduler & active nostril predictive engine to 60-minute default interval. | 🔁 Proposed — owner confirm |
+| CONF-018 | 🔴 T1 | Topic 10: பகல் இடது-இரவு வலது தாரக மந்திரம் | Verify how Daytime Left / Nighttime Right macro-seal reconciles with 1-hour alternation cycles and Weekday Inception | Recorded Videos / Notes | PROPOSED (Day 01 @ 37:31–45:00): 37°C thermoregulatory paradox establishes Daytime Left / Nighttime Right as macro-thermal ideal (cooling against solar heat, warming against nocturnal cool), while 1-hour cycles maintain visceral metabolic balance. | Astro engine retains 60-min cycle while health module recommends macro Chandra (day) / Surya (night) bias for thermal equilibrium. | 🔁 Proposed — owner confirm |
 | CONF-026 | 🔴 T1 | Topic 14: ஒளவையார் வாசி தலைகீழ் யோகம் | Verify if Sushumna is considered pure Kapha Nadi (v. 29) or transcendent neutral equilibrium in lineage | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` p. 90 v. 29 links Sushumna directly to Sleshma (Kapha).)_ | — | ⏳ Pending |
 | CONF-003 | 🟡 T2 | Topic 3: உத்தராயண & தட்சிணாயண சரம் | Clarify if 5-nazhigai window (120 min) runs leading up to sunrise or starting from sunrise | Recorded Videos / Notes | _(prior note: `saravithai.pdf` states "பொழுது விடிவதற்கு முன் ஐந்து நாழிகை இருக்கும்பொழுது".)_ | — | ⏳ Pending |
 | CONF-004 | 🟡 T2 | Topic 3: அயன சரம் நாள் கணக்கு | Verify whether Ayana practice is tied to Tamil month 1st day dawn or exact Sankranti ingress | Recorded Videos / Notes | _(prior note: `saravithai.pdf` uses Aadi 1 and Thai 1 dawn.)_ | — | ⏳ Pending |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 63 practices (across 14 topics: Books 1, 2 & Gnana Sara Nool)**
+**Implemented: TBD / Total captured: 64 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -236,6 +236,15 @@ starts with a `### <n>. <Topic name>` heading.*
 <a id="topic-2"></a>
 ### 2. Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள் / Sarathai Maattrum Udaliyal Muraigal)
 
+> 🎥 **Video refinement (Day 01 @ 22:31 – 27:00):** Healer Baskar establishes the 7 canonical somatic modalities (*7 மூச்சு மாற்றும் வித்தைகள்*) taught in the authentic lineage for deliberate swara switching:
+> 1. **உணவு (Diet / Food intake):** Specific foods immediately shift internal thermal balance and nostril flow.
+> 2. **உட்கார்ந்து (Seated Asana):** Specialized sitting postures (e.g. crossing legs, thigh pressure).
+> 3. **தண்டம் (Yoga Danda / Armpit Staff):** Traditional wooden staff wedged under the axilla.
+> 4. **படுத்து (Lateral Recumbency):** Turning onto the side opposite to the desired nostril flow.
+> 5. **நின்று (Standing Posture):** Specific standing weight-distribution shifts.
+> 6. **பக்கெட் தண்ணீர் (Water Bucket Immersion):** Immersing one arm/hand into a bucket of water to reflexively trigger contralateral nostril activation through thermal-tactile vasomotor response.
+> 7. **பந்து (Axillary Ball / Cushion):** Wedging a tennis-sized ball or rolled cloth cushion tightly into the armpit.
+
 #### Practice — எதிர் பக்கவாட்டு படுக்கை முறை (Ethir Pakkavaattu Padukkai Murai / Lateral Recumbency on the Opposite Side)
 - **Purpose / benefit (the why):** Effortless somatic swara switching while remaining in bed upon waking; avoids forceful breathing or artificial manipulation.
 - **How it's practiced (brief mechanics):** Lie on the opposite side of the nostril you wish to activate:
@@ -289,6 +298,19 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** Solstitial alignment protocol guide with safety checklist.
 - **Source ref:** `saravithai.pdf`, p. 14
+
+#### Practice — 37°C உள்-வெளி வெப்பநிலை தத்துவமும் நடுநாசி சமநிலையும் (37°C Ul-Veli Veppanilai Thathuvamum Nadunaasi Samanilaiyum / The 37°C Internal-External Thermoregulatory Paradox & Sushumna Equilibrium)
+- **Purpose / benefit (the why):** The foundational biological and energetic doctrine of Sara Kalai: internal core temperature must remain invariant at **37°C (98.6°F)** for cellular healing, digestion, and systemic homeostasis. Breath switching is the body's autonomic thermal control mechanism; understanding this paradox prevents improper thermal interventions.
+- **How it's practiced (brief mechanics):**
+  - **Diagnostic Portal:** The tongue (நாக்கு) is the only external organ that directly reveals internal visceral core temperature; skin palpation can be paradoxical and misleading.
+  - **The Thermal Paradox:**
+    - If outer skin feels hot to the touch, internal viscera are cold/hypothermic → The body compensates by opening **Right Nostril (சூரியக்கலை / Pingala)** to generate core heat.
+    - If outer skin feels cold to the touch, internal viscera are overheated/hyperthermic → The body compensates by opening **Left Nostril (சந்திரக்கலை / Ida)** to cool internal organs.
+  - **Sushumna Condition (நடுநாசி / சுழிமுனை):** Dual-nostril flow occurs *only* when the internal core temperature achieves perfect 37°C equilibrium. During this state, the body performs cellular self-repair, metabolic waste disposal, and deep healing.
+- **App-help bucket:** 🟢 — The app can educate the user on the thermoregulatory paradox, prompt symptom checks (skin vs tongue heat sensations), and provide contextual guidance on when natural swara switching is maintaining thermal homeostasis.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Thermoregulatory Swara Guide" interactive visual explaining the 37°C paradox and tongue vs skin diagnostics.
+- **Source ref:** `sarakalai-2026 video Day 01 @ 37:31 – 45:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
@@ -481,6 +503,12 @@ starts with a `### <n>. <Topic name>` heading.*
 > ⚠️ **Pending Confirmation [CONF-007]:** In `saravithai.pdf` (p. 13), Tamil letter count of the first spoken word: verify how compound letters (*உயிர்மெய்*), pure consonants (*மெய்யெழுத்து* with pulli), and Grantha letters are counted in your workshop lineage (e.g. does "வணக்கம்" count as 3 compound syllables or 5 distinct phonetic letters?).
 > ⚠️ **Pending Confirmation [CONF-008]:** In `saravithai.pdf` (p. 13), entry foot asserts a contralateral relationship: stepping first with the right foot indicates left swara (*வலதுகாலை முதலடியாக வைத்தால் இடதுகைல*). Cross-verify against CONF-002 (waking up foot press direct relationship).
 
+> 🎥 **Video refinement (Day 01 @ 61:31 – 64:00):** Healer Baskar specifies the 3 canonical diagnostic modalities for self-testing active swara (*நாடி பரிசோதனை 3 முறைகள்*):
+> 1. **விரல் வைத்துப் பார்த்தல் (Resting Index Finger):** Place the right index finger horizontally ~1 inch below the nostrils along the upper lip/mustache line (without touching). Breathe gently and observe which nostril produces denser, warmer air impact.
+> 2. **வேகமாக மூச்சை வெளியே தள்ளுதல் (Forced Rapid Exhalation):** Place the finger below the nose and exhale forcefully with a sharp "ship" sound to instantly feel which side ejects the dominant air stream.
+> 3. **விரல் வைக்காமல் உணர்தல் (Mental Proprioception):** With training, perceive the subtle friction and tactile velocity of air against the inner nasal walls without placing the hand.
+> - **Nomenclature Invariant:** The active flowing nostril is termed **பூரணம் (Poornam / உயிர் நாடி / Life Breath)**; the closed/dormant nostril is termed **சூன்யம் (Shoonyam / Empty)**.
+
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
 ---
@@ -626,6 +654,8 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Source ref:** `sugam_tharum_swasa_kalai.pdf`, p. 38
 
 > ⚠️ **Pending Confirmation [CONF-014]:** Swara cycle duration: `sugam_tharum_swasa_kalai.pdf` defines the alternation cycle as exactly 1 hour (60 minutes / 2.5 Nazhigais = 24 transitions daily). Verify whether your lineage calculates cycle length as 1 hour or 1.5 hours (1 Yama / 3.75 Nazhigais = 16 transitions daily).
+>
+> 🔁 **Proposed Resolution [CONF-014] (sarakalai-2026 video Day 01 @ 63:55):** Healer Baskar confirms the standard baseline cycle length is 1 hour (*"1 hour கழித்து வரேங்க, அப்போ இடது பக்கம் போனா..."*), yielding 24 hourly swara cycles per diurnal day. Status: `🔁 Proposed — owner confirm`.
 
 #### Practice — 21,600 சுவாசக் கணக்கும் 7,200 இழப்புத் தவிர்ப்பும் (21,600 Swasa Kanakkum 7,200 Izhappu Thavirthalum / The 21,600 Daily Breath Ledger & Reclaiming 7,200 Wastage)
 - **Purpose / benefit (the why):** Overcoming premature decay; of the 21,600 total breaths allocated across the 7 chakras in 24 hours, 7,200 breaths are habitually expelled and wasted externally due to emotional excitation and hurried breathing, leaving only 14,400 internal breaths. Reclaiming these wasted breaths extends lifespan.
@@ -795,6 +825,8 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Source ref:** `sugam_tharum_swasa_kalai.pdf`, p. 45
 
 > ⚠️ **Pending Confirmation [CONF-018]:** In `sugam_tharum_swasa_kalai.pdf` (p. 45), "Daytime Left, Nighttime Right" is proclaimed as the master axiom for total disease immunity. Verify how this macro-rule interacts with the 1-hour ultradian alternation cycle (Topic 8) and Weekday Inception (Topic 1) — does it denote continuous sustained flow or overarching predominance?
+>
+> 🔁 **Proposed Resolution [CONF-018] (sarakalai-2026 video Day 01 @ 37:31 – 45:00):** The 37°C thermoregulatory paradox explains that "Daytime Left, Nighttime Right" represents the overarching macro-thermal ideal to buffer external environmental temperatures (cooling solar heat during day, conserving metabolic warmth against night chill), while ultradian 1-hour cycles actively balance internal visceral organs. Status: `🔁 Proposed — owner confirm`.
 
 #### Practice — தம்பதியர் புத்திர பாக்ய சுவாசப் பொருத்தம் (Thambathiyar Puthira Baagya Swasa Poruttham / Conjugal Conception Swara & Tattva Alignment)
 - **Purpose / benefit (the why):** Overcoming infertility (மலட்டுத்தன்மை நீங்குதல்), eliminating domestic discord, and ensuring the conception of healthy, auspicious progeny (புத்திர பாக்யம் கிட்டுதல்).
