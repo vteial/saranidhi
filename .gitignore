@@ -87,5 +87,3 @@ playwright-report/
 *.log
 *.tmp
 .agents/
-/worknotes
-worknotes/
