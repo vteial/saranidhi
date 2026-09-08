@@ -124,7 +124,7 @@ Runs **after sprint merge** on a separate docs-only branch to avoid CI code fail
 2. Update all clerical docs:
    - `docs/project-valuation-report.md` — timeline, commit log, hours (estimate + 20%), deliverables, executive summary
    - `docs/project-evaluation.md` — feature scorecard, delivery table, resolved defects
-   - `docs/project-plan.md` — new infrastructure/architecture patterns
+   - `docs/reference/architecture.md` — new infrastructure/architecture patterns
    - `docs/testing-plan.md` — test count progression, scenarios awaiting coverage
    - `docs/dev-workflow.md` — any threshold/process changes
    - `.kiro/steering/saranidhi-spec.md` — tech stack updates
@@ -146,7 +146,7 @@ Strategic brainstorming and sprint plan revision — forward-looking.
 3. Create branch from `main` (e.g., `plan/sprint-N` or `plan/v2-roadmap`)
 4. Update:
    - `docs/sprint-tracker.md` — define upcoming sprints
-   - `docs/roadmap.md` — adjust milestones
+   - `docs/process/sprint-backlog.md` — adjust epic priorities/scope
    - `.kiro/design.md`, `.kiro/product.md`, `.kiro/structure.md` — if architecture changes
 5. Commit, push, create PR
 6. **User reviews and merges** (Kiro never pushes directly to main)

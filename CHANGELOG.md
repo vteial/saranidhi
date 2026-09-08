@@ -9,13 +9,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Planned (v1.3.0 — Layer 2: Action Windows)
-- Sprint 28: ActionWindowEngine (24h schedule, Rahu guardrail)
-- Sprint 29: 24h Action Bar, Current Mode Focus Card, expansion sheet
-
-### Planned (v2.0.0 — Layer 3: Prasanam Oracle)
-- Sprint 30: Prasanam calculation engine (3 vectors, oracle score)
-- Sprint 31: FAB trigger, query input, result card, history timeline
+_No unreleased changes yet. Upcoming work is tracked in the
+[Sprint Backlog](docs/process/sprint-backlog.md) and scheduled via `/plan`._
 
 ---
 
@@ -80,6 +75,94 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ### Changed
 - Database schema bumped to v5 (adds `somatic_intervention_logs`; idempotent
   migration safe for both fresh install and upgrade from v4).
+
+---
+
+## [1.4.1-web] — 2026-08-27
+
+> Sprint 33 — Panja Pakshi Accuracy Fix (patch): corrects birth-bird derivation
+> to be permanent and makes the nostril pattern tithi-based.
+
+### Added
+- **Five Birds reference table** added to the User Guide.
+
+### Changed
+- Nostril pattern is now **tithi-based** and uses the selected date (not always
+  today).
+- Updated the `alignment_checker` tests for the tithi-based nostril logic.
+
+### Fixed
+- **Birth-bird accuracy overhaul**: the birth bird is now derived from the birth
+  Paksha via dual bright/dark-half tables and is **permanent** (removed the
+  incorrect monthly lunar-phase swap).
+- Smoke test 21/21 pass.
+
+---
+
+## [1.4.0-web] — 2026-07-17
+
+> Sprints 31 + 32 — Prasanam Oracle (plus Numerology and GPS).
+
+### Added
+- **Prasanam Oracle** as a dedicated bottom-nav tab (category selector
+  Artha/Kriya/Yoga, intention field, readiness score + guidance, user-initiated
+  save to history, swipe-to-delete, window-status banner).
+- **Prasanam calculation engine** (multi-vector oracle score,
+  Rahu/Kuligai/Emakandam floor lockout, `DaylightSegmentResolver`).
+- **Numerology name-bird derivation** (`NameBirdParser` in onboarding).
+- **GPS/geolocation**.
+- **30-min nostril-timing validation gate**.
+
+### Changed
+- Database schema bumped to v4 (adds `PrasanamHistory` table).
+
+(Sprints 31–32; PRs #115, #118.)
+
+---
+
+## [1.2.2-web] — 2026-07-11
+
+> UI Polish + UX Consistency.
+
+### Added
+- **Emakandam (எமகண்டம்)** third inauspicious window (with Rahu & Kuligai).
+- Rahu card 4-row layout.
+- Journal history pagination (today expanded, older collapsed).
+- Settings layout — About card moves to bottom on narrow screens.
+
+### Changed
+- UX consistency: Best Times card format (Y# first column, time range, date,
+  Today badge); "Today's Schedule" → "☀️ Day Schedule"; "Yama 1" → "Y1" in
+  Analytics; Explore Rahu card height matches Bird card.
+- i18n: DOB result translated (nakshatra + bird show Tamil names).
+- Smoke test 23/23 pass.
+
+---
+
+## [1.2.1-web] — 2026-07-10
+
+> Bugfix + UX Polish.
+
+### Added
+- **Kuligai Kaal** (second inauspicious window).
+- Enhanced Rahu card (sunrise/sunset, moon phase, Kuligai).
+- Timer cancel button.
+- Export/import schema versioning.
+- `AppConstants` metadata.
+
+### Changed
+- UX: Sushumna redesign (meditation mode, no timer, direct log); nostril button
+  order Lunar → Sushumna → Solar; Tattva format "Earth / Prithvi"; Explore tab
+  (removed inline calendar, Today button); User Guide SliverAppBar.
+- i18n: Best Times, calendar weekdays, moon-phase labels Tamil.
+- Smoke test 29/30 pass (1 accepted cosmetic).
+
+### Fixed
+- Birth bird swaps with lunar phase (Vulture↔Peacock, Owl↔Rooster on waning)
+  per traditional Sara Kalai (later superseded by the permanent dual-table
+  model in v1.4.1).
+- AlignmentChecker uses actual moon phase (was hardcoded waxing).
+- DB migration adds `isPinned` column for existing installs.
 
 ---
 
@@ -151,7 +234,11 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 [Unreleased]: https://github.com/vteial/saranidhi/compare/v1.6.0-web...main
 [1.6.0-web]: https://github.com/vteial/saranidhi/compare/v1.5.0-web...v1.6.0-web
-[1.5.0-web]: https://github.com/vteial/saranidhi/compare/v1.4.2-web...v1.5.0-web
+[1.5.0-web]: https://github.com/vteial/saranidhi/compare/v1.4.1-web...v1.5.0-web
+[1.4.1-web]: https://github.com/vteial/saranidhi/compare/v1.4.0-web...v1.4.1-web
+[1.4.0-web]: https://github.com/vteial/saranidhi/compare/v1.2.2-web...v1.4.0-web
+[1.2.2-web]: https://github.com/vteial/saranidhi/compare/v1.2.1-web...v1.2.2-web
+[1.2.1-web]: https://github.com/vteial/saranidhi/compare/v1.2.0-web...v1.2.1-web
 [1.2.0-web]: https://github.com/vteial/saranidhi/compare/v1.1.0-web...v1.2.0-web
 [1.1.0-web]: https://github.com/vteial/saranidhi/compare/v1.0.0-web...v1.1.0-web
 [1.0.0-web]: https://github.com/vteial/saranidhi/releases/tag/v1.0.0-web
