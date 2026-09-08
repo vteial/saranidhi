@@ -87,3 +87,10 @@ playwright-report/
 *.log
 *.tmp
 .agents/
+
+# Local Research Media & Worknotes Binaries
+worknotes/**/*.mp4
+worknotes/**/*.m4a
+worknotes/**/*.mov
+worknotes/**/*.wav
+worknotes/**/*.mp3
