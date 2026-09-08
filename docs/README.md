@@ -48,10 +48,9 @@ team operating model that ties these together.
 | [third-party-comparison.md](reference/third-party-comparison.md) | Bird-state mapping vs Align27 / Tamil texts |
 
 ## 🔬 research/ — domain research & engine specs
-Vedic/Sara Kalai methodology, engine specs, and terminology. See
-[research/](research/) — calculation methodology, action windows, Prasanam
-oracle, numerology, advanced somatic mastery, holistic living, implementation
-roadmap, and EN/TA terminology.
+Canonical Sara Kalai workshop knowledge base and historical research.
+- [sarakalai-workshop-knowledge.md](research/sarakalai-workshop-knowledge.md) — Canonical digitized Sara Kalai workshop knowledge base (bilingual capture).
+- [archived/](research/archived/) — Legacy/outdated engine specs, calculation drafts, and exploratory proposals.
 
 ---
 
