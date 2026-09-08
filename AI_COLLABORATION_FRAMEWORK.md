@@ -5,7 +5,7 @@ This document describes the multi-agent operating model used to develop the
 personas to take a feature from idea to production, and the gates that keep the
 process honest.
 
-> **Status:** Working model, matured through the v1.5.0 release cycle. It is
+> **Status:** Finalized model, matured through the v1.6.0 release cycle. It is
 > intentionally **Saranidhi-specific**; a stack-agnostic version will be
 > extracted into a reusable template (`project-blueprint`) later, once this
 > process has been evaluated in real use.
@@ -123,18 +123,29 @@ flowchart TD
 
 > **A green Vercel preview is NOT sign-off.** Before merging any release or
 > promotion PR, confirm the required CI checks are green:
-> - On PRs to `main`: **"Analyze, Fast Tests & Build"**.
-> - On `main → prod`: **"Full Test Suite + Coverage"** (heavier `ci-full.yml`).
+> - On a PR to `main`: **"Analyze, Fast Tests & Build"** (`ci.yml`) **and**
+>   **"Full Test Suite + Coverage"** + **"Integration Tests (Web)"**
+>   (`ci-full.yml`) — the full suite now runs on PRs into `main`, not only at
+>   merge-to-main / prod promotion, so widget tests, the coverage gate, and
+>   integration tests all gate pre-merge.
+> - On `main → prod`: the same **"Full Test Suite + Coverage"** + **"Integration
+>   Tests (Web)"** checks (heavier `ci-full.yml`).
 >
-> **Known non-blocking checks may show red for information** and do not block the
-> gate — currently **"Integration Tests (Web)"** is marked non-blocking
-> (`continue-on-error`) because it is flaky/stale; its fate is a planning-session
-> item. "CI green" therefore means *all **required** checks green*.
+> **"Integration Tests (Web)" is now a trustworthy REQUIRED gate.** Sprint 36
+> (v1.6.0) removed the job's `continue-on-error` and added a bounded ChromeDriver
+> readiness poll, so it no longer shows red for information — it blocks like every
+> other required check. "CI green" therefore means *all **required** checks green*.
 >
 > *v1.5.0 proof: a literal `\n` syntax error and an 18%-vs-19% coverage shortfall
 > both passed the Vercel preview but failed CI; stale integration tests only
 > surfaced on the `main → prod` trigger. The preview alone would have shipped a
 > broken build.*
+>
+> *v1.6.0 proof: `ci-full` only ran at merge-to-main, so PRs that were green on CI
+> Fast (which omits widget tests + coverage) still reddened `main` after merge — a
+> real About-card `RenderFlex` overflow and a real-DB widget-test crash surfaced
+> only in the full suite. The fix was to run `ci-full` on PRs into `main` so the
+> full gate is pre-merge, not post-merge.*
 
 ### 2.3 Merge & Tag Authority — absolute rule
 
@@ -237,9 +248,10 @@ Use this when transferring work from the Common Window to **Kiro Web**:
 3. **Keep context clean.** Use the Common Window for alignment; let Kiro Web handle file-by-file churn.
 4. **Iterative refinement.** If Kiro hits an architectural conflict, bring the error back to the Architect in the Common Window and adjust the design.
 5. **Human is the sole merge & release authority.** Kiro branches/PRs and validates CI; only the human merges to `main`/`prod` and creates tags.
-6. **CI green, not just the preview.** QA-Verify confirms the named required CI checks before any merge; known non-blocking checks may show red for information.
+6. **CI green, not just the preview.** QA-Verify confirms the named required CI checks (both `ci.yml` and `ci-full.yml` run and gate on PRs into `main`) before any merge.
 7. **Fix-on-same-branch loop.** A QA bug is fixed on the same PR branch as a new commit (never `--amend` after a CI failure), then the specific scenario is re-verified.
 8. **Capture learnings at the moment of decision.** Record decisions, gotchas, and deferrals as durable learnings so the process compounds instead of repeating mistakes.
+9. **CI Fast ≠ CI Full.** The pre-merge gate must run the same suite that runs at merge (full tests + coverage), or green PRs can still break `main`.
 
 ---
 
