@@ -76,6 +76,10 @@ Use this table to see at a glance what is captured and to resume across sessions
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
 | 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 7 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48). See CONF-017, CONF-018. |
+| 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
+| 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67). See CONF-021, CONF-022. |
+| 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69). See CONF-023, CONF-024. |
+| 14 | [Siddha Dinacharya & Avvaiyar's Pranic Inversion Sutras (தினக்கிரம அலங்கார ஒழுக்கங்களும் ஒளவையாரின் வாசி சூத்திரங்களும்)](#topic-14) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 84, 90, 102–103). See CONF-025, CONF-026. |
 
 *Add a new topic row here as you begin each topic. Update its Capture Status (⬜ → 🔄 → ✅) and practice count as you go.*
 
@@ -105,6 +109,14 @@ Use this table during batch review sessions to verify flagged items against work
 | CONF-016 | Topic 9: பிணி நீக்கும் சுவாசத் தலைகீழ் மாற்றம் | Verify safety contraindications and maximum recommended duration for therapeutic nostril occlusion (cotton plug) | Recorded Videos / Notes | ⏳ Pending | Used until fever/illness breaks; check lineage protocols. |
 | CONF-017 | Topic 10: மாத்திரை விகித தாரணை (16:64:32) | Verify whether beginners are taught scaled introductory ratios (e.g. 1:4:2 with 4s:16s:8s) before classical 24:96:48s durations | Recorded Videos / Notes | ⏳ Pending | `sugam_tharum_swasa_kalai.pdf` defines 1 matra = 1.5s (24:96:48s). |
 | CONF-018 | Topic 10: பகல் இடது-இரவு வலது தாரக மந்திரம் | Verify how Daytime Left / Nighttime Right macro-seal reconciles with 1-hour alternation cycles and Weekday Inception | Recorded Videos / Notes | ⏳ Pending | `sugam_tharum_swasa_kalai.pdf` calls this the master health axiom. |
+| CONF-019 | Topic 11: வாரச் சரப் பிசகு தோஷ அட்டவணை | Verify whether weekday deviation afflictions (Sunday illness, Monday life-threat, etc.) are same-day immediate omens or cumulative | Recorded Videos / Notes | ⏳ Pending | `gana_sara_nool.pdf` (Peer Mohamed vv. 8–9; Avvaiyar ch. 14). |
+| CONF-020 | Topic 11: 10:12 உள்-வெளி சுவாச விகிதம் | Verify whether lineage sadhana focuses on lengthening inhalation to 12 angulas or shortening exhalation to 10 angulas (or fewer) | Recorded Videos / Notes | ⏳ Pending | `gana_sara_nool.pdf` (p. 14) identifies 2-angula loss per breath. |
+| CONF-021 | Topic 12: சூரிய ஒளி நீர்த்திவலை வானவில் சோதனை | Clarify physical stance relative to sunlight (standing facing vs back to sun with shadow in front) | Recorded Videos / Notes | ⏳ Pending | `gana_sara_nool.pdf` v. 38 states "காட்டியகால் நிழல்தனக்கு முன்பின் னாகக்". |
+| CONF-022 | Topic 12: நெய் நிழல் படிம நிறப் பரிசோதனை | Verify if copper vessel (செப்பகல்) and cow's ghee on Amavasya/Pournami are strictly literal in lineage | Recorded Videos / Notes | ⏳ Pending | `gana_sara_nool.pdf` v. 39 specifies molten cow ghee in copper plate. |
+| CONF-023 | Topic 13: 25 உப-பூதப் பிரிவு சரம் | Verify whether 25 sub-tattvas have distinct physical markers (taste/scent) or are fractional time subdivisions | Recorded Videos / Notes | ⏳ Pending | `gana_sara_nool.pdf` p. 46 lists 5x5 sub-elements without explicit durations. |
+| CONF-024 | Topic 13: பெயர் எழுத்துக் கணிப்பு | Verify exact arithmetic weighting algorithm for vowel classes and consonant positions in duel outcomes | Recorded Videos / Notes | ⏳ Pending | `gana_sara_nool.pdf` vv. 42-43 mentions letter count and vowel qualities. |
+| CONF-025 | Topic 14: தாம்பூல மூன்று உமிழ்நீர் ரகசியம் | Verify whether 3-saliva betel rule applies to plain leaf or strictly with areca nut and slaked lime | Recorded Videos / Notes | ⏳ Pending | `gana_sara_nool.pdf` p. 102 lists first 2 salivas as toxic/intoxicating, 3rd as amrutham. |
+| CONF-026 | Topic 14: ஒளவையார் வாசி தலைகீழ் யோகம் | Verify if Sushumna is considered pure Kapha Nadi (v. 29) or transcendent neutral equilibrium in lineage | Recorded Videos / Notes | ⏳ Pending | `gana_sara_nool.pdf` p. 90 v. 29 links Sushumna directly to Sleshma (Kapha). |
 
 ---
 
@@ -114,7 +126,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 47 practices (across 10 topics: Books 1 & 2 Completed)**
+**Implemented: TBD / Total captured: 63 practices (across 14 topics: Books 1, 2 & Gnana Sara Nool)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -793,6 +805,313 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):**
 - **Source ref:** `sugam_tharum_swasa_kalai.pdf`, pp. 47–48
+
+[↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
+
+---
+
+<a id="topic-11"></a>
+### 11. Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும் / Vaarach-Chara Pisagu Dosha Attavanaiyum Thozhilvazhi Swasa Virayangalum)
+
+*Core source: `worknotes/gana_sara_nool.pdf` (பதிப்புரை p. 14, ஒளவையார் ch. 14 p. 85, பீர்முகமது vv. 8–10 pp. 110–111).*
+
+#### Practice — வாரச் சரப் பிசகு தோஷ அட்டவணை (Vaarach-Chara Pisagu Dosha Attavanai / Weekday Inception Deviation Afflictions & Omens)
+- **Purpose / benefit (the why):** Immediate somatic and prognostic awareness of respiratory deviation at dawn; diagnosis of oncoming physiological imbalances, bad fortune, or hazards when the breath commences in the incorrect nostril contrary to weekday rule.
+- **How it's practiced (brief mechanics):** Upon waking at dawn, immediately test which nostril is active and cross-reference against the prescribed weekday solar/lunar inception rule:
+  - **ஞாயிறு (Sunday - prescribed Surya/Right):** If running in Chandra/Left → Causes physical illness, lethargy, and body pain (*நோய் / உடல் உபாதை*).
+  - **திங்கள் (Monday - prescribed Chandra/Left):** If running in Surya/Right → Danger to longevity and severe mortal affliction (*உயிருக்கு மோசம் / மரண பயம்*).
+  - **செவ்வாய் (Tuesday - prescribed Surya/Right):** If running in Chandra/Left → Imminent threat of death, acute injury, or conflict (*சாவு / கண்டம்*).
+  - **புதன் (Wednesday - prescribed Chandra/Left):** If running in Surya/Right → Grief, distress, and painful tidings (*துக்கம் / மனக்கவலை*).
+  - **வியாழன் (Thursday - prescribed Chandra/Left):** If running in Surya/Right → Complete loss, dispossession, or aimless wandering (*நாடு விட்டு நாடு செல்லல் / நாசம்*).
+  - **வெள்ளி (Friday - prescribed Chandra/Left):** If running in Surya/Right → Disruption of travel, loss of assets, and failed undertakings (*காரிய நாசம் / பிரயாணத் தடை*).
+  - **சனி (Saturday - prescribed Surya/Right):** If running in Chandra/Left → Inevitable death or irreversible ruin (*நிச்சய மரணம் / பேரழிவு*).
+  When a deviation is identified, immediately initiate somatic swara correction (Topic 2) before engaging in any worldly activity.
+- **App-help bucket:** 🟢 — The app can determine the day's expected dawn swara, prompt the user for their active nostril upon waking, and if deviant, instantly display the classical affliction warning alongside guided swara-switching interventions.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Dawn Swara Deviation Diagnostic" modal with instant correction wizard.
+- **Source ref:** `gana_sara_nool.pdf`, pp. 85, 110–111 (Peer Mohamed vv. 8–9; Avvaiyar ch. 14)
+
+> ⚠️ **Pending Confirmation [CONF-019]:** In `gana_sara_nool.pdf` (vv. 8–9), the consequences of dawn swara inversion are stated severely (e.g. death on Tuesday/Saturday, exile on Thursday). Verify with lineage workshop notes whether these represent cumulative diagnostic omens of chronic imbalance or acute single-day warnings requiring immediate somatic correction.
+
+#### Practice — தொழில்வழி சுவாச விரய அங்குல அட்டவணை (Thozhilvazhi Swasa Viraya Angula Attavanai / Respiration Span & Pranic Dissipation by Physical Activity)
+- **Purpose / benefit (the why):** Understanding how daily activities, postures, and exertion expand the exhalation length beyond the normal 12-angula resting baseline, causing accelerated life-force expenditure and metabolic burnout.
+- **How it's practiced (brief mechanics):** Recognize the measured exhalation span (in Angulas / finger-widths) across different bodily activities and consciously modulate pacing, breathing, and rest:
+  - **சாதாரண ஓய்வு நிலை (Resting / Normal sitting):** Inhale 10 angulas, exhale 12 angulas (Net loss: 2 angulas).
+  - **பாட்டுப் பாடுதல் (Singing / Chanting):** Exhalation expands to 16 angulas (Net loss: 6 angulas).
+  - **உணவு உண்ணுதல் (Eating meals):** Exhalation expands to 18 angulas (Net loss: 8 angulas).
+  - **நடத்தல் (Walking):** Exhalation expands to 24 angulas (Net loss: 14 angulas).
+  - **நித்திரை / தூங்குதல் (Sleeping):** Exhalation expands to 30 angulas (Net loss: 20 angulas).
+  - **புணர்ச்சி / உடலுறவு (Copulation / Sexual intercourse):** Exhalation expands to 36 angulas (Net loss: 26 angulas).
+  - **ஓடுதல் / மிகைக் கடின உழைப்பு (Running / Strenuous physical exertion):** Exhalation expands to 48–64 angulas (Extreme pranic leakage).
+  Apply conscious breath slowing, nasal diaphragmatic pacing, and post-activity recuperation to minimize angula expansion.
+- **App-help bucket:** 🟢 — The device can present this classical Siddhic table as an educational metric card, correlate user fitness/activity logs with estimated pranic expenditure, and offer calming breath pacing post-exertion.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Activity Prana Expenditure Calculator" & post-workout breath recovery timer.
+- **Source ref:** `gana_sara_nool.pdf`, p. 14 (பதிப்புரை)
+
+#### Practice — உள்-வெளி சுவாச அங்குல விகிதமும் பிராணக் கசிவும் (Ul-Veli Swasa Angula Vigithamum Praanak-Kasivum / The 10:12 Inhalation-Exhalation Ratio & Prana Conservation)
+- **Purpose / benefit (the why):** Understanding the fundamental Siddha diagnostic of human mortality: humans chronically inhale 10 angulas and exhale 12 angulas, causing a continuous leak of 2 angulas of prana on every breath cycle, directly consuming the allotted 21,600 daily breaths and 100-year lifespan.
+- **How it's practiced (brief mechanics):**
+  - Observe the natural exhalation span at rest using a light feather, palm edge, or fine silk thread held below the nostrils.
+  - While inhalation naturally draws air 10 angulas into the lungs, exhalation shoots out 12 angulas into external space, dissipating 2 angulas of subtle vital energy into the ether.
+  - Practice conscious retention (கும்பகம்) and lengthened, gentle exhalation to equalize the ratio to 10:10 or reverse it to 12:10 (drawing more prana than is expelled).
+  - By containing the exhalation within the nasal threshold (not exceeding 10 angulas), the daily dissipation of prana is halted, directly expanding physical longevity.
+- **App-help bucket:** 🟡 — The app can guide a biofeedback breath pacer targeting 1:1 or 1:2 slow rhythmic diaphragmatic breathing to minimize external air turbulence and reduce exhalation velocity.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "10:10 Pranic Leak Stopper" audio-visual breath pacing screen.
+- **Source ref:** `gana_sara_nool.pdf`, p. 14 (பதிப்புரை)
+
+> ⚠️ **Pending Confirmation [CONF-020]:** In `gana_sara_nool.pdf` (p. 14), normal breathing is quantified as 10 angulas internal and 12 angulas external (2-angula loss). Verify whether lineage sadhana focuses primarily on lengthening inhalation (10 → 12) or shortening exhalation (12 → 10 or 4 angulas as in Topic 10).
+
+#### Practice — இருநாசித் தவறு & தொடர் ஒற்றை நாசி மரணக் கணிப்பு (Irunaasi Thavaru & Thodar Otrai Naasi Maranak-Kanippu / Dual-Nostril Aberration & Sustained Single-Swara Mortality Thresholds)
+- **Purpose / benefit (the why):** Critical diagnostic warning of severe constitutional breakdown or impending mortality when breath stays stuck in both nostrils or runs continuously in a single nostril without the mandatory hourly alternation.
+- **How it's practiced (brief mechanics):**
+  - **இருநாசியிலும் சமமாக ஓடுதல் (Sushumna / Dual-nostril flow during worldly activity):** If both nostrils flow equally during active worldly pursuit, it signifies total confusion, failure of intellect, loss of wealth, and danger (*சகல காரிய நாசம், சித்தக் கலக்கம்*).
+  - **தொடர் சந்திரகலை மரண கணிப்பு (Uninterrupted Left nostril flow):**
+    - If Chandra Kalai flows unbroken for **3 continuous days and nights** → Death within **1 year** (*ஓராண்டில் மரணம்*).
+    - If unbroken for continuous prolonged periods exceeding 3 days → Life expectancy shrinks drastically according to classical verse 10.
+  - **தொடர் சூரியகலை மரண கணிப்பு (Uninterrupted Right nostril flow):**
+    - If Surya Kalai flows unbroken for **1 full day and night (24 hours)** → Life expectancy is severely truncated; acute metabolic fever and collapse.
+    - If unbroken for **2 consecutive days and nights** → Severe mortal danger within a few months.
+    - If unbroken for **3 consecutive days and nights** → Imminent demise (*மூன்று நாள் தொடர்ந்தால் மரணம் நிச்சயம்*).
+  Whenever single-nostril flow remains locked beyond 2–3 hours without natural ultradian alternation, immediately apply somatic inversions, cool/warm water baths, or posture adjustments.
+- **App-help bucket:** 🟢 — The breath journal can monitor consecutive user check-ins. If a user logs the same nostril for 3+ consecutive daytime check-ins, the app flags "Stuck Swara Warning" and provides corrective somatic protocols.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Stagnant Swara Alert" & somatic rebalancing prompt in Swara Journal.
+- **Source ref:** `gana_sara_nool.pdf`, p. 111 (Peer Mohamed v. 10); pp. 14–15
+
+[↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
+
+---
+
+<a id="topic-12"></a>
+### 12. Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும் / Marana Kaala Chara Kanippum Arishta Lakshana Sodhanaigalum)
+
+*Core source: `worknotes/gana_sara_nool.pdf` (பதிப்புரை pp. 14–15, அகஸ்தியர் vv. 38–40 pp. 64–67, பீர்முகமது v. 10 p. 111).*
+
+#### Practice — தொடர் ஒற்றை நாசி மரண கால அட்டவணை (Thodar Otrai Naasi Marana Kaala Attavanai / Sustained Single-Swara Chronobiological Mortality Ledger)
+- **Purpose / benefit (the why):** Critical prognostic indicator when normal ultradian swara alternation (1-hour rhythm) fails and the breath remains locked in a single nostril over extended circadian cycles, signaling severe autonomic collapse.
+- **How it's practiced (brief mechanics):**
+  - Continuous unbroken Ida (Left) or Pingala (Right) for **1 whole night** → Demise within **3 years**.
+  - Unbroken Pingala for **2 consecutive days and nights (48h)** → Demise within **2 years**.
+  - Unbroken flow in a single nostril for **3 full days and nights (72h)** → Demise within **1 year**.
+  - Nighttime unbroken Ida + Daytime unbroken Pingala in locked persistence → Demise within **6 months**.
+  - Continuous unbroken Pingala for extended days → Demise within **15 days**.
+  - Continuous unbroken Ida for **1 full month** → Demise within that month.
+  - *Intervention:* Immediately apply somatic inversions, cool/warm therapies, and pranayama upon noticing a swara locked beyond 2–3 hours.
+- **App-help bucket:** 🟢 — The breath log can monitor multi-check-in swara patterns and trigger a "Prolonged Swara Lock Warning" with rebalancing interventions.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Chronobiological Swara Lock Warning" in Swara Journal.
+- **Source ref:** `gana_sara_nool.pdf`, p. 15 (பதிப்புரை); p. 111 (Peer Mohamed v. 10)
+
+#### Practice — அரிஷ்ட லட்சண ஐம்பொறி & சோதிடப் பரிசோதனைகள் (Arishta Lakshana Aimpori & Jothidap Parisodhanaigal / Somatic Reflexes, Involuntary Twitching & Sensory Fading Diagnostics)
+- **Purpose / benefit (the why):** Traditional Siddha clinical self-assessment (*அரிஷ்ட லட்சணம்*) to recognize subtle physiological and sensory withdrawal patterns that predict longevity thresholds.
+- **How it's practiced (brief mechanics):**
+  - **Sensory & Reflex Invisibility Countdown (ஐம்பொறி சோதனை):**
+    - Lack of phosphene light or tear response when pressing both closed eyes with hands (கண்களை அழுத்தும்போது துலங்காமை) → **10 days**.
+    - Inability to perceive one's own eyebrows upon looking upward (புருவம் தெரியாமை) → **9 days**.
+    - Loss of internal nada / auditory perception in ears (காது கேளாமை) → **7 days**.
+    - Inability to discern nocturnal stars / Arundhati (நட்சத்திரம் தெரியாமை) → **5 days**.
+    - Inability to see the tip of one's own nose upon downward gaze (மூக்கு நுனி தெரியாமை) → **3 days**.
+    - Progressive loss of olfactory perception (மூக்கில் மணம் தெரியாமை) → **3 days**.
+    - Involuntary tongue faltering and loss of speech (நாவு குழறி பேச்சு வராமை) → **2 days**.
+  - **Somatic Twitching Countdown (இடப்பக்கம் விடாது துடித்தல் - v. 40):**
+    - Hand continuously twitching (கை துடித்தால்) → **1 year**.
+    - Leg continuously twitching (கால் துடித்தால்) → **6 months**.
+    - Forehead continuously twitching (நெற்றி துடித்தால்) → **3 months**.
+    - Cheek continuously twitching (கன்னம் துடித்தால்) → **10 days**.
+- **App-help bucket:** 🟡 — Educational reference and structured self-inspection diagnostic guide for classical Siddha gerontological prognostics.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Arishta Lakshana Diagnostic Reference" in Classical Knowledge module.
+- **Source ref:** `gana_sara_nool.pdf`, p. 15; pp. 66–67 (Agathiyar v. 40)
+
+#### Practice — சூரிய ஒளி நீர்த்திவலை வானவில் சோதனை (Surya Oli Neer-Thivalai Vaanavil Sodhanai / The Sunlight Water-Spray Rainbow Longevity Test - Agathiyar v. 38)
+- **Purpose / benefit (the why):** Classical Siddha outdoor optical-pranic test performed in direct sunlight to assess vital life-force cohesion and annual survival prognosis.
+- **How it's practiced (brief mechanics):**
+  - Stand outdoors in clear unshaded space in direct sunlight.
+  - Take a mouthful of pure, clean water (*கடிபுனல்வாய் கொண்டு*).
+  - Forcefully spray the water through pursed lips into a fine airborne mist against the sunlight so that a 5-colored rainbow arch forms in the mist (*வானில் பொருந்திய வில் ஐந்து உருவாய்ப் பொலிந்து தோன்றும்*).
+  - **Prognostic Signs:**
+    - Complete, unbroken rainbow arch: Healthy vitality, life assured for at least **1 full year** (*ஈட்டிய வில் உருவளதேல் ஆண்டு வாழ்வன்*).
+    - Broken / severed rainbow arch: Life-force failing, death within **1 year** (*இது முறிவில் அவ்வாண்டின் இறந்து போவன்*).
+    - Broken rainbow displaying distorted, fearsome phantom shapes: Demise within **6 months** (*வில் உருமுறிய அணங்கு தோன்றிற் கொண்டுபோம் பிறை ஆறில்*).
+- **App-help bucket:** 🟢 — The app can determine optimal solar angle/time for clear rainbow refraction, provide step-by-step stance instructions, and log annual test results.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Annual Sunlight Rainbow Vitality Test" protocol card.
+- **Source ref:** `gana_sara_nool.pdf`, pp. 64–65 (Agathiyar v. 38)
+
+> ⚠️ **Pending Confirmation [CONF-021]:** In `gana_sara_nool.pdf` (p. 64, v. 38), the rainbow water-spray test specifies casting the spray relative to sun and shadow (*"காட்டியகால் நிழல்தனக்கு முன்பின் னாகக் கடிபுனல்வாய் கொண்டகல்வான்"*). Clarify the physical stance: standing with back to the sun so one's shadow falls forward and mist forms the rainbow in front, or facing the sun.
+
+#### Practice — நெய் நிழல் படிம நிறப் பரிசோதனை (Nei Nizhal Padima Nirap Parisodhanai / The Ghee Shadow & Lunar/Solar Reflection Test - Agathiyar v. 39)
+- **Purpose / benefit (the why):** Deep Siddha bio-photonic prognostic to determine constitution, longevity, oncoming diseases, or recovery by observing the reflection of the Sun or Moon in melted cow's ghee.
+- **How it's practiced (brief mechanics):**
+  - Fill a wide copper vessel (செப்பகல்) with melted pure cow's ghee (*கோநெய்*).
+  - **Timing:**
+    - On **Amavasya (New Moon)**: Conduct at midday (நடுப்பகல்) reflecting the Sun.
+    - On **Pournami (Full Moon)**: Conduct at midnight (நடு இரவு) reflecting the Full Moon.
+  - Gaze directly into the liquid reflection to assess **Color** and **Structural Symmetry**:
+  - **Color Diagnostics:**
+    - வெண்மை (White): Unimpaired vitality, long life assured (*உயிருக்கு அழிவில்லை*).
+    - சிவப்பு (Red): Robust prosperity and vigor (*நல்வாழ்வு உண்டு*).
+    - பொன்னிறம் (Golden Yellow): Minor misfortune or transient obstacle (*தீங்கு*).
+    - பச்சை (Green): Illness and bodily distress (*நோய் / துன்பம்*).
+    - கருமை (Black): Imminent mortal peril (*மரணம் நேரும்*).
+  - **Deficit / Directional Distortion Diagnostics:**
+    - South edge distorted/missing (தெற்கில் குறைவு): Demise within **1 year**.
+    - West edge distorted/missing (மேற்கில் குறைவு): Demise within **6 months**.
+    - North edge distorted/missing (வடக்கில் குறைவு): Demise within **3 months**.
+    - East edge distorted/missing (கிழக்கில் குறைவு): Demise within **1 month**.
+    - Center perforated / hole in middle (நடுவில் துளை): Demise within **10 days**.
+- **App-help bucket:** 🟢 — Device calculates astronomical Amavasya midday / Pournami midnight windows, provides an interactive directional reflection diagram, and records color results.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Amavasya/Pournami Ghee Reflection Diagnostic" module.
+- **Source ref:** `gana_sara_nool.pdf`, pp. 65–66 (Agathiyar v. 39)
+
+> ⚠️ **Pending Confirmation [CONF-022]:** In `gana_sara_nool.pdf` (p. 66, v. 39), the ghee reflection test mandates copper vessels (*செப்பகல்*) and pure cow's ghee on Amavasya noon / Pournami midnight. Verify whether modern lighting/reflective tests or alternative mediums are accepted in workshop lineage.
+
+[↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
+
+---
+
+<a id="topic-13"></a>
+### 13. 25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும் / 25 Upa-Bhootha Pirivugalum Porkkala Charamum Garbha Palangalum)
+
+*Core source: `worknotes/gana_sara_nool.pdf` (அகஸ்தியர் vv. 20, 21, 23, 42, 43; pp. 44–47, 68–69).*
+
+#### Practice — 25 உப-பூதப் பிரிவு சரம் (25 Upa-Bhootha Pirivu Charam / The 25 Sub-Tattva Micro-Breath Matrix)
+- **Purpose / benefit (the why):** Refining breath diagnosis beyond the macro 5 elements into the classical 25 nested micro-tattvas (a 5×5 matrix: 5 sub-elements per primary element), enabling ultra-precise somatic awareness, health diagnostics, and divination.
+- **How it's practiced (brief mechanics):**
+  - Observe how each of the 5 primary Tattvas contains subtle manifestations of all 5 elements:
+    - **பிருதிவி (Earth):** பிருதிவியில் பிருதிவி, பிருதிவியில் அப்பு, பிருதிவியில் தேயு, பிருதிவியில் வாயு, பிருதிவியில் ஆகாயம்.
+    - **அப்பு (Water):** அப்புவில் பிருதிவி, அப்புவில் அப்பு, அப்புவில் தேயு, அப்புவில் வாயு, அப்புவில் ஆகாயம்.
+    - **தேயு (Fire):** தேயுவில் பிருதிவி, தேயுவில் அப்பு, தேயுவில் தேயு, தேயுவில் வாயு, தேயுவில் ஆகாயம்.
+    - **வாயு (Air):** வாயுவில் பிருதிவி, வாயுவில் அப்பு, வாயுவில் தேயு, வாயுவில் வாயு, வாயுவில் ஆகாயம்.
+    - **ஆகாயம் (Space):** ஆகாயத்தில் பிருதிவி, ஆகாயத்தில் அப்பு, ஆகாயத்தில் தேயு, ஆகாயத்தில் வாயு, ஆகாயத்தில் ஆகாயம்.
+  - Discern sub-tattvas by combining primary directional nasal flow with subtle secondary sensations: temperature shifts (cold/neutral/warm), subtle palate tastes, and condensation patterns.
+- **App-help bucket:** 🟢 — The app can render an interactive 5×5 nested sub-tattva visual matrix card, assisting the practitioner in logging and exploring granular breath qualities.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "25 Sub-Tattva Micro-Matrix Explorer" within the Tattva Diagnostics module.
+- **Source ref:** `gana_sara_nool.pdf`, p. 46
+
+> ⚠️ **Pending Confirmation [CONF-023]:** In `gana_sara_nool.pdf` (p. 46), the 25 sub-tattvas are enumerated systematically (5×5). Verify with lineage workshop notes whether each sub-tattva has distinct physical markers (e.g., compound tastes/smells) or if they are diagnosed primarily via fractional time subdivisions (e.g., 20-min Prithvi broken into five 4-min micro-periods).
+
+#### Practice — தத்துவ ரீதியான கர்ப்ப நிர்ணயமும் பாலினக் கணிப்பும் (Thathuva Reethiyaana Garbha Nirnayamum Paalina Kanippum / Embryological Conception & Fetal Gender Divination - Agathiyar v. 23)
+- **Purpose / benefit (the why):** Classical prasanam diagnostic to ascertain fetal viability, maternal well-being, and child gender when an inquiry is received regarding pregnancy.
+- **How it's practiced (brief mechanics):**
+  - Note the practitioner's active swara and active Tattva at the exact moment the querent poses a question about an expectant mother:
+    - **நிலம் அல்லது நீர் (Prithvi or Apas active):** Conception is stable and flourishing; indicates the birth of a healthy **male child** (*ஆண் குழந்தை பிறக்கும்*), abundant longevity, and prosperity.
+    - **வாயு (Vayu active):** Fetal development proceeds towards the birth of a **female child** (*பெண் குழந்தை பிறக்கும்*).
+    - **அங்கி / நெருப்பு (Agni active):** Adversity and heat in the womb; indicates fetal distress, maternal fever, or risk of pregnancy complications (*கெர்ப்பங்கேடாம்*).
+    - **விண் / ஆகாயம் (Akasa active):** Non-viable pregnancy; risk of miscarriage, early termination, or intersex/ambiguous birth (*அலியாய் வீழும் / கர்ப்ப அழிவு*).
+- **App-help bucket:** 🟢 — The Prasanam Oracle can take pregnancy-related queries, capture current astronomical Tattva and active swara, and provide classical prognostic interpretations.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Prasanam Conception & Fetal Diagnostics" card in the Oracle module.
+- **Source ref:** `gana_sara_nool.pdf`, p. 47 (Agathiyar v. 23)
+
+#### Practice — போர்க்கள திசைக்கோடும் ஆயுதப் பொருத்தமும் (Porkkala Thisaik-Koodum Aayudhap Porutthamum / Tactical Battlefield Alignment & Tattva-Weapon Affinity - Agathiyar v. 20 / p. 44)
+- **Purpose / benefit (the why):** Siddha martial strategy to ensure decisive victory, bodily invulnerability, and dominant spatial advantage in physical combat, athletic matches, or strategic confrontations.
+- **How it's practiced (brief mechanics):**
+  - **Spatial Division of the Arena:** Draw an imaginary line across the conflict ground from the North-West (வாயு மூலை / Vayu) corner to the South-East (அக்னி மூலை / Agni) corner:
+    - **Chandra Zone (மதி நிலம்):** West and South.
+    - **Surya Zone (கதிர் நிலம்):** East and North.
+    - Position oneself in the zone that aligns with one's active swara (Surya swara → fight from East/North; Chandra swara → fight from West/South).
+  - **Weapon / Strategy Affinity by Active Tattva:**
+    - Prithvi active → Short dagger / close-range knife (*புவிக்கு கத்தி*).
+    - Apas active → Long sword (*சேர்ந்த சலம் வாள்*).
+    - Agni active → Bow, projectile weapons, firearms (*அழலுக்கு சிலை / வில்*).
+    - Vayu active → Staff, mace, blunt impact tools (*காலுக்கு மேல்தண்டாம்*).
+    - Akasa active → Sling, thrown stones, aerial weapons (*வானுக்கு ஆயுதம் கல்*).
+- **App-help bucket:** 🟡 — Educational and tactical guidance translating classical combat alignments to modern dispute, athletic competition, or negotiation strategies.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Siddha Strategic Alignment Card" (spatial orientation & strategy archetype).
+- **Source ref:** `gana_sara_nool.pdf`, p. 44 (Agathiyar v. 20)
+
+#### Practice — போர்ப் புறப்பாட்டு சர விதியும் பெயர் எழுத்துக் கணிப்பும் (Porp Purappattu Chara Vidhiyum Peyar Ezhuthuk Kanippum / Combat Departure Swara Rule & Duel Outcome Numerology - Agathiyar vv. 42–43)
+- **Purpose / benefit (the why):** Decisive rules determining the outcome of battles, athletic duels, legal disputes, or negotiations based on the departure breath polarity and name letter numerology.
+- **How it's practiced (brief mechanics):**
+  - **Combat Departure Swara Law (v. 42):**
+    - Departing for battle in Chandra Kalai and arriving in Surya Kalai → **Defeat** (*தோற்பான்*).
+    - Departing for battle in Chandra Kalai and arriving in Chandra Kalai → **Defeat** (*தோற்பான்*).
+    - Departing in **Surya Kalai** and arriving at the arena in **Surya Kalai** → **Unconditional Victory**, completely unharmed by weapons (*தன்மேல் ஆயுதம் படாமலேயே வெற்றி பெறுவான்*).
+  - **Querent Movement Dynamics:**
+    - If an opponent or querent approaches on one's empty side (சூன்ய பக்கம்) and moves across to the full side (பூரண பக்கம்) → initial friction leading to eventual success.
+    - If moving from full side to empty side → total disruption and defeat.
+  - **Duel Name Letter Numerology (v. 43):**
+    - Assess the Tamil letters of both adversaries; count short vowels (அ, இ, உ, எ, ஒ) and long vowels (ஆ, ஈ, ஊ, ஏ, ஐ, ஓ, ஔ) alongside syllable positions to forecast which party will prevail.
+- **App-help bucket:** 🟢 — The app can guide high-stakes departure timing (ensuring departure and arrival remain locked in Surya Kalai) and provide a dispute consultation checklist.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "High-Stakes Confrontation & Departure Guide" in the Action Planning module.
+- **Source ref:** `gana_sara_nool.pdf`, pp. 68–69 (Agathiyar vv. 42–43)
+
+> ⚠️ **Pending Confirmation [CONF-024]:** In `gana_sara_nool.pdf` (p. 69, v. 43), duel name numerology scores vowels and initial syllables. Verify the exact arithmetic weighting algorithm used in workshop practice to resolve opposing combatants.
+
+[↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
+
+---
+
+<a id="topic-14"></a>
+### 14. Siddha Dinacharya & Avvaiyar's Pranic Inversion Sutras (தினக்கிரம அலங்கார ஒழுக்கங்களும் ஒளவையாரின் வாசி சூத்திரங்களும் / Dinakrama Alangaara Ozhukkangalum Avvaiyarin Vaasi Soothirangalum)
+
+*Core source: `worknotes/gana_sara_nool.pdf` (ஒளவையார் உயர்ஞான சர நூல் vv. 12, 28–30 pp. 84, 90; தினக்கிரம அலங்காரச் சருக்கம் பிரிவுகள் 23–26 pp. 102–103).*
+
+#### Practice — இரவு உணவின் பின் 100 அடி நடை உலாவுதல் (Iravu Unavin Pin 100 Adi Nadai Ulaavudhal / The 100-Step Post-Dinner Stroll for Tridosha Neutralization)
+- **Purpose / benefit (the why):** Direct neutralization of dietary toxins (*உண்ட அன்னத்திற்சேர்ந்த விஷ பதார்த்தங்களைச் சீரணிப்பித்தல்*), optimal digestive assimilation, and prevention of Tridosha vitiation prior to nocturnal sleep.
+- **How it's practiced (brief mechanics):**
+  - Following the evening meal (*இராப்போசனம்*), strictly avoid lying down or sleeping immediately.
+  - Walk slowly and leisurely for exactly 100 steps (*சிறுநடையாக 100 அடி உலாவுதல்*).
+  - Breathe gently and evenly through the nose during the walk.
+  - After completing the 100 steps, engage in quiet contemplation before reclining on the left side (to maintain right-nostril Surya digestion during the initial sleep cycle).
+- **App-help bucket:** 🟢 — The app can send an automated post-dinner notification, provide a 100-step pacing audio timer or pedometer trigger, and offer a sleep countdown.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "100-Step Post-Dinner Digest Pacer" in the Evening Routine tracker.
+- **Source ref:** `gana_sara_nool.pdf`, p. 102 (தினக்கிரம அலங்காரச் சருக்கம், பிரிவு 23)
+
+#### Practice — தாம்பூல மூன்று உமிழ்நீர் ரகசியம் (Thaamboola Moondru Umizhneer Ragasiyam / The 3-Saliva Betel Leaf Pharmacological Law)
+- **Purpose / benefit (the why):** Traditional Siddha pharmacological instruction on chewing betel leaf (*வெற்றிலை, பாக்கு, சுண்ணம்*); extracts divine digestive nectar (*அமிர்தம்*) while eliminating hazardous initial and late saliva extracts that cause dizziness, Pitta aggravation, or anemia.
+- **How it's practiced (brief mechanics):**
+  - Chew fresh betel leaf with areca nut and natural slaked lime (*சுண்ணம்*):
+    - **1st expressed saliva (முதல் நீர்):** Nanjhu (நஞ்சு - poison) → **Must spit out immediately!**
+    - **2nd expressed saliva (2-வது நீர்):** Migu-Payithiyam (மிகு பயித்தியம் - causes giddiness, delirium, head rush) → **Must spit out immediately!**
+    - **3rd expressed saliva (3-வது நீர்):** Amrutham (அமிர்தம் - divine digestive nectar) → **Swallow this!**
+    - **4th expressed saliva (4-வது நீர்):** Excessively sweet (*அதியினிப்பு*); neutral.
+    - **5th & 6th expressed salivas (5, 6-வது நீர்கள்):** Trigger Pitta excess, digestive suppression (*அக்கினிமந்தம்*), and anemia (*பாண்டுரோகம்*) → **Do not continue chewing or swallowing; discard remnants.**
+- **App-help bucket:** 🟢 — Educational infographic and step-by-step interactive chewing guide in the Siddha wellness module.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "3-Saliva Thamboolam Guide" in Traditional Wellness.
+- **Source ref:** `gana_sara_nool.pdf`, p. 102 (பிரிவு 24)
+
+> ⚠️ **Pending Confirmation [CONF-025]:** In `gana_sara_nool.pdf` (p. 102, பிரிவு 24), the 3-saliva law specifies spitting the 1st (toxic) and 2nd (head-rush) saliva, and swallowing the 3rd (nectar). Verify workshop protocols on how this is practiced in modern contexts and whether it applies to betel leaf alone or strictly with areca nut and slaked lime.
+
+#### Practice — படுக்கை-பஞ்சணை திரிதோஷ சமநிலை (Padukkai-Panjanai Tridosha Samanilai / Bedding, Mattress & Pillow Material Selection for Humor Balancing)
+- **Purpose / benefit (the why):** Regulating internal thermal balance, humoral equilibrium (Vata-Pitta-Kapha), and unobstructed spinal nadi alignment during sleep through specific bedding fibers.
+- **How it's practiced (brief mechanics):**
+  - Choose bedding materials based on seasonal and constitutional balance:
+    - **இலவம்பஞ்சு மெத்தை (Silk-Cotton / Ceiba pentandra mattress):** Disperses trapped visceral heat (*உட்குடு நீங்கும்*), cools the deep viscera, and balances Pitta.
+    - **கோரைப் பாய் (Korai Grass / Reed mat):** Eliminates digestive sluggishness (*அக்கினி மந்தம் போக்கும்*), alleviates fever velocity (*சுரவேகம் தணியும்*), cools the physical frame, and yields blissful sleep.
+    - **பருத்தி மெத்தை (Common Cotton mattress):** Augments blood, semen, and thermal vigor.
+    - **இலவம்பஞ்சு தலையணை (Silk-cotton pillow):** Sized to match the exact neck-to-shoulder gap, keeping cervical nadis uncompressed and preventing head/circulatory disorders (*சிரசு நோய்கள் நீங்குதல்*).
+- **App-help bucket:** 🟢 — Sleep hygiene and bedding fiber recommender customized to the user's primary dosha profile and seasonal climate.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Siddha Sleep Bedding & Fiber Recommender" in Sleep module.
+- **Source ref:** `gana_sara_nool.pdf`, p. 103 (பிரிவு 26)
+
+#### Practice — ஒளவையார் வாசி தலைகீழ் யோகமும் நாடித் திரிதோஷ சமன்பாடும் (Avvaiyar Vaasi Thalaikeezh Yogamum Naadi Tridosha Samanpaadum / Avvaiyar's Vasi Inversion & Tridosha-Nadi Equation)
+- **Purpose / benefit (the why):** Core esoteric Siddha doctrine revealed by Sage Avvaiyar: equating the 3 principal Nadis directly to the Tridoshas, and using pranic breath inversion (*வாசி யோகம்*) to conquer disease, decay, and mortality.
+- **How it's practiced (brief mechanics):**
+  - **The Classical Nadi-Dosha Identity (சூத்திரம் 29):**
+    - **சந்திர நாடி (Ida / Left):** வாத நாடி (Vata Nadi - cooling, nervous, motor).
+    - **சூரிய நாடி (Pingala / Right):** பித்த நாடி (Pitta Nadi - heating, metabolic, digestion).
+    - **சுழிமுனை (Sushumna / Center):** சிலேத்தும நாடி (Kapha / Sleshma Nadi - structural, lubricating, neutral).
+  - **Avvaiyar's Vasi Inversion (சூத்திரங்கள் 28 & 30):**
+    - Treat exhalation (Rechaka / Shiva / waste expulsion) and inhalation (Puraka / Shakti / vital nectar) as reversible pranic flows.
+    - Elevate the flank by 4.5 angulas using a folded silk/woolen cushion under the lower rib to mechanically open a blocked nostril and center the flow into Sushumna (*சூனிய சரம்*).
+    - Through tranquil inward retention (*கும்பகம்*), convert the 21,600 daily dissipating breaths into internal longevity nectar (*அமிர்த பானம்*).
+- **App-help bucket:** 🟡 — Philosophical and diagnostic framework integrating Tridosha tracking with swara diagnostics and pranayama biofeedback.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Avvaiyar Nadi-Dosha Pacer & Flank Elevation Guide".
+- **Source ref:** `gana_sara_nool.pdf`, pp. 84, 90 (ஒளவையார் சூத்திரங்கள் 12, 28, 29, 30)
+
+> ⚠️ **Pending Confirmation [CONF-026]:** In `gana_sara_nool.pdf` (p. 90, v. 29), Avvaiyar maps Chandra to Vata, Surya to Pitta, and Sushumna to Kapha (Sleshma). Verify whether lineage teaching views Sushumna as Kapha predominance or as the transcendent equilibrium beyond all three doshas.
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
