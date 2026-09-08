@@ -9,13 +9,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Planned (v1.3.0 — Layer 2: Action Windows)
-- Sprint 28: ActionWindowEngine (24h schedule, Rahu guardrail)
-- Sprint 29: 24h Action Bar, Current Mode Focus Card, expansion sheet
-
-### Planned (v2.0.0 — Layer 3: Prasanam Oracle)
-- Sprint 30: Prasanam calculation engine (3 vectors, oracle score)
-- Sprint 31: FAB trigger, query input, result card, history timeline
+_No unreleased changes yet. Upcoming work is tracked in the
+[Sprint Backlog](docs/process/sprint-backlog.md) and scheduled via `/plan`._
 
 ---
 
