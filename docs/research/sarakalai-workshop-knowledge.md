@@ -69,7 +69,7 @@ Use this table to see at a glance what is captured and to resume across sessions
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
 | 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14). See CONF-003, CONF-004. |
-| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 6 | Source: saravithai.pdf (pp. 4–5, 10–11). See CONF-005, CONF-006. |
+| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03. See CONF-005, CONF-006. |
 | 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 4–5, 12–13). See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 66 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 68 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -421,6 +421,14 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Can I do this now?" quick activity checker card.
 - **Source ref:** `saravithai.pdf`, pp. 2, 10
 
+> 🎥 **Video refinement (Day 03 @ 15:01 – 30:00 & 51:01 – 57:00):**
+> - **Eating Meals (உணவு அருந்துதல்):** Digestion of food is 100% efficient and complete when eaten during Surya Kalai (Right/Pingala). Jatharagni (digestive fire) processes food into nutrient-rich blood effortlessly. Eating in Chandra Kalai results in sluggish incomplete digestion (~50%), gas, and visceral heaviness. If inescapable under Chandra, accept partial efficiency or switch swara.
+> - **Bathing (குளிப்பது — Cold/Hot Water):** Contact of water with the skin rapidly cools the cutaneous surface. Internal Surya Kalai is mandatory during bathing to supply metabolic heat and defend the core 37°C thermoregulatory set-point. Bathing in Surya leaves the body refreshed and energized; bathing in Chandra induces fatigue, chills, and dullness.
+> - **Defecation / Bowel Evacuation (மலம் கழித்தல்):** Elimination of stool requires peristaltic heat and abdominal pressure. Evacuating during Surya ensures quick, complete, and strain-free evacuation. Sitting for bowel movements under Chandra causes constipation (*மலச்சிக்கல்*) and chronic straining.
+> - **Hot Beverages (சூடான பானங்கள்):** Hot water, tea, coffee, milk, and hot soups must be consumed ONLY during Surya Kalai. Pouring scalding liquids into viscera when Chandra is active clashes with internal cooling mode and induces visceral distress.
+> - **Spicy Foods & Pickles (ஊறுகாய் / கார உணவுகள்):** Consuming pickles and pungent items demands active digestive heat; eating pickles during Chandra triggers acute acidity and gastritis.
+> - **Black Pepper 37°C Equilibrium Law (மிளகு சமநிலை தத்துவம்):** Though pungent on the tongue, black pepper (*Piper Nigrum*) is a metabolic adaptogen: it does not aggravate Pitta, but normalizes internal core temperature to precisely 37°C, prevents desert heatstroke, and guides breath directly into Sushumna.
+
 > ⚠️ **Pending Confirmation [CONF-005]:** Clarify whether entering sleep in Pingala refers to active nostril at sleep onset or sleeping posture (e.g. lying on left side to induce Pingala for nighttime digestion).
 
 #### Practice — சந்திரகலைக்குரிய 14 காரியங்கள் (Chandrakalai-kuriya 14 Kaariyangal / The 14 Prescribed Actions for Ida / Chandra Kalai)
@@ -444,6 +452,14 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** Event-scheduling calendar suggesting target lunar breath windows for auspicious purchases.
 - **Source ref:** `saravithai.pdf`, pp. 2, 11
+
+> 🎥 **Video refinement (Day 03 @ 18:46 – 22:25, 24:26 – 26:30, 29:34 – 30:00 & 57:01 – 65:54):**
+> - **Drinking Room-Temperature Water (குடிநீர்):** Genuine physiological thirst manifests only when Chandra Kalai (Left/Ida) is flowing. Drinking water under Chandra transforms water into cellular medicine (*தண்ணீர் மருந்தாக மாறும்*), replenishing nadic lubrication. Drinking water under Surya prematurely extinguishes digestive fire and causes an immediate energy crash.
+> - **Urination (சிறுநீர் கழித்தல்):** Renal filtration and fluid expulsion operate smoothly under Chandra Kalai; urinating under Chandra is effortless and relieves kidney pressure.
+> - **Purchasing Articles / Consumer Goods (பொருள் வாங்குவது):** Purchasing decisions under Chandra are rooted in calm discernment and genuine utility, preventing impulsive, wasteful expenditures.
+> - **Housewarming / Griha Pravesha (புதுமனை புகுவிழா):** The first auspicious entry into a newly constructed house to boil milk (*பால் காய்ச்சுதல்*) must be made under Chandra Kalai. The person with active Chandra steps across the threshold first to anchor enduring family prosperity.
+> - **Buying Clothing & Jewelry (ஆடை, ஆபரணம் வாங்குதல்):** Selecting clothes and gold/silver jewels under Chandra ensures lasting satisfaction and aesthetic alignment.
+> - **Laying Foundation & Earth Excavation (கடக்கால் தோண்டுதல்):** Digging foundation trenches and manual earthwork under Chandra protects workers from acute muscular fatigue and heat exhaustion.
 
 #### Practice — திசைப் பயணமும் சரப் பொருத்தமும் (Thisai Payanamum Sara Porutthamum / Directional Travel & Swara Concordance)
 - **Purpose / benefit (the why):** Harmonizes external travel vectors with internal prana; guarantees safe, fruitful arrival and prevents wasted journeys (காரியம் சித்தித்தல்).
@@ -486,6 +502,33 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Source ref:** `saravithai.pdf`, p. 5
 
 > ⚠️ **Pending Confirmation [CONF-006]:** Clarify deity's right/left perspective relative to devotee in sanctum sanctorum (deity's anatomical right vs devotee's right when facing idol).
+
+#### Practice — கவனத்தோடு கூடிய அசைவு vs கவனமற்ற உழைப்பு ஆற்றல் தத்துவம் (Mindful Movement vs Unconscious Labor Energy Law & Exercise Protocols)
+- **Purpose / benefit (the why):** Resolves the classical textual contradiction regarding physical exertion. Establishes why conscious exercise/Yoga generates vital prana while routine domestic or manual labor expends heat, and outlines exact swara rules for physical effort.
+- **How it's practiced (brief mechanics):**
+  - **Mindful Motion (Yoga Asanas, Workouts, Conscious Exercise):** Mental presence (*கவனம்*) combined with physical movement generates internal metabolic heat. Prescribed exclusively for **வலது நாசி (Surya Kalai / Pingala)**. When internal viscera require heat, conscious workout channels heat productively to burn toxins, build stamina, and cleanse the nadis. Practicing when Chandra is active creates a physiological conflict with the cooling viscera.
+  - **Unconscious / Routine Motion (Manual Labor, Domestic Chores, Construction):** Habitual physical labor performed without introspective focus (e.g. dishwashing, laundry, sweeping, masonry, digging) expends and radiates heat. Prescribed exclusively for **இடது நாசி (Chandra Kalai / Ida)**. Performing physical labor under Chandra keeps the organism cool, sustained, and tireless without muscular burnout. When Surya Kalai opens during physical labor, the body signals a mandatory rest period (*ஓய்வு எடுக்கும் தருணம்*).
+  - **Meditation Thermal Polarity:** Closed-eye meditation cools the brain/body (requires Surya to maintain metabolic heat); open-eye meditation (e.g. Trataka, Brahma Kumaris) heats the optic and frontal nadis (naturally demands Chandra flow).
+  - **Speaking:** Vocalization expends internal heat; prolonged speaking cools the viscera and induces a natural desire for warming spicy foods.
+- **App-help bucket:** 🟢 — High app utility: provides an activity classifier recommending Surya for mindful workouts and Chandra for domestic chores/labor, with rest-interval alerts.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Work & Workout Swara Pacer" distinguishing conscious workout sessions from daily manual tasks.
+- **Source ref:** `sarakalai-2026 video Day 03 @ 30:01 – 38:40 & 45:01 – 51:00`
+
+#### Practice — சுழிமுனை வரப்பிரசாத சாதனை (Bestowing Boons & Auspicious Blessings in Sushumna)
+- **Purpose / benefit (the why):** Direct realization of cosmic spiritual authority when dual-nostril flow (Sushumna / சுழிமுனை / அக்னி கலை) opens. It reveals that the power to bestow boons (*வரம் கொடுத்தல்*) and transformative blessings (*ஆசீர்வாதம்*) is not reserved for mythical ascetics, but is an intrinsic capacity of any human whose breath enters neutral equilibrium.
+- **How it's practiced (brief mechanics):**
+  - **Sushumna Inception:** Frequently test breath density. When airflow moves in balanced, equal volume through both nostrils (நடுநாசி / சுழிமுனை / அக்னி கலை), the practitioner transcends polar ego and operates as an empowered conduit (Rishi / Jnani).
+  - **Bestowing Auspicious Boons:**
+    1. Sit with an erect spine, close eyes, and place hands in gentle blessing mudra (or hold recipient in heart-mind).
+    2. Visualize the loved one facing chronic difficulties, illness, marriage delay, or childlessness.
+    3. Articulate the specific blessing with compassionate conviction: *"உனக்கு குழந்தை பாக்கியம் உண்டாகட்டும்"*, *"நீ நலமுடன் வாழ்வாயாக"*.
+    4. Any blessing, prayer, or boon released during Sushumna manifests with inevitable cosmic potency (*அந்த வரம் பலிக்கும்*).
+  - **Ethical Safeguard:** Because thoughts in Sushumna manifest rapidly, angry thoughts or curses (*சாபம்*) must be vigilantly avoided; practitioners must strictly maintain universal benevolence.
+- **App-help bucket:** 🟢 — The app can detect or log Sushumna occurrences and prompt a 60-second "Bestow Blessings" meditative micro-session.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Sushumna Blessing Moment" prompt in the breathing module.
+- **Source ref:** `sarakalai-2026 video Day 03 @ 65:55 – 72:25`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
