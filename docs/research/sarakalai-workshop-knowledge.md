@@ -67,15 +67,15 @@ Use this table to see at a glance what is captured and to resume across sessions
 | # | Sara Kalai Topic | Capture Status | # Practices | Notes |
 |---|------------------|:--------------:|:-----------:|-------|
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
-| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 12 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07. See CONF-002, CONF-017. |
+| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 13 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07, Day 08. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14). See CONF-003, CONF-004. |
 | 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03. See CONF-005, CONF-006. |
-| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06. See CONF-007, CONF-008. |
+| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 6 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06, Day 08. See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
-| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 9 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05. See CONF-017, CONF-018. |
+| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 10 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05, Day 08. See CONF-017, CONF-018. |
 | 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
 | 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67). See CONF-021, CONF-022. |
 | 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69). See CONF-023, CONF-024. |
@@ -114,7 +114,7 @@ These are points where a single source is ambiguous, or where two sources confli
 | CONF-020 | 🟡 T2 | Topic 11: 10:12 உள்-வெளி சுவாச விகிதம் | Verify whether lineage sadhana focuses on lengthening inhalation to 12 angulas or shortening exhalation to 10 angulas (or fewer) | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` (p. 14) identifies 2-angula loss per breath.)_ | — | ⏳ Pending |
 | CONF-023 | 🟡 T2 | Topic 13: 25 உப-பூதப் பிரிவு சரம் | Verify whether 25 sub-tattvas have distinct physical markers (taste/scent) or are fractional time subdivisions | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` p. 46 lists 5x5 sub-elements without explicit durations.)_ | — | ⏳ Pending |
 | CONF-024 | 🟡 T2 | Topic 13: பெயர் எழுத்துக் கணிப்பு | Verify exact arithmetic weighting algorithm for vowel classes and consonant positions in duel outcomes | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` vv. 42-43 mentions letter count and vowel qualities.)_ | — | ⏳ Pending |
-| CONF-001 | 🟢 T3 | Topic 1: கிழமை & திதி சர தொடக்க விதி | Verify if Thursday Paksha split is strictly astronomical Tithi or sunrise civil day | Recorded Videos / Notes | _(prior note: User inclined towards strict Tithi; re-verify during batch review.)_ | — | ⏳ Pending |
+| CONF-001 | 🟢 T3 | Topic 1: கிழமை & திதி சர தொடக்க விதி | Verify if Thursday Paksha split is strictly astronomical Tithi or sunrise civil day | Recorded Videos / Notes | PROPOSED (Day 08 @ 05:35–16:00): Healer Baskar establishes that diurnal reckoning is strictly sunrise-to-sunrise civil day (not midnight). Thursday is split based on the lunar fortnight at local sunrise: Shukla Thursday (வளர்பிறை) runs 1 hour Left (Chandra), Krishna Thursday (தேய்பிறை) runs 2 hours Right (Surya). Schedule: Sun (1h R), Mon (1h L), Tue (2h R), Wed (2h L), Thu Shukla (1h L), Thu Krishna (2h R), Fri (2h L), Sat (1h R). | Configures sunrise swara scheduler with exact weekday/Paksha dawn inception durations based on local astronomical sunrise. | 🔁 Proposed — owner confirm |
 | CONF-002 | 🟢 T3 | Topic 2: காலை ஊன்றி எழும் முறை | Verify direct vs. contralateral effect of initial foot pressure upon rising | Recorded Videos / Notes | PROPOSED (Day 07 @ 64:01–76:00): Healer Baskar establishes that somatic pressure operates contralaterally across all 10 switching modalities: applying pressure, weight, or firm big-toe floor contact to the Poornam (active) side with body weight shifted to that side forces breath to invert and open in the opposite (Shoonyam) nostril. Pressure on active side shifts flow to dormant side. | Morning awakening and standing swara alignment tools apply contralateral foot/toe pressure logic (ground active side to induce shift to opposite nostril). | 🔁 Proposed — owner confirm |
 | CONF-005 | 🟢 T3 | Topic 4: சூரியகலைக்குரிய 12 காரியங்கள் | Clarify whether entering sleep in Pingala refers to active nostril at sleep onset or posture | Recorded Videos / Notes | PROPOSED (Day 04 @ 38:11–40:00): Lineage reconciles sleep under Surya as somatic bedtime posture: lying on the left side (இடது பக்கமாக ஒருக்களித்துப் படுத்தல்) reflexively opens Pingala (Right/Surya), supplying gastric digestive heat and defending core 37°C against nocturnal cooling. | Sleep tracking module guides user to adopt left lateral recumbency to induce Pingala for overnight digestion and thermoregulation. | 🔁 Proposed — owner confirm |
 | CONF-006 | 🟢 T3 | Topic 4: திருக்கோயில் தரிசன பூரண சரம் | Clarify deity's right/left perspective relative to devotee in sanctum sanctorum | Recorded Videos / Notes | _(prior note: Devotee's active side faces deity's active side.)_ | — | ⏳ Pending |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 74 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 77 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -429,6 +429,20 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Weighted Walk Swara Shift" timer with carry-hand indicator and pacing audio.
 - **Source ref:** `sarakalai-2026 video Day 07 @ 76:01 – 80:00`
+
+#### Practice — உயிரற்ற நாடிக்கு உயிர் கொடுக்கும் நுட்பம் (Uyiratra Naadikku Uyir Kodukkum Nutpam / Reviving the Dormant Dawn Nostril via Poornam-Inhale Shoonyam-Exhale Inversion)
+- **Purpose / benefit (the why):** Immediate restoration of correct dawn swara when awakening at astronomical sunrise with opposed/incorrect nostril flow; overcomes powerful dawn planetary magnetic resistance when external physical props (crutches, recumbency) are too slow.
+- **How it's practiced (brief mechanics):**
+  - **Inviolable Inhalation Law:** *"சூன்யத்தில் மூச்சை உள்ளே இழுக்கவே கூடாது!"* (Never inhale through the dormant/Shoonyam nostril).
+  - **Step 1 — Poornam Inhalation:** Inhale slowly and fully through the currently active (**POORNAM / உயிர் நாடி**) nostril only.
+  - **Step 2 — Dual Kumbhaka:** Seal both nostrils with thumb and ring finger and retain breath internally in comfortable Kumbhaka (*தம் கட்டுவது*).
+  - **Step 3 — Shoonyam Exhalation (உயிரூட்டுதல்):** Release the dormant (**SHOONYAM**) nostril while keeping the Poornam nostril sealed. Exhale slowly, deliberately, and completely through the lifeless, dormant nostril.
+  - **Step 4 — Cyclic Repetition:** Repeat this sequence (Inhale Poornam → Retain Kumbhaka → Exhale Shoonyam) for 10 to 20 breath cycles.
+  - **Neuro-Somatic Effect:** Forcing warm internal lung air out through the constricted erectile mucosa of the dormant channel stimulates its vasomotor tone and "breathes life" (*உயிர் கொடுத்தல்*) into it, causing it to decongest and take over as the dominant active channel within 3 to 5 minutes.
+- **App-help bucket:** 🟢 — High app utility: an interactive "Dawn Swara Emergency Inverter" audio/visual breathing pacer guiding the Poornam-inhale, Kumbhaka hold, and Shoonyam-exhale cadence.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Sunrise Swara Revival Pacer" in the morning wake-up tool.
+- **Source ref:** `sarakalai-2026 video Day 08 @ 20:31 – 26:30`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
@@ -727,6 +741,29 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Call Oracle / Phone Swara Prasanam" widget with caller location compass and swara concordance indicator.
 - **Source ref:** `sarakalai-2026 video Day 06 @ 51:01 – 66:30`
+
+#### Practice — சொல் கேட்கும் சரம் & மேடைப் பிரசன்ன உரை நிலைப்பாடு (Sol Ketkkum Charam / Auditory Compliance, Crowd Persuasion & Asymmetric Stage Geometry)
+- **Purpose / benefit (the why):** Ensuring that children, students, corporate subordinates, crowds, or public audiences deeply absorb, receive, and comply with spoken instructions, advice, or lectures without psychological resistance or verbal conflict.
+- **How it's practiced (brief mechanics):**
+  - **The Shoonyam Compliance Invariant (சூனிய சொல் விதி):** *"நமது சூனியப் பக்கம் இருப்பவர்கள் சொல் பேச்சைக் கேட்பார்கள்! பூரணப் பக்கம் இருப்பவர்கள் மண்டைக்குள் போகாது!"*
+    - Listeners situated on your **SHOONYAM (dormant/empty)** side are neuro-somatically receptive; your words penetrate their subconscious without friction (*மனதில் பதியும் / சொல் கேட்பார்கள்*).
+    - Listeners situated on your **POORNAM (active)** side will subconsciously resist, argue, or mentally block your communication.
+  - **Interpersonal 1-on-1 Positioning:**
+    - Test active swara before an important conversation.
+    - If Right swara (Surya) is active: Position the listener on your **LEFT** (Shoonyam flank).
+    - If Left swara (Chandra) is active: Position the listener on your **RIGHT** (Shoonyam flank).
+  - **Stage Speaking / Lecture Platform Geometry (மேடை பிரசன்ன விதி):**
+    - When addressing an auditorium, classroom, or public gathering:
+    - If **Left nostril is active (Poornam)**: Walk to and speak from the **Far Left Corner of the stage**! This places 95%+ of the seated audience into your receptive **Right (Shoonyam) flank**.
+    - If **Right nostril is active (Poornam)**: Walk to and speak from the **Far Right Corner of the stage**, placing the audience into your receptive **Left (Shoonyam) flank**.
+  - **3D Spatial Elevation Rules:**
+    - Listener behind (e.g. rear car seat): Inverts (imagine rotating 180° to face them; Shoonyam side governs).
+    - Listener above (Upper Floor / Elevated): Mapped to **Right**.
+    - Listener below (Lower Floor): Mapped to **Left**.
+- **App-help bucket:** 🟢 — High-utility interactive feature: "Persuasion & Speaking Position Advisor" (User enters active swara + context [Meeting, Parenting, Stage/Presentation] → displays exact stage coordinate or seating position to place listeners on the Shoonyam flank).
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Influence & Speech Stage Flank Guide" in the Swara Prasanam Oracle module.
+- **Source ref:** `sarakalai-2026 video Day 08 @ 60:31 – 70:22`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
@@ -1109,6 +1146,26 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Respiratory Rate & Mayavi Gauge" diagnostic screen with animated breathing pacer and tier badges.
 - **Source ref:** `sarakalai-2026 video Day 05 @ 06:48 – 24:00`
+
+#### Practice — பிரம்ம நடுநாடி / பிரம்ம சுழிமுனை சங்கமம் (Brahma Nadunadi / Right-to-Left Brahma Sushumna & 96-Minute Cosmic Conjunction)
+- **Purpose / benefit (the why):** The supreme esoteric distinction in Siddha swara science separating ordinary transitional dual-flow from divine Brahma Sushumna; harnessing the cosmic conjunction between Earth's planetary Brahma Muhurtham and the human internal channel to manifest sankalpas with 100% infallible efficacy.
+- **How it's practiced (brief mechanics):**
+  - **The Asymmetric Sushumna Doctrine:** Not all dual-nostril flows are spiritually identical:
+    - **பிரம்ம நடுநாடி (Brahma Nadunadi / Brahma Sushumna):** Occurs *only* when swara transitions from **Right (Surya / Heating) to Left (Chandra / Cooling)**. In both microcosm and macrocosm, moving from Fire/Activity into Moon/Serenity opens the supreme positive portal where all planetary afflictions (*கிரக தோஷம், ஹோரை*) are completely neutralized.
+    - **சாதாரண சுழிமுனை (Ordinary Sushumna):** Transitional dual-flow occurring when shifting from Left to Right is operational/metabolic, not Brahma Sushumna.
+  - **Earth's Respiration (பூமியின் சரம்):**
+    - Sunlit hemisphere of Earth runs Left swara (Chandra) to cool solar heat.
+    - Dark hemisphere of Earth runs Right swara (Surya) to maintain internal core heat.
+    - At dawn, Earth transits from Night (Right) to Day (Left), opening **Earth's Brahma Sushumna for exactly 96 minutes (1 hour 36 minutes = 4 Nazhigais) ending precisely at Sunrise**! This 96-minute window is the true astronomical **Brahma Muhurtham**.
+  - **The Cosmic Conjunction Sadhana:**
+    1. Calculate local astronomical sunrise minus 96 minutes to determine the exact Brahma Muhurtham window.
+    2. Awake 10 minutes prior; sit upright in meditation.
+    3. Practice Guhai Dhyanam to induce internal **Right-to-Left Brahma Nadunadi** during Earth's 96-minute window.
+    4. When human Brahma Nadunadi aligns with Earth's Brahma Muhurtham, the subconscious mind (*நடுமனம்*) is completely unlocked: formulate sacred intentions (*சங்கல்பம்*), deep meditation, or mantra japa. Everything uttered or intended during this conjunction manifests into reality.
+- **App-help bucket:** 🟢 — High app utility: calculates exact daily 96-minute Brahma Muhurtham window (Sunrise - 96m) based on GPS coordinates, sends a pre-dawn wake-up notification, and provides a guided "Brahma Sushumna Conjunction" meditation pacer.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Brahma Muhurtham Cosmic Conjunction Timer" with astronomical dawn countdown and Sankalpa recorder.
+- **Source ref:** `sarakalai-2026 video Day 08 @ 36:01 – 54:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
