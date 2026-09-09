@@ -75,7 +75,7 @@ Use this table to see at a glance what is captured and to resume across sessions
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
-| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 7 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48). See CONF-017, CONF-018. |
+| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 8 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04. See CONF-017, CONF-018. |
 | 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
 | 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67). See CONF-021, CONF-022. |
 | 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69). See CONF-023, CONF-024. |
@@ -116,7 +116,7 @@ These are points where a single source is ambiguous, or where two sources confli
 | CONF-024 | 🟡 T2 | Topic 13: பெயர் எழுத்துக் கணிப்பு | Verify exact arithmetic weighting algorithm for vowel classes and consonant positions in duel outcomes | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` vv. 42-43 mentions letter count and vowel qualities.)_ | — | ⏳ Pending |
 | CONF-001 | 🟢 T3 | Topic 1: கிழமை & திதி சர தொடக்க விதி | Verify if Thursday Paksha split is strictly astronomical Tithi or sunrise civil day | Recorded Videos / Notes | _(prior note: User inclined towards strict Tithi; re-verify during batch review.)_ | — | ⏳ Pending |
 | CONF-002 | 🟢 T3 | Topic 2: காலை ஊன்றி எழும் முறை | Verify direct vs. contralateral effect of initial foot pressure upon rising | Recorded Videos / Notes | _(prior note: `saravithai.pdf` indicates direct pressure side opens that same nostril.)_ | — | ⏳ Pending |
-| CONF-005 | 🟢 T3 | Topic 4: சூரியகலைக்குரிய 12 காரியங்கள் | Clarify whether entering sleep in Pingala refers to active nostril at sleep onset or posture | Recorded Videos / Notes | _(prior note: `saravithai.pdf` lists "உறங்குவதற்கு" under Surya Kalai.)_ | — | ⏳ Pending |
+| CONF-005 | 🟢 T3 | Topic 4: சூரியகலைக்குரிய 12 காரியங்கள் | Clarify whether entering sleep in Pingala refers to active nostril at sleep onset or posture | Recorded Videos / Notes | PROPOSED (Day 04 @ 38:11–40:00): Lineage reconciles sleep under Surya as somatic bedtime posture: lying on the left side (இடது பக்கமாக ஒருக்களித்துப் படுத்தல்) reflexively opens Pingala (Right/Surya), supplying gastric digestive heat and defending core 37°C against nocturnal cooling. | Sleep tracking module guides user to adopt left lateral recumbency to induce Pingala for overnight digestion and thermoregulation. | 🔁 Proposed — owner confirm |
 | CONF-006 | 🟢 T3 | Topic 4: திருக்கோயில் தரிசன பூரண சரம் | Clarify deity's right/left perspective relative to devotee in sanctum sanctorum | Recorded Videos / Notes | _(prior note: Devotee's active side faces deity's active side.)_ | — | ⏳ Pending |
 | CONF-007 | 🟢 T3 | Topic 5: எதிராளியின் சரம் கணிக்கும் 4 நுட்பங்கள் | Clarify Tamil letter counting methodology for first spoken word (compound/pure consonants) | Recorded Videos / Notes | _(prior note: e.g. how 'வணக்கம்' is counted (syllables vs letters).)_ | — | ⏳ Pending |
 | CONF-008 | 🟢 T3 | Topic 5: எதிராளியின் சரம் கணிக்கும் 4 நுட்பங்கள் | Verify contralateral nature of entry foot (right foot first = left swara) vs CONF-002 | Recorded Videos / Notes | _(prior note: `saravithai.pdf` explicitly states right foot = left swara.)_ | — | ⏳ Pending |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 68 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 69 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -428,8 +428,17 @@ starts with a `### <n>. <Topic name>` heading.*
 > - **Hot Beverages (சூடான பானங்கள்):** Hot water, tea, coffee, milk, and hot soups must be consumed ONLY during Surya Kalai. Pouring scalding liquids into viscera when Chandra is active clashes with internal cooling mode and induces visceral distress.
 > - **Spicy Foods & Pickles (ஊறுகாய் / கார உணவுகள்):** Consuming pickles and pungent items demands active digestive heat; eating pickles during Chandra triggers acute acidity and gastritis.
 > - **Black Pepper 37°C Equilibrium Law (மிளகு சமநிலை தத்துவம்):** Though pungent on the tongue, black pepper (*Piper Nigrum*) is a metabolic adaptogen: it does not aggravate Pitta, but normalizes internal core temperature to precisely 37°C, prevents desert heatstroke, and guides breath directly into Sushumna.
+>
+> 🎥 **Video refinement (Day 04 @ 05:18 – 13:45, 24:51 – 27:23 & 30:01 – 35:10):**
+> - **Eating Sun-Dried Preserves (வற்றல் சாப்பிடுதல் / வத்தக் குழம்பு):** Sun-dried vegetables/chilies are heating; must be eaten exclusively during Surya Kalai (Right) for complete digestion.
+> - **Crucial Negotiations & High-Stakes Talks (முக்கியமான நபர் சந்திப்பு / காரியம் பேசுதல்):** Business deals, marriage proposals, and resolving disputes must be spoken under Surya Kalai; grants persuasive magnetism, sharpness, and victory (*ஜெயிக்கும், சுதப்பாது*).
+> - **Scientific & Mathematical Research (விஞ்ஞான, கணித ஆய்வு):** Analytical problem solving, scientific experiments, and solving equations operate with peak clarity during Surya Kalai.
+> - **Borrowing Money / Requesting Funds (பணம் கோரி பெறுதல்):** Asking for financial assistance or loans during Surya Kalai yields success; the lender feels compelled to assist. Asking in Chandra yields rejection.
+> - **Selling Goods (பொருள் விற்பனை செய்தல்):** Commercial sales requires active assertiveness and marketing enthusiasm -> Surya Kalai. (In contrast, buying goods requires calming Chandra).
+> - **Teaching & Authoritative Preaching (போதனை செய்தல்):** Teachers and speakers must lecture under Surya Kalai so students listen with reverence and absorb without rebellion.
+> - **Resolving Chronic Disputes / Litigation (தீராத வழக்கு தீர்த்தல்):** Mediating or judging disputes during Surya Kalai ensures an equitable, accepted verdict.
 
-> ⚠️ **Pending Confirmation [CONF-005]:** Clarify whether entering sleep in Pingala refers to active nostril at sleep onset or sleeping posture (e.g. lying on left side to induce Pingala for nighttime digestion).
+> 🔁 **Proposed Confirmation [CONF-005 — Day 04 @ 38:11–40:00]:** Lineage clarifies that 'entering sleep under Surya' refers specifically to somatic bedtime posture: adopting left lateral recumbency (*இடது பக்கமாக ஒருக்களித்துப் படுத்தல்*) reflexively opens Pingala (Right/Surya), providing necessary visceral heat for overnight gastric digestion and defending the core against nocturnal hypothermia.
 
 #### Practice — சந்திரகலைக்குரிய 14 காரியங்கள் (Chandrakalai-kuriya 14 Kaariyangal / The 14 Prescribed Actions for Ida / Chandra Kalai)
 - **Purpose / benefit (the why):** Directs peaceful, nurturing, permanent, accumulative, and auspicious generative actions through the female-potency channel (பெண்தன்மை, citing *ஞான சர நூல்* / Gnana Sara Nool) for lasting success.
@@ -460,6 +469,19 @@ starts with a `### <n>. <Topic name>` heading.*
 > - **Housewarming / Griha Pravesha (புதுமனை புகுவிழா):** The first auspicious entry into a newly constructed house to boil milk (*பால் காய்ச்சுதல்*) must be made under Chandra Kalai. The person with active Chandra steps across the threshold first to anchor enduring family prosperity.
 > - **Buying Clothing & Jewelry (ஆடை, ஆபரணம் வாங்குதல்):** Selecting clothes and gold/silver jewels under Chandra ensures lasting satisfaction and aesthetic alignment.
 > - **Laying Foundation & Earth Excavation (கடக்கால் தோண்டுதல்):** Digging foundation trenches and manual earthwork under Chandra protects workers from acute muscular fatigue and heat exhaustion.
+>
+> 🎥 **Video refinement (Day 04 @ 07:56 – 12:35, 13:46 – 21:14 & 27:24 – 41:40):**
+> - **Agricultural Seedling Transplantation (விவசாய நாத்து நடுதல்):** Planting seedlings under Chandra Kalai ensures cool soil assimilation, vigorous root establishment, and bountiful harvest. Laborers rest when Surya opens.
+> - **Purchasing Gold for Mangalsutra (தாலிக்கு பொன் வாங்குதல்):** Buying gold for the wedding Thali under Chandra Kalai anchors lifelong marital harmony, enduring prosperity, and peace.
+> - **Groom Tying the Mangalsutra (மணமகன் தாலி கட்டுதல்):** At the sacred wedding Muhurtha, the groom (*மாப்பிள்ளை*) must tie the Thali while his own breath is flowing through Chandra Kalai (Left/Ida). In traditional lineages, the priest verified or shifted the groom's breath to Chandra to guarantee unbreakable marital bond.
+> - **Well Digging (கிணறு வெட்டுதல்):** Excavating a water well under Chandra harmonizes with the water element (*அப்பு தத்துவம்*) and prevents physical exhaustion.
+> - **Commencing New Studies / Books (புதிய படிப்பு தொடங்குதல்):** Opening a new study curriculum or reading a new book under Chandra ensures deep intellectual retention and enduring curiosity.
+> - **Meeting Political Ministers (அரசியல் அமைச்சர்களை சந்தித்தல்):** Seeking favors or presenting petitions to ministers under Chandra Kalai yields receptive benevolence and political success.
+> - **Meeting Superiors / Boss (உயர் அதிகாரிகள் சந்திப்பு):** Requesting leave, permissions, or promotions from managers under Chandra Kalai disarms resistance and elicits favorable consent.
+> - **Entering Temples & Sacred Sanctums (கோவிலுக்குள் நுழைதல்):** Entering through temple gates under Chandra Kalai allows optimal absorption of consecrated divine coolness (*சாந்நித்யம்*).
+> - **Visiting Samadhis & Cemeteries (ஜீவசமாதி / சுடுகாடு செல்லுதல்):** Meditating at a Jeeva Samadhi or cemetery must be done under Chandra Kalai; entering in Surya creates discordance with subtle dimensions.
+> - **Performing Home Puja (பூஜை செய்தல்):** Daily ritual worship and offering lamps should be conducted under Chandra Kalai.
+> - **Rote Memorization for Students (மனப்பாடம் செய்தல்):** Memorizing verses, formulas, or exam syllabi under Chandra Kalai enables the brain to absorb like a sponge with permanent recall.
 
 #### Practice — திசைப் பயணமும் சரப் பொருத்தமும் (Thisai Payanamum Sara Porutthamum / Directional Travel & Swara Concordance)
 - **Purpose / benefit (the why):** Harmonizes external travel vectors with internal prana; guarantees safe, fruitful arrival and prevents wasted journeys (காரியம் சித்தித்தல்).
@@ -930,6 +952,27 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):**
 - **Source ref:** `sugam_tharum_swasa_kalai.pdf`, pp. 47–48
+
+#### Practice — இதயத் துடிப்பு மாத்திரை கணக்கு & வாராந்திர 64-வினாடி கும்பக சோதனை (Heartbeat-Matched Matra Metric & The Weekly 64-Second Kumbhaka Diagnostic Ledger)
+- **Purpose / benefit (the why):** Unlocks the true esoteric definition of breath 'matras' in classical Sara Kalai and establishes an exact, measurable weekly diagnostic ledger of vital lung capacity, autonomic reserve, and cellular disease freedom.
+- **How it's practiced (brief mechanics):**
+  - **The True Matra Metric (இதயத் துடிப்பு தத்துவம்):** In classical literature, Kumbhaka durations are quantified as matras (e.g. 16:64:32). In authentic workshop transmission, **1 Matra / 1 Vinadi = 1 Heartbeat (இதயத் துடிப்பு / Lub-Dub)**! Ancient masters did not use mechanical stopwatches; they timed internal breath retention directly by sensing their arterial/cardiac pulse.
+  - **The 64-Second / 64-Heartbeat Diagnostic Scale (கும்பக ஆரோக்கிய அளவுகோல்):**
+    - **64 வினாடிகள் / 64 இதயத் துடிப்புகள் (64 Seconds / Heartbeats):** 100% Ideal Cellular Vitality (*பூரண ஆரோக்கியம்*). Tissues are saturated with prana; cellular self-repair operates continuously. Exceeding 64s enters the spiritual domain of Siddhic ascetics and sages.
+    - **30 முதல் 64 வினாடிகள் (30–64 Seconds):** Average, acceptable health (*சராசரி நிலை*); presence of minor fatigue, recurring stress, or subclinical complaints.
+    - **20 முதல் 30 வினாடிகள் (20–30 Seconds):** Active diseased state (*நோய் உள்ள நிலை*); established metabolic imbalance and diminished vitality.
+    - **20 வினாடிகளுக்கும் குறைவாக (<20 Seconds):** Critical visceral degeneration and severe respiratory/cardiovascular depletion (*தீவிர நோய் நிலை / ஆபத்தான நிலை*); demands immediate intensive lifestyle and breath rehabilitation.
+  - **Weekly Stopwatch Diagnostic Protocol (வாராந்திரப் பரிசோதனை):**
+    1. Perform morning Nadi Pariksha to determine active (Poornam) and dormant (Shoonyam) nostrils.
+    2. Seal Shoonyam, inhale casually and fully through Poornam without strain.
+    3. Seal both nostrils into comfortable internal Kumbhaka and simultaneously start the phone stopwatch.
+    4. Retain breath comfortably without forcing to dizziness. The instant retention feels strained, release exhalation and tap 'Stop' on the stopwatch.
+    5. Log the exact seconds once every week in a dedicated journal or app ledger.
+    6. Through consistent daily practice of Guhai Dhyanam (Practice 65), lung capacity steadily expands from initial compromised baselines (e.g. 25–40s) toward the innate 64-second birthright over 3 to 12 months.
+- **App-help bucket:** 🟢 — Premier app feature: an interactive "Weekly Kumbhaka Benchmark" module with a built-in stopwatch, heartbeat haptic pacer, health status classification (Critical, Diseased, Average, Ideal), and longitudinal progress graphing over weeks and months.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Weekly Kumbhaka Vitality Test" with animated gauge tracking user progress toward the 64-second threshold.
+- **Source ref:** `sarakalai-2026 video Day 04 @ 44:01 – 61:26`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
