@@ -895,7 +895,7 @@ starts with a `### <n>. <Topic name>` heading.*
 <a id="topic-11"></a>
 ### 11. Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும் / Vaarach-Chara Pisagu Dosha Attavanaiyum Thozhilvazhi Swasa Virayangalum)
 
-*Core source: `worknotes/gana_sara_nool.pdf` (பதிப்புரை p. 14, ஒளவையார் ch. 14 p. 85, பீர்முகமது vv. 8–10 pp. 110–111).*
+*Core source: `worknotes/sarakalai/books/gana_sara_nool.pdf` (பதிப்புரை p. 14, ஒளவையார் ch. 14 p. 85, பீர்முகமது vv. 8–10 pp. 110–111).*
 
 #### Practice — வாரச் சரப் பிசகு தோஷ அட்டவணை (Vaarach-Chara Pisagu Dosha Attavanai / Weekday Inception Deviation Afflictions & Omens)
 - **Purpose / benefit (the why):** Immediate somatic and prognostic awareness of respiratory deviation at dawn; diagnosis of oncoming physiological imbalances, bad fortune, or hazards when the breath commences in the incorrect nostril contrary to weekday rule.
@@ -969,7 +969,7 @@ starts with a `### <n>. <Topic name>` heading.*
 <a id="topic-12"></a>
 ### 12. Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும் / Marana Kaala Chara Kanippum Arishta Lakshana Sodhanaigalum)
 
-*Core source: `worknotes/gana_sara_nool.pdf` (பதிப்புரை pp. 14–15, அகஸ்தியர் vv. 38–40 pp. 64–67, பீர்முகமது v. 10 p. 111).*
+*Core source: `worknotes/sarakalai/books/gana_sara_nool.pdf` (பதிப்புரை pp. 14–15, அகஸ்தியர் vv. 38–40 pp. 64–67, பீர்முகமது v. 10 p. 111).*
 
 #### Practice — தொடர் ஒற்றை நாசி மரண கால அட்டவணை (Thodar Otrai Naasi Marana Kaala Attavanai / Sustained Single-Swara Chronobiological Mortality Ledger)
 - **Purpose / benefit (the why):** Critical prognostic indicator when normal ultradian swara alternation (1-hour rhythm) fails and the breath remains locked in a single nostril over extended circadian cycles, signaling severe autonomic collapse.
@@ -1058,7 +1058,7 @@ starts with a `### <n>. <Topic name>` heading.*
 <a id="topic-13"></a>
 ### 13. 25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும் / 25 Upa-Bhootha Pirivugalum Porkkala Charamum Garbha Palangalum)
 
-*Core source: `worknotes/gana_sara_nool.pdf` (அகஸ்தியர் vv. 20, 21, 23, 42, 43; pp. 44–47, 68–69).*
+*Core source: `worknotes/sarakalai/books/gana_sara_nool.pdf` (அகஸ்தியர் vv. 20, 21, 23, 42, 43; pp. 44–47, 68–69).*
 
 #### Practice — 25 உப-பூதப் பிரிவு சரம் (25 Upa-Bhootha Pirivu Charam / The 25 Sub-Tattva Micro-Breath Matrix)
 - **Purpose / benefit (the why):** Refining breath diagnosis beyond the macro 5 elements into the classical 25 nested micro-tattvas (a 5×5 matrix: 5 sub-elements per primary element), enabling ultra-precise somatic awareness, health diagnostics, and divination.
@@ -1134,7 +1134,7 @@ starts with a `### <n>. <Topic name>` heading.*
 <a id="topic-14"></a>
 ### 14. Siddha Dinacharya & Avvaiyar's Pranic Inversion Sutras (தினக்கிரம அலங்கார ஒழுக்கங்களும் ஒளவையாரின் வாசி சூத்திரங்களும் / Dinakrama Alangaara Ozhukkangalum Avvaiyarin Vaasi Soothirangalum)
 
-*Core source: `worknotes/gana_sara_nool.pdf` (ஒளவையார் உயர்ஞான சர நூல் vv. 12, 28–30 pp. 84, 90; தினக்கிரம அலங்காரச் சருக்கம் பிரிவுகள் 23–26 pp. 102–103).*
+*Core source: `worknotes/sarakalai/books/gana_sara_nool.pdf` (ஒளவையார் உயர்ஞான சர நூல் vv. 12, 28–30 pp. 84, 90; தினக்கிரம அலங்காரச் சருக்கம் பிரிவுகள் 23–26 pp. 102–103).*
 
 #### Practice — இரவு உணவின் பின் 100 அடி நடை உலாவுதல் (Iravu Unavin Pin 100 Adi Nadai Ulaavudhal / The 100-Step Post-Dinner Stroll for Tridosha Neutralization)
 - **Purpose / benefit (the why):** Direct neutralization of dietary toxins (*உண்ட அன்னத்திற்சேர்ந்த விஷ பதார்த்தங்களைச் சீரணிப்பித்தல்*), optimal digestive assimilation, and prevention of Tridosha vitiation prior to nocturnal sleep.

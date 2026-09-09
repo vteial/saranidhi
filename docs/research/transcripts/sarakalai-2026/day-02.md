@@ -1,6 +1,6 @@
 # Sara Kalai Workshop 2026 — Day 02 Transcript
 
-- **Source File:** `worknotes/sarakalai-class/SARAKALAI NEW BOSS FINAL DAY 02.mp4`
+- **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 02.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 65 minutes 03 seconds (01:05:03)
 - **Recording Date/Batch:** 2026 Authentic Workshop Corpus
