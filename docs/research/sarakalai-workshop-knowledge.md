@@ -67,7 +67,7 @@ Use this table to see at a glance what is captured and to resume across sessions
 | # | Sara Kalai Topic | Capture Status | # Practices | Notes |
 |---|------------------|:--------------:|:-----------:|-------|
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
-| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 10 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05. See CONF-002, CONF-017. |
+| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 12 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14). See CONF-003, CONF-004. |
 | 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03. See CONF-005, CONF-006. |
 | 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06. See CONF-007, CONF-008. |
@@ -115,7 +115,7 @@ These are points where a single source is ambiguous, or where two sources confli
 | CONF-023 | 🟡 T2 | Topic 13: 25 உப-பூதப் பிரிவு சரம் | Verify whether 25 sub-tattvas have distinct physical markers (taste/scent) or are fractional time subdivisions | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` p. 46 lists 5x5 sub-elements without explicit durations.)_ | — | ⏳ Pending |
 | CONF-024 | 🟡 T2 | Topic 13: பெயர் எழுத்துக் கணிப்பு | Verify exact arithmetic weighting algorithm for vowel classes and consonant positions in duel outcomes | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` vv. 42-43 mentions letter count and vowel qualities.)_ | — | ⏳ Pending |
 | CONF-001 | 🟢 T3 | Topic 1: கிழமை & திதி சர தொடக்க விதி | Verify if Thursday Paksha split is strictly astronomical Tithi or sunrise civil day | Recorded Videos / Notes | _(prior note: User inclined towards strict Tithi; re-verify during batch review.)_ | — | ⏳ Pending |
-| CONF-002 | 🟢 T3 | Topic 2: காலை ஊன்றி எழும் முறை | Verify direct vs. contralateral effect of initial foot pressure upon rising | Recorded Videos / Notes | _(prior note: `saravithai.pdf` indicates direct pressure side opens that same nostril.)_ | — | ⏳ Pending |
+| CONF-002 | 🟢 T3 | Topic 2: காலை ஊன்றி எழும் முறை | Verify direct vs. contralateral effect of initial foot pressure upon rising | Recorded Videos / Notes | PROPOSED (Day 07 @ 64:01–76:00): Healer Baskar establishes that somatic pressure operates contralaterally across all 10 switching modalities: applying pressure, weight, or firm big-toe floor contact to the Poornam (active) side with body weight shifted to that side forces breath to invert and open in the opposite (Shoonyam) nostril. Pressure on active side shifts flow to dormant side. | Morning awakening and standing swara alignment tools apply contralateral foot/toe pressure logic (ground active side to induce shift to opposite nostril). | 🔁 Proposed — owner confirm |
 | CONF-005 | 🟢 T3 | Topic 4: சூரியகலைக்குரிய 12 காரியங்கள் | Clarify whether entering sleep in Pingala refers to active nostril at sleep onset or posture | Recorded Videos / Notes | PROPOSED (Day 04 @ 38:11–40:00): Lineage reconciles sleep under Surya as somatic bedtime posture: lying on the left side (இடது பக்கமாக ஒருக்களித்துப் படுத்தல்) reflexively opens Pingala (Right/Surya), supplying gastric digestive heat and defending core 37°C against nocturnal cooling. | Sleep tracking module guides user to adopt left lateral recumbency to induce Pingala for overnight digestion and thermoregulation. | 🔁 Proposed — owner confirm |
 | CONF-006 | 🟢 T3 | Topic 4: திருக்கோயில் தரிசன பூரண சரம் | Clarify deity's right/left perspective relative to devotee in sanctum sanctorum | Recorded Videos / Notes | _(prior note: Devotee's active side faces deity's active side.)_ | — | ⏳ Pending |
 | CONF-007 | 🟢 T3 | Topic 5: எதிராளியின் சரம் கணிக்கும் 4 நுட்பங்கள் | Clarify Tamil letter counting methodology for first spoken word (compound/pure consonants) | Recorded Videos / Notes | _(prior note: e.g. how 'வணக்கம்' is counted (syllables vs letters).)_ | — | ⏳ Pending |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 72 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 74 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -250,6 +250,14 @@ starts with a `### <n>. <Topic name>` heading.*
 > - **Universal Freedom of Practice:** Sara Kalai / Guhai Dhyanam has zero postural, temporal, environmental, or dietary restrictions. Can be practiced seated, standing in a bus, driving, lying down (supine/prone), or on a toilet passing stool; valid 24/7 during Rahu Kaal, Yama Gandam, eclipses, bereavement/funeral houses (*சாவு வீடு*), menstruation (*தீட்டு*), before/after meals, or between mouthfuls of food (*"மூச்சு விடுவதற்கு என்று ஒரு நேரம் இருக்கிறதா?"*).
 > - **Sole Absolute Contraindication:** DO NOT practice when Sushumna (dual-nostril flow) is already actively operating naturally. The sole purpose of the technique is to induce Sushumna; when 37°C equilibrium is already attained, further manipulation is unnecessary.
 > - **Beginner Safety Cap (Month 1):** In accordance with the Tirukkural axiom *"மிகினும் குறையினும் நோய் செய்யும்"*, unmoderated practice by novices causes acute internal Pitta/heat overload. Novices must strictly observe a ceiling of **maximum 100 repetitions per day OR 15 minutes daily during Month 1**, scaling to 200 reps / 30 mins in Month 2, and 300 reps / 45 mins in Month 3, until it integrates into an effortless autonomic habit ("default", like flipping hair).
+>
+> 🎥 **Video refinement (Day 07 @ 08:01 – 35:30):**
+> - **The Master Law of Somatic Swara Switching:** Across all 10 physical modalities, somatic intervention is **strictly applied to the Poornam (Active) side to force breath flow into the Shoonyam (Empty/Dormant) side** (`பூரணப் பக்கத்தில் பயிற்சி; சூன்யத்தில் பயிற்சி இல்லை!`).
+> - **The 3-Step Mana Guru / Pineal Cognitive Protocol:** Physical postures alone are purely mechanical; authentic Sara Kalai mandates conscious neuromuscular intent directed to the **Mana Guru (மன குரு / Pineal Gland / Ajna Center)**:
+>   1. **தகவல் (Information):** Register current active swara and intended target swara mentally.
+>   2. **அனுமதி (Permission):** Formally request permission from the Pineal master center to execute the shift.
+>   3. **நன்றி (Gratitude):** Give heartfelt mental thanks the moment the swara inversion takes effect.
+> - **Absolute Sushumna Switching Prohibition (கடுமையான சுழிமுனை எச்சரிக்கை):** When breath is flowing simultaneously through both nostrils (Sushumna / நடுநாசி), **no swara switching exercise may ever be performed**. Dual flow represents the sacred portal of cosmic communion and inner dissolution; attempting mechanical inversion during Sushumna is strictly forbidden and disrupts the prana.
 
 #### Practice — எதிர் பக்கவாட்டு படுக்கை முறை (Ethir Pakkavaattu Padukkai Murai / Lateral Recumbency on the Opposite Side)
 - **Purpose / benefit (the why):** Effortless somatic swara switching while remaining in bed upon waking; avoids forceful breathing or artificial manipulation.
@@ -261,6 +269,13 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "In-bed Swara Switch" card with posture illustration and a 3-minute breath-settling timer.
 - **Source ref:** `saravithai.pdf`, p. 3
 
+> 🎥 **Video refinement (Day 07 @ 51:01 – 58:30):** Healer Baskar pronounces Lateral Recumbency as the single most effective, natural, and rapid of all 10 switching modalities (*"இருக்கிறதிலேயே ரொம்ப எஃபெக்ட்டான, ரொம்ப சுலபமான, சீக்கிரமா மாறுகிறது படுத்துட்டுதான்!"*).  
+> **The Complete 4-Point Siddha Lineage Protocol:**
+> 1. Lie tilted on the **Poornam side** (contact side down on mattress/mat).
+> 2. **Seal the lower ear** with the lower palm/hand (`கையை வைத்து காதை மூட வேண்டும்`).
+> 3. Bend the upper (Shoonyam) leg and **grasp the upper Kolusu Varmam (ankle / malleolus)** firmly with the upper hand (`கால்களை மடக்கி கொலுசு வர்மத்தைப் பிடிக்க வேண்டும்`).
+> 4. Close eyes, execute the 3-step Mana Guru prayer. Flips swara effortlessly within 2 to 5 minutes. (If holding the ear/ankle is physically difficult, simple side recumbency serves as the modular fallback, taking slightly longer).
+
 #### Practice — யோக தண்டம் / அக்குள் அழுத்தம் (Yoga Dandam / Akkul Azhuttham / Axillary Crutch or Armpit Pressure Method)
 - **Purpose / benefit (the why):** The classical Siddha/Muni technique for rapid, reliable swara switching without needing to lie down.
 - **How it's practiced (brief mechanics):** Place a folded heavy cloth/towel (கனமான துண்டு) or a traditional yogic staff (யோக தண்டம் / Yoga Dandam) firmly into the armpit of the side you wish to close. Firm pressure under the left armpit opens the right nostril (Pingala); firm pressure under the right armpit opens the left nostril (Ida).
@@ -268,6 +283,12 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** Somatic prop intervention guide with timer.
 - **Source ref:** `saravithai.pdf`, p. 3
+
+> 🎥 **Video refinement (Day 07 @ 08:01 – 24:00):** Healer Baskar details two portable household equivalents of the classical Yoga Dandam:
+> 1. **Axillary Ball (பந்து முறை):** Place a tennis ball, wooden sphere, or firm clay ball snugly into the **Poornam armpit** and compress with the arm.
+> 2. **Folded Towel (துண்டு முறை):** Fold a cotton towel into a firm pad and wedge it into the **Poornam armpit**.
+> - **Cultural Origin & Lineage Secrets:** Explains the traditional Tamil practice of draping a folded towel (*துண்டு*) over the shoulder or tying it around the waist. In ancient village panchayats, disputants were ordered to tie their towels around their waist (*இடுப்பில் துண்டு கட்டுதல்*) to prevent them from covertly wedging the towel into an armpit to manipulate their breath during testimony! Also notes how shifting the sacred thread (*பூணூல்*) across the shoulders alters swara.
+> - **Emergency Eating Safeguard:** If summoned to eat a meal while Left swara is flowing, tuck a folded towel under the Left armpit while seated to rapidly ignite Surya Kalai (Pingala) for 100% digestive fire.
 
 #### Practice — கால் மேல் கால் முறை / யோக ஆசனம் (Kaal Mel Kaal Murai / Seated Cross-Legged Thigh-Pressure Posture)
 - **Purpose / benefit (the why):** Switching swara while sitting upright without needing props or lying down.
@@ -278,6 +299,17 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Desk / Seated Swara Switch" posture guide.
 - **Source ref:** `saravithai.pdf`, p. 3
+
+> 🎥 **Video refinement (Day 07 @ 24:01 – 48:00):** Healer Baskar provides the precise lineage mechanics for seated swara switching across two environments:
+> 1. **Seated on a Chair / Desk / Vehicle (நாற்காலி முறை):**
+>    - Keep the **Poornam foot** grounded on the floor. Cross the **Shoonyam leg** over the Poornam thigh.
+>    - Grasp the Shoonyam foot's **Kolusu Varmam (ankle / malleolus)** with the Shoonyam hand and apply gentle massage.
+>    - **Twist the torso firmly toward the Poornam side** (*உடம்பை பூரணப் பக்கமாக திருப்ப வேண்டும்*).
+>    - *Office/Meeting Adaptation:* If twisting or holding the ankle is conspicuous in professional settings, simply crossing the leg on top quietly induces the shift (takes slightly longer).
+> 2. **Seated Cross-Legged on Floor / Bed (சம்மணங்கால் / பத்மாசன முறை):**
+>    - Tuck the **Poornam heel** firmly against the **opposite buttock / ischial tuberosity** (*குதிக்காலை எதிர் பிட்டத்தில் அழுத்துதல்*).
+>    - Place the Shoonyam leg on top, grasp its Kolusu Varmam with the Shoonyam hand, and twist torso toward the Poornam side.
+>    - *Ardha Padmasana Rule:* Whichever nostril you wish to activate, simply cross that leg on top (*"எந்த நாடி மாற வேண்டுமோ அந்த காலை மேலே போட வேண்டும் — automatic system"*).
 
 #### Practice — கை ஊன்றி சாயும் முறை (Kai Oondri Saayum Murai / Seated Single-Hand Floor Pressure with Lateral Lean)
 - **Purpose / benefit (the why):** A subtle, discreet somatic intervention that can be done while sitting on a chair or floor without attracting attention.
@@ -369,6 +401,34 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Morning Awakening Ritual Pacer" integrated with gentle smart alarm.
 - **Source ref:** `sarakalai-2026 video Day 05 @ 48:01 – 64:11`
+
+#### Practice — நின்று கொண்டு நாடி மாற்றும் முறை (Nindru-kondu Naadi Maattrum Murai / Standing Wall-Support, Big-Toe Grounding & Pendulum-Leg Swara Inversion)
+- **Purpose / benefit (the why):** Immediate somatic swara switching while standing in public spaces, outdoors, offices, or transit stations without sitting down, lying on the floor, or carrying props.
+- **How it's practiced (brief mechanics):**
+  - **Wall Palm Placement Rule:** Stand beside a wall or firm vertical support. Place the palm of the **POORNAM (active) side** high against the wall, **at head level or higher** (*உள்ளங்கையை தலை உயரத்துக்கு அல்லது அதற்கு மேலே சுவற்றில் வைக்க வேண்டும்* — elevating the hand dramatically accelerates the neurovascular shift).
+  - **Big-Toe Grounding Pressure:** Plant the foot of the **POORNAM side** flat on the floor and **press its big toe (கட்டை விரல்) powerfully into the ground**, shifting torso weight into that flank. *(Optional refinement: if balance allows, slightly elevate the heel while maintaining forceful big-toe floor compression).*
+  - **Pendulum Shoonyam Leg:** Lift the opposite (**SHOONYAM / dormant**) foot approximately 1 inch off the floor. Keep this leg completely loose, relaxed, and dangling freely like a pendulum (*அந்தரத்தில் லூசாக தொங்கவிட வேண்டும்; விறைப்பாக / stiff-ஆக வைக்கக் கூடாது*).
+  - **Cognitive Mana Guru Prayer:** Close eyes, lean gently toward the wall/planted foot, and execute the 3-step mental protocol with the Pineal Gland (*தகவல், அனுமதி, நன்றி*).
+  - Within 3 to 5 minutes, breath flow reflexively inverts and opens in the opposite (Shoonyam) nostril.
+- **App-help bucket:** 🟢 — High app scaffolding utility: offers an interactive "Standing Swara Switcher" with step-by-step postural alignment visual, foot pressure cue, and a 3-minute countdown timer with ambient chime.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Quick Stand-and-Switch" micro-guide in the Swara Toolbox for on-the-go alignment.
+- **Source ref:** `sarakalai-2026 video Day 07 @ 64:01 – 76:00`
+
+#### Practice — பக்கெட் முறை / எடை தூக்கி நடக்கும் நாடி மாற்றும் நுட்பம் (Bucket Murai / Asymmetric Weighted Walking for Dynamic Swara Inversion)
+- **Purpose / benefit (the why):** Utilizes dynamic locomotion combined with unilateral gravitational load to rapidly force swara switching during active domestic or outdoor work (e.g. gardening, carrying water/groceries).
+- **How it's practiced (brief mechanics):**
+  - **Weighted Prop:** Take a bucket filled with 1/4 to 1/2 water (or a handheld weight, stone, or bricks tied with rope) matching personal comfortable carrying strength.
+  - **Unilateral Carry on Poornam Side:** Grasp and carry the weight in the hand of the **POORNAM (active) side**.
+  - **Locomotion Invariant:** **Walk at a moderate, steady pace** (*"நின்றால் மாறாது, நடக்க வேண்டும்!"* — static standing with the load will not switch swara; active walking is mandatory).
+  - **Neuro-Somatic Shift:** The asymmetrical muscular contraction, downward trapezius traction, and rhythmic unilateral ground impact on the active side induce contralateral autonomic vascular decongestion, opening the opposite (**Shoonyam**) nostril within 2 to 5 minutes of walking.
+  - **Directional Routing:**
+    - To switch Right (Pingala) to Left (Ida): Carry bucket in Right hand and walk.
+    - To switch Left (Ida) to Right (Pingala): Carry bucket in Left hand and walk.
+- **App-help bucket:** 🟢 — Scaffoldable via a "Paced Walking Swara Shift" routine with an asymmetric hand prompt, audio step cadence, and interval notification.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Weighted Walk Swara Shift" timer with carry-hand indicator and pacing audio.
+- **Source ref:** `sarakalai-2026 video Day 07 @ 76:01 – 80:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
