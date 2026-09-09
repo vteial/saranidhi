@@ -5,7 +5,7 @@
 
 > Canonical digitized capture of the owner's **Sara Kalai (சர கலை / the art of the breath-flow)**
 > workshop and class knowledge. Source corpus: the 3 foundational classical texts (`saravithai.pdf`,
-> `sugam_tharum_swasa_kalai.pdf`, `gana_sara_nool.pdf`) plus the complete authentic 13-day 2026 Tamil video
+> `sugam_tharum_swasa_kalai.pdf`, `gana_sara_nool.pdf`) plus the complete authentic 13-day 2025 Tamil video
 > workshop corpus (Days 01 to 13). This document is **bilingual by design** — Tamil source terms are recorded
 > first, each with transliteration and an English gloss. It is captured **incrementally, topic
 > by topic**, across many sessions, so it is meant to be resumed and appended to rather than
@@ -67,19 +67,19 @@ Use this table to see at a glance what is captured and to resume across sessions
 
 | # | Sara Kalai Topic | Capture Status | # Practices | Notes |
 |---|------------------|:--------------:|:-----------:|-------|
-| 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10), sarakalai-2026 Day 08, Day 13. See CONF-001. |
-| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 15 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07, Day 08, Day 10, Day 12. See CONF-002, CONF-017. |
-| 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14), sarakalai-2026 Day 09. See CONF-003, CONF-004. |
-| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03, Day 10, Day 11, Day 12. See CONF-005, CONF-006. |
-| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06, Day 08, Day 09, Day 12. See CONF-007, CONF-008. |
+| 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10), sarakalai-2025 Day 08, Day 13. See CONF-001. |
+| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 15 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2025 Day 01, Day 02, Day 05, Day 07, Day 08, Day 10, Day 12. See CONF-002, CONF-017. |
+| 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14), sarakalai-2025 Day 09. See CONF-003, CONF-004. |
+| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2025 Day 03, Day 10, Day 11, Day 12. See CONF-005, CONF-006. |
+| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2025 Day 06, Day 08, Day 09, Day 12. See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
-| 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39), sarakalai-2026 Day 08, Day 12, Day 13. See CONF-013, CONF-014. |
+| 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39), sarakalai-2025 Day 08, Day 12, Day 13. See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
-| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 12 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05, Day 08, Day 10, Day 11, Day 13. See CONF-017, CONF-018. |
+| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 12 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2025 Day 04, Day 05, Day 08, Day 10, Day 11, Day 13. See CONF-017, CONF-018. |
 | 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
-| 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67), sarakalai-2026 Day 12. See CONF-021, CONF-022. |
-| 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 5 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69), sarakalai-2026 Day 11. See CONF-023, CONF-024. |
+| 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67), sarakalai-2025 Day 12. See CONF-021, CONF-022. |
+| 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 5 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69), sarakalai-2025 Day 11. See CONF-023, CONF-024. |
 | 14 | [Siddha Dinacharya & Avvaiyar's Pranic Inversion Sutras (தினக்கிரம அலங்கார ஒழுக்கங்களும் ஒளவையாரின் வாசி சூத்திரங்களும்)](#topic-14) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 84, 90, 102–103). See CONF-025, CONF-026. |
 
 *Add a new topic row here as you begin each topic. Update its Capture Status (⬜ → 🔄 → ✅) and practice count as you go.*
@@ -137,7 +137,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 84 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 84 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2025 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -349,7 +349,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — The app can educate the user on the thermoregulatory paradox, prompt symptom checks (skin vs tongue heat sensations), and provide contextual guidance on when natural swara switching is maintaining thermal homeostasis.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Thermoregulatory Swara Guide" interactive visual explaining the 37°C paradox and tongue vs skin diagnostics.
-- **Source ref:** `sarakalai-2026 video Day 01 @ 37:31 – 45:00`
+- **Source ref:** `sarakalai-2025 video Day 01 @ 37:31 – 45:00`
 
 #### Practice — குகை தியானம் / சரகலை நேரடி மூச்சுப் பயிற்சி (Guhai Dhyanam / Primary Sara Kalai Breath Exercise — The 5-Step Shoonyam Occlusion & Poornam Kumbhaka Technique)
 - **Purpose / benefit (the why):** The direct, practical core of the entire Sara Kalai science (transmitted to Healer Baskar by the 96-year-old Guhai Sitthar as 'Guhai Dhyanam' and verified identical to Guru Rajesh's 'Sara Kalai Payirchi'). It systematically increases daily cumulative Sushumna duration, flooding the physical and nadic anatomy with concentrated Prana to dissolve all 4,448 classical Siddhic ailments (from joint arthritis, cataracts, and kidney stones to chronic systemic degeneration).
@@ -366,7 +366,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app scaffolding potential: provides an interactive guided practice timer (with live Nadi check prompts, inhalation/retention/release audio chimes, daily repetition counter capped at 100 reps with safety warning, and habit tracker).
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Guhai Dhyanam Guided Session" module with Nadi verification selector, customizable comfortable Kumbhaka pacer, and daily repetition counter enforcing Month 1 safety limits.
-- **Source ref:** `sarakalai-2026 video Day 02 @ 32:00 – 61:00`
+- **Source ref:** `sarakalai-2025 video Day 02 @ 32:00 – 61:00`
 
 #### Practice — 24-மணி நேர சுழிமுனை நாடி இருப்பு கணக்கீடு (90-நிமிட ஆரோக்கிய அளவுகோல்) (The 24-Hour 90-Minute Sushumna Health Ledger & Cessation Longevity Diagnostic)
 - **Purpose / benefit (the why):** The master diagnostic ledger of systemic vitality and longevity in Sara Kalai. Swara never shifts directly between lateral channels; it invariably transits through Sushumna (1 second to 5 minutes maximum per transition). Tracking and maximizing cumulative daily Sushumna duration determines whether the organism is in metabolic accumulation of waste (*கழிவுத் தேக்கம்*) or cellular self-repair.
@@ -383,7 +383,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — The app can calculate estimated daily Sushumna budget based on logged swara transitions, display a visual 90-minute daily vitality gauge, and track progress over months of Sara Kalai practice.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Daily Sushumna Vitality Meter" displaying cumulative minutes toward the 90-minute baseline, with health state annotations.
-- **Source ref:** `sarakalai-2026 video Day 02 @ 16:01 – 27:00`
+- **Source ref:** `sarakalai-2025 video Day 02 @ 16:01 – 27:00`
 
 #### Practice — விடியல் சரப்பயிற்சி (Vidiyal Sara Payirchi / The Universal Dawn Awakening Sadhana & Shoonyam-Knee Grounding Prayer)
 - **Purpose / benefit (the why):** The universal, foundational morning awakening ritual mandated for every practitioner of Sara Kalai upon waking from nocturnal sleep, regardless of weekday or lunar tithi. It harmonizes the vital channels immediately upon consciousness emergence, anchors cosmic protection, and empowers morning intentions (*சங்கல்பம்*) through the irresistible potency of Kumbhaka.
@@ -401,7 +401,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app utility: an interactive "Dawn Awakening Companion" offering audio chimes guiding the 5 steps (closed-eye bell, 3-cycle breathing timer, posture visual, Kumbhaka prayer timer, and first-step prompt).
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Morning Awakening Ritual Pacer" integrated with gentle smart alarm.
-- **Source ref:** `sarakalai-2026 video Day 05 @ 48:01 – 64:11`
+- **Source ref:** `sarakalai-2025 video Day 05 @ 48:01 – 64:11`
 
 #### Practice — நின்று கொண்டு நாடி மாற்றும் முறை (Nindru-kondu Naadi Maattrum Murai / Standing Wall-Support, Big-Toe Grounding & Pendulum-Leg Swara Inversion)
 - **Purpose / benefit (the why):** Immediate somatic swara switching while standing in public spaces, outdoors, offices, or transit stations without sitting down, lying on the floor, or carrying props.
@@ -414,7 +414,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app scaffolding utility: offers an interactive "Standing Swara Switcher" with step-by-step postural alignment visual, foot pressure cue, and a 3-minute countdown timer with ambient chime.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Quick Stand-and-Switch" micro-guide in the Swara Toolbox for on-the-go alignment.
-- **Source ref:** `sarakalai-2026 video Day 07 @ 64:01 – 76:00`
+- **Source ref:** `sarakalai-2025 video Day 07 @ 64:01 – 76:00`
 
 #### Practice — பக்கெட் முறை / எடை தூக்கி நடக்கும் நாடி மாற்றும் நுட்பம் (Bucket Murai / Asymmetric Weighted Walking for Dynamic Swara Inversion)
 - **Purpose / benefit (the why):** Utilizes dynamic locomotion combined with unilateral gravitational load to rapidly force swara switching during active domestic or outdoor work (e.g. gardening, carrying water/groceries).
@@ -429,7 +429,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — Scaffoldable via a "Paced Walking Swara Shift" routine with an asymmetric hand prompt, audio step cadence, and interval notification.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Weighted Walk Swara Shift" timer with carry-hand indicator and pacing audio.
-- **Source ref:** `sarakalai-2026 video Day 07 @ 76:01 – 80:00`
+- **Source ref:** `sarakalai-2025 video Day 07 @ 76:01 – 80:00`
 
 #### Practice — உயிரற்ற நாடிக்கு உயிர் கொடுக்கும் நுட்பம் (Uyiratra Naadikku Uyir Kodukkum Nutpam / Reviving the Dormant Dawn Nostril via Poornam-Inhale Shoonyam-Exhale Inversion)
 - **Purpose / benefit (the why):** Immediate restoration of correct dawn swara when awakening at astronomical sunrise with opposed/incorrect nostril flow; overcomes powerful dawn planetary magnetic resistance when external physical props (crutches, recumbency) are too slow.
@@ -443,7 +443,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app utility: an interactive "Dawn Swara Emergency Inverter" audio/visual breathing pacer guiding the Poornam-inhale, Kumbhaka hold, and Shoonyam-exhale cadence.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Sunrise Swara Revival Pacer" in the morning wake-up tool.
-- **Source ref:** `sarakalai-2026 video Day 08 @ 20:31 – 26:30`
+- **Source ref:** `sarakalai-2025 video Day 08 @ 20:31 – 26:30`
 
 #### Practice — எட்டு நடை சுழிமுனை தூண்டல் சாதனை (Ettu Nadai Suzhumunai Thoondal Saadhanai / Figure-8 Walking for Dynamic Sushumna Induction)
 - **Purpose / benefit (the why):** Rapid, reliable mechanical induction of central Sushumna equilibrium (நடுநாசி / நடுநிலைமை) through continuous alternating clockwise and anti-clockwise locomotion, dissolving systemic nadic blocks and establishing the ideal neurological state for deep meditation and manifestation.
@@ -463,7 +463,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app scaffolding utility: offers an interactive "Figure-8 Walking Companion" with cadence audio, periodic breath-check reminder chimes, and an instant "Sushumna Activated — Sit & Meditate" timer mode.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Figure-8 Sushumna Pacer" with loop timer, check-in prompts, and instant meditation transition mode.
-- **Source ref:** `sarakalai-2026 video Day 10 @ 48:01 – 54:00`
+- **Source ref:** `sarakalai-2025 video Day 10 @ 48:01 – 54:00`
 
 #### Practice — நிதான சரகலை சாதனை (Nidhana Sara Kalai Saadhanai / Equanimity Pacing Sadhana for Agitation & Restlessness)
 - **Purpose / benefit (the why):** Rapid somatic stabilization of an agitated, hyperactive, or scattered mind; restores autonomic equilibrium and emotional poise without forcing a nostril switch.
@@ -477,7 +477,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app scaffolding utility: "Equanimity Pacer" timer mode featuring compass-directed East orientation and gentle, slow breathing cadence.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Nidhana Pacer" in the somatic interventions module.
-- **Source ref:** `sarakalai-2026 video Day 12 @ 51:21 – 53:20`
+- **Source ref:** `sarakalai-2025 video Day 12 @ 51:21 – 53:20`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
@@ -708,7 +708,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app utility: provides an activity classifier recommending Surya for mindful workouts and Chandra for domestic chores/labor, with rest-interval alerts.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Work & Workout Swara Pacer" distinguishing conscious workout sessions from daily manual tasks.
-- **Source ref:** `sarakalai-2026 video Day 03 @ 30:01 – 38:40 & 45:01 – 51:00`
+- **Source ref:** `sarakalai-2025 video Day 03 @ 30:01 – 38:40 & 45:01 – 51:00`
 
 #### Practice — சுழிமுனை வரப்பிரசாத சாதனை (Bestowing Boons & Auspicious Blessings in Sushumna)
 - **Purpose / benefit (the why):** Direct realization of cosmic spiritual authority when dual-nostril flow (Sushumna / சுழிமுனை / அக்னி கலை) opens. It reveals that the power to bestow boons (*வரம் கொடுத்தல்*) and transformative blessings (*ஆசீர்வாதம்*) is not reserved for mythical ascetics, but is an intrinsic capacity of any human whose breath enters neutral equilibrium.
@@ -723,7 +723,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — The app can detect or log Sushumna occurrences and prompt a 60-second "Bestow Blessings" meditative micro-session.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Sushumna Blessing Moment" prompt in the breathing module.
-- **Source ref:** `sarakalai-2026 video Day 03 @ 65:55 – 72:25`
+- **Source ref:** `sarakalai-2025 video Day 03 @ 65:55 – 72:25`
 
 #### Practice — திருமண முகூர்த்த சரம் & திருமண மேடை அமைப்பு (Thirumana Muhurtha Charam & Wedding Stage Alignment)
 - **Purpose / benefit (the why):** Establishes lifelong harmony, domestic tranquility, mutual affection, and prevents marital conflict or separation by synchronizing the couple's subtle pranic polarity at the exact second of matrimonial solemnization (*தாலி கட்டும் தருணம் / மோதிரம் மாற்றும் தருணம் / பதிவு செய்யும் தருணம்*).
@@ -742,7 +742,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app utility: "Wedding Muhurtha Breath Monitor & Couple's Alignment Checklist" providing breath checking prompts, stage orientation compass, and somatic Left-swara shift guidance.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Muhurtha Swara Companion" with pre-knot breath checker and Left-swara pacer.
-- **Source ref:** `sarakalai-2026 video Day 11 @ 04:01 – 18:00`
+- **Source ref:** `sarakalai-2025 video Day 11 @ 04:01 – 18:00`
 
 > 🎥 **Video refinement (Day 12 @ 53:21 – 60:10):** Healer Baskar provides specific professional and interpersonal swara invariants:
 > - **Studio & Public Broadcast Orientation (Day 12 @ 53:21 – 56:20):**
@@ -831,7 +831,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High-utility app candidate: Caller ID / contact location integration or quick caller-direction selector in the Swara Prasanam Oracle that advises whether to answer or defer.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Call Oracle / Phone Swara Prasanam" widget with caller location compass and swara concordance indicator.
-- **Source ref:** `sarakalai-2026 video Day 06 @ 51:01 – 66:30`
+- **Source ref:** `sarakalai-2025 video Day 06 @ 51:01 – 66:30`
 
 #### Practice — சொல் கேட்கும் சரம் & மேடைப் பிரசன்ன உரை நிலைப்பாடு (Sol Ketkkum Charam / Auditory Compliance, Crowd Persuasion & Asymmetric Stage Geometry)
 - **Purpose / benefit (the why):** Ensuring that children, students, corporate subordinates, crowds, or public audiences deeply absorb, receive, and comply with spoken instructions, advice, or lectures without psychological resistance or verbal conflict.
@@ -854,7 +854,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High-utility interactive feature: "Persuasion & Speaking Position Advisor" (User enters active swara + context [Meeting, Parenting, Stage/Presentation] → displays exact stage coordinate or seating position to place listeners on the Shoonyam flank).
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Influence & Speech Stage Flank Guide" in the Swara Prasanam Oracle module.
-- **Source ref:** `sarakalai-2026 video Day 08 @ 60:31 – 70:22`
+- **Source ref:** `sarakalai-2025 video Day 08 @ 60:31 – 70:22`
 
 #### Practice — உண்மை பொய் கண்டறியும் சரம் & வெளிநாட்டு அழைப்பு பிரசன்னம் (Unmai Poi Kandariyum Charam / Truth & Falsehood Divination, 3D Observer Flanks & Overseas Call Oracle)
 - **Purpose / benefit (the why):** Direct discernment of truth vs. falsehood, sincerity of promises, commercial reliability, and eventual materialization of another person's statements without external interrogation or body-language profiling.
@@ -881,7 +881,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app utility: "Veracity & Intent Diagnostic Wizard" (User selects person position [Front, Behind, Above, Below, Domestic Phone, Overseas Call] + active nostril → computes whether statement will materialize into reality with ethical guidance notes).
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Veracity & Materialization Oracle" in the Swara Prasanam module.
-- **Source ref:** `sarakalai-2026 video Day 09 @ 48:01 – 76:31`
+- **Source ref:** `sarakalai-2025 video Day 09 @ 48:01 – 76:31`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
@@ -1029,7 +1029,7 @@ starts with a `### <n>. <Topic name>` heading.*
 
 > ⚠️ **Pending Confirmation [CONF-014]:** Swara cycle duration: `sugam_tharum_swasa_kalai.pdf` defines the alternation cycle as exactly 1 hour (60 minutes / 2.5 Nazhigais = 24 transitions daily). Verify whether your lineage calculates cycle length as 1 hour or 1.5 hours (1 Yama / 3.75 Nazhigais = 16 transitions daily).
 >
-> 🔁 **Proposed Resolution [CONF-014] (sarakalai-2026 video Day 01 @ 63:55):** Healer Baskar confirms the standard baseline cycle length is 1 hour (*"1 hour கழித்து வரேங்க, அப்போ இடது பக்கம் போனா..."*), yielding 24 hourly swara cycles per diurnal day. Status: `🔁 Proposed — owner confirm`.
+> 🔁 **Proposed Resolution [CONF-014] (sarakalai-2025 video Day 01 @ 63:55):** Healer Baskar confirms the standard baseline cycle length is 1 hour (*"1 hour கழித்து வரேங்க, அப்போ இடது பக்கம் போனா..."*), yielding 24 hourly swara cycles per diurnal day. Status: `🔁 Proposed — owner confirm`.
 
 #### Practice — 21,600 சுவாசக் கணக்கும் 7,200 இழப்புத் தவிர்ப்பும் (21,600 Swasa Kanakkum 7,200 Izhappu Thavirthalum / The 21,600 Daily Breath Ledger & Reclaiming 7,200 Wastage)
 - **Purpose / benefit (the why):** Overcoming premature decay; of the 21,600 total breaths allocated across the 7 chakras in 24 hours, 7,200 breaths are habitually expelled and wasted externally due to emotional excitation and hurried breathing, leaving only 14,400 internal breaths. Reclaiming these wasted breaths extends lifespan.
@@ -1200,7 +1200,7 @@ starts with a `### <n>. <Topic name>` heading.*
 
 > ⚠️ **Pending Confirmation [CONF-018]:** In `sugam_tharum_swasa_kalai.pdf` (p. 45), "Daytime Left, Nighttime Right" is proclaimed as the master axiom for total disease immunity. Verify how this macro-rule interacts with the 1-hour ultradian alternation cycle (Topic 8) and Weekday Inception (Topic 1) — does it denote continuous sustained flow or overarching predominance?
 >
-> 🔁 **Proposed Resolution [CONF-018] (sarakalai-2026 video Day 01 @ 37:31 – 45:00):** The 37°C thermoregulatory paradox explains that "Daytime Left, Nighttime Right" represents the overarching macro-thermal ideal to buffer external environmental temperatures (cooling solar heat during day, conserving metabolic warmth against night chill), while ultradian 1-hour cycles actively balance internal visceral organs. Status: `🔁 Proposed — owner confirm`.
+> 🔁 **Proposed Resolution [CONF-018] (sarakalai-2025 video Day 01 @ 37:31 – 45:00):** The 37°C thermoregulatory paradox explains that "Daytime Left, Nighttime Right" represents the overarching macro-thermal ideal to buffer external environmental temperatures (cooling solar heat during day, conserving metabolic warmth against night chill), while ultradian 1-hour cycles actively balance internal visceral organs. Status: `🔁 Proposed — owner confirm`.
 
 #### Practice — தம்பதியர் புத்திர பாக்ய சுவாசப் பொருத்தம் (Thambathiyar Puthira Baagya Swasa Poruttham / Conjugal Conception Swara & Tattva Alignment)
 - **Purpose / benefit (the why):** Overcoming infertility (மலட்டுத்தன்மை நீங்குதல்), eliminating domestic discord, and ensuring the conception of healthy, auspicious progeny (புத்திர பாக்யம் கிட்டுதல்).
@@ -1241,7 +1241,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — Premier app feature: an interactive "Weekly Kumbhaka Benchmark" module with a built-in stopwatch, heartbeat haptic pacer, health status classification (Critical, Diseased, Average, Ideal), and longitudinal progress graphing over weeks and months.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Weekly Kumbhaka Vitality Test" with animated gauge tracking user progress toward the 64-second threshold.
-- **Source ref:** `sarakalai-2026 video Day 04 @ 44:01 – 61:26`
+- **Source ref:** `sarakalai-2025 video Day 04 @ 44:01 – 61:26`
 
 #### Practice — மாயாவி சரக்கலை — நிமிட சுவாச எண்ணிக்கை அளவுகோல் (Mayavi Sara Kalai — The 10-to-1 Breath Count Siddhi Scale & Subconscious Respiration Benchmark)
 - **Purpose / benefit (the why):** Foundational bio-chronometer connecting respiratory frequency directly to cellular longevity, neuro-cognitive mastery, and esoteric Siddha attainments. Establishes the precise respiratory rates separating mortal degeneration from youthfulness and supernatural faculties.
@@ -1263,7 +1263,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — Premier interactive feature: "Breath Count Chronometer" allowing user to tap a sensor per breath cycle to calculate breaths/min, display their current tier on the 10-to-1 scale, and track weekly progress toward the 10-breath Markandeya threshold.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Respiratory Rate & Mayavi Gauge" diagnostic screen with animated breathing pacer and tier badges.
-- **Source ref:** `sarakalai-2026 video Day 05 @ 06:48 – 24:00`
+- **Source ref:** `sarakalai-2025 video Day 05 @ 06:48 – 24:00`
 
 #### Practice — பிரம்ம நடுநாடி / பிரம்ம சுழிமுனை சங்கமம் (Brahma Nadunadi / Right-to-Left Brahma Sushumna & 96-Minute Cosmic Conjunction)
 - **Purpose / benefit (the why):** The supreme esoteric distinction in Siddha swara science separating ordinary transitional dual-flow from divine Brahma Sushumna; harnessing the cosmic conjunction between Earth's planetary Brahma Muhurtham and the human internal channel to manifest sankalpas with 100% infallible efficacy.
@@ -1283,7 +1283,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app utility: calculates exact daily 96-minute Brahma Muhurtham window (Sunrise - 96m) based on GPS coordinates, sends a pre-dawn wake-up notification, and provides a guided "Brahma Sushumna Conjunction" meditation pacer.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Brahma Muhurtham Cosmic Conjunction Timer" with astronomical dawn countdown and Sankalpa recorder.
-- **Source ref:** `sarakalai-2026 video Day 08 @ 36:01 – 54:00`
+- **Source ref:** `sarakalai-2025 video Day 08 @ 36:01 – 54:00`
 
 > ⚠️ **Panja Pakshi Scope Boundary Note (Day 10 @ 02:41 – 16:00):**  
 > Healer Baskar unequivocally establishes that Panja Pakshi (பஞ்ச பட்சி சாஸ்திரம்) and Sara Kalai (சரகலை) are **autonomous, independent sciences** (*"பஞ்ச பக்ஷி தெரியாமலேயே சரகலையை முழுமையாகப் பயன்படுத்தலாம்; சரகலை தெரியாமலேயே பஞ்ச பக்ஷியைப் பயன்படுத்தலாம்"*).  
@@ -1307,7 +1307,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — Premier astrological-somatic defense feature: calculates user's natal rasi, alerts 24 hours and 1 hour before exact Shani Peyarchi ingress, and runs a 60-minute "Saturn Ingress Chandra Barricade" guided session with posture instructions and countdown timer.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Saturn Ingress Defense Mode" with automated astrological transit timer, cotton-plug checklist, and 1-hour Chandra holding guide.
-- **Source ref:** `sarakalai-2026 video Day 10 @ 20:31 – 36:00`
+- **Source ref:** `sarakalai-2025 video Day 10 @ 20:31 – 36:00`
 
 > 🎥 **Video refinement (Day 11 @ 32:01 – 48:00):** Healer Baskar establishes the universal reconciliatory axiom between classical yoga pranayama and Sara Kalai (The Master Shoonyam Inhalation Prohibition):
 > - **The Supreme Invariant:** Inhalation through the **Shoonyam (dormant/closed nostril) is strictly prohibited** under Sara Kalai law (*"சூனியத்தில் காற்றை உள்ளே இழுக்கக் கூடாது"*). Drawing breath through the dormant channel causes pranic dissipation and nervous strain.
@@ -1334,7 +1334,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🟢 — High app scaffolding utility: interactive "Yogi-Boghi Intention Journal" where users maintain separate "Release (Boghi/Surya)" and "Attract (Yogi/Chandra)" lists, auto-prompting the appropriate visualization session based on active swara.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Yogi-Boghi Manifestation & Release Timer" with nostril-aware guided visualization audio.
-- **Source ref:** `sarakalai-2026 video Day 11 @ 48:01 – 60:00`
+- **Source ref:** `sarakalai-2025 video Day 11 @ 48:01 – 60:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
@@ -1594,7 +1594,7 @@ starts with a `### <n>. <Topic name>` heading.*
 - **App-help bucket:** 🔴/🟡 — Traditional Siddha astrological-pranic doctrine on conception alignment. In modern software applications, child gender selection involves significant ethical, cultural, and legal sensitivities (e.g. PCPNDT regulations in India and reproductive ethics globally). In Phase 2b feature scoping, this practice is designated as **document-only canonical knowledge / educational reference**, NOT an algorithmic directive or gender-selection prescriptive feature.
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** Educational/canonical reference card in the Siddha Embryology module.
-- **Source ref:** `sarakalai-2026 video Day 11 @ 18:01 – 26:00`
+- **Source ref:** `sarakalai-2025 video Day 11 @ 18:01 – 26:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 

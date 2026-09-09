@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 03 Transcript
+# Sara Kalai Workshop 2025 — Day 03 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 03.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 75 minutes 45 seconds (01:15:45)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** எந்தெந்த காரியத்திற்கு எந்தெந்த நாடி இயங்க வேண்டும் (Diurnal Swara Activity Matrices), உடலியல் உஷ்ண ஒழுங்கு விதி (The Master Thermoregulatory Invariant), கவனத்தோடு கூடிய அசைவு vs கவனமற்ற உழைப்பு (Mindful vs Unconscious Movement Paradox), உணவு-நீர்-குளியல்-உடற்பயிற்சி-யோகா-தியானம்-மலசலம் விதிகள், மிளகு 37°C சமநிலை தத்துவம், மற்றும் சுழிமுனையில் வரம் கொடுக்கும் வித்தை (Bestowing Boons & Blessings in Sushumna)
 
 ---

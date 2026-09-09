@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 04 Transcript
+# Sara Kalai Workshop 2025 — Day 04 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 04.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 61 minutes 26 seconds (01:01:26)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** தினசரி காரிய விரிவு அட்டவணை (Extended Diurnal Swara Activity Matrices), உறக்கம் & இடதுபக்க ஒருக்களிப்பு படுக்கை விதி (Sleep Inception & Left Lateral Recumbency — CONF-005), திருமண தாலி கட்டுதல் ரகசியம், இதயத் துடிப்பு மாத்திரை தத்துவம் (Heartbeat Matra Metric), மற்றும் 64-வினாடி ஸ்டாப்வாட்ச் கும்பக பரிசோதனை அளவுகோல் (The 64-Second Stopwatch Kumbhaka Diagnostic Ledger)
 
 ---

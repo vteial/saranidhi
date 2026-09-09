@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 12 Transcript
+# Sara Kalai Workshop 2025 — Day 12 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 12.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 66 minutes 02 seconds (01:06:02)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** சரகலை 42 வினா-விடைகள் (42 Lineage Frequently Asked Questions & Answers — Clarifications, Diagnostics, and Operational Invariants)
 
 ---

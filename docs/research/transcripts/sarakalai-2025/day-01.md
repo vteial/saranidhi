@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 01 Transcript
+# Sara Kalai Workshop 2025 — Day 01 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 01.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 64 minutes 56 seconds (01:04:56)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** அறிமுகம், குருபரம்பரை, 7 மூச்சு மாற்றும் வித்தைகள், 37°C உள்-வெப்பநிலை தத்துவம், நாடி பரிசோதனை (Introduction, Guru Parampara, 7 Switching Methods, 37°C Core Thermoregulation & Nadi Pariksha)
 
 ---

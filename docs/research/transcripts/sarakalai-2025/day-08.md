@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 08 Transcript
+# Sara Kalai Workshop 2025 — Day 08 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 08.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 70 minutes 22 seconds (01:10:22)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** உதய சரகலை பயிற்சி (Sunrise Swara Inception Rules & Duration Ledger), உயிரற்ற நாடிக்கு உயிர் கொடுக்கும் நுட்பம் (Awakening the Dormant Dawn Nostril), பிரம்ம நடுநாடி & 96-நிமிட பிரம்ம முகூர்த்த தத்துவம் (Brahma Sushumna & Cosmic Dawn Conjunction), மற்றும் சொல் கேட்கும் சரம் & மேடை பிரசன்ன நிலைப்பாடு (Auditory Compliance & Public Speaking Flank Positioning)
 
 ---

@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 05 Transcript
+# Sara Kalai Workshop 2025 — Day 05 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 05.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 64 minutes 11 seconds (01:04:11)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** மாயாவி சரக்கலை — நிமிட சுவாச எண்ணிக்கை அளவுகோல் (Mayavi Sara Kalai — Respiratory Rate Siddhi Matrix), பயணச் சரம் & 12:00–5:00 கடிகார முக வரைபடம் (Travel Swara & Clock-Face Vector Mnemonic), அவசர நடைப் பரிகாரம் (Emergency Kumbhaka Departure Protocol), மற்றும் விடியல் சரப்பயிற்சி (Universal Dawn Awakening Sadhana & Kumbhaka Prayer Invariant)
 
 ---

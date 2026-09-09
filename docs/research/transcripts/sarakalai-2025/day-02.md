@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 02 Transcript
+# Sara Kalai Workshop 2025 — Day 02 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 02.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 65 minutes 03 seconds (01:05:03)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** சரகலை பயிற்சி / குகை தியானம் நேரடி செய்முறை, 90-நிமிட சுழிமுனை நாடி கணக்கு, 4,448 வியாதிகள் தீர்வு, கால-இட-நிலை விலக்குகளின்மை & ஆரம்ப கால 100-சுற்று வரம்பு (Sara Kalai Practice / Guhai Dhyanam Practical Mechanics, 90-Min Diurnal Sushumna Ledger, Panacea Healing of 4,448 Diseases, Absence of Restrictions & 100-Rep Repetition Cap)
 
 ---

@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 10 Transcript
+# Sara Kalai Workshop 2025 — Day 10 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 10.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 61 minutes 36 seconds (01:01:36)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** பஞ்ச பக்ஷி சாஸ்திர தத்துவ எல்லை (Panja Pakshi Doctrine Boundary & Architectural Independence), ஏழரை நாட்டு சனி சரகலை நிவர்த்தி முறை (Neutralizing 7.5-Year Saturn Transit Afflictions via Left Swara Barricade), எட்டு நடை சுழிமுனை தூண்டல் சாதனை (Figure-8 Walk & Sushumna Induction), மற்றும் ஆலய வழிபாட்டு சரம் (Sanctum Left-Railing Standing Geometry & Prayer Invariant)
 
 ---
