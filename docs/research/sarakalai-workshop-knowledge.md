@@ -67,7 +67,7 @@ Use this table to see at a glance what is captured and to resume across sessions
 | # | Sara Kalai Topic | Capture Status | # Practices | Notes |
 |---|------------------|:--------------:|:-----------:|-------|
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
-| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02. See CONF-002, CONF-017. |
+| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 10 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14). See CONF-003, CONF-004. |
 | 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03. See CONF-005, CONF-006. |
 | 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 4–5, 12–13). See CONF-007, CONF-008. |
@@ -75,7 +75,7 @@ Use this table to see at a glance what is captured and to resume across sessions
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
-| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 8 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04. See CONF-017, CONF-018. |
+| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 9 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05. See CONF-017, CONF-018. |
 | 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
 | 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67). See CONF-021, CONF-022. |
 | 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69). See CONF-023, CONF-024. |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 69 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 71 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -352,6 +352,24 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Daily Sushumna Vitality Meter" displaying cumulative minutes toward the 90-minute baseline, with health state annotations.
 - **Source ref:** `sarakalai-2026 video Day 02 @ 16:01 – 27:00`
 
+#### Practice — விடியல் சரப்பயிற்சி (Vidiyal Sara Payirchi / The Universal Dawn Awakening Sadhana & Shoonyam-Knee Grounding Prayer)
+- **Purpose / benefit (the why):** The universal, foundational morning awakening ritual mandated for every practitioner of Sara Kalai upon waking from nocturnal sleep, regardless of weekday or lunar tithi. It harmonizes the vital channels immediately upon consciousness emergence, anchors cosmic protection, and empowers morning intentions (*சங்கல்பம்*) through the irresistible potency of Kumbhaka.
+- **How it's practiced (brief mechanics):**
+  1. **Awakening with Closed Eyes:** The instant consciousness returns upon waking in bed, keep eyes gently closed; do NOT immediately open eyes or jump out of bed. Sit up into cross-legged posture (*சம்மணம்*) on the bed.
+  2. **Nadi Pariksha:** With eyes closed, test airflow under the nostrils to identify the dominant channel (**பூரணம் / உயிர் நாடி**) and dormant channel (**சூன்யம்**). *(Note: Sushumna never naturally flows at morning waking; if dual flow occurs, do not proceed).*
+  3. **Guhai Dhyanam Cycles:** Execute a minimum of 3 up to a maximum of 9 cycles of Guhai Dhyanam (Practice 65): occlude Shoonyam with thumb/finger -> inhale fully through Poornam -> hold both nostrils in comfortable Kumbhaka -> release exhalation effortlessly.
+  4. **Somatic Flank Grounding Posture:**
+     - Ground the palm of the **POORNAM (active) side** firmly onto the mattress/bed beside you.
+     - Raise and plant the foot of the **SHOONYAM (dormant) side** flat on the bed with the **knee pointed upright** (*குத்த வைத்து ஊன்றுதல்*), while the Poornam leg remains folded below.
+  5. **Kumbhaka Morning Prayer & Sankalpa:**
+     - While maintaining this somatic posture, inhale and **hold the breath internally in Kumbhaka** (*மூச்சடக்கிய நிலையில்*).
+     - Formulate and release all your daily intentions, personal prayers, and requests to the Divine (*சங்கல்பம் / பிரார்த்தனை*) for 30 to 120 seconds during this retention. In lineage doctrine, prayers formulated during Kumbhaka manifest with infallible cosmic speed.
+  6. **Auspicious First Step:** Release the breath, open your eyes, rise to your feet, and **step off the bed onto the floor FIRST with the POORNAM (active / உயிர் நாடி) foot** to initiate the day in total auspicious alignment.
+- **App-help bucket:** 🟢 — High app utility: an interactive "Dawn Awakening Companion" offering audio chimes guiding the 5 steps (closed-eye bell, 3-cycle breathing timer, posture visual, Kumbhaka prayer timer, and first-step prompt).
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Morning Awakening Ritual Pacer" integrated with gentle smart alarm.
+- **Source ref:** `sarakalai-2026 video Day 05 @ 48:01 – 64:11`
+
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
 ---
@@ -494,6 +512,16 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** Compass-integrated "Journey Departure" check screen.
 - **Source ref:** `saravithai.pdf`, pp. 4–5
 
+> 🎥 **Video refinement (Day 05 @ 24:01 – 42:00):**
+> - **The 8-Directional Vector Classification:**
+>   - **Surya Kalai / Right Nostril Directions:** வடக்கு (North), வடகிழக்கு (North-East / Eesanyam), கிழக்கு (East), தென்கிழக்கு (South-East / Agni).
+>   - **Chandra Kalai / Left Nostril Directions:** தெற்கு (South), தென்மேற்கு (South-West / Niruthi), மேற்கு (West), வடமேற்கு (North-West / Vayu).
+> - **Clock-Face Directional Mnemonic (கடிகார முக திசை வரைபடம்):**
+>   - Standard wall-clock mapping: 12:00 = North, 3:00 = East, 6:00 = South, 9:00 = West.
+>   - **Right Nostril (Surya Kalai) Hours:** **12:00 to 5:00** (North to South-East quadrant).
+>   - **Left Nostril (Chandra Kalai) Hours:** **6:00 to 11:00** (South to North-West quadrant).
+> - **Radial Destination Invariant:** Travel swara is governed exclusively by the straight-line radial vector from origin to final destination on a map (e.g. Google Maps straight line). Intermediate winding roads, switchbacks, or U-turns do NOT alter the target departure swara.
+
 #### Practice — மாறுபட்ட திசைப் பயண பரிகார நடை (Maarupatta Thisai Payana Parikaara Nadai / Remedial Departure Footwork for Opposed Directions)
 - **Purpose / benefit (the why):** Esoteric somatic remedy allowing immediate travel even when the active breath opposes the destination direction, neutralizing inauspiciousness.
 - **How it's practiced (brief mechanics):** Before stepping out on the journey:
@@ -504,6 +532,16 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Emergency Travel Departure" remedial checklist card.
 - **Source ref:** `saravithai.pdf`, p. 5
+
+> 🎥 **Video refinement (Day 05 @ 42:01 – 48:00):**
+> - **Emergency Kumbhaka Departure Walk Protocol (அவசர நடைப் பரிகாரம்):**
+>   When immediate departure is mandatory (e.g. fixed flight/interview time) but the active swara opposes the destination vector:
+>   1. Identify dominant (Poornam) and dormant (Shoonyam) nostrils.
+>   2. Occlude Shoonyam, inhale fully through Poornam.
+>   3. Occlude both nostrils into internal Kumbhaka (hold breath).
+>   4. **Step forward FIRST with the foot on the SHOONYAM (dormant) side!**
+>   5. Walk as briskly as possible (*கடகடவென வேகமாக நடக்க வேண்டும்*) under continuous breath retention for as many paces as comfortably possible.
+>   6. Upon reaching retention threshold, release fingers, resume natural breathing, and mount vehicle/proceed on journey. This somatic emergency walk nullifies negative directional resistance.
 
 #### Practice — நபர்கள் & எதிராளிகளை சந்திக்கும் பூரண/சூனிய நிலைப்பாடு (Nabargal & Ethiraaligalai Santhikkum Poorana/Shunya Nilaippaadu / Interpersonal Flank Positioning for Allies & Adversaries)
 - **Purpose / benefit (the why):** Somatically attracts maximum benevolence from noble persons while diminishing the dominance and aggression of adversaries or litigants.
@@ -973,6 +1011,28 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Weekly Kumbhaka Vitality Test" with animated gauge tracking user progress toward the 64-second threshold.
 - **Source ref:** `sarakalai-2026 video Day 04 @ 44:01 – 61:26`
+
+#### Practice — மாயாவி சரக்கலை — நிமிட சுவாச எண்ணிக்கை அளவுகோல் (Mayavi Sara Kalai — The 10-to-1 Breath Count Siddhi Scale & Subconscious Respiration Benchmark)
+- **Purpose / benefit (the why):** Foundational bio-chronometer connecting respiratory frequency directly to cellular longevity, neuro-cognitive mastery, and esoteric Siddha attainments. Establishes the precise respiratory rates separating mortal degeneration from youthfulness and supernatural faculties.
+- **How it's practiced (brief mechanics):**
+  - **Measurement Modality:** 1 Inhalation + 1 Exhalation = 1 complete breath cycle (*ஒரு சுவாசம்*). Conscious self-counting introduces artificial pacing; the true baseline is determined via an external observer or recorded during subconscious natural sleep (*தூங்கும் பொழுது கணக்கிடல்*).
+  - **The 10-to-1 Respiration Attainment Ledger (சுவாசக் குறைப்பு சித்தி அட்டவணை):**
+    - **10 மூச்சுகள் / நிமிடம் (10 Breaths/Min):** Standard baseline of radiant health, emotional peace, and eternal youthfulness (*முதுமை வராது, என்றும் இளமை, மார்க்கண்டேயன் நிலை*).
+    - **9 மூச்சுகள் / நிமிடம் (9 Breaths/Min):** Prodigious photographic memory, effortless mastery of multiple languages, chess grandmaster discernment.
+    - **8 மூச்சுகள் / நிமிடம் (8 Breaths/Min):** Vak-Siddhi (*வாக்கு வன்மை* / prophetic speech; whatever is uttered manifests into reality).
+    - **7 மூச்சுகள் / நிமிடம் (7 Breaths/Min):** Accurate clairvoyant foresight of future events (*வருங்காலத்தில் நடப்பதை முன்கூட்டியே அறியும் ஆற்றல்*).
+    - **6 மூச்சுகள் / நிமிடம் (6 Breaths/Min):** Andhara Sakthi (*அந்தர சக்தி* / levitation, defying gravitational density, astral mobility).
+    - **5 மூச்சுகள் / நிமிடம் (5 Breaths/Min):** Instantaneous materialization of desires (*விரும்பியதை உடனடியாக அடைதல்*).
+    - **4 மூச்சுகள் / நிமிடம் (4 Breaths/Min):** Sakalakala Vallavan (*சகலகலா வல்லவன்* / spontaneous polymathic mastery over all 64 traditional arts).
+    - **3 மூச்சுகள் / நிமிடம் (3 Breaths/Min):** Kubera archetype (*குபேரன்* / overflowing, inexhaustible wealth, material and spiritual abundance).
+    - **2 மூச்சுகள் / நிமிடம் (2 Breaths/Min):** Parakaya Pravesham (*கூடு விட்டுக் கூடு பாயும் ஆற்றல்* / conscious transmigration of prana into other physical forms).
+    - **1 மூச்சு / நிமிடம் (1 Breath/Min — 30s Inhale / 30s Exhale):** **மாயாவி (Mayavi)** — supernatural physical invisibility, total mastery over molecular density, and cellular transfiguration (analogous to 100% cerebral activation in the film *Lucy*).
+    - **>10 மூச்சுகள் / நிமிடம் (12–25+ Breaths/Min):** Rapid prana expenditure, metabolic stress, emotional turbulence, and vulnerability to chronic systemic disease.
+  - **Cultivation Protocol:** Progressive reduction is not forced by suffocating oneself; it emerges organically through daily practice of Guhai Dhyanam (Practice 65), which naturally expands tidal volume and contracts resting respiratory frequency from modern frantic baselines (15–20/min) toward the 10/min threshold.
+- **App-help bucket:** 🟢 — Premier interactive feature: "Breath Count Chronometer" allowing user to tap a sensor per breath cycle to calculate breaths/min, display their current tier on the 10-to-1 scale, and track weekly progress toward the 10-breath Markandeya threshold.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Respiratory Rate & Mayavi Gauge" diagnostic screen with animated breathing pacer and tier badges.
+- **Source ref:** `sarakalai-2026 video Day 05 @ 06:48 – 24:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
