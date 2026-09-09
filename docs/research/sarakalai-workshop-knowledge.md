@@ -69,16 +69,16 @@ Use this table to see at a glance what is captured and to resume across sessions
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
 | 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 14 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07, Day 08, Day 10. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14), sarakalai-2026 Day 09. See CONF-003, CONF-004. |
-| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03, Day 10. See CONF-005, CONF-006. |
+| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03, Day 10, Day 11. See CONF-005, CONF-006. |
 | 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06, Day 08, Day 09. See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
-| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 11 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05, Day 08, Day 10. See CONF-017, CONF-018. |
+| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 12 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05, Day 08, Day 10, Day 11. See CONF-017, CONF-018. |
 | 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
 | 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67). See CONF-021, CONF-022. |
-| 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69). See CONF-023, CONF-024. |
+| 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 5 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69), sarakalai-2026 Day 11. See CONF-023, CONF-024. |
 | 14 | [Siddha Dinacharya & Avvaiyar's Pranic Inversion Sutras (தினக்கிரம அலங்கார ஒழுக்கங்களும் ஒளவையாரின் வாசி சூத்திரங்களும்)](#topic-14) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 84, 90, 102–103). See CONF-025, CONF-026. |
 
 *Add a new topic row here as you begin each topic. Update its Capture Status (⬜ → 🔄 → ✅) and practice count as you go.*
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 80 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 83 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -710,6 +710,25 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Sushumna Blessing Moment" prompt in the breathing module.
 - **Source ref:** `sarakalai-2026 video Day 03 @ 65:55 – 72:25`
 
+#### Practice — திருமண முகூர்த்த சரம் & திருமண மேடை அமைப்பு (Thirumana Muhurtha Charam & Wedding Stage Alignment)
+- **Purpose / benefit (the why):** Establishes lifelong harmony, domestic tranquility, mutual affection, and prevents marital conflict or separation by synchronizing the couple's subtle pranic polarity at the exact second of matrimonial solemnization (*தாலி கட்டும் தருணம் / மோதிரம் மாற்றும் தருணம் / பதிவு செய்யும் தருணம்*).
+- **How it's practiced (brief mechanics):**
+  - **The Solemnization Invariant:**
+    - **Both Bridegroom and Bride in Left Swara (Chandra Kalai / இடது நாசி):** The supreme ideal alignment (*"ஜாடிக்கேத்த மூடி"*). Both partners are cool, calm, receptive, and emotionally attuned, guaranteeing lasting peace and devotion.
+    - **Both in Right Swara (Surya Kalai / வலது நாசி):** Dangerous fiery clash; leads to severe friction, domestic disputes, separation, or divorce (*பிரிவு / பிரேக்-அப்*).
+    - **Groom in Right (Surya), Bride in Left (Chandra):** Traditional patriarchal dynamic; male dominance (*ஆண் ஆதிக்கம்*).
+    - **Groom in Left (Chandra), Bride in Right (Surya):** Matriarchal dynamic; female dominance (*பெண் ஆதிக்கம்*).
+  - **Somatic Induction of Left Swara for Couple:**
+    - Circumambulate the sacrificial fire (*அக்னி குண்டம்*) in a clockwise direction (*வலது சுத்து*).
+    - Sit with the right knee bent upwards (*வலது காலை குத்த வைத்து அமருதல்*).
+    - Consume natural sweets (jaggery, panchamirtham, honey) or warm water/tea.
+    - Or simply wait together until Chandra Kalai opens naturally before signaling the priest to tie the knot.
+  - **Stage Orientation Invariant:** The wedding dais/stage (*மணவறை*) must be positioned on the WEST side of the hall, so the couple sits facing EAST (*கிழக்கு நோக்கி அமர்தல்*).
+- **App-help bucket:** 🟢 — High app utility: "Wedding Muhurtha Breath Monitor & Couple's Alignment Checklist" providing breath checking prompts, stage orientation compass, and somatic Left-swara shift guidance.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Muhurtha Swara Companion" with pre-knot breath checker and Left-swara pacer.
+- **Source ref:** `sarakalai-2026 video Day 11 @ 04:01 – 18:00`
+
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
 ---
@@ -1264,6 +1283,33 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Saturn Ingress Defense Mode" with automated astrological transit timer, cotton-plug checklist, and 1-hour Chandra holding guide.
 - **Source ref:** `sarakalai-2026 video Day 10 @ 20:31 – 36:00`
 
+> 🎥 **Video refinement (Day 11 @ 32:01 – 48:00):** Healer Baskar establishes the universal reconciliatory axiom between classical yoga pranayama and Sara Kalai (The Master Shoonyam Inhalation Prohibition):
+> - **The Supreme Invariant:** Inhalation through the **Shoonyam (dormant/closed nostril) is strictly prohibited** under Sara Kalai law (*"சூனியத்தில் காற்றை உள்ளே இழுக்கக் கூடாது"*). Drawing breath through the dormant channel causes pranic dissipation and nervous strain.
+> - **Pranayama Modification:** In classical alternate-nostril breathing (Nadi Suddhi / Pranayama), inhalation must be adapted to draw air exclusively through the Poornam (active nostril), hold internally (Kumbhaka), exhale through the opposite side, and then re-inhale through Poornam.
+> - **Modalities Reconciled:**
+>   - **Bhastrika:** Rapid nostril expulsion is a cleansing process (*சுத்தம் செய்யும் பயிற்சி*), not energy-accumulating; do only briefly (a few minutes), never prolonged.
+>   - **Kapalabhati:** Internal rhythmic pumping without external blast (mimics the resonant sound of sleep onset); safe for extended practice.
+>   - **Ujjayi:** Slow, gentle, mindful Kapalabhati.
+>   - **Sheetali & Shitkari:** Mouth inhalation (via curled tongue or teeth) with nasal exhalation; fully compatible with Sara Kalai.
+>   - **Sudarshan Kriya & Vasi Yogam:** Deeply complementary spiritual sciences when practiced with Poornam breath awareness.
+
+#### Practice — யோகி - போகி சரகலை சாதனை (Yogi & Boghi Sara Kalai Sadhana / Pranic Manifestation in Chandra & Disease/Debt Dissolution in Surya)
+- **Purpose / benefit (the why):** Dual-phase sovereign Siddha sadhana separating the power of material/spiritual attraction from the power of disease/obstacle elimination, using the body's natural solar and lunar nadic currents to effortlessly manifest desires and incinerate afflictions without rigid rituals.
+- **How it's practiced (brief mechanics):**
+  - **போகி சாதனை (Boghi Sadhana — Elimination in Surya):**
+    - **Operating Window:** Performed **exclusively when RIGHT SWARA (Surya Kalai / Pingala)** is active.
+    - **Target List:** Chronic illnesses, physical tumors/pains, debts, anger, anxiety, sorrow, litigation, domestic toxicity.
+    - **Method:** Inhale deeply through the Right nostril (closing the Left). Retain in Kumbhaka while praying to the Divine / Universe to remove the specific burden (*"இறைவா, இந்த நோய்/பிரச்சனை என்னை விட்டு போக வேண்டும்"*). Exhale slowly while vividly visualizing the disease or debt dissolving into the atmosphere along with the breath.
+  - **யோகி சாதனை (Yogi Sadhana — Manifestation in Chandra):**
+    - **Operating Window:** Performed **exclusively when LEFT SWARA (Chandra Kalai / Ida)** is active.
+    - **Target List:** Divine wisdom, intellect, peace, love, virtuous qualities, noble spouse/children, healthy physical vitality, and material prosperity.
+    - **Method:** Inhale deeply through the Left nostril (closing the Right). Retain in Kumbhaka while meditating upon and feeling the desired blessing as already granted by divine grace. Exhale in gentle tranquility.
+  - **Anytime, Anywhere Axiom:** This practice requires no special mat or temple setting; it can be performed 24 hours a day, sitting in an office, car, or home whenever the corresponding nostril opens naturally.
+- **App-help bucket:** 🟢 — High app scaffolding utility: interactive "Yogi-Boghi Intention Journal" where users maintain separate "Release (Boghi/Surya)" and "Attract (Yogi/Chandra)" lists, auto-prompting the appropriate visualization session based on active swara.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Yogi-Boghi Manifestation & Release Timer" with nostril-aware guided visualization audio.
+- **Source ref:** `sarakalai-2026 video Day 11 @ 48:01 – 60:00`
+
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
 ---
@@ -1502,6 +1548,23 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Source ref:** `gana_sara_nool.pdf`, pp. 68–69 (Agathiyar vv. 42–43)
 
 > ⚠️ **Pending Confirmation [CONF-024]:** In `gana_sara_nool.pdf` (p. 69, v. 43), duel name numerology scores vowels and initial syllables. Verify the exact arithmetic weighting algorithm used in workshop practice to resolve opposing combatants.
+
+#### Practice — தாம்பத்திய சரகலை பாலின நிர்ணய அளவுகோல் (Thambathya Sarakalai Paalina Nirnaya Alavukol / Conjugal Swara Gender Determination Matrix & Transgender Prevention Law)
+- **Purpose / benefit (the why):** Traditional Siddha embryological science governing marital intimacy (*தாம்பத்யம் / தந்திரா*); establishes the pranic laws determining child gender and dictates the critical prohibition against union during central Sushumna to prevent congenital and gender-identity disorders.
+- **How it's practiced (brief mechanics):**
+  - **Precondition for the Male Partner:** The husband must strictly engage in intimacy ONLY when his **Right Swara (Surya Kalai / Pingala)** is active. Engaging in intimacy during Left swara is considered physically and energetically debilitating for men.
+  - **The Gender Determination Matrix (குழந்தை பாலின நிர்ணயம்):**
+    - **100% Male Child (ஆண் குழந்தை):** Both husband and wife engage in union while **Right Swara (Surya Kalai)** is active in both.
+    - **100% Female Child (பெண் குழந்தை):** Both husband and wife engage in union while **Left Swara (Chandra Kalai)** is active in both.
+    - **80% Male / 20% Female:** Husband in Right Swara (Surya), Wife in Left Swara (Chandra).
+    - **80% Female / 20% Male:** Husband in Left Swara (Chandra), Wife in Right Swara (Surya).
+  - **The Transgender Conception Prohibition (திருநங்கைகள் உருவாவதைத் தடுக்கும் விதி):**
+    - If either the husband or the wife has central **Sushumna (நடுநாசி / சுழிமுனை - dual nostril flow)** running at the time of conception, the child has a very high probability of being born transgender (*திருநங்கை / அலி*) or intersex.
+    - *Absolute Invariant:* Marital union during Sushumna is strictly forbidden in Sara Kalai doctrine!
+- **App-help bucket:** 🔴/🟡 — Traditional Siddha astrological-pranic doctrine on conception alignment. In modern software applications, child gender selection involves significant ethical, cultural, and legal sensitivities (e.g. PCPNDT regulations in India and reproductive ethics globally). In Phase 2b feature scoping, this practice is designated as **document-only canonical knowledge / educational reference**, NOT an algorithmic directive or gender-selection prescriptive feature.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** Educational/canonical reference card in the Siddha Embryology module.
+- **Source ref:** `sarakalai-2026 video Day 11 @ 18:01 – 26:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
