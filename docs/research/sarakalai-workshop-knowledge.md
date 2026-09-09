@@ -67,7 +67,7 @@ Use this table to see at a glance what is captured and to resume across sessions
 | # | Sara Kalai Topic | Capture Status | # Practices | Notes |
 |---|------------------|:--------------:|:-----------:|-------|
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
-| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01. See CONF-002. |
+| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14). See CONF-003, CONF-004. |
 | 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 6 | Source: saravithai.pdf (pp. 4–5, 10–11). See CONF-005, CONF-006. |
 | 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 4–5, 12–13). See CONF-007, CONF-008. |
@@ -110,7 +110,7 @@ These are points where a single source is ambiguous, or where two sources confli
 | CONF-009 | 🟡 T2 | Topic 6: ஆக்ஞை-சகஸ்ரார-மூலாதார விடியல் சுவாச கணக்கீடு | Verify whether pre-dawn chakra breath windows (3:46–4:53–6:00 AM) scale with sunrise | Recorded Videos / Notes | _(prior note: `sugam_tharum_swasa_kalai.pdf` lists clock hours; check astronomical scaling.)_ | — | ⏳ Pending |
 | CONF-012 | 🟡 T2 | Topic 7: நாசித் துவார ஓட்ட திசை மூலம் தத்துவம் அறிதல் | Clarify exact duration/minutes of each Tattva within a 1-hour swara cycle | Recorded Videos / Notes | _(prior note: e.g. classical 20-16-12-8-4 min breakdown vs continuous shifts.)_ | — | ⏳ Pending |
 | CONF-015 | 🟡 T2 | Topic 9: தத்துவக் கலப்பும் காரியப் பலன்களும் | Clarify whether Agni/Vayu/Akasa completely invalidate auspicious worldly acts even when prescribed nostril is active | Recorded Videos / Notes | _(prior note: `sugam_tharum_swasa_kalai.pdf` states only Prithvi & Apas yield auspicious success.)_ | — | ⏳ Pending |
-| CONF-017 | 🟡 T2 | Topic 10: மாத்திரை விகித தாரணை (16:64:32) | Verify whether beginners are taught scaled introductory ratios (e.g. 1:4:2 with 4s:16s:8s) before classical 24:96:48s durations | Recorded Videos / Notes | _(prior note: `sugam_tharum_swasa_kalai.pdf` defines 1 matra = 1.5s (24:96:48s).)_ | — | ⏳ Pending |
+| CONF-017 | 🟡 T2 | Topic 10: மாத்திரை விகித தாரணை (16:64:32) | Verify whether beginners are taught scaled introductory ratios (e.g. 1:4:2 with 4s:16s:8s) before classical 24:96:48s durations | Recorded Videos / Notes | PROPOSED (Day 02 @ 44:01–48:00 & 57:01–61:00): Lineage does NOT force beginners into rigid 16:64:32 counts or matra timing. Beginners are taught casual, comfortable internal retention (இயல்பான கும்பகம் / தம் கட்டுவது) with effortless release, strictly regulated by daily repetition caps: max 100 cycles / 15 mins daily in Month 1 to prevent Pitta/heat crisis (மிகினும் குறையினும் நோய் செய்யும்), scaling to 200 reps (Month 2) and 300 reps (Month 3). | Sets beginner breathing onboarding to natural comfortable Kumbhaka with daily 100-rep / 15-min safety threshold; defers classical 16:64:32 matra timing to advanced modules. | 🔁 Proposed — owner confirm |
 | CONF-020 | 🟡 T2 | Topic 11: 10:12 உள்-வெளி சுவாச விகிதம் | Verify whether lineage sadhana focuses on lengthening inhalation to 12 angulas or shortening exhalation to 10 angulas (or fewer) | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` (p. 14) identifies 2-angula loss per breath.)_ | — | ⏳ Pending |
 | CONF-023 | 🟡 T2 | Topic 13: 25 உப-பூதப் பிரிவு சரம் | Verify whether 25 sub-tattvas have distinct physical markers (taste/scent) or are fractional time subdivisions | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` p. 46 lists 5x5 sub-elements without explicit durations.)_ | — | ⏳ Pending |
 | CONF-024 | 🟡 T2 | Topic 13: பெயர் எழுத்துக் கணிப்பு | Verify exact arithmetic weighting algorithm for vowel classes and consonant positions in duel outcomes | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` vv. 42-43 mentions letter count and vowel qualities.)_ | — | ⏳ Pending |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 64 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 66 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -244,6 +244,12 @@ starts with a `### <n>. <Topic name>` heading.*
 > 5. **நின்று (Standing Posture):** Specific standing weight-distribution shifts.
 > 6. **பக்கெட் தண்ணீர் (Water Bucket Immersion):** Immersing one arm/hand into a bucket of water to reflexively trigger contralateral nostril activation through thermal-tactile vasomotor response.
 > 7. **பந்து (Axillary Ball / Cushion):** Wedging a tennis-sized ball or rolled cloth cushion tightly into the armpit.
+>
+> 🎥 **Video refinement (Day 02 @ 16:01 – 21:00 & 48:00 – 61:00):**
+> - **Transition Invariant:** Swara alternation NEVER jumps directly from Left to Right or Right to Left; it MUST pass through Sushumna (நடுநாசி / சுழிமுனை). Each transitional Sushumna window lasts from 1 second up to a strict physiological maximum of **5 minutes** (even for accomplished masters, continuous single-shift Sushumna cannot exceed 5 minutes before diverging into a single channel).
+> - **Universal Freedom of Practice:** Sara Kalai / Guhai Dhyanam has zero postural, temporal, environmental, or dietary restrictions. Can be practiced seated, standing in a bus, driving, lying down (supine/prone), or on a toilet passing stool; valid 24/7 during Rahu Kaal, Yama Gandam, eclipses, bereavement/funeral houses (*சாவு வீடு*), menstruation (*தீட்டு*), before/after meals, or between mouthfuls of food (*"மூச்சு விடுவதற்கு என்று ஒரு நேரம் இருக்கிறதா?"*).
+> - **Sole Absolute Contraindication:** DO NOT practice when Sushumna (dual-nostril flow) is already actively operating naturally. The sole purpose of the technique is to induce Sushumna; when 37°C equilibrium is already attained, further manipulation is unnecessary.
+> - **Beginner Safety Cap (Month 1):** In accordance with the Tirukkural axiom *"மிகினும் குறையினும் நோய் செய்யும்"*, unmoderated practice by novices causes acute internal Pitta/heat overload. Novices must strictly observe a ceiling of **maximum 100 repetitions per day OR 15 minutes daily during Month 1**, scaling to 200 reps / 30 mins in Month 2, and 300 reps / 45 mins in Month 3, until it integrates into an effortless autonomic habit ("default", like flipping hair).
 
 #### Practice — எதிர் பக்கவாட்டு படுக்கை முறை (Ethir Pakkavaattu Padukkai Murai / Lateral Recumbency on the Opposite Side)
 - **Purpose / benefit (the why):** Effortless somatic swara switching while remaining in bed upon waking; avoids forceful breathing or artificial manipulation.
@@ -311,6 +317,40 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Thermoregulatory Swara Guide" interactive visual explaining the 37°C paradox and tongue vs skin diagnostics.
 - **Source ref:** `sarakalai-2026 video Day 01 @ 37:31 – 45:00`
+
+#### Practice — குகை தியானம் / சரகலை நேரடி மூச்சுப் பயிற்சி (Guhai Dhyanam / Primary Sara Kalai Breath Exercise — The 5-Step Shoonyam Occlusion & Poornam Kumbhaka Technique)
+- **Purpose / benefit (the why):** The direct, practical core of the entire Sara Kalai science (transmitted to Healer Baskar by the 96-year-old Guhai Sitthar as 'Guhai Dhyanam' and verified identical to Guru Rajesh's 'Sara Kalai Payirchi'). It systematically increases daily cumulative Sushumna duration, flooding the physical and nadic anatomy with concentrated Prana to dissolve all 4,448 classical Siddhic ailments (from joint arthritis, cataracts, and kidney stones to chronic systemic degeneration).
+- **How it's practiced (brief mechanics):**
+  1. **Nadi Pariksha (நாடி பரிசோதனை):** Test current airflow via resting index finger, sharp puff ("ship"), or mental proprioception to identify the dominant nostril (**பூரணம் / உயிர் நாடி**) and dormant nostril (**சூன்யம்**).
+  2. **Shoonyam Occlusion (சூன்யத்தை அடைத்தல்):** Seal the dormant nostril (சூன்யம்) with any comfortable finger (thumb or index finger).
+  3. **Poornam Inhalation (உயிர் நாடியில் மூச்சை இழுத்தல்):** Inhale gently, casually, and fully through the active nostril only. *Absolute Rule: Never inhale through the dormant/empty (Shoonyam) nostril.* Fill lungs and abdomen naturally like a balloon without straining.
+  4. **Dual Occlusion Retention (இரு நாசிகளையும் அடைத்து கும்பகம் செய்தல்):** Seal both nostrils and hold the breath comfortably inside (*உள்ளே தங்குவது / தம் கட்டுவது / கும்பகம்*). Retain only as long as feels natural; never force retention to dizziness or distress.
+  5. **Effortless Release (விரலை எடுத்து விடுதல்):** Release fingers and allow breath to flow out completely and effortlessly. No rigid nostril routing needed for exhalation (breath finds its natural exit path).
+  6. **Pre-Repetition Retest:** Before every subsequent cycle, re-verify nostril flow, as breath frequently shifts immediately following retention. If swara has switched, adjust the occlusion accordingly (always seal the new Shoonyam, inhale through the new Poornam).
+  - **Zero Restrictions:** Practicable in any posture (seated, standing in a bus, driving, lying supine or prone, or on a toilet passing stool); practicable 24/7 round-the-clock (noon, midnight, Rahu Kaal, Yama Gandam, eclipses, bereavement/funeral houses, menstruation, before/after meals, or between mouthfuls of food).
+  - **Single Contraindication:** Do NOT practice when Sushumna (dual-nostril flow) is already actively operating naturally.
+  - **Beginner Safety Cap (Month 1):** In accordance with the Tirukkural axiom *"மிகினும் குறையினும் நோய் செய்யும்"*, unmoderated practice by novices causes acute internal Pitta/heat overload. Beginners must strictly observe a ceiling of **maximum 100 repetitions per day OR 15 minutes daily during Month 1**, scaling to 200 reps/30 mins in Month 2, and 300 reps/45 mins in Month 3.
+- **App-help bucket:** 🟢 — High app scaffolding potential: provides an interactive guided practice timer (with live Nadi check prompts, inhalation/retention/release audio chimes, daily repetition counter capped at 100 reps with safety warning, and habit tracker).
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Guhai Dhyanam Guided Session" module with Nadi verification selector, customizable comfortable Kumbhaka pacer, and daily repetition counter enforcing Month 1 safety limits.
+- **Source ref:** `sarakalai-2026 video Day 02 @ 32:00 – 61:00`
+
+#### Practice — 24-மணி நேர சுழிமுனை நாடி இருப்பு கணக்கீடு (90-நிமிட ஆரோக்கிய அளவுகோல்) (The 24-Hour 90-Minute Sushumna Health Ledger & Cessation Longevity Diagnostic)
+- **Purpose / benefit (the why):** The master diagnostic ledger of systemic vitality and longevity in Sara Kalai. Swara never shifts directly between lateral channels; it invariably transits through Sushumna (1 second to 5 minutes maximum per transition). Tracking and maximizing cumulative daily Sushumna duration determines whether the organism is in metabolic accumulation of waste (*கழிவுத் தேக்கம்*) or cellular self-repair.
+- **How it's practiced (brief mechanics):**
+  - **Transition Window Rule:** Each intermediate Sushumna opening during swara reversal lasts from 1 second up to an absolute upper limit of **5 minutes** (even for accomplished masters, continuous single-transition Sushumna does not exceed 5 minutes before shifting to the opposite nostril).
+  - **The 90-Minute Benchmark:** In a healthy, serene, disease-free adult, the aggregate total of all transitional and spontaneous Sushumna phases across 24 hours equals **approximately 1.5 hours (90 minutes)**.
+  - **Pathology Gradient:**
+    - ~90 min/day: Ideal health, mental tranquility, acute discernment, autonomic disease resolution.
+    - 60–75 min/day: Early metabolic imbalance, recurrent stress, subclinical fatigue, minor complaints.
+    - 30–60 min/day: Established chronic disease (hypertension, diabetes, skin disorders, migraines).
+    - ~15 min/day: Critical, debilitating, or bedridden illness.
+    - **0 min/day (24-Hour Complete Cessation):** Total absence of Sushumna for a full 24-hour diurnal cycle indicates terminal systemic breakdown and impending death (*மரணம் / Arishta Lakshana*).
+  - **Diagnostic Application:** Practitioners log approximate transition durations during daily breath checks to estimate their autonomic healing budget.
+- **App-help bucket:** 🟢 — The app can calculate estimated daily Sushumna budget based on logged swara transitions, display a visual 90-minute daily vitality gauge, and track progress over months of Sara Kalai practice.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Daily Sushumna Vitality Meter" displaying cumulative minutes toward the 90-minute baseline, with health state annotations.
+- **Source ref:** `sarakalai-2026 video Day 02 @ 16:01 – 27:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
