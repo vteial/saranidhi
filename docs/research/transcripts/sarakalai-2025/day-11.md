@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 11 Transcript
+# Sara Kalai Workshop 2025 — Day 11 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 11.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 66 minutes 26 seconds (01:06:26)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** திருமண முகூர்த்த சரம் (Marriage Solemnization & Hall Geometry), தாம்பத்திய சரம் & குழந்தை பாலின நிர்ணயம் (Conjugal Swara & Child Gender Determination Matrix), சூனியத்தில் மூச்சு இழுத்தல் தடை & பிராணாயாம திருத்தம் (Master Shoonyam Inhalation Prohibition & Pranayama Reconciliation), யோகி-போகி சாதனை (Yogi & Boghi Sadhana: Manifestation in Chandra & Elimination in Surya), மற்றும் சுழிமுனை தியான மகத்துவம் (The Transcendent Power of Sushumna)
 
 ---

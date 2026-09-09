@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 09 Transcript
+# Sara Kalai Workshop 2025 — Day 09 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 09.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 76 minutes 31 seconds (01:16:31)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** அயன சரம் (Solstitial Swara Alignment & The 3 Date Systems), விண்வெளி வானவியல் & 24-நாள் காலண்டர் வித்தியாசம் (Astronomy & Precession Drift), மற்றும் உண்மை-பொய் கண்டறியும் சரம் & வெளிநாட்டு அழைப்பு பிரசன்னம் (Truth & Falsehood Divination, 3D Spatial Geometry & Overseas Call Oracle)
 
 ---

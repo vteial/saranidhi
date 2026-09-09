@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 07 Transcript
+# Sara Kalai Workshop 2025 — Day 07 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 07.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 82 minutes 37 seconds (01:22:37)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** சரத்தை மாற்றும் உடலியல் முறைகள் — நேரடி செய்முறை வகுப்பு (Somatic Swara-Switching Modalities — Practical Masterclass: Axillary Ball, Folded Towel, Seated Chair Kolusu Varmam, Floor Cross-Legged Heel-Ischium, 4-Point Ear-Occlusion Lateral Recumbency, Standing Wall Big-Toe Grounding, and Asymmetric Weighted Walking)
 
 ---

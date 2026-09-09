@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 06 Transcript
+# Sara Kalai Workshop 2025 — Day 06 Transcript
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 06.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 67 minutes 47 seconds (01:07:47)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** தொலைபேசி சரம் / தொலைதொடர்பு பிரசன்ன நுட்பம் (Telecommunication Swara Oracle / Incoming Call Divination), தினசரி காரிய விரிவான தொகுப்பு (Master Diurnal Activity Synthesis), பயணச் சரம் & கடிகார முக வரைபடம் (Travel Swara & Clock-Face Vector Map), மற்றும் சரத்தை மாற்றும் 7 வித்தைகளின் தத்துவ அறிமுகம் (Conceptual Overview of the 7 Swara-Switching Modalities)
 
 ---

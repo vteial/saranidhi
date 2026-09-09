@@ -1,9 +1,9 @@
-# Sara Kalai Workshop 2026 — Day 13 Transcript (Grand Finale)
+# Sara Kalai Workshop 2025 — Day 13 Transcript (Grand Finale)
 
 - **Source File:** `worknotes/sarakalai/class/SARAKALAI NEW BOSS FINAL DAY 13.mp4`
 - **Speaker:** ஹீலர் பாஸ்கர் (Healer Baskar)
 - **Duration:** 75 minutes 16 seconds (01:15:16)
-- **Recording Date/Batch:** 2026 Authentic Workshop Corpus
+- **Recording Date/Batch:** 2025 Authentic Workshop Corpus
 - **Topic:** சரகலை முழுப் பாடத்திட்ட மீள்பார்வை & நிறைவு விழா (Comprehensive 13-Day Course Revision, Lineage Synthesis & Grand Finale)
 
 ---
@@ -150,7 +150,7 @@
 ## English Conceptual Synthesis & Lineage Invariants
 
 ### 1. The Complete 13-Day Archival Synthesis
-Day 13 forms the master capstone of the 2026 authentic workshop corpus, synthesizing all 14 core topics taught across the 13-day trajectory:
+Day 13 forms the master capstone of the 2025 authentic workshop corpus, synthesizing all 14 core topics taught across the 13-day trajectory:
 - **Core Physiology:** 37°C thermoregulation, Poornam vs Shoonyam, 1-hour ultradian alternation, 21,600 daily breath budget (900/hr).
 - **Esoteric Diagnostics:** 24-hour 90-minute Sushumna health ledger, 64-second Kumbhaka vitality threshold (1 matra = 1 heartbeat), Mayavi 10-to-1 breath-count scale.
 - **Somatic Interventions:** 10 core switching methods (contralateral biomechanics), Figure-8 dynamic Sushumna induction, Kolusu Varmam 7-finger precision.
