@@ -70,7 +70,7 @@ Use this table to see at a glance what is captured and to resume across sessions
 | 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 10 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14). See CONF-003, CONF-004. |
 | 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03. See CONF-005, CONF-006. |
-| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 4–5, 12–13). See CONF-007, CONF-008. |
+| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06. See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 71 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 72 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -651,6 +651,22 @@ starts with a `### <n>. <Topic name>` heading.*
 > 2. **வேகமாக மூச்சை வெளியே தள்ளுதல் (Forced Rapid Exhalation):** Place the finger below the nose and exhale forcefully with a sharp "ship" sound to instantly feel which side ejects the dominant air stream.
 > 3. **விரல் வைக்காமல் உணர்தல் (Mental Proprioception):** With training, perceive the subtle friction and tactile velocity of air against the inner nasal walls without placing the hand.
 > - **Nomenclature Invariant:** The active flowing nostril is termed **பூரணம் (Poornam / உயிர் நாடி / Life Breath)**; the closed/dormant nostril is termed **சூன்யம் (Shoonyam / Empty)**.
+
+#### Practice — தொலைபேசி சரம் / தொலைதொடர்பு பிரசன்ன நுட்பம் (Tholaipesi Charam / Telecommunication Swara Oracle & Incoming Call Divination)
+- **Purpose / benefit (the why):** Immediate discernibility of truth vs. falsehood, hidden intentions, and positive vs. adverse outcomes of incoming phone calls (mobile or landline) without the caller being physically present.
+- **How it's practiced (brief mechanics):**
+  - **Caller Spatial Concordance:** Map the caller's real-time geographic position relative to the receiver using the 12-hour Clock-Face Swara Compass:
+    - **Surya Quadrant (12:00 to 5:00 / North, North-East, East, South-East):** If the caller is located in these directions, answer when **Surya Kalai (Right nostril)** is active. The dialogue will yield truth, decisive commercial agreements, mutual benefit, and success.
+    - **Chandra Quadrant (6:00 to 11:00 / South, South-West, West, North-West):** If the caller is located in these directions, answer when **Chandra Kalai (Left nostril)** is active. The dialogue will yield peace, harmonious understanding, lasting collaboration, and favorable dispute resolution.
+  - **Discordant Swara Safeguard (திசை மாறினால்):** If the phone rings while the active swara opposes the caller's directional quadrant (e.g., caller is North [Surya] but receiver's Left nostril is active):
+    1. The caller is speaking untruths, concealing vital facts, or presenting a deceptive proposition.
+    2. Answering immediately will spark argument, friction, emotional agitation, or commercial stalemate.
+    3. **Remedial Action:** Check swara on ring. If discordant, allow to ring/voicemail or answer briefly and defer: *"I am in the middle of something, I will call you back in 5 minutes."* Switch the swara to match the caller's quadrant, then return the call.
+  - **Real-Time Coordinate Invariant (நிகழ்நேர இருப்பிட விதி):** The spatial vector must be calculated based on where the caller is physically located *at the exact second of calling*, not their registered home or corporate headquarters. If uncertain, inquire casually: *"Where are you calling from right now?"* and verify concordance.
+- **App-help bucket:** 🟢 — High-utility app candidate: Caller ID / contact location integration or quick caller-direction selector in the Swara Prasanam Oracle that advises whether to answer or defer.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Call Oracle / Phone Swara Prasanam" widget with caller location compass and swara concordance indicator.
+- **Source ref:** `sarakalai-2026 video Day 06 @ 51:01 – 66:30`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
