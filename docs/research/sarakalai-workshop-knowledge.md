@@ -67,17 +67,17 @@ Use this table to see at a glance what is captured and to resume across sessions
 | # | Sara Kalai Topic | Capture Status | # Practices | Notes |
 |---|------------------|:--------------:|:-----------:|-------|
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
-| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 14 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07, Day 08, Day 10. See CONF-002, CONF-017. |
+| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 15 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07, Day 08, Day 10, Day 12. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14), sarakalai-2026 Day 09. See CONF-003, CONF-004. |
-| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03, Day 10, Day 11. See CONF-005, CONF-006. |
-| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06, Day 08, Day 09. See CONF-007, CONF-008. |
+| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03, Day 10, Day 11, Day 12. See CONF-005, CONF-006. |
+| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06, Day 08, Day 09, Day 12. See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
 | 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 12 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05, Day 08, Day 10, Day 11. See CONF-017, CONF-018. |
 | 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
-| 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67). See CONF-021, CONF-022. |
+| 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67), sarakalai-2026 Day 12. See CONF-021, CONF-022. |
 | 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 5 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69), sarakalai-2026 Day 11. See CONF-023, CONF-024. |
 | 14 | [Siddha Dinacharya & Avvaiyar's Pranic Inversion Sutras (தினக்கிரம அலங்கார ஒழுக்கங்களும் ஒளவையாரின் வாசி சூத்திரங்களும்)](#topic-14) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 84, 90, 102–103). See CONF-025, CONF-026. |
 
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 83 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 84 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -273,7 +273,7 @@ starts with a `### <n>. <Topic name>` heading.*
 > **The Complete 4-Point Siddha Lineage Protocol:**
 > 1. Lie tilted on the **Poornam side** (contact side down on mattress/mat).
 > 2. **Seal the lower ear** with the lower palm/hand (`கையை வைத்து காதை மூட வேண்டும்`).
-> 3. Bend the upper (Shoonyam) leg and **grasp the upper Kolusu Varmam (ankle / malleolus)** firmly with the upper hand (`கால்களை மடக்கி கொலுசு வர்மத்தைப் பிடிக்க வேண்டும்`).
+> 3. Bend the upper (Shoonyam) leg and **grasp the upper Kolusu Varmam (located on the posterior lower leg, exactly 7 finger-widths above the heel / bottom of the foot — `உள்ளங்காலில் இருந்து 7 விரல் அளவில் பின்புறம் உள்ளது`)** firmly with the upper hand (`கால்களை மடக்கி கொலுசு வர்மத்தைப் பிடிக்க வேண்டும்`).
 > 4. Close eyes, execute the 3-step Mana Guru prayer. Flips swara effortlessly within 2 to 5 minutes. (If holding the ear/ankle is physically difficult, simple side recumbency serves as the modular fallback, taking slightly longer).
 
 #### Practice — யோக தண்டம் / அக்குள் அழுத்தம் (Yoga Dandam / Akkul Azhuttham / Axillary Crutch or Armpit Pressure Method)
@@ -463,6 +463,20 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Figure-8 Sushumna Pacer" with loop timer, check-in prompts, and instant meditation transition mode.
 - **Source ref:** `sarakalai-2026 video Day 10 @ 48:01 – 54:00`
+
+#### Practice — நிதான சரகலை சாதனை (Nidhana Sara Kalai Saadhanai / Equanimity Pacing Sadhana for Agitation & Restlessness)
+- **Purpose / benefit (the why):** Rapid somatic stabilization of an agitated, hyperactive, or scattered mind; restores autonomic equilibrium and emotional poise without forcing a nostril switch.
+- **How it's practiced (brief mechanics):**
+  1. Determine which nostril is currently active (Poornam / பூரணம்).
+  2. Stand or sit facing **EAST (கிழக்கு நோக்கி)**.
+  3. Close the dormant nostril (Shoonyam / சூன்யம்) with finger pressure.
+  4. Inhale very slowly and steadily through the active nostril (*நிதானமாக உள்ளே இழுத்தல்*).
+  5. Without breath holding or straining, exhale very slowly and steadily through the **SAME active nostril** (*அதே நாசியில் நிதானமாக வெளியே விடுதல்*).
+  6. Continue this single-channel steady loop for 3 to 5 minutes until restlessness dissolves and mental tranquility is restored.
+- **App-help bucket:** 🟢 — High app scaffolding utility: "Equanimity Pacer" timer mode featuring compass-directed East orientation and gentle, slow breathing cadence.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Nidhana Pacer" in the somatic interventions module.
+- **Source ref:** `sarakalai-2026 video Day 12 @ 51:21 – 53:20`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
@@ -729,6 +743,14 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Muhurtha Swara Companion" with pre-knot breath checker and Left-swara pacer.
 - **Source ref:** `sarakalai-2026 video Day 11 @ 04:01 – 18:00`
 
+> 🎥 **Video refinement (Day 12 @ 53:21 – 60:10):** Healer Baskar provides specific professional and interpersonal swara invariants:
+> - **Studio & Public Broadcast Orientation (Day 12 @ 53:21 – 56:20):**
+>   - When recording video, speaking before a camera, or conducting public teachings: the speaker must sit facing **SOUTH (தெற்கு நோக்கி)**; the camera must face **NORTH (வடக்கு நோக்கி)**.
+>   - The speaker must speak strictly while **LEFT SWARA (Chandra Kalai)** is active. Speech in Left swara flows with profound resonance, clarity, emotional poise, and captive audience receptivity; speech in Right swara produces agitation, reduced depth, and vocal fatigue.
+> - **Interpersonal Conflict De-escalation (Day 12 @ 58:31 – 60:10):**
+>   - When engaged in a heated argument or confrontation, slowly and inconspicuously alter your physical angular position relative to the antagonist.
+>   - By shifting your stance across the directional axes, you will discover an orientation where their energetic aggression naturally diffuses and cools down into resolution.
+
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
 ---
@@ -790,6 +812,9 @@ starts with a `### <n>. <Topic name>` heading.*
 > 2. **வேகமாக மூச்சை வெளியே தள்ளுதல் (Forced Rapid Exhalation):** Place the finger below the nose and exhale forcefully with a sharp "ship" sound to instantly feel which side ejects the dominant air stream.
 > 3. **விரல் வைக்காமல் உணர்தல் (Mental Proprioception):** With training, perceive the subtle friction and tactile velocity of air against the inner nasal walls without placing the hand.
 > - **Nomenclature Invariant:** The active flowing nostril is termed **பூரணம் (Poornam / உயிர் நாடி / Life Breath)**; the closed/dormant nostril is termed **சூன்யம் (Shoonyam / Empty)**.
+> - **5th Opponent Diagnostic — பேச்சு ராகம் (Speech Cadence & Acoustic Cadence - Day 12 @ 64:31 – 65:20):**
+>   - **இழுத்து ராகத்தோடு பேசுவது (Dragged-out, melodic, sing-song cadence):** Indicates the speaker's **RIGHT SWARA (Surya Kalai / Pingala)** is active.
+>   - **நறுக்கென்று கட் அண்ட் ரைட்டாக பேசுவது (Crisp, sharp, curt, authoritative cadence):** Indicates the speaker's **LEFT SWARA (Chandra Kalai / Ida)** is active.
 
 #### Practice — தொலைபேசி சரம் / தொலைதொடர்பு பிரசன்ன நுட்பம் (Tholaipesi Charam / Telecommunication Swara Oracle & Incoming Call Divination)
 - **Purpose / benefit (the why):** Immediate discernibility of truth vs. falsehood, hidden intentions, and positive vs. adverse outcomes of incoming phone calls (mobile or landline) without the caller being physically present.
@@ -1472,6 +1497,10 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Source ref:** `gana_sara_nool.pdf`, pp. 65–66 (Agathiyar v. 39)
 
 > ⚠️ **Pending Confirmation [CONF-022]:** In `gana_sara_nool.pdf` (p. 66, v. 39), the ghee reflection test mandates copper vessels (*செப்பகல்*) and pure cow's ghee on Amavasya noon / Pournami midnight. Verify whether modern lighting/reflective tests or alternative mediums are accepted in workshop lineage.
+
+> 🎥 **Video refinement (Day 12 @ 32:01 – 34:10):** Healer Baskar defines the critical **4-Day Sustained Nostril Pathology Threshold**:
+> - **Continuous Unbroken Left Swara (≥4 Days):** If Chandra Kalai runs continuously day and night for 4 full days or more without alternating, it indicates irreversible pranic depletion and imminent physical departure / death (Marana Lakshana).
+> - **Continuous Unbroken Right Swara (≥4 Days):** If Surya Kalai runs continuously day and night for 4 full days or more without alternating, it indicates extreme neurological overheating, mania, and oncoming psychiatric breakdown (*பைத்தியம் பிடித்தல்*).
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
