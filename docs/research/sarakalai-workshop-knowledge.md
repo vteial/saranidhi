@@ -67,15 +67,15 @@ Use this table to see at a glance what is captured and to resume across sessions
 | # | Sara Kalai Topic | Capture Status | # Practices | Notes |
 |---|------------------|:--------------:|:-----------:|-------|
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
-| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 13 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07, Day 08. See CONF-002, CONF-017. |
+| 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 14 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07, Day 08, Day 10. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14), sarakalai-2026 Day 09. See CONF-003, CONF-004. |
-| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03. See CONF-005, CONF-006. |
+| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03, Day 10. See CONF-005, CONF-006. |
 | 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06, Day 08, Day 09. See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
-| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 10 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05, Day 08. See CONF-017, CONF-018. |
+| 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 11 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2026 Day 04, Day 05, Day 08, Day 10. See CONF-017, CONF-018. |
 | 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
 | 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67). See CONF-021, CONF-022. |
 | 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69). See CONF-023, CONF-024. |
@@ -117,7 +117,7 @@ These are points where a single source is ambiguous, or where two sources confli
 | CONF-001 | 🟢 T3 | Topic 1: கிழமை & திதி சர தொடக்க விதி | Verify if Thursday Paksha split is strictly astronomical Tithi or sunrise civil day | Recorded Videos / Notes | PROPOSED (Day 08 @ 05:35–16:00): Healer Baskar establishes that diurnal reckoning is strictly sunrise-to-sunrise civil day (not midnight). Thursday is split based on the lunar fortnight at local sunrise: Shukla Thursday (வளர்பிறை) runs 1 hour Left (Chandra), Krishna Thursday (தேய்பிறை) runs 2 hours Right (Surya). Schedule: Sun (1h R), Mon (1h L), Tue (2h R), Wed (2h L), Thu Shukla (1h L), Thu Krishna (2h R), Fri (2h L), Sat (1h R). | Configures sunrise swara scheduler with exact weekday/Paksha dawn inception durations based on local astronomical sunrise. | 🔁 Proposed — owner confirm |
 | CONF-002 | 🟢 T3 | Topic 2: காலை ஊன்றி எழும் முறை | Verify direct vs. contralateral effect of initial foot pressure upon rising | Recorded Videos / Notes | PROPOSED (Day 07 @ 64:01–76:00): Healer Baskar establishes that somatic pressure operates contralaterally across all 10 switching modalities: applying pressure, weight, or firm big-toe floor contact to the Poornam (active) side with body weight shifted to that side forces breath to invert and open in the opposite (Shoonyam) nostril. Pressure on active side shifts flow to dormant side. | Morning awakening and standing swara alignment tools apply contralateral foot/toe pressure logic (ground active side to induce shift to opposite nostril). | 🔁 Proposed — owner confirm |
 | CONF-005 | 🟢 T3 | Topic 4: சூரியகலைக்குரிய 12 காரியங்கள் | Clarify whether entering sleep in Pingala refers to active nostril at sleep onset or posture | Recorded Videos / Notes | PROPOSED (Day 04 @ 38:11–40:00): Lineage reconciles sleep under Surya as somatic bedtime posture: lying on the left side (இடது பக்கமாக ஒருக்களித்துப் படுத்தல்) reflexively opens Pingala (Right/Surya), supplying gastric digestive heat and defending core 37°C against nocturnal cooling. | Sleep tracking module guides user to adopt left lateral recumbency to induce Pingala for overnight digestion and thermoregulation. | 🔁 Proposed — owner confirm |
-| CONF-006 | 🟢 T3 | Topic 4: திருக்கோயில் தரிசன பூரண சரம் | Clarify deity's right/left perspective relative to devotee in sanctum sanctorum | Recorded Videos / Notes | _(prior note: Devotee's active side faces deity's active side.)_ | — | ⏳ Pending |
+| CONF-006 | 🟢 T3 | Topic 4: திருக்கோயில் தரிசன பூரண சரம் | Clarify deity's right/left perspective relative to devotee in sanctum sanctorum | Recorded Videos / Notes | PROPOSED (Day 10 @ 54:01–61:36): Healer Baskar establishes that temple sanctum worship strictly mandates Chandra Kalai (Left nostril). Devotees circumambulate clockwise to induce Left swara, then stand strictly along the LEFT railing flank facing the sanctum. Devotees must never cross or stand in the central Nandi-to-Garbhagriha conduit. | Temple worship mode directs devotee to enter in/shift to Left swara via clockwise walking and align along left sanctum boundary. | 🔁 Proposed — owner confirm |
 | CONF-007 | 🟢 T3 | Topic 5: எதிராளியின் சரம் கணிக்கும் 4 நுட்பங்கள் | Clarify Tamil letter counting methodology for first spoken word (compound/pure consonants) | Recorded Videos / Notes | _(prior note: e.g. how 'வணக்கம்' is counted (syllables vs letters).)_ | — | ⏳ Pending |
 | CONF-008 | 🟢 T3 | Topic 5: எதிராளியின் சரம் கணிக்கும் 4 நுட்பங்கள் | Verify contralateral nature of entry foot (right foot first = left swara) vs CONF-002 | Recorded Videos / Notes | _(prior note: `saravithai.pdf` explicitly states right foot = left swara.)_ | — | ⏳ Pending |
 | CONF-010 | 🟢 T3 | Topic 6: தச வாயுக்கள் & உப வாயுக்கள் இயக்கம் அறிதல் | Verify lineage definitive list of 4 secondary (Upa) Vayus (Vairan, Mukhyan, Anthariyan, Pravanjanan) | Recorded Videos / Notes | _(prior note: Differs from texts listing Naga, Kurma etc. as Upa-Vayus.)_ | — | ⏳ Pending |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 78 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 80 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -444,6 +444,26 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Sunrise Swara Revival Pacer" in the morning wake-up tool.
 - **Source ref:** `sarakalai-2026 video Day 08 @ 20:31 – 26:30`
 
+#### Practice — எட்டு நடை சுழிமுனை தூண்டல் சாதனை (Ettu Nadai Suzhumunai Thoondal Saadhanai / Figure-8 Walking for Dynamic Sushumna Induction)
+- **Purpose / benefit (the why):** Rapid, reliable mechanical induction of central Sushumna equilibrium (நடுநாசி / நடுநிலைமை) through continuous alternating clockwise and anti-clockwise locomotion, dissolving systemic nadic blocks and establishing the ideal neurological state for deep meditation and manifestation.
+- **How it's practiced (brief mechanics):**
+  - **Bi-Directional Physics:**
+    - Clockwise circular walking (வலது சுத்து) inverts Right swara to Left (Ida).
+    - Counter-clockwise circular walking (இடது சுத்து) inverts Left swara to Right (Pingala).
+    - Continuously walking in a **Figure-8 pattern (எட்டு நடை)** alternates both curves seamlessly, equalizing the heating and cooling bio-energetic currents until internal thermal-polar resistance dissolves.
+  - **The Practice Protocol:**
+    1. Mark or imagine a Figure-8 trajectory (approx. 10 to 20 feet span) in a room, terrace, or garden.
+    2. Walk at a steady, relaxed pace along the figure-8 loops for 10 to 15 minutes.
+    3. Test nostril airflow every 5 to 10 laps using gentle proprioception or finger check.
+  - **Mandatory Cessation Rule (சுழிமுனை நிறுத்தல் விதி):**
+    - The instant **Sushumna (dual-nostril flow / நடுநாசி)**, and specifically **Brahma Nadunadi (Right-to-Left transitional Sushumna)** activates: **CEASE WALKING IMMEDIATELY!**
+    - *Absolute Rule:* Do NOT continue walking once Sushumna has opened.
+    - Sit down immediately in a quiet corner/mat, close eyes, and utilize the sacred 3 to 5-minute Sushumna window for meditation (*தியானம்*), prayer, receiving boons (*வரம் கேட்டல்*), or formulating sacred intentions (*சங்கல்பம்*).
+- **App-help bucket:** 🟢 — High app scaffolding utility: offers an interactive "Figure-8 Walking Companion" with cadence audio, periodic breath-check reminder chimes, and an instant "Sushumna Activated — Sit & Meditate" timer mode.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Figure-8 Sushumna Pacer" with loop timer, check-in prompts, and instant meditation transition mode.
+- **Source ref:** `sarakalai-2026 video Day 10 @ 48:01 – 54:00`
+
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
 ---
@@ -649,6 +669,17 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Temple Visit Companion" displaying sanctum standing alignment.
 - **Source ref:** `saravithai.pdf`, p. 5
+
+> 🎥 **Video refinement (Day 10 @ 54:01 – 61:36):** Healer Baskar provides the precise esoteric mechanics of temple sanctum alignment and resolves the sanctum standing perspective (resolving CONF-006):
+> - **Chandra Mandatory Invariant:** Worship and devotional communion with consecrated deities strictly require **Chandra Kalai (Left nostril / இடது நாசி)**.
+> - **Circumambulation Physics (பிரதட்சணம்):** Walking clockwise (*வலம் வருதல்*) around the sanctum naturally inverts breath from Right to Left. Devotees circumambulate in odd counts (1, 3, 5 laps) until Left swara is fully established before entering the inner sanctum.
+> - **Sanctum Standing Geometry (Resolves CONF-006):**
+>   - The central axis connecting the Garbhagriha deity through Nandi to the Dhwaja Stambham (flagstaff) is a potent energetic conduit where human transit is strictly forbidden (marked by traditional railings).
+>   - Devotees must stand strictly at the **LEFT railing flank (இடது பக்கக் கம்பியில் நின்று)** facing the sanctum. Standing on the right side of the aisle is prohibited in Sara Kalai doctrine.
+> - **Petitions by Swara:**
+>   - In Left Swara: Request divine grace, blessings, peace, and spiritual boons (*வரம் வேண்டுதல்*).
+>   - In Right Swara: Pray for removal of chronic enemies, debt, litigation, and diseases (*பிரச்சனைகள் தீர வேண்டுதல்*).
+>   - In Sushumna: Request nothing worldly; sit quietly aside in the temple and meditate (*மௌன தியானம்*).
 
 > ⚠️ **Pending Confirmation [CONF-006]:** Clarify deity's right/left perspective relative to devotee in sanctum sanctorum (deity's anatomical right vs devotee's right when facing idol).
 
@@ -1208,6 +1239,30 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Brahma Muhurtham Cosmic Conjunction Timer" with astronomical dawn countdown and Sankalpa recorder.
 - **Source ref:** `sarakalai-2026 video Day 08 @ 36:01 – 54:00`
+
+> ⚠️ **Panja Pakshi Scope Boundary Note (Day 10 @ 02:41 – 16:00):**  
+> Healer Baskar unequivocally establishes that Panja Pakshi (பஞ்ச பட்சி சாஸ்திரம்) and Sara Kalai (சரகலை) are **autonomous, independent sciences** (*"பஞ்ச பக்ஷி தெரியாமலேயே சரகலையை முழுமையாகப் பயன்படுத்தலாம்; சரகலை தெரியாமலேயே பஞ்ச பக்ஷியைப் பயன்படுத்தலாம்"*).  
+> In accordance with project architecture and repository scope governance, **all standalone Panja Pakshi doctrine (five birds, ruling/walking/eating/sleeping/dying states, planetary/friendship tables) is reserved for the future dedicated `panja-pakshi-workshop-knowledge.md` document** and is intentionally excluded from the Sara Kalai corpus. Only the somatic and astrological Sara Kalai breath applications taught in Day 10 (Figure-8 Sushumna walking, temple sanctum geometry, and the 7.5-year Saturn transit left-swara barricade below) are incorporated into this knowledge base.
+
+#### Practice — ஏழரை நாட்டு சனி சரகலை நிவர்த்தி நுட்பம் (Ezharai Naattu Shani Nivarthi / Neutralizing 7.5-Year Saturn Transit Afflictions via Left Swara Barricade)
+- **Purpose / benefit (the why):** Direct astrological-pranic immunity; prevents the malefic, intensely heating, and disruptive planetary vibrations of Saturn (*சனி பகவான் / மந்தன்*) from penetrating or lodging within the human energetic and nervous system at the exact moment of Saturn Transit (*சனிப்பெயர்ச்சி*), neutralizing the full 7.5-year affliction (*ஏழரை நாட்டு சனி*).
+- **How it's practiced (brief mechanics):**
+  - **Astrological Ingress Dynamics:**
+    - Saturn transitions between zodiacal signs once every 2.5 years (*இரண்டரை வருடத்திற்கு ஒருமுறை சனிப்பெயர்ச்சி*).
+    - Affects the birth rasi (*ஜென்ம சனி*), the preceding 12th rasi (*விரய சனி*), and the succeeding 2nd rasi (*பாத சனி*) — totaling 7.5 years.
+    - **Planetary Swara Law:** At the exact second of Shani Peyarchi (e.g. March 29, 2025 at 09:44 PM), Saturn's harsh, heating planetary ingress naturally forces **Right Swara (Pingala / Surya)** to operate globally across all humanity for a 1-hour window (09:44 to 10:44 PM).
+  - **The Left Swara Barricade Technique (சனிப்புகா தடுப்பு முறை):**
+    1. Identify whether your natal moon sign enters or undergoes Ezharai Sani during the upcoming Shani Peyarchi.
+    2. Note the precise minute of planetary ingress from ephemeris/almanac.
+    3. Exactly at the moment of ingress (and for the full 60 minutes following), **strictly bar and seal the RIGHT nostril!**
+    4. **Enforce unbroken LEFT SWARA (Chandra Kalai / Ida)** for that entire 1-hour duration using clean cotton nostril occlusion, right-lateral recumbency, or somatic armpit pressure.
+    5. Sit quietly or lie on the right side in prayer/meditation, ensuring no prana enters through the right nostril.
+  - **Doctrinal Principle:** *"கதவை அடைத்துவிட்டால் வீட்டுக்குள் சிங்கம் நுழைய முடியுமா? சனிப் பெயர்ச்சியின் போது சனியின் உஷ்ண மூச்சை உள்ளே விடாமல் இடது நாசியை மட்டும் ஓட்டினால், சனி உள்ளேயே நுழைய முடியாது!"*
+  - By applying this defensive seal across the 3 consecutive transits comprising the 7.5-year cycle, the entire malefic imprint of Ezharai Sani is completely averted.
+- **App-help bucket:** 🟢 — Premier astrological-somatic defense feature: calculates user's natal rasi, alerts 24 hours and 1 hour before exact Shani Peyarchi ingress, and runs a 60-minute "Saturn Ingress Chandra Barricade" guided session with posture instructions and countdown timer.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Saturn Ingress Defense Mode" with automated astrological transit timer, cotton-plug checklist, and 1-hour Chandra holding guide.
+- **Source ref:** `sarakalai-2026 video Day 10 @ 20:31 – 36:00`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
