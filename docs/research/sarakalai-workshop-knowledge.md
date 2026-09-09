@@ -68,9 +68,9 @@ Use this table to see at a glance what is captured and to resume across sessions
 |---|------------------|:--------------:|:-----------:|-------|
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10). See CONF-001. |
 | 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 13 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2026 Day 01, Day 02, Day 05, Day 07, Day 08. See CONF-002, CONF-017. |
-| 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14). See CONF-003, CONF-004. |
+| 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14), sarakalai-2026 Day 09. See CONF-003, CONF-004. |
 | 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 8 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2026 Day 03. See CONF-005, CONF-006. |
-| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 6 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06, Day 08. See CONF-007, CONF-008. |
+| 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2026 Day 06, Day 08, Day 09. See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
 | 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39). See CONF-013, CONF-014. |
@@ -105,8 +105,8 @@ These are points where a single source is ambiguous, or where two sources confli
 | CONF-014 | 🔴 T1 | Topic 8: ஒரு மணி நேர சக்கர சரம் | Verify swara alternation cycle length (1 hour / 2.5 Nazhigais vs 1.5 hours / 3.75 Nazhigais) | Recorded Videos / Notes | PROPOSED (Day 01 @ 63:55): Healer Baskar confirms standard cycle length is 1 hour ("1 hour கழித்து வரேங்க, அப்போ இடது பக்கம் போனா..."). Baseline alternation is 1 hour (2.5 Nazhigais / 24 cycles daily). | Configures swara scheduler & active nostril predictive engine to 60-minute default interval. | 🔁 Proposed — owner confirm |
 | CONF-018 | 🔴 T1 | Topic 10: பகல் இடது-இரவு வலது தாரக மந்திரம் | Verify how Daytime Left / Nighttime Right macro-seal reconciles with 1-hour alternation cycles and Weekday Inception | Recorded Videos / Notes | PROPOSED (Day 01 @ 37:31–45:00): 37°C thermoregulatory paradox establishes Daytime Left / Nighttime Right as macro-thermal ideal (cooling against solar heat, warming against nocturnal cool), while 1-hour cycles maintain visceral metabolic balance. | Astro engine retains 60-min cycle while health module recommends macro Chandra (day) / Surya (night) bias for thermal equilibrium. | 🔁 Proposed — owner confirm |
 | CONF-026 | 🔴 T1 | Topic 14: ஒளவையார் வாசி தலைகீழ் யோகம் | Verify if Sushumna is considered pure Kapha Nadi (v. 29) or transcendent neutral equilibrium in lineage | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` p. 90 v. 29 links Sushumna directly to Sleshma (Kapha).)_ | — | ⏳ Pending |
-| CONF-003 | 🟡 T2 | Topic 3: உத்தராயண & தட்சிணாயண சரம் | Clarify if 5-nazhigai window (120 min) runs leading up to sunrise or starting from sunrise | Recorded Videos / Notes | _(prior note: `saravithai.pdf` states "பொழுது விடிவதற்கு முன் ஐந்து நாழிகை இருக்கும்பொழுது".)_ | — | ⏳ Pending |
-| CONF-004 | 🟡 T2 | Topic 3: அயன சரம் நாள் கணக்கு | Verify whether Ayana practice is tied to Tamil month 1st day dawn or exact Sankranti ingress | Recorded Videos / Notes | _(prior note: `saravithai.pdf` uses Aadi 1 and Thai 1 dawn.)_ | — | ⏳ Pending |
+| CONF-003 | 🟡 T2 | Topic 3: உத்தராயண & தட்சிணாயண சரம் | Clarify if 5-nazhigai window (120 min) runs leading up to sunrise or starting from sunrise | Recorded Videos / Notes | PROPOSED (Day 09 @ 32:01–40:00): Healer Baskar clarifies that solstitial swara alignment runs for exactly 1 hour (not 120 min) commencing precisely from local astronomical sunrise ("சூரியன் உதிக்கும் அந்த வினாடியிலிருந்து முதல் ஒரு மணி நேரம்"). | Solstitial alignment timers configure to 60-minute duration starting at astronomical sunrise. | 🔁 Proposed — owner confirm |
+| CONF-004 | 🟡 T2 | Topic 3: அயன சரம் நாள் கணக்கு | Verify whether Ayana practice is tied to Tamil month 1st day dawn or exact Sankranti ingress | Recorded Videos / Notes | PROPOSED (Day 09 @ 16:01–32:00): Lineage recognizes 3 candidate calculation systems: 1) Astronomical Solstice (June 20/21, Dec 21/22 — Healer Baskar's primary recommendation based on physical solar turning / gnomon shadow / Stellarium); 2) Traditional Calendar (Aadi 1 / Thai 1); 3) Zodiacal Sankranti ingress (July 22 / Jan 22). Explains the 24-day drift via 21,600-year precession (1° every 60 years over 1,440 years). | Astro engine supports user preference toggle between Astronomical Solstice (default lineage recommendation), Traditional Calendar (Aadi 1/Thai 1), and Zodiacal Sankranti. | 🔁 Proposed — owner confirm |
 | CONF-009 | 🟡 T2 | Topic 6: ஆக்ஞை-சகஸ்ரார-மூலாதார விடியல் சுவாச கணக்கீடு | Verify whether pre-dawn chakra breath windows (3:46–4:53–6:00 AM) scale with sunrise | Recorded Videos / Notes | _(prior note: `sugam_tharum_swasa_kalai.pdf` lists clock hours; check astronomical scaling.)_ | — | ⏳ Pending |
 | CONF-012 | 🟡 T2 | Topic 7: நாசித் துவார ஓட்ட திசை மூலம் தத்துவம் அறிதல் | Clarify exact duration/minutes of each Tattva within a 1-hour swara cycle | Recorded Videos / Notes | _(prior note: e.g. classical 20-16-12-8-4 min breakdown vs continuous shifts.)_ | — | ⏳ Pending |
 | CONF-015 | 🟡 T2 | Topic 9: தத்துவக் கலப்பும் காரியப் பலன்களும் | Clarify whether Agni/Vayu/Akasa completely invalidate auspicious worldly acts even when prescribed nostril is active | Recorded Videos / Notes | _(prior note: `sugam_tharum_swasa_kalai.pdf` states only Prithvi & Apas yield auspicious success.)_ | — | ⏳ Pending |
@@ -136,7 +136,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 77 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
+**Implemented: TBD / Total captured: 78 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2026 Video Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -478,6 +478,21 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** Dakshinayanam Special Alignment Mode with pre-dawn alarm and countdown.
 - **Source ref:** `saravithai.pdf`, p. 7
 
+> 🎥 **Video refinement (Day 09 @ 16:01 – 48:00):** Healer Baskar provides the granular somatic protocol and clarifies the timing controversies:
+> - **The 3 Solstice Traditions Reconciled:**
+>   1. **Astronomical Solstice (சூரியன் நகர்வு — June 20/21):** The physical solar ingress / directional turning point, verifiable via gnomon shadow or Stellarium. **Healer Baskar's primary lineage recommendation.**
+>   2. **Traditional Calendar (நாட்காட்டி — Aadi 1 / July 16):** Traditional Tamil calendar date.
+>   3. **Zodiacal Kadaka Sankranti (கடக சங்கிராந்தி — July 22):** Astrological ingress into Cancer.
+> - **Precession Drift (24 Days):** Explains that over 1,440 years without calendar precession correction (1° every 60 years in the 21,600-year solar orbit around the central black hole), calendar Aadi 1 drifted 24 days away from astronomical summer solstice (June 20).
+> - **The Exact Solstice Sadhana Posture:**
+>   1. Execute at astronomical sunrise for **exactly 1 hour** (overriding the weekday's default swara, e.g. overriding Friday's Chandra default to enforce Surya).
+>   2. **Lie tilted on the LEFT side** (Right nostril pointing upward).
+>   3. **Face North** (*முகம் வடக்கு*); **Head to West** (*தலை மேற்கு*); **Feet to East** (*கால்கள் கிழக்கு*).
+>   4. Seal Left ear with Left palm; bend Right leg and grasp Right Kolusu Varmam with Right hand.
+>   5. Occlude Left nostril with a clean cotton plug to enforce unbroken Right swara.
+>   6. (Seated fallback: sit facing North and occlude Left nostril).
+> - **Benefit:** Fully charges all 72,000 nadis for the next 6 months, dissolving chronic ailments and empowering all sankalpas.
+
 #### Practice — ஆடி 1 முழுநாள் (12 மணி நேர) சூரியகலை தாரணை (Aadi 1 Muzhunaal [12 Mani Nera] Sooryakalai Dhaarana / Full-Day 12-Hour Surya Kalai Sustained Flow on Aadi 1)
 - **Purpose / benefit (the why):** Intensive annual recalibration; ensures maximum vitality and locks in harmonious swara flow for all subsequent days of the year.
 - **How it's practiced (brief mechanics):** On Aadi 1, from sunrise to sunset (approx. 6:00 AM to 6:00 PM), maintain breath flow continuously through the right nostril (சூரியகைல). If physical postures cannot maintain this for 12 hours, gently occlude the left nostril using a clean cotton plug. (Fallback: if 12 hours is impossible, at least ensuring sunrise dawn initiates in the right nostril is essential).
@@ -764,6 +779,33 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Implemented?:** ⬜
 - **Rough app idea (optional):** "Influence & Speech Stage Flank Guide" in the Swara Prasanam Oracle module.
 - **Source ref:** `sarakalai-2026 video Day 08 @ 60:31 – 70:22`
+
+#### Practice — உண்மை பொய் கண்டறியும் சரம் & வெளிநாட்டு அழைப்பு பிரசன்னம் (Unmai Poi Kandariyum Charam / Truth & Falsehood Divination, 3D Observer Flanks & Overseas Call Oracle)
+- **Purpose / benefit (the why):** Direct discernment of truth vs. falsehood, sincerity of promises, commercial reliability, and eventual materialization of another person's statements without external interrogation or body-language profiling.
+- **How it's practiced (brief mechanics):**
+  - **The 3D Spatial Veracity Matrix:**
+    1. **Frontal Observer (முன்னால்):**
+       - Sitting/standing on your **POORNAM (active / உயிர் நாடி)** side = **TRUTH / REALIZATION (உண்மை)**; the promised event will materialize.
+       - Sitting/standing on your **SHOONYAM (dormant / empty)** side = **FALSEHOOD / NON-REALIZATION (பொய்)**; the matter will fail to occur.
+    2. **Rear Observer (பின்னால் — e.g. vehicle rear seat):** Inverts! (Imagine pivoting 180° to face them):
+       - Shoonyam side behind = **TRUTH**.
+       - Poornam side behind = **FALSEHOOD**.
+    3. **Elevated Observer (மேலே — upper floor):** Mapped to **RIGHT side**. (Right swara active = Truth; Left swara active = Falsehood).
+    4. **Sub-level Observer (கீழே — lower floor):** Mapped to **LEFT side**. (Left swara active = Truth; Right swara active = Falsehood).
+    5. **Domestic Telephone Calls:** Governed by the caller's geographic quadrant on the 12-hour Clock-Face Swara Compass (12:00–5:00 Surya; 6:00–11:00 Chandra).
+    6. **Overseas / Foreign Telephone Calls (வெளிநாட்டு அழைப்பு விதி):**
+       - **Left Swara (Chandra) active = TRUTH (உண்மை)**!
+       - **Right Swara (Surya) active = FALSEHOOD / NON-MATERIALIZATION (பொய்)**!
+    7. **Circling / Pacing Speaker:** The reading is governed by whichever flank they pause or decelerate to deliver their core statement.
+    8. **Directly Facing Center:** Observe subtle lateral weight tilt.
+  - **Crucial Ethical & Cognitive Safeguard ("Falsehood" ≠ Malicious Deception):**
+    - A "Falsehood" (பொய்) reading does NOT mean the speaker is intentionally lying or defrauding you.
+    - **Doctrinal Meaning:** It signifies that **the stated outcome will fail to materialize into reality** due to unforeseen circumstantial or karmic obstructions (*நடக்காது / முடியாத சூழ்நிலை வரும்*).
+    - Practitioners must avoid paranoia or interpersonal discord; apply this oracle strictly when strategic discernment is required.
+- **App-help bucket:** 🟢 — High app utility: "Veracity & Intent Diagnostic Wizard" (User selects person position [Front, Behind, Above, Below, Domestic Phone, Overseas Call] + active nostril → computes whether statement will materialize into reality with ethical guidance notes).
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Veracity & Materialization Oracle" in the Swara Prasanam module.
+- **Source ref:** `sarakalai-2026 video Day 09 @ 48:01 – 76:31`
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
