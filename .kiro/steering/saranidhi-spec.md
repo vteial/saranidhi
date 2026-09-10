@@ -45,10 +45,10 @@ inclusion: auto
 ## 4. CI Quality Gates
 
 - `flutter analyze --fatal-infos` — zero issues (errors, warnings, AND infos)
-- **Tier 1 (PRs):** `flutter test test/features/{domain dirs}` — domain + provider tests pass
-- **Tier 2 (merge):** `flutter test --coverage` — ALL tests pass + ≥ 20% coverage
-- `flutter build web` — must compile
-- Integration tests via headless Chrome
+- **Tier 1 (`ci.yml`, PRs):** `flutter analyze` + domain/provider `flutter test` + `flutter build web`
+- **Tier 2 (`ci-full.yml`, merge/main→prod):** `flutter test --coverage` — ALL tests pass + **≥ 19% coverage** (`THRESHOLD=19`; re-raised 18→19 in Sprint 36 Task 36.5 after Sprint 35 somatic tests landed)
+- **Integration Tests (Web)** (`ci-full.yml`): `flutter drive` via ChromeDriver — **blocking gate again** as of Sprint 36 Task 36.1 (was `continue-on-error` for v1.5.0). Broader UI/E2E coverage is owed to the dedicated Playwright repo (`vteial/saranidhi-e2e`).
+- Never expand CI scope (new triggers) without first validating existing tests pass (v1.2.1 lesson).
 
 ## 5. Sprint Protocols
 

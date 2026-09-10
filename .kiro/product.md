@@ -63,6 +63,19 @@ Saranidhi ("The Treasure House of Breath") is a spiritual life-guidance app enab
 - As a user, I see the diagnostic snapshot (breath, bird, hora, tattva) that drove the prediction
 - As a user, I can browse past queries chronologically and add outcome notes
 - As a user, Rahu Kaal + Dying state triggers a mandatory "Hard No" floor lockout
+- The Oracle is a dedicated 4th bottom-nav tab (`/prasanam`); history is co-located there
+
+### Somatic Interventions (Sprint 35 — active correction)
+- As a user, when my breath flow is unaligned, I'm offered a guided intervention to shift it
+- As a user, I can choose a protocol (posture shift or axillary pressure) to move the flow to the desired nostril
+- As a user, I follow a guided, time-bound timer room (with an equal-ratio Sama Vritti pacer) during the intervention
+- As a user, after the session the app verifies my new nostril flow and records whether the shift succeeded
+- As a user, my intervention history is logged so I can see what works for me
+
+### What's New & Onboarding
+- As a user, after an app update I see a "What's New" screen summarizing this release's changes
+- As a user, I go through a guided intro + 4-step onboarding (Welcome → Find Your Bird → Location → Data Storage) before first use
+- As a user, onboarding tries browser geolocation first and falls back to an Indian city picker if unavailable
 
 ## Non-Functional Requirements
 
@@ -70,4 +83,5 @@ Saranidhi ("The Treasure House of Breath") is a spiritual life-guidance app enab
 - iPhone SE (375px) as minimum viewport
 - Two-column responsive layout on medium+ devices (>=600px)
 - App startup < 2 seconds
-- 8 theme variants (4 colors x Light/Dark + System mode)
+- 8 theme variants (4 accent colors × Light/Dark) plus a System brightness mode
+- 4-tab bottom navigation (Home | Journal | Oracle | Analytics); Settings via top-right gear icon
