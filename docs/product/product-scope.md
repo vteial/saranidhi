@@ -11,6 +11,36 @@ Saranidhi aims to be a **daily-use spiritual breath companion** that provides ge
 
 ---
 
+## North Star — Agency, not Fate
+
+> **Saranidhi helps users act better in the present moment — it does not predict a fixed future.**
+
+The app's guiding premise is that **Sara Kalai (breath science) is practical, self-observable, present-moment evidence for the user's *betterment*** — you can *influence* your outcome by aligning your breath and actions *now*. This is the app's philosophical identity, and it is the single filter for what belongs in the product.
+
+**The test for any feature:** does it help the user *act better right now* (betterment through agency), or does it *predict a pre-written fate*? Betterment is in scope; fate-telling is not.
+
+### The integrated core (primary focus)
+
+The three flagship surfaces are **not three separate features — they are three lenses on the same live cosmic moment**, and they deliver the most value when used *together*:
+
+| Lens | Reads | Question it answers |
+|------|-------|---------------------|
+| **Sara Kalai** (சர கலை) | which breath channel is active in me *now* | *What is my current state?* |
+| **Panja Pakshi Aruḍam** (பஞ்ச பட்சி அருடம்) | my birth-bird's state / cosmic timing *now* | *What is my timing?* |
+| **Prasanam Aruḍam** (சர பிரசன்னம்) | the synthesis of breath + bird + hora + tattva | *Is now the moment to act?* |
+
+Stabilizing and validating this **integrated Sara Kalai × Panja Pakshi × Prasanam engine** (to the ≥95% source-fidelity goal) is the primary product focus. See the Phase-2b epic *"Integrated Aruḍam."*
+
+### Long-term intent (backlog, not now)
+
+- **Numerology (Sankhya Sastra)** — descriptive, character/name-based (NOT fate-prediction), so philosophically compatible. Currently only a thin utility (name→bird phonetic fallback). Broader numerology is a **long-term backlog item**, alongside the **"Saranidhi" book** and a future **animated film** — all narrative artifacts derived from the same corpus spine.
+
+### Explicitly excluded — deterministic fate-prediction
+
+**Palm reading, thumb reading, and Nadi Jothidam (நாடி ஜோதிடம்) are deliberately out of scope** — not merely unbuilt, but **philosophically incompatible**. They rest on the premise that destiny is *pre-written and readable*; Saranidhi rests on the opposite premise that the future is *influenceable through present-moment agency*. Excluding them is also a **trust/safety stance**: the app does not answer "what is my fixed fate" questions (this mirrors the sensitive-content guardrails on the future AI-chat and the document-only classical divination material in the corpus). Basic DOB/time astrology is used only where it serves practical present-moment calculation (e.g. deriving the birth bird from nakshatra + paksha), never for future prediction.
+
+---
+
 ## 1. Intent & Objectives
 
 Saranidhi (Tamil: "The Treasure House of Breath") is a spiritual life-guidance app built on the ancient sciences of **Siva Swarodaya (Sara Kalai)**, **Panja Pakshi Shastra**, and **Vedic time systems**. It enables users to:
@@ -88,6 +118,7 @@ Lets a user carry their profile, journal entries, streaks, and preferences acros
 - **Not a telemetry or tracking product.** No third-party analytics that leak user data.
 - **Not an on-device LLM product.** The wisdom engine is rules-based, not a shipped language model. Any external-model integration would be optional and user-supplied.
 - **Not a medical or clinical tool.** Saranidhi offers spiritual and lifestyle guidance rooted in traditional sciences, not medical advice.
+- **Not a fate-prediction / fortune-telling product.** No palm reading, thumb reading, or Nadi Jothidam (நாடி ஜோதிடம்). These deterministic fate systems are philosophically incompatible with the app's *agency-not-fate* North Star. The app guides present-moment action for betterment; it never predicts a fixed future or answers "what is my destiny" queries. (Basic DOB/time astrology is used only for practical present-moment calculation, e.g. birth-bird derivation — never for prediction.)
 - **Not a social network.** There is no feed, no sharing-by-default, and no public profile — the experience is personal and private.
 
 ---
