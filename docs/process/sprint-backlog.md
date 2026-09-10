@@ -65,6 +65,23 @@ during `/plan`. Keep entries small and outcome-focused.
 | Priority | Status | Item |
 |----------|--------|------|
 | 🟢 | ⬜ | **Prasanam "sacred consultation" UX** — cooldown, pre-query breath ritual, intention-anchor hold, daily query limit, deity/mantra prompt, session-quality score. Deferred post-v1.4. |
+| 🟢 | ⬜ | **Sacred Consultation Mode** (opt-in) — see brief below. |
+
+#### Brief — Sacred Consultation Mode (opt-in)
+
+> **Status: brainstormed, provisional — re-confirm before implementation.** Owner-brainstormed with Kiro. Origin: the South-Indian practice of travelling to one's **family-deity temple** to ask a prasanam via an authorized temple person.
+
+**Insight.** The temple ritual's power is not the *place* granting cosmic accuracy — it is the **effort + reverence + ancestral respect → calm, focused mind → naturally aligned breath (toward Sushumna)**. That calm state already flows through the **breath signal the oracle reads**, so it needs no separate reward.
+
+**Decision — reverence & friction, NOT a score multiplier.** An opt-in "Sacred Consultation" for important questions that:
+- **Raises friction, not score:** enforces the full pre-query ritual (breath centering, longer intention anchor, deity/Ishta-Devata invocation prompt), optionally a stricter cooldown — filtering out frivolous/playful use.
+- **Lets the user designate a sacred place** (family-deity temple, home shrine — *user-defined*; the app does NOT verify a temple or reward GPS) and **records it as context** in Prasanam history — reverence-as-journaling, for the user's own reflection.
+- **Score stays breath-honest:** the verdict comes ONLY from the actual breath/bird/hora/tattva. If the sacred setting truly calms the user, their breath reflects it and the score rises *legitimately* — no double-counting.
+- **Optional agency-preserving nudge:** in a likely-chaotic context, gently suggest "find a calm space and re-center before asking" (nudge toward the calm state, never score the place).
+
+**Explicitly rejected:** ❌ adding score weightage for being at a registered/GPS-matched location. Rewards the *place* not the *state*; double-counts the calm effect already carried by the breath; unreliable + gameable proxy; dents the *Agency, not Fate* North Star.
+
+**Provenance:** owner tradition (family-deity prasanam) · CONF-026 (Sushumna = calm equilibrium) · existing Prasanam sacred-UX set · North Star (`product-scope.md`).
 
 ---
 
@@ -196,6 +213,7 @@ Standing decisions (also captured as Kiro learnings):
 - ✅ **Birth bird is permanent** — derived from birth Paksha (dual-table); no monthly swap.
 - ✅ **North Star: Agency, not Fate** — present-moment betterment, never fate-prediction; palm/thumb/Nadi Jothidam + interpretive predictive natal astrology excluded (see `product-scope.md`).
 - ✅ **"Now" Surface: honest-but-partial when stale** — if the user's logged nostril is stale (>~1 hr), the ambient surface degrades to "expected + check prompt"; never nag, never fabricate a match.
+- ✅ **No geo/location score-weighting for Prasanam** — the family-deity-temple practice is honored via opt-in **Sacred Consultation Mode** (reverence + intentional friction + context-journaling), NOT a GPS-based score bonus. The calm state already flows through the breath the oracle reads; a location bonus would double-count it and dent the *Agency, not Fate* North Star.
 
 ---
 
