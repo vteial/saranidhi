@@ -94,3 +94,7 @@ worknotes/**/*.m4a
 worknotes/**/*.mov
 worknotes/**/*.wav
 worknotes/**/*.mp3
+worknotes/**/*.opus
+worknotes/**/*.ogg
+worknotes/**/*.html
+worknotes/sarakalai/telegram/**
