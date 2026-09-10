@@ -1,29 +1,37 @@
 # Saranidhi — Technical Design
 
+> Reflects the codebase as of **v1.6.0** (Sprint 36). Kept in sync during
+> `/sprint-update`.
+
 ## Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────┐
 │  PRESENTATION LAYER                                  │
 │  Flutter Widgets + GoRouter (StatefulShellRoute)     │
-│  3 tabs: Home | Journal | Analytics                  │
+│  4 tabs: Home | Journal | Oracle (Prasanam) | Analytics │
+│  Settings + Onboarding as top-level routes           │
 │  Settings via gear icon (AppBar action)              │
-│  Prasanam FAB on Today tab (v2.0)                    │
 ├─────────────────────────────────────────────────────┤
 │  STATE MANAGEMENT                                    │
 │  Riverpod 3 (NotifierProvider, FutureProvider)       │
 ├─────────────────────────────────────────────────────┤
 │  DOMAIN LAYER (Pure Dart — zero framework deps)      │
-│  Astro Engine: Sunrise, Yama, Rahu, Hora, Pakshi,   │
-│  Tattva, LunarPhase, Oracle, ActionWindow            │
-│  Action Windows: ActionWindowEngine, Schedule (v1.3) │
-│  Prasanam: OracleCalculator, 3 Vectors (v2.0)       │
+│  Astro Engine: Sunrise, Yama, Rahu, Emakandam,      │
+│  Kuligai, Hora, Pakshi(+Attributes), Tattva,        │
+│  LunarPhase, Moon longitude (Meeus), Lahiri ayanamsa,│
+│  Nakshatra, NostrilPattern, Tara, Oracle             │
+│  Action Windows: ActionWindowsEngine, Segments (v1.3)│
+│  Prasanam: OracleEngine, 3 Vectors (v2.0)           │
+│  Somatic: guided nostril-shift protocols (Sprint 35) │
 │  Analytics: Streak, Trend, Weekly, Monthly, HoldTime │
 │  Wisdom: RulesEngine, FallbackHandler, Libraries     │
 ├─────────────────────────────────────────────────────┤
 │  DATA LAYER                                          │
-│  Drift (SQLite/WebAssembly) — 5 tables               │
-│  (+PrasanamHistory in v2.0)                          │
+│  Drift (SQLite/WebAssembly) — 6 tables, schemaVersion 5 │
+│  (Profiles, SaraKalaiJournal, BreathSessions,       │
+│   PrasanamHistory, SomaticInterventionLogs,          │
+│   BirdLibrary) + migration_helpers                   │
 │  SharedPreferences — settings, cache, sync state     │
 │  CloudKit (MethodChannel) — iCloud sync              │
 ├─────────────────────────────────────────────────────┤
@@ -48,19 +56,28 @@
 | Feature-first folder structure | Each feature is self-contained (domain/data/presentation/providers) |
 | Two-column responsive (>=600px) | Desktop/iPad readability without separate layouts |
 
-## Data Schema (Drift/SQLite)
+## Data Schema (Drift/SQLite) — 6 tables, `schemaVersion = 5`
 
 ### profiles
 User profile, birth star, location, preferences (1 row per user).
 
 ### sara_kalai_journal
-Breath journal entries — timestamp, expected/actual flow, alignment, nostril, durations, active yama/bird/state/element.
+Breath journal entries — timestamp, expected/actual flow, alignment, nostril, durations, active yama/bird/state/element, `isPinned`.
 
 ### breath_sessions
 Detailed breath session recordings (cycles, inhale/hold/exhale lengths).
 
+### prasanam_history (v2.0 — Layer 3)
+Oracle query snapshots — category, query text, score/band, EN+TA guidance, floor-lock flag, diagnostic snapshot (swara, birdState, actionWindow) + optional post-event outcome notes/timestamp.
+
+### somatic_intervention_logs (Sprint 35)
+Guided nostril-shift session logs — `protocolType` (postureShift / axillaryPressure), `targetFlow`, `initialFlow`, `resolvedFlow` (post-verification, nullable), `isSuccess`, `durationSeconds`.
+
 ### bird_library
 Panja Pakshi bird reference data (nakshatra groups).
+
+### Migrations
+`database/migration_helpers.dart` provides tested column-existence utilities. Never `ALTER TABLE`/`addColumn` without checking existence first (Sprint 36 — replaces the ad-hoc `sqlite_master` / try-catch pattern that caused historical failures).
 
 ## Sync Architecture
 
@@ -139,3 +156,28 @@ Stores the full diagnostic snapshot at time of asking + oracle output + optional
 ```
 FAB tap → Validation (breath <30 min?) → Intention anchor (3s) → Type question → Calculate → Result card
 ```
+
+
+
+## Sprint 35 — Somatic Interventions Architecture
+
+When the diagnostic layer flags the user's breath channel (nostril dominance) as **unaligned** with the expected cosmic pattern, the app offers a guided, time-bound **intervention** to actively shift the flow — moving beyond passive observation to active correction.
+
+### Engine / Flow
+
+```
+Detect unaligned flow → offer intervention → user selects protocol
+  → SomaticTimerRoom (guided, time-bound) → post-session GuidedNostrilTest
+  → log resolvedFlow + isSuccess to SomaticInterventionLogs
+```
+
+### Protocols
+
+| Protocol (`protocolType`) | Technique |
+|---------------------------|-----------|
+| `postureShift` | Lie/lean on the side opposite the desired nostril (cross-lateral pressure) |
+| `axillaryPressure` | Apply pressure under the armpit opposite the desired nostril |
+
+Supporting UI: `SomaticTimerRoom` (guided countdown), `CrossLateralInstructionCard`, `InterventionSelectorSheet`, `SamaVrittiPacer` (equal-ratio breath pacer). Each session records target vs. initial vs. resolved flow and whether the shift succeeded, feeding future analytics on intervention efficacy.
+
+> Note: Somatic interventions are an **active** complement to the passive diagnostic layer. The birth bird and daily rhythm are never altered — only the user's current nostril flow is coached toward alignment.
