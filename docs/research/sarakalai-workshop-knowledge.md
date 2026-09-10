@@ -70,17 +70,17 @@ Use this table to see at a glance what is captured and to resume across sessions
 | 1 | [Swara Fundamentals & Weekday Dawn Inception (அடிப்படை சரமும் கிழமை விதிகளும்)](#topic-1) | ✅ Captured | 5 | Source: saravithai.pdf (pp. 1–4, 9–10), sarakalai-2025 Day 08, Day 13. See CONF-001. |
 | 2 | [Somatic Methods for Swara Switching (சரத்தை மாற்றும் உடலியல் முறைகள்)](#topic-2) | ✅ Captured | 15 | Source: saravithai.pdf (pp. 3–4, 14), sarakalai-2025 Day 01, Day 02, Day 05, Day 07, Day 08, Day 10, Day 12. See CONF-002, CONF-017. |
 | 3 | [Solstitial Swara Alignment (அயன சரம்)](#topic-3) | ✅ Captured | 4 | Source: saravithai.pdf (pp. 7–8, 14), sarakalai-2025 Day 09. See CONF-003, CONF-004. |
-| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 9 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2025 Day 03, Day 10, Day 11, Day 12. See CONF-005, CONF-006. |
+| 4 | [Diurnal Swara Activity Matrices & Departure Steps (சரமும் உகந்த செயல்களும்)](#topic-4) | ✅ Captured | 10 | Source: saravithai.pdf (pp. 4–5, 10–11), sarakalai-2025 Day 03, Day 10, Day 11, Day 12, Telegram Audio 01, 05, 07 & Notes. See CONF-005, CONF-006. |
 | 5 | [Swara Divination & Querent Diagnosis (சர பிரசன்னமும் எதிராளி சரம் அறிதலும்)](#topic-5) | ✅ Captured | 7 | Source: saravithai.pdf (pp. 4–5, 12–13), sarakalai-2025 Day 06, Day 08, Day 09, Day 12. See CONF-007, CONF-008. |
 | 6 | [Siddha Embryology, 96 Tattvas & Nadi-Vayu Anatomy (சித்தாந்த சரீர தத்துவங்களும் பிராண சுவாசமும்)](#topic-6) | ✅ Captured | 4 | Source: sugam_tharum_swasa_kalai.pdf (pp. 6–17, 28–29). See CONF-009, CONF-010. |
 | 7 | [Five-Element Tattva Breath Diagnostics (பஞ்சபூத தத்துவ சரம் அறிதல்)](#topic-7) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 34–35). See CONF-011, CONF-012. |
-| 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39), sarakalai-2025 Day 08, Day 12, Day 13. See CONF-013, CONF-014. |
+| 8 | [The 3-Day Tithi Triad Inception & 21,600 Daily Breath Accounting (திதி திரிக சுழற்சியும் 24-மணி நேர சக்ரமும்)](#topic-8) | ✅ Captured | 3 | Source: sugam_tharum_swasa_kalai.pdf (pp. 38–39), sarakalai-2025 Day 08, Day 12, Day 13, Telegram Audio 04. See CONF-013, CONF-014. |
 | 9 | [Tattva Modifiers on Swara Actions & Therapeutic Breath Inversion (தத்துவக் கலப்பும் காரியப் பலன்களும் & நோய் நீக்கும் சரம்)](#topic-9) | ✅ Captured | 5 | Source: sugam_tharum_swasa_kalai.pdf (pp. 40–42). See CONF-015, CONF-016. |
 | 10 | [Advanced Siddha Attainments: Angula Reduction, Kechari Mudra & Diurnal Health Seals (சுவாச அங்குலக் குறைப்பும், கேசரி முத்திரையும், பிணி தீர்க்கும் விதிகளும்)](#topic-10) | ✅ Captured | 12 | Source: sugam_tharum_swasa_kalai.pdf (pp. 43–48), sarakalai-2025 Day 04, Day 05, Day 08, Day 10, Day 11, Day 13. See CONF-017, CONF-018. |
 | 11 | [Weekday Swara Deviation Afflictions & Activity Respiration Spans (வாரச் சரப் பிசகு தோஷ அட்டவணையும் தொழில்வழி சுவாச விரயங்களும்)](#topic-11) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14, 85, 110–111). See CONF-019, CONF-020. |
 | 12 | [Marana Lakshana Prognostics & Sensory Longevity Tests (மரண கால சரக் கணிப்பும் அரிஷ்ட லட்சண சோதனைகளும்)](#topic-12) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 14–15, 64–67), sarakalai-2025 Day 12. See CONF-021, CONF-022. |
 | 13 | [25 Sub-Tattvas, Warfare Swara & Conception Divination (25 உப-பூதப் பிரிவுகளும், போர்க்கள சரமும், கர்ப்ப பலன்களும்)](#topic-13) | ✅ Captured | 5 | Source: gana_sara_nool.pdf (pp. 44–47, 68–69), sarakalai-2025 Day 11. See CONF-023, CONF-024. |
-| 14 | [Siddha Dinacharya & Avvaiyar's Pranic Inversion Sutras (தினக்கிரம அலங்கார ஒழுக்கங்களும் ஒளவையாரின் வாசி சூத்திரங்களும்)](#topic-14) | ✅ Captured | 4 | Source: gana_sara_nool.pdf (pp. 84, 90, 102–103). See CONF-025, CONF-026. |
+| 14 | [Siddha Dinacharya & Avvaiyar's Pranic Inversion Sutras (தினக்கிரம அலங்கார ஒழுக்கங்களும் ஒளவையாரின் வாசி சூத்திரங்களும்)](#topic-14) | ✅ Captured | 6 | Source: gana_sara_nool.pdf (pp. 84, 90, 102–103), Telegram Notes. See CONF-025, CONF-026. |
 
 *Add a new topic row here as you begin each topic. Update its Capture Status (⬜ → 🔄 → ✅) and practice count as you go.*
 
@@ -102,10 +102,10 @@ These are points where a single source is ambiguous, or where two sources confli
 
 | ID | Tier | Topic / Practice | Question / Ambiguity | Source | Decision (owner) | App impact | Status |
 |:--:|:--:|------------------|----------------------|--------|------------------|:----------:|:------:|
-| CONF-013 | 🔴 T1 | Topic 8: திதி திரிக தொடக்க சரம் | Reconcile Weekday Inception vs. 3-day Tithi Triad Inception rules when they conflict | Recorded Videos / Notes | _(prior note: `saravithai.pdf` uses Weekday; `sugam_tharum_swasa_kalai.pdf` uses Tithi triads.)_ | — | ⏳ Pending |
+| CONF-013 | 🔴 T1 | Topic 8: திதி திரிக தொடக்க சரம் | Reconcile Weekday Inception vs. 3-day Tithi Triad Inception rules when they conflict | Recorded Videos / Notes / Telegram | PROPOSED (Telegram Audio 04 & Telegram Notes): Lineage strictly decouples Udhaya Sara Kalai (உதய சரகலை / Astronomical Dawn Rule anchored to the exact mathematical second of sunrise, governed by Weekday/Tithi cycles) from Vidiyal Sara Kalai (விடியல் சரகலை / Somatic Bedside Awakening Sadhana performed whenever one awakens from sleep, independent of sunrise or weekday). When waking within 1–2 hours of sunrise, Udhaya Sara Kalai governs; at all other waking times, Vidiyal Sara Kalai applies without calendar/clock constraints. | Architecturally segregates the Astronomical Dawn Scheduler from the User Bedside Awakening Journal; eliminates theoretical conflict. | 🔁 Proposed — owner confirm |
 | CONF-014 | 🔴 T1 | Topic 8: ஒரு மணி நேர சக்கர சரம் | Verify swara alternation cycle length (1 hour / 2.5 Nazhigais vs 1.5 hours / 3.75 Nazhigais) | Recorded Videos / Notes | PROPOSED (Day 01 @ 63:55): Healer Baskar confirms standard cycle length is 1 hour ("1 hour கழித்து வரேங்க, அப்போ இடது பக்கம் போனா..."). Baseline alternation is 1 hour (2.5 Nazhigais / 24 cycles daily). | Configures swara scheduler & active nostril predictive engine to 60-minute default interval. | 🔁 Proposed — owner confirm |
 | CONF-018 | 🔴 T1 | Topic 10: பகல் இடது-இரவு வலது தாரக மந்திரம் | Verify how Daytime Left / Nighttime Right macro-seal reconciles with 1-hour alternation cycles and Weekday Inception | Recorded Videos / Notes | PROPOSED (Day 01 @ 37:31–45:00): 37°C thermoregulatory paradox establishes Daytime Left / Nighttime Right as macro-thermal ideal (cooling against solar heat, warming against nocturnal cool), while 1-hour cycles maintain visceral metabolic balance. | Astro engine retains 60-min cycle while health module recommends macro Chandra (day) / Surya (night) bias for thermal equilibrium. | 🔁 Proposed — owner confirm |
-| CONF-026 | 🔴 T1 | Topic 14: ஒளவையார் வாசி தலைகீழ் யோகம் | Verify if Sushumna is considered pure Kapha Nadi (v. 29) or transcendent neutral equilibrium in lineage | Recorded Videos / Notes | _(prior note: `gana_sara_nool.pdf` p. 90 v. 29 links Sushumna directly to Sleshma (Kapha).)_ | — | ⏳ Pending |
+| CONF-026 | 🔴 T1 | Topic 14: ஒளவையார் வாசி தலைகீழ் யோகம் | Verify if Sushumna is considered pure Kapha Nadi (v. 29) or transcendent neutral equilibrium in lineage | Recorded Videos / Notes / Telegram | PROPOSED (Telegram Notes [Equinox & Kechari Mudra Posts], Day 02 @ 14:01–28:00, Day 13): Lineage defines Sushumna (சுழிமுனை / Agni Kalai) not as a pathological or phlegmatic Kapha state, but as the transcendent neutral equilibrium beyond all dualities where both nostrils flow equally, tridoshas attain homeostatic balance, and the mind enters samadhi (healthy benchmark: 90 mins daily). Avvaiyar's verse 29 assignment of Sleshma (Kapha) to Sushumna represents poetic tri-dosha balance (water-fire-earth), not Kapha morbidity. | Treats Sushumna as transcendent equanimity state (triggering spiritual/neutral guidance), not Kapha excess. | 🔁 Proposed — owner confirm |
 | CONF-003 | 🟡 T2 | Topic 3: உத்தராயண & தட்சிணாயண சரம் | Clarify if 5-nazhigai window (120 min) runs leading up to sunrise or starting from sunrise | Recorded Videos / Notes | PROPOSED (Day 09 @ 32:01–40:00): Healer Baskar clarifies that solstitial swara alignment runs for exactly 1 hour (not 120 min) commencing precisely from local astronomical sunrise ("சூரியன் உதிக்கும் அந்த வினாடியிலிருந்து முதல் ஒரு மணி நேரம்"). | Solstitial alignment timers configure to 60-minute duration starting at astronomical sunrise. | 🔁 Proposed — owner confirm |
 | CONF-004 | 🟡 T2 | Topic 3: அயன சரம் நாள் கணக்கு | Verify whether Ayana practice is tied to Tamil month 1st day dawn or exact Sankranti ingress | Recorded Videos / Notes | PROPOSED (Day 09 @ 16:01–32:00): Lineage recognizes 3 candidate calculation systems: 1) Astronomical Solstice (June 20/21, Dec 21/22 — Healer Baskar's primary recommendation based on physical solar turning / gnomon shadow / Stellarium); 2) Traditional Calendar (Aadi 1 / Thai 1); 3) Zodiacal Sankranti ingress (July 22 / Jan 22). Explains the 24-day drift via 21,600-year precession (1° every 60 years over 1,440 years). | Astro engine supports user preference toggle between Astronomical Solstice (default lineage recommendation), Traditional Calendar (Aadi 1/Thai 1), and Zodiacal Sankranti. | 🔁 Proposed — owner confirm |
 | CONF-009 | 🟡 T2 | Topic 6: ஆக்ஞை-சகஸ்ரார-மூலாதார விடியல் சுவாச கணக்கீடு | Verify whether pre-dawn chakra breath windows (3:46–4:53–6:00 AM) scale with sunrise | Recorded Videos / Notes | _(prior note: `sugam_tharum_swasa_kalai.pdf` lists clock hours; check astronomical scaling.)_ | — | ⏳ Pending |
@@ -137,7 +137,7 @@ As topics are captured, the ~20 already-implemented starter features get tagged 
 against the practices they realize, so this document doubles as a **coverage map** — showing which
 parts of the Sara Kalai corpus the app already covers and which remain untouched.
 
-**Implemented: TBD / Total captured: 84 practices (across 14 topics: Books 1, 2, Gnana Sara Nool & 2025 Video Corpus)**
+**Implemented: TBD / Total captured: 87 practices (across 14 topics: Books 1, 2, Gnana Sara Nool, 2025 Video Corpus & 2025 Telegram Corpus)**
 
 For context only (do **not** assert specific mappings here — the owner tags actual mappings per practice),
 current app feature modules that *may* map to captured practices include: breath journal / alignment,
@@ -646,6 +646,18 @@ starts with a `### <n>. <Topic name>` heading.*
 >   - **Left Nostril (Chandra Kalai) Hours:** **6:00 to 11:00** (South to North-West quadrant).
 > - **Radial Destination Invariant:** Travel swara is governed exclusively by the straight-line radial vector from origin to final destination on a map (e.g. Google Maps straight line). Intermediate winding roads, switchbacks, or U-turns do NOT alter the target departure swara.
 
+#### Practice — படிக்கட்டு & மலை ஏற்ற சோர்வு கண்டறிதல் மற்றும் நாடி மீட்சி முறை (Ascending Stairs & Mountain Fatigue Diagnostic with Swara Rest-Recovery Cycle)
+- **Purpose / benefit (the why):** Direct physical stamina optimization, prevention of acute exhaustion, and cardiac protection when climbing stairs, steep elevations, or mountains.
+- **How it's practiced (brief mechanics):**
+  - **Ascent Initiation:** Always commence ascending stairs or mountains when the **Right Nostril (Surya Nadi / Pingala)** is active. Surya Nadi supplies necessary internal heat (*உடல் உஷ்ணம்*), cardiovascular vigor, and skeletal muscular stamina.
+  - **The Fatigue Diagnostic:** Continue ascending under Surya Nadi. When sudden physical fatigue, breathlessness, or muscle burning occurs, immediately test the breath: invariably, the breath will have flipped to the **Left Nostril (Chandra Nadi / Ida)**, as internal core heat spiked to capacity and triggered the autonomic cooling reflex.
+  - **The Rest Protocol:** Do not force-climb under Chandra Nadi. Sit and rest immediately.
+  - **The Recovery Law:** Rest until the breath naturally (or through somatic posture) reverts back to the **Right Nostril (Surya Nadi)**. As soon as Surya re-emerges, resume climbing. Repeat this rest-recovery cycle throughout the ascent.
+- **App-help bucket:** 🟢 — Climb & Staircase Companion module providing ascent pre-flight breath check, fatigue recovery timer, and Surya re-activation prompt.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Mountain & Stairway Ascent Pacer" in Physical Fitness module.
+- **Source ref:** `docs/research/transcripts/sarakalai-2025/telegram-audio-07.md` & `telegram-notes.md` (message 35, 48)
+
 #### Practice — மாறுபட்ட திசைப் பயண பரிகார நடை (Maarupatta Thisai Payana Parikaara Nadai / Remedial Departure Footwork for Opposed Directions)
 - **Purpose / benefit (the why):** Esoteric somatic remedy allowing immediate travel even when the active breath opposes the destination direction, neutralizing inauspiciousness.
 - **How it's practiced (brief mechanics):** Before stepping out on the journey:
@@ -1014,7 +1026,11 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Tithi Triad Swara Indicator" calculating expected dawn flow based on current Tithi and Paksha.
 - **Source ref:** `sugam_tharum_swasa_kalai.pdf`, pp. 38–39
 
-> ⚠️ **Pending Confirmation [CONF-013]:** Synthesis of Weekday Inception vs. Tithi Triad Inception: `saravithai.pdf` (Topic 1) bases dawn swara on Weekdays, whereas `sugam_tharum_swasa_kalai.pdf` (Topic 8) bases it on 3-day alternating Tithis. Cross-verify with recorded workshop videos on how these two systems are reconciled when they conflict.
+> 🔁 **Proposed Resolution [CONF-013] (Telegram Audio 04 & Telegram Notes):** Synthesis of Weekday Inception vs. Tithi Triad Inception:
+> In Telegram Audio 04 (`vidiyal_sarakalai_paiyirichikkukana_sandhegangal.m4a`) and Telegram channel Q&A, Healer Baskar establishes the definitive reconciliation between dawn swara systems:
+> 1. **Udhaya Sara Kalai (உதய சரகலை / Astronomical Dawn Inception):** Anchored strictly to the mathematical second of astronomical sunrise. Governed by the planetary Weekday schedule (Sun 1h R, Mon 1h L, Tue 2h R, Wed 2h L, Thu Shukla 1h L / Krishna 2h R, Fri 2h L, Sat 1h R) and Tithi triad cycle.
+> 2. **Vidiyal Sara Kalai (விடியல் சரகலை / Bedside Awakening Sadhana):** Governed exclusively by the somatic moment of awakening from night sleep (whether 4:30 AM, 8:30 AM, or 11:30 AM). It is completely independent of solar sunrise or day of the week.
+> 3. **The Synthesis Rule:** If a practitioner wakes within the first 1–2 hours of sunrise, Udhaya Sara Kalai dawn rules govern (checking and aligning with the designated weekday/tithi channel). At all other waking times, Vidiyal Sara Kalai sadhana applies without weekday constraints. *(Status: 🔁 Proposed — owner confirm).*
 
 #### Practice — ஒரு மணி நேர சக்கர சரம் (Oru Mani Nera Chakra Charam / The 1-Hour Swara Alternation Rhythm)
 - **Purpose / benefit (the why):** Maintains the natural ultradian neuro-respiratory rhythm (12 solar hours and 12 lunar hours per day), preventing autonomic exhaustion.
@@ -1646,6 +1662,29 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Siddha Sleep Bedding & Fiber Recommender" in Sleep module.
 - **Source ref:** `gana_sara_nool.pdf`, p. 103 (பிரிவு 26)
 
+#### Practice — முடி மற்றும் நகம் வெட்டும் சரம் (Muḍi maṟṟum Nagam Veṭṭum Saram / Hair & Nail Grooming Swara Law)
+- **Purpose / benefit (the why):** Preserves cephalic thermoregulation, protects cranial bio-electric fields, prevents erratic mood swings, and promotes healthy somatic renewal during hair and nail grooming.
+- **How it's practiced (brief mechanics):**
+  - Strictly cut hair, trim beards, or clip fingernails/toenails while the **Left Nostril (Chandra Nadi / Ida)** is active.
+  - Hair and nails are energetic antennae and metabolic byproducts (*மலம் / asthi mala*) of bone tissue (*அஸ்தி தாது*). Severing them alters surface thermoregulation. Grooming under Chandra Nadi preserves cranial cooling, calm neurological equilibrium, and supports uniform regrowth.
+  - Avoid cutting hair or trimming nails during Right Swara (Surya Nadi), as solar activation during somatic shedding induces cephalic agitation and metabolic heat spikes.
+- **App-help bucket:** 🟢 — Grooming & Personal Care Swara Reminder in Dinacharya module.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Hair & Nail Grooming Swara Window Indicator".
+- **Source ref:** `docs/research/transcripts/sarakalai-2025/telegram-notes.md` (message 46)
+
+#### Practice — வாசல்படி கடத்தல் & மனை நுழைவு/வெளியேற்ற பூரண சரம் (Threshold Step Clearance & Domestic Transit Swara Protocol)
+- **Purpose / benefit (the why):** Auspicious transitional protection when crossing architectural boundaries, entering/exiting home, and passing sacred thresholds.
+- **How it's practiced (brief mechanics):**
+  - **Leaving Home (வெளியே செல்லுதல்):** Ascertain the active nostril (Poornam); step outward crossing the main door with the **Poornam foot first**.
+  - **Entering Home (உள்ளே வருதல்):** Step inward crossing the threshold into the dwelling with the **Poornam foot first**.
+  - **Threshold Clearance Law (வாசல்படி விதி):** **Never step directly on top of the doorframe threshold sill (*வாசல்படி / vāsappaḍi*)**; step cleanly *over* the sill, landing firmly on the floor beyond it with the Poornam foot.
+  - **Staircase First Step:** Place the Poornam foot onto the first step of a staircase when beginning ascent.
+- **App-help bucket:** 🟡 — Habitual mindfulness prompt and spatial transition guidance in Daily Sadhana module.
+- **Implemented?:** ⬜
+- **Rough app idea (optional):** "Threshold & Departure First-Step Reminder".
+- **Source ref:** `docs/research/transcripts/sarakalai-2025/telegram-notes.md` (message 48)
+
 #### Practice — ஒளவையார் வாசி தலைகீழ் யோகமும் நாடித் திரிதோஷ சமன்பாடும் (Avvaiyar Vaasi Thalaikeezh Yogamum Naadi Tridosha Samanpaadum / Avvaiyar's Vasi Inversion & Tridosha-Nadi Equation)
 - **Purpose / benefit (the why):** Core esoteric Siddha doctrine revealed by Sage Avvaiyar: equating the 3 principal Nadis directly to the Tridoshas, and using pranic breath inversion (*வாசி யோகம்*) to conquer disease, decay, and mortality.
 - **How it's practiced (brief mechanics):**
@@ -1662,7 +1701,8 @@ starts with a `### <n>. <Topic name>` heading.*
 - **Rough app idea (optional):** "Avvaiyar Nadi-Dosha Pacer & Flank Elevation Guide".
 - **Source ref:** `gana_sara_nool.pdf`, pp. 84, 90 (ஒளவையார் சூத்திரங்கள் 12, 28, 29, 30)
 
-> ⚠️ **Pending Confirmation [CONF-026]:** In `gana_sara_nool.pdf` (p. 90, v. 29), Avvaiyar maps Chandra to Vata, Surya to Pitta, and Sushumna to Kapha (Sleshma). Verify whether lineage teaching views Sushumna as Kapha predominance or as the transcendent equilibrium beyond all three doshas.
+> 🔁 **Proposed Resolution [CONF-026] (Telegram Notes [Equinox & Kechari Mudra Posts], Day 02 @ 14:01–28:00, Day 13):** Nature of Sushumna (Kapha vs. Transcendent Equilibrium):
+> Cross-referencing Telegram written posts on Equinox (*சம நாள்*) and Kechari Mudra alongside Day 02 and Day 13 video corpus reveals that Healer Baskar's lineage explicitly treats **Sushumna (சுழிமுனை / Agni Kalai)** as the transcendent state of neutral equilibrium, cosmic balance, and non-dual equanimity beyond all doshic polarities. Both nostrils flow equally, tridoshas attain homeostatic balance, and the mind enters samadhi (healthy benchmark: 90 minutes total per 24 hours). Avvaiyar's verse 29 assignment of Sleshma (Kapha) to Sushumna represents poetic pairing with the tri-dosha elements (Chandra-Vata, Surya-Pitta, Sushumna-Kapha as stability/lubrication), not Kapha morbidity. *(Status: 🔁 Proposed — owner confirm).*
 
 [↑ Back to Top](#top) · [↑ Back to Tracker](#topic-progress-tracker)
 
