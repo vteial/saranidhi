@@ -1,43 +1,81 @@
 # Saranidhi — Project Structure
 
+> Reflects the codebase as of **v1.6.0** (Sprint 36). Kept in sync during
+> `/sprint-update`. If this file disagrees with the code, the code wins —
+> open a docs fix.
+
 ## Root Layout
 
 ```
 saranidhi/
 ├── .kiro/                  # Kiro configuration (steering, product, design, structure)
-├── .github/workflows/      # CI pipeline (analyze + test + build web)
+├── .github/workflows/      # CI pipelines (ci.yml = Tier 1 PR gate, ci-full.yml = Tier 2 + integration)
 ├── lib/                    # Dart source code
 ├── test/                   # Unit + widget tests
-├── integration_test/       # E2E integration tests
+├── integration_test/       # Web E2E integration tests (app_test.dart)
+├── test_driver/            # flutter drive entrypoint (integration_test.dart)
 ├── ios/                    # iOS platform (Runner, CloudKitPlugin, entitlements)
 ├── macos/                  # macOS platform (Runner, CloudKitPluginMacOS, entitlements)
 ├── android/                # Android platform
-├── web/                    # Web assets (sqlite3.wasm, drift_worker.js)
-├── docs/                   # Project documentation (16 files)
-├── public/                 # Static assets (logo.svg)
-└── pubspec.yaml            # Dependencies and project config
+├── web/                    # Web assets (sqlite3.wasm, drift_worker.js, privacy-*.html, flutter_bootstrap.js)
+├── docs/                   # Project documentation (nested — see below, ~53 files)
+├── public/                 # Static brand assets (logo.svg + 3 logo variants)
+├── data/                   # Local-only working data (data/exports — gitignored artifacts)
+├── scripts/                # Build/support scripts (vercel_build.sh)
+└── pubspec.yaml            # Dependencies and project config (version: 1.6.0+1)
+```
+
+## Documentation (docs/)
+
+Organized into topic folders (not a flat list):
+
+```
+docs/
+├── README.md                     # Docs index / table of contents
+├── deployment/                   # deployment.md, icloud-sync-testing.md,
+│                                 #   mobile-release-guide.md, offline-verification.md, store-listing.md
+├── process/                      # dev-setup, dev-workflow, project-evaluation,
+│                                 #   project-valuation-report, sprint-backlog, sprint-tracker
+├── product/                      # product-scope.md (living scope), user-guide.md
+├── reference/                    # architecture.md, security-review.md, third-party-comparison.md
+├── research/                     # Sara Kalai knowledge corpus + engine research + terminology
+│                                 #   (sarakalai-workshop-knowledge.md, transcripts/sarakalai-2025/, etc.)
+└── testing/                      # testing-plan.md, smoke-test-results.md, qa-verify-agent-prompt.md
 ```
 
 ## Source Code (lib/)
+
+```
+lib/
+├── main.dart
+├── l10n/                   # ARB files + generated localizations (en, ta)
+├── core/                   # Shared infrastructure (see below)
+├── database/               # Drift schema + migrations
+└── features/               # 14 feature modules (feature-first)
+```
 
 ### Core (shared infrastructure)
 
 | File | Role |
 |------|------|
-| `core/router/app_router.dart` | GoRouter config — 3 branches (Home, Journal, Analytics) + Settings route + onboarding route |
-| `core/router/shell_scaffold.dart` | Bottom NavigationBar with responsive 1200px constraint |
-| `core/router/onboarding_guard.dart` | Redirects to onboarding if profile not complete |
-| `core/theme/app_theme.dart` | Material 3 theme definitions (8 variants) |
+| `core/router/app_router.dart` | GoRouter config — StatefulShellRoute with 4 branches (Home, Journal, Prasanam, Analytics) + top-level Settings + Onboarding routes |
+| `core/router/shell_scaffold.dart` | Bottom NavigationBar (4 destinations) with responsive constraint |
+| `core/router/onboarding_guard.dart` | Redirects to intro/onboarding if profile not complete |
+| `core/theme/app_theme.dart` | Material 3 theme — `ThemeAccent` (4 seed colors) × `ThemeBrightness` (Light/Dark/System) |
 | `core/theme/theme_provider.dart` | Theme state with SharedPreferences persistence |
 | `core/l10n/locale_provider.dart` | Locale state (en/ta) with persistence |
-| `core/utils/responsive_wrapper.dart` | 1200px max-width centering wrapper |
+| `core/providers/profile_location_provider.dart` | Cached profile lat/lng FutureProvider |
+| `core/providers/location_on_open_provider.dart` | Silent >5km location auto-update on app open |
+| `core/services/location_service.dart` | Haversine distance + threshold check |
+| `core/services/location_on_open_service.dart` | Geolocation-on-open orchestration |
+| `core/utils/geolocation.dart` + `web_geolocation.dart` / `web_geolocation_stub.dart` | Browser geolocation (conditional web import) |
+| `core/utils/timezone_utils.dart` | UTC offset from lat/lng (Indian bounding box → IST) |
 | `core/utils/branded_app_bar.dart` | Shared AppBar with logo + Settings gear icon |
 | `core/utils/bird_emoji.dart` | Bird emoji utility for consistent Pakshi display |
 | `core/utils/pakshi_l10n.dart` | Localized bird/state names |
 | `core/utils/nakshatra_l10n.dart` | Trilingual nakshatra names (27 EN + TA + Sanskrit) |
-| `core/utils/timezone_utils.dart` | UTC offset from lat/lng (Indian bounding box → IST) |
-| `core/providers/profile_location_provider.dart` | Cached profile lat/lng FutureProvider |
-| `core/services/location_service.dart` | Haversine distance + 50km threshold |
+| `core/utils/responsive_wrapper.dart` | Max-width centering wrapper |
+| `core/utils/app_constants.dart` | Shared constants |
 | `core/widgets/empty_state_widget.dart` | Reusable empty state (icon + title + subtitle) |
 | `core/widgets/shimmer_loading.dart` | Animated skeleton loading cards |
 | `core/widgets/error_boundary.dart` | ErrorBoundary + ErrorFallback widgets |
@@ -46,112 +84,102 @@ saranidhi/
 
 | File | Role |
 |------|------|
-| `database/tables.dart` | Drift table definitions (Profiles, SaraKalaiJournal, BreathSessions, BirdLibrary) |
-| `database/app_database.dart` | Database class with WebAssembly config |
+| `database/tables.dart` | Drift table definitions — **6 tables** (Profiles, SaraKalaiJournal, BreathSessions, PrasanamHistory, SomaticInterventionLogs, BirdLibrary) |
+| `database/app_database.dart` | Database class with WebAssembly config — **schemaVersion = 5** |
 | `database/database_provider.dart` | Riverpod provider (singleton) |
+| `database/migration_helpers.dart` | Tested column-existence / migration utilities (Sprint 36 — replaces ad-hoc `sqlite_master` checks) |
 
-### Features
+### Features (14 modules)
 
 #### astro_engine (Pure Dart — domain only, no UI)
 | File | Role |
 |------|------|
 | `sunrise_calculator.dart` | NOAA solar position → sunrise/sunset |
 | `yama_calculator.dart` | 5 day yamas + 5 night yamas |
-| `pakshi_calculator.dart` | Bird state tables (9 day-groups + 9 night-groups) |
+| `pakshi_calculator.dart` | Bird state tables (day/night groups) |
+| `pakshi_attributes.dart` | Extended bird attributes (friends, enemies, ruling planet, direction, colour) |
 | `rahu_kaal_calculator.dart` | Inauspicious window calculation |
+| `emakandam_calculator.dart` / `kuligai_calculator.dart` | Additional inauspicious/auspicious sub-windows |
 | `hora_calculator.dart` | Planetary hours (Chaldean order) |
+| `hora_swara_affinity.dart` | Hora ↔ swara affinity scoring |
 | `tattva_calculator.dart` | Element cycles within yamas |
 | `lunar_phase_calculator.dart` | Waxing/waning from synodic month |
-| `oracle_calculator.dart` | 10% floor lockout during Rahu Kaal |
-| `action_window.dart` | ActionWindow enum + fromBirdState() mapping (seeds Layer 2) |
-| `action_window_engine.dart` | Full 24h window schedule calculation (v1.3) |
-| `prasanam_engine.dart` | 3-vector oracle score calculation (v2.0) |
+| `moon_longitude_calculator.dart` | Jean Meeus ELP 2000/82 Moon longitude |
+| `lahiri_ayanamsa.dart` | Lahiri ayanamsa correction |
+| `nakshatra_calculator.dart` | Nakshatra + Paksha from DOB (birth-bird derivation) |
+| `name_bird_parser.dart` | Name-based bird lookup path |
+| `nostril_pattern.dart` | Expected nostril flow pattern per yama |
+| `tara_category.dart` | Tara (star) categorisation |
+| `action_window.dart` / `action_window_segment.dart` / `action_windows_engine.dart` | Layer 2 action-window model + 24h schedule |
+| `daylight_segment_resolver.dart` | Day/night segment resolution for the timeline |
+| `oracle_calculator.dart` / `oracle_engine.dart` | Prasanam oracle scoring (Layer 3) |
 
-#### home (Dashboard)
-| File | Role |
-|------|------|
-| `presentation/home_screen.dart` | Main dashboard with date selector + all cards |
-| `presentation/widgets/birth_bird_card.dart` | Hero: birth bird state + guidance + progress |
-| `presentation/widgets/rahu_kaal_card.dart` | Rahu Kaal time window with urgency styling |
-| `presentation/widgets/full_day_schedule.dart` | 10-yama timeline with bird states |
-| `presentation/widgets/nostril_dominance_chart.dart` | Expected flow per yama |
-| `presentation/widgets/hold_time_card.dart` | Today's average hold duration |
-| `presentation/widgets/date_selector.dart` | Date navigation (arrows + picker + Today/Tomorrow) |
-| `presentation/widgets/best_times_card.dart` | 7-day Ruling yama scan |
-| `presentation/widgets/historical_entries_card.dart` | Past date journal entries |
-| `presentation/widgets/calendar_month_view.dart` | Month grid with entry indicators |
+#### home (Dashboard — `/` Today)
+`presentation/home_screen.dart` + `presentation/widgets/` (birth_bird_card, rahu_kaal_card, full_day_schedule, nostril_dominance_chart, hold_time_card, date_selector, best_times_card, historical_entries_card, calendar_month_view, action-window/focus cards).
 
-#### breath_journal (Journal tab)
-| File | Role |
-|------|------|
-| `data/journal_repository.dart` | CRUD for journal entries (Drift) |
-| `domain/alignment_checker.dart` | Compare actual vs expected flow |
-| `domain/breath_flow.dart` | BreathFlow enum (solar/lunar/sushumna) |
-| `domain/micro_advice.dart` | Context-aware guidance text |
-| `presentation/widgets/` | Entry widget, timer, history list, pacer |
-| `providers/journal_providers.dart` | State management + sync trigger hooks |
+#### journal (Journal tab — `/journal`)
+`presentation/journal_screen.dart` — screen host for the breath journal (entry/timer/history widgets live in `breath_journal`).
+
+#### breath_journal (Journal domain/data)
+`data/journal_repository.dart`, `domain/` (alignment_checker, breath_flow, micro_advice), `presentation/widgets/` (entry, timer, history list, pacer), `providers/journal_providers.dart`.
+
+#### prasanam (Oracle tab — `/prasanam`)
+`data/prasanam_repository.dart`, `presentation/prasanam_screen.dart`, `presentation/widgets/` (oracle_result_card, outcome_notes_dialog, prasanam_history_card), `providers/prasanam_providers.dart`.
+
+#### somatic (Guided nostril-shift interventions — Sprint 35)
+`data/somatic_intervention_repository.dart`, `domain/somatic_intervention_session.dart`, `presentation/somatic_timer_room.dart`, `presentation/widgets/` (cross_lateral_instruction_card, intervention_selector_sheet, sama_vritti_pacer), `providers/somatic_providers.dart`.
 
 #### streaks (Streak engine + dashboard data)
-| File | Role |
-|------|------|
-| `data/streak_repository.dart` | Daily summary queries from DB |
-| `domain/streak_calculator.dart` | Consecutive day streak logic |
-| `domain/trend_calculator.dart` | 30-day trend + yama accuracy |
-| `domain/seven_day_ribbon.dart` | 7-day checkmark ribbon |
-| `providers/streak_providers.dart` | DashboardData model + selectedDateProvider + dashboardDataProvider |
-| `presentation/widgets/` | Streak flame, trend, ribbon, yama accuracy |
+`data/streak_repository.dart`, `domain/` (streak_calculator, trend_calculator, seven_day_ribbon), `providers/streak_providers.dart` (DashboardData + selectedDateProvider + dashboardDataProvider), `presentation/widgets/`.
 
-#### analytics (Analytics tab)
-| File | Role |
-|------|------|
-| `domain/analytics_calculator.dart` | Weekly, monthly, streak insights, hold time, CSV export |
-| `providers/analytics_providers.dart` | FutureProviders for each analytics feature |
-| `presentation/analytics_screen.dart` | Full screen with 6 insight cards |
+#### analytics (Analytics tab — `/analytics`)
+`domain/analytics_calculator.dart` (weekly, monthly, streak insights, hold time, CSV export), `providers/analytics_providers.dart`, `presentation/analytics_screen.dart`.
 
 #### ai_wisdom (Daily wisdom)
-| File | Role |
-|------|------|
-| `domain/wisdom_library.dart` | 60+ English proverbs |
-| `domain/wisdom_library_ta.dart` | 52+ Tamil proverbs |
-| `domain/rules_engine.dart` | Priority-based wisdom selection (locale-aware) |
-| `domain/fallback_handler.dart` | Deterministic date-seeded fallback |
-| `data/wisdom_cache.dart` | SharedPreferences daily cache (locale-tracked) |
+`domain/` (wisdom_library EN, wisdom_library_ta, rules_engine, fallback_handler), `data/wisdom_cache.dart`.
 
 #### cloud_backup (iCloud sync)
-| File | Role |
-|------|------|
-| `data/cloudkit/cloudkit_sync_service.dart` | MethodChannel CRUD with native Swift |
-| `data/cloudkit/cloudkit_sync_engine.dart` | Pull→merge→push orchestrator |
-| `data/cloudkit/cloudkit_record_mapper.dart` | Drift ↔ CloudKit field conversion |
-| `data/cloudkit/cloudkit_schema.dart` | Record type + field name constants |
-| `providers/sync_providers.dart` | Sync state + device management |
-| `providers/sync_trigger_service.dart` | Push-after-write hooks |
+`data/cloudkit/` (sync_service, sync_engine, record_mapper, schema), `providers/` (sync_providers, sync_trigger_service).
 
 #### notifications
-| File | Role |
-|------|------|
-| `data/notification_service.dart` | flutter_local_notifications wrapper |
-| `domain/notification_scheduler.dart` | Generate notifications for yama boundaries + Rahu + morning |
-| `providers/notification_providers.dart` | Preferences + auto-refresh scheduling |
+`data/notification_service.dart`, `domain/notification_scheduler.dart`, `providers/notification_providers.dart`.
 
-#### onboarding + settings
-| File | Role |
-|------|------|
-| `onboarding/presentation/onboarding_screen.dart` | 4-step flow (name→star→location→storage) |
-| `onboarding/providers/onboarding_providers.dart` | Form state + profile save |
-| `settings/presentation/settings_screen.dart` | Theme, language, backup, sync, notifications, clear data |
+#### onboarding
+`presentation/onboarding_screen.dart` (Welcome → Find Your Bird → Location → Data Storage; intro shown first via guard), `providers/onboarding_providers.dart`.
+
+#### settings
+`presentation/settings_screen.dart` (theme, language, backup, sync, notifications, data export/import, recalculate bird, clear data).
+
+#### whats_new
+`presentation/whats_new_screen.dart` — post-update changelog surface (version tracked via SharedPreferences `whats_new_last_seen_version`).
+
+## Routes
+
+| Route | Screen | Nav |
+|-------|--------|-----|
+| `/` | HomeScreen | Bottom tab 1 (Home) |
+| `/journal` | JournalScreen | Bottom tab 2 (Journal) |
+| `/prasanam` | PrasanamScreen | Bottom tab 3 (Oracle) |
+| `/analytics` | AnalyticsScreen | Bottom tab 4 (Analytics) |
+| `/settings` | SettingsScreen | Top-level (gear icon in AppBar) |
+| `/onboarding` | OnboardingScreen | Top-level (guard-driven) |
 
 ## Test Structure
 
 ```
 test/
-├── features/astro_engine/      # 8 calculator test files (110+ tests)
+├── features/astro_engine/      # calculator test files
 ├── features/breath_journal/    # alignment_checker, micro_advice
 ├── features/cloud_backup/      # backup repo, record mapper, sync service, metadata
 ├── features/streaks/           # streak, trend, ribbon calculators
+├── features/somatic/           # somatic repository + widgets (Sprint 35/36)
+├── features/prasanam/          # oracle engine + repository
 ├── features/ai_wisdom/         # wisdom engine
 ├── features/notifications/     # scheduler
 ├── features/providers/         # bird_emoji, timer, dashboard, locale, theme, onboarding
 ├── features/l10n/              # localization
+├── database/                   # migration_helpers
 └── widget_test.dart            # App rendering + navigation
+
+integration_test/app_test.dart  # Web E2E (run via test_driver/integration_test.dart)
 ```
