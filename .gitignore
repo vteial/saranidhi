@@ -97,4 +97,7 @@ worknotes/**/*.mp3
 worknotes/**/*.opus
 worknotes/**/*.ogg
 worknotes/**/*.html
+worknotes/**/*.webm
+worknotes/**/*.mkv
 worknotes/sarakalai/telegram/**
+worknotes/sarakalai/youtube/**
