@@ -6,11 +6,12 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 33 (+ Sprint 0 pre-development + Sprint 27.5 hotfix)
-**Total Engineering Investment:** ~102.0 Hours
-**Pull Requests Merged:** 128
+**Sprints Delivered:** 34 (Sprints 1–36 incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
+**Total Engineering Investment:** ~104.5 Hours (incl. ~26.5h Research & Knowledge Engineering)
+**Pull Requests Merged:** 160
 **Automated Test Coverage:** 450+ assertions (unit + widget + integration)
-**Production Web Release:** v1.4.1-web
+**Production Web Release:** v1.6.0-web
+**Current Phase:** Post-v1.6.0 Research & Knowledge Engineering (Phase 2a complete → pre-2b) — Sara Kalai corpus (87 practices, 26 CONFs resolved) + Panja Pakshi corpus (45 practices, 6 CONF-PP pending) captured
 
 ---
 
@@ -225,6 +226,24 @@
 | Preview testing & iteration | ~0.5 | Sprint 21 Vercel preview QA cycles (date picker, layout fixes) |
 | | **Subtotal** | **~7.0** |
 
+### Research & Knowledge Engineering (Phase 2a/2b prep — off-sprint)
+
+> A distinct work-stream, parallel to the Sprint track: digitizing the doctrinal
+> source corpus, resolving cross-source conflicts, and capturing product-strategy
+> decisions — the foundation for the ≥95%-fidelity vision. Bulk capture/transcription
+> ran on Antigravity locally; the figures below are **Kiro Web's share** (prompt
+> design, per-batch verification, resolution authoring, docs, PRs), **AI-estimated + 20%**.
+
+| Activity | Hours | Details (PRs) |
+|----------|-------|---------------|
+| Sara Kalai corpus capture | ~7.5 | Books 1–3 (#149), 13-day 2025 video corpus (#151), year-fix 2026→2025 (#152), Telegram notes + 7 audios (#154) — prompt design + verification + PRs |
+| Sara Kalai CONF-resolution pass | ~7.0 | All 26 CONFs adjudicated (#155): per-CONF review, Antigravity delegation prompts, resolution authoring; incl. 4 Tier-1 engine blockers |
+| YouTube corroboration | ~2.5 | 11 videos (#156) — corroborate-don't-duplicate verification |
+| `.kiro` planning-docs audit | ~1.5 | structure/design/product/spec synced to v1.6.0 (#153) |
+| Product-strategy design & docs | ~3.5 | North Star "Agency, not Fate" (#157), The Now Surface epic (#158), Sacred Consultation Mode (#159) |
+| Panja Pakshi corpus capture | ~4.5 | 45 practices / 10 topics / 8 transcripts (#160); surfaced 6 CONF-PP (2 Tier-1 engine conflicts) — verification + PR |
+| | **Subtotal** | **~26.5** |
+
 ### Total Project Investment
 
 | Category | Hours |
@@ -232,7 +251,8 @@
 | Active coding & debugging (AI-assisted) | 66.5 |
 | Infrastructure & admin ops | 7.5 |
 | Smoke test & release ops | 4.0 |
-| **Total** | **~78.0** |
+| Research & knowledge engineering (Phase 2a/2b prep) | 26.5 |
+| **Total** | **~104.5** |
 
 ---
 
@@ -283,6 +303,29 @@
 > release PRs #144 release-start + #145 main→prod promotion), tagged `v1.6.0-web`.
 > Per the owner-approved convention, any effort figure logged for this sprint is
 > the AI-estimated time **+ 20%** buffer.
+
+### Post-v1.6.0 — Research & Knowledge-Engineering Phase (off-sprint)
+
+After v1.6.0 the project entered a **knowledge-engineering phase** (Phase 2a → pre-2b):
+building the doctrinal source corpus from which the forward backlog is derived. This is
+docs-only work (no app-code / release), tracked as a work-stream rather than numbered sprints.
+
+| Work | PRs | Status |
+|------|-----|--------|
+| Sara Kalai corpus — books + 13-day video + Telegram | #149, #151, #152, #154 | ✅ Merged |
+| Sara Kalai CONF tracker — **26/26 resolved** (4 Tier-1 engine blockers) | #155 | ✅ Merged |
+| Sara Kalai YouTube corroboration (11 videos) | #156 | ✅ Merged |
+| `.kiro` planning-docs audit → v1.6.0 | #153 | ✅ Merged |
+| Product strategy: North Star, The Now Surface epic, Sacred Consultation Mode | #157, #158, #159 | ✅ Merged |
+| Panja Pakshi corpus — 45 practices / 10 topics / 8 transcripts | #160 | ✅ Merged |
+
+> **Corpus status:** Sara Kalai = 87 practices / 14 topics / **26 CONFs resolved**;
+> Panja Pakshi = 45 practices / 10 topics / **6 CONF-PP proposed** (2 Tier-1 conflicts
+> with the shipped engine — nakshatra partition 5-5-5-5-7 vs 5-6-5-5-6, and permanent
+> bird vs Krishna reverse-swap — pending a resolution pass before the accuracy gate).
+> **Next:** CONF-PP resolution → Phase 2b backlog derivation ("Integrated Aruḍam" epic).
+> Effort figures follow the AI-estimated **+ 20%** convention (see Research & Knowledge
+> Engineering breakdown above).
 
 ---
 
