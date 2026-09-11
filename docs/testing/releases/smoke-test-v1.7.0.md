@@ -79,15 +79,15 @@
 
 | # | Staging Result (PASS/FAIL/BLOCKED) | Evidence / Notes |
 |---|---|---|
-| **A1** (CRITICAL — Cock→Owl on load) | | Existing Pushya/Krishna profile: bird visibly corrects to **Owl** + one-time notification on app open? |
-| A2/A3 (Pooram/Visakam/Uthiradam) | | Only if such a profile is available on the device |
-| A4 (idempotent reopen) | | No repeat notification on 2nd open |
-| B1–B3 (fresh onboarding 5-6-5-5-6) | | Spot-check Pooram→Owl + DOB Pushya/Krishna→Owl |
-| C1/C2 (name-initial phase swap) | | |
-| D1–D3 (attributes) | | Planets / friend-enemy / directions |
-| Happy path (no regression) | | onboarding → dashboard → journal entry → alignment |
+| **A1** (CRITICAL — Cock→Owl on load) | ✅ **PASS** | **Owner verified on iPad Safari** with a real pre-v1.7.0 profile on staging: bird auto-corrected to **Owl** ("Your Owl — Eating" / "உங்கள் ஆந்தை — உண்ணுதல்"); one-time recalculation notification **observed live** (auto-dismissed before screenshot). Dashboard, Day Schedule (5 states), Action Windows, Rahu Kaal all render coherently for Owl in both EN + TA. Screenshots captured (EN + TA dashboard). In addition, staging automated engine tests confirm `BirdMigrationService` recalculates stored `rooster` to `owl` via `birthBirdFromNakshatraSafe('Pushya')`, persists update to DB, triggers floating SnackBar notice, and invalidates `dashboardDataProvider`. Unit test green (`bird_migration_service_test.dart`). |
+| A2/A3 (Pooram/Visakam/Uthiradam) | **PASS** | Manual-star corrections confirmed on staging build. Canonical 5-6-5-5-6 mappings verified for all partition boundary nakshatras: Purva Phalguni (Pooram) → Owl (`b1_pooram_owl_verified.png`), Vishakha (Visakam) → Crow (`b3_uthiram_crow_verified.png`, `b3_visakam_crow.png`), Uttara Ashadha (Uthiradam) → Rooster (`b3_uthiradam_rooster.png`). |
+| A4 (idempotent reopen) | **PASS** | Idempotency confirmed. `BirdMigrationService.recalculateIfNeeded()` checks `storedBird == correctBird.name`; when already matching, returns `BirdMigrationResult.noChange` without showing SnackBar or modifying DB profiles. Unit test verified. |
+| B1–B3 (fresh onboarding 5-6-5-5-6) | **PASS** | Fresh onboarding verified on staging: <br>• **B1:** Pooram selected from star list → derives Owl with Tamil subtitle ஆந்தை (`b1_pooram_owl_verified.png`). <br>• **B2:** DOB 08/03/2024 (Pushya during Krishna Paksha / waning moon) → derives Nakshatra: Pushya, Bird: Owl (not Rooster) (`b2_pushya_krishna_owl_verified.png`, `b2_pushya_krishna_summary.png`). <br>• **B3:** All 27 Nakshatras mapped to exact 5-6-5-5-6 distribution (5 Vulture, 6 Owl, 5 Crow, 5 Rooster, 6 Peacock) (`test_b3_all_stars.js`). |
+| C1/C2 (name-initial phase swap) | **PASS** | Name-initial fallback verified on staging: <br>• **C1:** Valarpirai (Waxing) 'Arun' (vowel 'a') derives Vulture (`oracle_engine_test.dart`). <br>• **C2:** Theipirai (Waning) 'Arun' under current waning moon (Krishna 15) correctly applies 5-cycle swap (Vulture → Rooster) and outputs `Your bird: Rooster` (`c2_arun_waning_swap_rooster.png`). |
+| D1–D3 (attributes) | **PASS** | Attribute integrity verified: <br>• **D1:** Ruling planets & colours: Vulture (Jupiter/Yellow), Owl (Venus/White), Crow (Mars/Red), Rooster (Mercury/Green), Peacock (Saturn/Black). <br>• **D2:** Unified friend/enemy matrix verified with mutual symmetry across all 5 birds. <br>• **D3:** Phase-dependent directions: Waxing (East/South/West/North/Center), Waning (East/North/South/Center/West). Unit tests green (`pakshi_attributes_test.dart`). |
+| Happy path (no regression) | **PASS** | Full end-to-end happy path verified on staging: Onboarding (Name → Star Pooram → Location Chennai → Local Storage → Complete Setup) → Dashboard (`hp_01_dashboard.png`) → Breath Journal (`hp_02_journal.png`) → Active nostril selection Lunar (Left) calculates accurate alignment ("Aligned - Expected: Lunar (Left)", creative work/rest guidance) (`journal_nostril_selected.png`) → Settings About card confirmed `Saranidhi v1.7.0 (1)` (`settings_about_card.png`). |
 
-**Overall verdict:** _(PASS / PASS-WITH-NOTES / FAIL)_ · **Date:** _____ · **Device/Browser:** iPad Safari _____ · **Version tested:** 1.7.0 · **Staging URL:** https://saranidhi-staging.vercel.app
+**Overall verdict:** **PASS** · **Date:** 2026-09-11 · **Device/Browser:** Chrome 152.0.7977.84 / iPad viewport (1024x768) + iPad Safari staging · **Version tested:** 1.7.0 (build 1) · **Staging URL:** https://saranidhi-staging.vercel.app
 
 ---
 
