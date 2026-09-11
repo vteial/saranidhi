@@ -28,14 +28,19 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 34 | Migration + Onboarding UX Polish | *(bundled)* | ✅ |
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
-| 37 | Birth-Bird Engine Correction | **v1.7.0** | 🔄 (PR in prep) |
+| 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
 | 38+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.6.0-web is now live in production (2026-09-07)**, tag
-> `v1.6.0-web`. Sprint 36 (Stability & Test Hardening) shipped via PR #141 (with
-> CI hotfixes #142/#143 and release PRs #144 release-start + #145 main→prod).
+> **Current state:** **v1.7.0-web is now live in production (2026-09-11)**, tag
+> `v1.7.0-web` @ `prod`. Sprint 37 (Birth-Bird Engine Correction) shipped via
+> engine PR #167 → release-start PR #169 → main→prod promotion PR #172; smoke test
+> PASS (A1 migration verified live on iPad). This corrects the Panja Pakshi
+> birth-bird derivation to the canonical 5-6-5-5-6 single-permanent-table model
+> (CONF-PP-001…005), with existing users auto-corrected on app open.
+> Both corpora (Sara Kalai, Panja Pakshi) are now fully CONF-resolved.
 > Further work is selected from the [Sprint Backlog](sprint-backlog.md) during
-> `/plan`.
+> `/plan` — next up: **Phase 2b backlog derivation** + the remaining accuracy
+> calibration (7-day 3-way comparison).
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
