@@ -85,8 +85,9 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
 | 6 | 5 பக்ஷிகளின் ஆழமான உளவியல் குணங்கள் (Psychological Archetypes of the 5 Birds) | ✅ | 5 | 🥇 2025 Workshop Day 3 (`pp-class-03.md`) |
 | 7 | பக்ஷி ஆற்றல் பெருக்கும் கருவிகள் & வாழ்வியல் பயன்பாடுகள் (Empowerment Tools & Life Applications) | ✅ | 5 | 🥇 2025 Workshop Day 4 (`pp-class-04.md`), Day 5 (`pp-class-05.md`) |
 | 8 | நூல் சார்ந்த தனித்துவப் பிரயோகங்கள், வாஸ்து & தன வசிய தாந்த்ரீகம் (Book-Exclusive Esoteric Practices, Vastu & Wealth Tantra) | ✅ | 10 | 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf`) |
+| 9 | மூல நூல்கள் சார்ந்த பண்டைய கோட்பாடுகள் (~1920 Classical Root Doctrines & Archaic Tamil Manuscripts) | ✅ | 7 | 🥈 Classical Books (1919 Agathiyar & 1930 Rathinam) |
 
-**Total captured: 35 practices across 8 foundational topics.**
+**Total captured: 42 practices across 9 foundational topics.**
 
 ---
 
@@ -102,11 +103,12 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
 
 | ID | Tier | Topic / Practice | Question / Ambiguity | Source | Decision (owner) | App impact | Status |
 |:--:|:--:|------------------|----------------------|--------|------------------|:----------:|:------:|
-| CONF-PP-001 | 🔴 T1 | Nakshatra-to-Bird Star Boundaries | The shipped engine (`PakshiCalculator` / Pulippani) partitions the 27 nakshatras as 5-5-5-5-7 (Vulture=5, Owl=5, Crow=5, Cock=5, Peacock=7), assigning Purva Phalguni to Crow, Vishakha to Cock, and Uttara Ashadha to Peacock. The 2025 workshop master partitions stars as 5-6-5-5-6, assigning Purva Phalguni (Pooram) to Owl, Vishakha (Visakam) to Crow, and Uttara Ashadha (Uthiradam) to Rooster. Which nakshatra boundary is canonical for the app's default birth bird? | 🥇 2025 Workshop Day 1 (`pp-class-01.md` @ 29:00) vs Shipped `PakshiCalculator._brightVultureNakshatras` | — | Shifting star assignments changes birth birds for individuals born under Pooram, Visakam, and Uthiradam. | 🔁 Proposed |
+| CONF-PP-001 | 🔴 T1 | Nakshatra-to-Bird Star Boundaries | The shipped engine (`PakshiCalculator` / Pulippani) partitions the 27 nakshatras as 5-5-5-5-7 (Vulture=5, Owl=5, Crow=5, Cock=5, Peacock=7), assigning Purva Phalguni to Crow, Vishakha to Cock, and Uttara Ashadha to Peacock. The 2025 workshop master partitions stars as 5-6-5-5-6, assigning Purva Phalguni (Pooram) to Owl, Vishakha (Visakam) to Crow, and Uttara Ashadha (Uthiradam) to Rooster. Both 1919 and 1930 classical texts (*Pancha Pakshi Rathinam* p. 46) explicitly corroborate 5-6-5-5-6 as the ancient canonical Siddha partition. Which nakshatra boundary is canonical for the app's default birth bird? | 🥇 2025 Workshop Day 1 (`pp-class-01.md` @ 29:00), 🥇 Master's Book (p. 16), 🥈 1930 *Rathinam* (p. 46) vs Shipped `PakshiCalculator._brightVultureNakshatras` | — | Shifting star assignments changes birth birds for individuals born under Pooram, Visakam, and Uthiradam. | 🔁 Proposed |
 | CONF-PP-002 | 🔴 T1 | Permanent Natal Bird vs Dark Half Reverse Swap | The shipped engine (`PakshiCalculator.birthBirdFromNakshatraAndPaksha` / Pulippani Table 1 & 2) uses two distinct star tables: Table 1 (Ashwini forward) for Shukla births and Table 2 (Revati backward) for Krishna births. The 2025 workshop teacher explicitly states that for natives with a known birth star (Janma Nakshatra), the Valarpirai table is the permanent lifetime bird ("ஜென்ம பக்ஷி... இந்த ஒரே பறவையை வாழ்நாள் முழுவதும் பயன்படுத்தலாம்... தேய்பிறை பக்ஷி போகவே வேண்டாம்"), and that waxing/waning bird swapping ONLY applies to those deriving their bird from their name initial letter (Nama Pakshi). Should birth star lookups use a single permanent table for all births, or retain dual Shukla/Krishna tables? | 🥇 2025 Workshop Day 1 (`pp-class-01.md` @ 33:00) vs `calculation-methodology.md` §1 | — | Core engine calculation in `PakshiCalculator.birthBirdFromNakshatraAndPaksha`. | 🔁 Proposed |
-| CONF-PP-003 | 🟡 T2 | Natural Friendship & Enmity Matrices | In `pakshi_attributes.dart` (Pulippani), Vulture's friends are Crow & Owl, and enemies are Peacock & Rooster. In the 2025 workshop (Day 3), Vulture's friends in Valarpirai are Peacock & Owl, and enemies are Crow & Rooster; and Vulture ↔ Peacock is declared a permanent invariant ally across both moon phases, while Vulture ↔ Rooster is declared a permanent bitter enemy. Several friend/enemy pairs are inverted between the workshop and Pulippani. Which relational matrix should the app display in compatibility and daily advice? | 🥇 2025 Workshop Day 3 (`pp-class-03.md` @ 02:46) vs `pakshi_attributes.dart` lines 197–252 | — | UI displays of bird allies, opponents, and relationship advice screens. | 🔁 Proposed |
+| CONF-PP-003 | 🟡 T2 | Natural Friendship & Enmity Matrices | In `pakshi_attributes.dart` (Pulippani), Vulture's friends are Crow & Owl, and enemies are Peacock & Rooster. In the 2025 workshop (Day 3), Vulture's friends in Valarpirai are Peacock & Owl, and enemies are Crow & Rooster; and Vulture ↔ Peacock is declared a permanent invariant ally across both moon phases, while Vulture ↔ Rooster is declared a permanent bitter enemy. Several friend/enemy pairs are inverted between the workshop and Pulippani. Note: 1930 *Pancha Pakshi Rathinam* (p. 46) explicitly comments that dual Shukla/Krishna enmity tables fail in practice and affirms unified natural affinities. Which relational matrix should the app display in compatibility and daily advice? | 🥇 2025 Workshop Day 3 (`pp-class-03.md` @ 02:46), 🥈 1930 *Rathinam* (p. 46) vs `pakshi_attributes.dart` lines 197–252 | — | UI displays of bird allies, opponents, and relationship advice screens. | 🔁 Proposed |
 | CONF-PP-004 | 🟡 T2 | Elemental Ruling Planets | In `pakshi_attributes.dart`, the ruling planets are: Vulture=Saturn, Owl=Mars, Crow=Venus, Rooster=Jupiter, Peacock=Mercury. In the 2025 workshop (Day 4 @ 48:41), the ruling planets are: Vulture=Guru (Jupiter), Owl=Sukran (Venus), Crow=Sevvai (Mars), Rooster=Budhan (Mercury), Peacock=Shani (Saturn), explained by classical Tamil Siddha elemental physics. Which planet mapping governs the bird attributes? | 🥇 2025 Workshop Day 4 (`pp-class-04.md` @ 48:41) vs `pakshi_attributes.dart` lines 91–121 | — | `PakshiAttributes` planet getters and color associations. | 🔁 Proposed |
 | CONF-PP-005 | 🟢 T3 | Cardinal Direction Assignments | In `pakshi_attributes.dart`, bird directions are static (Vulture=West, Owl=North, Crow=South, Rooster=East, Peacock=Center). In the 2025 workshop (Day 3 @ 18:21), directions are dynamic by moon phase: Valarpirai (Vulture=East, Owl=South, Crow=West, Rooster=North, Peacock=Sky/Center) and Theipirai (Vulture=East, Owl=North, Crow=South, Rooster=Center, Peacock=West). Should the app support directional tactics with phase-dependent cardinal directions? | 🥇 2025 Workshop Day 3 (`pp-class-03.md` @ 18:21) vs `pakshi_attributes.dart` lines 124–154 | — | Tactical advice and compass UI feature in AstroEngine. | 🔁 Proposed |
+| CONF-PP-006 | 🟡 T2 | Sub-Yama (அந்தர புத்தி) Duration: Uniform 28.8 min vs Classical Unequal Weighted Slices | The shipped engine and modern workshops divide each 144-minute Yama into 5 equal 28.8-minute sub-yamas (1.2 நாழிகை each). The 1919 and 1930 classical texts (*Agathiyar Panja Pakshi Sasthiram* pp. 5–6 & *Pancha Pakshi Rathinam* p. 12, 40) preserve an unequal weighted distribution based on intrinsic activity potency: Arasu=2.0 நாழிகை (48m), Nadai=1.5 நாழிகை (36m), Oon=1.25 நாழிகை (30m), Thuyil=0.75 நாழிகை (18m), Saavu=0.50 நாழிகை (12m), summing to 6.0 நாழிகை (144m). Should the engine support an optional or default classical weighted sub-yama calculation? | 🥈 1919 Classic (pp. 5–6), 🥈 1930 *Rathinam* (p. 12, 40) vs Shipped `PakshiCalculator._subYamaDuration` | — | Calculation of sub-yama start and end times in AstroEngine. | 🔁 Proposed |
 
 ---
 
@@ -730,5 +732,121 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
 - **Corroborates / diverges:** Unique tantric wealth preservation protocol codified in the master's text.
 - **Rough app idea (optional):** "Prosperity Ritual Guide" in Financial Astrology section.
 - **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 55–57).
+
+---
+
+### 9. மூல நூல்கள் சார்ந்த பண்டைய கோட்பாடுகள் (~1920 Classical Root Doctrines & Archaic Tamil Manuscripts)
+
+#### Practice — சங்க கால ஐந்திணை நிலப் பக்ஷி தத்துவம் (Classical Sangam Ainthinai Landscape Correspondences)
+- **Purpose / benefit (the why):** Grounds Panja Pakshi in classical Sangam Tamil eco-psychology (ஐந்திணை நிலவியல்), aligning human physiology with terrestrial landscapes.
+- **How it's practiced (brief mechanics):**
+  - Ecological landscape correspondences codified in *Pancha Pakshi Rathinam* (p. 47):
+    * **வல்லூறு (பாலை / Paalai - Arid desert):** Extreme endurance, surviving harsh scarcity, high elevation vantage.
+    * **ஆந்தை (குறிஞ்சி / Kurinji - Mountains & dense hills):** Nocturnal perception, hidden medicinal flora, mist and shadows.
+    * **காகம் (மருதம் / Marudham - Agrarian river valley):** Gregarious sociality, communal sharing, agricultural vigilance.
+    * **கோழி (முல்லை / Mullai - Pastoral forests & clearings):** Dawn herald, domestic stewardship, seasonal rhythm.
+    * **மயில் (நெய்தல் / Neithal - Coastal shoreline & estuaries):** Expansive horizon, aquatic resonance, rhythmic dance with rain clouds.
+- **App-help bucket:** 🟢 App-assistable — Ecological backdrop themes and environmental psychology profiles in the app.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Connects Siddha esoteric astronomy with Sangam Tamil literary biogeography.
+- **Rough app idea (optional):** Landscape-based background art reflecting the user's birth bird's ancient Sangam landscape.
+- **Source ref:** 🥈 1930 Classical Root Book (*Pancha Pakshi Rathinam* p. 47).
+
+#### Practice — பஞ்சபக்ஷி வசிய ஐங்கோண சக்கர பூஜை (Pancha Pakshi Vasiya Pentagram-Octagram Consecration)
+- **Purpose / benefit (the why):** Nullifies the occult bird curse (பக்ஷி சாபம்) and attains mastery (வசியம்) over the five elemental bird currents.
+- **How it's practiced (brief mechanics):**
+  - Carve or draw a 5-pointed pentagram within an 8-cornered boundary on a Bilva wood plank (வில்வப்பலகை) (*Pancha Pakshi Rathinam* p. 5).
+  - Inscribe the five cardinal vowels (`அ, இ, உ, எ, ஒ`) in the respective inner vertices.
+  - Offer 8 kinds of flowers at the 8 outer gates and 5 flowers at the inner pentagram.
+  - Chant the root vowel mantra for 108 repetitions: `ஆம், ஈம், ஊம், ஏம், ஓம்`.
+  - Offer 5 sacred naivedyams: பால் (Milk), பாயாசம் (Payasam), இளநீர் (Tender coconut water), நீர்மோர் (Spiced buttermilk), பானக்கம் (Panakam).
+  - Light 5 distinct lamps fueled by 5 different oils using 5 sacred threads. Perform for 5 consecutive days.
+  - Concludes with poor feeding (அன்னதானம்); removes ancestral impediments to bird mastery.
+- **App-help bucket:** 🟡 App-augmentable — Step-by-step consecration altar guide, ingredient checklist, and japa counter.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Foundational classical consecration protocol common to 1919 and 1930 treatises.
+- **Rough app idea (optional):** "Vasiya Pentagram Consecration Guide" under Advanced Sadhana.
+- **Source ref:** 🥈 1930 Classical Root Book (*Pancha Pakshi Rathinam* p. 5).
+
+#### Practice — அஷ்டவித யோனிப் பொருத்தம் & வாக்கியாக்ஷர கணிதம் (Ashta Yoni Compatibility in Panja Pakshi)
+- **Purpose / benefit (the why):** Evaluates interpersonal and transactional compatibility through predator-prey dynamics of 8 animal archetypes linked to bird root letters.
+- **How it's practiced (brief mechanics):**
+  - 8 classical consonant groupings mapped to 8 animal yonis (*Agathiyar Panja Pakshi Sasthiram 1919* pp. 10–12):
+    * `அ`: பருந்து / கழுகு (Eagle/Hawk)
+    * `க`: பூனை (Cat)
+    * `ச`: சிங்கம் (Lion)
+    * `த`: நாய் (Dog)
+    * `ந`: பாம்பு (Serpent)
+    * `ப`: எலி (Rat)
+    * `ம`: யானை (Elephant)
+    * `வ`: முயல் (Hare)
+  - Natural enmity pairs (e.g. Cat ↔ Rat, Dog ↔ Cat, Serpent ↔ Eagle, Lion ↔ Elephant) indicate instinctive friction in business partnerships or marital alliances, regardless of bird status.
+- **App-help bucket:** 🟢 App-assistable — Name Initial Ashta-Yoni compatibility checker.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Preserves classical Tamil Jinendramala / Ashta-Yoni animal-totem mathematics.
+- **Rough app idea (optional):** "Name Animal Totem & Yoni Matcher" in relationship analysis.
+- **Source ref:** 🥈 1919 Classical Root Book (*Agathiyar Panja Pakshi Sasthiram* pp. 10–12).
+
+#### Practice — தேச சம்ஸ்கார கணிதம் — உலகளாவிய சூரியோதய திருத்தம் (Desha Samskara Global LMT & Sunrise Recalibration)
+- **Purpose / benefit (the why):** Calibrates Panja Pakshi calculations for any geographical latitude/longitude on Earth, preventing failure caused by using fixed 6:00 AM tables.
+- **How it's practiced (brief mechanics):**
+  - Codified in 1930 by Balakrishna Mudaliar (*Pancha Pakshi Rathinam* pp. 6–8) for international Tamil communities:
+    * The 60-naazhigai cycle commences strictly at local astronomical sunrise (உதயகாலம்), not a static clock time.
+    * In June (e.g. June 20, sunrise 5:31 AM), the 1st Yama extends from 5:31 AM to 7:55 AM, not 6:00 to 8:24 AM.
+    * Provided time difference tables for global cities (Penang, Singapore, Natal/South Africa, London, New York, Tokyo, Melbourne, Paris).
+  - Explicit doctrine: Calculating Panja Pakshi using civil clock time without local sunrise adjustment causes the entire divination and action timing to fail.
+- **App-help bucket:** 🟢 App-assistable — High-precision GPS astronomical sunrise calculations.
+- **Implemented?:** ✅ Already implemented in `AstroEngine` (uses precise solar coordinates).
+- **Corroborates / diverges:** Direct 1930 classical textual justification for `AstroEngine`'s solar calculation model!
+- **Rough app idea (optional):** Explanatory note in app explaining why modern GPS math matches 1930 classical Desha Samskara.
+- **Source ref:** 🥈 1930 Classical Root Book (*Pancha Pakshi Rathinam* pp. 6–8).
+
+#### Practice — தாது-மூல-ஜீவ பக்ஷிப் பாகுபாடு (Dhatu-Moola-Jeeva Classification of Matter & Intent)
+- **Purpose / benefit (the why):** Categorizes thoughts, physical objects, and transactional queries into Mineral/Inanimate (தாது), Botanical/Plant (மூலம்), and Sentient/Animal/Human (ஜீவன்).
+- **How it's practiced (brief mechanics):**
+  - Assign queries and lost items according to bird nature (*Pancha Pakshi Rathinam* p. 47):
+    * **வல்லூறு:** மூலம் (Botanical, trees, wood, root crops).
+    * **ஆந்தை:** ஜீவன் (Sentient, living beings, humans, animals).
+    * **காகம்:** தாது (Minerals, metals, soil, stones, coins, jewelry).
+    * **கோழி:** மூலம் + ஜீவன் (Hybrid flora and fauna).
+    * **மயில்:** தாது + மூலம் (Hybrid mineral and botanical).
+  - In horary inquiries (ஆரூடம்), if a query regarding a missing person occurs during an active Owl (ஜீவன்) state, recovery is assured; during a Crow (தாது) state, inquiries concern inanimate property or cash.
+- **App-help bucket:** 🟢 App-assistable — Horary query classification and lost-object divination guide.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Classical Prasanna triad integrated with bird states.
+- **Rough app idea (optional):** "Prasanna Question Categorizer" based on current active bird.
+- **Source ref:** 🥈 1930 Classical Root Book (*Pancha Pakshi Rathinam* p. 47).
+
+#### Practice — அஷ்டகர்ம பஞ்சபக்ஷி முகூர்த்தக் காண்டம் (Tantric Ashta Karma Electional Grid)
+- **Purpose / benefit (the why):** Selects optimal celestial moments for executing the 8 esoteric arts (அஷ்டகர்மம்), ensuring effortless success through elemental alignment.
+- **How it's practiced (brief mechanics):**
+  - Matches the 8 Karmas to exact Nakshatra, Tithi, and Lagna alignments (*Pancha Pakshi Rathinam* p. 72):
+    * **வசியம் (Vasiyam / Attraction):** Rohini / Pushya / Anuradha during bird Ruling or Eating yamas.
+    * **மோகனம் (Mohanam / Fascination):** Ashwini / Hasta during Venus/Moon horai.
+    * **ஸ்தம்பனம் (Sthambanam / Immobilization):** Bharani / Krittika during Earth element (Vulture).
+    * **வித்வேஷணம் (Vidveshanam / Separation):** Krittika / Magha during Fire element (Crow).
+    * **உச்சாடனம் (Ucchadanam / Eradication):** Mrigashirsha / Mula during Air element (Cock).
+    * **மாரணம் (Maranam / Neutralization of Malice):** Ardra / Jyeshtha during bird Marana yamas.
+    * **ஆகர்ஷணம் (Aakarshanam / Summoning):** Chitra / Shravana during bird Ruling state.
+    * **பேதனம் (Bhedanam / Dissension):** Swati / Shatabhisha during waning phases.
+- **App-help bucket:** 🟡 App-augmentable — Tantric electional timing reference.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Codifies the ancient esoteric branch of Panja Pakshi ritual magic.
+- **Rough app idea (optional):** "Auspicious Spiritual Activity Selector" filtering days for benevolent attraction/peace rituals.
+- **Source ref:** 🥈 1930 Classical Root Book (*Pancha Pakshi Rathinam* p. 72).
+
+#### Practice — வர்மக்கலை, அமிர்தநிலை & பக்ஷி உயிர்மையத் தற்காப்பு (Varma Kalai, Amrita Nilai & Vital Center Dynamics — 🔴 DOCUMENT-ONLY)
+- **Purpose / benefit (the why):** Non-operational esoteric Siddha anatomy linking bird states to the circulatory trajectory of vital bio-prana (அமிர்த நிலை) and vulnerable pressure points (வர்ம ஸ்தானங்கள்).
+- **How it's practiced (brief mechanics):**
+  - Classical Siddha medical-martial doctrine (*Pancha Pakshi Rathinam* p. 82):
+    * Amrita Nilai (the circulating lunar bio-vital fluid) moves through 15 physical stations across the 15 lunar tithis (rising from big toe to crown in Shukla, descending in Krishna).
+    * When a native's bird is in **சாவு (Dying / Marana)** state, the corresponding organ and elemental meridian lose their protective bio-magnetic charge.
+    * Physical trauma, invasive surgeries, or deep pressure on corresponding Varma points during Marana time can trigger collapse or death.
+    * Emergency resuscitation (செத்தபட்சி எழுப்புதல்): Performed through subtle pranic stimulation at the crown and nasal breath switching to the auspicious lunar svara.
+- **App-help bucket:** 🔴 Self-achieved / document-only — High-risk vital point and emergency resuscitation doctrine; strictly excluded from automated advice or interactive application features.
+- **Implemented?:** ⬜ Strictly excluded.
+- **Corroborates / diverges:** Direct classical link between Panja Pakshi, Varma Kalai, and Svara Sastram.
+- **Rough app idea (optional):** None (strictly document-only).
+- **Source ref:** 🥈 1930 Classical Root Book (*Pancha Pakshi Rathinam* p. 82).
 
 ---
