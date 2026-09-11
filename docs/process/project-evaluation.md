@@ -96,6 +96,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 
 | Issue | Root Cause | Resolution | Sprint |
 |-------|-----------|------------|--------|
+| **Birth bird mis-calculated for ~1/3 of nakshatras + all Krishna births** | Shipped `PakshiCalculator` used the modern-secondary **Pulippani 5-5-5-5-7** partition + a dual bright/dark table (Krishna reverse-swap). Lineage-unanimous truth (2025 workshop + master's book + 1930 *Rathinam*) is **5-6-5-5-6** with a **single permanent** birth-star table. Surfaced by the Panja Pakshi corpus audit (CONF-PP-001/002); confirmed against the owner's own profile (Pushya/Krishna → wrongly Cock, correctly Owl). | Partition → 5-6-5-5-6 (Pooram→Owl, Visakam→Crow, Uthiradam→Rooster); single permanent table (no Krishna swap); waning swap isolated to the name-initial fallback (verified 5-cycle); on-load `BirdMigrationService` re-migrates ALL affected existing users (DOB + manual/no-DOB). Attributes (planets, friend/enemy, phase-directions) also corrected (CONF-PP-003/004/005). | Sprint 37 (PR #167) |
 | `InvalidTypeException` in Riverpod codegen for `Stream<List<T>>` | `riverpod_generator` incompatible with complex return types | Switched to manual Riverpod providers for journal feature | Sprint 3 |
 | `'web' parameter needs to be set` runtime crash on Flutter web | `drift_flutter` requires explicit `DriftWebOptions` on web platform | Added `sqlite3.wasm` + `drift_worker.js` + `DriftWebOptions` config | Sprint 3 (Hotfix PR #4) |
 | `pumpAndSettle` timeout in widget tests | Journal `StreamProvider` never completing without real DB | Added provider overrides in test with mocked empty stream | Sprint 3 |
@@ -185,6 +186,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 30 | Action Windows Engine + UI | #104 | 10 (ActionWindowsEngine unit tests) | ✅ Complete |
 | Sprint 31 | Numerology + Oracle Engine + GPS | #115 | 20 (Oracle + NameBird tests) | ✅ Complete |
 | Sprint 32 | Prasanam Oracle UI | #118 | 0 (UI feature, uses existing engine tests) | ✅ Complete |
+| … | Sprints 33–36 (see sprint-tracker for detail) | #131…#141 | — | ✅ Complete |
+| Sprint 37 | Birth-Bird Engine Correction (v1.7.0) | #167 | 15 (partition, 3 moving stars, Pushya/Krishna→Owl, attributes, name waning-cycle, migration idempotency) | ✅ Complete |
 
 ---
 

@@ -619,7 +619,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 37: Birth-Bird Engine Correction (v1.7.0) — 🔄 In progress (PR in prep)
+## Sprint 37: Birth-Bird Engine Correction (v1.7.0) — ✅ Complete (PR #167)
 
 > **Goal:** correct a **live calculation error** in the shipped Panja Pakshi engine —
 > the birth-bird derivation — surfaced by the Panja Pakshi corpus audit and
@@ -647,13 +647,13 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **Deferred:** CONF-PP-006 (dual equal/weighted sub-yama modes + settings toggle) — it is a **new user-facing option**, not a correction; scheduled to a later sprint to keep v1.7.0 a tight correctness release.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N). _(owner/orchestrator — Kiro cannot merge)_
-- [ ] **PR link** — #N (CI green: Analyze / Tier 1 / Build; full suite green — **local test run required pre-PR** given core-calc change).
+- [x] **Code merged** — on `main` (PR #167). _(owner/orchestrator — Kiro cannot merge)_
+- [x] **PR link** — [#167](https://github.com/vteial/saranidhi/pull/167) (CI green: Analyze / Fast Tests / Build + Full Suite; local run 546 pass / 4 known-CloudKit baseline, analyze clean, `build web` clean). Implemented in the Antigravity IDE coding setup; Kiro Web reviewed (incl. Antigravity source-verification of the name-initial waning 5-cycle — exact match to workshop + master book).
 - [x] **Docs updated** — `calculation-methodology.md` §1 rewritten to 5-6-5-5-6 + single permanent table; CONF-PP cross-links.
 - [x] **Tests** — corrected derivation + 3 disputed stars + Pushya/Krishna→Owl + re-migration (DOB & manual paths) + idempotency; local green before PR (macOS baseline = same 4 known CloudKit failures and no others).
 - [x] **Smoke test** — scenarios in `smoke-test-v1.7.0.md`: existing Pushya/Krishna user sees bird change Cock→Owl on load; manual-star user corrected; onboarding new user gets 5-6-5-5-6 bird.
-- [ ] **Valuation report** — Sprint 37 row (+20% over AI-estimated time).
-- [ ] **Tracker updated** — status ✅. _(owner/orchestrator — flips only on merge)_
+- [x] **Valuation report** — Sprint 37 row added (+20% over AI-estimated time).
+- [x] **Tracker updated** — status ✅ (this update).
 - [x] **User Guide** — update the birth-bird section (corrected partition; note existing users may see a one-time corrected bird) — real capability/accuracy change, so **not** `n/a`.
 
 > **Migration note (v1.4.1 lesson):** this changes existing users'' stored birth
