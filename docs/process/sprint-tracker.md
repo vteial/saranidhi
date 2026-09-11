@@ -644,7 +644,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > yama, and oracle result) for real users. Correctness release; no new features.
 >
 > **Process:** per the confirmed division of labor, **the implementation is done in
-> the IntelliJ/Antigravity coding setup** (local `flutter test`/`analyze` before PR);
+> the Antigravity IDE coding setup** (Saranidhi local dev; local `flutter test`/`analyze` before PR);
 > **Kiro Web authored the spec** ([`docs/process/sprint-37-birth-bird-spec.md`](sprint-37-birth-bird-spec.md))
 > and will **review the resulting PR**. Bird calc is correctness-critical → local
 > green test run is required before it ships (v1.2.1 lesson).

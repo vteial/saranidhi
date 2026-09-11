@@ -2,11 +2,29 @@
 
 # Sprint 37 — Birth-Bird Engine Correction (v1.7.0) — Implementation Spec
 
-> **Authored by Kiro Web for the IntelliJ/Antigravity coding setup.** Implement with
-> local `flutter analyze` + `flutter test` GREEN before opening the PR (core-calc
-> change → CI-only is not sufficient, per the v1.2.1 lesson). Kiro Web reviews the PR.
-> All doctrine here is **owner-confirmed** via CONF-PP-001…005 in
+> **Authored by Kiro Web for the Antigravity IDE coding setup** (Saranidhi local dev
+> = pure Antigravity IDE on the owner's Mac). Implement with local `flutter analyze` +
+> `flutter test` GREEN before opening the PR (core-calc change → CI-only is not
+> sufficient, per the v1.2.1 lesson). Kiro Web reviews the PR. All doctrine here is
+> **owner-confirmed** via CONF-PP-001…005 in
 > [`docs/research/panja-pakshi-workshop-knowledge.md`](../research/panja-pakshi-workshop-knowledge.md).
+
+## 0. Prerequisite — environment + known-GREEN baseline (do FIRST)
+
+- **Working Flutter toolchain** per [`docs/process/dev-setup.md`](dev-setup.md)
+  (macOS: Flutter stable ≥3.44 / Dart ≥3.12.1). One-time per machine — this spec does
+  NOT repeat setup; follow that doc if anything is missing.
+- **Pre-flight (before touching any Sprint 37 code)** — establish a known-green baseline
+  so we never change a core calc on top of an already-red suite (v1.2.1 lesson):
+  ```bash
+  flutter --version          # confirm stable ≥3.44 / Dart ≥3.12.1
+  flutter doctor -v          # env sane (Chrome for web, etc.)
+  flutter pub get            # deps + codegen
+  flutter analyze            # expect: no issues
+  flutter test               # expect: all passing (this is the baseline to protect)
+  ```
+  If `analyze`/`test` are NOT already green on a clean `main` checkout, STOP and report
+  it before starting — the birth-bird change must build on a green baseline.
 
 ## 1. Why (the bug)
 
