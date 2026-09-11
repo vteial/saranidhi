@@ -94,7 +94,10 @@ during `/plan`. Keep entries small and outcome-focused.
 | 🔴 | ⬜ | **CONF-PP-001 fix** — replace `PakshiCalculator` nakshatra partition 5-5-5-5-7 → **5-6-5-5-6** (Pooram→Owl, Visakam→Crow, Uthiradam→Rooster). *Owner-confirmed doctrine; lineage-unanimous.* |
 | 🔴 | ⬜ | **CONF-PP-002 fix** — birth-star bird = **single permanent Valarpirai table, remove Krishna reverse-swap**; move waxing/waning swap to a new name-initial (`birthBirdFromNameInitialAndPaksha`) fallback. *Owner-confirmed.* |
 | 🔴 | ⬜ | **Existing-user birth-bird re-migration** — on-app-load recalc so existing profiles get the corrected bird (e.g. Pushya/Krishna: Cock → **Owl**); regression test. *(v1.4.1 re-migration lesson — do NOT rely on manual recalc.)* |
-| 🟡 | ⬜ | CONF-PP-003/004/005/006 (friend-enemy matrix, ruling planets, dynamic directions, weighted sub-yamas) — resolve + apply during this accuracy work. |
+| 🟡 | ⬜ | **CONF-PP-003 fix** — unified friend/enemy matrix in `pakshi_attributes.dart` (Vulture allies Peacock+Owl, enemies Crow+Rooster; no phase split). *Owner-confirmed.* |
+| 🟡 | ⬜ | **CONF-PP-004 fix** — ruling planets: Vulture=Jupiter, Owl=Venus, Crow=Mars, Rooster=Mercury, Peacock=Saturn (+ dependent colours). *Owner-confirmed.* |
+| 🟢 | ⬜ | **CONF-PP-005 fix** — phase-dependent bird directions (function of bird+paksha), not static; feeds tactical/compass feature. *Owner-confirmed.* |
+| 🟡 | ⬜ | **CONF-PP-006 fix** — `_subYamaDuration` supports both models: default equal 28.8-min (workshop), classical weighted (48/36/30/18/12) as a user-selectable option + settings toggle. *Owner-confirmed.* |
 | 🔴 | ⬜ | Collect 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Owl/Pushya *(owner's corrected bird per CONF-PP-001/002)* *[owner task]* |
 | 🔴 | ⬜ | Collect the same 7 days from a Tamil Panchangam (drikpanchang.com or physical calendar) *[owner task]* |
 | 🟡 | ⬜ | Saranidhi diagnostic dump — generate matching 7-day output (bird states, sunrise/sunset, lunar phase, weekday) |
