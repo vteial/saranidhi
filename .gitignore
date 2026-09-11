@@ -99,5 +99,7 @@ worknotes/**/*.ogg
 worknotes/**/*.html
 worknotes/**/*.webm
 worknotes/**/*.mkv
+worknotes/**/*.pdf
 worknotes/sarakalai/telegram/**
 worknotes/sarakalai/youtube/**
+worknotes/panja_pakshi/**
