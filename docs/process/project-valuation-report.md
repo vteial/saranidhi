@@ -6,12 +6,12 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) spiritual breath-tracking app with Vedic calculation engine
-**Sprints Delivered:** 34 (Sprints 1–36 incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
-**Total Engineering Investment:** ~104.5 Hours (incl. ~26.5h Research & Knowledge Engineering)
-**Pull Requests Merged:** 160
-**Automated Test Coverage:** 450+ assertions (unit + widget + integration)
-**Production Web Release:** v1.6.0-web
-**Current Phase:** Post-v1.6.0 Research & Knowledge Engineering (Phase 2a complete → pre-2b) — Sara Kalai corpus (87 practices, 26 CONFs resolved) + Panja Pakshi corpus (45 practices, 6 CONF-PP pending) captured
+**Sprints Delivered:** 35 (Sprints 1–37 incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
+**Total Engineering Investment:** ~110.5 Hours (incl. ~26.5h Research & Knowledge Engineering)
+**Pull Requests Merged:** 167
+**Automated Test Coverage:** 546 tests (unit + widget + integration)
+**Production Web Release:** v1.6.0-web (v1.7.0 on `main`, release pending)
+**Current Phase:** Sprint 37 (Birth-Bird Engine Correction) complete — Panja Pakshi engine corrected to canonical 5-6-5-5-6 per CONF-PP-001…005; both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6). v1.7.0 release next; then Phase 2b backlog derivation.
 
 ---
 
@@ -252,7 +252,16 @@
 | Infrastructure & admin ops | 7.5 |
 | Smoke test & release ops | 4.0 |
 | Research & knowledge engineering (Phase 2a/2b prep) | 26.5 |
-| **Total** | **~104.5** |
+| Sprint 37 — Birth-Bird Engine Correction (v1.7.0) | 6.0 |
+| **Total** | **~110.5** |
+
+> **Sprint 37 note:** first sprint under the confirmed **spec → coding-setup → review**
+> process — Kiro Web authored the implementation spec + reviewed the PR; the Antigravity
+> IDE coding setup implemented + ran local tests (546 pass / 4 known-CloudKit baseline)
+> before opening PR #167. Corrects the live Panja Pakshi birth-bird bug (CONF-PP-001…005):
+> nakshatra partition → 5-6-5-5-6, single permanent birth-star table, name-initial waning
+> 5-cycle, and on-load re-migration for all affected existing users. Effort ~6.0h = AI-estimated
+> implementation + Kiro spec/review share, per the AI-estimate **+20%** convention.
 
 ---
 
@@ -295,6 +304,7 @@
 | Sprint 31 | Numerology + Oracle Engine + GPS | #115 | 440+ | ✅ Complete |
 | Sprint 32 | Prasanam Oracle UI | #118 | 440+ | ✅ Complete |
 | Sprint 36 | Stability & Test Hardening (v1.6.0) | #141 | 450+ | ✅ Complete |
+| Sprint 37 | Birth-Bird Engine Correction (v1.7.0) | #167 | 460+ | ✅ Complete |
 
 > **Sprint 36 note:** internal hardening sprint (integration-test re-gate, DB
 > migration existence-check helper, auto-recalc regression tests, somatic-UI

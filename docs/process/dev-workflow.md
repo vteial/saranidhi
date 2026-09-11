@@ -157,12 +157,18 @@ Strategic brainstorming and sprint plan revision — forward-looking.
 
 ### `/delegate`
 
-**(Paused)** — Previously used for delegating to Google Jules. Currently all work handled directly by Kiro.
+**Current model — spec → coding-setup → review** (the confirmed stable division of labor; first exercised in Sprint 37, PR #167):
 
-Delegation rules remain available for future use if needed:
-1. Delegated tasks operate on separate branches
-2. Only modify files in assigned scope
-3. Sprint PRs take merge priority
+1. **Kiro Web authors a precise implementation spec** (`docs/process/sprint-N-*-spec.md`): exact file/line changes, logic, edge cases, test updates, migration behavior, DoD, and a **pre-flight** (env + known-green baseline) — because Kiro Web **cannot run `flutter test`/`analyze` locally** and must not ship correctness-critical code blind on CI alone.
+2. **The Antigravity IDE coding setup** (Saranidhi local dev, on the owner's Mac) implements it, runs local `flutter analyze` + `flutter test` **GREEN before opening the PR** (v1.2.1 lesson), and opens the PR.
+3. **Kiro Web reviews the PR** against the spec + doctrine + migration correctness — fetching the real diff, not trusting the summary. Any source-derived value the spec flagged for owner review (e.g. a doctrinal table) is **cross-verified via a read-only Antigravity source check** before merge (Sprint 37: the name-initial waning 5-cycle was verified exact against the workshop transcript + master's book).
+4. **Owner merges** (sole merge authority; Kiro never merges/tags). Then Kiro Web runs `/sprint-update`.
+
+Rules: delegated work is on its own branch; only files in the spec's scope; **no lint-loosening to force analyze-clean** (verify `analysis_options.yaml` isn't weakened); macOS local baseline = "green except the 4 known CloudKit tests."
+
+> **Sprint 37 retrospective (first run):** the process worked cleanly — one review-flagged item (the name-swap cycle) was caught by the spec as "derive-from-source → owner-review", verified via Antigravity against primary sources, and confirmed exact. No rework needed. Keep flagging source-derived tables in the spec for explicit verification.
+
+**(Historical)** — Previously used for delegating to Google Jules (paused: reliability/SDK issues). Superseded by the Antigravity coding-setup model above.
 
 ---
 
