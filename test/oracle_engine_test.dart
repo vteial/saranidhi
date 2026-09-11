@@ -20,10 +20,19 @@ void main() {
     });
 
     test('Tamil Unicode vowels map correctly', () {
-      expect(NameBirdParser.parse('\u0B85\u0BB0\u0BC1\u0BA3\u0BCD'), PakshiBird.vulture);
-      expect(NameBirdParser.parse('\u0B87\u0BA8\u0BCD\u0BA4\u0BBF\u0BB0\u0BBE'), PakshiBird.owl);
+      expect(
+        NameBirdParser.parse('\u0B85\u0BB0\u0BC1\u0BA3\u0BCD'),
+        PakshiBird.vulture,
+      );
+      expect(
+        NameBirdParser.parse('\u0B87\u0BA8\u0BCD\u0BA4\u0BBF\u0BB0\u0BBE'),
+        PakshiBird.owl,
+      );
       expect(NameBirdParser.parse('\u0B89\u0BAE\u0BBE'), PakshiBird.crow);
-      expect(NameBirdParser.parse('\u0B8E\u0BB4\u0BBF\u0BB2\u0BCD'), PakshiBird.rooster);
+      expect(
+        NameBirdParser.parse('\u0B8E\u0BB4\u0BBF\u0BB2\u0BCD'),
+        PakshiBird.rooster,
+      );
       expect(NameBirdParser.parse('\u0B93\u0BAE\u0BCD'), PakshiBird.peacock);
     });
 
@@ -38,8 +47,139 @@ void main() {
 
     test('first vowel is used, not first letter', () {
       expect(NameBirdParser.parse('Sri'), PakshiBird.owl); // 'i' is first vowel
-      expect(NameBirdParser.parse('Prem'), PakshiBird.rooster); // 'e' is first vowel
+      expect(
+        NameBirdParser.parse('Prem'),
+        PakshiBird.rooster,
+      ); // 'e' is first vowel
     });
+
+    test(
+      'birthBirdFromNameInitialAndPaksha: Valarpirai (waxing) uses base mapping',
+      () {
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Arun',
+            LunarPhase.waxing,
+          ),
+          PakshiBird.vulture,
+        );
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Indira',
+            LunarPhase.waxing,
+          ),
+          PakshiBird.owl,
+        );
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Uma',
+            LunarPhase.waxing,
+          ),
+          PakshiBird.crow,
+        );
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Ezhil',
+            LunarPhase.waxing,
+          ),
+          PakshiBird.rooster,
+        );
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Om',
+            LunarPhase.waxing,
+          ),
+          PakshiBird.peacock,
+        );
+      },
+    );
+
+    test(
+      'birthBirdFromNameInitialAndPaksha: Theipirai (waning) applies classical swap cycle',
+      () {
+        // Vulture (A) -> Rooster
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Arun',
+            LunarPhase.waning,
+          ),
+          PakshiBird.rooster,
+        );
+        // Owl (I) -> Vulture
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Indira',
+            LunarPhase.waning,
+          ),
+          PakshiBird.vulture,
+        );
+        // Crow (U) -> Owl
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Uma',
+            LunarPhase.waning,
+          ),
+          PakshiBird.owl,
+        );
+        // Rooster (E) -> Peacock
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Ezhil',
+            LunarPhase.waning,
+          ),
+          PakshiBird.peacock,
+        );
+        // Peacock (O) -> Crow
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            'Om',
+            LunarPhase.waning,
+          ),
+          PakshiBird.crow,
+        );
+      },
+    );
+
+    test(
+      'birthBirdFromNameInitialAndPaksha: supports Tamil Unicode vowels in Theipirai',
+      () {
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            '\u0B85',
+            LunarPhase.waning,
+          ),
+          PakshiBird.rooster,
+        ); // அ -> Rooster
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            '\u0B87',
+            LunarPhase.waning,
+          ),
+          PakshiBird.vulture,
+        ); // இ -> Vulture
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            '\u0B89',
+            LunarPhase.waning,
+          ),
+          PakshiBird.owl,
+        ); // உ -> Owl
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            '\u0B8E',
+            LunarPhase.waning,
+          ),
+          PakshiBird.peacock,
+        ); // எ -> Peacock
+        expect(
+          NameBirdParser.birthBirdFromNameInitialAndPaksha(
+            '\u0B93',
+            LunarPhase.waning,
+          ),
+          PakshiBird.crow,
+        ); // ஓ -> Crow
+      },
+    );
   });
 
   group('TaraCategory', () {

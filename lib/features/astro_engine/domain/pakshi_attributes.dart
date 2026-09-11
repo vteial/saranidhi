@@ -18,6 +18,7 @@ class PakshiAttributes {
     required this.element,
     required this.planet,
     required this.direction,
+    required this.waningDirection,
     required this.colour,
     required this.friends,
     required this.enemies,
@@ -33,8 +34,22 @@ class PakshiAttributes {
   /// The ruling planet (Graha).
   final PakshiPlanet planet;
 
-  /// The cardinal direction (Disha) — favorable direction for this bird.
+  /// The cardinal direction (Disha) during waxing moon (Valarpirai).
   final PakshiDirection direction;
+
+  /// The cardinal direction (Disha) during waning moon (Theipirai).
+  final PakshiDirection waningDirection;
+
+  /// Returns the cardinal direction for this bird given the [phase].
+  PakshiDirection directionForPhase(LunarPhase phase) => switch (phase) {
+    LunarPhase.waxing => direction,
+    LunarPhase.waning => waningDirection,
+  };
+
+  /// Returns the cardinal direction for the given [bird] and [phase].
+  static PakshiDirection directionFor(PakshiBird bird, LunarPhase phase) {
+    return forBird(bird).directionForPhase(phase);
+  }
 
   /// The associated colour.
   final PakshiColour colour;
@@ -73,7 +88,8 @@ enum PakshiElement {
   String get tamilName => switch (this) {
     PakshiElement.earth => '\u0BAA\u0BC2\u0BAE\u0BBF (Prithvi)',
     PakshiElement.water => '\u0BA8\u0BC0\u0BB0\u0BCD (Apas)',
-    PakshiElement.fire => '\u0BA8\u0BC6\u0BB0\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1 (Tejas)',
+    PakshiElement.fire =>
+      '\u0BA8\u0BC6\u0BB0\u0BC1\u0BAA\u0BCD\u0BAA\u0BC1 (Tejas)',
     PakshiElement.air => '\u0B95\u0BBE\u0BB1\u0BCD\u0BB1\u0BC1 (Vayu)',
     PakshiElement.ether => '\u0B86\u0B95\u0BBE\u0BAF\u0BAE\u0BCD (Akasha)',
   };
@@ -105,8 +121,10 @@ enum PakshiPlanet {
 
   String get tamilName => switch (this) {
     PakshiPlanet.saturn => '\u0B9A\u0BA9\u0BBF (Shani)',
-    PakshiPlanet.mars => '\u0B9A\u0BC6\u0BB5\u0BCD\u0BB5\u0BBE\u0BAF\u0BCD (Sevvai)',
-    PakshiPlanet.venus => '\u0B9A\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BB0\u0BA9\u0BCD (Sukran)',
+    PakshiPlanet.mars =>
+      '\u0B9A\u0BC6\u0BB5\u0BCD\u0BB5\u0BBE\u0BAF\u0BCD (Sevvai)',
+    PakshiPlanet.venus =>
+      '\u0B9A\u0BC1\u0B95\u0BCD\u0B95\u0BBF\u0BB0\u0BA9\u0BCD (Sukran)',
     PakshiPlanet.jupiter => '\u0B95\u0BC1\u0BB0\u0BC1 (Guru)',
     PakshiPlanet.mercury => '\u0BAA\u0BC1\u0BA4\u0BA9\u0BCD (Budhan)',
   };
@@ -141,7 +159,8 @@ enum PakshiDirection {
     PakshiDirection.south => '\u0BA4\u0BC6\u0BA9\u0BCD',
     PakshiDirection.east => '\u0B95\u0BBF\u0BB4\u0B95\u0BCD\u0B95\u0BC1',
     PakshiDirection.west => '\u0BAE\u0BC7\u0BB1\u0BCD\u0B95\u0BC1',
-    PakshiDirection.center => '\u0BAE\u0BA4\u0BCD\u0BA4\u0BBF\u0BAF\u0BAE\u0BCD',
+    PakshiDirection.center =>
+      '\u0BAE\u0BA4\u0BCD\u0BA4\u0BBF\u0BAF\u0BAE\u0BCD',
   };
 
   String get emoji => switch (this) {
@@ -197,56 +216,66 @@ final Map<PakshiBird, PakshiAttributes> _attributes = {
   PakshiBird.vulture: const PakshiAttributes(
     bird: PakshiBird.vulture,
     element: PakshiElement.earth,
-    planet: PakshiPlanet.saturn,
-    direction: PakshiDirection.west,
-    colour: PakshiColour.black,
-    friends: [PakshiBird.crow, PakshiBird.owl],
-    enemies: [PakshiBird.peacock, PakshiBird.rooster],
-    nature: 'Grounded, patient, observant. Excels in sustained effort, '
+    planet: PakshiPlanet.jupiter, // Guru (CONF-PP-004)
+    direction: PakshiDirection.east, // Waxing: East (CONF-PP-005)
+    waningDirection: PakshiDirection.east, // Waning: East
+    colour: PakshiColour.yellow, // Sandal / Gold / Yellow
+    friends: [PakshiBird.peacock, PakshiBird.owl], // CONF-PP-003
+    enemies: [PakshiBird.crow, PakshiBird.rooster],
+    nature:
+        'Grounded, patient, observant. Excels in sustained effort, '
         'endurance, and strategic waiting. Strongest in evening hours.',
   ),
   PakshiBird.owl: const PakshiAttributes(
     bird: PakshiBird.owl,
     element: PakshiElement.water,
-    planet: PakshiPlanet.mars,
-    direction: PakshiDirection.north,
-    colour: PakshiColour.red,
-    friends: [PakshiBird.vulture, PakshiBird.rooster],
-    enemies: [PakshiBird.crow, PakshiBird.peacock],
-    nature: 'Intuitive, perceptive, powerful at night. Excels in hidden '
+    planet: PakshiPlanet.venus, // Sukran (CONF-PP-004)
+    direction: PakshiDirection.south, // Waxing: South (CONF-PP-005)
+    waningDirection: PakshiDirection.north, // Waning: North
+    colour: PakshiColour.white, // Pure White / Silk
+    friends: [PakshiBird.vulture, PakshiBird.crow], // CONF-PP-003
+    enemies: [PakshiBird.peacock, PakshiBird.rooster],
+    nature:
+        'Intuitive, perceptive, powerful at night. Excels in hidden '
         'knowledge, research, and decisive action. Strongest after dark.',
   ),
   PakshiBird.crow: const PakshiAttributes(
     bird: PakshiBird.crow,
     element: PakshiElement.fire,
-    planet: PakshiPlanet.venus,
-    direction: PakshiDirection.south,
-    colour: PakshiColour.white,
-    friends: [PakshiBird.vulture, PakshiBird.peacock],
-    enemies: [PakshiBird.owl, PakshiBird.rooster],
-    nature: 'Adaptable, clever, communicative. Excels in social situations, '
+    planet: PakshiPlanet.mars, // Sevvai (CONF-PP-004)
+    direction: PakshiDirection.west, // Waxing: West (CONF-PP-005)
+    waningDirection: PakshiDirection.south, // Waning: South
+    colour: PakshiColour.red, // Deep Red / Crimson
+    friends: [PakshiBird.owl, PakshiBird.rooster], // CONF-PP-003
+    enemies: [PakshiBird.vulture, PakshiBird.peacock],
+    nature:
+        'Adaptable, clever, communicative. Excels in social situations, '
         'trade, and creative problem-solving. Strongest mid-morning.',
   ),
   PakshiBird.rooster: const PakshiAttributes(
     bird: PakshiBird.rooster,
     element: PakshiElement.air,
-    planet: PakshiPlanet.jupiter,
-    direction: PakshiDirection.east,
-    colour: PakshiColour.yellow,
-    friends: [PakshiBird.owl, PakshiBird.peacock],
-    enemies: [PakshiBird.vulture, PakshiBird.crow],
-    nature: 'Disciplined, courageous, early-rising. Excels in leadership, '
+    planet: PakshiPlanet.mercury, // Budhan (CONF-PP-004)
+    direction: PakshiDirection.north, // Waxing: North (CONF-PP-005)
+    waningDirection: PakshiDirection.center, // Waning: Center
+    colour: PakshiColour.green, // Green / Emerald
+    friends: [PakshiBird.peacock, PakshiBird.crow], // CONF-PP-003
+    enemies: [PakshiBird.vulture, PakshiBird.owl],
+    nature:
+        'Disciplined, courageous, early-rising. Excels in leadership, '
         'announcements, and new beginnings. Strongest at dawn.',
   ),
   PakshiBird.peacock: const PakshiAttributes(
     bird: PakshiBird.peacock,
     element: PakshiElement.ether,
-    planet: PakshiPlanet.mercury,
-    direction: PakshiDirection.center,
-    colour: PakshiColour.green,
-    friends: [PakshiBird.crow, PakshiBird.rooster],
-    enemies: [PakshiBird.vulture, PakshiBird.owl],
-    nature: 'Spiritual, expansive, charismatic. Excels in teaching, healing, '
+    planet: PakshiPlanet.saturn, // Shani (CONF-PP-004)
+    direction: PakshiDirection.center, // Waxing: Center / Sky (CONF-PP-005)
+    waningDirection: PakshiDirection.west, // Waning: West
+    colour: PakshiColour.black, // Black / Navy Blue
+    friends: [PakshiBird.vulture, PakshiBird.rooster], // CONF-PP-003
+    enemies: [PakshiBird.owl, PakshiBird.crow],
+    nature:
+        'Spiritual, expansive, charismatic. Excels in teaching, healing, '
         'and artistic expression. Strongest at midday.',
   ),
 };

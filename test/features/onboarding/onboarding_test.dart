@@ -25,6 +25,27 @@ void main() {
           equals(PakshiBird.peacock),
         );
       });
+
+      test('Purva Phalguni maps to Owl (CONF-PP-001)', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatra('Purva Phalguni'),
+          equals(PakshiBird.owl),
+        );
+      });
+
+      test('Vishakha maps to Crow (CONF-PP-001)', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatra('Vishakha'),
+          equals(PakshiBird.crow),
+        );
+      });
+
+      test('Uttara Ashadha maps to Rooster (CONF-PP-001)', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatra('Uttara Ashadha'),
+          equals(PakshiBird.rooster),
+        );
+      });
     });
 
     group('allNakshatras list', () {

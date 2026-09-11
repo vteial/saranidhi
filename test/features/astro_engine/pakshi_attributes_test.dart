@@ -42,46 +42,133 @@ void main() {
       });
     });
 
-    group('Specific bird attributes', () {
-      test('Vulture: Earth element, Saturn, West, Black', () {
+    group('Specific bird attributes (Sprint 37 CONF-PP-003..005)', () {
+      test('Vulture: Earth element, Jupiter, Waxing/Waning East, Yellow', () {
         final attrs = PakshiAttributes.forBird(PakshiBird.vulture);
         expect(attrs.element, equals(PakshiElement.earth));
-        expect(attrs.planet, equals(PakshiPlanet.saturn));
-        expect(attrs.direction, equals(PakshiDirection.west));
-        expect(attrs.colour, equals(PakshiColour.black));
-      });
-
-      test('Owl: Water element, Mars, North, Red', () {
-        final attrs = PakshiAttributes.forBird(PakshiBird.owl);
-        expect(attrs.element, equals(PakshiElement.water));
-        expect(attrs.planet, equals(PakshiPlanet.mars));
-        expect(attrs.direction, equals(PakshiDirection.north));
-        expect(attrs.colour, equals(PakshiColour.red));
-      });
-
-      test('Crow: Fire element, Venus, South, White', () {
-        final attrs = PakshiAttributes.forBird(PakshiBird.crow);
-        expect(attrs.element, equals(PakshiElement.fire));
-        expect(attrs.planet, equals(PakshiPlanet.venus));
-        expect(attrs.direction, equals(PakshiDirection.south));
-        expect(attrs.colour, equals(PakshiColour.white));
-      });
-
-      test('Rooster: Air element, Jupiter, East, Yellow', () {
-        final attrs = PakshiAttributes.forBird(PakshiBird.rooster);
-        expect(attrs.element, equals(PakshiElement.air));
         expect(attrs.planet, equals(PakshiPlanet.jupiter));
         expect(attrs.direction, equals(PakshiDirection.east));
+        expect(
+          attrs.directionForPhase(LunarPhase.waxing),
+          equals(PakshiDirection.east),
+        );
+        expect(
+          attrs.directionForPhase(LunarPhase.waning),
+          equals(PakshiDirection.east),
+        );
+        expect(
+          PakshiAttributes.directionFor(PakshiBird.vulture, LunarPhase.waning),
+          equals(PakshiDirection.east),
+        );
         expect(attrs.colour, equals(PakshiColour.yellow));
+        expect(
+          attrs.friends,
+          containsAll([PakshiBird.peacock, PakshiBird.owl]),
+        );
+        expect(
+          attrs.enemies,
+          containsAll([PakshiBird.crow, PakshiBird.rooster]),
+        );
       });
 
-      test('Peacock: Ether element, Mercury, Center, Green', () {
-        final attrs = PakshiAttributes.forBird(PakshiBird.peacock);
-        expect(attrs.element, equals(PakshiElement.ether));
-        expect(attrs.planet, equals(PakshiPlanet.mercury));
-        expect(attrs.direction, equals(PakshiDirection.center));
-        expect(attrs.colour, equals(PakshiColour.green));
+      test('Owl: Water element, Venus, Waxing South / Waning North, White', () {
+        final attrs = PakshiAttributes.forBird(PakshiBird.owl);
+        expect(attrs.element, equals(PakshiElement.water));
+        expect(attrs.planet, equals(PakshiPlanet.venus));
+        expect(attrs.direction, equals(PakshiDirection.south));
+        expect(
+          attrs.directionForPhase(LunarPhase.waxing),
+          equals(PakshiDirection.south),
+        );
+        expect(
+          attrs.directionForPhase(LunarPhase.waning),
+          equals(PakshiDirection.north),
+        );
+        expect(attrs.colour, equals(PakshiColour.white));
+        expect(
+          attrs.friends,
+          containsAll([PakshiBird.vulture, PakshiBird.crow]),
+        );
+        expect(
+          attrs.enemies,
+          containsAll([PakshiBird.peacock, PakshiBird.rooster]),
+        );
       });
+
+      test('Crow: Fire element, Mars, Waxing West / Waning South, Red', () {
+        final attrs = PakshiAttributes.forBird(PakshiBird.crow);
+        expect(attrs.element, equals(PakshiElement.fire));
+        expect(attrs.planet, equals(PakshiPlanet.mars));
+        expect(attrs.direction, equals(PakshiDirection.west));
+        expect(
+          attrs.directionForPhase(LunarPhase.waxing),
+          equals(PakshiDirection.west),
+        );
+        expect(
+          attrs.directionForPhase(LunarPhase.waning),
+          equals(PakshiDirection.south),
+        );
+        expect(attrs.colour, equals(PakshiColour.red));
+        expect(
+          attrs.friends,
+          containsAll([PakshiBird.owl, PakshiBird.rooster]),
+        );
+        expect(
+          attrs.enemies,
+          containsAll([PakshiBird.vulture, PakshiBird.peacock]),
+        );
+      });
+
+      test(
+        'Rooster: Air element, Mercury, Waxing North / Waning Center, Green',
+        () {
+          final attrs = PakshiAttributes.forBird(PakshiBird.rooster);
+          expect(attrs.element, equals(PakshiElement.air));
+          expect(attrs.planet, equals(PakshiPlanet.mercury));
+          expect(attrs.direction, equals(PakshiDirection.north));
+          expect(
+            attrs.directionForPhase(LunarPhase.waxing),
+            equals(PakshiDirection.north),
+          );
+          expect(
+            attrs.directionForPhase(LunarPhase.waning),
+            equals(PakshiDirection.center),
+          );
+          expect(attrs.colour, equals(PakshiColour.green));
+          expect(
+            attrs.friends,
+            containsAll([PakshiBird.peacock, PakshiBird.crow]),
+          );
+          expect(
+            attrs.enemies,
+            containsAll([PakshiBird.vulture, PakshiBird.owl]),
+          );
+        },
+      );
+
+      test(
+        'Peacock: Ether element, Saturn, Waxing Center / Waning West, Black',
+        () {
+          final attrs = PakshiAttributes.forBird(PakshiBird.peacock);
+          expect(attrs.element, equals(PakshiElement.ether));
+          expect(attrs.planet, equals(PakshiPlanet.saturn));
+          expect(attrs.direction, equals(PakshiDirection.center));
+          expect(
+            attrs.directionForPhase(LunarPhase.waxing),
+            equals(PakshiDirection.center),
+          );
+          expect(
+            attrs.directionForPhase(LunarPhase.waning),
+            equals(PakshiDirection.west),
+          );
+          expect(attrs.colour, equals(PakshiColour.black));
+          expect(
+            attrs.friends,
+            containsAll([PakshiBird.vulture, PakshiBird.rooster]),
+          );
+          expect(attrs.enemies, containsAll([PakshiBird.owl, PakshiBird.crow]));
+        },
+      );
     });
 
     group('Friend/enemy relationships are symmetric', () {
@@ -129,9 +216,24 @@ void main() {
         expect(planets.length, equals(5));
       });
 
-      test('each bird has a unique direction', () {
+      test('each bird has a unique waxing direction', () {
         final directions = PakshiBird.values
-            .map((b) => PakshiAttributes.forBird(b).direction)
+            .map(
+              (b) => PakshiAttributes.forBird(
+                b,
+              ).directionForPhase(LunarPhase.waxing),
+            )
+            .toSet();
+        expect(directions.length, equals(5));
+      });
+
+      test('each bird has a unique waning direction', () {
+        final directions = PakshiBird.values
+            .map(
+              (b) => PakshiAttributes.forBird(
+                b,
+              ).directionForPhase(LunarPhase.waning),
+            )
             .toSet();
         expect(directions.length, equals(5));
       });
