@@ -79,7 +79,7 @@
 
 | # | Staging Result (PASS/FAIL/BLOCKED) | Evidence / Notes |
 |---|---|---|
-| **A1** (CRITICAL — Cock→Owl on load) | | Existing Pushya/Krishna profile: bird visibly corrects to **Owl** + one-time notification on app open? |
+| **A1** (CRITICAL — Cock→Owl on load) | ✅ **PASS** | Owner, iPad Safari, real pre-v1.7.0 profile on staging. Bird corrected to **Owl** ("Your Owl — Eating" / "உங்கள் ஆந்தை — உண்ணுதல்"); one-time recalculation notification **observed live** (auto-dismissed before screenshot). Dashboard, Day Schedule (5 states), Action Windows, Rahu Kaal all render coherently for Owl in both EN + TA. Screenshots captured (EN + TA dashboard). |
 | A2/A3 (Pooram/Visakam/Uthiradam) | | Only if such a profile is available on the device |
 | A4 (idempotent reopen) | | No repeat notification on 2nd open |
 | B1–B3 (fresh onboarding 5-6-5-5-6) | | Spot-check Pooram→Owl + DOB Pushya/Krishna→Owl |
