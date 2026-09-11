@@ -21,10 +21,20 @@
   flutter doctor -v          # env sane (Chrome for web, etc.)
   flutter pub get            # deps + codegen
   flutter analyze            # expect: no issues
-  flutter test               # expect: all passing (this is the baseline to protect)
+  flutter test               # baseline: 531 pass / 4 known CloudKit failures (see below)
   ```
-  If `analyze`/`test` are NOT already green on a clean `main` checkout, STOP and report
-  it before starting — the birth-bird change must build on a green baseline.
+  **Known macOS baseline (NOT a regression):** on macOS, `flutter test` shows **4 expected
+  failures**, all in `test/features/cloud_backup/backup_repository_test.dart` (the "on
+  non-Apple platform" CloudKit cases) — they fail only because `Platform.isMacOS==true`
+  locally, and they PASS on CI (Ubuntu). See `dev-setup.md` ~line 205. They have **zero**
+  bearing on the birth-bird engine. So the baseline to protect = "green **except those
+  same 4 CloudKit tests**." If `analyze` is not clean, or `test` shows **any failure other
+  than those 4**, STOP and report before starting.
+  - **Cleanest noise-free check for this sprint** (no CloudKit): run
+    `flutter test test/features/astro_engine/ test/features/breath_journal/ test/features/streaks/ test/features/onboarding/`
+    — these must be fully green before AND after your changes.
+  - **After implementing:** the full `flutter test` must show the **same 4 CloudKit
+    failures and NO others** — any new failure is a Sprint 37 regression to fix.
 
 ## 1. Why (the bug)
 

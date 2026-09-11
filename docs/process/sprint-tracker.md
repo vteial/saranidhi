@@ -664,7 +664,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [ ] **Code merged** — on `main` (PR #N). _(owner/orchestrator — Kiro cannot merge)_
 - [ ] **PR link** — #N (CI green: Analyze / Tier 1 / Build; full suite green — **local test run required pre-PR** given core-calc change).
 - [ ] **Docs updated** — `calculation-methodology.md` §1 rewritten to 5-6-5-5-6 + single permanent table; CONF-PP cross-links.
-- [ ] **Tests** — corrected derivation + 3 disputed stars + Pushya/Krishna→Owl + re-migration (DOB & manual paths) + idempotency; local green before PR.
+- [ ] **Tests** — corrected derivation + 3 disputed stars + Pushya/Krishna→Owl + re-migration (DOB & manual paths) + idempotency; local green before PR (macOS baseline = same 4 known CloudKit failures and no others).
 - [ ] **Smoke test** — scenarios in `smoke-test-v1.7.0.md`: existing Pushya/Krishna user sees bird change Cock→Owl on load; manual-star user corrected; onboarding new user gets 5-6-5-5-6 bird.
 - [ ] **Valuation report** — Sprint 37 row (+20% over AI-estimated time).
 - [ ] **Tracker updated** — status ✅. _(owner/orchestrator — flips only on merge)_
