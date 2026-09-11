@@ -84,8 +84,9 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
 | 5 | நட்பு-பகை உறவு வட்டங்கள் & திசை உத்திகள் (Inter-Bird Dynamics & Directional Tactics) | ✅ | 3 | 🥇 2025 Workshop Day 3 (`pp-class-03.md`) |
 | 6 | 5 பக்ஷிகளின் ஆழமான உளவியல் குணங்கள் (Psychological Archetypes of the 5 Birds) | ✅ | 5 | 🥇 2025 Workshop Day 3 (`pp-class-03.md`) |
 | 7 | பக்ஷி ஆற்றல் பெருக்கும் கருவிகள் & வாழ்வியல் பயன்பாடுகள் (Empowerment Tools & Life Applications) | ✅ | 5 | 🥇 2025 Workshop Day 4 (`pp-class-04.md`), Day 5 (`pp-class-05.md`) |
+| 8 | நூல் சார்ந்த தனித்துவப் பிரயோகங்கள், வாஸ்து & தன வசிய தாந்த்ரீகம் (Book-Exclusive Esoteric Practices, Vastu & Wealth Tantra) | ✅ | 10 | 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf`) |
 
-**Total captured: 25 practices across 7 foundational topics.**
+**Total captured: 35 practices across 8 foundational topics.**
 
 ---
 
@@ -472,14 +473,14 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
   - Chanted silently or softly with internal rhythm (லயம்):
   - **வல்லூறு (34 முறை):** `ஓம் சூல பாஸ்கர ஹேம ரூப பவுமனே பார்கவாய நமோ நம நமஸ்துதே`
   - **ஆந்தை (33 முறை):** `ஓம் ஆங்கிரசாயச க்ருதாஞ்சலிகரம் சுபம் சித்ர வஸ்த்ரனே க்ருபானகம் வரதம் பீதாம்பரதரம் ஞானானந்த மயம் சுபம்`
-  - **காகம் (தொடர் ஜெபம்):** `ஓம் வர்துலாகார மஸ்தகம் சீர் சஞ்ச வர்துலாகாரம் பூஷிதாங்கஞ்ச பீதாம்பரதரம் தேவம் க்ருதாஞ்சலி கரம் சுபம்`
+  - **காகம் (28 முறை / வாய்மொழி வகுப்பில் தொடர் ஜெபம்):** `ஓம் வர்துலாகார மஸ்தகம் சீர் சஞ்ச வர்துலாகாரம் பூஷிதாங்கஞ்ச பீதாம்பரதரம் தேவம் க்ருதாஞ்சலி கரம் சுபம்`
   - **கோழி (36 முறை):** `ஓம் நீல ரத்ன கட்க சூல கதா பாணிம் விசித்ர மகுட பேதம் குரு சுத்தௌ பாஸ்கரம் மஹம் பஜோ`
   - **மயில் (30 முறை):** `ஓம் சந்திர பிம்பதரம் சக்தி சூல பீடம் பிரம்ம புத்ரம் கிருபா மூர்த்திம் நீலோத்பல தரம் சுபம் ஞானானந்த மயம் சுபம்`
 - **App-help bucket:** 🟡 App-augmentable — In-app Japa counter with audio pronunciation guide.
 - **Implemented?:** ⬜ Not yet implemented.
-- **Corroborates / diverges:** Direct esoteric mantra formulas preserved in the oral workshop lineage.
-- **Rough app idea (optional):** Digital tap-counter for the prescribed daily repetitions (34, 33, continuous, 36, 30).
-- **Source ref:** 🥇 2025 Workshop Day 4 (`pp-class-04.md` @ 36:01 – 43:30).
+- **Corroborates / diverges:** Direct esoteric mantra formulas. Oral workshop suggested continuous/unlimited japa for Crow, while the Master's book explicitly fixes Crow japa at exactly 28 repetitions.
+- **Rough app idea (optional):** Digital tap-counter for the prescribed daily repetitions (34, 33, 28, 36, 30).
+- **Source ref:** 🥇 2025 Workshop Day 4 (`pp-class-04.md` @ 36:01 – 43:30) & 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` p. 44).
 
 #### Practice — பக்ஷி விருட்சங்கள், அன்னங்கள் & பஞ்ச நாதங்கள் (Sacred Trees, Rice Offerings, and Pancha Nadhas)
 - **Purpose / benefit (the why):** Physical and auditory grounding elements that harmonize the practitioner's biological field with their elemental bird.
@@ -535,5 +536,199 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
 - **Corroborates / diverges:** Integrates bird states with classical planetary hora electional rules.
 - **Rough app idea (optional):** "Auspicious Purchase Finder" filtering days for Gold / Vehicle / Real Estate buying.
 - **Source ref:** 🥇 2025 Workshop Day 5 (`pp-class-05.md` @ 28:01 – 32:30).
+
+---
+
+### 8. நூல் சார்ந்த தனித்துவப் பிரயோகங்கள், வாஸ்து & தன வசிய தாந்த்ரீகம் (Book-Exclusive Esoteric Practices, Vastu & Wealth Tantra)
+
+#### Practice — திதி & லக்ன/ராசி பக்ஷி நிர்ணய முறை (Tithi & Lagna/Rasi Bird Determination)
+- **Purpose / benefit (the why):** Determines operative bird energy when birth star is unavailable, or for horary divination (பிரசன்னம்) and daily ritual election.
+- **How it's practiced (brief mechanics):**
+  - **திதி பக்ஷி (Tithi Pakshi - Book pp. 19–20):**
+    * வளர்பிறை (Shukla): பிரதமை–திரிதியை = வல்லூறு | சதுர்த்தி–சஷ்டி = ஆந்தை | சப்தமி–நவமி = காகம் | தசமி–துவாதசி = கோழி | திரயோதசி–பௌர்ணமி = மயில்.
+    * தேய்பிறை (Krishna): பிரதமை–திரிதியை = மயில் | சதுர்த்தி–சஷ்டி = கோழி | சப்தமி–நவமி = காகம் | தசமி–துவாதசி = ஆந்தை | திரயோதசி–அமாவாசை = வல்லூறு.
+  - **லக்ன / இராசி பக்ஷி (Lagna / Rasi Pakshi - Book p. 21):**
+    * மேஷம், விருச்சிகம் (Mars): காகம் (Fire)
+    * ரிஷபம், துலாம் (Venus): ஆந்தை (Water)
+    * மிதுனம், கன்னி (Mercury): கோழி (Air)
+    * தனுசு, மீனம் (Jupiter): வல்லூறு (Earth)
+    * மகரம், கும்பம் (Saturn): மயில் (Ether)
+    * கடகம் (Moon) & சிம்மம் (Sun): Aligned by elemental triplicity / tatva in horary judgment.
+- **App-help bucket:** 🟢 App-assistable — Alternate bird derivation selector and horary/Prasanna chart calculator.
+- **Implemented?:** ⬜ Current app only supports Nakshatra and Name Initial derivation.
+- **Corroborates / diverges:** Expands the input modalities of the engine beyond Janma Nakshatra and Nama initial.
+- **Rough app idea (optional):** "Prasanna Bird Mode" calculating instant Tithi/Lagna bird for horary inquiries.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 19–21).
+
+#### Practice — பக்ஷி 40+ தத்துவ காரகங்கள் & பஞ்ச பிராண விரிவு (Comprehensive 40+ Karakatvas & Pancha Prana Matrix)
+- **Purpose / benefit (the why):** Maps human psychosomatic architecture, organs, elements, deities, and subtle pranas to the 5 birds, enabling precise diagnostic and remedial applications.
+- **How it's practiced (brief mechanics):**
+  - Meditate on or align actions with the multi-dimensional correspondence grid (Book pp. 31–40):
+    * **வல்லூறு (Earth / நிலம் / பிரித்வி):** பிரம்மா | இச்சா சக்தி | ரிக் வேதம் | சாந்த குணம் | நாசி / வாசனை | சுவை: இனிப்பு | தாது: மாமிசம்/சதை | பிராணன்: பிராணன் & நாகன் | கோசம்: அன்னமய கோசம் | சிவ முகம்: சத்யோஜாதம் | பீஜம்: 'ந' (Panchakshara 108 japa).
+    * **ஆந்தை (Water / நீர் / அப்பு):** விஷ்ணு | கிரியா சக்தி | யஜுர் வேதம் | சாத்வீக குணம் | நாக்கு / சுவை | சுவை: துவர்ப்பு | தாது: இரத்தம்/சுக்கிலம் | பிராணன்: அபானன் & கூர்மன் | கோசம்: பிராணமய கோசம் | சிவ முகம்: வாமதேவம் | பீஜம்: 'ம' (Panchakshara 108 japa).
+    * **காகம் (Fire / நெருப்பு / தேயு):** ருத்ரன் | ஞான சக்தி | சாம வேதம் | தாமஸ குணம் | கண் / பார்வை | சுவை: கார்ப்பு | தாது: மச்சை/எலும்பு | பிராணன்: வியானன் & கிருகரன் | கோசம்: மனோமய கோசம் | சிவ முகம்: அகோரம் | பீஜம்: 'சி' (Panchakshara 108 japa).
+    * **கோழி (Air / காற்று / வாயு):** மகேஸ்வரன் | ஆதி சக்தி | அதர்வண வேதம் | ரஜோ குணம் | தோல் / தொடுஉணர்வு | சுவை: கசப்பு/புளிப்பு | தாது: தோல்/நரம்பு | பிராணன்: உதானன் & தேவதத்தன் | கோசம்: விஞ்ஞானமய கோசம் | சிவ முகம்: தத்புருஷம் | பீஜம்: 'வா' (Panchakshara 108 japa).
+    * **மயில் (Ether / ஆகாயம் / ஆகாசம்):** சதாசிவன் | பரா சக்தி | பிரணவ வேதம் | நிர்குண தத்துவம் | செவி / ஒலி | சுவை: உவர்ப்பு | தாது: சுக்கிலம்/ஜீவன் | பிராணன்: சமானன் & தனஞ்சயன் | கோசம்: ஆனந்தமய கோசம் | சிவ முகம்: ஈசானம் | பீஜம்: 'ய' (Panchakshara 108 japa).
+- **App-help bucket:** 🟢 App-assistable — Interactive multi-dimensional correspondence lookup table.
+- **Implemented?:** ⬜ Partially shipped in static `pakshi_attributes.dart` (limited to 6 attributes).
+- **Corroborates / diverges:** Vastly enriches attributes; corroborates workshop oral teaching with codified lineage charts.
+- **Rough app idea (optional):** Deep-dive "Bird Profile Anatomy" tab revealing esoteric tatvas, chakras, deities, and pranas.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 31–40).
+
+#### Practice — சண்முக எந்திரம் & 1008 உருவேற்றும் சித்தி முறை (Shanmukha Yantra Consecration & 1008 Siddhi Attainment)
+- **Purpose / benefit (the why):** Consecrates the bird's occult geometric circuit (Shanmukha / Shatkona Yantra) onto metal to achieve Siddhi (mastery) over the 5 bird energies.
+- **How it's practiced (brief mechanics):**
+  - Engrave or draw the Shanmukha Yantra (six-pointed star / Hexagram) on a copper or silver plate (Book pp. 16–18).
+  - Inscribe the bird's presiding Panchakshara letter (`ந`, `ம`, `சி`, `வா`, `ய`) in the central bindu and petals.
+  - Sit facing your bird's cardinal direction on an auspicious ruling day during the bird's **அரசு (Ruling)** yama.
+  - Light a pure ghee lamp, offer the prescribed bird flower/incense, and chant the natal root mantra for exactly **1008 repetitions**.
+  - Wear or place in the altar; serves as a perpetual bio-magnetic amplifier shield.
+- **App-help bucket:** 🟡 App-augmentable — Yantra visualization diagrams, step-by-step consecration checklist, and 1008-japa digital counter.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Direct esoteric siddhi practice specific to this master's lineage.
+- **Rough app idea (optional):** "Yantra Siddhi Guide" showing printable yantra geometry and 1008-mala timer.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 16–18).
+
+#### Practice — பக்ஷி மூலிகைகள், எந்திரங்கள் & பஞ்ச மண் பரிகாரம் (Bird Herbs, Yantras & Sacred Soil Remedies)
+- **Purpose / benefit (the why):** Remedial botanical, yantric, and telluric interventions to repair damaged bio-fields and neutralize karmic afflictions.
+- **How it's practiced (brief mechanics):**
+  - **Mooligai (Herbs) & Presiding Yantras (Book pp. 41–42):**
+    * **வளர்பிறை (Shukla):**
+      - வல்லூறு: அரைக்கீரை (Herbal intake/talisman) | பிரம்ம கணபதி எந்திரம் (Brahma Ganapati Yantra).
+      - ஆந்தை: சிறுகீரை | சுதர்சன எந்திரம் (Sudarshana Yantra).
+      - காகம்: சாரணை | ஏரொளி எந்திரம் (Eroli Yantra).
+      - கோழி: தகரை | சரவணபவ சட்கோண எந்திரம் (Saravanabhava Shatkona Yantra).
+      - மயில்: மாங்குலியம் | மச்ச எந்திரம் (Macha Yantra).
+    * **தேய்பிறை (Krishna):**
+      - மயில்: நாய்க்கடுகு | வித்யா எந்திரம் (Vidya Yantra).
+      - கோழி: அரைக்கீரை | லட்சுமி குபேர எந்திரம் (Lakshmi Kubera Yantra).
+      - காகம்: அவுரி | சிதம்பர சக்கரம் (Chidambara Chakra).
+      - ஆந்தை: குப்பைமேனி | சக்தி எந்திரம் (Shakti Yantra).
+      - வல்லூறு: தாயிரேகை | சிதம்பர சக்கரம் (Chidambara Chakra).
+  - **பஞ்ச மண் (Five Sacred Soils - p. 43):**
+    * வல்லூறு (Earth): காளையின் கொம்பிலுள்ள மண் (Soil from a bull's horn).
+    * ஆந்தை (Water): கடல் மண் (Sea sand / ocean sediment).
+    * காகம் (Fire): மலை மண் (Mountain peak soil / rock dust).
+    * கோழி (Air): குளத்தின் மண் (Lake/pond bed mud).
+    * மயில் (Ether): சிவாலயத்திலுள்ள மண் (Soil from a Shiva temple sanctum/compound).
+- **App-help bucket:** 🟡 App-augmentable — Herbal identification guides and remedy instructions.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Precise esoteric herb and yantra linkages recorded in the authoritative written text.
+- **Rough app idea (optional):** "Botanical & Yantric Remedies" catalog indexed by bird and moon phase.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 41–43).
+
+#### Practice — பக்ஷி தொழில் & வாழ்வியல் வழிகாட்டல் (Vocational Guidance & Occupational Alignment)
+- **Purpose / benefit (the why):** Directs native toward vocations and industries aligned with their bird's innate elemental nature, maximizing effortless professional success and financial flow.
+- **How it's practiced (brief mechanics):**
+  - Select career paths corresponding to bird elemental rulership (Book pp. 22–25):
+    * **வல்லூறு (Earth):** ரியல் எஸ்டேட், நிலம், விவசாயம், சுரங்கம், சிவில் இன்ஜினியரிங், கட்டுமான ஒப்பந்தங்கள், மண்பாண்டங்கள், செங்கல் உற்பத்தி, உணவு தானிய வர்த்தகம் (Real estate, land, farming, mining, civil engineering, construction contracting, brick production, grain commerce).
+    * **ஆந்தை (Water):** கப்பல் போக்குவரத்து, கடல்சார் தொழில், மீன்வளம், இரசாயனம், மருத்துவம், மருந்தகம், பால் பண்ணை, திரவ வர்த்தகம், வாசனை திரவியங்கள் (Shipping, marine trades, fisheries, chemicals, medicine, pharmacy, dairy farming, beverage trade, perfumery).
+    * **காகம் (Fire):** மெக்கானிக்கல் இன்ஜினியரிங், மின்சாரம், எலக்ட்ரானிக்ஸ், ராணுவம், காவல் துறை, சமையல் கலை, ஹோட்டல் தொழில், தீயணைப்பு, உலோகத் தொழில், எரிபொருள் வர்த்தகம் (Mechanical engineering, electrical/electronics, defense, police, culinary arts, hospitality, metal smelting, energy/fuels).
+    * **கோழி (Air):** விமானப் போக்குவரத்து, தபால்/கொரியர், தகவல் தொடர்பு, பத்திரிகை, ஊடகம், தகவல் தொழில்நுட்பம் (IT), தரகு வர்த்தகம், எழுத்தாளர், பேச்சாளர், கணக்காளர் (Aviation, logistics/courier, telecommunications, journalism, media, IT, brokerage, writing, public speaking, auditing).
+    * **மயில் (Ether):** நீதித்துறை, வக்கீல், நீதிபதி, அரசு நிர்வாகம், உயர் அரசியல், ஜோதிடம், ஆன்மீக குரு, ஆராய்ச்சி, வேதாந்தம், கோயில் பணிகள், கலைகள் (Judiciary, advocacy, magistrates, civil service administration, high-level politics, astrology, spiritual teaching, philosophical research, temple administration, fine arts).
+- **App-help bucket:** 🟢 App-assistable — Career alignment assessment module in user profile.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Standardizes vocational correspondences across classical elemental categories.
+- **Rough app idea (optional):** "Vocation & Career Alignment" analysis in Natal Bird dashboard.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 22–25).
+
+#### Practice — பக்ஷி உடல் பலவீனங்கள் & நோயியல் தற்காப்பு (Physical Vulnerabilities & Health Preservation — 🔴 Document-Only)
+- **Purpose / benefit (the why):** Non-diagnostic, classical anatomical mapping highlighting bodily organs and physiological systems sensitive to elemental imbalances.
+- **How it's practiced (brief mechanics):**
+  - Awareness of congenital physical vulnerabilities (Book pp. 26–28):
+    * **வல்லூறு (Earth):** எலும்பு முறிவுகள், மூட்டு வலிகள், பற்கள், தசைக் கட்டிகள், தசை நாண்கள், உடல் பருமன் (Bones, skeletal system, joints, teeth, muscular stiffness, obesity).
+    * **ஆந்தை (Water):** சளி, கபம், சைனஸ், சிறுநீரகம், நீரிழிவு, இரத்த ஓட்டக் கோளாறுகள், நீர்ச்சத்து குறைபாடு (Phlegm/Kapha, sinus congestion, kidneys, urinary system, diabetes, circulatory disorders).
+    * **காகம் (Fire):** பித்தம், அல்சர், இரத்த அழுத்தம் (BP), கண் கோளாறுகள், தலைவலி, தோல் எரிச்சல், விபத்து காயங்கள் (Pitta disorders, gastric ulcers, hypertension, ophthalmic issues, migraine, skin rashes, burn injuries).
+    * **கோழி (Air):** வாயு தொல்லை, பக்கவாதம், நரம்புத் தளர்ச்சி, மூச்சுக்குழாய் அழற்சி, ஆஸ்துமா, குடல் புழுக்கள் (Vata ailments, neurological disorders, tremors, bronchitis, asthma, digestive spasms).
+    * **மயில் (Ether):** மன அழுத்தம், தூக்கமின்மை, மூளை நரம்பு பாதிப்பு, காது கேளாமை, வலிப்பு, காரணமற்ற அச்சம் (Mental depression, insomnia, cerebral disorders, hearing impairments, epilepsy, unexplained psychosomatic anxieties).
+  - Remediation: Strict avoidance of surgeries and risky treatments during bird **துயில் (Sleeping)** and **சாவு (Dying)** periods; strengthen through pranayama and diet.
+- **App-help bucket:** 🔴 Self-achieved / document-only — Sensitive physiological and medical content; non-directive reference only.
+- **Implemented?:** ⬜ Strictly excluded from automated algorithmic diagnosis.
+- **Corroborates / diverges:** Deepens classical Ayur-Pakshi diagnostic framework.
+- **Rough app idea (optional):** Knowledge-only reference article on bird physical constitution.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 26–28).
+
+#### Practice — மனையடி சாஸ்திரம் & பக்ஷி முகூர்த்தம் (House Foundation, Construction & Grihapravesha Muhurtham)
+- **Purpose / benefit (the why):** Guarantees longevity, peace, wealth, and freedom from ancestral/structural defects when laying foundation stones or moving into residential properties.
+- **How it's practiced (brief mechanics):**
+  - **நட்சத்திர பக்ஷி அதிகார நாள் (Ruling Power Day):** Lay foundation (கால் போடுதல்) or perform Grihapravesha on a day when the owner's birth bird is in sovereign power (Book pp. 50–52):
+    1. **அரசு–அரசு (Ruling sub-ruling Ruling):** House stands strong for **1000 years**. Unprecedented quad-directional fame, luxury vehicles, and flourishing generations.
+    2. **அரசு–ஊண் (Eating sub-ruling Ruling):** House stands strong for **600 years**.
+    3. **ஊண்–அரசு (Ruling sub-ruling Eating):** House stands strong for **800 years**.
+    4. **ஊண்–ஊண் (Eating sub-ruling Eating):** House stands strong for **200 years**.
+  - **Strict Prohibition:** Never lay foundation or move in during **படுபக்ஷி (Padu Pakshi)** or **தன்ய (Shunya) days**, regardless of whether it is a designated Vastu day.
+  - **Orientation Rule:** Regardless of plot entrance direction, face the practitioner's bird's cardinal direction during the preliminary Bhumi Puja.
+  - **Rental Property Entry (வாடகை வீடு நிவாரணம்):** For individuals trapped in hardship, moving into a rented house during an aligned bird power window (Arasu-Arasu / Arasu-Oon / Oon-Arasu with Chandra & Tara Balam) neutralizes existing structural Vastu doshas and black magic/evil eye afflictions, rapidly paving the path to owning their own home.
+- **App-help bucket:** 🟢 App-assistable — Construction & Grihapravesha Muhurtham Calculator.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Groundbreaking integration of micro-yama Pakshi dynamics with civil architectural foundations.
+- **Rough app idea (optional):** "Vastu & Foundation Muhurtham Planner" highlighting 1000-year and 800-year structural windows.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 50–52).
+
+#### Practice — வாஸ்து பஞ்சபூத தோஷ நிவர்த்தி பரிகாரம் (Pancha Bhoota Vastu Remediation with Sacred Soils & Mantras)
+- **Purpose / benefit (the why):** Remedies architectural corner cuts and irregular plot angles without requiring structural demolition, neutralizing domestic discord and stagnancy.
+- **How it's practiced (brief mechanics):**
+  - Maintain 90-degree angular integrity across four directional corners (Book pp. 52–53):
+    * தென்மேற்கு (நிருதி / நிலம்): South-West / Earth
+    * வடகிழக்கு (ஈசானியம் / நீர்): North-East / Water
+    * தென்கிழக்கு (அக்னி / நெருப்பு): South-East / Fire
+    * வடமேற்கு (வாயு / காற்று): North-West / Air
+    * பிரம்மபாகம் (மத்தி / ஆகாயம்): Central Void / Ether
+  - For houses with cut corners (வெட்டுப்பட்ட மூலைகள்), execute elemental soil burying and mantra japa on prescribed weekdays:
+    * **நிலம் (நிருதி):** செவ்வாய் (Tuesday) | ஓம் நமசிவாய (108 முறை) | யானை காலடி மண் (90g).
+    * **நீர் (ஈசானியம்):** புதன் (Wednesday) | ஓம் மசிவாயந (108 முறை) | குளத்து மண் (110g).
+    * **நெருப்பு (அக்னி):** வியாழன் (Thursday) | ஓம் சிவாயநம (108 முறை) | சுண்ணாம்பு சூலை மண் (40g).
+    * **காற்று (வாயு):** வெள்ளி (Friday) | ஓம் வாயநமசி (108 முறை) | புற்று மண் (150g).
+    * **ஆகாயம் (பிரம்மபாகம்):** சனி (Saturday) | ஓம் யநமசிவா (108 முறை) | கடல் மண் (120g).
+- **App-help bucket:** 🟡 App-augmentable — Step-by-step Vastu soil remediation checklist with calendar schedule.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Rare Siddha architectural alchemy combining geometric soil grams with cyclic Panchakshara permutations.
+- **Rough app idea (optional):** "Vastu Defect Remediation Assistant" tracking soil procurement and 108-japa days.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 52–53).
+
+#### Practice — ஆரா ஹீலிங், திருஷ்டி கழித்தல் & எதிர்மறை ஆற்றல் சுத்திகரிப்பு (Aura Healing & Negative Energy Cleansing)
+- **Purpose / benefit (the why):** Cleanses the human bio-field (Aura) of evil eye (கண்திருஷ்டி), psychic debris, black magic vibrations, and chronic lethargy, restoring vibrant vital radiance.
+- **How it's practiced (brief mechanics):**
+  - Age-stratified physical purification rituals (Book p. 54):
+    * **பெரியவர்கள் (Adults):** Apply Panchagavya on scalp, take a bath. On Friday, purchase a solid chunk of படிகாரம் (Alum), wave around head clockwise, and cast into glowing embers while chanting:
+      `ஓம் சவ்வும் போதானந்தமா நில்லு நில்லு சுவாஹா` (until the alum melts completely).
+    * **இளைஞர்கள் (Youths):** Place sacred cow dung (பசுஞ்சாணம்) on the crown chakra for 3 consecutive days prior to bathing. While fumigating with Sambrani (benzoin dhoop), chant 16 times:
+      `ஓம் ஆம் க்லீம் ஸர்வசக்தி கணாதீச மாம் ரக்ஷ ரக்ஷ மம ஸான்னித்யம் குரு குரு அனுகிரக சுவாஹா`.
+    * **குழந்தைகள் (Children):** Bathe in water mixed with Gomayam (cow urine) for 3 days. While fumigating with Sambrani, chant 8 times:
+      `ஓம் ஹ்ரீம் கம் ஹ்ரீம் தும் துர்காபுத்ராய சக்தி ஹஸ்தாய மாத்ருவத்ஸலாய மஹா கணபதயே நம`.
+- **App-help bucket:** 🟡 App-augmentable — Aura healing ritual instructions and mantra audio player.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Classical lineage purification protocol combining organic alchemical elements with protective mantras.
+- **Rough app idea (optional):** Aura Cleansing reminder for New Moon / Friday evenings.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` p. 54).
+
+#### Practice — இராசி வாரியாக பணம் எண்ணும் முறை & குபேர வசிய தாந்த்ரீகம் (Rasi-Based Money Counting Rituals & Wealth Attraction)
+- **Purpose / benefit (the why):** Establishes psychological and energetic reverence towards currency notes, eliminating poverty consciousness and creating perpetual financial magnetism (குபேர வசியம்).
+- **How it's practiced (brief mechanics):**
+  - Grouped by zodiac triplicity / mobility (Book pp. 55–57):
+    * **சர இராசிகள் (Chara Rasis — மேஷம், கடகம், துலாம், மகரம்):**
+      - Direction: Face North (வடக்கு).
+      - Asana: Sit on white silk cloth (வெண்பட்டு துணி).
+      - Action: Blow on left palm 3 times, chant "ஓம்" 3 times.
+      - Before counting (3 times): `ஓம் சரமாதா ஜோதிர் ஸ்ரீம் அதியோக கர வசி வசியூம் ஐம் ஸ்ரீம் சுவாஹா`.
+      - When placing cash (3 times): `ஓம் யக்க ராஜ நிரந்தர வாச அனுகிரக வர வரத சித்திரஸ்து`.
+      - Cash box sachet: Wrap Lotus petals (தாமரை இதழ்), poolankizhangu (பூலாங்கிழங்கு), and neeradimuthu or karboga rice in yellow cloth; place with cash.
+    * **ஸ்திர இராசிகள் (Sthira Rasis — ரிஷபம், சிம்மம், விருச்சிகம், கும்பம்):**
+      - Direction: Face East (கிழக்கு).
+      - Rules: Never count while standing, chewing food, or moistening fingers with saliva.
+      - Action: Chant "ஓம்" 3 times, then chant (3 times): `ஓம் ஸ்திர ராஜாய வசியூம் தன மாதாய ஐம் ஸ்ரீம் ஹ்ரீம் பூர் வசி வசி ஸ்வாஹா`.
+      - When placing cash (5 times): `ஓம் பானு பாசுவர பூர்புவ ஸ்வாஹா நிரந்தர தனவாச அனுகிரக தயாபரா இரட்சகம் நமாம்யகம்`.
+      - Cash box sachet: Bundle valampuri/edampuri shells and sunflower seeds.
+    * **உபய இராசிகள் (Ubhaya Rasis — மிதுனம், கன்னி, தனுசு, மீனம்):**
+      - Direction: Face West (மேற்கு).
+      - Asana: Sit on blue cloth (நீல நிற துணி); mind free of anxiety.
+      - Action: Rub hands 3 times, place left hand down and right hand on top, chant "ஓம்" 5 times, blow on hands.
+      - Chant before counting (3 times): `ஓம் உபயராஜ உப தேவதாப்யோ தன ஐம் ஸ்ரீம் வசி ஸ்வாஹா`.
+      - Sachet: Nayuruvi root (நாயுருவி வேர்), kasturi turmeric (கஸ்தூரி மஞ்சள்), athimadhuram (அதிமதுரம் 1 துண்டு) bundled in yellow cloth with 1 chant of: `ஓம் ஸ்ரீம் ஸ்ரீம் ஐம் ஸ்ரீம் அதியோக விருட்ச தன சித்தினே நமஸ்துப்யம்`.
+- **App-help bucket:** 🟢 App-assistable — Personalized Money Protocol Card based on user's Moon/Ascendant sign.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Unique tantric wealth preservation protocol codified in the master's text.
+- **Rough app idea (optional):** "Prosperity Ritual Guide" in Financial Astrology section.
+- **Source ref:** 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf` pp. 55–57).
 
 ---
