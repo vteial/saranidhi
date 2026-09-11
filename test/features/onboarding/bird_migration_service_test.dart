@@ -14,8 +14,7 @@ void main() {
   // it is derived below via the SAME PakshiCalculator methods the service
   // uses, so the test stays honest even if the astro tables change.
   const nakshatra = 'Ashwini';
-  final birthEpoch =
-      DateTime.utc(1990, 5, 20, 6, 30).millisecondsSinceEpoch;
+  final birthEpoch = DateTime.utc(1990, 5, 20, 6, 30).millisecondsSinceEpoch;
 
   /// The correct dual-table bird for [nakshatra] at [birthEpoch], derived the
   /// exact way [BirdMigrationService.recalculateIfNeeded] derives it.
@@ -34,7 +33,9 @@ void main() {
     String? birthBird,
   }) async {
     final now = DateTime.now().millisecondsSinceEpoch;
-    await db.into(db.profiles).insert(
+    await db
+        .into(db.profiles)
+        .insert(
           ProfilesCompanion.insert(
             id: id,
             createdAt: now,
@@ -48,8 +49,7 @@ void main() {
   }
 
   Future<Profile> fetchProfile(String id) {
-    return (db.select(db.profiles)..where((t) => t.id.equals(id)))
-        .getSingle();
+    return (db.select(db.profiles)..where((t) => t.id.equals(id))).getSingle();
   }
 
   setUp(() {
@@ -58,8 +58,10 @@ void main() {
 
     // Derive the expected correct bird via the real calculator (dual-table,
     // Paksha-aware) — the same path the service takes.
-    final birthDate =
-        DateTime.fromMillisecondsSinceEpoch(birthEpoch, isUtc: true);
+    final birthDate = DateTime.fromMillisecondsSinceEpoch(
+      birthEpoch,
+      isUtc: true,
+    );
     final birthPaksha = PakshiCalculator.birthPakshaFromDOB(birthDate);
     final derived = PakshiCalculator.birthBirdFromNakshatraAndPaksha(
       nakshatra,
@@ -82,80 +84,130 @@ void main() {
     await db.close();
   });
 
-  group('BirdMigrationService.recalculateIfNeeded', () {
+  group('BirdMigrationService.recalculateIfNeeded (Sprint 37)', () {
     test(
-      'corrects a stale-bird profile that has a DOB + nakshatra',
+      'corrects a stale-bird profile that has a DOB + nakshatra (Pushya stored rooster -> owl)',
       () async {
         final id = await insertProfile(
-          id: 'stale-profile',
+          id: 'pushya-dob-profile',
           birthDateEpoch: birthEpoch,
-          birthStarNakshatra: nakshatra,
-          birthBird: staleBird.name,
+          birthStarNakshatra: 'Pushya',
+          birthBird: 'rooster', // old incorrect Krishna derivation
         );
 
         final result = await service.recalculateIfNeeded();
 
         expect(result.changed, isTrue);
-        expect(result.oldBird, staleBird.name);
-        expect(result.newBird, correctBird.name);
+        expect(result.oldBird, 'rooster');
+        expect(result.newBird, 'owl');
 
         // The DB row must actually be rewritten to the correct bird.
         final updated = await fetchProfile(id);
-        expect(updated.birthBird, correctBird.name);
+        expect(updated.birthBird, 'owl');
       },
     );
 
     test(
-      'leaves a no-DOB profile untouched',
+      'corrects a manual/no-DOB profile with an affected star (Pooram stored crow -> owl)',
       () async {
         final id = await insertProfile(
-          id: 'no-dob-profile',
-          birthStarNakshatra: nakshatra,
-          birthBird: staleBird.name,
+          id: 'pooram-manual-profile',
+          birthStarNakshatra: 'Purva Phalguni',
+          birthBird: 'crow', // old 5-5-5-5-7 derivation
         );
 
         final result = await service.recalculateIfNeeded();
 
-        expect(result.changed, isFalse);
+        expect(result.changed, isTrue);
+        expect(result.oldBird, 'crow');
+        expect(result.newBird, 'owl');
 
-        // The stored bird must be exactly what we seeded.
-        final unchanged = await fetchProfile(id);
-        expect(unchanged.birthBird, staleBird.name);
-        expect(unchanged.birthDateEpoch, isNull);
+        final updated = await fetchProfile(id);
+        expect(updated.birthBird, 'owl');
+        expect(updated.birthDateEpoch, isNull);
       },
     );
 
     test(
-      'is idempotent when the stored bird is already correct',
+      'corrects a manual/no-DOB profile with Visakam (stored rooster -> crow)',
       () async {
         final id = await insertProfile(
-          id: 'already-correct-profile',
-          birthDateEpoch: birthEpoch,
-          birthStarNakshatra: nakshatra,
-          birthBird: correctBird.name,
+          id: 'visakam-manual-profile',
+          birthStarNakshatra: 'Vishakha',
+          birthBird: 'rooster', // old 5-5-5-5-7 derivation
         );
 
         final result = await service.recalculateIfNeeded();
 
-        expect(result.changed, isFalse);
-        expect(result.oldBird, isNull);
-        expect(result.newBird, isNull);
+        expect(result.changed, isTrue);
+        expect(result.oldBird, 'rooster');
+        expect(result.newBird, 'crow');
 
-        final unchanged = await fetchProfile(id);
-        expect(unchanged.birthBird, correctBird.name);
+        final updated = await fetchProfile(id);
+        expect(updated.birthBird, 'crow');
       },
     );
 
     test(
-      'returns noChange on an empty database',
+      'corrects a manual/no-DOB profile with Uthiradam (stored peacock -> rooster)',
       () async {
+        final id = await insertProfile(
+          id: 'uthiradam-manual-profile',
+          birthStarNakshatra: 'Uttara Ashadha',
+          birthBird: 'peacock', // old 5-5-5-5-7 derivation
+        );
+
         final result = await service.recalculateIfNeeded();
 
-        expect(result.changed, isFalse);
-        expect(result.oldBird, isNull);
-        expect(result.newBird, isNull);
-        expect(result, same(BirdMigrationResult.noChange));
+        expect(result.changed, isTrue);
+        expect(result.oldBird, 'peacock');
+        expect(result.newBird, 'rooster');
+
+        final updated = await fetchProfile(id);
+        expect(updated.birthBird, 'rooster');
       },
     );
+
+    test('leaves a profile without a nakshatra untouched', () async {
+      final id = await insertProfile(
+        id: 'no-nakshatra-profile',
+        birthStarNakshatra: null,
+        birthBird: 'vulture',
+      );
+
+      final result = await service.recalculateIfNeeded();
+
+      expect(result.changed, isFalse);
+
+      final unchanged = await fetchProfile(id);
+      expect(unchanged.birthBird, 'vulture');
+    });
+
+    test('is idempotent when the stored bird is already correct', () async {
+      final id = await insertProfile(
+        id: 'already-correct-profile',
+        birthDateEpoch: birthEpoch,
+        birthStarNakshatra: 'Ashwini',
+        birthBird: 'vulture',
+      );
+
+      final result = await service.recalculateIfNeeded();
+
+      expect(result.changed, isFalse);
+      expect(result.oldBird, isNull);
+      expect(result.newBird, isNull);
+
+      final unchanged = await fetchProfile(id);
+      expect(unchanged.birthBird, 'vulture');
+    });
+
+    test('returns noChange on an empty database', () async {
+      final result = await service.recalculateIfNeeded();
+
+      expect(result.changed, isFalse);
+      expect(result.oldBird, isNull);
+      expect(result.newBird, isNull);
+      expect(result, same(BirdMigrationResult.noChange));
+    });
   });
 }

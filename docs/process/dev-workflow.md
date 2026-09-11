@@ -27,7 +27,7 @@ main ─────────────────────────
    - `flutter build web` — compiles
 4. **Push & PR:** One PR per sprint targeting `main`
 5. **Vercel Preview:** Verify UI visually on the preview URL (auto-generated for each PR)
-6. **CI gates:** Analyze + Test + Coverage (≥15% feature sprints) + Build Web + Integration Tests
+6. **CI gates:** Analyze + Test + Coverage (≥19% feature sprints) + Build Web + Integration Tests
 7. **Review:** Owner verifies on Vercel preview + reviews PR on GitHub
 8. **Merge:** Owner merges after visual QA + CI passes
 9. **Vercel deploys:** `main` auto-deploys to [saranidhi.vercel.app](https://saranidhi.vercel.app/)
@@ -124,7 +124,7 @@ Runs **after sprint merge** on a separate docs-only branch to avoid CI code fail
 2. Update all clerical docs:
    - `docs/project-valuation-report.md` — timeline, commit log, hours (estimate + 20%), deliverables, executive summary
    - `docs/project-evaluation.md` — feature scorecard, delivery table, resolved defects
-   - `docs/project-plan.md` — new infrastructure/architecture patterns
+   - `docs/reference/architecture.md` — new infrastructure/architecture patterns
    - `docs/testing-plan.md` — test count progression, scenarios awaiting coverage
    - `docs/dev-workflow.md` — any threshold/process changes
    - `.kiro/steering/saranidhi-spec.md` — tech stack updates
@@ -146,7 +146,7 @@ Strategic brainstorming and sprint plan revision — forward-looking.
 3. Create branch from `main` (e.g., `plan/sprint-N` or `plan/v2-roadmap`)
 4. Update:
    - `docs/sprint-tracker.md` — define upcoming sprints
-   - `docs/roadmap.md` — adjust milestones
+   - `docs/process/sprint-backlog.md` — adjust epic priorities/scope
    - `.kiro/design.md`, `.kiro/product.md`, `.kiro/structure.md` — if architecture changes
 5. Commit, push, create PR
 6. **User reviews and merges** (Kiro never pushes directly to main)
@@ -157,12 +157,18 @@ Strategic brainstorming and sprint plan revision — forward-looking.
 
 ### `/delegate`
 
-**(Paused)** — Previously used for delegating to Google Jules. Currently all work handled directly by Kiro.
+**Current model — spec → coding-setup → review** (the confirmed stable division of labor; first exercised in Sprint 37, PR #167):
 
-Delegation rules remain available for future use if needed:
-1. Delegated tasks operate on separate branches
-2. Only modify files in assigned scope
-3. Sprint PRs take merge priority
+1. **Kiro Web authors a precise implementation spec** (`docs/process/sprint-N-*-spec.md`): exact file/line changes, logic, edge cases, test updates, migration behavior, DoD, and a **pre-flight** (env + known-green baseline) — because Kiro Web **cannot run `flutter test`/`analyze` locally** and must not ship correctness-critical code blind on CI alone.
+2. **The Antigravity IDE coding setup** (Saranidhi local dev, on the owner's Mac) implements it, runs local `flutter analyze` + `flutter test` **GREEN before opening the PR** (v1.2.1 lesson), and opens the PR.
+3. **Kiro Web reviews the PR** against the spec + doctrine + migration correctness — fetching the real diff, not trusting the summary. Any source-derived value the spec flagged for owner review (e.g. a doctrinal table) is **cross-verified via a read-only Antigravity source check** before merge (Sprint 37: the name-initial waning 5-cycle was verified exact against the workshop transcript + master's book).
+4. **Owner merges** (sole merge authority; Kiro never merges/tags). Then Kiro Web runs `/sprint-update`.
+
+Rules: delegated work is on its own branch; only files in the spec's scope; **no lint-loosening to force analyze-clean** (verify `analysis_options.yaml` isn't weakened); macOS local baseline = "green except the 4 known CloudKit tests."
+
+> **Sprint 37 retrospective (first run):** the process worked cleanly — one review-flagged item (the name-swap cycle) was caught by the spec as "derive-from-source → owner-review", verified via Antigravity against primary sources, and confirmed exact. No rework needed. Keep flagging source-derived tables in the spec for explicit verification.
+
+**(Historical)** — Previously used for delegating to Google Jules (paused: reliability/SDK issues). Superseded by the Antigravity coding-setup model above.
 
 ---
 
@@ -282,7 +288,7 @@ git push origin main
 | Tier | Trigger | Tests | Goal | Time |
 |------|---------|-------|------|------|
 | **Tier 1 (Fast)** | Every PR to `main` | Domain + providers (pure Dart) | Catch logic regressions fast | ~30s |
-| **Tier 2 (Full)** | Merge to `main` | All tests + widget + integration + coverage | Full confidence before staging | ~90s |
+| **Tier 2 (Full)** | PR to `main` + merge to `main` | All tests + widget + integration + coverage | Full confidence before staging | ~90s |
 
 **Tier 1 directories (ci.yml — PR builds):**
 - `test/features/astro_engine/` — All Vedic calculators
@@ -294,11 +300,11 @@ git push origin main
 - `test/features/onboarding/` — Onboarding state, nakshatra mapping
 - `test/features/providers/` — Dashboard data, locale, theme, timer
 
-**Tier 2 additions (ci-full.yml — merge to main):**
+**Tier 2 additions (ci-full.yml — PRs to main + merge to main):**
 - `test/features/widgets/` — All widget render tests (BirthBirdCard, RahuKaalCard, etc.)
 - `test/widget_test.dart` — Full app navigation test
 - `integration_test/` — End-to-end user flows (headless Chrome)
-- Coverage threshold enforcement (≥ 20%)
+- Coverage threshold enforcement (≥ 19%)
 
 ### On Every PR to `main` (ci.yml)
 
@@ -308,13 +314,15 @@ git push origin main
 | Tier 1 Tests | `flutter test test/features/{domain dirs}` | Must pass (all green) |
 | Build Web | `flutter build web` | Must compile |
 
-### On Merge to `main` (ci-full.yml)
+### On PRs to `main` + Merge to `main` (ci-full.yml)
+
+Runs on pull requests targeting `main` (pre-merge gate) as well as on merge to `main`.
 
 | Step | Command | Gate |
 |------|---------|------|
 | Analyze | `dart analyze --fatal-infos` | Must pass (zero issues) |
 | All Tests | `flutter test --coverage` | Must pass (all green) |
-| Coverage Check | Parse `lcov.info` | Must be ≥ 20% |
+| Coverage Check | Parse `lcov.info` | Must be ≥ 19% |
 | Build Web | `flutter build web` | Must compile |
 | Integration Tests | `flutter drive` (headless Chrome) | Must pass |
 
@@ -341,7 +349,7 @@ git push origin main
 
 ### Known Limitations (Current)
 
-- **Coverage gate:** Set to 20% (lowered from 25% in Sprint 14 — UI-heavy sprint). Domain layer is ~95% covered; UI/presentation layer brings blended average to ~24%. Will increase as widget test coverage improves.
+- **Coverage gate:** Set to 19% (lowered from 25% to 20% in Sprint 14 — UI-heavy sprint — then raised 18→19 in Sprint 36). Domain layer is ~95% covered; UI/presentation layer brings blended average to ~24%. Will increase as widget test coverage improves.
 - **UI verification:** Always verify on Vercel preview before merging UI changes. Never merge UI blind.
 - **Settings navigation:** Settings is a pushed route (gear icon in top-right), not a bottom nav tab. Bottom nav has 4 tabs: Home, Journal, Oracle, Analytics.
 
@@ -386,8 +394,8 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 | Code Analysis | `dart analyze` — zero warnings/errors | CI Fast (blocking) |
 | Tier 1 Tests | Domain + provider tests — all pass | CI Fast (blocking) |
 | Build | `flutter build web` compiles | CI Fast (blocking) |
-| Tier 2 Tests | Widget + integration tests — all pass | CI Full (on merge) |
-| Coverage | ≥ 20% line coverage | CI Full (on merge) |
+| Tier 2 Tests | Widget + integration tests — all pass | CI Full (PR to main + on merge) |
+| Coverage | ≥ 19% line coverage | CI Full (PR to main + on merge) |
 | Documentation | Sprint tracker updated | PR review |
 | Review | PR reviewed by owner | GitHub branch protection |
 
@@ -449,6 +457,12 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 **Problem:** Each `onUpgrade` step hand-rolled its own existence check (a raw `PRAGMA table_info()` loop for columns, a `sqlite_master` query for tables) before running `addColumn`/`createTable`. The checks drifted apart in style, were easy to omit, and an omitted guard re-introduces the v1.2.1 "duplicate column name" failure class whenever a migration re-runs on a DB that already has the object.
 
 **Rule:** Use the shared helpers in `lib/database/migration_helpers.dart` - `tableExists(db, name)` (backed by `sqlite_master`) and `columnExists(db, table, column)` (backed by `PRAGMA table_info`), where `db` is the `GeneratedDatabase` (pass `this` from inside `onUpgrade`) - for every existence check in `onUpgrade`. The `from < 3` (is_pinned column), `from < 4` (prasanam_history table), and `from < 5` (somatic_intervention_logs table) steps in `app_database.dart` are refactored onto them; new migrations MUST guard through the same helpers rather than adding ad-hoc `PRAGMA`/`sqlite_master` code. The helpers are unit-tested against an in-memory Drift DB (`test/database/migration_helpers_test.dart`), so the guard behavior itself is covered.
+
+### CI Fast ≠ CI Full — Run the Full Suite Pre-Merge (v1.6.0)
+
+**Problem:** `ci-full.yml` only ran at merge-to-main, so PRs green on CI Fast (which omits widget tests + coverage) still reddened `main` after merge — a real About-card `RenderFlex` overflow and a real-DB widget-test crash surfaced only in the full suite.
+
+**Rule:** `ci-full` now also runs on PRs into `main`, so the full gate (widget tests + coverage + integration tests) runs pre-merge. The pre-merge gate must run the same suite that runs at merge, or green PRs can still break `main`.
 
 ### Integration Test Fix + Re-gate (Sprint 36)
 

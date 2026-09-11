@@ -9,69 +9,69 @@
 
 ## 1. Birth Bird Derivation
 
-### Source
-- **Prof. Dr. U.S. Pulippani** — *Biorhythms of Natal Moon (Mysteries of Pancha Pakshi)*, Sagar Publications, New Delhi
-- **vedastro.org** — [Pancha Pakshi Part 2: Finding Your Birth Bird](https://vedastro.org/blog/Pancha-Pakshi-Part-2-Finding-Your-Birth-Bird.html)
+### Authority & Sources
+- 🥇 **2025 Panja Pakshi Workshop Video** (Teacher's class, Day 1 @ 29:00, 33:00, 34:00–51:00) — Primary authority
+- 🥇 **Master's 56-page book** (*Panja Pakshi Aarudan*, pp. 7–8) — Same-lineage confirmation (venba meter)
+- 🥈 **1930 *Pancha Pakshi Rathinam*** (pp. 46–47) — Ancient classical Tamil Siddha root text
+- **Overruled:** Prof. Dr. U.S. Pulippani's modern secondary 5-5-5-5-7 partition and dual Krishna reverse-table (overruled per owner confirmations **CONF-PP-001** and **CONF-PP-002** in [`panja-pakshi-workshop-knowledge.md`](panja-pakshi-workshop-knowledge.md)).
 
-### Correct Method (Sprint 36 fix required)
+### Canonical Method (Sprint 37 — v1.7.0)
 
-Birth bird depends on **two factors**:
-1. Moon's Nakshatra at birth (which of 27 lunar mansions)
-2. Birth Paksha (was the moon waxing or waning at the moment of birth?)
+Birth bird derivation for natives with a known birth star (Janma Nakshatra) depends **solely on the birth star** using a **single permanent table** (no Krishna reverse-swap).
 
-#### Bright Half (Shukla Paksha) Table
+> *"ஜென்ம நட்சத்திரம் தெரிஞ்சவங்க தேய்பிறையை பயன்படுத்த வேண்டாம், வளர்பிறை மட்டும் பயன்படுத்தினா போதும்"*  
+> — 2025 Workshop Day 1 @ 33:00; Master's Book p. 8; *Rathinam* p. 46.
 
-| Bird | Element | Nakshatras |
-|------|---------|-----------|
-| Vulture | Fire | Ashwini, Bharani, Krittika, Rohini, Mrigashira |
-| Owl | Air | Ardra, Punarvasu, Pushya, Ashlesha, Magha |
-| Crow | Earth | Purva Phalguni, Uttara Phalguni, Hasta, Chitra, Swati |
-| Cock | Water | Vishakha, Anuradha, Jyeshtha, Mula, Purva Ashadha |
-| Peacock | Ether | Uttara Ashadha, Shravana, Dhanishta, Shatabhisha, Purva Bhadrapada, Uttara Bhadrapada, Revati |
+#### Canonical 5-6-5-5-6 Birth Star Table
 
-#### Dark Half (Krishna Paksha) Table — Reverse Order
+| Bird | Element (Bhoota) | Ruling Planet (Graha) | Nakshatras (Canonical 5-6-5-5-6) | Count |
+|------|------------------|-----------------------|----------------------------------|:-----:|
+| **Vulture** (வல்லூறு) | Earth (நிலம் / Prithvi) | Jupiter (குரு / Guru) | Ashwini, Bharani, Krittika, Rohini, Mrigashira | 5 |
+| **Owl** (ஆந்தை) | Water (நீர் / Apas) | Venus (சுக்கிரன் / Sukran) | Ardra, Punarvasu, Pushya, Ashlesha, Magha, **Purva Phalguni (Pooram)** | 6 |
+| **Crow** (காகம்) | Fire (நெருப்பு / Tejas) | Mars (செவ்வாய் / Sevvai) | Uttara Phalguni, Hasta, Chitra, Swati, **Vishakha (Visakam)** | 5 |
+| **Rooster** (சேவல் / கோழி) | Air (காற்று / Vayu) | Mercury (புதன் / Budhan) | Anuradha, Jyeshtha, Mula, Purva Ashadha, **Uttara Ashadha (Uthiradam)** | 5 |
+| **Peacock** (மயில்) | Ether (ஆகாயம் / Akasha) | Saturn (சனி / Shani) | Shravana, Dhanishta, Shatabhisha, Purva Bhadrapada, Uttara Bhadrapada, Revati | 6 |
 
-| Bird | Element | Nakshatras |
-|------|---------|-----------|
-| Vulture | Fire | Revati, Uttara Bhadrapada, Purva Bhadrapada, Shatabhisha, Dhanishta |
-| Owl | Air | Shravana, Uttara Ashadha, Purva Ashadha, Mula, Jyeshtha |
-| Crow | Earth | Anuradha, Vishakha, Swati, Chitra, Hasta |
-| Cock | Water | Uttara Phalguni, Purva Phalguni, Magha, Ashlesha, Pushya |
-| Peacock | Ether | Punarvasu, Ardra, Mrigashira, Rohini, Krittika, Bharani, Ashwini |
+**The 3 stars that moved vs shipped Pulippani engine:**
+- **Purva Phalguni (Pooram):** Crow → **Owl** (CONF-PP-001)
+- **Vishakha (Visakam):** Rooster → **Crow** (CONF-PP-001; internally corroborated by Murugan's Visakam being Crow/Fire)
+- **Uttara Ashadha (Uthiradam):** Peacock → **Rooster** (CONF-PP-001)
 
-#### Key Rule
+#### Key Doctrines
 
-> **Your birth bird is PERMANENT.** Once determined from birth nakshatra + birth paksha,
-> it never changes. The current lunar phase does NOT alter your bird identity — only the
-> daily state schedule tables change between paksha.
+1. **Your birth bird is PERMANENT (CONF-PP-002).** Once determined from your birth nakshatra, it never changes. The current lunar phase does NOT alter your bird identity — only the daily yama schedule tables shift between waxing and waning fortnights.
+2. **Pushya / Krishna Native Case (Owner Adjudication):** Under the old dual-table reverse logic, Pushya + Krishna was mis-computed as Cock (Rooster). Under the canonical single permanent table, Pushya is permanently **Owl** across both lunar halves.
+3. **Name-Initial (Nama Pakshi) Fallback carries the Lunar Phase Swap (CONF-PP-002, Task 37.3):**
+   - For individuals without a known birth star or birth date, bird derivation uses their spoken name's initial vowel sound (`NameBirdParser.birthBirdFromNameInitialAndPaksha`).
+   - The waxing/waning bird split applies **strictly to this name fallback path**:
+     - *Valarpirai (Waxing):* A → Vulture, I → Owl, U → Crow, E → Rooster, O → Peacock.
+     - *Theipirai (Waning):* Vulture → Rooster, Owl → Vulture, Crow → Owl, Rooster → Peacock, Peacock → Crow.
 
-#### Example: User Eialarasu
+### Bird Attributes & Relationships (CONF-PP-003, CONF-PP-004, CONF-PP-005)
 
-- DOB: October 27, 1975, 8:00 PM IST, Chennai
-- Moon Nakshatra: Pushya (8th nakshatra)
-- Moon age at birth: ~22 days (past full moon)
-- Birth Paksha: **Krishna (Dark Half)**
-- Table lookup: Pushya in Dark Half → **Cock (Rooster)**
-- Permanent bird: **Cock** (matches Align27)
+- **Ruling Planets & Colours (CONF-PP-004):**
+  - Vulture: Jupiter (Guru) · Yellow / Sandal / Gold
+  - Owl: Venus (Sukran) · Pure White / Silk
+  - Crow: Mars (Sevvai) · Deep Red / Crimson
+  - Rooster: Mercury (Budhan) · Green / Emerald
+  - Peacock: Saturn (Shani) · Black / Navy Blue
+- **Unified Natural Affinities (CONF-PP-003):** Mutually symmetric friend/enemy matrix (no phase split; dual tables fail in practice per *Rathinam* p. 46):
+  - Vulture: Friends = [Peacock, Owl] | Enemies = [Crow, Rooster] (Vulture↔Peacock permanent ally; Vulture↔Rooster permanent enemy)
+  - Owl: Friends = [Vulture, Crow] | Enemies = [Peacock, Rooster] (Owl↔Peacock permanent enemy)
+  - Crow: Friends = [Owl, Rooster] | Enemies = [Vulture, Peacock] (Crow↔Peacock permanent enemy)
+  - Rooster: Friends = [Peacock, Crow] | Enemies = [Vulture, Owl]
+  - Peacock: Friends = [Vulture, Rooster] | Enemies = [Owl, Crow]
+- **Cardinal Directions (CONF-PP-005):** Phase-dependent tactical positioning:
+  - *Valarpirai (Waxing):* Vulture = East, Owl = South, Crow = West, Rooster = North, Peacock = Center / Sky.
+  - *Theipirai (Waning):* Vulture = East (permanent), Owl = North, Crow = South, Rooster = Center, Peacock = West.
 
-### Current Implementation (CORRECT — Sprint 33)
+### Implementation Summary (Sprint 37 — v1.7.0)
 
-Birth bird depends on **two factors**:
-1. Moon's Nakshatra at birth (which of 27 lunar mansions)
-2. Birth Paksha (was the moon waxing or waning at the moment of birth?)
-
-Two lookup tables (Bright Half + Dark Half) per Prof. Pulippani.
-The resulting bird is **permanent** — never changes with current lunar phase.
-
-**API:** `PakshiCalculator.birthBirdFromNakshatraAndPaksha(nakshatra, birthPaksha)`
-
-### Fix Applied (Sprint 33)
-
-1. ✅ Dual nakshatra→bird lookup tables implemented (Bright + Dark)
-2. ✅ Birth Paksha determined from DOB via `birthPakshaFromDOB()`
-3. ✅ `birthBirdForPhase()` swap logic neutralized (always returns natal bird)
-4. ✅ Onboarding + Settings use correct dual-table derivation
-5. ✅ Manual "I know my star" path still uses Bright Half as default (no DOB available)
+1. ✅ Nakshatra partition corrected from 5-5-5-5-7 to canonical 5-6-5-5-6 (`PakshiCalculator`).
+2. ✅ Single permanent birth-star table implemented; `birthBirdFromNakshatraAndPaksha` delegates to `birthBirdFromNakshatraSafe` (CONF-PP-002).
+3. ✅ Name-initial lunar phase swap added (`NameBirdParser.birthBirdFromNameInitialAndPaksha`).
+4. ✅ Automatic re-migration extended on load to ALL affected users including manual "known-star" profiles (`BirdMigrationService`).
+5. ✅ Bird attributes corrected: ruling planets, colours, symmetric friendships/enmities, phase-dependent directions (`PakshiAttributes`).
 
 ---
 

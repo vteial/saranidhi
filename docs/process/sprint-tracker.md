@@ -27,14 +27,15 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 33 | Panja Pakshi Accuracy Fix (dual-table birth bird) | v1.4.1 | ✅ |
 | 34 | Migration + Onboarding UX Polish | *(bundled)* | ✅ |
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
-| 36 | Stability & Test Hardening | **v1.6.0** | ✅ (PR #141) |
-| 37+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
+| 37 | Birth-Bird Engine Correction | **v1.7.0** | 🔄 (PR in prep) |
+| 38+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** v1.5.0-web live in production (2026-09-04). **Sprint 36
-> (Stability & Test Hardening → v1.6.0) is complete** in PR #141 (CI Fast green:
-> Analyze/Tier 1 tests 403 passing/Build) and **awaiting owner merge to `main`**;
-> the v1.6.0 release then proceeds via `/release-start`. Further work is selected
-> from the [Sprint Backlog](sprint-backlog.md) during `/plan`.
+> **Current state:** **v1.6.0-web is now live in production (2026-09-07)**, tag
+> `v1.6.0-web`. Sprint 36 (Stability & Test Hardening) shipped via PR #141 (with
+> CI hotfixes #142/#143 and release PRs #144 release-start + #145 main→prod).
+> Further work is selected from the [Sprint Backlog](sprint-backlog.md) during
+> `/plan`.
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -589,7 +590,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] Task 35.9: Unit tests (SomaticInterventionSession domain) + user-guide.md feature section + spec status update
 
 ---
-## Sprint 36: Stability & Test Hardening (v1.6.0) — ✅ Complete (PR #141, awaiting merge)
+## Sprint 36: Stability & Test Hardening (v1.6.0) — ✅ Shipped v1.6.0-web (PR #141)
 
 > **Goal:** pay down the CI/testing debt exposed during the v1.5.0 release before
 > adding new features — so the product and its quality signals are trustworthy.
@@ -604,41 +605,75 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [ ] Task 36.7: **Housekeeping** — backfill the missing `v1.4.1-web` git tag. → **prepared for owner** (tag `v1.4.1-web` @ `bc959c0`); Kiro does not create tags.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** - on `main` (PR #141). _(owner/orchestrator - Kiro cannot merge)_
+- [x] **Code merged** - on `main` (PR #141). _(owner/orchestrator - Kiro cannot merge)_
 - [x] **PR link** - [#141](https://github.com/vteial/saranidhi/pull/141) (CI Fast green: Analyze / Tier 1 tests 403 passing / Build web; full-suite coverage 18→19 + re-gated integration tests validated on merge-to-main / prod promotion). _(owner/orchestrator)_
 - [x] **Docs updated** - dev-workflow Lessons/Gotchas (DB migration existence-check helper, integration-test fix + re-gate), any relevant docs.
 - [x] **Tests** - full suite intended green; skipped navigation test un-skipped; new migration-helper + auto-recalc + somatic-UI tests added (CI is the authoritative gate).
 - [x] **Smoke test** - verification scenarios added to `smoke-test-v1.6.0.md` (existing-profile upgrade auto-recalc + onboarding geolocation-first + migration idempotency + regression).
 - [x] **Valuation report** - Sprint 36 row added (+20% over AI-estimated time).
-- [ ] **Tracker updated** - status ✅. _(owner/orchestrator - flips only on merge)_
+- [x] **Tracker updated** - status ✅. _(owner/orchestrator - flips only on merge)_
 - [x] **User Guide** - `n/a`: internal hardening sprint with no user-facing capability change, so there is nothing new to document for end users (per the epic-boundary rule).
 
 > **Epic-boundary rule:** internal hardening sprint — User Guide update is `n/a`
 > (no user-facing capability change); reasoning noted in the checklist above.
 
-> **Housekeeping - v1.4.1-web tag backfill (owner action):** the `v1.4.1-web`
-> GitHub Release/tag is missing. It should point at commit
-> `bc959c0ca2c69c427ae88f6f9c71762a66315083` ("release: v1.4.1-web production
-> deployment", PR #128 `main`→`prod`, on `origin/prod`), analogous to
-> `v1.4.0-web` pointing at the v1.4.0 `main`→`prod` merge (PR #123). **Kiro must
-> NOT create tags**; this is owner-only. Reference commands for the owner:
+---
+
+## Sprint 37: Birth-Bird Engine Correction (v1.7.0) — ✅ Complete (PR #167)
+
+> **Goal:** correct a **live calculation error** in the shipped Panja Pakshi engine —
+> the birth-bird derivation — surfaced by the Panja Pakshi corpus audit and
+> owner-adjudicated in **CONF-PP-001…005**. The shipped `PakshiCalculator` uses a
+> Pulippani 5-5-5-5-7 nakshatra partition and a dual bright/dark table; the
+> lineage-unanimous truth is **5-6-5-5-6** with a **single permanent birth-star
+> table**. This mis-assigns the birth bird (and therefore every downstream state,
+> yama, and oracle result) for real users. Correctness release; no new features.
 >
-> ```bash
-> git tag v1.4.1-web bc959c0
-> git push origin v1.4.1-web
-> ```
->
-> Or via the GitHub Release UI: **Tag** `v1.4.1-web`, **Target** `prod` @
-> `bc959c0`.
+> **Process:** per the confirmed division of labor, **the implementation is done in
+> the Antigravity IDE coding setup** (Saranidhi local dev; local `flutter test`/`analyze` before PR);
+> **Kiro Web authored the spec** ([`docs/process/sprint-37-birth-bird-spec.md`](sprint-37-birth-bird-spec.md))
+> and will **review the resulting PR**. Bird calc is correctness-critical → local
+> green test run is required before it ships (v1.2.1 lesson).
+
+- [x] Task 37.1: **CONF-PP-001 — nakshatra partition 5-5-5-5-7 → 5-6-5-5-6.** Update the bright/single table in `pakshi_calculator.dart` so Pooram/Purva Phalguni → Owl, Visakam/Vishakha → Crow, Uthiradam/Uttara Ashadha → Rooster. (See spec §2.)
+- [x] Task 37.2: **CONF-PP-002 — single permanent birth-star table.** The known-birth-star path uses ONE permanent (Valarpirai) table — no Krishna reverse-swap. Neutralize `birthPaksha` in `birthBirdFromNakshatraAndPaksha`; retire/collapse the dark table for the birth-star path. (Spec §3.)
+- [x] Task 37.3: **Name-initial fallback carries the paksha swap.** Add `birthBirdFromNameInitialAndPaksha(initial, paksha)` — the waxing/waning bird split applies ONLY to the name-initial (Nama Pakshi) path, per lineage. Wire it as the fallback when both nakshatra and DOB are unknown. (Spec §4.)
+- [x] Task 37.4: **Existing-user re-migration — cover ALL affected users.** The wired `BirdMigrationService` already re-derives DOB-based profiles on load; **extend it to also correct manual "known-star / no-DOB" profiles** (owner decision: re-migrate them via the corrected single table — the old bird is simply wrong). Add regression tests for both paths + idempotency. (Spec §5.)
+- [x] Task 37.5: **CONF-PP-003 — friend/enemy matrix** in `pakshi_attributes.dart` → unified: Vulture allies Peacock+Owl, enemies Crow+Rooster (etc., full table in spec §6).
+- [x] Task 37.6: **CONF-PP-004 — ruling planets** → Vulture=Jupiter, Owl=Venus, Crow=Mars, Rooster=Mercury, Peacock=Saturn (+ dependent colour associations). (Spec §6.)
+- [x] Task 37.7: **CONF-PP-005 — cardinal directions** → phase-dependent (Valarpirai/Theipirai sets), replacing the static assignments. (Spec §6.)
+- [x] Task 37.8: **Tests + docs.** Update `pakshi_calculator_test`, `pakshi_attributes_test`, `onboarding_test`, `bird_migration_service_test` to the corrected values; add the 3 disputed-star cases (Pooram→Owl, Visakam→Crow, Uthiradam→Rooster) + owner's Pushya/Krishna→**Owl** case; refresh `calculation-methodology.md` §1 and cross-link the CONF-PP resolutions.
+
+> **Deferred:** CONF-PP-006 (dual equal/weighted sub-yama modes + settings toggle) — it is a **new user-facing option**, not a correction; scheduled to a later sprint to keep v1.7.0 a tight correctness release.
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Code merged** — on `main` (PR #167). _(owner/orchestrator — Kiro cannot merge)_
+- [x] **PR link** — [#167](https://github.com/vteial/saranidhi/pull/167) (CI green: Analyze / Fast Tests / Build + Full Suite; local run 546 pass / 4 known-CloudKit baseline, analyze clean, `build web` clean). Implemented in the Antigravity IDE coding setup; Kiro Web reviewed (incl. Antigravity source-verification of the name-initial waning 5-cycle — exact match to workshop + master book).
+- [x] **Docs updated** — `calculation-methodology.md` §1 rewritten to 5-6-5-5-6 + single permanent table; CONF-PP cross-links.
+- [x] **Tests** — corrected derivation + 3 disputed stars + Pushya/Krishna→Owl + re-migration (DOB & manual paths) + idempotency; local green before PR (macOS baseline = same 4 known CloudKit failures and no others).
+- [x] **Smoke test** — scenarios in `smoke-test-v1.7.0.md`: existing Pushya/Krishna user sees bird change Cock→Owl on load; manual-star user corrected; onboarding new user gets 5-6-5-5-6 bird.
+- [x] **Valuation report** — Sprint 37 row added (+20% over AI-estimated time).
+- [x] **Tracker updated** — status ✅ (this update).
+- [x] **User Guide** — update the birth-bird section (corrected partition; note existing users may see a one-time corrected bird) — real capability/accuracy change, so **not** `n/a`.
+
+> **Migration note (v1.4.1 lesson):** this changes existing users'' stored birth
+> bird. The on-load `BirdMigrationService` must re-derive on app open (not rely on
+> manual "Recalculate from DOB"), and Task 37.4 extends it to the manual/no-DOB
+> profiles too. Test the existing-user UPGRADE path explicitly, not just fresh
+> onboarding.
 
 ---
 
 ## Future Sprints
 
-Future and candidate sprints (37 Chronobiology, 38 v2.0 Polish, 39 Accuracy
-Calibration, E2E Automation, App Store Prep) live in the
+Future and candidate sprints (38 v2.0 Polish, 39 Accuracy Calibration, Chronobiology,
+Integrated Aruḍam, The Now Surface, E2E Automation, App Store Prep) live in the
 **[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into
 this tracker (with a Delivery Checklist) when scheduled via `/plan`.
+
+> **Note on numbering:** Sprint 37 was reassigned from "Chronobiology" to
+> "Birth-Bird Engine Correction" — the CONF-PP audit surfaced a live calculation
+> bug that takes priority over feature work. Chronobiology shifts later.
 
 ---
 

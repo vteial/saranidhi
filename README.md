@@ -36,14 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.5.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Production** | v1.6.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 35 | — |
-| **Total PRs** | 138 | — |
-| **Engineering Hours** | ~85h | AI-assisted (Kiro) |
+| **Sprints Delivered** | 36 | — |
+| **Total PRs** | ~148 | — |
+| **Engineering Hours** | see [valuation report](docs/process/project-valuation-report.md) | AI-assisted (Kiro) |
 
-**Latest:** v1.5.0-web (Somatic Intervention Engine + Onboarding UX Polish, bundling Sprints 34–35).
-**Next:** selected from the [Sprint Backlog](docs/process/sprint-backlog.md) during `/plan` (Sprint 36 — Chronobiology, and others).
+**Latest:** v1.6.0-web (Stability & Test Hardening, Sprint 36).
+**Next:** selected from the [Sprint Backlog](docs/process/sprint-backlog.md) epics during `/plan`.
 
 ---
 
@@ -53,9 +53,8 @@ Saranidhi helps you:
 ┌─────────────────────────────────────────────────────┐
 │  PRESENTATION LAYER                                  │
 │  Flutter Widgets + Riverpod 3 + GoRouter             │
-│  3 tabs: Home | Journal | Analytics                  │
+│  4 tabs: Home | Journal | Oracle | Analytics         │
 │  Settings via gear icon (AppBar action)              │
-│  Prasanam FAB on Today tab (v2.0 planned)            │
 ├─────────────────────────────────────────────────────┤
 │  DOMAIN LAYER (Pure Dart)                            │
 │  Vedic Math: Sunrise, Yama, Rahu, Hora, Pakshi,     │
@@ -93,15 +92,15 @@ Saranidhi helps you:
 |-------|--------|
 | Framework | Flutter 3.44+ (iOS, Android, Web, macOS) |
 | State Management | Riverpod 3 (NotifierProvider, FutureProvider) |
-| Routing | GoRouter (StatefulShellRoute, 3 branches) |
+| Routing | GoRouter (StatefulShellRoute, 4 branches) |
 | Local Database | Drift (SQLite on mobile, WASM on web) |
 | Models | Freezed + json_serializable |
 | Cloud Sync | iCloud (CloudKit via MethodChannel) |
 | Notifications | flutter_local_notifications (zonedSchedule) |
 | Theming | Material 3 (4 colors × Light/Dark + System = 9 modes) |
-| Localization | English + Tamil (ARB files, 200+ keys) |
+| Localization | English + Tamil (ARB files, 250+ keys) |
 | Linting | very_good_analysis (zero infos allowed) |
-| CI/CD | GitHub Actions (two-tier: fast PRs + full on merge) |
+| CI/CD | GitHub Actions (two-tier: fast + full both on PRs to main; full also on merge/prod PRs) |
 | Hosting | Vercel (staging + production + PR previews) |
 
 ---
@@ -186,7 +185,7 @@ Feature branch → PR → main (staging) → release PR → prod (production)
 Quick links:
 
 - [User Guide](docs/product/user-guide.md) — what Saranidhi is, its aim, and feature overview
-- [Roadmap](docs/product/roadmap.md) — release milestones · [Project Plan](docs/product/project-plan.md) — architecture blueprint
+- [Product Scope](docs/product/product-scope.md) — functional product scope · [Architecture](docs/reference/architecture.md) — technical architecture
 - [Sprint Tracker](docs/process/sprint-tracker.md) — delivered + in-progress · [Sprint Backlog](docs/process/sprint-backlog.md) — future/candidate work
 - [Dev Workflow](docs/process/dev-workflow.md) — protocols, CI/CD, gates · [Dev Setup](docs/process/dev-setup.md)
 - [Smoke Test History](docs/testing/smoke-test-results.md) · [Testing Plan](docs/testing/testing-plan.md)

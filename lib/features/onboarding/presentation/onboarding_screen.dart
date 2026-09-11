@@ -8,8 +8,6 @@ import 'package:saranidhi/core/utils/geolocation.dart';
 import 'package:saranidhi/core/utils/nakshatra_l10n.dart';
 import 'package:saranidhi/core/utils/pakshi_l10n.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
-import 'package:saranidhi/features/astro_engine/domain/name_bird_parser.dart';
-import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -277,17 +275,17 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
         Expanded(
           child: switch (_mode) {
             _BirdPathMode.knowNakshatra => _NakshatraListPath(
-                state: widget.state,
-                notifier: widget.notifier,
-              ),
+              state: widget.state,
+              notifier: widget.notifier,
+            ),
             _BirdPathMode.calculateFromDOB => _DOBCalculatePath(
-                state: widget.state,
-                notifier: widget.notifier,
-              ),
+              state: widget.state,
+              notifier: widget.notifier,
+            ),
             _BirdPathMode.calculateFromName => _NameCalculatePath(
-                state: widget.state,
-                notifier: widget.notifier,
-              ),
+              state: widget.state,
+              notifier: widget.notifier,
+            ),
           },
         ),
 
@@ -304,7 +302,9 @@ class _FindYourBirdStepState extends State<_FindYourBirdStep> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      l10n.yourBird(widget.state.birthBird!.localizedName(l10n)),
+                      l10n.yourBird(
+                        widget.state.birthBird!.localizedName(l10n),
+                      ),
                       style: theme.textTheme.titleSmall?.copyWith(
                         color: theme.colorScheme.primary,
                       ),
@@ -419,7 +419,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
             title: Text(
               state.birthTimeOfDay != null
                   ? '${state.birthTimeOfDay!.hour.toString().padLeft(2, '0')}:'
-                      '${state.birthTimeOfDay!.minute.toString().padLeft(2, '0')}'
+                        '${state.birthTimeOfDay!.minute.toString().padLeft(2, '0')}'
                   : l10n.selectTimeOptional,
             ),
             subtitle: Text(l10n.birthTimeLabel),
@@ -489,7 +489,11 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
                             l10n.calculatedNakshatra(
                               NakshatraL10n.localizedDisplay(
                                 state.calculatedNakshatra!.displayName,
-                                isTamil: Localizations.localeOf(context).languageCode == 'ta',
+                                isTamil:
+                                    Localizations.localeOf(
+                                      context,
+                                    ).languageCode ==
+                                    'ta',
                               ),
                             ),
                             style: theme.textTheme.titleSmall?.copyWith(
@@ -503,7 +507,8 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
                     const SizedBox(height: 8),
                     Text(
                       l10n.moonSiderealLongitude(
-                        state.calculatedNakshatra!.siderealLongitude.toStringAsFixed(2),
+                        state.calculatedNakshatra!.siderealLongitude
+                            .toStringAsFixed(2),
                       ),
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
@@ -543,7 +548,7 @@ class _DOBCalculatePathState extends State<_DOBCalculatePath> {
 
 /// Sub-path: derive bird from name (vowel method).
 ///
-/// Uses [NameBirdParser] on the entered name. This is a fallback method,
+/// Uses [OnboardingNotifier.calculateFromName] on the entered name. This is a fallback method,
 /// less precise than nakshatra or DOB. Maps the derived bird to the first
 /// nakshatra of that bird's group so the profile stores a valid nakshatra.
 class _NameCalculatePath extends StatefulWidget {
@@ -573,17 +578,7 @@ class _NameCalculatePathState extends State<_NameCalculatePath> {
   void _deriveBird() {
     final name = _controller.text.trim();
     if (name.isEmpty) return;
-    final bird = NameBirdParser.parse(name);
-    // Map bird → first nakshatra of that bird's Bright-Half group so the
-    // profile stores a valid nakshatra string.
-    const birdToNakshatra = {
-      PakshiBird.vulture: 'ashwini',
-      PakshiBird.owl: 'ardra',
-      PakshiBird.crow: 'purva phalguni',
-      PakshiBird.rooster: 'vishakha',
-      PakshiBird.peacock: 'uttara ashadha',
-    };
-    widget.notifier.setNakshatra(birdToNakshatra[bird] ?? 'ashwini');
+    widget.notifier.calculateFromName(name);
   }
 
   @override
@@ -888,8 +883,8 @@ class _SummaryStep extends StatelessWidget {
     // Location value
     final locationValue = state.locationName != null
         ? '${state.locationName} '
-            '(${state.latitude?.toStringAsFixed(2)}, '
-            '${state.longitude?.toStringAsFixed(2)})'
+              '(${state.latitude?.toStringAsFixed(2)}, '
+              '${state.longitude?.toStringAsFixed(2)})'
         : l10n.summaryNotSet;
 
     // Storage value
@@ -979,6 +974,7 @@ class _SummaryStep extends StatelessWidget {
 
   String _derivationSource(AppLocalizations l10n) {
     if (state.calculatedNakshatra != null) return l10n.summaryDerivedFromDob;
+    if (state.isDerivedFromName) return l10n.summaryDerivedFromName;
     if (state.selectedNakshatra != null) return l10n.summaryDerivedFromStar;
     return l10n.summaryDerivedFromName;
   }
@@ -1030,10 +1026,7 @@ class _SummaryRow extends StatelessWidget {
                 ],
               ),
             ),
-            TextButton(
-              onPressed: onEdit,
-              child: Text(editLabel),
-            ),
+            TextButton(onPressed: onEdit, child: Text(editLabel)),
           ],
         ),
       ),
@@ -1094,8 +1087,6 @@ const _presetCities = [
   _PresetCity('Hyderabad', 17.39, 78.49),
   _PresetCity('Kolkata', 22.57, 88.36),
 ];
-
-
 
 /// Compact language toggle (EN/TA) for onboarding screens.
 class _LanguageToggle extends ConsumerWidget {

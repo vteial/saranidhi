@@ -8,7 +8,11 @@ on:
       - '*.md'
       - '.kiro/**'
   pull_request:
-    branches: [prod]
+    branches: [main, prod]
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - '.kiro/**'
   workflow_dispatch:
 
 env:

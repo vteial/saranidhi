@@ -24,18 +24,17 @@ class BirdMigrationResult {
   );
 }
 
-/// Recalculates a user's birth bird on app load using the correct
-/// dual-table (birth-Paksha-aware) derivation.
+/// Recalculates a user's birth bird on app load using the canonical
+/// Siddha 5-6-5-5-6 single permanent table (CONF-PP-001, CONF-PP-002).
 ///
-/// Background: Sprint 33 fixed the birth bird derivation to use the
-/// correct Bright/Dark half table based on the user's birth Paksha.
-/// However, existing profiles created before the fix retained a bird
-/// derived from the old (Bright-Half-only) logic. This service corrects
-/// those profiles automatically on app load.
+/// Background:
+/// - Sprint 33 introduced dual-table derivation.
+/// - Sprint 37 corrected the nakshatra partition to 5-6-5-5-6 and established
+///   a single permanent table (no Krishna reverse-swap for birth stars).
 ///
-/// Only runs when the profile has a stored DOB (`birthDateEpoch`). Profiles
-/// without a DOB (manual "I know my star" selection) are left untouched —
-/// we cannot determine the correct birth Paksha without a DOB.
+/// This service automatically corrects existing profiles (both DOB-based
+/// and manual "I know my star" profiles) whose stored bird differs from
+/// the canonical single-table result.
 class BirdMigrationService {
   const BirdMigrationService(this._db);
 
@@ -49,34 +48,26 @@ class BirdMigrationService {
     if (profiles.isEmpty) return BirdMigrationResult.noChange;
 
     final profile = profiles.first;
-
-    // Only migrate profiles that have a DOB — without it we can't
-    // determine the birth Paksha, so we leave manual selections alone.
-    final epoch = profile.birthDateEpoch;
     final nakshatra = profile.birthStarNakshatra;
-    if (epoch == null || nakshatra == null) {
+    if (nakshatra == null) {
       return BirdMigrationResult.noChange;
     }
 
-    // Reconstruct the birth moment (UTC — same convention as onboarding).
-    final birthDate = DateTime.fromMillisecondsSinceEpoch(epoch, isUtc: true);
-    final birthPaksha = PakshiCalculator.birthPakshaFromDOB(birthDate);
-    final correctBird = PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-      nakshatra,
-      birthPaksha,
-    );
-
+    // Single permanent 5-6-5-5-6 table governs all birth-star profiles
+    // (both DOB-based and manual "known-star" selections).
+    final correctBird = PakshiCalculator.birthBirdFromNakshatraSafe(nakshatra);
     if (correctBird == null) return BirdMigrationResult.noChange;
 
     final storedBird = profile.birthBird;
     if (storedBird == correctBird.name) {
-      // Already correct — nothing to do.
+      // Already correct — nothing to do (idempotent).
       return BirdMigrationResult.noChange;
     }
 
     // Update the profile with the corrected bird.
-    await (_db.update(_db.profiles)..where((t) => t.id.equals(profile.id)))
-        .write(
+    await (_db.update(
+      _db.profiles,
+    )..where((t) => t.id.equals(profile.id))).write(
       ProfilesCompanion(
         birthBird: Value(correctBird.name),
         updatedAt: Value(DateTime.now().millisecondsSinceEpoch),
