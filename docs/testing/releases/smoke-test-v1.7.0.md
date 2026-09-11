@@ -62,3 +62,68 @@
 | D1 | Correct Ruling Planets & Colours | Inspect Vulture, Owl, Crow, Rooster, Peacock attributes | Vulture=Jupiter/Yellow, Owl=Venus/White, Crow=Mars/Red, Rooster=Mercury/Green, Peacock=Saturn/Black | ✅ Pass (`pakshi_attributes_test.dart`) |
 | D2 | Unified Friend/Enemy Matrix | Verify mutual symmetry for all 5 birds | Symmetrical relations; Vulture allies Peacock+Owl, enemies Crow+Rooster | ✅ Pass (`pakshi_attributes_test.dart`) |
 | D3 | Phase-dependent directions | Verify directions in waxing vs waning | Waxing: East/South/West/North/Center; Waning: East/North/South/Center/West | ✅ Pass (`pakshi_attributes_test.dart`) |
+
+
+---
+
+## Staging Verification Log (manual — fill during the run)
+
+> The ✅ marks in Sections A–D above are **unit-test cross-references** from implementation.
+> Record the **manual staging result** for each scenario here.
+>
+> **Environment for this run:** owner's **iPad** on staging (https://saranidhi-staging.vercel.app),
+> using a **real existing (pre-v1.7.0) profile** — the ideal A1 condition (a genuine old profile
+> auto-migrating on app open; no DevTools seeding needed).
+>
+> **Confirm first:** About card shows **1.7.0** (else staging deploy not finished).
+
+| # | Staging Result (PASS/FAIL/BLOCKED) | Evidence / Notes |
+|---|---|---|
+| **A1** (CRITICAL — Cock→Owl on load) | | Existing Pushya/Krishna profile: bird visibly corrects to **Owl** + one-time notification on app open? |
+| A2/A3 (Pooram/Visakam/Uthiradam) | | Only if such a profile is available on the device |
+| A4 (idempotent reopen) | | No repeat notification on 2nd open |
+| B1–B3 (fresh onboarding 5-6-5-5-6) | | Spot-check Pooram→Owl + DOB Pushya/Krishna→Owl |
+| C1/C2 (name-initial phase swap) | | |
+| D1–D3 (attributes) | | Planets / friend-enemy / directions |
+| Happy path (no regression) | | onboarding → dashboard → journal entry → alignment |
+
+**Overall verdict:** _(PASS / PASS-WITH-NOTES / FAIL)_ · **Date:** _____ · **Device/Browser:** iPad Safari _____ · **Version tested:** 1.7.0 · **Staging URL:** https://saranidhi-staging.vercel.app
+
+---
+
+## Appendix — QA-Verify prompt used for this release (audit record)
+
+> This is the filled v1.7.0 prompt handed to Antigravity QA-Verify (derived from
+> `docs/testing/qa-verify-agent-prompt.md`). Kept here for the audit trail.
+
+```text
+ROLE: QA-Verify agent for Saranidhi. You execute the smoke test on the DEPLOYED (staging)
+build, record results, log bugs + root cause. You DO NOT edit source, merge, or tag.
+
+RELEASE: v1.7.0 (Sprint 37 — Birth-Bird Engine Correction).
+ENVIRONMENT: Staging https://saranidhi-staging.vercel.app. Confirm About card = 1.7.0 first.
+TEST PLAN: docs/testing/releases/smoke-test-v1.7.0.md (Sections A–D). The ✅ marks are
+UNIT-TEST cross-refs, NOT results — record your MANUAL staging result per row.
+
+WHAT CHANGED (do not test beyond this + a happy-path spot-check):
+- Partition 5-5-5-5-7 → 5-6-5-5-6 (Pooram→Owl, Visakam→Crow, Uthiradam→Rooster).
+- Single permanent birth-star table; no Krishna reverse-swap.
+- Corrected attributes (planets, friend/enemy, phase-dependent directions).
+- Existing users auto-corrected on app open (DOB + manual-star), one-time notification.
+- Waxing/waning swap now only on the name-initial fallback.
+
+HIGHEST PRIORITY:
+- A1 (CRITICAL): existing Pushya/Krishna profile auto-corrects Cock→Owl on app open with the
+  notification; dashboard then shows Owl. (Owner runs this on an iPad with a REAL old profile.)
+- A2/A3 manual-star corrections; A4 idempotent reopen; B fresh onboarding 5-6-5-5-6.
+
+EXECUTION: Chrome/Safari (record version+viewport). Screenshot every scenario, esp. A1
+before/after. PASS/FAIL/BLOCKED + expected vs actual. For FAIL: repro + console + root-cause
+hypothesis; do NOT fix. Spot-check happy path (onboarding→dashboard→journal→alignment).
+
+DELIVERABLE: fill smoke-test-v1.7.0.md Staging Verification Log with manual results + top
+verdict (PASS/PASS-WITH-NOTES/FAIL, date, device/browser, version, URL). Commit to
+release/v1.7.0 (results-only, no source). Do NOT merge PR #169, do NOT tag.
+
+GATE: sign-off needs staging functionally correct AND CI green. A1 on the real build is the gate.
+```
