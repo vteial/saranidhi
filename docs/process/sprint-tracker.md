@@ -633,12 +633,61 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
+## Sprint 37: Birth-Bird Engine Correction (v1.7.0) — 📋 Planned / Spec ready
+
+> **Goal:** correct a **live calculation error** in the shipped Panja Pakshi engine —
+> the birth-bird derivation — surfaced by the Panja Pakshi corpus audit and
+> owner-adjudicated in **CONF-PP-001…005**. The shipped `PakshiCalculator` uses a
+> Pulippani 5-5-5-5-7 nakshatra partition and a dual bright/dark table; the
+> lineage-unanimous truth is **5-6-5-5-6** with a **single permanent birth-star
+> table**. This mis-assigns the birth bird (and therefore every downstream state,
+> yama, and oracle result) for real users. Correctness release; no new features.
+>
+> **Process:** per the confirmed division of labor, **the implementation is done in
+> the IntelliJ/Antigravity coding setup** (local `flutter test`/`analyze` before PR);
+> **Kiro Web authored the spec** ([`docs/process/sprint-37-birth-bird-spec.md`](sprint-37-birth-bird-spec.md))
+> and will **review the resulting PR**. Bird calc is correctness-critical → local
+> green test run is required before it ships (v1.2.1 lesson).
+
+- [ ] Task 37.1: **CONF-PP-001 — nakshatra partition 5-5-5-5-7 → 5-6-5-5-6.** Update the bright/single table in `pakshi_calculator.dart` so Pooram/Purva Phalguni → Owl, Visakam/Vishakha → Crow, Uthiradam/Uttara Ashadha → Rooster. (See spec §2.)
+- [ ] Task 37.2: **CONF-PP-002 — single permanent birth-star table.** The known-birth-star path uses ONE permanent (Valarpirai) table — no Krishna reverse-swap. Neutralize `birthPaksha` in `birthBirdFromNakshatraAndPaksha`; retire/collapse the dark table for the birth-star path. (Spec §3.)
+- [ ] Task 37.3: **Name-initial fallback carries the paksha swap.** Add `birthBirdFromNameInitialAndPaksha(initial, paksha)` — the waxing/waning bird split applies ONLY to the name-initial (Nama Pakshi) path, per lineage. Wire it as the fallback when both nakshatra and DOB are unknown. (Spec §4.)
+- [ ] Task 37.4: **Existing-user re-migration — cover ALL affected users.** The wired `BirdMigrationService` already re-derives DOB-based profiles on load; **extend it to also correct manual "known-star / no-DOB" profiles** (owner decision: re-migrate them via the corrected single table — the old bird is simply wrong). Add regression tests for both paths + idempotency. (Spec §5.)
+- [ ] Task 37.5: **CONF-PP-003 — friend/enemy matrix** in `pakshi_attributes.dart` → unified: Vulture allies Peacock+Owl, enemies Crow+Rooster (etc., full table in spec §6).
+- [ ] Task 37.6: **CONF-PP-004 — ruling planets** → Vulture=Jupiter, Owl=Venus, Crow=Mars, Rooster=Mercury, Peacock=Saturn (+ dependent colour associations). (Spec §6.)
+- [ ] Task 37.7: **CONF-PP-005 — cardinal directions** → phase-dependent (Valarpirai/Theipirai sets), replacing the static assignments. (Spec §6.)
+- [ ] Task 37.8: **Tests + docs.** Update `pakshi_calculator_test`, `pakshi_attributes_test`, `onboarding_test`, `bird_migration_service_test` to the corrected values; add the 3 disputed-star cases (Pooram→Owl, Visakam→Crow, Uthiradam→Rooster) + owner''s Pushya/Krishna→**Owl** case; refresh `calculation-methodology.md` §1 and cross-link the CONF-PP resolutions.
+
+> **Deferred:** CONF-PP-006 (dual equal/weighted sub-yama modes + settings toggle) — it is a **new user-facing option**, not a correction; scheduled to a later sprint to keep v1.7.0 a tight correctness release.
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Code merged** — on `main` (PR #N). _(owner/orchestrator — Kiro cannot merge)_
+- [ ] **PR link** — #N (CI green: Analyze / Tier 1 / Build; full suite green — **local test run required pre-PR** given core-calc change).
+- [ ] **Docs updated** — `calculation-methodology.md` §1 rewritten to 5-6-5-5-6 + single permanent table; CONF-PP cross-links.
+- [ ] **Tests** — corrected derivation + 3 disputed stars + Pushya/Krishna→Owl + re-migration (DOB & manual paths) + idempotency; local green before PR.
+- [ ] **Smoke test** — scenarios in `smoke-test-v1.7.0.md`: existing Pushya/Krishna user sees bird change Cock→Owl on load; manual-star user corrected; onboarding new user gets 5-6-5-5-6 bird.
+- [ ] **Valuation report** — Sprint 37 row (+20% over AI-estimated time).
+- [ ] **Tracker updated** — status ✅. _(owner/orchestrator — flips only on merge)_
+- [ ] **User Guide** — update the birth-bird section (corrected partition; note existing users may see a one-time corrected bird) — real capability/accuracy change, so **not** `n/a`.
+
+> **Migration note (v1.4.1 lesson):** this changes existing users'' stored birth
+> bird. The on-load `BirdMigrationService` must re-derive on app open (not rely on
+> manual "Recalculate from DOB"), and Task 37.4 extends it to the manual/no-DOB
+> profiles too. Test the existing-user UPGRADE path explicitly, not just fresh
+> onboarding.
+
+---
+
 ## Future Sprints
 
-Future and candidate sprints (37 Chronobiology, 38 v2.0 Polish, 39 Accuracy
-Calibration, E2E Automation, App Store Prep) live in the
+Future and candidate sprints (38 v2.0 Polish, 39 Accuracy Calibration, Chronobiology,
+Integrated Aruḍam, The Now Surface, E2E Automation, App Store Prep) live in the
 **[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into
 this tracker (with a Delivery Checklist) when scheduled via `/plan`.
+
+> **Note on numbering:** Sprint 37 was reassigned from "Chronobiology" to
+> "Birth-Bird Engine Correction" — the CONF-PP audit surfaced a live calculation
+> bug that takes priority over feature work. Chronobiology shifts later.
 
 ---
 
