@@ -14,6 +14,31 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
+## [1.7.0-web] — 2026-09-11
+
+> Sprint 37 — **Birth-Bird Engine Correction**. A correctness release that fixes the
+> core Panja Pakshi birth-bird calculation to the canonical Tamil Siddha lineage model
+> (CONF-PP-001…005), overruling the earlier modern-secondary (Pulippani) interpretation.
+
+### Fixed
+- **Birth-bird nakshatra partition corrected to the canonical 5-6-5-5-6** (was 5-5-5-5-7).
+  Users born under **Purva Phalguni (Pooram)**, **Vishakha (Visakam)**, or **Uttara Ashadha
+  (Uthiradam)** now get their correct bird (Owl, Crow, Rooster respectively).
+- **Single permanent birth-star table** — the birth bird no longer reverse-swaps for
+  Krishna-paksha births; a known birth star yields one permanent lifetime bird.
+- **Corrected bird attributes** — ruling planets (Vulture=Jupiter, Owl=Venus, Crow=Mars,
+  Rooster=Mercury, Peacock=Saturn), unified friend/enemy affinities, and phase-dependent
+  cardinal directions.
+
+### Changed
+- **Existing users are auto-corrected on app open** — a one-time silent recalculation
+  updates any stored bird affected by the fix (both DOB-based and manual "known-star"
+  profiles), with a brief notification. No action needed from the user.
+- The waxing/waning bird swap now applies **only** to the name-initial fallback method
+  (used when neither birth star nor DOB is known), per lineage.
+
+---
+
 ## [1.6.0-web] — 2026-09-07
 
 > Sprint 36 — a Stability & Test Hardening release (internal quality and CI

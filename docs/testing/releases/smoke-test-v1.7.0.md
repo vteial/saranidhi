@@ -14,6 +14,15 @@
 >
 > **Legend:** ✅ Pass · ⚠️ Accepted (known/deferred) · ⏸️ Deferred · ❌ Fail
 
+> ⚠️ **Staging manual-verification still required.** The ✅ marks below are the
+> **unit-test cross-references** captured during implementation — they show the logic is
+> covered, but they are NOT the manual staging pass. Before `/release-finish`, run each
+> scenario against the **staging build** (https://saranidhi-staging.vercel.app) and record
+> the **manual** result. The single most important one is **A1** (an existing Pushya/Krishna
+> user's bird visibly auto-corrects **Cock → Owl** on app open with the notification) —
+> this is the whole point of the release and must be verified on a real deployed build, not
+> just in unit tests. Add a **"Staging Result"** note per row as you go.
+
 ---
 
 ## A. Existing-Profile Auto-Recalculation (Migration Path) — CRITICAL (4 scenarios)
