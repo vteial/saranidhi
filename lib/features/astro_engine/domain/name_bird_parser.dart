@@ -47,6 +47,40 @@ class NameBirdParser {
     };
   }
 
+  /// Derives the bird from a name initial (or full name) and the current lunar phase.
+  ///
+  /// Per lineage consensus (CONF-PP-002, 2025 Workshop Day 1 @34:00–46:20 &
+  /// Master's Book p.8), the waxing/waning bird split applies ONLY to the
+  /// name-initial (Nama Pakshi) path when both birth star and DOB are unknown.
+  ///
+  /// In Valarpirai (waxing moon), the bird matches the base vowel mapping.
+  /// In Theipirai (waning moon), the bird swaps per the classical cycle:
+  /// - Vulture (Earth / A) → Rooster
+  /// - Owl (Water / I) → Vulture
+  /// - Crow (Fire / U) → Owl
+  /// - Rooster (Air / E) → Peacock
+  /// - Peacock (Ether / O) → Crow
+  static PakshiBird birthBirdFromNameInitialAndPaksha(
+    String nameOrInitial,
+    LunarPhase currentPaksha,
+  ) {
+    final baseBird = parse(nameOrInitial);
+    return switch (currentPaksha) {
+      LunarPhase.waxing => baseBird,
+      LunarPhase.waning => _waningSwap(baseBird),
+    };
+  }
+
+  static PakshiBird _waningSwap(PakshiBird bird) {
+    return switch (bird) {
+      PakshiBird.vulture => PakshiBird.rooster,
+      PakshiBird.owl => PakshiBird.vulture,
+      PakshiBird.crow => PakshiBird.owl,
+      PakshiBird.rooster => PakshiBird.peacock,
+      PakshiBird.peacock => PakshiBird.crow,
+    };
+  }
+
   /// Maps Tamil Unicode vowel characters to birds.
   static PakshiBird? _mapTamilVowel(String char) {
     const mappings = {

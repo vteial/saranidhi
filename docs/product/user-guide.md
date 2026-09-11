@@ -152,11 +152,11 @@ On first launch, a gentle onboarding guides you through setup.
 ### Step 2: Find Your Birth Bird
 Choose one of three ways to determine your birth bird — presented as three co-equal tabs:
 
-- **I know my star** — Pick your Nakshatra (lunar mansion) directly.
-- **Calculate from DOB** *(most accurate)* — Enter your date of birth, time, and birth place. Saranidhi computes your exact Nakshatra and, using your birth lunar phase (Paksha), derives your permanent birth bird from the correct Bright/Dark half table.
-- **Calculate from name** — A quick fallback that maps the first vowel sound of your name to a bird when you don't know your star or DOB.
+- **I know my star** — Pick your Nakshatra (lunar mansion) directly. Saranidhi maps your star to your permanent birth bird using the canonical 5-6-5-5-6 Siddha table.
+- **Calculate from DOB** — Enter your date of birth, time, and birth place. Saranidhi computes your exact sidereal Nakshatra and maps it to your permanent birth bird.
+- **Calculate from name** — A phonetic vowel fallback when neither your birth star nor DOB is known. Per classical lineage, the name-initial method takes into account the current lunar phase (Valarpirai or Theipirai).
 
-> **Tip:** The DOB path is the most reliable, because the birth bird depends on both your Nakshatra *and* whether the moon was waxing or waning at birth.
+> **Note for existing users (v1.7.0):** In accordance with canonical Tamil Siddha lineage (CONF-PP-001…005), the birth bird is governed by a single permanent 5-6-5-5-6 nakshatra table without lunar-half reverse swapping. If you were born under Pooram, Visakam, Uthiradam, or during Krishna Paksha, your bird is automatically corrected on app load with a brief confirmation notice.
 
 ### Step 3: Allow Location
 Saranidhi uses your **current** location to calculate precise sunrise and sunset times for your area, keeping all Yama, Hora, and Rahu calculations accurate to your exact position. On the web, if you travel more than 5 km from your saved location, the app quietly updates it on next open and shows a brief notice (your birth bird never changes — only the daily rhythm follows your position). You can always edit the location manually in Settings.

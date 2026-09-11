@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:saranidhi/database/database_provider.dart';
+import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/nakshatra_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/name_bird_parser.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/cloud_backup/providers/sync_trigger_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,6 +59,7 @@ class OnboardingState {
     this.birthPlaceLng,
     this.calculatedNakshatra,
     this.isNearBoundary = false,
+    this.isDerivedFromName = false,
     this.latitude,
     this.longitude,
     this.locationName,
@@ -77,6 +80,7 @@ class OnboardingState {
   // Auto-calculated result (Sprint 21)
   final NakshatraResult? calculatedNakshatra;
   final bool isNearBoundary;
+  final bool isDerivedFromName;
   // Current location (for sunrise/sunset)
   final double? latitude;
   final double? longitude;
@@ -115,6 +119,7 @@ class OnboardingState {
     double? birthPlaceLng,
     NakshatraResult? calculatedNakshatra,
     bool? isNearBoundary,
+    bool? isDerivedFromName,
     double? latitude,
     double? longitude,
     String? locationName,
@@ -133,6 +138,7 @@ class OnboardingState {
       birthPlaceLng: birthPlaceLng ?? this.birthPlaceLng,
       calculatedNakshatra: calculatedNakshatra ?? this.calculatedNakshatra,
       isNearBoundary: isNearBoundary ?? this.isNearBoundary,
+      isDerivedFromName: isDerivedFromName ?? this.isDerivedFromName,
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
       locationName: locationName ?? this.locationName,
@@ -178,12 +184,14 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
   }
 
   void setNakshatra(String nakshatra) {
-    // Manual path: user knows their nakshatra but we don't know birth Paksha.
-    // Default to Bright Half table (Shukla). This may be incorrect for ~50%
-    // of users born during Krishna Paksha — but without DOB we cannot know.
-    // User Guide should recommend DOB path for accuracy.
+    // Manual path: user knows their nakshatra.
+    // Uses the canonical Siddha 5-6-5-5-6 single permanent table (CONF-PP-001, 002).
     final bird = PakshiCalculator.birthBirdFromNakshatraSafe(nakshatra);
-    state = state.copyWith(selectedNakshatra: nakshatra, birthBird: bird);
+    state = state.copyWith(
+      selectedNakshatra: nakshatra,
+      birthBird: bird,
+      isDerivedFromName: false,
+    );
   }
 
   void setBirthDate(DateTime date) {
@@ -209,9 +217,7 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
   /// Calculates the birth nakshatra from DOB data and updates the
   /// selected nakshatra + birth bird accordingly.
   ///
-  /// Uses the DUAL-TABLE system: determines birth Paksha from the DOB,
-  /// then uses the correct table (Bright or Dark half) to derive the
-  /// permanent birth bird.
+  /// Uses the canonical Siddha 5-6-5-5-6 permanent birth-star table (CONF-PP-001, 002).
   ///
   /// Requires at least `birthDate` to be set. If `birthTimeOfDay` is
   /// not set, defaults to 12:00 noon (midday approximation).
@@ -236,13 +242,9 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
     // Calculate nakshatra
     final result = NakshatraCalculator.calculate(birthMoment);
 
-    // Determine birth Paksha (was moon waxing or waning at birth?)
-    final birthPaksha = PakshiCalculator.birthPakshaFromDOB(birthMoment);
-
-    // Map to bird using the CORRECT table based on birth Paksha
-    final bird = PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+    // Map to bird using canonical permanent star table (CONF-PP-001, CONF-PP-002)
+    final bird = PakshiCalculator.birthBirdFromNakshatraSafe(
       result.standardName,
-      birthPaksha,
     );
 
     // Update state: set calculated result + override manual selection
@@ -251,6 +253,37 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
       isNearBoundary: result.isNearBoundary,
       selectedNakshatra: result.displayName,
       birthBird: bird,
+      isDerivedFromName: false,
+    );
+  }
+
+  /// Calculates the birth bird from a name using the phonetic vowel method
+  /// and the current lunar phase (Valarpirai/Theipirai swap per Task 37.3).
+  ///
+  /// Maps the derived bird to its canonical 5-6-5-5-6 start nakshatra:
+  /// Vulture -> Ashwini, Owl -> Ardra, Crow -> Uttara Phalguni,
+  /// Rooster -> Anuradha, Peacock -> Shravana.
+  void calculateFromName(String name, [LunarPhase? currentPaksha]) {
+    final trimmed = name.trim();
+    if (trimmed.isEmpty) return;
+    final paksha =
+        currentPaksha ?? LunarPhaseCalculator.phaseForDate(DateTime.now());
+    final bird = NameBirdParser.birthBirdFromNameInitialAndPaksha(
+      trimmed,
+      paksha,
+    );
+    const birdToNakshatra = {
+      PakshiBird.vulture: 'Ashwini',
+      PakshiBird.owl: 'Ardra',
+      PakshiBird.crow: 'Uttara Phalguni',
+      PakshiBird.rooster: 'Anuradha',
+      PakshiBird.peacock: 'Shravana',
+    };
+    final nakshatra = birdToNakshatra[bird] ?? 'Ashwini';
+    state = state.copyWith(
+      selectedNakshatra: nakshatra,
+      birthBird: bird,
+      isDerivedFromName: true,
     );
   }
 
@@ -288,13 +321,11 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
             birthBird: Value(state.birthBird?.name),
             locationLat: Value(state.latitude),
             locationLng: Value(state.longitude),
-            birthDateEpoch: Value(
-              state.birthDate?.millisecondsSinceEpoch,
-            ),
+            birthDateEpoch: Value(state.birthDate?.millisecondsSinceEpoch),
             birthTime: Value(
               state.birthTimeOfDay != null
                   ? '${state.birthTimeOfDay!.hour.toString().padLeft(2, '0')}:'
-                      '${state.birthTimeOfDay!.minute.toString().padLeft(2, '0')}'
+                        '${state.birthTimeOfDay!.minute.toString().padLeft(2, '0')}'
                   : null,
             ),
             birthPlaceName: Value(state.birthPlaceName),
@@ -307,9 +338,9 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
         );
 
     // Push new profile to iCloud if sync enabled
-    final profile = await (db.select(db.profiles)
-          ..where((t) => t.id.equals(id)))
-        .getSingleOrNull();
+    final profile = await (db.select(
+      db.profiles,
+    )..where((t) => t.id.equals(id))).getSingleOrNull();
     if (profile != null) {
       await ref.read(syncTriggerServiceProvider).onProfileUpdated(profile);
     }

@@ -441,6 +441,27 @@ void main() {
         );
       });
 
+      test('Purva Phalguni (Pooram) maps to Owl (CONF-PP-001)', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatra('Purva Phalguni'),
+          equals(PakshiBird.owl),
+        );
+      });
+
+      test('Vishakha (Visakam) maps to Crow (CONF-PP-001)', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatra('Vishakha'),
+          equals(PakshiBird.crow),
+        );
+      });
+
+      test('Uttara Ashadha (Uthiradam) maps to Rooster (CONF-PP-001)', () {
+        expect(
+          PakshiCalculator.birthBirdFromNakshatra('Uttara Ashadha'),
+          equals(PakshiBird.rooster),
+        );
+      });
+
       test('case insensitive matching', () {
         expect(
           PakshiCalculator.birthBirdFromNakshatra('ASHWINI'),
@@ -514,68 +535,149 @@ void main() {
     group('Night Pakshi', () {
       group('Night Bright Half (Waxing)', () {
         test('Group A (Sun, Tue): Vulture states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 0, lunarPhase: LunarPhase.waxing);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 0,
+            lunarPhase: LunarPhase.waxing,
+          );
           // Vulture: Dying, Ruling, Sleeping, Eating, Walking
-          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama1), equals(PakshiState.dying));
-          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama2), equals(PakshiState.ruling));
-          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama3), equals(PakshiState.sleeping));
-          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama4), equals(PakshiState.eating));
-          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama5), equals(PakshiState.walking));
+          expect(
+            res.stateForBird(PakshiBird.vulture, YamaIndex.yama1),
+            equals(PakshiState.dying),
+          );
+          expect(
+            res.stateForBird(PakshiBird.vulture, YamaIndex.yama2),
+            equals(PakshiState.ruling),
+          );
+          expect(
+            res.stateForBird(PakshiBird.vulture, YamaIndex.yama3),
+            equals(PakshiState.sleeping),
+          );
+          expect(
+            res.stateForBird(PakshiBird.vulture, YamaIndex.yama4),
+            equals(PakshiState.eating),
+          );
+          expect(
+            res.stateForBird(PakshiBird.vulture, YamaIndex.yama5),
+            equals(PakshiState.walking),
+          );
         });
 
         test('Group B (Mon, Wed, Sat): Owl states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 1, lunarPhase: LunarPhase.waxing);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 1,
+            lunarPhase: LunarPhase.waxing,
+          );
           // Owl: Dying, Ruling, Sleeping, Eating, Walking
-          expect(res.stateForBird(PakshiBird.owl, YamaIndex.yama1), equals(PakshiState.dying));
-          expect(res.stateForBird(PakshiBird.owl, YamaIndex.yama2), equals(PakshiState.ruling));
+          expect(
+            res.stateForBird(PakshiBird.owl, YamaIndex.yama1),
+            equals(PakshiState.dying),
+          );
+          expect(
+            res.stateForBird(PakshiBird.owl, YamaIndex.yama2),
+            equals(PakshiState.ruling),
+          );
         });
 
         test('Group C (Thu): Crow states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 4, lunarPhase: LunarPhase.waxing);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 4,
+            lunarPhase: LunarPhase.waxing,
+          );
           // Crow: Dying, Ruling, Sleeping, Eating, Walking
-          expect(res.stateForBird(PakshiBird.crow, YamaIndex.yama1), equals(PakshiState.dying));
+          expect(
+            res.stateForBird(PakshiBird.crow, YamaIndex.yama1),
+            equals(PakshiState.dying),
+          );
         });
 
         test('Group D (Fri): Cock states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 5, lunarPhase: LunarPhase.waxing);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 5,
+            lunarPhase: LunarPhase.waxing,
+          );
           // Cock: Dying, Ruling, Sleeping, Eating, Walking
-          expect(res.stateForBird(PakshiBird.rooster, YamaIndex.yama1), equals(PakshiState.dying));
+          expect(
+            res.stateForBird(PakshiBird.rooster, YamaIndex.yama1),
+            equals(PakshiState.dying),
+          );
         });
       });
 
       group('Night Dark Half (Waning)', () {
         test('Group A (Sun, Tue): Vulture states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 0, lunarPhase: LunarPhase.waning);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 0,
+            lunarPhase: LunarPhase.waning,
+          );
           // Vulture: Sleeping, Walking, Dying, Eating, Ruling
-          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama1), equals(PakshiState.sleeping));
-          expect(res.stateForBird(PakshiBird.vulture, YamaIndex.yama5), equals(PakshiState.ruling));
+          expect(
+            res.stateForBird(PakshiBird.vulture, YamaIndex.yama1),
+            equals(PakshiState.sleeping),
+          );
+          expect(
+            res.stateForBird(PakshiBird.vulture, YamaIndex.yama5),
+            equals(PakshiState.ruling),
+          );
         });
 
         test('Group B (Mon, Sat): Owl states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 1, lunarPhase: LunarPhase.waning);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 1,
+            lunarPhase: LunarPhase.waning,
+          );
           // Owl: Sleeping, Walking, Dying, Eating, Ruling
-          expect(res.stateForBird(PakshiBird.owl, YamaIndex.yama1), equals(PakshiState.sleeping));
-          expect(res.stateForBird(PakshiBird.owl, YamaIndex.yama5), equals(PakshiState.ruling));
+          expect(
+            res.stateForBird(PakshiBird.owl, YamaIndex.yama1),
+            equals(PakshiState.sleeping),
+          );
+          expect(
+            res.stateForBird(PakshiBird.owl, YamaIndex.yama5),
+            equals(PakshiState.ruling),
+          );
         });
 
         test('Group C (Wed): Crow states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 3, lunarPhase: LunarPhase.waning);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 3,
+            lunarPhase: LunarPhase.waning,
+          );
           // Crow: Dying, Eating, Walking, Sleeping, Ruling
-          expect(res.stateForBird(PakshiBird.crow, YamaIndex.yama1), equals(PakshiState.dying));
-          expect(res.stateForBird(PakshiBird.crow, YamaIndex.yama5), equals(PakshiState.ruling));
+          expect(
+            res.stateForBird(PakshiBird.crow, YamaIndex.yama1),
+            equals(PakshiState.dying),
+          );
+          expect(
+            res.stateForBird(PakshiBird.crow, YamaIndex.yama5),
+            equals(PakshiState.ruling),
+          );
         });
 
         test('Group D (Thu): Peacock states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 4, lunarPhase: LunarPhase.waning);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 4,
+            lunarPhase: LunarPhase.waning,
+          );
           // Peacock: Walking, Sleeping, Dying, Sleeping, Eating
-          expect(res.stateForBird(PakshiBird.peacock, YamaIndex.yama1), equals(PakshiState.walking));
+          expect(
+            res.stateForBird(PakshiBird.peacock, YamaIndex.yama1),
+            equals(PakshiState.walking),
+          );
         });
 
         test('Group E (Fri): Peacock states match', () {
-          final res = PakshiCalculator.calculateNight(weekday: 5, lunarPhase: LunarPhase.waning);
+          final res = PakshiCalculator.calculateNight(
+            weekday: 5,
+            lunarPhase: LunarPhase.waning,
+          );
           // Peacock: Sleeping, Ruling, Walking, Eating, Dying
-          expect(res.stateForBird(PakshiBird.peacock, YamaIndex.yama1), equals(PakshiState.sleeping));
-          expect(res.stateForBird(PakshiBird.peacock, YamaIndex.yama2), equals(PakshiState.ruling));
+          expect(
+            res.stateForBird(PakshiBird.peacock, YamaIndex.yama1),
+            equals(PakshiState.sleeping),
+          );
+          expect(
+            res.stateForBird(PakshiBird.peacock, YamaIndex.yama2),
+            equals(PakshiState.ruling),
+          );
         });
       });
 
@@ -593,8 +695,12 @@ void main() {
                   rulingCount++;
                 }
               }
-              expect(rulingCount, equals(1),
-                  reason: 'Day $day, Phase $phase, Yama $yamaIdx should have 1 ruling bird');
+              expect(
+                rulingCount,
+                equals(1),
+                reason:
+                    'Day $day, Phase $phase, Yama $yamaIdx should have 1 ruling bird',
+              );
             }
           }
         }
@@ -617,8 +723,12 @@ void main() {
                   rulingCount++;
                 }
               }
-              expect(rulingCount, equals(1),
-                  reason: 'Day $day, Phase $phase, Bird $birdIdx should rule 1 yama');
+              expect(
+                rulingCount,
+                equals(1),
+                reason:
+                    'Day $day, Phase $phase, Bird $birdIdx should rule 1 yama',
+              );
             }
           }
         }
@@ -647,99 +757,175 @@ void main() {
       });
     });
 
-    group('Sprint 33: Dual-table birth bird derivation', () {
-      test('Pushya + Shukla Paksha = Owl (Bright Half table)', () {
-        final bird = PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-          'pushya',
-          LunarPhase.waxing,
+    group(
+      'Sprint 37: Single permanent table birth bird derivation (CONF-PP-001, 002)',
+      () {
+        test(
+          'Pushya + Shukla = Owl, Pushya + Krishna = Owl (Owner case: was Cock)',
+          () {
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'pushya',
+                LunarPhase.waxing,
+              ),
+              equals(PakshiBird.owl),
+            );
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'pushya',
+                LunarPhase.waning,
+              ),
+              equals(PakshiBird.owl),
+            );
+          },
         );
-        expect(bird, equals(PakshiBird.owl));
-      });
 
-      test('Pushya + Krishna Paksha = Rooster (Dark Half table)', () {
-        final bird = PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-          'pushya',
-          LunarPhase.waning,
+        test(
+          'Ashwini + Shukla = Vulture, Ashwini + Krishna = Vulture (no Krishna swap)',
+          () {
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'ashwini',
+                LunarPhase.waxing,
+              ),
+              equals(PakshiBird.vulture),
+            );
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'ashwini',
+                LunarPhase.waning,
+              ),
+              equals(PakshiBird.vulture),
+            );
+          },
         );
-        expect(bird, equals(PakshiBird.rooster));
-      });
 
-      test('Ashwini + Shukla = Vulture, Ashwini + Krishna = Peacock', () {
-        expect(
-          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-            'ashwini',
-            LunarPhase.waxing,
-          ),
-          equals(PakshiBird.vulture),
+        test(
+          'Revati + Shukla = Peacock, Revati + Krishna = Peacock (no Krishna swap)',
+          () {
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'revati',
+                LunarPhase.waxing,
+              ),
+              equals(PakshiBird.peacock),
+            );
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'revati',
+                LunarPhase.waning,
+              ),
+              equals(PakshiBird.peacock),
+            );
+          },
         );
-        expect(
-          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-            'ashwini',
-            LunarPhase.waning,
-          ),
-          equals(PakshiBird.peacock),
-        );
-      });
 
-      test('Revati + Shukla = Peacock, Revati + Krishna = Vulture', () {
-        expect(
-          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-            'revati',
-            LunarPhase.waxing,
-          ),
-          equals(PakshiBird.peacock),
-        );
-        expect(
-          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-            'revati',
-            LunarPhase.waning,
-          ),
-          equals(PakshiBird.vulture),
-        );
-      });
+        test('Hasta + Shukla = Crow, Hasta + Krishna = Crow', () {
+          expect(
+            PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+              'hasta',
+              LunarPhase.waxing,
+            ),
+            equals(PakshiBird.crow),
+          );
+          expect(
+            PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+              'hasta',
+              LunarPhase.waning,
+            ),
+            equals(PakshiBird.crow),
+          );
+        });
 
-      test('Hasta + Shukla = Crow, Hasta + Krishna = Crow (same for Crow)', () {
-        expect(
-          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-            'hasta',
-            LunarPhase.waxing,
-          ),
-          equals(PakshiBird.crow),
+        test(
+          'Pooram / Purva Phalguni = Owl regardless of paksha (CONF-PP-001, 002)',
+          () {
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'purva phalguni',
+                LunarPhase.waxing,
+              ),
+              equals(PakshiBird.owl),
+            );
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'purva phalguni',
+                LunarPhase.waning,
+              ),
+              equals(PakshiBird.owl),
+            );
+          },
         );
-        expect(
-          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-            'hasta',
-            LunarPhase.waning,
-          ),
-          equals(PakshiBird.crow),
-        );
-      });
 
-      test('unknown nakshatra returns null', () {
-        expect(
-          PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-            'unknown',
-            LunarPhase.waxing,
-          ),
-          isNull,
+        test(
+          'Visakam / Vishakha = Crow regardless of paksha (CONF-PP-001, 002)',
+          () {
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'vishakha',
+                LunarPhase.waxing,
+              ),
+              equals(PakshiBird.crow),
+            );
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'vishakha',
+                LunarPhase.waning,
+              ),
+              equals(PakshiBird.crow),
+            );
+          },
         );
-      });
 
-      test('birthBirdForPhase always returns natal bird (no swap)', () {
-        // Verify swap logic is disabled — bird is permanent
-        expect(
-          PakshiCalculator.birthBirdForPhase(PakshiBird.owl, LunarPhase.waning),
-          equals(PakshiBird.owl), // NOT rooster
+        test(
+          'Uthiradam / Uttara Ashadha = Rooster regardless of paksha (CONF-PP-001, 002)',
+          () {
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'uttara ashadha',
+                LunarPhase.waxing,
+              ),
+              equals(PakshiBird.rooster),
+            );
+            expect(
+              PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+                'uttara ashadha',
+                LunarPhase.waning,
+              ),
+              equals(PakshiBird.rooster),
+            );
+          },
         );
-        expect(
-          PakshiCalculator.birthBirdForPhase(
-            PakshiBird.vulture,
-            LunarPhase.waning,
-          ),
-          equals(PakshiBird.vulture), // NOT peacock
-        );
-      });
-    });
+
+        test('unknown nakshatra returns null', () {
+          expect(
+            PakshiCalculator.birthBirdFromNakshatraAndPaksha(
+              'unknown',
+              LunarPhase.waxing,
+            ),
+            isNull,
+          );
+        });
+
+        test('birthBirdForPhase always returns natal bird (no swap)', () {
+          // Verify swap logic is disabled — bird is permanent
+          expect(
+            PakshiCalculator.birthBirdForPhase(
+              PakshiBird.owl,
+              LunarPhase.waning,
+            ),
+            equals(PakshiBird.owl), // NOT rooster
+          );
+          expect(
+            PakshiCalculator.birthBirdForPhase(
+              PakshiBird.vulture,
+              LunarPhase.waning,
+            ),
+            equals(PakshiBird.vulture), // NOT peacock
+          );
+        });
+      },
+    );
 
     group('Sprint 33: Birth Paksha determination', () {
       test('Oct 27, 1975 8PM IST = Krishna Paksha (waning)', () {
