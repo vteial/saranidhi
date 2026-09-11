@@ -86,8 +86,9 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
 | 7 | பக்ஷி ஆற்றல் பெருக்கும் கருவிகள் & வாழ்வியல் பயன்பாடுகள் (Empowerment Tools & Life Applications) | ✅ | 5 | 🥇 2025 Workshop Day 4 (`pp-class-04.md`), Day 5 (`pp-class-05.md`) |
 | 8 | நூல் சார்ந்த தனித்துவப் பிரயோகங்கள், வாஸ்து & தன வசிய தாந்த்ரீகம் (Book-Exclusive Esoteric Practices, Vastu & Wealth Tantra) | ✅ | 10 | 🥇 Master's 56-page book (`panja_pakashi_aarudan.pdf`) |
 | 9 | மூல நூல்கள் சார்ந்த பண்டைய கோட்பாடுகள் (~1920 Classical Root Doctrines & Archaic Tamil Manuscripts) | ✅ | 7 | 🥈 Classical Books (1919 Agathiyar & 1930 Rathinam) |
+| 10 | வலையொளி மூலங்கள் சார்ந்த நடைமுறை நுணுக்கங்கள் & படுபட்சி நிவர்த்தி (YouTube Practitioner Corroborations, Calling-Name Dynamics & Padubakshi Remedies) | ✅ | 3 | 🥉 YouTube (`pp-yt-01.md` to `pp-yt-03.md`) |
 
-**Total captured: 42 practices across 9 foundational topics.**
+**Total captured: 45 practices across 10 foundational topics.**
 
 ---
 
@@ -104,7 +105,7 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
 | ID | Tier | Topic / Practice | Question / Ambiguity | Source | Decision (owner) | App impact | Status |
 |:--:|:--:|------------------|----------------------|--------|------------------|:----------:|:------:|
 | CONF-PP-001 | 🔴 T1 | Nakshatra-to-Bird Star Boundaries | The shipped engine (`PakshiCalculator` / Pulippani) partitions the 27 nakshatras as 5-5-5-5-7 (Vulture=5, Owl=5, Crow=5, Cock=5, Peacock=7), assigning Purva Phalguni to Crow, Vishakha to Cock, and Uttara Ashadha to Peacock. The 2025 workshop master partitions stars as 5-6-5-5-6, assigning Purva Phalguni (Pooram) to Owl, Vishakha (Visakam) to Crow, and Uttara Ashadha (Uthiradam) to Rooster. Both 1919 and 1930 classical texts (*Pancha Pakshi Rathinam* p. 46) explicitly corroborate 5-6-5-5-6 as the ancient canonical Siddha partition. Which nakshatra boundary is canonical for the app's default birth bird? | 🥇 2025 Workshop Day 1 (`pp-class-01.md` @ 29:00), 🥇 Master's Book (p. 16), 🥈 1930 *Rathinam* (p. 46) vs Shipped `PakshiCalculator._brightVultureNakshatras` | — | Shifting star assignments changes birth birds for individuals born under Pooram, Visakam, and Uthiradam. | 🔁 Proposed |
-| CONF-PP-002 | 🔴 T1 | Permanent Natal Bird vs Dark Half Reverse Swap | The shipped engine (`PakshiCalculator.birthBirdFromNakshatraAndPaksha` / Pulippani Table 1 & 2) uses two distinct star tables: Table 1 (Ashwini forward) for Shukla births and Table 2 (Revati backward) for Krishna births. The 2025 workshop teacher explicitly states that for natives with a known birth star (Janma Nakshatra), the Valarpirai table is the permanent lifetime bird ("ஜென்ம பக்ஷி... இந்த ஒரே பறவையை வாழ்நாள் முழுவதும் பயன்படுத்தலாம்... தேய்பிறை பக்ஷி போகவே வேண்டாம்"), and that waxing/waning bird swapping ONLY applies to those deriving their bird from their name initial letter (Nama Pakshi). Should birth star lookups use a single permanent table for all births, or retain dual Shukla/Krishna tables? | 🥇 2025 Workshop Day 1 (`pp-class-01.md` @ 33:00) vs `calculation-methodology.md` §1 | — | Core engine calculation in `PakshiCalculator.birthBirdFromNakshatraAndPaksha`. | 🔁 Proposed |
+| CONF-PP-002 | 🔴 T1 | Permanent Natal Bird vs Dark Half Reverse Swap | The shipped engine (`PakshiCalculator.birthBirdFromNakshatraAndPaksha` / Pulippani Table 1 & 2) uses two distinct star tables: Table 1 (Ashwini forward) for Shukla births and Table 2 (Revati backward) for Krishna births. The 2025 workshop teacher explicitly states that for natives with a known birth star (Janma Nakshatra), the Valarpirai table is the permanent lifetime bird ("ஜென்ம பக்ஷி... இந்த ஒரே பறவையை வாழ்நாள் முழுவதும் பயன்படுத்தலாம்... தேய்பிறை பக்ஷி போகவே வேண்டாம்"), and that waxing/waning bird swapping ONLY applies to those deriving their bird from their name initial letter (Nama Pakshi). Both Healer Baskar (`pp-yt-01.md` @ 01:10) and Astrologer S. Gopalakrishnan (`pp-yt-03.md` @ 02:47) corroborate that DOB/birth star yields a single permanent invariant bird, while waning/waxing splitting is exclusively reserved for the name initial method (with folk practitioners often directly mapping calling-name vowels to the 5 elemental birds). Should birth star lookups use a single permanent table for all births, or retain dual Shukla/Krishna tables? | 🥇 2025 Workshop Day 1 (`pp-class-01.md` @ 33:00), 🥉 YouTube 01 (`pp-yt-01.md` @ 01:10), 🥉 YouTube 03 (`pp-yt-03.md` @ 02:47) vs `calculation-methodology.md` §1 | — | Core engine calculation in `PakshiCalculator.birthBirdFromNakshatraAndPaksha`. | 🔁 Proposed |
 | CONF-PP-003 | 🟡 T2 | Natural Friendship & Enmity Matrices | In `pakshi_attributes.dart` (Pulippani), Vulture's friends are Crow & Owl, and enemies are Peacock & Rooster. In the 2025 workshop (Day 3), Vulture's friends in Valarpirai are Peacock & Owl, and enemies are Crow & Rooster; and Vulture ↔ Peacock is declared a permanent invariant ally across both moon phases, while Vulture ↔ Rooster is declared a permanent bitter enemy. Several friend/enemy pairs are inverted between the workshop and Pulippani. Note: 1930 *Pancha Pakshi Rathinam* (p. 46) explicitly comments that dual Shukla/Krishna enmity tables fail in practice and affirms unified natural affinities. Which relational matrix should the app display in compatibility and daily advice? | 🥇 2025 Workshop Day 3 (`pp-class-03.md` @ 02:46), 🥈 1930 *Rathinam* (p. 46) vs `pakshi_attributes.dart` lines 197–252 | — | UI displays of bird allies, opponents, and relationship advice screens. | 🔁 Proposed |
 | CONF-PP-004 | 🟡 T2 | Elemental Ruling Planets | In `pakshi_attributes.dart`, the ruling planets are: Vulture=Saturn, Owl=Mars, Crow=Venus, Rooster=Jupiter, Peacock=Mercury. In the 2025 workshop (Day 4 @ 48:41), the ruling planets are: Vulture=Guru (Jupiter), Owl=Sukran (Venus), Crow=Sevvai (Mars), Rooster=Budhan (Mercury), Peacock=Shani (Saturn), explained by classical Tamil Siddha elemental physics. Which planet mapping governs the bird attributes? | 🥇 2025 Workshop Day 4 (`pp-class-04.md` @ 48:41) vs `pakshi_attributes.dart` lines 91–121 | — | `PakshiAttributes` planet getters and color associations. | 🔁 Proposed |
 | CONF-PP-005 | 🟢 T3 | Cardinal Direction Assignments | In `pakshi_attributes.dart`, bird directions are static (Vulture=West, Owl=North, Crow=South, Rooster=East, Peacock=Center). In the 2025 workshop (Day 3 @ 18:21), directions are dynamic by moon phase: Valarpirai (Vulture=East, Owl=South, Crow=West, Rooster=North, Peacock=Sky/Center) and Theipirai (Vulture=East, Owl=North, Crow=South, Rooster=Center, Peacock=West). Should the app support directional tactics with phase-dependent cardinal directions? | 🥇 2025 Workshop Day 3 (`pp-class-03.md` @ 18:21) vs `pakshi_attributes.dart` lines 124–154 | — | Tactical advice and compass UI feature in AstroEngine. | 🔁 Proposed |
@@ -848,5 +849,70 @@ Panja Pakshi is captured from a **tiered multi-source set** (local: `worknotes/p
 - **Corroborates / diverges:** Direct classical link between Panja Pakshi, Varma Kalai, and Svara Sastram.
 - **Rough app idea (optional):** None (strictly document-only).
 - **Source ref:** 🥈 1930 Classical Root Book (*Pancha Pakshi Rathinam* p. 82).
+
+---
+
+### 10. வலையொளி மூலங்கள் சார்ந்த நடைமுறை நுணுக்கங்கள் & படுபட்சி நிவர்த்தி (YouTube Practitioner Corroborations, Calling-Name Dynamics & Padubakshi Remedies)
+
+#### Practice — பஞ்சபட்சி ஐந்து இறகுகள் வெள்ளித் தாயத்து & ஓம் நமசிவய 21-நாள் தாந்த்ரீக முறை (Five-Bird Feathers Silver Talisman & 21-Day Consecration Ritual)
+- **Purpose / benefit (the why):** Nullifies catastrophic downtime of one's ruling bird during *Padubakshi / Marana* periods, dissolves planetary afflictions (கிரக தோஷங்கள்), and ensures 100% success during bird action windows.
+- **How it's practiced (brief mechanics):**
+  - Source: Classical palm-leaf manuscript secret (*பஞ்சபட்சி சாஸ்திர ஏடு*) shared by Astrologer S. Gopalakrishnan (`pp-yt-02.md`).
+  - Obtain shed down / feather clippings (பொங்கு / இறகு) from all 5 sacred birds:
+    1. சேவல் (Rooster / Cock)
+    2. ஆந்தை (Owl)
+    3. காகம் (Crow)
+    4. மயில் (Peacock)
+    5. கழுகு / வல்லூறு (Eagle / Vulture)
+  - Feathers must be naturally shed (e.g., collected from aviaries/zoos or molting grounds, never violently plucked).
+  - Encase small clippings of all 5 feathers inside a pure silver talisman (வெள்ளி தாயத்து).
+  - Consecration ritual (உருவேற்றுதல்):
+    * Perform for 21 consecutive days with daily dhoopa-deepam (incense and ghee lamp).
+    * Daily japa count: 1,008 repetitions of the Maha Panchakshara: **"ஓம் நமசிவய"** (*Om Namasivaya* — strictly terminal short vowel 'ya' [நமசிவய], not the elongated 'yaa' [நமசிவாய]).
+    * After 21 days (total 21,168 japa repetitions), wear the silver talisman around the neck.
+  - Creates a permanent elemental shield by keeping all five Pancha Bhoota bird currents harmonized around the aura.
+- **App-help bucket:** 🟡 App-augmentable — Talisman preparation checklist, 21-day japa habit tracker, audio player for 1008 repetitions of "ஓம் நமசிவய".
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Direct esoteric remedy for the primary fear in Panja Pakshi practice (fear of Marana/Padubakshi calamity).
+- **Rough app idea (optional):** "Padubakshi Protection Guide" with 21-day consecration checklist and audio japa loop.
+- **Source ref:** 🥉 YouTube Video 2 (`pp-yt-02.md` @ 00:00 – 04:25).
+
+#### Practice — கூப்பிடும் பெயரின் உயிரெழுத்துத் தத்துவமும் பக்ஷி விழிப்புணர்வும் (Phonetic Calling-Name Vowel Sound & Element-Soul Activation)
+- **Purpose / benefit (the why):** Resolves the conflict between theoretical birth horoscopes and practical occult efficacy. Explains why the phonetic vibration of one's everyday calling name (*கூப்பிடும் பெயர்*) actively energizes the elemental bird in modern life.
+- **How it's practiced (brief mechanics):**
+  - Astrologer S. Gopalakrishnan (`pp-yt-03.md`) addresses the doctrinal debate between *Janana Pakshi* (birth time), *Nakshatra Pakshi* (birth star), *Rasi Pakshi* (Moon sign), and *Nama Pakshi* (calling name):
+    * In ancient eras, naming ceremonies strictly conformed to birth nakshatra syllables, making all systems identical.
+    * In modern times, birth times are frequently inaccurate and children are given arbitrary or popular names.
+    * The physical consonant (*மெய்*) represents the inert body, while the vowel (*உயிர்*) represents the living soul and active Pancha Bhoota current.
+    * The repeated sound of people calling a person's name acts as a perpetual living mantra:
+      - Strip the consonant from the first syllable (e.g. கா = க் + ஆ; கு = க் + உ; கோ = க் + ஒ).
+      - The underlying root vowel determines the active bird:
+        * **அகாரம் (அ / ஆ):** வல்லூறு (Earth / Vulture) — e.g., அமுதா, காளியப்பன், தாமு.
+        * **இகாரம் (இ / ஈ):** ஆந்தை (Water / Owl) — e.g., இந்திரா, கிட்டு, திலக், மீனா.
+        * **உகாரம் (உ / ஊ):** காகம் (Fire / Crow) — e.g., உமா, குப்புசாமி, முருகன், பூபதி.
+        * **எகாரம் (எ / ஏ):** கோழி / சேவல் (Air / Cock) — e.g., எழில், கேசவன், மேனகா, தேவராஜ்.
+        * **ஒகாரம் (ஒ / ஓ):** மயில் (Ether / Peacock) — e.g., கோபிகிருஷ்ணன், கோவிந்தன், மோகன், சோமு.
+    * Short (*குறில்*) and long (*நெடில்*) vowels share the same elemental bird.
+    * If official legal name is 'Narayanan' or 'Srinivasan' but daily calling name is 'Mani' or 'Kumar', the bird must be derived from 'Mani' (இ $\rightarrow$ Owl) or 'Kumar' (உ $\rightarrow$ Crow).
+- **App-help bucket:** 🟢 App-assistable — Name Phonetic Analyzer tool that parses Tamil or Romanized names into vowel phonemes and displays the calling-name bird.
+- **Implemented?:** ⬜ Not yet implemented.
+- **Corroborates / diverges:** Corroborates the workshop's vowel mapping, but introduces the practical practitioner rule that informal calling names override birth names when energetically activated.
+- **Rough app idea (optional):** "Calling Name vs Birth Star Bird Audit" in user profile settings.
+- **Source ref:** 🥉 YouTube Video 3 (`pp-yt-03.md` @ 00:00 – 10:40).
+
+#### Practice — சரகலை-பஞ்சபட்சி ஒருங்கிணைப்புப் பிரயோகம் (Sara Kalai & Panja Pakshi Synergistic Co-Application)
+- **Purpose / benefit (the why):** Integrates internal respiratory rhythm (நாசி சுவாசம்) with external macrocosmic bird potency, creating a compounding multiplier effect ("எக்ஸ்ட்ரா பூஸ்டர்") for high-stakes action.
+- **How it's practiced (brief mechanics):**
+  - Healer Baskar (`pp-yt-01.md`) articulates the exact relationship between the two sister sciences:
+    * **Sara Kalai:** Somatic science centered on breath flowing through Ida / Pingala / Sushumna (நாசி சுவாசம்).
+    * **Panja Pakshi:** Macrocosmic science centered on birth planetary time, moon phase, and universal Pancha Bhootas.
+    * Both sciences are autonomous, but when synchronized, they act as an "Extra Booster":
+      - When executing a critical transaction during your bird's **அரசு (Ruling)** or **ஊண் (Eating)** yama, verify that the **சாதக சரம் (favorable nostril breath)** is active.
+      - If your bird is in **சாவு (Marana)** or **துயில் (Sleep)** downtime, strictly avoid high-risk actions even if the breath seems favorable, or consciously switch breath to Surya/Chandra svara while maintaining stillness.
+- **App-help bucket:** 🟢 App-assistable — Unified "Sara-Pakshi Master Dashboard" cross-referencing current active svara with current bird yama.
+- **Implemented?:** ⬜ Not yet implemented (app currently presents them as separate calculators).
+- **Corroborates / diverges:** Direct doctrinal bridge connecting Saranidhi's two core knowledge bases (`sarakalai-workshop-knowledge.md` and `panja-pakshi-workshop-knowledge.md`).
+- **Rough app idea (optional):** "Master Auspiciousness Indicator" combining current svara with current bird sub-yama.
+- **Source ref:** 🥉 YouTube Video 1 (`pp-yt-01.md` @ 05:49 – 07:00), corroborated by 🥇 Workshop Day 1 & Day 5.
 
 ---
