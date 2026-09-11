@@ -91,7 +91,11 @@ during `/plan`. Keep entries small and outcome-focused.
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🔴 | ⬜ | Collect 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Rooster/Pushya *[owner task]* |
+| 🔴 | ⬜ | **CONF-PP-001 fix** — replace `PakshiCalculator` nakshatra partition 5-5-5-5-7 → **5-6-5-5-6** (Pooram→Owl, Visakam→Crow, Uthiradam→Rooster). *Owner-confirmed doctrine; lineage-unanimous.* |
+| 🔴 | ⬜ | **CONF-PP-002 fix** — birth-star bird = **single permanent Valarpirai table, remove Krishna reverse-swap**; move waxing/waning swap to a new name-initial (`birthBirdFromNameInitialAndPaksha`) fallback. *Owner-confirmed.* |
+| 🔴 | ⬜ | **Existing-user birth-bird re-migration** — on-app-load recalc so existing profiles get the corrected bird (e.g. Pushya/Krishna: Cock → **Owl**); regression test. *(v1.4.1 re-migration lesson — do NOT rely on manual recalc.)* |
+| 🟡 | ⬜ | CONF-PP-003/004/005/006 (friend-enemy matrix, ruling planets, dynamic directions, weighted sub-yamas) — resolve + apply during this accuracy work. |
+| 🔴 | ⬜ | Collect 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Owl/Pushya *(owner's corrected bird per CONF-PP-001/002)* *[owner task]* |
 | 🔴 | ⬜ | Collect the same 7 days from a Tamil Panchangam (drikpanchang.com or physical calendar) *[owner task]* |
 | 🟡 | ⬜ | Saranidhi diagnostic dump — generate matching 7-day output (bird states, sunrise/sunset, lunar phase, weekday) |
 | 🟡 | ⬜ | Three-way comparison matrix — Saranidhi vs Align27 vs Panchangam; identify divergence points |
