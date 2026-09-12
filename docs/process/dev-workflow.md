@@ -382,10 +382,23 @@ Runs on pull requests targeting `main` (pre-merge gate) as well as on merge to `
 | Environment | Branch | Platform | URL | Auto-Deploy | Data |
 |-------------|--------|----------|-----|-------------|------|
 | Production | `prod` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | On `/release` PR merge | Existing |
-| Staging | `main` | Vercel (2nd project) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) | On merge to main | Existing |
-| Preview | PR branches | Vercel | Auto-generated per PR | On PR open/update | Fresh |
+| Staging | `main` | Vercel (2nd project) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) | On merge to main (**preview branch-tracking OFF**) | Existing |
+| Preview | **code** branches (`sprint/*`, `release/*`, `fix/*`) | Vercel (prod project) | Auto-generated per PR | On PR open/update; **`docs/*` + `plan/*` excluded** | Fresh |
 | Production iOS | `main` | App Store | — | Manual |
 | Production Android | `main` | Play Store | — | Manual |
+
+> **Deployment budget (Vercel Hobby 100/day).** A skipped `ignoreCommand` build **still
+> counts** as a deployment, and the repo is connected to **two** Vercel projects — so
+> docs-heavy release days can trip the cap. Mitigation (see
+> [`deployment.md` → Deployment Budget](../deployment/deployment.md#deployment-budget--quota-strategy)):
+> `vercel.json`'s `git.deploymentEnabled` denies `docs/**` + `plan/**` on the prod project,
+> and the staging project's preview **Branch Tracking is OFF** (deploys only `main`). Net:
+> docs/plan pushes = 0 deployments; code-branch pushes = 1. **Keep the deny-list in sync with
+> the branch-naming convention below.**
+
+**Branch-naming convention (drives the deploy allowlist):**
+- **Code branches** (get a preview): `sprint/*`, `release/*`, `fix/*`.
+- **Docs/planning branches** (no deploy): `docs/*`, `plan/*`.
 
 ### Known Limitations (Current)
 
