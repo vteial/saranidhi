@@ -12,6 +12,16 @@
 > until merge (see `dev-workflow.md` `/release-start`, corrected in PR #186). The preview
 > is built from the release-branch head and correctly shows **About = v1.8.0** (owner
 > already confirmed).
+>
+> **⚠️ Preview auth (v1.8.0 blocker + how to resume):** the preview has **Vercel
+> Deployment Protection** enabled, so an unauthenticated/headless agent hits the Vercel
+> SSO login wall (HTTP 302 → `/login`) — this blocked the first run (recorded in
+> `smoke-test-v1.8.0.md`). **To run, use a bypass URL the owner provides:** a Vercel
+> **Shareable Link** with the bypass token appended —
+> `…?_vercel_share=<secret>` — generated from the Vercel deployment dashboard/toolbar.
+> Use that tokenized URL as the ENVIRONMENT below. *(This is a per-release manual step
+> for now; a durable fix — Vercel "Protection Bypass for Automation" via the
+> `x-vercel-protection-bypass` secret — is a post-v1.8.0 backlog item.)*
 
 ---
 
@@ -26,10 +36,12 @@ log bugs with root-cause analysis. You DO NOT edit source code, and you DO NOT m
 RELEASE UNDER TEST: v1.8.0 (Sprint 38 — Integrated Aruḍam, Slice 1: the ambient "Aruḍam Now"
 verdict card on Home).
 
-ENVIRONMENT: The release PR's Vercel PREVIEW (NOT staging):
-  https://saranidhi-git-release-v180-eialarasus-projects.vercel.app
-(Staging deploys from `main`, so the release branch's changes are not on staging until the
-PR is merged; the preview is built from the release-branch head and shows About = v1.8.0.)
+ENVIRONMENT: The release PR's Vercel PREVIEW (NOT staging). The preview has Vercel
+Deployment Protection, so use the OWNER-PROVIDED bypass URL (Shareable Link with token):
+  https://saranidhi-git-release-v180-eialarasus-projects.vercel.app?_vercel_share=<TOKEN>
+(Base URL: https://saranidhi-git-release-v180-eialarasus-projects.vercel.app — staging
+deploys from `main`, so the release branch's changes are not on staging until the PR is
+merged; the preview is built from the release-branch head and shows About = v1.8.0.)
 REPO: vteial/saranidhi. Release branch: release/v1.8.0. PR: #184.
 
 TEST PLAN (source of truth): docs/testing/releases/smoke-test-v1.8.0.md on the release
