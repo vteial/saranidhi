@@ -56,6 +56,7 @@ class DashboardData {
     this.activeTattva,
     this.actionWindowSegments,
     this.activeActionWindow,
+    this.birthStarNakshatra,
   });
 
   final StreakResult streak;
@@ -132,14 +133,18 @@ class DashboardData {
 
   /// Currently active action window segment.
   final ActionWindowSegment? activeActionWindow;
+
+  /// User's birth star nakshatra name from profile.
+  final String? birthStarNakshatra;
 }
 
 /// The currently selected date for the dashboard.
 ///
 /// Defaults to today. Changed by the date picker on the Home screen.
 /// When changed, the dashboardDataProvider recalculates for that date.
-final selectedDateProvider =
-    NotifierProvider<SelectedDateNotifier, DateTime>(SelectedDateNotifier.new);
+final selectedDateProvider = NotifierProvider<SelectedDateNotifier, DateTime>(
+  SelectedDateNotifier.new,
+);
 
 class SelectedDateNotifier extends Notifier<DateTime> {
   @override
@@ -205,6 +210,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   PakshiDayResult? pakshiNight;
   PakshiState? birthBirdNightState;
   var isNight = false;
+  String? birthStarNakshatra;
 
   // Read profile for birth bird and location
   var lat = 13.08; // Default: Chennai
@@ -213,10 +219,11 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   final profiles = await db.select(db.profiles).get();
   if (profiles.isNotEmpty) {
     final profile = profiles.first;
+    birthStarNakshatra = profile.birthStarNakshatra;
     if (profile.birthBird != null) {
-      birthBird = PakshiBird.values.where(
-        (b) => b.name == profile.birthBird,
-      ).firstOrNull;
+      birthBird = PakshiBird.values
+          .where((b) => b.name == profile.birthBird)
+          .firstOrNull;
     }
     if (profile.locationLat != null) lat = profile.locationLat!;
     if (profile.locationLng != null) lng = profile.locationLng!;
@@ -322,9 +329,10 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
             birthBird,
             lunarPhase,
           );
-          birthBirdNightState = pakshiNight
-              .stateTable[effectiveNightBird.index]
-              [activeNightYama.index.index];
+          birthBirdNightState =
+              pakshiNight.stateTable[effectiveNightBird.index][activeNightYama
+                  .index
+                  .index];
         }
       }
     } else if (isToday && now.isBefore(sunResult.sunrise)) {
@@ -360,9 +368,10 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
             birthBird,
             yesterdayLunarPhase,
           );
-          birthBirdNightState = pakshiNight
-              .stateTable[effectiveNightBird.index]
-              [activeNightYama.index.index];
+          birthBirdNightState =
+              pakshiNight.stateTable[effectiveNightBird.index][activeNightYama
+                  .index
+                  .index];
         }
       }
     } else {
@@ -402,13 +411,13 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
   final dayStartMs = dayStart.millisecondsSinceEpoch;
   final dayEndMs = dayStart.add(const Duration(days: 1)).millisecondsSinceEpoch;
 
-  final dayEntries = await (db.select(db.saraKalaiJournal)
-        ..where(
-          (t) =>
-              t.timestamp.isBiggerOrEqualValue(dayStartMs) &
-              t.timestamp.isSmallerThanValue(dayEndMs),
-        ))
-      .get();
+  final dayEntries =
+      await (db.select(db.saraKalaiJournal)..where(
+            (t) =>
+                t.timestamp.isBiggerOrEqualValue(dayStartMs) &
+                t.timestamp.isSmallerThanValue(dayEndMs),
+          ))
+          .get();
 
   todayEntryCount = dayEntries.length;
 
@@ -509,10 +518,9 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     ),
     actionWindowSegments: actionWindowSegments,
     activeActionWindow: activeActionWindow,
+    birthStarNakshatra: birthStarNakshatra,
   );
 });
-
-
 
 /// Computes the active Hora for the current time (only when viewing today).
 HoraResult? _computeHora({
@@ -537,9 +545,7 @@ HoraResult? _computeHora({
   );
   if (tomorrowSun == null) return null;
 
-  final weekday = PakshiCalculator.dartWeekdayToSunBased(
-    selectedDate.weekday,
-  );
+  final weekday = PakshiCalculator.dartWeekdayToSunBased(selectedDate.weekday);
 
   return HoraCalculator.activeHora(
     time: now,

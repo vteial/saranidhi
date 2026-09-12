@@ -3235,6 +3235,136 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{minutes} min'**
   String somaticMinutes(int minutes);
+
+  /// Title for the ambient Aruḍam Now card on Home
+  ///
+  /// In en, this message translates to:
+  /// **'Aruḍam Now'**
+  String get arudamNowTitle;
+
+  /// Label for Clock 1 — cosmic timing quality
+  ///
+  /// In en, this message translates to:
+  /// **'Moment'**
+  String get arudamClockMoment;
+
+  /// Label for Clock 2 — personal breath alignment
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get arudamClockYou;
+
+  /// Two-clock breakdown for Moment: bird state, hora planet, and strength
+  ///
+  /// In en, this message translates to:
+  /// **'{birdState} · {horaPlanet} hora ({strength})'**
+  String arudamMomentBreakdown(
+    String birdState,
+    String horaPlanet,
+    String strength,
+  );
+
+  /// Strength indicator: strong
+  ///
+  /// In en, this message translates to:
+  /// **'strong'**
+  String get arudamStrengthStrong;
+
+  /// Strength indicator: mild
+  ///
+  /// In en, this message translates to:
+  /// **'mild'**
+  String get arudamStrengthMild;
+
+  /// Strength indicator: weak
+  ///
+  /// In en, this message translates to:
+  /// **'weak'**
+  String get arudamStrengthWeak;
+
+  /// Status when breath flow naturally matches the current cosmic window
+  ///
+  /// In en, this message translates to:
+  /// **'naturally aligned ✓'**
+  String get arudamAlignedNatural;
+
+  /// Status when breath flow does not match the current cosmic window
+  ///
+  /// In en, this message translates to:
+  /// **'not naturally aligned ⚠'**
+  String get arudamNotNaturallyAligned;
+
+  /// Affirmation guidance when naturally aligned
+  ///
+  /// In en, this message translates to:
+  /// **'Breath moves in rhythm with the cosmic current. Proceed with ease.'**
+  String get arudamAlignedGuidance;
+
+  /// Primary guidance when misaligned: cultivate patience, don't force
+  ///
+  /// In en, this message translates to:
+  /// **'Wait, accept, or note. Natural alignment is a lifelong cultivation of patience.'**
+  String get arudamMisalignedGuidance;
+
+  /// Status when last breath log is older than 30 minutes
+  ///
+  /// In en, this message translates to:
+  /// **'breath observation needed'**
+  String get arudamBreathUnknown;
+
+  /// Action affordance to log breath observation when stale
+  ///
+  /// In en, this message translates to:
+  /// **'Check your breath →'**
+  String get arudamCheckBreath;
+
+  /// Guidance when swara observation is stale
+  ///
+  /// In en, this message translates to:
+  /// **'Showing current timing ceiling. Check your breath to evaluate personal readiness.'**
+  String get arudamStaleGuidance;
+
+  /// Low-emphasis link when misaligned to open contralateral shift guidance
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent worldly need?'**
+  String get arudamUrgentAffordance;
+
+  /// Title of the forced breath shift guidance bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Contralateral Shift Guidance'**
+  String get arudamUrgentSheetTitle;
+
+  /// Warning-toned doctrinal framing for forced shift
+  ///
+  /// In en, this message translates to:
+  /// **'Forced breath shifting is an emergency measure for unavoidable action, not a daily habit. Actively altering your nostril dominance taxes vital reserves. A shift nudges the channel for approximately 10–60 minutes and can revert naturally at any time. It may improve your odds, but never guarantees success.'**
+  String get arudamUrgentWarning;
+
+  /// Title for the physical shift instructions
+  ///
+  /// In en, this message translates to:
+  /// **'Rest or Pressure Technique'**
+  String get arudamUrgentTechniqueTitle;
+
+  /// Physical steps to nudge contralateral dominance
+  ///
+  /// In en, this message translates to:
+  /// **'Lie on the side of the currently active nostril, or apply gentle pressure to the opposite armpit using a cushion or your arm for 3–5 minutes.'**
+  String get arudamUrgentTechniqueDesc;
+
+  /// Action button ending the shift loop — prompts verification rather than assuming done
+  ///
+  /// In en, this message translates to:
+  /// **'Re-check Breath'**
+  String get arudamUrgentRecheck;
+
+  /// Notice shown after recording a force-shifted breath entry
+  ///
+  /// In en, this message translates to:
+  /// **'Shift logged. Observe how naturally the rhythm returns.'**
+  String get arudamShiftLoggedNotice;
 }
 
 class _AppLocalizationsDelegate

@@ -4,9 +4,11 @@ import 'package:saranidhi/features/astro_engine/domain/daylight_segment_resolver
 import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_swara_affinity.dart';
 import 'package:saranidhi/features/astro_engine/domain/name_bird_parser.dart';
+import 'package:saranidhi/features/astro_engine/domain/nostril_pattern.dart';
 import 'package:saranidhi/features/astro_engine/domain/oracle_engine.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/tara_category.dart';
+import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 
 void main() {
@@ -379,6 +381,49 @@ void main() {
       expect(OracleBand.fromScore(35), OracleBand.stambhana);
       expect(OracleBand.fromScore(15), OracleBand.sunya);
       expect(OracleBand.fromScore(0), OracleBand.sunya);
+    });
+
+    test('aligned vs misaligned score differs by 0.75 factor (Sprint 38)', () {
+      // Monday 10:00 is Yama 2 (08:30–11:00).
+      // On 2026-07-14, let's find the expected flow:
+      final expectedFlow = NostrilPattern.expectedFlowForYama(
+        YamaIndex.yama2,
+        date: DateTime(2026, 7, 14, 10, 0),
+      );
+      final oppositeFlow = expectedFlow == BreathFlow.solar
+          ? BreathFlow.lunar
+          : BreathFlow.solar;
+
+      // Base: walking=60, tarabala=1.0, hora=1.0, category artha=1.2 -> Moment = 72
+      final aligned = OracleCompositeEngine.evaluate(
+        queryTime: DateTime(2026, 7, 14, 10, 0),
+        sunrise: DateTime(2026, 7, 14, 6, 0),
+        sunset: DateTime(2026, 7, 14, 18, 30),
+        weekday: 1,
+        currentBirdState: PakshiState.walking,
+        currentWindow: ActionWindow.artha,
+        tarabalaMultiplier: 1.0,
+        horaSwaraMultiplier: 1.0,
+        category: QueryCategory.artha,
+        actualSwara: expectedFlow.nostril,
+      );
+
+      final misaligned = OracleCompositeEngine.evaluate(
+        queryTime: DateTime(2026, 7, 14, 10, 0),
+        sunrise: DateTime(2026, 7, 14, 6, 0),
+        sunset: DateTime(2026, 7, 14, 18, 30),
+        weekday: 1,
+        currentBirdState: PakshiState.walking,
+        currentWindow: ActionWindow.artha,
+        tarabalaMultiplier: 1.0,
+        horaSwaraMultiplier: 1.0,
+        category: QueryCategory.artha,
+        actualSwara: oppositeFlow.nostril,
+      );
+
+      expect(aligned.score, 72);
+      expect(misaligned.score, 54);
+      expect(misaligned.score / aligned.score, closeTo(0.75, 0.01));
     });
   });
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saranidhi/features/astro_engine/domain/emakandam_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/rahu_kaal_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
@@ -22,12 +24,9 @@ Widget testableWidget(Widget child, {dynamic overrides}) {
   );
 
   if (overrides != null) {
-    return ProviderScope(
-      overrides: (overrides as List).cast(),
-      child: widget,
-    );
+    return ProviderScope(overrides: (overrides as List).cast(), child: widget);
   }
-  return ProviderScope(overrides: const [], child: widget);
+  return ProviderScope(child: widget);
 }
 
 /// Creates a minimal DashboardData with sensible defaults for testing.
@@ -52,15 +51,20 @@ DashboardData createTestDashboardData({
   PakshiDayResult? pakshiNight,
   PakshiState? birthBirdNightState,
   bool isNight = false,
+  String? birthStarNakshatra,
+  EmakandamResult? emakandam,
+  HoraResult? activeHora,
 }) {
   return DashboardData(
-    streak: streak ??
+    streak:
+        streak ??
         const StreakResult(
           currentStreak: 3,
           longestStreak: 7,
           isActiveToday: true,
         ),
-    trend: trend ??
+    trend:
+        trend ??
         const TrendResult(
           alignmentPercentage: 75,
           totalDaysWithEntries: 10,
@@ -68,7 +72,8 @@ DashboardData createTestDashboardData({
           periodDays: 30,
         ),
     ribbon: ribbon ?? _defaultRibbon(),
-    yamaAccuracy: yamaAccuracy ??
+    yamaAccuracy:
+        yamaAccuracy ??
         const YamaAccuracyResult(
           yamaEntries: {
             'yama1': 5,
@@ -95,15 +100,15 @@ DashboardData createTestDashboardData({
     pakshiNight: pakshiNight,
     birthBirdNightState: birthBirdNightState,
     isNight: isNight,
+    birthStarNakshatra: birthStarNakshatra,
+    emakandam: emakandam,
+    activeHora: activeHora,
   );
 }
 
 /// Creates a YamaResult with 5 yamas for a given sunrise/sunset.
-YamaResult createTestYamaResult({
-  DateTime? sunrise,
-  DateTime? sunset,
-}) {
-  final sr = sunrise ?? DateTime(2026, 7, 5, 6, 0);
+YamaResult createTestYamaResult({DateTime? sunrise, DateTime? sunset}) {
+  final sr = sunrise ?? DateTime(2026, 7, 5, 6);
   final ss = sunset ?? DateTime(2026, 7, 5, 18, 30);
   return YamaCalculator.calculate(sunrise: sr, sunset: ss);
 }
@@ -115,7 +120,7 @@ RahuKaalResult createTestRahuKaal({
   int weekday = 6,
 }) {
   return RahuKaalResult(
-    start: start ?? DateTime(2026, 7, 5, 9, 0),
+    start: start ?? DateTime(2026, 7, 5, 9),
     end: end ?? DateTime(2026, 7, 5, 10, 30),
     weekday: weekday,
   );

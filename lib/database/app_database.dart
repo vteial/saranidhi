@@ -28,7 +28,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -64,6 +64,17 @@ class AppDatabase extends _$AppDatabase {
         // at schema v4+.
         if (!await tableExists(this, 'somatic_intervention_logs')) {
           await m.createTable(somaticInterventionLogs);
+        }
+      }
+      if (from < 6) {
+        // Sprint 38: Add wasForcedShift column to journal entries.
+        // Guard with `columnExists` to avoid duplicate column errors on fresh DBs.
+        if (!await columnExists(
+          this,
+          'sara_kalai_journal',
+          'was_forced_shift',
+        )) {
+          await m.addColumn(saraKalaiJournal, saraKalaiJournal.wasForcedShift);
         }
       }
     },

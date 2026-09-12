@@ -280,27 +280,54 @@ Pure Dart implementation computing Moon's ecliptic longitude:
 
 ---
 
-## 12. Oracle Composite Engine (Prasanam)
+## 12. Oracle Composite & Integrated Aruḍam Engine (Sprint 38 — v1.8.0)
 
-### Source
-- Composite of multiple traditional systems (Tarabala, Hora-Swara, Panja Pakshi)
+### Source & Lineage
+- Synthesis of Panja Pakshi (Pakshi State), Jyotish Muhurta (Tarabala, Hora, Rahu Kaal, Emakandam), and Sara Kalai (Siva Swarodaya breath alignment).
+- Implemented in `IntegratedArudamEngine` (`lib/features/astro_engine/domain/integrated_arudam_engine.dart`).
+- `OracleCompositeEngine` (`oracle_engine.dart`) delegates directly to `IntegratedArudamEngine.evaluate`.
 
-### Method
+### Formula
 
 ```
-Score = BaseBirdScore × TarabalaMultiplier × HoraSwaraMultiplier × CategoryHarmony
+Composite Verdict = Moment (Cosmic Ceiling) × Readiness (Personal Alignment Multiplier)
 ```
 
-- Base bird score: Ruling=100, Eating=80, Walking=60, Sleeping=30, Dying=10
-- Tarabala: Navatara modulo-9 formula (0.2x to 1.5x) — currently defaulted to 1.0
-- Hora-Swara: Planet energy vs breath flow alignment (0.5x to 1.5x)
-- Category Harmony: Query category vs active Action Window (0.5x to 1.2x)
-- Floor lock: Rahu Kaal or Emakandam → hard lock to 10%
+#### 1. The Moment (Cosmic Ceiling, 0–100)
+Represents the objective cosmic potential of the current time slice:
+```
+Moment = BaseBirdScore × TarabalaMultiplier × HoraSwaraMultiplier × CategoryHarmony
+```
+- **Base Bird Score:** Ruling = 100, Eating = 80, Walking = 60, Sleeping = 30, Dying = 10.
+- **Tarabala Multiplier:** Navatara modulo-9 formula between transit Moon nakshatra and birth star (range 0.2× to 1.5×, or 1.0 if star unknown).
+- **Hora-Swara Multiplier:** Affinity between active Chaldean Hora ruler and breath channel (range 0.5× to 1.5×; defaults to 1.0 when breath is unknown).
+- **Category Harmony:** Query category vs active Action Window (0.5× to 1.2×).
+- Clamped to range `[0, 100]`.
 
-### Accuracy Status: ✅ Correct — Tarabala integrated (Sprint 33)
+#### 2. Readiness (Personal Alignment Multiplier, 0.0–1.0)
+Scales how much of the cosmic ceiling the individual can actually claim based on real-time breath flow:
+- **Naturally Aligned (`isAligned == true`):** `1.0` (can claim 100% of the cosmic ceiling).
+- **Misaligned (`isAligned == false`, actualSwara != null):** `0.75` (individual channel opposes the active timing).
+- **Sushumna Context Rule:**
+  - In *Yoga* window (Spiritual practice / contemplation): `1.0` (transcendent alignment).
+  - In *Artha* or *Kriya* window (Material action or nourishment): `0.6` (spiritual channel blocks material worldly endeavor).
+- **Observation Needed / Stale (>30 min or null):** Defaults to `1.0`. The card displays the cosmic ceiling while prompting the user to observe breath to evaluate personal readiness (never fabricates alignment).
 
-Transit nakshatra computed from current Moon position via `NakshatraCalculator.calculate(now)`.
-Birth nakshatra from user profile. `TaraCategory.resolve(birthIndex, transitIndex).weight` gives the multiplier.
+#### 3. 24h-Correct Inauspicious Floor Lock
+- Evaluated via window containment: `rahuKaal?.isActive(time)` or `emakandam?.isActive(time)`.
+- If active:
+  - Hard lock to score `10` (Band: `Sunya` / Hard No).
+  - `isFloorLocked: true`.
+  - Moment and Composite scores are suppressed regardless of bird state or breath alignment.
+
+#### 4. Oracle Bands
+- **Siddha (Strong Yes):** 90–100
+- **Vardhana (Favorable):** 70–89
+- **Mandha (Caution):** 50–69
+- **Stambhana (Delay):** 30–49
+- **Sunya (Hard No):** 0–29
+
+### Accuracy Status: ✅ Unified — Integrated Arudam Engine (Sprint 38, v1.8.0)
 
 ---
 

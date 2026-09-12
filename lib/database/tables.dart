@@ -45,6 +45,8 @@ class SaraKalaiJournal extends Table {
   TextColumn get activeElement => text().nullable()();
   TextColumn get notes => text().nullable()();
   BoolColumn get isPinned => boolean().withDefault(const Constant(false))();
+  BoolColumn get wasForcedShift =>
+      boolean().withDefault(const Constant(false))();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -79,7 +81,8 @@ class PrasanamHistory extends Table {
   TextColumn get band => text()();
   TextColumn get guidanceEn => text()();
   TextColumn get guidanceTa => text()();
-  BoolColumn get isFloorLocked => boolean().withDefault(const Constant(false))();
+  BoolColumn get isFloorLocked =>
+      boolean().withDefault(const Constant(false))();
   TextColumn get swara => text().nullable()();
   TextColumn get birdState => text().nullable()();
   TextColumn get actionWindow => text().nullable()();

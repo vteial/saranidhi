@@ -22,6 +22,12 @@ final journalEntriesProvider = StreamProvider<List<SaraKalaiJournalData>>((
   return repo.watchAllEntries();
 });
 
+/// Watches the most recent journal entry reactively (null if no entries).
+final latestJournalEntryProvider = StreamProvider<SaraKalaiJournalData?>((ref) {
+  final repo = ref.watch(journalRepositoryProvider);
+  return repo.watchAllEntries().map((entries) => entries.firstOrNull);
+});
+
 /// State for the breath entry flow.
 class BreathEntryState {
   const BreathEntryState({
@@ -29,24 +35,28 @@ class BreathEntryState {
     this.alignmentResult,
     this.isSubmitting = false,
     this.lastEntryId,
+    this.wasForcedShift = false,
   });
 
   final BreathFlow? selectedFlow;
   final AlignmentResult? alignmentResult;
   final bool isSubmitting;
   final String? lastEntryId;
+  final bool wasForcedShift;
 
   BreathEntryState copyWith({
     BreathFlow? selectedFlow,
     AlignmentResult? alignmentResult,
     bool? isSubmitting,
     String? lastEntryId,
+    bool? wasForcedShift,
   }) {
     return BreathEntryState(
       selectedFlow: selectedFlow ?? this.selectedFlow,
       alignmentResult: alignmentResult ?? this.alignmentResult,
       isSubmitting: isSubmitting ?? this.isSubmitting,
       lastEntryId: lastEntryId ?? this.lastEntryId,
+      wasForcedShift: wasForcedShift ?? this.wasForcedShift,
     );
   }
 }
@@ -60,6 +70,12 @@ final breathEntryNotifierProvider =
 class BreathEntryNotifier extends Notifier<BreathEntryState> {
   @override
   BreathEntryState build() => const BreathEntryState();
+
+  /// Flag the current entry as resulting from an intentional/forced breath shift.
+  // ignore: avoid_positional_boolean_parameters
+  void setForcedShift(bool value) {
+    state = state.copyWith(wasForcedShift: value);
+  }
 
   /// Select a breath flow and check alignment.
   void selectFlow(BreathFlow flow) {
@@ -107,14 +123,15 @@ class BreathEntryNotifier extends Notifier<BreathEntryState> {
       activeYama: alignment.activeYama?.name,
       activeBird: alignment.activeBird?.name,
       activeBirdState: alignment.activeBirdState?.name,
+      wasForcedShift: state.wasForcedShift,
     );
 
     // Push to iCloud if sync is enabled
     final syncTrigger = ref.read(syncTriggerServiceProvider);
     final db = ref.read(appDatabaseProvider);
-    final entry = await (db.select(db.saraKalaiJournal)
-          ..where((t) => t.id.equals(id)))
-        .getSingleOrNull();
+    final entry = await (db.select(
+      db.saraKalaiJournal,
+    )..where((t) => t.id.equals(id))).getSingleOrNull();
     if (entry != null) {
       await syncTrigger.onJournalEntryCreated(entry);
     }

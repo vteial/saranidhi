@@ -29,7 +29,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
-| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | 🚧 Planned |
+| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | 🚧 In Progress |
 | 39+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.7.0-web is now live in production (2026-09-11)**, tag
@@ -674,7 +674,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — 🚧 Planned
+## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — 🚧 In Progress
 
 > **Goal:** ship the first slice of the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
 > epic — an **always-on "Aruḍam Now" verdict card on Home** that fuses the separate
@@ -699,13 +699,13 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > assembles every ingredient 24h. So most of this slice is **extraction + wiring + one
 > card**, plus the night floor-lock fix.
 
-- [ ] Task 38.1: **Extract `IntegratedArudamEngine`** from `OracleCompositeEngine` so the composite fusion (bird-state × Tarabala × Hora-Swara × category) is callable from the dashboard, not only the Oracle screen. Reuse the existing bands (Siddha/Vardhana/Mandha/Stambhana/Sunya) + bilingual guidance. **Behavior-preserving:** the Oracle keeps producing identical verdicts through the extracted engine.
-- [ ] Task 38.2: **Fuse breath-alignment as the Readiness multiplier** (Moment × Readiness): wire `AlignmentChecker`'s result into the score — aligned → ~1.0, misaligned → ~0.75 (uniform for v1; tuned later via Accuracy Calibration), Sushumna → existing Yoga-context rule. Never a floor-lock.
-- [ ] Task 38.3: **24h-correct the inauspicious floor-lock** — replace/extend the day-only `DaylightSegmentResolver` path so Rahu/Emakandam (and night equivalents) gate correctly after sunset. **Regression-critical** (see DoD).
-- [ ] Task 38.4: **Ambient "Aruḍam Now" verdict card on Home** — always-on, reads `dashboardDataProvider`, shows band + the **two-clock plain-language breakdown** (Moment: bird/Hora · You: aligned?). Honest-but-partial when swara is stale (reuse the confirmed staleness rule — degrade to "expected + check", never fabricate a match).
-- [ ] Task 38.5: **Natural-vs-forced framing** — misalignment default guidance = *wait / accept / note*; forced-shift only behind a secondary, **warning**-toned "Urgent?" affordance ("depleting; an exception, not a habit"); language never promises success (CONF-016/017: a nudge, not a guarantee). Loop ends with "re-check", not "done".
-- [ ] Task 38.6: **Reward natural alignment — flag only (analytics rework deferred).** Add the data flag distinguishing force-shifted sessions so they are **not** rewarded as natural alignment. Scope = design + persist the flag; the full streak/analytics rework is a fast-follow, not this sprint.
-- [ ] Task 38.7: **Bilingual (EN/TA) verdict states + framing**, keeping the sacred tone.
+- [x] Task 38.1: **Extract `IntegratedArudamEngine`** from `OracleCompositeEngine` so the composite fusion (bird-state × Tarabala × Hora-Swara × category) is callable from the dashboard, not only the Oracle screen. Reuse the existing bands (Siddha/Vardhana/Mandha/Stambhana/Sunya) + bilingual guidance. **Behavior-preserving:** the Oracle keeps producing identical verdicts through the extracted engine.
+- [x] Task 38.2: **Fuse breath-alignment as the Readiness multiplier** (Moment × Readiness): wire `AlignmentChecker`'s result into the score — aligned → ~1.0, misaligned → ~0.75 (uniform for v1; tuned later via Accuracy Calibration), Sushumna → existing Yoga-context rule. Never a floor-lock.
+- [x] Task 38.3: **24h-correct the inauspicious floor-lock** — replace/extend the day-only `DaylightSegmentResolver` path so Rahu/Emakandam (and night equivalents) gate correctly after sunset. **Regression-critical** (see DoD).
+- [x] Task 38.4: **Ambient "Aruḍam Now" verdict card on Home** — always-on, reads `dashboardDataProvider`, shows band + the **two-clock plain-language breakdown** (Moment: bird/Hora · You: aligned?). Honest-but-partial when swara is stale (reuse the confirmed staleness rule — degrade to "expected + check", never fabricate a match).
+- [x] Task 38.5: **Natural-vs-forced framing** — misalignment default guidance = *wait / accept / note*; forced-shift only behind a secondary, **warning**-toned "Urgent?" affordance ("depleting; an exception, not a habit"); language never promises success (CONF-016/017: a nudge, not a guarantee). Loop ends with "re-check", not "done".
+- [x] Task 38.6: **Reward natural alignment — flag only (analytics rework deferred).** Add the data flag distinguishing force-shifted sessions so they are **not** rewarded as natural alignment. Scope = design + persist the flag; the full streak/analytics rework is a fast-follow, not this sprint.
+- [x] Task 38.7: **Bilingual (EN/TA) verdict states + framing**, keeping the sacred tone.
 
 > **Explicitly out of scope (named fast-follows, not this slice):** the "Why?"
 > provenance accordion; native ambient surface (widget/watch/macOS); calendar-aware
@@ -715,13 +715,13 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 **Delivery Checklist (Definition of Done):**
 - [ ] **Code merged** — on `main` (PR #N). _(owner/orchestrator — Kiro cannot merge)_
 - [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite + Integration; local run green before PR, macOS baseline = the 4 known-CloudKit failures and no others).
-- [ ] **Regression gate (Task 38.3/38.1)** — **existing Prasanam Oracle day-time verdicts are UNCHANGED** by the engine extraction + floor-lock refactor (add/keep tests pinning current day-time scores), **AND** night verdicts now gate correctly (Rahu/Emakandam after sunset). Extraction refactors are exactly where behavior silently drifts — this must be proven, not assumed.
-- [ ] **Docs updated** — `calculation-methodology.md` (integrated verdict + Moment × Readiness + night floor-lock); User Guide gets the "Aruḍam Now" card + the natural-vs-forced philosophy.
-- [ ] **Tests** — `IntegratedArudamEngine` unit tests (Moment × Readiness math, misalignment penalty, Sushumna-in-Yoga, night floor-lock); Oracle-unchanged regression tests; verdict-card widget test; local green before PR.
+- [x] **Regression gate (Task 38.3/38.1)** — **existing Prasanam Oracle day-time verdicts are UNCHANGED** by the engine extraction + floor-lock refactor (add/keep tests pinning current day-time scores), **AND** night verdicts now gate correctly (Rahu/Emakandam after sunset). Extraction refactors are exactly where behavior silently drifts — this must be proven, not assumed.
+- [x] **Docs updated** — `calculation-methodology.md` (integrated verdict + Moment × Readiness + night floor-lock); User Guide gets the "Aruḍam Now" card + the natural-vs-forced philosophy.
+- [x] **Tests** — `IntegratedArudamEngine` unit tests (Moment × Readiness math, misalignment penalty, Sushumna-in-Yoga, night floor-lock); Oracle-unchanged regression tests; verdict-card widget test; local green before PR.
 - [ ] **Smoke test** — scenarios in `smoke-test-v1.8.0.md`: verdict card shows on Home (day + night); aligned vs misaligned states; stale-swara degrade; forced-shift affordance carries the warning tone; EN/TA.
 - [ ] **Valuation report** — Sprint 38 row added (+20% over AI-estimated time).
 - [ ] **Tracker updated** — status ✅.
-- [ ] **User Guide** — "Aruḍam Now" section + the natural-alignment philosophy — real capability change, so **not** `n/a`.
+- [x] **User Guide** — "Aruḍam Now" section + the natural-alignment philosophy — real capability change, so **not** `n/a`.
 
 ---
 

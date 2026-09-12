@@ -30,14 +30,12 @@ void main() {
 
   group('columnExists', () {
     test('returns true for a column present in the table', () async {
+      expect(await columnExists(db, 'sara_kalai_journal', 'is_pinned'), isTrue);
       expect(
-        await columnExists(db, 'sara_kalai_journal', 'is_pinned'),
+        await columnExists(db, 'sara_kalai_journal', 'was_forced_shift'),
         isTrue,
       );
-      expect(
-        await columnExists(db, 'profiles', 'birth_date_epoch'),
-        isTrue,
-      );
+      expect(await columnExists(db, 'profiles', 'birth_date_epoch'), isTrue);
     });
 
     test('returns false for a column that does not exist', () async {
@@ -48,10 +46,7 @@ void main() {
     });
 
     test('returns false when the table itself does not exist', () async {
-      expect(
-        await columnExists(db, 'no_such_table', 'is_pinned'),
-        isFalse,
-      );
+      expect(await columnExists(db, 'no_such_table', 'is_pinned'), isFalse);
     });
   });
 }

@@ -23,6 +23,7 @@ class JournalRepository {
     String? activeBirdState,
     String? activeElement,
     String? notes,
+    bool wasForcedShift = false,
   }) async {
     final id = _uuid.v4();
     final timestamp = DateTime.now().millisecondsSinceEpoch;
@@ -45,6 +46,7 @@ class JournalRepository {
             activeBirdState: Value(activeBirdState),
             activeElement: Value(activeElement),
             notes: Value(notes),
+            wasForcedShift: Value(wasForcedShift),
           ),
         );
 

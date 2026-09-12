@@ -1738,4 +1738,79 @@ class AppLocalizationsEn extends AppLocalizations {
   String somaticMinutes(int minutes) {
     return '$minutes min';
   }
+
+  @override
+  String get arudamNowTitle => 'Aruḍam Now';
+
+  @override
+  String get arudamClockMoment => 'Moment';
+
+  @override
+  String get arudamClockYou => 'You';
+
+  @override
+  String arudamMomentBreakdown(
+    String birdState,
+    String horaPlanet,
+    String strength,
+  ) {
+    return '$birdState · $horaPlanet hora ($strength)';
+  }
+
+  @override
+  String get arudamStrengthStrong => 'strong';
+
+  @override
+  String get arudamStrengthMild => 'mild';
+
+  @override
+  String get arudamStrengthWeak => 'weak';
+
+  @override
+  String get arudamAlignedNatural => 'naturally aligned ✓';
+
+  @override
+  String get arudamNotNaturallyAligned => 'not naturally aligned ⚠';
+
+  @override
+  String get arudamAlignedGuidance =>
+      'Breath moves in rhythm with the cosmic current. Proceed with ease.';
+
+  @override
+  String get arudamMisalignedGuidance =>
+      'Wait, accept, or note. Natural alignment is a lifelong cultivation of patience.';
+
+  @override
+  String get arudamBreathUnknown => 'breath observation needed';
+
+  @override
+  String get arudamCheckBreath => 'Check your breath →';
+
+  @override
+  String get arudamStaleGuidance =>
+      'Showing current timing ceiling. Check your breath to evaluate personal readiness.';
+
+  @override
+  String get arudamUrgentAffordance => 'Urgent worldly need?';
+
+  @override
+  String get arudamUrgentSheetTitle => 'Contralateral Shift Guidance';
+
+  @override
+  String get arudamUrgentWarning =>
+      'Forced breath shifting is an emergency measure for unavoidable action, not a daily habit. Actively altering your nostril dominance taxes vital reserves. A shift nudges the channel for approximately 10–60 minutes and can revert naturally at any time. It may improve your odds, but never guarantees success.';
+
+  @override
+  String get arudamUrgentTechniqueTitle => 'Rest or Pressure Technique';
+
+  @override
+  String get arudamUrgentTechniqueDesc =>
+      'Lie on the side of the currently active nostril, or apply gentle pressure to the opposite armpit using a cushion or your arm for 3–5 minutes.';
+
+  @override
+  String get arudamUrgentRecheck => 'Re-check Breath';
+
+  @override
+  String get arudamShiftLoggedNotice =>
+      'Shift logged. Observe how naturally the rhythm returns.';
 }
