@@ -2,6 +2,8 @@
 
 # Saranidhi — Project Evaluation Report
 
+> **Reviewed:** v1.8.0-web · **Next review:** every `/sprint-update` (defects + test baseline).
+
 ## 1. Executive Architecture Summary
 
 Saranidhi is a privacy-first, local-first spiritual breath-tracking application built with Flutter (iOS, Android, Web). It uses pure Dart domain logic for all Vedic calculations, Drift (SQLite/WebAssembly) for persistence, and Riverpod for reactive state management.
@@ -98,6 +100,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 
 | Issue | Root Cause | Resolution | Sprint |
 |-------|-----------|------------|--------|
+| **Settings → Notifications: Rahu Kaal + Morning Summary toggles untranslated (Tamil)** | The two `SwitchListTile`s used hardcoded English `Text('Rahu Kaal Alerts')` / `Text('Morning Summary')` (+ subtitles); the sibling Ruling/Eating toggles were already localized. A Tamil-mode gap that slipped the Pre-PR Tamil check. Surfaced by owner in prod. | Added 4 ARB keys (EN+TA) — `rahuKaalAlerts(+Subtitle)`, `morningSummaryAlerts(+Subtitle)` — and swapped the 4 `Text()` to `l10n.*`. | Hotfix v1.8.1 (PR #191) |
 | **Inauspicious floor-lock never fired at night** | The Oracle's Rahu Kaal / Emakandam floor-lock went through `DaylightSegmentResolver`, which returns segment 0 (no lock) outside sunrise→sunset — so a query during a *night* inauspicious window was scored as if favorable. Latent since the Oracle shipped; surfaced while building the 24h ambient verdict. | The Integrated Aruḍam path computes `isRahuActive`/`isEmakandamActive` from the actual `RahuKaalResult`/`EmakandamResult` window containment (`isActive(now)`), correct day AND night; a night-floor-lock regression test pins it. (Oracle screen path left on the day-only resolver, unchanged, to preserve parity.) | Sprint 38 (PR #181) |
 | **Birth bird mis-calculated for ~1/3 of nakshatras + all Krishna births** | Shipped `PakshiCalculator` used the modern-secondary **Pulippani 5-5-5-5-7** partition + a dual bright/dark table (Krishna reverse-swap). Lineage-unanimous truth (2025 workshop + master's book + 1930 *Rathinam*) is **5-6-5-5-6** with a **single permanent** birth-star table. Surfaced by the Panja Pakshi corpus audit (CONF-PP-001/002); confirmed against the owner's own profile (Pushya/Krishna → wrongly Cock, correctly Owl). | Partition → 5-6-5-5-6 (Pooram→Owl, Visakam→Crow, Uthiradam→Rooster); single permanent table (no Krishna swap); waning swap isolated to the name-initial fallback (verified 5-cycle); on-load `BirdMigrationService` re-migrates ALL affected existing users (DOB + manual/no-DOB). Attributes (planets, friend/enemy, phase-directions) also corrected (CONF-PP-003/004/005). | Sprint 37 (PR #167) |
 | `InvalidTypeException` in Riverpod codegen for `Stream<List<T>>` | `riverpod_generator` incompatible with complex return types | Switched to manual Riverpod providers for journal feature | Sprint 3 |

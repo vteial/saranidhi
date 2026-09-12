@@ -72,6 +72,10 @@
   "rulingStateAlertsSubtitle": "யாம தொடக்கத்தில் அறிவி (ஆளும் பறவை)",
   "eatingStateAlerts": "உண்ணும் நிலை எச்சரிக்கைகள்",
   "eatingStateAlertsSubtitle": "பறவை உண்ணும் நிலையில் நுழையும்போது அறிவி",
+  "rahuKaalAlerts": "ராகு கால எச்சரிக்கைகள்",
+  "rahuKaalAlertsSubtitle": "ராகு காலம் தொடங்கும்போதும் முடியும்போதும் அறிவி",
+  "morningSummaryAlerts": "காலை சுருக்கம்",
+  "morningSummaryAlertsSubtitle": "இன்றைய சிறந்த நேரங்கள் சூரிய உதயத்தில்",
 
   "storageAndBackup": "சேமிப்பு & காப்புப்பிரதி",
   "localOnly": "உள்ளூர் மட்டும்",

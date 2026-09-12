@@ -1,6 +1,8 @@
 [← Back to Root](../../README.md)
 
-# Saranidhi — Security Review (Sprint 10)
+# Saranidhi — Security Review
+
+> **Reviewed:** v1.8.0-web · **Next review:** at a major (X) release or when the data/network boundary changes (v1.8.0 = no boundary change; local-first unchanged).
 
 ## Architecture Security Assessment
 
