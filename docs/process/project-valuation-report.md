@@ -2,7 +2,7 @@
 
 # Saranidhi — Project Valuation Report
 
-> **Reviewed:** v1.8.1-web · **Next review:** every `/sprint-update` + `/release-update`.
+> **Reviewed:** v1.9.0-web · **Next review:** every `/sprint-update` + `/release-update`.
 
 > **Purpose:** one question only — *how much engineering investment went into this,
 > and what is the current state?* Everything else is delegated to the system of record
@@ -22,9 +22,9 @@
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
 **Sprints Delivered:** 37 (Sprints 1–39, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
 **Total Engineering Investment:** **~121.0 hours** (incl. ~26.5h Research & Knowledge Engineering)
-**Production Web Release:** **v1.8.1-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.8.1-web`; preceding feature release v1.8.0-web = Integrated Aruḍam slice 1, Sprint 38) · **v1.9.0 built (Sprint 39), release pending**
+**Production Web Release:** **v1.9.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.9.0-web`, Sprint 39 — Integrated Aruḍam "Why?" provenance accordion; preceding feature release v1.8.0-web = Integrated Aruḍam slice 1, Sprint 38)
 **Automated Tests:** 573 (unit + widget + integration)
-**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** slice 1 shipped (v1.8.0), and its **"Why?" provenance accordion** (verdict transparency) built + merged (PR #196, Sprint 39); **next: `/release-start` for v1.9.0**. Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
+**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** slice 1 (v1.8.0) + its **"Why?" verdict-transparency accordion** (v1.9.0, Sprint 39) both **shipped to production**. **Next: Sprint 40 — Chronobiology & Holistic Guidance (v1.10.0).** Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
 
@@ -130,7 +130,7 @@
 | 36 | Stability & Test Hardening (v1.6.0) | #141 | ✅ 🚀 |
 | 37 | Birth-Bird Engine Correction (v1.7.0) | #167 | ✅ 🚀 |
 | 38 | ★ Integrated Aruḍam — Slice 1 (v1.8.0) | #181 | ✅ 🚀 |
-| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion (v1.9.0) | #196 | ✅ (release pending) |
+| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion (v1.9.0) | #196 | ✅ 🚀 |
 
 > 🚀 = shipped a production release. Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement

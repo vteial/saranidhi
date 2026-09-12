@@ -3,7 +3,7 @@
 
 # Saranidhi — Development Sprint Tracker
 
-> **Reviewed:** v1.8.1-web · **Next review:** every release (docs-audit gate).
+> **Reviewed:** v1.9.0-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
@@ -32,21 +32,22 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
-| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ (PR #196) |
+| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ 🚀 (PR #196) |
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ⬜ (planned) |
 | 41+ | v2.0 polish, accuracy calibration, native "Now" surface, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.8.1-web is now live in production (2026-09-12)** — a Tamil-l10n
-> hotfix (Settings → Notifications Rahu Kaal + Morning Summary toggles; PR #191 → promotion
-> PR #192, tag `v1.8.1-web` @ `prod`). The preceding feature release **v1.8.0-web**
-> (Sprint 38 — Integrated Aruḍam Slice 1) shipped via feature
-> PR #181 → release-start PR #184 → main→prod promotion PR #189;
-> smoke test PASS (all 6 scenarios + mobile/tablet visual + doctrinal-copy audit, on
-> the PR preview via the Vercel automation-bypass). This delivers the flagship's first
-> slice — the always-on **"Aruḍam Now"** ambient verdict card on Home (Moment × Readiness
-> over a shared `IntegratedArudamEngine` extracted from the Oracle), the natural-vs-forced
-> framing, and the 24h-correct inauspicious floor-lock. It unifies the former "Now" Surface.
-> Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
+> **Current state:** **v1.9.0-web is now live in production (2026-09-12)** — Sprint 39,
+> the flagship's verdict-transparency **"Why?" provenance accordion** on the "Aruḍam Now"
+> card (feature PR #196 → release-start PR #199 → main→prod promotion PR #200, tag
+> `v1.9.0-web` @ `prod`; smoke test ✅ PASS 6/6 + regression on the PR preview). It explains
+> the verdict doctrinally — reasons grouped **Moment / You** (or **Blocked**), each citing
+> the corpus practice + CONF it rests on; no raw math, no tooltips, bilingual EN/TA;
+> **transparency-only** (scoring / bands / floor-lock / Oracle unchanged). The preceding
+> feature release **v1.8.0-web** (Sprint 38 — Integrated Aruḍam Slice 1) shipped the
+> always-on **"Aruḍam Now"** ambient verdict card (Moment × Readiness over a shared
+> `IntegratedArudamEngine`), the natural-vs-forced framing, and the 24h-correct inauspicious
+> floor-lock; **v1.8.1-web** was a Tamil-l10n hotfix. Both corpora (Sara Kalai, Panja Pakshi)
+> remain fully CONF-resolved.
 > **Phase 2b continues** — **Sprint 39** (Integrated Aruḍam "Why?" provenance accordion,
 > v1.9.0) and **Sprint 40** (Chronobiology & Holistic Guidance, v1.10.0) are now
 > **scheduled** via `/plan` (this PR); both are unblocked feature work. Deferred after
@@ -731,14 +732,16 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 39: ★ Integrated Aruḍam — "Why?" Provenance Accordion (v1.9.0) — ✅ Complete (PR #196)
+## Sprint 39: ★ Integrated Aruḍam — "Why?" Provenance Accordion (v1.9.0) — ✅ 🚀 Shipped (PR #196)
 
-> **Delivered** via `/sprint-finish`. Feature PR [#196](https://github.com/vteial/saranidhi/pull/196)
-> (merge `8a7aa62`) — owner-merged. Antigravity implemented + local green
-> (573 pass / 4 known-CloudKit / 0 other; analyze clean; web build clean); **Kiro Web
-> reviewed the real diff and APPROVED** — behavior-preserving (zero test-assertion
+> **Shipped to production** as **v1.9.0-web** (2026-09-12, tag `v1.9.0-web` @ `prod`).
+> Feature PR [#196](https://github.com/vteial/saranidhi/pull/196) (merge `8a7aa62`) →
+> release-start PR #199 → main→prod promotion PR #200. Smoke test ✅ **PASS** (6/6 + regression
+> eyeball + version confirm, on the PR #199 Vercel preview via the automation-bypass).
+> Antigravity implemented + local green (573 pass / 4 known-CloudKit / 0 other);
+> **Kiro Web reviewed the real diff and approved** — behavior-preserving (zero test-assertion
 > deletions), full EN/TA parity (pure Tamil script), doctrinal copy honors the North Star.
-> **Not yet released** — ships as **v1.9.0** at `/release-start` (no 🚀 until prod).
+> Release dossier: [`docs/testing/releases/v1.9.0/`](../testing/releases/v1.9.0/README.md).
 
 > **Dossier:** [`sprints/sprint-39-why-accordion/`](sprints/sprint-39-why-accordion/README.md)
 > ([spec](sprints/sprint-39-why-accordion/spec.md)). A named **fast-follow** of the flagship

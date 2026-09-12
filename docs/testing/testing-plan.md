@@ -2,7 +2,7 @@
 
 # Saranidhi — Master Testing Plan
 
-> **Reviewed:** v1.8.1-web · **Next review:** every release (test-count + scenarios).
+> **Reviewed:** v1.9.0-web · **Next review:** every release (test-count + scenarios).
 
 ## Overview
 

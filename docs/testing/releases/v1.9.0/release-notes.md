@@ -31,4 +31,8 @@ The "Aruḍam Now" verdict now **explains itself**. A new **"Why?"** section let
 - Sprint 39 — Integrated Aruḍam: "Why?" Provenance Accordion
 
 ### Smoke test
-- See [`smoke-test.md`](./smoke-test.md) — status recorded at release verification.
+- See [`smoke-test.md`](./smoke-test.md) — ✅ **PASS** (6/6 + regression eyeball + version confirm, PR #199 preview).
+
+---
+
+> **Shipped:** 2026-09-12 · tag [`v1.9.0-web`](https://github.com/vteial/saranidhi/releases/tag/v1.9.0-web) @ `prod` · promotion PR #200. Live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
