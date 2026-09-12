@@ -227,6 +227,18 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 | 🟡 | ⬜ | Revisit the 19% coverage gate once UI/E2E coverage exists — raise it then. |
 | — | ✅ | Two-tier CI (fast PRs + full on merge/prod, with ci-full now also running on PRs to main) — in place. |
 
+### Process Hardening (post-v1.8.0 batch)
+
+> Deferred **until after v1.8.0 ships** to avoid colliding with the in-flight release
+> (Antigravity writing smoke-test results on `release/v1.8.0`). Surfaced during the
+> v1.8.0 release cycle.
+
+| Priority | Status | Item |
+|----------|--------|------|
+| 🔴 | ⬜ | **Vercel preview-auth bypass for QA-Verify (durable fix).** The v1.8.0 smoke test was **blocked** because the Vercel preview has Deployment Protection — the headless QA agent hit the Vercel SSO login wall. Stopgap this release = an owner-generated **Shareable Link** (`?_vercel_share=<token>`). Durable fix = enable **Vercel "Protection Bypass for Automation"** (Settings → Deployment Protection → generates `VERCEL_AUTOMATION_BYPASS_SECRET`), then have QA-Verify send the `x-vercel-protection-bypass` header/query param — protection stays ON for humans. Then update `qa-verify-agent-prompt.md` (template) + `/release-start` so the bypass is standard, and fold into the blueprint. *(Refs: [Vercel automated-access docs](https://vercel.com/docs/deployment-protection/automated-agent-access).)* |
+| 🟡 | ⬜ | **Group release transactional docs into per-release folders** (mirror the sprint-dossier convention). `docs/testing/releases/vX.Y.Z/` containing `README.md` (index) + `smoke-test.md` + `release-notes.md` + `docs-audit.md` + `qa-verify-prompt.md` (drop the `-vX.Y.Z` suffix — the folder carries it). **Scope: migrate the "rich" releases only (v1.7.0 + v1.8.0); leave the 11 legacy single-smoke-test files flat** (a lone historical smoke record doesn't need a folder). Update all cross-links (smoke-test-results index, framework §8, dossier READMEs, dev-workflow, templates) in the same PR; fold v1.8.0 into the new shape during its `/release-update`. Add the folder convention to `/release-start` + the blueprint so future releases are born as folders. |
+| 🟡 | ⬜ | **Port the Vercel skip-doc-builds `ignoreCommand` into `vteial/project-blueprint`** (`templates/deployment/`) — a generic app-path-allowlist ignore script (from Saranidhi PR #185). Every Vercel-hosted project benefits. |
+
 ---
 
 ## Release Polish & v2.0
