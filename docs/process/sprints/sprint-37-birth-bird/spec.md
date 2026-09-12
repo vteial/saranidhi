@@ -1,4 +1,4 @@
-[← Back to Sprint Tracker](sprint-tracker.md)
+[← Back to Sprint Dossier](./README.md) · [Sprint Tracker](../../sprint-tracker.md)
 
 # Sprint 37 — Birth-Bird Engine Correction (v1.7.0) — Implementation Spec
 
@@ -7,11 +7,11 @@
 > `flutter test` GREEN before opening the PR (core-calc change → CI-only is not
 > sufficient, per the v1.2.1 lesson). Kiro Web reviews the PR. All doctrine here is
 > **owner-confirmed** via CONF-PP-001…005 in
-> [`docs/research/panja-pakshi-workshop-knowledge.md`](../research/panja-pakshi-workshop-knowledge.md).
+> [`docs/research/panja-pakshi-workshop-knowledge.md`](../../../research/panja-pakshi-workshop-knowledge.md).
 
 ## 0. Prerequisite — environment + known-GREEN baseline (do FIRST)
 
-- **Working Flutter toolchain** per [`docs/process/dev-setup.md`](dev-setup.md)
+- **Working Flutter toolchain** per [`docs/process/dev-setup.md`](../../dev-setup.md)
   (macOS: Flutter stable ≥3.44 / Dart ≥3.12.1). One-time per machine — this spec does
   NOT repeat setup; follow that doc if anything is missing.
 - **Pre-flight (before touching any Sprint 37 code)** — establish a known-green baseline
@@ -158,6 +158,6 @@ Direction becomes a function of `(bird, paksha)` rather than a static field; fee
 
 ## 9. Definition of Done
 
-See the Sprint 37 Delivery Checklist in [`sprint-tracker.md`](sprint-tracker.md). Key gate:
+See the Sprint 37 Delivery Checklist in [`sprint-tracker.md`](../../sprint-tracker.md). Key gate:
 **local `flutter analyze` clean + full `flutter test` green BEFORE the PR**, and the
 existing-user upgrade path tested explicitly (not just fresh onboarding).

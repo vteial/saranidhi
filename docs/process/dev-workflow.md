@@ -100,7 +100,7 @@ main ─────────────────────────
 Lightweight entry point — creates the branch and marks the sprint active.
 
 1. Create feature branch from `main` (`feature/sprintN-<topic>`)
-2. Update `docs/sprint-tracker.md` — mark sprint as "🚧 In Progress"
+2. Update `docs/process/sprint-tracker.md` — mark sprint as "🚧 In Progress"
 3. Begin implementation
 
 ### `/sprint-finish`
@@ -110,7 +110,7 @@ Closes the sprint — delivers the code for user to merge.
 1. Commit all remaining changes
 2. Push branch to remote
 3. Create PR targeting `main`
-4. Update `docs/sprint-tracker.md` → ✅ Complete (PR #N)
+4. Update `docs/process/sprint-tracker.md` → ✅ Complete (PR #N)
 5. Push tracker update to PR branch
 6. **Tell user PR is ready for merge** — Kiro NEVER merges directly
 7. User reviews + merges (sprint officially closed)
@@ -122,13 +122,13 @@ Runs **after sprint merge** on a separate docs-only branch to avoid CI code fail
 
 1. Create branch from `main` (`docs/sprintN-update`)
 2. Update all clerical docs:
-   - `docs/project-valuation-report.md` — timeline, commit log, hours (estimate + 20%), deliverables, executive summary
-   - `docs/project-evaluation.md` — feature scorecard, delivery table, resolved defects
+   - `docs/process/project-valuation-report.md` — add the sprint's *Sprint Delivery Summary* row, bump phase hours (estimate + 20%), refresh the executive summary. **Do NOT** add a per-commit timeline or a per-feature deliverables list — those were removed by design (see that report's "How this report is maintained")
+   - `docs/process/project-evaluation.md` — feature scorecard, delivery table, resolved defects
    - `docs/reference/architecture.md` — new infrastructure/architecture patterns
-   - `docs/testing-plan.md` — test count progression, scenarios awaiting coverage
-   - `docs/dev-workflow.md` — any threshold/process changes
+   - `docs/testing/testing-plan.md` — test count progression, scenarios awaiting coverage
+   - `docs/process/dev-workflow.md` — any threshold/process changes
    - `.kiro/steering/saranidhi-spec.md` — tech stack updates
-   - **`docs/smoke-test-vX.Y.Z.md`** — add scenarios for new features (mandatory)
+   - **`docs/testing/releases/smoke-test-vX.Y.Z.md`** — add scenarios for new features (mandatory)
    - **User Guide content** — refresh guide sections affected by sprint changes (mandatory)
 3. Commit, push, create docs-only PR
 4. **User reviews and merges**
@@ -145,7 +145,7 @@ Strategic brainstorming and sprint plan revision — forward-looking.
 2. Confirm scope and decisions
 3. Create branch from `main` (e.g., `plan/sprint-N` or `plan/v2-roadmap`)
 4. Update:
-   - `docs/sprint-tracker.md` — define upcoming sprints
+   - `docs/process/sprint-tracker.md` — define upcoming sprints
    - `docs/process/sprint-backlog.md` — adjust epic priorities/scope
    - `.kiro/design.md`, `.kiro/product.md`, `.kiro/structure.md` — if architecture changes
 5. Commit, push, create PR
@@ -159,10 +159,18 @@ Strategic brainstorming and sprint plan revision — forward-looking.
 
 **Current model — spec → coding-setup → review** (the confirmed stable division of labor; first exercised in Sprint 37, PR #167):
 
-1. **Kiro Web authors a precise implementation spec** (`docs/process/sprint-N-*-spec.md`): exact file/line changes, logic, edge cases, test updates, migration behavior, DoD, and a **pre-flight** (env + known-green baseline) — because Kiro Web **cannot run `flutter test`/`analyze` locally** and must not ship correctness-critical code blind on CI alone.
-2. **The Antigravity IDE coding setup** (Saranidhi local dev, on the owner's Mac) implements it, runs local `flutter analyze` + `flutter test` **GREEN before opening the PR** (v1.2.1 lesson), and opens the PR.
+1. **Kiro Web creates the sprint dossier + authors a precise implementation spec.** Each sprint gets a folder `docs/process/sprints/sprint-N-<slug>/` seeded from [`docs/process/templates/`](templates/) with: `spec.md` (exact file/line changes, logic, edge cases, test updates, migration behavior, DoD, and a **pre-flight** = env + known-green baseline — because Kiro Web **cannot run `flutter test`/`analyze` locally** and must not ship correctness-critical code blind on CI alone), plus empty `implementation-summary.md`, `test-summary.md`, and a `README.md` index. Kiro→Antigravity handoff is then a **one-liner** pointing at the folder.
+2. **The Antigravity IDE coding setup** (Saranidhi local dev, on the owner's Mac) implements it, runs local `flutter analyze` + `flutter test` **GREEN before opening the PR** (v1.2.1 lesson), fills in `implementation-summary.md` (what was built, deviations, source-derived values flagged for review) and `test-summary.md` (results vs the 4-CloudKit baseline) **in the dossier folder**, and opens the PR.
 3. **Kiro Web reviews the PR** against the spec + doctrine + migration correctness — fetching the real diff, not trusting the summary. Any source-derived value the spec flagged for owner review (e.g. a doctrinal table) is **cross-verified via a read-only Antigravity source check** before merge (Sprint 37: the name-initial waning 5-cycle was verified exact against the workshop transcript + master's book).
-4. **Owner merges** (sole merge authority; Kiro never merges/tags). Then Kiro Web runs `/sprint-update`.
+4. **Owner merges** (sole merge authority; Kiro never merges/tags). Then Kiro Web runs `/sprint-update` and finalizes the dossier `README.md` (links spec → impl → test → PR → release).
+
+> **Sprint dossier convention:** all *transactional* per-sprint docs (spec, implementation
+> summary, test summary, index) live together in `docs/process/sprints/sprint-N-<slug>/`
+> so a sprint is auditable by opening one folder. Templates in
+> [`docs/process/templates/`](templates/) keep the Antigravity summaries consistent (so the
+> handoff prompt stays a one-liner). *Durable/cumulative* docs (`sprint-tracker.md`,
+> `sprint-backlog.md`, valuation, evaluation, this workflow) stay at the `docs/process/` root.
+> Sprint 37 (`sprints/sprint-37-birth-bird/`) is the worked example.
 
 Rules: delegated work is on its own branch; only files in the spec's scope; **no lint-loosening to force analyze-clean** (verify `analysis_options.yaml` isn't weakened); macOS local baseline = "green except the 4 known CloudKit tests."
 
@@ -181,8 +189,8 @@ Quick-fix protocol for defects found after merge.
 3. Validate: `flutter analyze --fatal-infos` + `flutter test`
 4. Commit with `fix(sprintN): <description>`
 5. Push, create PR, merge
-6. Append a row to "Resolved Defects" table in `docs/project-evaluation.md`
-7. Increment hours in `docs/project-valuation-report.md` if significant time spent
+6. Append a row to "Resolved Defects" table in `docs/process/project-evaluation.md`
+7. Increment hours in `docs/process/project-valuation-report.md` if significant time spent
 
 ---
 
@@ -197,18 +205,19 @@ Prepares the smoke test execution.
 1. Kiro creates branch `release/vX.Y.Z` from `main`
 2. **Bumps `version:` in `pubspec.yaml`** to match the release (e.g., `1.3.0+1`)
    - This ensures the About card (via `package_info_plus`) shows the correct version during smoke testing AND in production
-3. Ensures `docs/smoke-test-vX.Y.Z.md` exists (plan + results template)
-4. Creates PR targeting `main`
-5. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
-6. User commits results (Pass/Fail + Notes) to the same branch
-7. User reviews and merges PR → smoke test results + version bump now on `main`
+3. Ensures `docs/testing/releases/smoke-test-vX.Y.Z.md` exists (plan + results template)
+4. **Drafts `docs/testing/releases/release-notes-vX.Y.Z.md`** from [`templates/release-notes.template.md`](templates/release-notes.template.md) — the permanent record of the GitHub Release (tag / target / title / body). It is finalized at `/release-update` and is the exact text the owner pastes into the GitHub Release UI, so the release stays auditable and reproducible.
+5. Creates PR targeting `main`
+6. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
+7. User commits results (Pass/Fail + Notes) to the same branch
+8. User reviews and merges PR → smoke test results + version bump now on `main`
 
 #### Phase 2: `/release-finish`
 
 Promotes to production after smoke test passes.
 
 1. Kiro validates the smoke test PR is merged to `main`
-2. Kiro creates PR from `main` → `prod` with release notes:
+2. Kiro creates PR from `main` → `prod` with release notes (mirroring `docs/testing/releases/release-notes-vX.Y.Z.md`):
    - **What's New** — features added since last release
    - **Fixes** — bugs resolved
    - **Known Issues** — anything still pending
@@ -227,9 +236,10 @@ Post-release documentation closure (light touch-up).
 
 1. Kiro creates branch from `main` (`docs/release-vX.Y.Z-update`)
 2. Update:
+   - `docs/testing/releases/release-notes-vX.Y.Z.md` — **finalize** the release-notes doc to match exactly what the owner published (tag / target / title / body), so it is the permanent, auditable record of the release
    - `docs/testing/smoke-test-results.md` — add the version row (✅ PASS, date, scenarios)
    - `CHANGELOG.md` — set release date (remove "Pending")
-   - `docs/process/project-valuation-report.md` — update PR count + release tag entry
+   - `docs/process/project-valuation-report.md` — refresh executive summary (prod version) + confirm the sprint's Delivery Summary row is 🚀
    - `docs/process/sprint-tracker.md` — flip the sprint's overview row to ✅ 🚀 and refresh the "Current state" note to the new prod version
    - **`README.md` — refresh the "Current Status" block** (Production version, Sprints Delivered, Total PRs, Latest, Next). *(Mandatory — the README is the most stakeholder-visible doc; it drifted at v1.6.0→v1.7.0 because it wasn't on this checklist.)*
 3. Commit, push, create docs-only PR
