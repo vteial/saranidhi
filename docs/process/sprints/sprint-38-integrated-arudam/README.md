@@ -13,8 +13,21 @@
 | **Implementation summary** (Antigravity) | [`implementation-summary.md`](./implementation-summary.md) |
 | **Local test summary** (Antigravity) | [`test-summary.md`](./test-summary.md) |
 
-## Outcome (fill at close-out)
+## Outcome
 
-- **What:** _TBD_
-- **PR:** _#TBD_
-- **Shipped:** _v1.8.0 — pending_
+- **What:** shipped the flagship's first slice — the always-on **"Aruḍam Now"** verdict
+  card on Home, fusing **Moment × Readiness** over a shared `IntegratedArudamEngine`
+  extracted (behavior-preserving) from `OracleCompositeEngine`. Breath alignment now
+  feeds the score (aligned ×1.0 / misaligned ×0.75, never a floor-lock); the inauspicious
+  floor-lock is **24h-correct** (Rahu/Emakandam window containment, day + night);
+  natural-vs-forced framing (patience-default, warning-toned "Urgent?" affordance that
+  never promises success) with a `wasForcedShift` audit flag (schema v6, guarded migration).
+- **PR:** [#181](https://github.com/vteial/saranidhi/pull/181) — merged `d83347d`.
+  Kiro Web reviewed the real diff and approved; regression gate verified.
+- **Process:** spec → coding-setup → review. Antigravity implemented; local run
+  564 pass / 4 known-CloudKit baseline / 0 regressions.
+- **Shipped:** **v1.8.0 — pending release** (`/release-start` next). At release, the smoke
+  test moves from this folder to `docs/testing/releases/smoke-test-v1.8.0.md` (convention).
+- **Out of scope (named fast-follows):** "Why?" provenance accordion; native ambient
+  surface (widget/watch/macOS); proactive nudge; 0.75-penalty tuning via the 7-day
+  comparison; full streak/analytics natural-alignment rework (38.6 shipped the flag only).
