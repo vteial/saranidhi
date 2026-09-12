@@ -227,10 +227,11 @@ Post-release documentation closure (light touch-up).
 
 1. Kiro creates branch from `main` (`docs/release-vX.Y.Z-update`)
 2. Update:
-   - `docs/smoke-test-results.md` — mark version as ✅ PASS with date
+   - `docs/testing/smoke-test-results.md` — add the version row (✅ PASS, date, scenarios)
    - `CHANGELOG.md` — set release date (remove "Pending")
-   - `docs/project-valuation-report.md` — update PR count + release tag entry
-   - `docs/release-1.0-plan.md` — mark release milestone as ✅ Complete
+   - `docs/process/project-valuation-report.md` — update PR count + release tag entry
+   - `docs/process/sprint-tracker.md` — flip the sprint's overview row to ✅ 🚀 and refresh the "Current state" note to the new prod version
+   - **`README.md` — refresh the "Current Status" block** (Production version, Sprints Delivered, Total PRs, Latest, Next). *(Mandatory — the README is the most stakeholder-visible doc; it drifted at v1.6.0→v1.7.0 because it wasn't on this checklist.)*
 3. Commit, push, create docs-only PR
 4. **User reviews and merges**
 
