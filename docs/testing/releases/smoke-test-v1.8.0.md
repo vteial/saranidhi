@@ -1,9 +1,15 @@
-[← Back to Sprint Dossier](./README.md)
+[← Back to Smoke Test Index](../smoke-test-results.md) · [Sprint 38 dossier](../../process/sprints/sprint-38-integrated-arudam/README.md)
 
-# Sprint 38 — Smoke Test Scenarios (v1.8.0)
+# Smoke Test — v1.8.0-web (Sprint 38, Integrated Aruḍam Slice 1)
 
-> Manual smoke test script for testing the flagship Integrated Aruḍam verdict card
-> on physical devices (macOS, iPad, iOS, Web).
+> Manual smoke test script for the flagship Integrated Aruḍam verdict card
+> on physical devices (macOS, iPad, iOS, Web). Executed on staging
+> (`saranidhi-staging.vercel.app`) during `/release-start`; results recorded inline.
+
+## Result
+
+- **Status:** ⬜ PENDING — owner executes on staging.
+- **Date:** ____ · **Devices:** ____
 
 ## Scenarios
 

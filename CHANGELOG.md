@@ -14,6 +14,32 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
+## [1.8.0-web] — Pending
+
+> Sprint 38 — **Integrated Aruḍam, Slice 1**. The first slice of the flagship epic: an
+> always-on **"Aruḍam Now"** verdict card on Home that fuses cosmic timing and breath
+> into one answer, over a shared engine extracted from the Prasanam Oracle.
+
+### Added
+- **"Aruḍam Now" ambient verdict card** on the Home (Today) view — fuses Panja Pakshi
+  bird-state × Hora × Tarabala × auspiciousness into one score/band, with a plain-language
+  **two-clock breakdown** (Moment = cosmic ceiling · You = breath readiness).
+- **Moment × Readiness** scoring — natural breath alignment claims the full moment
+  (×1.0); misalignment softens the verdict (×0.75) but never blocks it.
+- **Natural-vs-forced framing** — patience-first guidance when misaligned; a low-emphasis,
+  warning-toned "Urgent?" affordance for forced shifting that never promises success; a
+  `wasForcedShift` audit flag (schema v6) so only *natural* alignment is celebrated.
+- `IntegratedArudamEngine` (extracted from `OracleCompositeEngine`, behavior-preserving).
+
+### Fixed
+- **Inauspicious floor-lock is now 24h-correct** — Rahu Kaal / Emakandam gate the verdict
+  at night too (previously day-only via `DaylightSegmentResolver`).
+
+### Notes
+- Bilingual (EN + தமிழ்). The Prasanam Oracle now shares the same verdict engine.
+
+---
+
 ## [1.7.0-web] — 2026-09-11
 
 > Sprint 37 — **Birth-Bird Engine Correction**. A correctness release that fixes the
