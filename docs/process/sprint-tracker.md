@@ -1,7 +1,8 @@
 [← Back to Root](../../README.md)
-[← Back to Root](../../README.md)
 
 # Saranidhi — Development Sprint Tracker
+
+> **Reviewed:** v1.7.0-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the

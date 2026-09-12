@@ -2,6 +2,12 @@
 
 # Saranidhi — Project Evaluation Report
 
+> **Reviewed:** v1.7.0-web · **Next review:** every `/sprint-update` (defects + test baseline).
+> **Scope of this doc:** *quality & defects* — the architecture snapshot, quality-control
+> baseline, and the resolved-defects log. It deliberately does **not** duplicate delivery
+> accounting: for sprints/PRs/hours see [`project-valuation-report.md`](project-valuation-report.md),
+> and for the per-feature inventory see [`sprint-tracker.md`](sprint-tracker.md) + [`CHANGELOG.md`](../../CHANGELOG.md).
+
 ## 1. Executive Architecture Summary
 
 Saranidhi is a privacy-first, local-first spiritual breath-tracking application built with Flutter (iOS, Android, Web). It uses pure Dart domain logic for all Vedic calculations, Drift (SQLite/WebAssembly) for persistence, and Riverpod for reactive state management.
@@ -25,39 +31,14 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 
 ---
 
-## 2. Core Feature Scorecard
+## 2. Feature Scorecard
 
-| Feature Domain | Deliverables | Status |
-|----------------|-------------|--------|
-| **Project Foundation** | Flutter scaffold, Riverpod, GoRouter, Drift schema, Material 3 themes, CI pipeline, lefthook | ✅ Complete (100%) — Sprint 1 |
-| **Astro-Logic Engine** | Sunrise/Sunset (NOAA), 5 Yamas, Panja Pakshi, Rahu Kaal, Hora, Tattva, Lunar Phase, Oracle Lockout | ✅ Complete (100%) — Sprint 2 |
-| **Breath Journal** | Two-click entry, alignment checking, breath timer, micro-advice, Quick Sync Pacer, history list, CRUD | ✅ Complete (100%) — Sprint 3 |
-| **Streak & Consistency** | Streak calculator, 7-day ribbon, 30-day trend, Yama accuracy, Home dashboard | ✅ Complete (100%) — Sprint 4 |
-| **Cloud Backup** | Abstract interface, LocalBackupRepo, iCloud stub, Google Drive stub, DatabaseExporter, storage mode selector UI, backup/restore settings UI | ✅ Complete (100%) — Sprint 5 |
-| **Notifications + Onboarding** | Notification scheduler (Yama boundaries), wisdom payloads, notification toggles, 4-step onboarding flow, birth bird calculation, location selection, profile persistence | ✅ Complete (100%) — Sprint 6 |
-| **AI Wisdom Engine** | Context payload builder, rules-based engine, 60+ proverb library, deterministic fallback, daily caching, skeleton-loading wisdom card UI | ✅ Complete (100%) — Sprint 7 |
-| **Theming & Profile** | 8 theme variants (4 colors × Light/Dark), System mode, profile card with edit, OnboardingGuard, AstroInfoBar, live timer seconds | ✅ Complete (100%) — Sprint 8 |
-| **i18n & Polish** | Tamil translations (90+ strings), language switcher, locale persistence, smooth tab transitions, pull-to-refresh, Clear All Data, shared bird emoji utility, accessibility (Semantics, touch targets) | ✅ Complete (100%) — Sprint 9 |
-| **Testing & Hardening** | 264 automated tests (unit + widget + integration), 25% coverage threshold enforcement, security review, offline verification, 7 new test suites | ✅ Complete (100%) — Sprint 10 |
-| **Smoke Test & CI Polish** | Manual smoke test plan (34 scenarios), results template, CI paths-ignore, /plan protocol, revised release plan (cloud backup → 1.1) | ✅ Complete (100%) — Sprint 11 |
-| **Smoke Test Execution & i18n** | Manual smoke test (34 scenarios), Pakshi algorithm rewrite (authentic tables), complete Tamil localization (130+ keys, 3 pages), nakshatra Tamil names | ✅ Complete (100%) — Sprint 12 |
-| **Web Production Deployment** | Vercel production (saranidhi.vercel.app), privacy policy, deployment docs, smoke test gate, release tag v1.0.0-web | ✅ Complete (100%) — Sprint 13 |
-| **Personalized Dashboard + Deployment Safety** | Birth bird hero card, full-day schedule with state emojis, Rahu Kaal, nostril dominance, hold time tracking, responsive layout, prod branch gate | ✅ Complete (100%) — Sprint 14 |
-| **Night Yamas + 24h Coverage** | Night yama calculator, 9 nighttime Pakshi tables, 10-yama full-day view, BirthBirdCard night support, night guidance, 3-tier deployment (prod/staging/preview) | ✅ Complete (100%) — Sprint 15 |
-| **iCloud Sync + macOS Target** | CloudKit sync service (MethodChannel), sync engine (pull→merge→push), native Swift plugins (iOS+macOS), sync-on-open widget, push-after-write triggers, primary device conflict resolution UI, macOS platform scaffold, dev environment setup guide | ✅ Complete (100%) — Sprint 16 |
-| **Notifications + Daily Engagement** | Real local notifications (flutter_local_notifications), personalized bird state alerts, Rahu Kaal start/end notifications, morning summary at sunrise, 4 configurable toggles, Tamil wisdom library (52+ proverbs), locale-aware Daily Wisdom | ✅ Complete (100%) — Sprint 17 |
-| **Historical View + Planning** | Date-parameterized dashboard, date selector (arrows + picker + Tomorrow/Today), Best Times This Week (7-day Ruling scan), historical entries card, calendar month view with entry indicators | ✅ Complete (100%) — Sprint 18 |
-| **Analytics + Export** | Analytics screen (4th tab), weekly alignment summary, monthly patterns (best/worst day, active yamas), CSV export, streak insights (gaps, consistency), yama performance breakdown, hold time progression (trend, personal best) | ✅ Complete (100%) — Sprint 19 |
-| **UI Polish + Home Layout Redesign** | Home Today/Explore sub-tabs, responsive two-column audit (all screens), redundant widget cleanup, full JSON data export/import, Settings moved to top-right gear icon, schedule column reorder, vibrant bird logo, SVG favicon | ✅ Complete (100%) — Sprint 20 |
-| **Pakshi Accuracy (DOB-Based Calculation)** | Moon longitude calculator (Jean Meeus ELP 2000/82), Lahiri Ayanamsa, Nakshatra-from-DOB, onboarding UX redesign (5→4 steps with dual-path "Find Your Bird"), extended birth bird attributes (friends/enemies/planet/direction/colour), Indian-only cities, OnboardingGuard Navigator for web pickers | ✅ Complete (100%) — Sprint 21 |
-| **Widget Test Coverage + Web Polish** | 10 widget tests, two-tier CI (ci.yml fast/ci-full.yml complete), COOP/COEP headers, emoji preload, notification weekday fix | ✅ Complete (100%) — Sprint 22 |
-| **Product Polish — About, User Guide & Onboarding Intro** | Pre-onboarding intro, About card (version+links), User Guide (9 sections), locale-aware privacy policy, dialog consistency, Settings layout alignment | ✅ Complete (100%) — Sprint 23 |
-| **UX Polish — Empty States, Loading & Error Handling** | Reusable EmptyStateWidget, ShimmerLoading skeleton cards, ErrorBoundary/ErrorFallback, journal empty state, analytics empty state, explore tab historical empty state, streak zero-state onboarding card, reactive analytics providers | ✅ Complete (100%) — Sprint 24 |
-| **Performance, Accessibility & Smoke Test Refresh** | TimezoneUtils (dynamic UTC offset), ProfileLocationProvider, keyboard Enter submit, haptic feedback, Semantics audit, night schedule always visible, Safari CanvasKit fix, COOP/COEP removal, location change reactivity, sqlparser pin, smoke test plan rewrite (52 scenarios), versioned results | ✅ Complete (100%) — Sprint 25 |
-| **Daily Engagement & Delight** | What's New screen (version-tracked, dismissible), Streak celebrations (7/30/100/365 milestones), Breath timer presets (4-7-8, Box, Energize, Calm), Daily summary card (entries/alignment/hold), Pin/star entries (isPinned column), Quick-log from notification (payload + tap handler) | ✅ Complete (100%) — Sprint 26 |
-| **Layer 1 Gap Fixes — Diagnostic Foundation** | ActionWindow enum (Artha/Kriya/Yoga) + bird-state mapping, context-dependent Sushumna alignment, guided nostril test (3-step modal), LocationService (Haversine 50km), Hora + Tattva in BirthBirdCard, Reference table (bilingual), language toggle in onboarding, DOB recalculation from Settings, trilingual nakshatra display, onboarding i18n completion | ✅ Complete (100%) — Sprint 27 |
-| **Prasanam Oracle UI** | PrasanamHistory Drift table (schema v4), dedicated bottom nav tab (4th: Oracle), query input screen (category selector + descriptions + free-text + intention animation), 30-min validation gate (GuidedNostrilTest if stale), Oracle result card (score gauge + 5 answer bands), user-initiated "Save to History", Prasanam history timeline (co-located on Oracle screen), swipe-to-delete history, post-event outcome notes dialog, current window status banner (Rahu/Emakandam warning or favorable indicator), DatabaseExporter updated for export/import, full Tamil translations (40+ keys) | ✅ Complete (100%) — Sprint 32 |
-| **Production Deployment** | Mobile (App Store, Play Store) | 🔲 Planned — Sprint X |
+> The full per-feature / per-sprint inventory is **not duplicated here** — it lives in
+> [`sprint-tracker.md`](sprint-tracker.md) (delivered + in-progress, with the Definition
+> of Done) and [`CHANGELOG.md`](../../CHANGELOG.md) (release-facing feature notes).
+> All 35 delivered sprints (Sprints 1–37, incl. 27.5) are ✅ **Complete**; the only
+> remaining domain is **Production Mobile Deployment** (App Store / Play Store) — 🔲 Planned.
+> This doc tracks *quality and defects* for that delivered work, below.
 
 ---
 
@@ -69,11 +50,11 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total test assertions | 410 (as of Sprint 22) |
-| Pass rate | 100% |
-| Static analysis | `dart analyze` — zero issues |
-| CI enforcement | GitHub Actions (analyze + test + coverage + build web + integration) |
-| Coverage threshold | 15% (feature sprints); will raise to 80% in Sprint 10 |
+| Total automated tests | 546 (as of Sprint 37) |
+| Pass rate | 100% on CI (macOS local shows 4 known CloudKit-platform failures that pass on Ubuntu — see `dev-setup.md`) |
+| Static analysis | `dart analyze --fatal-infos` — zero issues |
+| CI enforcement | GitHub Actions two-tier (Fast: analyze + domain tests + build; Full: all tests + coverage + integration, on PRs to `main` and on merge) |
+| Coverage threshold | ≥ 19% (domain layer ~95%; UI-heavy blend brings the average down — see `dev-workflow.md`) |
 | Linting | `very_good_analysis` |
 
 ### Test Count Progression
@@ -150,44 +131,11 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 
 ## 4. Sprint Delivery Summary
 
-| Sprint | Focus | PR(s) | Tests Added | Status |
-|--------|-------|-------|-------------|--------|
-| Sprint 0 | Pre-development docs & planning | — | 0 | ✅ Complete |
-| Sprint 1 | Project scaffold & core architecture | #1 | 2 | ✅ Complete |
-| Sprint 2 | Astro-Logic Engine (Pure Dart TDD) | #2 | 108 | ✅ Complete |
-| Sprint 3 | Sara Kalai Breath Journal UI + Logic | #3, #4 (hotfix) | 17 | ✅ Complete |
-| Sprint 4 | Streak & Consistency Engine | #5, #6, #7→#8→#9 (UI polish) | 23 | ✅ Complete |
-| Sprint 5 | Cloud Backup Integration | #10 | 15 | ✅ Complete |
-| Sprint 6 | Notifications + Onboarding | #11 | 18 | ✅ Complete |
-| Sprint 7 | AI Wisdom Engine | #12 | 18 | ✅ Complete |
-| Sprint 8 | Theming, Profile & Core UX | #13 | 0 (existing tests cover) | ✅ Complete |
-| Sprint 9 | i18n, Animations & Polish | #14 | 0 (existing tests cover) | ✅ Complete |
-| Sprint 10 | Testing & Hardening | #16 | 63 | ✅ Complete |
-| Sprint 11 | Smoke Test Plan & CI Polish | #18 | 0 (docs/CI only) | ✅ Complete |
-| Sprint 12 | Smoke Test Execution & Fixes | #21, #22, #23 | 0 (test rewrite, same count) | ✅ Complete |
-| Sprint 13 | Web Production Deployment | #25, #26 | 0 (deployment/docs only) | ✅ Complete |
-| Sprint 14 | Birth Bird Dashboard + Rahu Kaal + Nostril Chart | #29 | 0 (UI widgets, no new tests) | ✅ Complete |
-| Sprint 15 | Night Yamas + Full 24h View | #33, #34 | 0 (night tables + deployment docs) | ✅ Complete |
-| Sprint 16 | iCloud Sync + macOS Target | #39 | 3 test files (mapper, metadata, service) | ✅ Complete |
-| Sprint 17 | Notifications + Daily Engagement | #41 | 0 (existing scheduler tests cover logic) | ✅ Complete |
-| Sprint 18 | Historical View + Planning | #44 | 0 (UI widgets, no new tests) | ✅ Complete |
-| Sprint 19 | Analytics + Export | #46 | 0 (analytics calculator, no new tests) | ✅ Complete |
-| Sprint 20 | UI Polish + Home Layout Redesign | #51 | 84 (widget test updates + new assertions) | ✅ Complete |
-| Sprint 21 | Pakshi Accuracy (DOB-Based Calculation) | #54 | 0 (test expectations updated, no new tests) | ✅ Complete |
-| Sprint 22 | Widget Test Coverage + Web Polish | #56 | 62 (widget tests) | ✅ Complete |
-| Sprint 23 | Product Polish — About, User Guide & Onboarding Intro | #59 | 0 (UI features, no new tests) | ✅ Complete |
-| Sprint 24 | UX Polish — Empty States, Loading & Error Handling | #61 | 0 (UI polish + provider fix, test updated) | ✅ Complete |
-| Sprint 25 | Performance, Accessibility & Smoke Test Refresh | #63 | 0 (accessibility/perf polish, docs) | ✅ Complete |
-| Sprint 26 | Daily Engagement & Delight | #65 | 0 (new feature widgets, no tests yet) | ✅ Complete |
-| Sprint 27 | Layer 1 Gap Fixes — Diagnostic Foundation | #68 | 0 (domain + UI, Sushumna test updated) | ✅ Complete |
-| Sprint 27.5 | Bugfix + UX Polish (Production Testing Fixes) | #78 | 0 (bugfixes, no new tests) | ✅ Complete |
-| Sprint 28 | UI Polish + UX Consistency | #95 | 0 (UI polish) | ✅ Complete |
-| Sprint 29 | Foundation — Terminology, PWA, Tech Debt | #102 | 0 (terminology + PWA) | ✅ Complete |
-| Sprint 30 | Action Windows Engine + UI | #104 | 10 (ActionWindowsEngine unit tests) | ✅ Complete |
-| Sprint 31 | Numerology + Oracle Engine + GPS | #115 | 20 (Oracle + NameBird tests) | ✅ Complete |
-| Sprint 32 | Prasanam Oracle UI | #118 | 0 (UI feature, uses existing engine tests) | ✅ Complete |
-| … | Sprints 33–36 (see sprint-tracker for detail) | #131…#141 | — | ✅ Complete |
-| Sprint 37 | Birth-Bird Engine Correction (v1.7.0) | #167 | 15 (partition, 3 moving stars, Pushya/Krishna→Owl, attributes, name waning-cycle, migration idempotency) | ✅ Complete |
+> **Not duplicated here.** The one-row-per-sprint delivery table (focus + PR + status)
+> is maintained in [`project-valuation-report.md`](project-valuation-report.md#sprint-delivery-summary).
+> The *tests-added-per-sprint* signal that used to live in this section is captured by the
+> **Test Count Progression** table in §3 above. This doc's unique contribution is the
+> **Resolved Defects** log (§3) — the record of what broke and how it was fixed.
 
 ---
 
