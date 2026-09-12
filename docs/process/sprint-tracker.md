@@ -3,6 +3,8 @@
 
 # Saranidhi — Development Sprint Tracker
 
+> **Reviewed:** v1.8.0-web · **Next review:** every release (docs-audit gate).
+
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
 [Sprint Backlog](sprint-backlog.md). Each sprint carries a **Delivery Checklist
@@ -29,23 +31,22 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
-| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ (PR #181) |
+| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
 | 39+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.7.0-web is now live in production (2026-09-11)**, tag
-> `v1.7.0-web` @ `prod`. Sprint 37 (Birth-Bird Engine Correction) shipped via
-> engine PR #167 → release-start PR #169 → main→prod promotion PR #172; smoke test
-> PASS (A1 migration verified live on iPad). This corrects the Panja Pakshi
-> birth-bird derivation to the canonical 5-6-5-5-6 single-permanent-table model
-> (CONF-PP-001…005), with existing users auto-corrected on app open.
-> Both corpora (Sara Kalai, Panja Pakshi) are now fully CONF-resolved.
-> Further work is selected from the [Sprint Backlog](sprint-backlog.md) during
-> `/plan`. **Phase 2b is underway:** the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
-> epic first slice is now scheduled as **Sprint 38 (v1.8.0)** — an always-on
-> "Aruḍam Now" verdict on Home (Moment × Readiness) over a shared engine extracted
-> from the Oracle, unifying the former "Now" Surface (see the Sprint 38 Delivery
-> Checklist below). Also pending: the accuracy calibration (7-day 3-way comparison,
-> blocked on owner data collection).
+> **Current state:** **v1.8.0-web is now live in production (2026-09-12)**, tag
+> `v1.8.0-web` @ `prod`. Sprint 38 (Integrated Aruḍam — Slice 1) shipped via feature
+> PR #181 → release-start PR #184 → main→prod promotion PR #189;
+> smoke test PASS (all 6 scenarios + mobile/tablet visual + doctrinal-copy audit, on
+> the PR preview via the Vercel automation-bypass). This delivers the flagship's first
+> slice — the always-on **"Aruḍam Now"** ambient verdict card on Home (Moment × Readiness
+> over a shared `IntegratedArudamEngine` extracted from the Oracle), the natural-vs-forced
+> framing, and the 24h-correct inauspicious floor-lock. It unifies the former "Now" Surface.
+> Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
+> **Phase 2b continues** — next candidates from the [Sprint Backlog](sprint-backlog.md)
+> during `/plan`: the Integrated Aruḍam **fast-follows** ("Why?" provenance accordion,
+> native ambient widget/watch/macOS, penalty tuning) and the accuracy calibration
+> (7-day 3-way comparison, blocked on owner data collection).
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -674,7 +675,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — ✅ Complete (PR #181)
+## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — ✅ 🚀 Shipped v1.8.0-web (PR #181)
 
 > **Goal:** ship the first slice of the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
 > epic — an **always-on "Aruḍam Now" verdict card on Home** that fuses the separate

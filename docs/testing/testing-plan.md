@@ -2,6 +2,8 @@
 
 # Saranidhi — Master Testing Plan
 
+> **Reviewed:** v1.8.0-web · **Next review:** every release (test-count + scenarios).
+
 ## Overview
 
 This document defines the structured testing strategy for Saranidhi across all layers: unit (domain logic), widget (UI components), integration (full flows), and end-to-end (platform-specific smoke tests).

@@ -2,6 +2,8 @@
 
 # Saranidhi — Project Evaluation Report
 
+> **Reviewed:** v1.8.0-web · **Next review:** every `/sprint-update` (defects + test baseline).
+
 ## 1. Executive Architecture Summary
 
 Saranidhi is a privacy-first, local-first spiritual breath-tracking application built with Flutter (iOS, Android, Web). It uses pure Dart domain logic for all Vedic calculations, Drift (SQLite/WebAssembly) for persistence, and Riverpod for reactive state management.
