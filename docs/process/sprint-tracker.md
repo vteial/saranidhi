@@ -39,8 +39,12 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 > (CONF-PP-001…005), with existing users auto-corrected on app open.
 > Both corpora (Sara Kalai, Panja Pakshi) are now fully CONF-resolved.
 > Further work is selected from the [Sprint Backlog](sprint-backlog.md) during
-> `/plan` — next up: **Phase 2b backlog derivation** + the remaining accuracy
-> calibration (7-day 3-way comparison).
+> `/plan`. **Phase 2b is underway:** the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
+> epic is scoped (owner-confirmed) with a ready first slice — an always-on
+> "Aruḍam Now" verdict on Home (Moment × Readiness) over a shared engine extracted
+> from the Oracle, unifying the former "Now" Surface. Also pending: the accuracy
+> calibration (7-day 3-way comparison). Schedule the flagship's sprint number at the
+> next `/plan`.
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -671,8 +675,9 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ## Future Sprints
 
-Future and candidate sprints (38 v2.0 Polish, 39 Accuracy Calibration, Chronobiology,
-Integrated Aruḍam, The Now Surface, E2E Automation, App Store Prep) live in the
+Future and candidate sprints (the flagship **Integrated Aruḍam** — which now
+subsumes *The "Now" Surface* — plus 38 v2.0 Polish, 39 Accuracy Calibration,
+Chronobiology, E2E Automation, App Store Prep) live in the
 **[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into
 this tracker (with a Delivery Checklist) when scheduled via `/plan`.
 
