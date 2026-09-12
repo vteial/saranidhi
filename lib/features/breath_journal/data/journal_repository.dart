@@ -61,6 +61,17 @@ class JournalRepository {
         .get();
   }
 
+  /// Returns journal entries since [cutoff], ordered by timestamp ascending.
+  Future<List<SaraKalaiJournalData>> getEntriesSince(DateTime cutoff) async {
+    return (_db.select(_db.saraKalaiJournal)
+          ..where(
+            (t) =>
+                t.timestamp.isBiggerOrEqualValue(cutoff.millisecondsSinceEpoch),
+          )
+          ..orderBy([(t) => OrderingTerm(expression: t.timestamp)]))
+        .get();
+  }
+
   /// Returns journal entries for a specific date (start of day to end of day).
   Future<List<SaraKalaiJournalData>> getEntriesForDate(DateTime date) async {
     final startOfDay = DateTime(date.year, date.month, date.day);
