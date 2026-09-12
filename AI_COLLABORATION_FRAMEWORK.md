@@ -1,6 +1,6 @@
 # AI Team Collaboration Framework — Saranidhi
 
-> **Reviewed:** v1.7.0-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
+> **Reviewed:** v1.8.0-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
 
 This document describes the multi-agent operating model used to develop the
 **Saranidhi** application: how a single human lead orchestrates specialized AI

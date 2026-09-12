@@ -2,6 +2,8 @@
 
 # Saranidhi — Sprint Backlog
 
+> **Reviewed:** v1.8.0-web · **Next review:** every release + at each `/plan`.
+
 Candidate work not yet scheduled into a numbered sprint, organized by **logical
 named epics** rather than sprint number. Items graduate into the
 [Sprint Tracker](sprint-tracker.md) (with a Delivery Checklist) when picked up

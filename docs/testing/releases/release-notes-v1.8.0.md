@@ -41,7 +41,7 @@ The first slice of the flagship **Integrated Aruḍam** — a single, always-on 
 ---
 
 - **Spec + dossier:** [`sprints/sprint-38-integrated-arudam/`](../../process/sprints/sprint-38-integrated-arudam/README.md)
-- **Smoke test:** [`smoke-test-v1.8.0.md`](./smoke-test-v1.8.0.md) — ⬜ PENDING (owner runs on staging)
-- **Docs audit:** [`docs-audit-v1.8.0.md`](./docs-audit-v1.8.0.md) — ⬜ PENDING
-- **PR:** [#181](https://github.com/vteial/saranidhi/pull/181) · **Prod:** [saranidhi.vercel.app](https://saranidhi.vercel.app)
+- **Smoke test:** [`smoke-test-v1.8.0.md`](./smoke-test-v1.8.0.md) — ✅ **PASS** (2026-09-12; all 6 scenarios + mobile/tablet visual + doctrinal-copy audit, on the PR #184 preview)
+- **Docs audit:** [`docs-audit-v1.8.0.md`](./docs-audit-v1.8.0.md) — ✅ **PASS**
+- **Release:** [GitHub Release `v1.8.0-web`](https://github.com/vteial/saranidhi/releases/tag/v1.8.0-web) (target `prod`) · feature PR [#181](https://github.com/vteial/saranidhi/pull/181) · promotion PR [#189](https://github.com/vteial/saranidhi/pull/189) · **Prod:** [saranidhi.vercel.app](https://saranidhi.vercel.app)
 - **Full changelog:** [`CHANGELOG.md`](../../../CHANGELOG.md)

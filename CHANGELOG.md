@@ -14,7 +14,7 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
-## [1.8.0-web] — Pending
+## [1.8.0-web] — 2026-09-12
 
 > Sprint 38 — **Integrated Aruḍam, Slice 1**. The first slice of the flagship epic: an
 > always-on **"Aruḍam Now"** verdict card on Home that fuses cosmic timing and breath
