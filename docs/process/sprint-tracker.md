@@ -29,7 +29,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
-| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | 🚧 In Progress |
+| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ (PR #181) |
 | 39+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.7.0-web is now live in production (2026-09-11)**, tag
@@ -674,7 +674,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — 🚧 In Progress
+## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — ✅ Complete (PR #181)
 
 > **Goal:** ship the first slice of the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
 > epic — an **always-on "Aruḍam Now" verdict card on Home** that fuses the separate
@@ -713,14 +713,14 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > streak/analytics natural-alignment rework.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N). _(owner/orchestrator — Kiro cannot merge)_
-- [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite + Integration; local run green before PR, macOS baseline = the 4 known-CloudKit failures and no others).
+- [x] **Code merged** — on `main` (PR #181, merge `d83347d`). _(owner merged — Kiro cannot merge)_
+- [x] **PR link** — [#181](https://github.com/vteial/saranidhi/pull/181) (CI green pre-merge: Analyze / Fast Tests / Build + Full Suite + Integration; local run 564 pass / 4 known-CloudKit baseline / 0 regressions, analyze clean, web build clean). Implemented in the Antigravity IDE coding setup; **Kiro Web reviewed the real diff and APPROVED** (regression gate verified — Oracle day-time behavior preserved, alignment-feeds-score is the authorized Q2-A change, night floor-lock now gates).
 - [x] **Regression gate (Task 38.3/38.1)** — **existing Prasanam Oracle day-time verdicts are UNCHANGED** by the engine extraction + floor-lock refactor (add/keep tests pinning current day-time scores), **AND** night verdicts now gate correctly (Rahu/Emakandam after sunset). Extraction refactors are exactly where behavior silently drifts — this must be proven, not assumed.
 - [x] **Docs updated** — `calculation-methodology.md` (integrated verdict + Moment × Readiness + night floor-lock); User Guide gets the "Aruḍam Now" card + the natural-vs-forced philosophy.
 - [x] **Tests** — `IntegratedArudamEngine` unit tests (Moment × Readiness math, misalignment penalty, Sushumna-in-Yoga, night floor-lock); Oracle-unchanged regression tests; verdict-card widget test; local green before PR.
-- [ ] **Smoke test** — scenarios in `smoke-test-v1.8.0.md`: verdict card shows on Home (day + night); aligned vs misaligned states; stale-swara degrade; forced-shift affordance carries the warning tone; EN/TA.
-- [ ] **Valuation report** — Sprint 38 row added (+20% over AI-estimated time).
-- [ ] **Tracker updated** — status ✅.
+- [x] **Smoke test** — scenarios authored in `smoke-test-v1.8.0.md` (verdict card day + night; aligned vs misaligned; stale-swara degrade; forced-shift warning tone; EN/TA). ⚠️ **File relocation pending:** it currently sits in the sprint dossier folder; it must move to `docs/testing/releases/smoke-test-v1.8.0.md` (repo convention) at `/release-start`.
+- [ ] **Valuation report** — Sprint 38 row (+20%) — deferred to `/sprint-update`.
+- [x] **Tracker updated** — status ✅ (this `/sprint-finish`).
 - [x] **User Guide** — "Aruḍam Now" section + the natural-alignment philosophy — real capability change, so **not** `n/a`.
 
 ---
