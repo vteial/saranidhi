@@ -327,7 +327,34 @@ Scales how much of the cosmic ceiling the individual can actually claim based on
 - **Stambhana (Delay):** 30–49
 - **Sunya (Hard No):** 0–29
 
-### Accuracy Status: ✅ Unified — Integrated Arudam Engine (Sprint 38, v1.8.0)
+#### 5. Doctrinal Reasons Breakdown — the "Why?" (Sprint 39 — v1.9.0)
+`IntegratedArudamEngine.evaluate` returns a `List<ArudamReason>` alongside the score — a
+structured, provenance-carrying explanation of the verdict (no raw math surfaced). Each
+`ArudamReason` = `{ ArudamFactor, FactorStrength (strong/moderate/weak/blocking), conf }`.
+Reasons are classified from the same factors that produce the score (qualitative bands only):
+- bird base ≥ 80 → `strong`; 40–79 → `moderate`; < 40 → `weak`.
+- a multiplier ≥ 1.1 → `strong`; 0.9–1.1 → `moderate`; < 0.9 → `weak` (hora-swara, tarabala, category harmony).
+- readiness aligned → `strong`; misaligned → `weak`; `actualSwara == null` (stale) → **readiness/Sushumna reasons omitted** (nothing honest to say).
+- Sushumna active → a `sushumna` reason (moderate) instead of `readiness`.
+- Floor-locked → the reasons list is **exactly one** `floorLock` reason (`blocking`); Moment factors are not listed (the higher path is to rest).
+
+**Factor → provenance citation (data = single source of truth, documented in the engine):**
+
+| ArudamFactor | Citation | Corpus basis |
+|--------------|----------|--------------|
+| `birdState` | CONF-PP-004 | Panja Pakshi bird-state / ruling-planet table |
+| `horaSwara` | CONF-014 | Two clocks — swara ~1h vs Pakshi yama ~1.5h |
+| `tarabala` | CONF-PP-001/002 | Birth-star Navatara partition |
+| `categoryHarmony` | CONF-015 | Tattva / action-type contextual harmony |
+| `readiness` | CONF-016 / CONF-017 | Switching is a nudge; reliability over forcing |
+| `sushumna` | CONF-026 | Sushumna transcendent neutral (meditation-favourable) |
+| `floorLock` | CONF-018 | Day/Night inauspicious-window seal |
+
+The verdict card's "Why?" accordion renders these grouped **Moment / You** (or **Blocked**),
+each mapped to a localized plain-language explanation (EN/TA) + its citation. The engine
+emits only data (`ArudamFactor` + `FactorStrength` + `conf`); localization lives in the card.
+
+### Accuracy Status: ✅ Unified — Integrated Arudam Engine (Sprint 38, v1.8.0) · "Why?" transparency (Sprint 39, v1.9.0)
 
 ---
 
