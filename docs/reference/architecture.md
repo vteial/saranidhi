@@ -2,7 +2,7 @@
 
 # Saranidhi — Architecture Reference
 
-> **Reviewed:** v1.8.0-web · **Next review:** every release (or when infra/schema/patterns change).
+> **Reviewed:** v1.8.1-web · **Next review:** every release (or when infra/schema/patterns change).
 
 *The technical design of Saranidhi: how the product is built. For what it does
 and why, see [`docs/product/product-scope.md`](../product/product-scope.md).*

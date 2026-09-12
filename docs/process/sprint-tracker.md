@@ -3,7 +3,7 @@
 
 # Saranidhi — Development Sprint Tracker
 
-> **Reviewed:** v1.8.0-web · **Next review:** every release (docs-audit gate).
+> **Reviewed:** v1.8.1-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
@@ -34,8 +34,10 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
 | 39+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.8.0-web is now live in production (2026-09-12)**, tag
-> `v1.8.0-web` @ `prod`. Sprint 38 (Integrated Aruḍam — Slice 1) shipped via feature
+> **Current state:** **v1.8.1-web is now live in production (2026-09-12)** — a Tamil-l10n
+> hotfix (Settings → Notifications Rahu Kaal + Morning Summary toggles; PR #191 → promotion
+> PR #192, tag `v1.8.1-web` @ `prod`). The preceding feature release **v1.8.0-web**
+> (Sprint 38 — Integrated Aruḍam Slice 1) shipped via feature
 > PR #181 → release-start PR #184 → main→prod promotion PR #189;
 > smoke test PASS (all 6 scenarios + mobile/tablet visual + doctrinal-copy audit, on
 > the PR preview via the Vercel automation-bypass). This delivers the flagship's first
