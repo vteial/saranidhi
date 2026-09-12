@@ -18,11 +18,11 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
-**Sprints Delivered:** 35 (Sprints 1–37, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
-**Total Engineering Investment:** **~110.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
-**Production Web Release:** **v1.7.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.7.0-web`, Sprint 37)
-**Automated Tests:** 546 (unit + widget + integration)
-**Current Phase:** Knowledge-engineering complete — **both corpora fully CONF-resolved** (Sara Kalai 26/26, Panja Pakshi 6/6). **Next: `/plan` Phase 2b** — derive an epic-tagged, corpus-linked backlog (flagship "Integrated Aruḍam" epic).
+**Sprints Delivered:** 36 (Sprints 1–38, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
+**Total Engineering Investment:** **~116.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
+**Production Web Release:** **v1.7.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.7.0-web`, Sprint 37) · **v1.8.0 built (Sprint 38), release pending**
+**Automated Tests:** 564 (unit + widget + integration)
+**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** slice 1 (the ambient "Aruḍam Now" verdict, Moment × Readiness) built + merged (PR #181, Sprint 38); **next: `/release-start` for v1.8.0**. Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
 
@@ -39,7 +39,8 @@
 | Feature build-out | 12–27 | ~35.0 |
 | Polish, hardening & layers | 27.5–36 | ~12.0 |
 | Sprint 37 — Birth-Bird Engine Correction (v1.7.0) | 37 | ~6.0 |
-| **Subtotal** | | **~72.5** |
+| Sprint 38 — Integrated Aruḍam, Slice 1 (v1.8.0) | 38 | ~6.0 |
+| **Subtotal** | | **~78.5** |
 
 ### Infrastructure, Release & Admin Ops (off-commit)
 
@@ -74,10 +75,10 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (sprint track) | ~72.5 |
+| Active coding & debugging (sprint track) | ~78.5 |
 | Infrastructure, release & admin ops | ~11.0 |
 | Research & knowledge engineering | ~26.5 |
-| **Total** | **~110.5** |
+| **Total** | **~116.5** |
 
 ---
 
@@ -125,6 +126,7 @@
 | 32 | Prasanam Oracle UI | #118 | ✅ |
 | 36 | Stability & Test Hardening (v1.6.0) | #141 | ✅ 🚀 |
 | 37 | Birth-Bird Engine Correction (v1.7.0) | #167 | ✅ 🚀 |
+| 38 | ★ Integrated Aruḍam — Slice 1 (v1.8.0) | #181 | ✅ (release pending) |
 
 > 🚀 = shipped a production release. Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement
