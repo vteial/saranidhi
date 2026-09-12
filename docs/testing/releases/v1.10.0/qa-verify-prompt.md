@@ -8,7 +8,7 @@
 > Antigravity. The owner's message to Antigravity is then a one-liner pointing here.
 >
 > **Preview URL (filled):** `https://saranidhi-git-release-v1100-eialarasus-projects.vercel.app/`
-> (standard Vercel format — branch `release/v1.10.0` slugifies to `release-v1100`). Release PR: **#___**.
+> (standard Vercel format — branch `release/v1.10.0` slugifies to `release-v1100`). Release PR: **#205**.
 >
 > **Environment:** the release PR's Vercel **preview**, NOT staging. Read
 > `VERCEL_AUTOMATION_BYPASS_SECRET` from the local **`.env`** (gitignored) and pass it as a
@@ -36,7 +36,7 @@ it as a query param on the preview URL (browser navigation):
 (Base URL: https://saranidhi-git-release-v1100-eialarasus-projects.vercel.app — staging
 deploys from `main`, so the release branch's changes are not on staging until merge; the
 preview is built from the release-branch head and shows About = v1.10.0.)
-REPO: vteial/saranidhi. Release branch: release/v1.10.0. PR: #___.
+REPO: vteial/saranidhi. Release branch: release/v1.10.0. PR: #205.
 
 TEST PLAN (source of truth): docs/testing/releases/v1.10.0/smoke-test.md on the release
 branch. Execute EVERY scenario in that file, in order (Scenarios 1–8 + regression eyeball).
