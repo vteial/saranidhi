@@ -144,6 +144,17 @@ A daily insight card powered by on-device intelligence. Your streak, accuracy, a
 ### 🌓 Cosmic Dashboard
 A single-glance view showing: active Hora (planetary hour), current Tattva (element), Rahu Kaal status, and your bird's state. Everything you need to navigate the day consciously.
 
+### 🌡️ Holistic Guidance (Chronobiology)
+Present-moment, self-observable correction for your breath rhythm — never diagnosis, never prediction. When your breath drifts, Saranidhi gently suggests how to rebalance.
+
+- **Breath-stagnancy awareness:** If your breath has stayed on one channel too long over the past day, a gentle card appears on Home — **mild** (~6 hours) or **longer** (~8 hours). It never appears when your rhythm is healthy, and it's guidance, not a health warning. (A Sushumna/central reading resets the count.)
+- **Warming vs cooling correction:** Stuck on the **right** (solar) channel tends toward heat — the card suggests **cooling** measures (Sheetali breath, cool fluids, calm). Stuck on the **left** (lunar) channel tends toward cold/sluggishness — it suggests **warming** measures (Surya Bhedana breath, warming spices, gentle movement). A one-tap option opens the somatic reset to help shift channels.
+- **Tattva temperature tip:** When the active element agrees (Fire during a solar-stuck spell, or Water during a lunar-stuck spell), a short elemental note reinforces the same cooling/warming suggestion.
+- **Swara-Ahara (eating by the breath):** During a Kriya (action/nourishment) window, the Focus Card notes whether your **digestive fire** is well-placed — if your **right** nostril is active it affirms good timing to eat; if your **left** is active it gently suggests a brief reset before a meal.
+- **Swara Pada Gamana (waking rule):** Your optional morning summary now includes the traditional waking tip — on rising, check your active nostril and step down first with the foot on that side. Fully bilingual (English + Tamil).
+
+**A note on tone:** every suggestion here is a gentle nudge toward *natural* alignment (consistency over force), in keeping with the practice's own teaching — never a mandate, never a medical claim.
+
 ### 🔒 Complete Privacy
 Your breath data is sacred and personal. It never leaves your device unless you choose to back it up — and even then, it goes only to your own iCloud or Google Drive account. We never see, store, or process your data.
 

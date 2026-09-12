@@ -21,10 +21,10 @@
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
 **Sprints Delivered:** 37 (Sprints 1–39, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
-**Total Engineering Investment:** **~121.0 hours** (incl. ~26.5h Research & Knowledge Engineering)
-**Production Web Release:** **v1.9.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.9.0-web`, Sprint 39 — Integrated Aruḍam "Why?" provenance accordion; preceding feature release v1.8.0-web = Integrated Aruḍam slice 1, Sprint 38)
-**Automated Tests:** 573 (unit + widget + integration)
-**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** slice 1 (v1.8.0) + its **"Why?" verdict-transparency accordion** (v1.9.0, Sprint 39) both **shipped to production**. **Next: Sprint 40 — Chronobiology & Holistic Guidance (v1.10.0).** Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
+**Total Engineering Investment:** **~127.0 hours** (incl. ~26.5h Research & Knowledge Engineering)
+**Production Web Release:** **v1.9.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.9.0-web`, Sprint 39 — Integrated Aruḍam "Why?" provenance accordion) · **v1.10.0 built (Sprint 40 — Chronobiology & Holistic Guidance), release pending**
+**Automated Tests:** 605 (unit + widget + integration)
+**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (slice 1 v1.8.0 + "Why?" accordion v1.9.0) shipped; **Sprint 40 — Chronobiology & Holistic Guidance (v1.10.0)** built + merged (PR #202), **next: `/release-start` for v1.10.0**. Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
 
@@ -43,7 +43,8 @@
 | Sprint 37 — Birth-Bird Engine Correction (v1.7.0) | 37 | ~6.0 |
 | Sprint 38 — Integrated Aruḍam, Slice 1 (v1.8.0) | 38 | ~6.0 |
 | Sprint 39 — Integrated Aruḍam "Why?" accordion (v1.9.0) | 39 | ~4.5 |
-| **Subtotal** | | **~83.0** |
+| Sprint 40 — Chronobiology & Holistic Guidance (v1.10.0) | 40 | ~6.0 |
+| **Subtotal** | | **~89.0** |
 
 ### Infrastructure, Release & Admin Ops (off-commit)
 
@@ -78,10 +79,10 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (sprint track) | ~83.0 |
+| Active coding & debugging (sprint track) | ~89.0 |
 | Infrastructure, release & admin ops | ~11.0 |
 | Research & knowledge engineering | ~26.5 |
-| **Total** | **~121.0** |
+| **Total** | **~127.0** |
 
 ---
 
@@ -131,6 +132,7 @@
 | 37 | Birth-Bird Engine Correction (v1.7.0) | #167 | ✅ 🚀 |
 | 38 | ★ Integrated Aruḍam — Slice 1 (v1.8.0) | #181 | ✅ 🚀 |
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion (v1.9.0) | #196 | ✅ 🚀 |
+| 40 | Chronobiology & Holistic Guidance (v1.10.0) | #202 | ✅ (release pending) |
 
 > 🚀 = shipped a production release. Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement
