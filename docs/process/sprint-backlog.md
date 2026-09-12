@@ -119,7 +119,7 @@ an always-on verdict** — with the Oracle becoming the deep-dive form of the sa
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🟡 | ⬜ | **Expandable "Why?" accordion** with doctrinal explanation + **provenance** (corpus practice + CONF citation) — needs the corpus-citation wiring. |
+| 🟡 | 📋 → S39 | **Expandable "Why?" accordion** with doctrinal explanation + **provenance** (corpus practice + CONF citation). **Scheduled as Sprint 39 (v1.9.0)** — see [sprint-tracker](sprint-tracker.md#sprint-39--integrated-aruḍam--why-provenance-accordion-v190--planned) + [dossier](sprints/sprint-39-why-accordion/README.md). |
 | 🟡 | ⬜ | **The "Now" Surface — native ambient** (Stage 2 phone widget → Stage 3 watch complication → Stage 4 macOS menu-bar). Native Swift/Kotlin extensions + app-group storage + method channels; zero-backend must hold. Widget tri-tap [L]/[R]/[Both] nostril input + freshness decay. |
 | 🟢 | ⬜ | Calendar-aware **proactive nudge** (opt-in, off by default; privacy-sensitive). |
 | 🟢 | ⬜ | Tune the readiness penalty (uniform ~0.75 → possibly window-dependent) using the 7-day 3-way data from the **Accuracy & Validation** epic. |
@@ -143,24 +143,34 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 ## Chronobiology & Holistic Guidance
 
 > Spec: [`research/advanced_somatic_mastery.md`](../research/advanced_somatic_mastery.md) §2.
+>
+> **Status: core scoped as Sprint 40 (v1.10.0)** via `/plan` — see
+> [sprint-tracker](sprint-tracker.md#sprint-40-chronobiology--holistic-guidance-v1100--planned)
+> + [dossier](sprints/sprint-40-chronobiology/README.md). The five items below marked
+> `→ S40` are in that sprint; the remainder stay as fast-follows.
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🔴 | ⬜ | ChronobiologyAnalytics — time-weighted sliding-window stagnancy detection (≥6h mild, ≥8h chronic) |
-| 🟡 | ⬜ | Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on the Kriya Focus Card |
-| 🟡 | ⬜ | Tattva-Somatic temperature-regulation tips (Sheetali for excess fire, Surya Bhedana for cold) |
-| 🟡 | ⬜ | Swara Pada Gamana waking advice in the morning summary notification |
-| 🟡 | ⬜ | Dashboard stagnancy warning card (heating/cooling lifestyle recommendations) |
+| 🔴 | 📋 → S40 | ChronobiologyAnalytics — time-weighted sliding-window stagnancy detection (≥6h mild, ≥8h chronic) |
+| 🟡 | 📋 → S40 | Dynamic Somatic Cards — Swara-Ahara dietary fire prompt on the Kriya Focus Card |
+| 🟡 | 📋 → S40 | Tattva-Somatic temperature-regulation tips (Sheetali for excess fire, Surya Bhedana for cold) |
+| 🟡 | 📋 → S40 | Swara Pada Gamana waking advice in the morning summary notification |
+| 🟡 | 📋 → S40 | Dashboard stagnancy warning card (heating/cooling lifestyle recommendations) |
 | 🟢 | ⬜ | Cognitive Energy Budgeting labels in Best Times / Explore (Artha/Kriya/Yoga suggestions) |
-| 🔴 | ⬜ | Tamil translations for all holistic/somatic guidance text |
+| 🔴 | 📋 → S40 | Tamil translations for all holistic/somatic guidance text (bilingual is a DoD gate on S40) |
 
 ---
 
 ## Analytics & Insights
 
+> **⏭️ PARKED for the next `/plan` (owner: Monday).** The CSV-export decision below is
+> deliberately deferred to the Monday planning session — decide there whether to (1) remove
+> CSV + replace the slot with a value-add card [Kiro's rec], (2) move CSV to Settings, or
+> (3) keep as-is; then schedule the chosen work.
+
 | Priority | Status | Item |
 |----------|--------|------|
-| 🟡 | ⬜ | **Analytics export — reconsider.** The Analytics screen's `_ExportCard` exports journal-only CSV; Settings already has full data export/import (JSON, a superset). Decide: (1) remove CSV from Analytics and replace the slot with a higher-value card (alignment-rate insight, hold-time chart expansion, streak heatmap, or a shareable summary report); (2) move CSV to Settings alongside JSON; or (3) keep as-is. *(CSV = human-readable/journal-only vs JSON = full machine backup — weigh before removing.)* |
+| 🟡 | ⏭️ Monday `/plan` | **Analytics export — reconsider.** The Analytics screen's `_ExportCard` exports journal-only CSV; Settings already has full data export/import (JSON, a superset). Decide: (1) remove CSV from Analytics and replace the slot with a higher-value card (alignment-rate insight, hold-time chart expansion, streak heatmap, or a shareable summary report); (2) move CSV to Settings alongside JSON; or (3) keep as-is. *(CSV = human-readable/journal-only vs JSON = full machine backup — weigh before removing.)* |
 | 🟢 | ⬜ | Shareable summary / PDF report of alignment and hold-time progress. |
 
 ---
