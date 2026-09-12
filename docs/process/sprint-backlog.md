@@ -2,7 +2,7 @@
 
 # Saranidhi — Sprint Backlog
 
-> **Reviewed:** v1.8.1-web · **Next review:** every release + at each `/plan`.
+> **Reviewed:** v1.9.0-web · **Next review:** every release + at each `/plan`.
 
 Candidate work not yet scheduled into a numbered sprint, organized by **logical
 named epics** rather than sprint number. Items graduate into the

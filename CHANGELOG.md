@@ -14,7 +14,7 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
-## [1.9.0-web] — TBD
+## [1.9.0-web] — 2026-09-12
 
 > Sprint 39 — **Integrated Aruḍam: "Why?" provenance accordion**. Verdict transparency —
 > the "Aruḍam Now" card now explains itself doctrinally, with source citations.
