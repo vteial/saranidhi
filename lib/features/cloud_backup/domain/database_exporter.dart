@@ -97,115 +97,126 @@ class DatabaseExporter {
     final profilesList = data['profiles'] as List<dynamic>? ?? [];
     for (final p in profilesList) {
       final map = p as Map<String, dynamic>;
-      await _db.into(_db.profiles).insert(
-        ProfilesCompanion.insert(
-          id: map['id'] as String,
-          displayName: Value(map['displayName'] as String? ?? ''),
-          birthStarNakshatra: Value(map['birthStarNakshatra'] as String?),
-          birthBird: Value(map['birthBird'] as String?),
-          locationLat: Value(map['locationLat'] as double?),
-          locationLng: Value(map['locationLng'] as double?),
-          birthDateEpoch: Value(map['birthDateEpoch'] as int?),
-          birthTime: Value(map['birthTime'] as String?),
-          birthPlaceName: Value(map['birthPlaceName'] as String?),
-          birthPlaceLat: Value(map['birthPlaceLat'] as double?),
-          birthPlaceLng: Value(map['birthPlaceLng'] as double?),
-          theme: Value(map['theme'] as String? ?? 'light'),
-          language: Value(map['language'] as String? ?? 'en'),
-          storageMode: Value(map['storageMode'] as String? ?? 'local'),
-          notifyRuling: Value(map['notifyRuling'] as bool? ?? true),
-          notifyEating: Value(map['notifyEating'] as bool? ?? false),
-          lastAiNote: Value(map['lastAiNote'] as String?),
-          lastAiNoteDate: Value(map['lastAiNoteDate'] as String?),
-          createdAt: map['createdAt'] as int,
-          updatedAt: map['updatedAt'] as int,
-        ),
-      );
+      await _db
+          .into(_db.profiles)
+          .insert(
+            ProfilesCompanion.insert(
+              id: map['id'] as String,
+              displayName: Value(map['displayName'] as String? ?? ''),
+              birthStarNakshatra: Value(map['birthStarNakshatra'] as String?),
+              birthBird: Value(map['birthBird'] as String?),
+              locationLat: Value(map['locationLat'] as double?),
+              locationLng: Value(map['locationLng'] as double?),
+              birthDateEpoch: Value(map['birthDateEpoch'] as int?),
+              birthTime: Value(map['birthTime'] as String?),
+              birthPlaceName: Value(map['birthPlaceName'] as String?),
+              birthPlaceLat: Value(map['birthPlaceLat'] as double?),
+              birthPlaceLng: Value(map['birthPlaceLng'] as double?),
+              theme: Value(map['theme'] as String? ?? 'light'),
+              language: Value(map['language'] as String? ?? 'en'),
+              storageMode: Value(map['storageMode'] as String? ?? 'local'),
+              notifyRuling: Value(map['notifyRuling'] as bool? ?? true),
+              notifyEating: Value(map['notifyEating'] as bool? ?? false),
+              lastAiNote: Value(map['lastAiNote'] as String?),
+              lastAiNoteDate: Value(map['lastAiNoteDate'] as String?),
+              createdAt: map['createdAt'] as int,
+              updatedAt: map['updatedAt'] as int,
+            ),
+          );
     }
 
     // Import journal entries
     final journalList = data['journal'] as List<dynamic>? ?? [];
     for (final j in journalList) {
       final map = j as Map<String, dynamic>;
-      await _db.into(_db.saraKalaiJournal).insert(
-        SaraKalaiJournalCompanion.insert(
-          id: map['id'] as String,
-          timestamp: map['timestamp'] as int,
-          expectedFlow: map['expectedFlow'] as String,
-          actualFlow: map['actualFlow'] as String,
-          isAligned: map['isAligned'] as bool,
-          nostril: map['nostril'] as String,
-          inhaleDurationMs: Value(map['inhaleDurationMs'] as int?),
-          holdDurationMs: Value(map['holdDurationMs'] as int?),
-          exhaleDurationMs: Value(map['exhaleDurationMs'] as int?),
-          activeYama: Value(map['activeYama'] as String?),
-          activeBird: Value(map['activeBird'] as String?),
-          activeBirdState: Value(map['activeBirdState'] as String?),
-          activeElement: Value(map['activeElement'] as String?),
-          notes: Value(map['notes'] as String?),
-          isPinned: Value(map['isPinned'] as bool? ?? false),
-        ),
-      );
+      await _db
+          .into(_db.saraKalaiJournal)
+          .insert(
+            SaraKalaiJournalCompanion.insert(
+              id: map['id'] as String,
+              timestamp: map['timestamp'] as int,
+              expectedFlow: map['expectedFlow'] as String,
+              actualFlow: map['actualFlow'] as String,
+              isAligned: map['isAligned'] as bool,
+              nostril: map['nostril'] as String,
+              inhaleDurationMs: Value(map['inhaleDurationMs'] as int?),
+              holdDurationMs: Value(map['holdDurationMs'] as int?),
+              exhaleDurationMs: Value(map['exhaleDurationMs'] as int?),
+              activeYama: Value(map['activeYama'] as String?),
+              activeBird: Value(map['activeBird'] as String?),
+              activeBirdState: Value(map['activeBirdState'] as String?),
+              activeElement: Value(map['activeElement'] as String?),
+              notes: Value(map['notes'] as String?),
+              isPinned: Value(map['isPinned'] as bool? ?? false),
+              wasForcedShift: Value(map['wasForcedShift'] as bool? ?? false),
+            ),
+          );
     }
 
     // Import breath sessions
     final sessionsList = data['sessions'] as List<dynamic>? ?? [];
     for (final s in sessionsList) {
       final map = s as Map<String, dynamic>;
-      await _db.into(_db.breathSessions).insert(
-        BreathSessionsCompanion.insert(
-          id: map['id'] as String,
-          timestamp: map['timestamp'] as int,
-          totalDurationMs: map['totalDurationMs'] as int,
-          nostril: map['nostril'] as String,
-          inhaleLengthMs: map['inhaleLengthMs'] as int,
-          holdAfterInhaleMs: map['holdAfterInhaleMs'] as int,
-          exhaleLengthMs: map['exhaleLengthMs'] as int,
-          holdAfterExhaleMs: map['holdAfterExhaleMs'] as int,
-          completedCycles: map['completedCycles'] as int,
-          mood: Value(map['mood'] as String?),
-          consciousnessRating: Value(map['consciousnessRating'] as int?),
-          notes: Value(map['notes'] as String?),
-        ),
-      );
+      await _db
+          .into(_db.breathSessions)
+          .insert(
+            BreathSessionsCompanion.insert(
+              id: map['id'] as String,
+              timestamp: map['timestamp'] as int,
+              totalDurationMs: map['totalDurationMs'] as int,
+              nostril: map['nostril'] as String,
+              inhaleLengthMs: map['inhaleLengthMs'] as int,
+              holdAfterInhaleMs: map['holdAfterInhaleMs'] as int,
+              exhaleLengthMs: map['exhaleLengthMs'] as int,
+              holdAfterExhaleMs: map['holdAfterExhaleMs'] as int,
+              completedCycles: map['completedCycles'] as int,
+              mood: Value(map['mood'] as String?),
+              consciousnessRating: Value(map['consciousnessRating'] as int?),
+              notes: Value(map['notes'] as String?),
+            ),
+          );
     }
 
     // Import bird library
     final birdsList = data['birds'] as List<dynamic>? ?? [];
     for (final b in birdsList) {
       final map = b as Map<String, dynamic>;
-      await _db.into(_db.birdLibrary).insert(
-        BirdLibraryCompanion.insert(
-          id: map['id'] as String,
-          birdName: map['birdName'] as String,
-          nakshatraGroup: map['nakshatraGroup'] as String,
-          favorited: Value(map['favorited'] as bool? ?? false),
-        ),
-      );
+      await _db
+          .into(_db.birdLibrary)
+          .insert(
+            BirdLibraryCompanion.insert(
+              id: map['id'] as String,
+              birdName: map['birdName'] as String,
+              nakshatraGroup: map['nakshatraGroup'] as String,
+              favorited: Value(map['favorited'] as bool? ?? false),
+            ),
+          );
     }
 
     // Import Prasanam history
     final prasanamList = data['prasanam'] as List<dynamic>? ?? [];
     for (final p in prasanamList) {
       final map = p as Map<String, dynamic>;
-      await _db.into(_db.prasanamHistory).insert(
-        PrasanamHistoryCompanion.insert(
-          id: map['id'] as String,
-          timestamp: map['timestamp'] as int,
-          category: map['category'] as String,
-          queryText: Value(map['queryText'] as String? ?? ''),
-          score: map['score'] as int,
-          band: map['band'] as String,
-          guidanceEn: map['guidanceEn'] as String,
-          guidanceTa: map['guidanceTa'] as String,
-          isFloorLocked: Value(map['isFloorLocked'] as bool? ?? false),
-          swara: Value(map['swara'] as String?),
-          birdState: Value(map['birdState'] as String?),
-          actionWindow: Value(map['actionWindow'] as String?),
-          outcomeNotes: Value(map['outcomeNotes'] as String?),
-          outcomeTimestamp: Value(map['outcomeTimestamp'] as int?),
-        ),
-      );
+      await _db
+          .into(_db.prasanamHistory)
+          .insert(
+            PrasanamHistoryCompanion.insert(
+              id: map['id'] as String,
+              timestamp: map['timestamp'] as int,
+              category: map['category'] as String,
+              queryText: Value(map['queryText'] as String? ?? ''),
+              score: map['score'] as int,
+              band: map['band'] as String,
+              guidanceEn: map['guidanceEn'] as String,
+              guidanceTa: map['guidanceTa'] as String,
+              isFloorLocked: Value(map['isFloorLocked'] as bool? ?? false),
+              swara: Value(map['swara'] as String?),
+              birdState: Value(map['birdState'] as String?),
+              actionWindow: Value(map['actionWindow'] as String?),
+              outcomeNotes: Value(map['outcomeNotes'] as String?),
+              outcomeTimestamp: Value(map['outcomeTimestamp'] as int?),
+            ),
+          );
     }
 
     // Import preferences
@@ -346,6 +357,7 @@ class DatabaseExporter {
     'activeElement': j.activeElement,
     'notes': j.notes,
     'isPinned': j.isPinned,
+    'wasForcedShift': j.wasForcedShift,
   };
 
   Map<String, dynamic> _sessionToMap(BreathSession s) => {

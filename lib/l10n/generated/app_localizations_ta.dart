@@ -1747,4 +1747,79 @@ class AppLocalizationsTa extends AppLocalizations {
   String somaticMinutes(int minutes) {
     return '$minutes நிமிடம்';
   }
+
+  @override
+  String get arudamNowTitle => 'அருடம் இப்போது';
+
+  @override
+  String get arudamClockMoment => 'நேரம்';
+
+  @override
+  String get arudamClockYou => 'நீங்கள்';
+
+  @override
+  String arudamMomentBreakdown(
+    String birdState,
+    String horaPlanet,
+    String strength,
+  ) {
+    return '$birdState · $horaPlanet ஹோரை ($strength)';
+  }
+
+  @override
+  String get arudamStrengthStrong => 'வலுவானது';
+
+  @override
+  String get arudamStrengthMild => 'மிதமானது';
+
+  @override
+  String get arudamStrengthWeak => 'பலவீனமானது';
+
+  @override
+  String get arudamAlignedNatural => 'இயற்கையாக இணைந்தீர் ✓';
+
+  @override
+  String get arudamNotNaturallyAligned => 'இயற்கையாக இணையவில்லை ⚠';
+
+  @override
+  String get arudamAlignedGuidance =>
+      'சுவாசம் இயற்கையோடு இசைந்து செல்கிறது. செயலில் அமைதியுடன் தொடருங்கள்.';
+
+  @override
+  String get arudamMisalignedGuidance =>
+      'காத்திருங்கள், ஏற்றுக்கொள்ளுங்கள். இயல்பான பொருத்தம் என்பது பொறுமையின் வழியே மலர்வது.';
+
+  @override
+  String get arudamBreathUnknown => 'சுவாச கவனிப்பு தேவை';
+
+  @override
+  String get arudamCheckBreath => 'சுவாசத்தை சரிபார்க்கவும் →';
+
+  @override
+  String get arudamStaleGuidance =>
+      'தற்போதைய நேரத்தின் இயல்பு காட்டப்படுகிறது. உங்கள் பொருத்தத்தை அறிய சுவாசத்தை கவனியுங்கள்.';
+
+  @override
+  String get arudamUrgentAffordance => 'அவசர தேவையா?';
+
+  @override
+  String get arudamUrgentSheetTitle => 'எதிர் சுவாச மாற்ற வழிகாட்டல்';
+
+  @override
+  String get arudamUrgentWarning =>
+      'சுவாசத்தை வலுக்கட்டாயமாக மாற்றுவது தவிர்க்க முடியாத அவசர காரியங்களுக்கான ஒரு தற்காலிக வழி மட்டுமே; அன்றாடப் பழக்கம் அல்ல. சுவாச ஓட்டத்தை பலவந்தமாக மாற்றுவது பிராண ஆற்றலை விரைவாக விரயமாக்கும். இந்த மாற்றம் சுமார் 10–60 நிமிடங்கள் மட்டுமே நீடிக்கலாம்; எப்போது வேண்டுமானாலும் பழைய நிலைக்கு திரும்பலாம். இது சூழலை உங்களுக்கு சாதகமாக்க உதவலாமே தவிர, வெற்றிக்கான முழு உறுதிமொழி அல்ல.';
+
+  @override
+  String get arudamUrgentTechniqueTitle => 'பக்கவாட்டு அழுத்தம் அல்லது சாய்வு';
+
+  @override
+  String get arudamUrgentTechniqueDesc =>
+      'தற்போது செயல்படும் நாசிப் பக்கம் தரையில் படுமாறு ஒருக்களித்து படுக்கவும், அல்லது எதிர் அக்குளில் 3–5 நிமிடங்கள் மென்மையான அழுத்தம் கொடுக்கவும்.';
+
+  @override
+  String get arudamUrgentRecheck => 'சுவாசத்தை மீண்டும் சரிபார்';
+
+  @override
+  String get arudamShiftLoggedNotice =>
+      'சுவாச மாற்றம் பதிவு செய்யப்பட்டது. இயல்பான சுவாசம் எப்போது திரும்புகிறது என்பதை கவனியுங்கள்.';
 }
