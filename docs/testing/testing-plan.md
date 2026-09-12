@@ -272,6 +272,8 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 30 | 10 | 420 | ActionWindowsEngine unit tests (consolidation, Rahu overlap, bird state mapping) |
 | Sprint 31 | 20 | 440 | OracleCompositeEngine + TaraCategory + HoraSwaraAffinity + NameBirdParser unit tests |
 | Sprint 32 | 0 | 440 | Prasanam Oracle UI (uses existing engine tests); no new test files — UI feature with DashboardData/existing Oracle test coverage |
+| Sprints 33–37 | +106 | 546 | Panja Pakshi accuracy, migration/onboarding, somatic engine, stability hardening, birth-bird engine correction (see per-sprint dossiers/PRs) |
+| Sprint 38 | +18 | 564 | Integrated Aruḍam slice 1: `IntegratedArudamEngine` unit tests (Moment × Readiness, misalignment penalty, Sushumna-in-Yoga, night floor-lock), Oracle-unchanged regression, `arudam_now_card` widget test |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 

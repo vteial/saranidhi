@@ -69,11 +69,11 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total test assertions | 410 (as of Sprint 22) |
-| Pass rate | 100% |
-| Static analysis | `dart analyze` — zero issues |
-| CI enforcement | GitHub Actions (analyze + test + coverage + build web + integration) |
-| Coverage threshold | 15% (feature sprints); will raise to 80% in Sprint 10 |
+| Total automated tests | 564 (as of Sprint 38) |
+| Pass rate | 100% on CI (macOS local shows 4 known CloudKit-platform failures that pass on Ubuntu) |
+| Static analysis | `dart analyze --fatal-infos` — zero issues |
+| CI enforcement | GitHub Actions two-tier (fast on PRs; full tests + coverage + integration on PRs to `main` and on merge) |
+| Coverage threshold | ≥ 19% (domain ~95%; UI-heavy blend) |
 | Linting | `very_good_analysis` |
 
 ### Test Count Progression
@@ -91,11 +91,14 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 12 | 0 (test rewrite, same count) | 264 |
 | Sprint 20 | 84 (widget/integration test updates) | 348 |
 | Sprint 22 | 62 (10 widget tests × ~6 assertions) | 410 |
+| Sprints 23–37 | +136 (feature/engine + hardening sprints; see per-sprint dossiers/PRs) | 546 |
+| Sprint 38 | +18 (`IntegratedArudamEngine` unit, `arudam_now_card` widget, Oracle regression + night-floor-lock) | 564 |
 
 ### Resolved Defects
 
 | Issue | Root Cause | Resolution | Sprint |
 |-------|-----------|------------|--------|
+| **Inauspicious floor-lock never fired at night** | The Oracle's Rahu Kaal / Emakandam floor-lock went through `DaylightSegmentResolver`, which returns segment 0 (no lock) outside sunrise→sunset — so a query during a *night* inauspicious window was scored as if favorable. Latent since the Oracle shipped; surfaced while building the 24h ambient verdict. | The Integrated Aruḍam path computes `isRahuActive`/`isEmakandamActive` from the actual `RahuKaalResult`/`EmakandamResult` window containment (`isActive(now)`), correct day AND night; a night-floor-lock regression test pins it. (Oracle screen path left on the day-only resolver, unchanged, to preserve parity.) | Sprint 38 (PR #181) |
 | **Birth bird mis-calculated for ~1/3 of nakshatras + all Krishna births** | Shipped `PakshiCalculator` used the modern-secondary **Pulippani 5-5-5-5-7** partition + a dual bright/dark table (Krishna reverse-swap). Lineage-unanimous truth (2025 workshop + master's book + 1930 *Rathinam*) is **5-6-5-5-6** with a **single permanent** birth-star table. Surfaced by the Panja Pakshi corpus audit (CONF-PP-001/002); confirmed against the owner's own profile (Pushya/Krishna → wrongly Cock, correctly Owl). | Partition → 5-6-5-5-6 (Pooram→Owl, Visakam→Crow, Uthiradam→Rooster); single permanent table (no Krishna swap); waning swap isolated to the name-initial fallback (verified 5-cycle); on-load `BirdMigrationService` re-migrates ALL affected existing users (DOB + manual/no-DOB). Attributes (planets, friend/enemy, phase-directions) also corrected (CONF-PP-003/004/005). | Sprint 37 (PR #167) |
 | `InvalidTypeException` in Riverpod codegen for `Stream<List<T>>` | `riverpod_generator` incompatible with complex return types | Switched to manual Riverpod providers for journal feature | Sprint 3 |
 | `'web' parameter needs to be set` runtime crash on Flutter web | `drift_flutter` requires explicit `DriftWebOptions` on web platform | Added `sqlite3.wasm` + `drift_worker.js` + `DriftWebOptions` config | Sprint 3 (Hotfix PR #4) |
