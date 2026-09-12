@@ -358,6 +358,48 @@ emits only data (`ArudamFactor` + `FactorStrength` + `conf`); localization lives
 
 ---
 
+## 12A. Chronobiology — Stagnancy Detection (Sprint 40 — v1.10.0)
+
+### Source
+- `docs/research/advanced_somatic_mastery.md` §2 (stagnancy + thermal remedies) ·
+  `docs/research/holistic_living_proposals.md` §1 (Swara Pada Gamana) + §2 (Swara-Ahara) ·
+  CONF-002 (contralateral shift) · CONF-005 (left-side sleep → Pingala) · CONF-017 (reliability/comfort tone).
+
+### Method
+Implemented in `ChronobiologyAnalytics.analyze(List<SaraKalaiJournalData>)`
+(`lib/features/chronobiology/domain/chronobiology_analytics.dart`), fed the rolling-24h
+journal by `dashboardDataProvider` (only when viewing today) and exposed as
+`DashboardData.stagnancy`.
+
+- **Stuck run:** the most recent contiguous run of identical non-Sushumna `actualFlow`
+  (`solar`/right or `lunar`/left). A **Sushumna/central** entry is neutral and **breaks the run**.
+- **Duration** = timestamp(latest) − timestamp(run start).
+- **Thresholds** (evaluated chronic-first):
+  - **Chronic:** duration ≥ 8h **and** run count ≥ 4.
+  - **Mild:** duration ≥ 6h **and** run count ≥ 3.
+  - **None:** fewer than 3 logs, or latest is Sushumna/unrecognized, or below the mild bar.
+- **Result:** `StagnancyAnalysisResult{ level (none/mild/chronic), stuckFlow, continuousDuration }`.
+
+### Thermal correction (advisory only — no timed protocol)
+Keyed on the **stuck flow** (the sourced axis; `advanced_somatic_mastery.md` §2.3):
+- **Stuck right / Solar / hot** → cooling (Sheetali, cool fluids, calm).
+- **Stuck left / Lunar / cold** → warming (Surya Bhedana, warming spices, movement).
+
+`SomaticAdvice.getTemperatureTip({activeTattva, stuckFlow})` adds an optional Tattva
+reinforcement, surfaced by the card **only when the active element agrees with the stuck flow**
+(Fire+solar → cooling, Water+lunar → warming) — the flow is primary; the element never
+overrides it. The rebalance affordance routes into the existing Sprint 35 somatic engine
+(`showInterventionSelector`) targeting the opposite flow. Tone is gentle/reliability-first
+(CONF-017); never medical-diagnostic.
+
+### Related holistic surfaces (same sprint)
+- **Swara-Ahara** (Kriya Focus Card): affirms digestion timing when the right/solar nostril
+  is active; nudges a pre-meal reset when the left/lunar is active.
+- **Swara Pada Gamana** (morning-summary notification): waking foot/nostril rule, bilingual
+  via a `languageCode` threaded through `NotificationScheduler.generateForToday`.
+
+---
+
 ## 13. Action Windows
 
 ### Source
