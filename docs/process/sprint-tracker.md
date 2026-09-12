@@ -32,7 +32,9 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
-| 39+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ⬜ (planned) |
+| 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ⬜ (planned) |
+| 41+ | v2.0 polish, accuracy calibration, native "Now" surface, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.8.1-web is now live in production (2026-09-12)** — a Tamil-l10n
 > hotfix (Settings → Notifications Rahu Kaal + Morning Summary toggles; PR #191 → promotion
@@ -45,10 +47,11 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 > over a shared `IntegratedArudamEngine` extracted from the Oracle), the natural-vs-forced
 > framing, and the 24h-correct inauspicious floor-lock. It unifies the former "Now" Surface.
 > Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
-> **Phase 2b continues** — next candidates from the [Sprint Backlog](sprint-backlog.md)
-> during `/plan`: the Integrated Aruḍam **fast-follows** ("Why?" provenance accordion,
-> native ambient widget/watch/macOS, penalty tuning) and the accuracy calibration
-> (7-day 3-way comparison, blocked on owner data collection).
+> **Phase 2b continues** — **Sprint 39** (Integrated Aruḍam "Why?" provenance accordion,
+> v1.9.0) and **Sprint 40** (Chronobiology & Holistic Guidance, v1.10.0) are now
+> **scheduled** via `/plan` (this PR); both are unblocked feature work. Deferred after
+> them: accuracy calibration (7-day 3-way comparison, **blocked on owner data collection**,
+> to be collected during the planned ~10-day Saranidhi pause) and the native "Now" surface.
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -728,14 +731,92 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
+## Sprint 39: ★ Integrated Aruḍam — "Why?" Provenance Accordion (v1.9.0) — Planned
+
+> **Dossier:** [`sprints/sprint-39-why-accordion/`](sprints/sprint-39-why-accordion/README.md)
+> ([spec](sprints/sprint-39-why-accordion/spec.md)). A named **fast-follow** of the flagship
+> [★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam) epic — it delivers
+> the **verdict-transparency** promise slice 1 (Sprint 38) deliberately deferred.
+>
+> **What:** a tap-to-expand **"Why?"** accordion on the always-on "Aruḍam Now" verdict card
+> that explains the verdict **doctrinally, in plain language, with provenance** — each
+> contributing factor cites the corpus practice + CONF id it rests on. Owner-confirmed rules:
+> **no raw math, no tooltips**, **collapsed by default**, bilingual EN/TA.
+>
+> **Process:** spec → coding-setup → review (Kiro Web authors + reviews; Antigravity IDE
+> implements + local green before PR). **Transparency sprint, not a scoring sprint** — the
+> scoring math, bands, and floor-lock are untouched (behavior-preserving; see DoD).
+
+- [ ] Task 39.1: **Add a structured factor breakdown to the engine result** — `ArudamFactor` enum + `FactorStrength` + `ArudamReason{factor, strength, conf}`; add a `List<ArudamReason> reasons` field to `IntegratedArudamResult`, built inside `evaluate()` from the factors already computed there. **Behavior-preserving:** one new field only; no existing field changes; Oracle path unaffected.
+- [ ] Task 39.2: **Provenance/citation source of truth** — each `ArudamReason` carries its CONF id (bird-state → CONF-PP-004, hora-swara → CONF-014, tarabala → CONF-PP-001/002, harmony → CONF-015, readiness → CONF-016/017, Sushumna → CONF-026, floor-lock → CONF-018). Documented in the engine (data = source of truth), not duplicated in the widget.
+- [ ] Task 39.3: **Render the "Why?" accordion in the card** — a small stateful `_WhySection` (collapsed by default) inserted as the last child of the card `Column`; reasons grouped **Moment / You**, or a single **Blocked** reason when floor-locked; new bilingual `arudamWhy*` ARB keys; **zero hardcoded `Text()`**.
+- [ ] Task 39.4: **Keep the Oracle path unaffected** — `OracleCompositeEngine` delegate output identical; the Oracle screen renders identically (leaving `reasons` unread is fine).
+- [ ] Task 39.5: **Tests** — engine `reasons` per case (aligned / misaligned / stale-omits-readiness / Sushumna / floor-lock single-reason + `conf` strings); card collapse-by-default → expand → provenance text + `CONF-` citation + floor-lock + misaligned; existing engine + card tests pass **unchanged**.
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Code merged** — on `main` (PR #N). _(owner merges — Kiro cannot merge)_
+- [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implements + local green before PR; **Kiro Web reviews the real diff**.
+- [ ] **Regression gate** — `IntegratedArudamResult` gains one field (`reasons`); `evaluate()` returns identical `score/momentScore/readinessMultiplier/band/isFloorLocked/guidance` for every existing input; Oracle output + Oracle screen unchanged; the collapsed card renders exactly as today.
+- [ ] **Docs updated** — User Guide: the "Why?" accordion + how provenance is surfaced; `calculation-methodology.md` if the factor→CONF mapping warrants a note.
+- [ ] **Tests** — engine + card tests extended (above); local green (except the 4 CloudKit baseline) before PR.
+- [ ] **Smoke test** — scenarios added to the next `smoke-test` (collapse/expand; provenance visible; floor-lock explanation; EN/TA "Why?").
+- [ ] **Valuation report** — Sprint 39 row (+20%) at `/sprint-update`.
+- [ ] **Tracker updated** — status ✅.
+- [ ] **User Guide** — real capability change (verdict transparency), so **not** `n/a`.
+
+---
+
+## Sprint 40: Chronobiology & Holistic Guidance (v1.10.0) — Planned
+
+> **Dossier:** [`sprints/sprint-40-chronobiology/`](sprints/sprint-40-chronobiology/README.md)
+> ([spec](sprints/sprint-40-chronobiology/spec.md)). Derives from the
+> [Chronobiology & Holistic Guidance](sprint-backlog.md#chronobiology--holistic-guidance)
+> backlog epic.
+>
+> **What:** turns the app from "what is my rhythm now" into "your rhythm has drifted — here
+> is a holistic correction," grounded in the chronobiology corpus. All bilingual EN/TA,
+> gentle/reliability-first tone (CONF-017), never medical-diagnostic.
+>
+> **Reuse, don't rebuild:** the "shift your breath" action routes into the shipped **Sprint 35
+> somatic engine** (`lib/features/somatic/`) — no new timed protocol; Pada Gamana / Swara-Ahara
+> doctrine prose is **already localized** (`guidePadaGamanaBody`, `guideSwaraAharaBody`).
+>
+> **Process:** spec → coding-setup → review (Kiro Web authors + reviews; Antigravity IDE
+> implements + local green before PR).
+
+- [ ] Task 40.1: **`ChronobiologyAnalytics`** — time-weighted sliding-window nostril-**stagnancy** detection (`StagnancyLevel{none,mild,chronic}`, `StagnancyAnalysisResult{level, stuckFlow, continuousDuration}`) over the rolling-24h journal per `advanced_somatic_mastery.md` §2: **mild ≥6h & ≥3 logs; chronic ≥8h & ≥4 logs**; Sushumna breaks a run. Pure Dart, unit-tested.
+- [ ] Task 40.2: **Wire stagnancy into the dashboard** — add `getEntriesSince(cutoff)` to the journal repo; add `DashboardData.stagnancy` (defaults to `none`); `dashboardDataProvider` reads the last 24h (mirror the hold-time query) and calls the analytics.
+- [ ] Task 40.3: **Dashboard stagnancy-warning card** — heating (stuck-left/cold → Surya Bhedana + warming) vs cooling (stuck-right/hot → Sheetali + cooling); mild vs chronic tone; **hidden when healthy**; a low-emphasis affordance routes into the existing somatic timer (target = opposite flow).
+- [ ] Task 40.4: **Swara-Ahara dietary "fire" prompt on the Kriya Focus Card** — flow-aware (`FocusCard` gains an optional `currentFlow`); left-flow at a Kriya/eating moment → flip-to-right nudge into the somatic engine; right-flow → affirming line; short-form ARB keys.
+- [ ] Task 40.5: **Tattva temperature-regulation tips** — `Tattva.fire`/excess heat → Sheetali (cooling), cold/stuck-left → Surya Bhedana (warming); advisory text only (no new timed protocol); surfaced on the stagnancy card or the tattva row.
+- [ ] Task 40.6: **Swara Pada Gamana waking advice in the morning summary** — thread a `languageCode` through `generateForToday`/`_generateMorningSummary` (like the window path) so the currently-hardcoded-English body becomes **bilingual**, and append the grounding foot/nostril waking advice. Gated by the existing `notifyMorningSummary` pref.
+
+> **Explicitly out of scope (fast-follows):** Cognitive Energy Budgeting labels; ≥6h/≥8h
+> *notification* nudges (vs the dashboard card); a new **timed** Sheetali/Surya Bhedana
+> breathwork protocol (advisory text only this sprint); Analytics-screen CSV decision
+> (separate `/plan` item); any rewrite of the Sprint 35 somatic engine.
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Code merged** — on `main` (PR #N). _(owner merges — Kiro cannot merge)_
+- [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implements + local green before PR; **Kiro Web reviews the real diff**.
+- [ ] **Regression gate** — `DashboardData` + `FocusCard` gain optional/defaulted fields only; no existing field changes type/meaning; existing dashboard / focus / notification tests pass **unchanged**; `createTestDashboardData` updated with a `none` default.
+- [ ] **Docs updated** — User Guide: stagnancy card, Swara-Ahara Kriya prompt, Pada Gamana morning advice, temperature tips; `calculation-methodology.md` for the stagnancy thresholds.
+- [ ] **Tests** — `ChronobiologyAnalytics` unit tests (none / mild / chronic / Sushumna-breaks-run / boundary 6h/8h); `getEntriesSince` repo test; dashboard-provider stagnancy test; stagnancy-card + focus-card widget tests; morning-summary EN/TA test; tattva-tip mapping test; local green before PR.
+- [ ] **Smoke test** — scenarios added (stagnancy card mild/chronic + heating/cooling; Kriya prompt flow states; morning-summary Pada Gamana EN/TA).
+- [ ] **Valuation report** — Sprint 40 row (+20%) at `/sprint-update`.
+- [ ] **Tracker updated** — status ✅.
+- [ ] **User Guide** — real capability change, so **not** `n/a`.
+
+---
+
 ## Future Sprints
 
-The flagship **Integrated Aruḍam** slice 1 is now scheduled as **Sprint 38**
-(above). Remaining future/candidate sprints (the flagship's fast-follows incl. the
-native "Now" Surface, plus v2.0 Polish, Accuracy Calibration, Chronobiology, E2E
-Automation, App Store Prep) live in the **[Sprint Backlog](sprint-backlog.md)** with
-full task lists. They graduate into this tracker (with a Delivery Checklist) when
-scheduled via `/plan`.
+The flagship **Integrated Aruḍam** slice 1 (Sprint 38) shipped; its "Why?" accordion
+fast-follow is now **Sprint 39** and **Chronobiology** is **Sprint 40** (above).
+Remaining future/candidate sprints (Accuracy Calibration — blocked on the 7-day data;
+the native "Now" Surface; v2.0 Polish; E2E Automation; App Store Prep) live in the
+**[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into this
+tracker (with a Delivery Checklist) when scheduled via `/plan`.
 
 > **Note on numbering:** Sprint 37 was reassigned from "Chronobiology" to
 > "Birth-Bird Engine Correction" — the CONF-PP audit surfaced a live calculation
