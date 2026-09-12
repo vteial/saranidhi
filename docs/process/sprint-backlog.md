@@ -227,6 +227,18 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 | 🟡 | ⬜ | Revisit the 19% coverage gate once UI/E2E coverage exists — raise it then. |
 | — | ✅ | Two-tier CI (fast PRs + full on merge/prod, with ci-full now also running on PRs to main) — in place. |
 
+### Process Hardening (post-v1.8.0 batch)
+
+> Deferred **until after v1.8.0 ships** to avoid colliding with the in-flight release
+> (Antigravity writing smoke-test results on `release/v1.8.0`). Surfaced during the
+> v1.8.0 release cycle.
+
+| Priority | Status | Item |
+|----------|--------|------|
+| 🟢 | 🔄 | **Vercel preview-auth bypass for QA-Verify — remaining polish.** The durable fix is **DONE** (PR #188): Vercel "Protection Bypass for Automation" is enabled, the secret lives in local `.env` (gitignored), and the QA-Verify template uses the `x-vercel-protection-bypass` query param — protection stays ON for humans. *Remaining:* add the bypass step to the `/release-start` protocol in `dev-workflow.md`, and port the mechanism into `vteial/project-blueprint`. *(Refs: [Vercel automated-access docs](https://vercel.com/docs/deployment-protection/automated-agent-access).)* |
+| 🟡 | ⬜ | **Group release transactional docs into per-release folders** (mirror the sprint-dossier convention). `docs/testing/releases/vX.Y.Z/` containing `README.md` (index) + `smoke-test.md` + `release-notes.md` + `docs-audit.md` + `qa-verify-prompt.md` (drop the `-vX.Y.Z` suffix — the folder carries it). **Scope: migrate the "rich" releases only (v1.7.0 + v1.8.0); leave the 11 legacy single-smoke-test files flat** (a lone historical smoke record doesn't need a folder). Update all cross-links (smoke-test-results index, framework §8, dossier READMEs, dev-workflow, templates) in the same PR; fold v1.8.0 into the new shape during its `/release-update`. Add the folder convention to `/release-start` + the blueprint so future releases are born as folders. |
+| 🟡 | ⬜ | **Port the Vercel skip-doc-builds `ignoreCommand` into `vteial/project-blueprint`** (`templates/deployment/`) — a generic app-path-allowlist ignore script (from Saranidhi PR #185). Every Vercel-hosted project benefits. |
+
 ---
 
 ## Release Polish & v2.0
