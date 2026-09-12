@@ -11,8 +11,30 @@
 | Artifact | Doc |
 |----------|-----|
 | **Spec** (Kiro Web) | [`spec.md`](./spec.md) |
-| **Implementation summary** (Antigravity) | [`implementation-summary.md`](./implementation-summary.md) _(seeded — fill after coding)_ |
-| **Local test summary** (Antigravity) | [`test-summary.md`](./test-summary.md) _(seeded — fill after local run)_ |
+| **Implementation summary** (Antigravity) | [`implementation-summary.md`](./implementation-summary.md) |
+| **Local test summary** (Antigravity) | [`test-summary.md`](./test-summary.md) |
+
+## Outcome
+
+- **What:** shipped the flagship's verdict-transparency promise — a collapsed-by-default,
+  tap-to-expand **"Why?"** accordion on the "Aruḍam Now" card. The engine now emits a
+  structured `List<ArudamReason>` (`ArudamFactor` × `FactorStrength` × CONF citation);
+  the card's stateful `_WhySection` renders it grouped **Moment / You** (or a single
+  **Blocked** reason when floor-locked), in plain language with subdued `· <conf>` chips —
+  no raw math, no tooltips, bilingual EN/TA (pure Tamil script).
+- **PR:** [#196](https://github.com/vteial/saranidhi/pull/196) — merged `8a7aa62`.
+  Antigravity implemented; **Kiro Web reviewed the real diff and approved.**
+- **Behavior-preserving:** `reasons` is the only new field on `IntegratedArudamResult`;
+  scoring math / bands / floor-lock / Oracle path all unchanged; **zero deletions** in
+  existing engine/card test assertions.
+- **Local gate:** 573 pass / 4 known-CloudKit baseline / 0 other; `analyze` clean; web build
+  clean; Tamil eyeball ✅.
+- **Release:** ships as **v1.9.0** (pending — `/release-start` next). Not 🚀 until prod.
+- **Deferred to `/sprint-update`:** User Guide + `calculation-methodology.md` refresh (the
+  feature PR was code + l10n only).
+- **Out of scope (still fast-follows):** native ambient surface (widget/watch/macOS); a
+  "Why?" on the Oracle deep-consultation screen; tuning the 0.75 readiness penalty (blocked
+  on the 7-day Accuracy & Validation data).
 
 ## Goal
 

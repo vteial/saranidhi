@@ -32,7 +32,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
-| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | 🔄 (in progress) |
+| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ (PR #196) |
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ⬜ (planned) |
 | 41+ | v2.0 polish, accuracy calibration, native "Now" surface, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
@@ -731,10 +731,14 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 39: ★ Integrated Aruḍam — "Why?" Provenance Accordion (v1.9.0) — 🔄 In Progress
+## Sprint 39: ★ Integrated Aruḍam — "Why?" Provenance Accordion (v1.9.0) — ✅ Complete (PR #196)
 
-> **Started** via `/sprint-start` on branch `sprint/39-why-accordion`. Spec handed to the
-> Antigravity IDE coding setup (implement + local green before PR); Kiro Web reviews the diff.
+> **Delivered** via `/sprint-finish`. Feature PR [#196](https://github.com/vteial/saranidhi/pull/196)
+> (merge `8a7aa62`) — owner-merged. Antigravity implemented + local green
+> (573 pass / 4 known-CloudKit / 0 other; analyze clean; web build clean); **Kiro Web
+> reviewed the real diff and APPROVED** — behavior-preserving (zero test-assertion
+> deletions), full EN/TA parity (pure Tamil script), doctrinal copy honors the North Star.
+> **Not yet released** — ships as **v1.9.0** at `/release-start` (no 🚀 until prod).
 
 > **Dossier:** [`sprints/sprint-39-why-accordion/`](sprints/sprint-39-why-accordion/README.md)
 > ([spec](sprints/sprint-39-why-accordion/spec.md)). A named **fast-follow** of the flagship
@@ -750,22 +754,22 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > implements + local green before PR). **Transparency sprint, not a scoring sprint** — the
 > scoring math, bands, and floor-lock are untouched (behavior-preserving; see DoD).
 
-- [ ] Task 39.1: **Add a structured factor breakdown to the engine result** — `ArudamFactor` enum + `FactorStrength` + `ArudamReason{factor, strength, conf}`; add a `List<ArudamReason> reasons` field to `IntegratedArudamResult`, built inside `evaluate()` from the factors already computed there. **Behavior-preserving:** one new field only; no existing field changes; Oracle path unaffected.
-- [ ] Task 39.2: **Provenance/citation source of truth** — each `ArudamReason` carries its CONF id (bird-state → CONF-PP-004, hora-swara → CONF-014, tarabala → CONF-PP-001/002, harmony → CONF-015, readiness → CONF-016/017, Sushumna → CONF-026, floor-lock → CONF-018). Documented in the engine (data = source of truth), not duplicated in the widget.
-- [ ] Task 39.3: **Render the "Why?" accordion in the card** — a small stateful `_WhySection` (collapsed by default) inserted as the last child of the card `Column`; reasons grouped **Moment / You**, or a single **Blocked** reason when floor-locked; new bilingual `arudamWhy*` ARB keys; **zero hardcoded `Text()`**.
-- [ ] Task 39.4: **Keep the Oracle path unaffected** — `OracleCompositeEngine` delegate output identical; the Oracle screen renders identically (leaving `reasons` unread is fine).
-- [ ] Task 39.5: **Tests** — engine `reasons` per case (aligned / misaligned / stale-omits-readiness / Sushumna / floor-lock single-reason + `conf` strings); card collapse-by-default → expand → provenance text + `CONF-` citation + floor-lock + misaligned; existing engine + card tests pass **unchanged**.
+- [x] Task 39.1: **Add a structured factor breakdown to the engine result** — `ArudamFactor` enum + `FactorStrength` + `ArudamReason{factor, strength, conf}`; add a `List<ArudamReason> reasons` field to `IntegratedArudamResult`, built inside `evaluate()` from the factors already computed there. **Behavior-preserving:** one new field only; no existing field changes; Oracle path unaffected.
+- [x] Task 39.2: **Provenance/citation source of truth** — each `ArudamReason` carries its CONF id (bird-state → CONF-PP-004, hora-swara → CONF-014, tarabala → CONF-PP-001/002, harmony → CONF-015, readiness → CONF-016/017, Sushumna → CONF-026, floor-lock → CONF-018). Documented in the engine (data = source of truth), not duplicated in the widget.
+- [x] Task 39.3: **Render the "Why?" accordion in the card** — a small stateful `_WhySection` (collapsed by default) inserted as the last child of the card `Column`; reasons grouped **Moment / You**, or a single **Blocked** reason when floor-locked; new bilingual `arudamWhy*` ARB keys; **zero hardcoded `Text()`**.
+- [x] Task 39.4: **Keep the Oracle path unaffected** — `OracleCompositeEngine` delegate output identical; the Oracle screen renders identically (leaving `reasons` unread is fine).
+- [x] Task 39.5: **Tests** — engine `reasons` per case (aligned / misaligned / stale-omits-readiness / Sushumna / floor-lock single-reason + `conf` strings); card collapse-by-default → expand → provenance text + `CONF-` citation + floor-lock + misaligned; existing engine + card tests pass **unchanged**.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N). _(owner merges — Kiro cannot merge)_
-- [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implements + local green before PR; **Kiro Web reviews the real diff**.
-- [ ] **Regression gate** — `IntegratedArudamResult` gains one field (`reasons`); `evaluate()` returns identical `score/momentScore/readinessMultiplier/band/isFloorLocked/guidance` for every existing input; Oracle output + Oracle screen unchanged; the collapsed card renders exactly as today.
-- [ ] **Docs updated** — User Guide: the "Why?" accordion + how provenance is surfaced; `calculation-methodology.md` if the factor→CONF mapping warrants a note.
-- [ ] **Tests** — engine + card tests extended (above); local green (except the 4 CloudKit baseline) before PR.
-- [ ] **Smoke test** — scenarios added to the next `smoke-test` (collapse/expand; provenance visible; floor-lock explanation; EN/TA "Why?").
-- [ ] **Valuation report** — Sprint 39 row (+20%) at `/sprint-update`.
-- [ ] **Tracker updated** — status ✅.
-- [ ] **User Guide** — real capability change (verdict transparency), so **not** `n/a`.
+- [x] **Code merged** — on `main` (PR #196, merge `8a7aa62`). _(owner merged — Kiro cannot merge)_
+- [x] **PR link** — [#196](https://github.com/vteial/saranidhi/pull/196) (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implemented + local green before PR; **Kiro Web reviewed the real diff and approved**.
+- [x] **Regression gate** — `IntegratedArudamResult` gains one field (`reasons`) only; `evaluate()` returns identical `score/momentScore/readinessMultiplier/band/isFloorLocked/guidance`; Oracle output + screen unchanged; the collapsed card renders exactly as today. **Verified: zero deletions in existing engine/card test assertions.**
+- [ ] **Docs updated** — User Guide ("Why?" accordion + how provenance is surfaced) + `calculation-methodology.md` (factor→CONF note) — **deferred to `/sprint-update`** (PR #196 was code+l10n only; stakeholder docs are the `/sprint-update` + docs-audit job).
+- [x] **Tests** — engine + card tests extended (reasons per case; collapse/expand/provenance/floor-lock/misaligned + Tamil-locale); existing tests unchanged; local green (573 / 4 CloudKit / 0 other) before PR.
+- [ ] **Smoke test** — scenarios added to the next `smoke-test` (collapse/expand; provenance visible; floor-lock explanation; EN/TA "Why?") — **at `/release-start` v1.9.0**.
+- [ ] **Valuation report** — Sprint 39 row (+20%) — **at `/sprint-update`**.
+- [x] **Tracker updated** — status ✅ (this `/sprint-finish`).
+- [ ] **User Guide** — real capability change (verdict transparency), so **not** `n/a` — **updated at `/sprint-update`**.
 
 ---
 
