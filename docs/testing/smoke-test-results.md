@@ -21,6 +21,7 @@ Each production release has a single smoke test file containing both the plan (s
 | v1.7.0-web | 2026-09-11 | Eialarasu (iPad, live) + Antigravity QA | 12 | ✅ PASS | [v1.7.0](releases/v1.7.0/smoke-test.md) |
 | v1.8.0-web | 2026-09-12 | Antigravity QA (headed, PR preview) | 6 + visual + doctrinal | ✅ PASS | [v1.8.0](releases/v1.8.0/smoke-test.md) |
 | v1.8.1-web | 2026-09-12 | — (cosmetic l10n hotfix) | CI + Tamil-mode eyeball | ✅ PASS (no full matrix — hotfix) | — |
+| v1.9.0-web | _pending_ | Antigravity QA (PR preview) | 6 + regression eyeball | ⏳ pending | [v1.9.0](releases/v1.9.0/smoke-test.md) |
 
 ## Process
 
