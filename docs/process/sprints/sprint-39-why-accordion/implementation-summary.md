@@ -9,8 +9,8 @@
 
 ## PR
 
-- **PR:** (will be updated once PR is opened) (`sprint/39-why-accordion` → `main`)
-- **Commits:** (pending commit on branch)
+- **PR:** #196 (`sprint/39-why-accordion` → `main`)
+- **Commits:** `783c2f2`
 
 ## What was implemented (by spec task)
 
