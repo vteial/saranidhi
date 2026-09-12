@@ -11,8 +11,8 @@
 
 ## PR
 
-- **PR:** #___ (`sprint/40-chronobiology` → `main`)
-- **Commits:** `<short-sha>` … `<short-sha>`
+- **PR:** #202 (`sprint/40-chronobiology` → `main`)
+- **Commits:** `f7037b0`
 
 ## What was implemented (by spec task)
 
