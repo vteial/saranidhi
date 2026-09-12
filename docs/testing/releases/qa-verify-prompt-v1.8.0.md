@@ -13,15 +13,16 @@
 > is built from the release-branch head and correctly shows **About = v1.8.0** (owner
 > already confirmed).
 >
-> **⚠️ Preview auth (v1.8.0 blocker + how to resume):** the preview has **Vercel
-> Deployment Protection** enabled, so an unauthenticated/headless agent hits the Vercel
-> SSO login wall (HTTP 302 → `/login`) — this blocked the first run (recorded in
-> `smoke-test-v1.8.0.md`). **To run, use a bypass URL the owner provides:** a Vercel
-> **Shareable Link** with the bypass token appended —
-> `…?_vercel_share=<secret>` — generated from the Vercel deployment dashboard/toolbar.
-> Use that tokenized URL as the ENVIRONMENT below. *(This is a per-release manual step
-> for now; a durable fix — Vercel "Protection Bypass for Automation" via the
-> `x-vercel-protection-bypass` secret — is a post-v1.8.0 backlog item.)*
+> **⚠️ Preview auth (v1.8.0 blocker → permanent fix):** the preview has **Vercel
+> Deployment Protection**, so a headless agent hit the Vercel SSO login wall (HTTP 302 →
+> `/login`) — this blocked the first run (recorded in `smoke-test-v1.8.0.md`). **Resolved
+> permanently:** the owner enabled Vercel **"Protection Bypass for Automation"**; the secret
+> `VERCEL_AUTOMATION_BYPASS_SECRET` lives in the local **`.env`** (gitignored, never
+> committed). QA-Verify reads it from `.env` and passes it as a **query param** on the
+> preview URL (protection stays ON for humans) — the `set-bypass-cookie` param keeps
+> in-app navigation bypassed for the whole run:
+> `…/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true`.
+> *(Mechanism standardized in the reusable template `../qa-verify-agent-prompt.md` + `.env.example`, PR #188.)*
 
 ---
 
@@ -37,8 +38,9 @@ RELEASE UNDER TEST: v1.8.0 (Sprint 38 — Integrated Aruḍam, Slice 1: the ambi
 verdict card on Home).
 
 ENVIRONMENT: The release PR's Vercel PREVIEW (NOT staging). The preview has Vercel
-Deployment Protection, so use the OWNER-PROVIDED bypass URL (Shareable Link with token):
-  https://saranidhi-git-release-v180-eialarasus-projects.vercel.app?_vercel_share=<TOKEN>
+Deployment Protection. Read VERCEL_AUTOMATION_BYPASS_SECRET from the local `.env` and pass
+it as a query param on the preview URL (browser navigation):
+  https://saranidhi-git-release-v180-eialarasus-projects.vercel.app/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
 (Base URL: https://saranidhi-git-release-v180-eialarasus-projects.vercel.app — staging
 deploys from `main`, so the release branch's changes are not on staging until the PR is
 merged; the preview is built from the release-branch head and shows About = v1.8.0.)
