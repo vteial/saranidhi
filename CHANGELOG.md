@@ -14,6 +14,15 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
+## [1.8.1-web] — 2026-09-12
+
+> Hotfix — Tamil localization.
+
+### Fixed
+- **Settings → Notifications:** the *Rahu Kaal Alerts* and *Morning Summary* toggles (and their subtitles) were hardcoded in English and did not translate in Tamil mode. Now fully localized (EN + தமிழ்).
+
+---
+
 ## [1.8.0-web] — 2026-09-12
 
 > Sprint 38 — **Integrated Aruḍam, Slice 1**. The first slice of the flagship epic: an
