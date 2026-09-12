@@ -32,7 +32,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
-| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ⬜ (planned) |
+| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | 🔄 (in progress) |
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ⬜ (planned) |
 | 41+ | v2.0 polish, accuracy calibration, native "Now" surface, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
@@ -731,7 +731,10 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 39: ★ Integrated Aruḍam — "Why?" Provenance Accordion (v1.9.0) — Planned
+## Sprint 39: ★ Integrated Aruḍam — "Why?" Provenance Accordion (v1.9.0) — 🔄 In Progress
+
+> **Started** via `/sprint-start` on branch `sprint/39-why-accordion`. Spec handed to the
+> Antigravity IDE coding setup (implement + local green before PR); Kiro Web reviews the diff.
 
 > **Dossier:** [`sprints/sprint-39-why-accordion/`](sprints/sprint-39-why-accordion/README.md)
 > ([spec](sprints/sprint-39-why-accordion/spec.md)). A named **fast-follow** of the flagship

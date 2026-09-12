@@ -11,8 +11,8 @@
 | Artifact | Doc |
 |----------|-----|
 | **Spec** (Kiro Web) | [`spec.md`](./spec.md) |
-| **Implementation summary** (Antigravity) | _pending_ |
-| **Local test summary** (Antigravity) | _pending_ |
+| **Implementation summary** (Antigravity) | [`implementation-summary.md`](./implementation-summary.md) _(seeded — fill after coding)_ |
+| **Local test summary** (Antigravity) | [`test-summary.md`](./test-summary.md) _(seeded — fill after local run)_ |
 
 ## Goal
 
