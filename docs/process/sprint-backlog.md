@@ -91,7 +91,7 @@ during `/plan`. Keep entries small and outcome-focused.
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 📋 | → S37 | **CONF-PP-001/002 + re-migration + 003/004/005** — birth-bird engine correction. **Scheduled as Sprint 37 (v1.7.0)** — see [sprint-tracker](sprint-tracker.md) + [spec](sprint-37-birth-bird-spec.md). Implemented in the coding setup; Kiro Web reviews. |
+| 📋 | → S37 | **CONF-PP-001/002 + re-migration + 003/004/005** — birth-bird engine correction. **Scheduled as Sprint 37 (v1.7.0)** — see [sprint-tracker](sprint-tracker.md) + [dossier](sprints/sprint-37-birth-bird/README.md). Implemented in the coding setup; Kiro Web reviews. |
 | 🟡 | ⬜ | **CONF-PP-006 fix** (deferred past Sprint 37) — `_subYamaDuration` supports both models: default equal 28.8-min (workshop), classical weighted (48/36/30/18/12) as a user-selectable option + settings toggle. *Owner-confirmed; a new user option, not a correction.* |
 | 🔴 | ⬜ | Collect 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Owl/Pushya *(owner's corrected bird per CONF-PP-001/002)* *[owner task]* |
 | 🔴 | ⬜ | Collect the same 7 days from a Tamil Panchangam (drikpanchang.com or physical calendar) *[owner task]* |
