@@ -29,7 +29,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
-| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | 🚧 Planned |
+| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | 🚧 In Progress |
 | 39+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.7.0-web is now live in production (2026-09-11)**, tag
@@ -674,7 +674,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — 🚧 Planned
+## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — 🚧 In Progress
 
 > **Goal:** ship the first slice of the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
 > epic — an **always-on "Aruḍam Now" verdict card on Home** that fuses the separate
