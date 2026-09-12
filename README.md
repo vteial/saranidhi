@@ -39,7 +39,7 @@ Saranidhi helps you:
 | **Production** | v1.7.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
 | **Sprints Delivered** | 37 | — |
-| **Total PRs** | ~173 | — |
+| **Total PRs** | ~175 | — |
 | **Engineering Hours** | ~110.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
 **Latest:** v1.7.0-web (Birth-Bird Engine Correction, Sprint 37) — Panja Pakshi birth-bird derivation corrected to the canonical 5-6-5-5-6 lineage model (CONF-PP-001…005); existing users auto-corrected on app open.
@@ -168,13 +168,21 @@ Feature branch → PR → main (staging) → release PR → prod (production)
 ```
 
 1. `/plan` → brainstorm scope; `/sprint-start` branches from `main`
-2. Develop with TDD (unit tests for domain logic)
+2. **Implement** — for correctness-critical sprints, Kiro Web authors a **spec** and the
+   Antigravity IDE coding setup implements it, running local `dart analyze` + `flutter test`
+   green before the PR (the **spec → coding-setup → review** model). Each sprint keeps a
+   [dossier](docs/process/sprints/) (spec + implementation summary + test summary).
 3. Run validation: `dart analyze && flutter test`
 4. Create PR targeting `main` — Vercel creates a preview URL
 5. `/sprint-finish` after preview/CI pass → **owner merges** → auto-deploys to [staging](https://saranidhi-staging.vercel.app)
 6. `/release-start` → smoke test → `/release-finish` (PR `main` → `prod`) → [production](https://saranidhi.vercel.app) → `/release-update`
 
-> Protocols, gates, and roles: [docs/process/dev-workflow.md](docs/process/dev-workflow.md) and [AI_COLLABORATION_FRAMEWORK.md](AI_COLLABORATION_FRAMEWORK.md). The **owner is the sole merge & release authority.**
+> **Roles:** Saranidhi local development runs in the **Antigravity IDE** (on the owner's
+> Mac); **Kiro Web** handles planning, docs, specs, PR review, and the release workflow.
+> The **owner is the sole merge & release authority** (Kiro never merges to `main`/`prod`
+> and never tags). Full protocols, gates, and the team model:
+> [docs/process/dev-workflow.md](docs/process/dev-workflow.md) and
+> [AI_COLLABORATION_FRAMEWORK.md](AI_COLLABORATION_FRAMEWORK.md).
 
 ---
 

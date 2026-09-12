@@ -2,6 +2,8 @@
 
 # Saranidhi — Development Workflow
 
+> **Reviewed:** v1.7.0-web · **Next review:** every release (docs-audit gate).
+>
 > **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
 > — the AI team collaboration model (roles, handoffs, release lifecycle, and
 > CI/merge gates) that this workflow operates within. When a protocol or gate
@@ -207,10 +209,11 @@ Prepares the smoke test execution.
    - This ensures the About card (via `package_info_plus`) shows the correct version during smoke testing AND in production
 3. Ensures `docs/testing/releases/smoke-test-vX.Y.Z.md` exists (plan + results template)
 4. **Drafts `docs/testing/releases/release-notes-vX.Y.Z.md`** from [`templates/release-notes.template.md`](templates/release-notes.template.md) — the permanent record of the GitHub Release (tag / target / title / body). It is finalized at `/release-update` and is the exact text the owner pastes into the GitHub Release UI, so the release stays auditable and reproducible.
-5. Creates PR targeting `main`
-6. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
-7. User commits results (Pass/Fail + Notes) to the same branch
-8. User reviews and merges PR → smoke test results + version bump now on `main`
+5. **Creates `docs/testing/releases/docs-audit-vX.Y.Z.md`** from [`templates/docs-audit.template.md`](templates/docs-audit.template.md) — the **owner-run docs-freshness gate** (the doc equivalent of the smoke test). The owner ticks it during release verification; it ensures no durable doc silently rots. See "Docs Freshness Gate" below.
+6. Creates PR targeting `main`
+7. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
+8. User commits results (Pass/Fail + Notes) to the same branch
+9. User reviews and merges PR → smoke test results + version bump now on `main`
 
 #### Phase 2: `/release-finish`
 
@@ -237,6 +240,7 @@ Post-release documentation closure (light touch-up).
 1. Kiro creates branch from `main` (`docs/release-vX.Y.Z-update`)
 2. Update:
    - `docs/testing/releases/release-notes-vX.Y.Z.md` — **finalize** the release-notes doc to match exactly what the owner published (tag / target / title / body), so it is the permanent, auditable record of the release
+   - `docs/testing/releases/docs-audit-vX.Y.Z.md` — **confirm the owner ticked every applicable row** and mark it PASS; fix any doc it flagged stale (in this same PR) and bump that doc's `> Reviewed:` stamp to the new version
    - `docs/testing/smoke-test-results.md` — add the version row (✅ PASS, date, scenarios)
    - `CHANGELOG.md` — set release date (remove "Pending")
    - `docs/process/project-valuation-report.md` — refresh executive summary (prod version) + confirm the sprint's Delivery Summary row is 🚀
@@ -250,6 +254,27 @@ Post-release documentation closure (light touch-up).
 - Kiro NEVER creates tags — user does via GitHub Release UI
 - If smoke test has failures → hotfix PR first → re-test → then `/release-finish`
 - All smoke test results must show PASS before `/release-finish` is issued
+
+#### Docs Freshness Gate (per release)
+
+The doc equivalent of the smoke test — a transactional, **owner-run** gate that keeps
+durable docs from silently rotting.
+
+- **Artifact:** `docs/testing/releases/docs-audit-vX.Y.Z.md`, from
+  [`templates/docs-audit.template.md`](templates/docs-audit.template.md). Created at
+  `/release-start`, ticked by the owner during release verification, confirmed PASS at
+  `/release-update`. It lives in the release dossier beside the smoke test + release notes.
+- **Mechanism — `> Reviewed:` stamps:** each durable doc carries a
+  `> **Reviewed:** vX.Y.Z` line near the top. Bumping it to the current release is the
+  visible signal the doc was checked this cycle; a stamp older than the current prod
+  version is a red flag the audit must investigate. The audit checklist verifies each
+  stamp and each doc's content against the release.
+- **Scope:** README, valuation, evaluation, sprint-tracker, sprint-backlog, dev-workflow,
+  user-guide, product-scope, architecture, testing-plan, security-review (only if the
+  data/network boundary changed), CHANGELOG, and the sprint dossier index.
+- **Why:** every doc-rot incident we've fixed (stale README status, a valuation frozen at
+  "Sprint 23", a security review frozen at "Sprint 10") traces to *no one being responsible
+  for freshness at release time*. This gate makes freshness a checked, owner-owned step.
 
 **Versioning:**
 - `vX.Y.Z-web` where:

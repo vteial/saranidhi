@@ -2,6 +2,8 @@
 
 # Saranidhi — Project Valuation Report
 
+> **Reviewed:** v1.7.0-web · **Next review:** every `/sprint-update` + `/release-update`.
+>
 > **Purpose:** one question only — *how much engineering investment went into this,
 > and what is the current state?* Everything else is delegated to the system of record
 > that already owns it, so this report stays small and never rots:
