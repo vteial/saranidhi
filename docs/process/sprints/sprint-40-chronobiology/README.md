@@ -9,8 +9,33 @@
 | Artifact | Doc |
 |----------|-----|
 | **Spec** (Kiro Web) | [`spec.md`](./spec.md) |
-| **Implementation summary** (Antigravity) | [`implementation-summary.md`](./implementation-summary.md) _(seeded — fill after coding)_ |
-| **Local test summary** (Antigravity) | [`test-summary.md`](./test-summary.md) _(seeded — fill after local run)_ |
+| **Implementation summary** (Antigravity) | [`implementation-summary.md`](./implementation-summary.md) |
+| **Local test summary** (Antigravity) | [`test-summary.md`](./test-summary.md) |
+
+## Outcome
+
+- **What:** shipped chronobiological **stagnancy detection** + holistic correction. A pure-Dart
+  `ChronobiologyAnalytics` engine flags a stuck nostril run over the rolling-24h journal
+  (**mild ≥6h & ≥3 logs, chronic ≥8h & ≥4 logs**; Sushumna breaks a run) → `DashboardData.stagnancy`
+  → a **stagnancy-warning card** (hidden when healthy; cooling for stuck-solar, warming for
+  stuck-lunar; routes into the Sprint 35 somatic timer). Plus the **Swara-Ahara** flow-aware
+  prompt on the Kriya Focus Card, **Tattva** temperature tips (`SomaticAdvice`, advisory), and
+  **Swara Pada Gamana** waking advice in a now-**bilingual** morning summary.
+- **PR:** [#202](https://github.com/vteial/saranidhi/pull/202) — merged `85b3cfb`.
+  Antigravity implemented; **Kiro Web reviewed the real diff and approved.** Both review-note
+  items from the implementation plan (flow-primary temperature tip; verified `localeProvider.code`)
+  were resolved in code.
+- **Behavior-preserving:** `DashboardData` + `FocusCard` gained optional/defaulted fields only;
+  reuses the Sprint 35 somatic engine (no new timed protocol); **zero deletions** in existing
+  test assertions; notification domain stayed pure-Dart (EN/TA constants).
+- **Local gate:** 605 pass / 4 known-CloudKit baseline / 0 other; analyze clean; web build clean;
+  EN+TA widget tests pass. **13/13 EN↔TA key parity** (pure Tamil script).
+- **Release:** ships as **v1.10.0** (pending — `/release-start` next). Not 🚀 until prod.
+- **Deferred to `/sprint-update`:** User Guide + `calculation-methodology.md` refresh (the
+  feature PR was code + l10n only).
+- **Out of scope (fast-follows):** Cognitive Energy Budgeting labels; ≥6h/≥8h *notification*
+  nudges; a new timed Sheetali/Surya Bhedana breathwork protocol; the Analytics-screen CSV
+  decision (separate `/plan`).
 
 ## Goal
 
