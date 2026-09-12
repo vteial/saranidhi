@@ -33,7 +33,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ 🚀 (PR #196) |
-| 40 | Chronobiology & Holistic Guidance | **v1.10.0** | 🔄 (in progress) |
+| 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ (PR #202) |
 | 41+ | v2.0 polish, accuracy calibration, native "Now" surface, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.9.0-web is now live in production (2026-09-12)** — Sprint 39,
@@ -776,10 +776,16 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 40: Chronobiology & Holistic Guidance (v1.10.0) — 🔄 In Progress
+## Sprint 40: Chronobiology & Holistic Guidance (v1.10.0) — ✅ Complete (PR #202)
 
-> **Started** via `/sprint-start` on branch `sprint/40-chronobiology`. Spec handed to the
-> Antigravity IDE coding setup (implement + local green before PR); Kiro Web reviews the diff.
+> **Delivered** via `/sprint-finish`. Feature PR [#202](https://github.com/vteial/saranidhi/pull/202)
+> (merge `85b3cfb`) — owner-merged. Antigravity implemented + local green
+> (605 pass / 4 known-CloudKit / 0 other; analyze clean; web build clean); **Kiro Web
+> reviewed the real diff and APPROVED** — behavior-preserving (zero test-assertion
+> deletions), 13/13 EN/TA parity (pure Tamil script), reuses the Sprint 35 somatic engine,
+> tone reliability-first (CONF-017). Both review-note items from the implementation plan
+> (flow-primary temperature tip; verified `localeProvider.code`) resolved in code.
+> **Not yet released** — ships as **v1.10.0** at `/release-start` (no 🚀 until prod).
 
 > **Dossier:** [`sprints/sprint-40-chronobiology/`](sprints/sprint-40-chronobiology/README.md)
 > ([spec](sprints/sprint-40-chronobiology/spec.md)). Derives from the
@@ -797,12 +803,12 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **Process:** spec → coding-setup → review (Kiro Web authors + reviews; Antigravity IDE
 > implements + local green before PR).
 
-- [ ] Task 40.1: **`ChronobiologyAnalytics`** — time-weighted sliding-window nostril-**stagnancy** detection (`StagnancyLevel{none,mild,chronic}`, `StagnancyAnalysisResult{level, stuckFlow, continuousDuration}`) over the rolling-24h journal per `advanced_somatic_mastery.md` §2: **mild ≥6h & ≥3 logs; chronic ≥8h & ≥4 logs**; Sushumna breaks a run. Pure Dart, unit-tested.
-- [ ] Task 40.2: **Wire stagnancy into the dashboard** — add `getEntriesSince(cutoff)` to the journal repo; add `DashboardData.stagnancy` (defaults to `none`); `dashboardDataProvider` reads the last 24h (mirror the hold-time query) and calls the analytics.
-- [ ] Task 40.3: **Dashboard stagnancy-warning card** — heating (stuck-left/cold → Surya Bhedana + warming) vs cooling (stuck-right/hot → Sheetali + cooling); mild vs chronic tone; **hidden when healthy**; a low-emphasis affordance routes into the existing somatic timer (target = opposite flow).
-- [ ] Task 40.4: **Swara-Ahara dietary "fire" prompt on the Kriya Focus Card** — flow-aware (`FocusCard` gains an optional `currentFlow`); left-flow at a Kriya/eating moment → flip-to-right nudge into the somatic engine; right-flow → affirming line; short-form ARB keys.
-- [ ] Task 40.5: **Tattva temperature-regulation tips** — `Tattva.fire`/excess heat → Sheetali (cooling), cold/stuck-left → Surya Bhedana (warming); advisory text only (no new timed protocol); surfaced on the stagnancy card or the tattva row.
-- [ ] Task 40.6: **Swara Pada Gamana waking advice in the morning summary** — thread a `languageCode` through `generateForToday`/`_generateMorningSummary` (like the window path) so the currently-hardcoded-English body becomes **bilingual**, and append the grounding foot/nostril waking advice. Gated by the existing `notifyMorningSummary` pref.
+- [x] Task 40.1: **`ChronobiologyAnalytics`** — time-weighted sliding-window nostril-**stagnancy** detection (`StagnancyLevel{none,mild,chronic}`, `StagnancyAnalysisResult{level, stuckFlow, continuousDuration}`) over the rolling-24h journal per `advanced_somatic_mastery.md` §2: **mild ≥6h & ≥3 logs; chronic ≥8h & ≥4 logs**; Sushumna breaks a run. Pure Dart, unit-tested.
+- [x] Task 40.2: **Wire stagnancy into the dashboard** — add `getEntriesSince(cutoff)` to the journal repo; add `DashboardData.stagnancy` (defaults to `none`); `dashboardDataProvider` reads the last 24h (mirror the hold-time query) and calls the analytics.
+- [x] Task 40.3: **Dashboard stagnancy-warning card** — heating (stuck-left/cold → Surya Bhedana + warming) vs cooling (stuck-right/hot → Sheetali + cooling); mild vs chronic tone; **hidden when healthy**; a low-emphasis affordance routes into the existing somatic timer (target = opposite flow).
+- [x] Task 40.4: **Swara-Ahara dietary "fire" prompt on the Kriya Focus Card** — flow-aware (`FocusCard` gains an optional `currentFlow`); left-flow at a Kriya/eating moment → flip-to-right nudge into the somatic engine; right-flow → affirming line; short-form ARB keys.
+- [x] Task 40.5: **Tattva temperature-regulation tips** — `Tattva.fire`/excess heat → Sheetali (cooling), cold/stuck-left → Surya Bhedana (warming); advisory text only (no new timed protocol); surfaced on the stagnancy card or the tattva row.
+- [x] Task 40.6: **Swara Pada Gamana waking advice in the morning summary** — thread a `languageCode` through `generateForToday`/`_generateMorningSummary` (like the window path) so the currently-hardcoded-English body becomes **bilingual**, and append the grounding foot/nostril waking advice. Gated by the existing `notifyMorningSummary` pref.
 
 > **Explicitly out of scope (fast-follows):** Cognitive Energy Budgeting labels; ≥6h/≥8h
 > *notification* nudges (vs the dashboard card); a new **timed** Sheetali/Surya Bhedana
@@ -810,15 +816,15 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > (separate `/plan` item); any rewrite of the Sprint 35 somatic engine.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N). _(owner merges — Kiro cannot merge)_
-- [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implements + local green before PR; **Kiro Web reviews the real diff**.
-- [ ] **Regression gate** — `DashboardData` + `FocusCard` gain optional/defaulted fields only; no existing field changes type/meaning; existing dashboard / focus / notification tests pass **unchanged**; `createTestDashboardData` updated with a `none` default.
-- [ ] **Docs updated** — User Guide: stagnancy card, Swara-Ahara Kriya prompt, Pada Gamana morning advice, temperature tips; `calculation-methodology.md` for the stagnancy thresholds.
-- [ ] **Tests** — `ChronobiologyAnalytics` unit tests (none / mild / chronic / Sushumna-breaks-run / boundary 6h/8h); `getEntriesSince` repo test; dashboard-provider stagnancy test; stagnancy-card + focus-card widget tests; morning-summary EN/TA test; tattva-tip mapping test; local green before PR.
-- [ ] **Smoke test** — scenarios added (stagnancy card mild/chronic + heating/cooling; Kriya prompt flow states; morning-summary Pada Gamana EN/TA).
-- [ ] **Valuation report** — Sprint 40 row (+20%) at `/sprint-update`.
-- [ ] **Tracker updated** — status ✅.
-- [ ] **User Guide** — real capability change, so **not** `n/a`.
+- [x] **Code merged** — on `main` (PR #202, merge `85b3cfb`). _(owner merged — Kiro cannot merge)_
+- [x] **PR link** — [#202](https://github.com/vteial/saranidhi/pull/202) (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implemented + local green before PR; **Kiro Web reviewed the real diff and approved**.
+- [x] **Regression gate** — `DashboardData` + `FocusCard` gained optional/defaulted fields only; no existing field changed; existing dashboard / focus / notification tests pass **unchanged** (verified: **zero deletions** in existing test assertions); `createTestDashboardData` updated with a `none` default.
+- [ ] **Docs updated** — User Guide (stagnancy card / Swara-Ahara Kriya prompt / Pada Gamana morning advice / temperature tips) + `calculation-methodology.md` (stagnancy thresholds) — **deferred to `/sprint-update`** (PR #202 was code + l10n only).
+- [x] **Tests** — `ChronobiologyAnalytics` (14) + `SomaticAdvice` (5) + `getEntriesSince` repo + dashboard-provider stagnancy + stagnancy-card (6) + focus-card (7) + morning-summary EN/TA (notification scheduler) + tattva-tip; existing tests unchanged; local green (605 / 4 CloudKit / 0 other) before PR.
+- [ ] **Smoke test** — scenarios (stagnancy card mild/chronic + heating/cooling; Kriya prompt flow states; morning-summary Pada Gamana EN/TA) — **at `/release-start` v1.10.0**.
+- [ ] **Valuation report** — Sprint 40 row (+20%) — **at `/sprint-update`**.
+- [x] **Tracker updated** — status ✅ (this `/sprint-finish`).
+- [ ] **User Guide** — real capability change, so **not** `n/a` — **updated at `/sprint-update`**.
 
 ---
 
