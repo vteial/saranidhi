@@ -464,6 +464,30 @@ abstract class AppLocalizations {
   /// **'Notify when bird enters Eating state'**
   String get eatingStateAlertsSubtitle;
 
+  /// Rahu Kaal notification toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Rahu Kaal Alerts'**
+  String get rahuKaalAlerts;
+
+  /// Rahu Kaal notification subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Notify when Rahu Kaal starts and ends'**
+  String get rahuKaalAlertsSubtitle;
+
+  /// Morning summary notification toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Morning Summary'**
+  String get morningSummaryAlerts;
+
+  /// Morning summary notification subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s best times at sunrise'**
+  String get morningSummaryAlertsSubtitle;
+
   /// Storage section title
   ///
   /// In en, this message translates to:
@@ -3365,6 +3389,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Shift logged. Observe how naturally the rhythm returns.'**
   String get arudamShiftLoggedNotice;
+
+  /// Label for the expandable Why accordion header on the Arudam Now card
+  ///
+  /// In en, this message translates to:
+  /// **'Why?'**
+  String get arudamWhyLabel;
+
+  /// Subheading for cosmic timing factors in the Why accordion
+  ///
+  /// In en, this message translates to:
+  /// **'Moment — the timing'**
+  String get arudamWhyMomentHeading;
+
+  /// Subheading for personal breath readiness factors in the Why accordion
+  ///
+  /// In en, this message translates to:
+  /// **'You — your readiness'**
+  String get arudamWhyYouHeading;
+
+  /// Subheading when an inauspicious floor-lock is active
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked'**
+  String get arudamWhyBlockedHeading;
+
+  /// Explanation when bird state is ruling or eating
+  ///
+  /// In en, this message translates to:
+  /// **'Your birth bird is in a strong, favourable state — a good moment to act.'**
+  String get arudamWhyBirdStrong;
+
+  /// Explanation when bird state is walking
+  ///
+  /// In en, this message translates to:
+  /// **'Your birth bird is in a moderate state — proceed with deliberate care.'**
+  String get arudamWhyBirdModerate;
+
+  /// Explanation when bird state is sleeping or dying
+  ///
+  /// In en, this message translates to:
+  /// **'Your birth bird is in a low-vitality state — energy is diminished for outward action.'**
+  String get arudamWhyBirdWeak;
+
+  /// Explanation when hora-swara affinity multiplier is high
+  ///
+  /// In en, this message translates to:
+  /// **'The planetary hora harmonises strongly with current cosmic flow.'**
+  String get arudamWhyHoraStrong;
+
+  /// Explanation when hora-swara affinity multiplier is moderate
+  ///
+  /// In en, this message translates to:
+  /// **'The planetary hora is neutral and supportive of routine activity.'**
+  String get arudamWhyHoraModerate;
+
+  /// Explanation when hora-swara affinity multiplier is low
+  ///
+  /// In en, this message translates to:
+  /// **'The planetary hora is discordant with the cosmic window.'**
+  String get arudamWhyHoraWeak;
+
+  /// Explanation when tarabala multiplier is high
+  ///
+  /// In en, this message translates to:
+  /// **'Your birth star receives auspicious lunar transit energy.'**
+  String get arudamWhyTarabalaStrong;
+
+  /// Explanation when tarabala multiplier is moderate
+  ///
+  /// In en, this message translates to:
+  /// **'Your birth star receives neutral lunar transit influence.'**
+  String get arudamWhyTarabalaModerate;
+
+  /// Explanation when tarabala multiplier is low
+  ///
+  /// In en, this message translates to:
+  /// **'Your birth star faces challenging lunar transit energy.'**
+  String get arudamWhyTarabalaWeak;
+
+  /// Explanation when query category and action window are in harmony
+  ///
+  /// In en, this message translates to:
+  /// **'The nature of your activity aligns harmoniously with this action window.'**
+  String get arudamWhyHarmonyStrong;
+
+  /// Explanation when query category and action window are moderately compatible
+  ///
+  /// In en, this message translates to:
+  /// **'The activity type is moderately compatible with the current window.'**
+  String get arudamWhyHarmonyModerate;
+
+  /// Explanation when query category and action window conflict
+  ///
+  /// In en, this message translates to:
+  /// **'The activity type conflicts with the current action window.'**
+  String get arudamWhyHarmonyWeak;
+
+  /// Explanation when breath flow naturally matches cosmic window
+  ///
+  /// In en, this message translates to:
+  /// **'Your breath is naturally aligned, so the window stands at its full height.'**
+  String get arudamWhyReadinessAligned;
+
+  /// Explanation when breath flow is not naturally aligned
+  ///
+  /// In en, this message translates to:
+  /// **'Your breath isn\'t naturally aligned, so the moment is dampened — not blocked. The higher path is to wait.'**
+  String get arudamWhyReadinessMisaligned;
+
+  /// Explanation when Sushumna flow is active
+  ///
+  /// In en, this message translates to:
+  /// **'Sushumna flows — energy turns inward. Favourable for stillness and meditation, not for worldly action.'**
+  String get arudamWhySushumna;
+
+  /// Explanation when Rahu Kaal or Emakandam floor-locks the score
+  ///
+  /// In en, this message translates to:
+  /// **'An inauspicious window is active and overrides all other factors. The higher path is to rest and turn inward.'**
+  String get arudamWhyFloorLock;
+
+  /// Provenance citation chip suffix citing the doctrinal CONF ID
+  ///
+  /// In en, this message translates to:
+  /// **'· {conf}'**
+  String arudamWhyCitation(String conf);
 }
 
 class _AppLocalizationsDelegate

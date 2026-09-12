@@ -1211,6 +1211,76 @@
   "@arudamUrgentRecheck": { "description": "Action button ending the shift loop — prompts verification rather than assuming done" },
 
   "arudamShiftLoggedNotice": "Shift logged. Observe how naturally the rhythm returns.",
-  "@arudamShiftLoggedNotice": { "description": "Notice shown after recording a force-shifted breath entry" }
+  "@arudamShiftLoggedNotice": { "description": "Notice shown after recording a force-shifted breath entry" },
+
+  "arudamWhyLabel": "Why?",
+  "@arudamWhyLabel": { "description": "Label for the expandable Why accordion header on the Arudam Now card" },
+
+  "arudamWhyMomentHeading": "Moment — the timing",
+  "@arudamWhyMomentHeading": { "description": "Subheading for cosmic timing factors in the Why accordion" },
+
+  "arudamWhyYouHeading": "You — your readiness",
+  "@arudamWhyYouHeading": { "description": "Subheading for personal breath readiness factors in the Why accordion" },
+
+  "arudamWhyBlockedHeading": "Blocked",
+  "@arudamWhyBlockedHeading": { "description": "Subheading when an inauspicious floor-lock is active" },
+
+  "arudamWhyBirdStrong": "Your birth bird is in a strong, favourable state — a good moment to act.",
+  "@arudamWhyBirdStrong": { "description": "Explanation when bird state is ruling or eating" },
+
+  "arudamWhyBirdModerate": "Your birth bird is in a moderate state — proceed with deliberate care.",
+  "@arudamWhyBirdModerate": { "description": "Explanation when bird state is walking" },
+
+  "arudamWhyBirdWeak": "Your birth bird is in a low-vitality state — energy is diminished for outward action.",
+  "@arudamWhyBirdWeak": { "description": "Explanation when bird state is sleeping or dying" },
+
+  "arudamWhyHoraStrong": "The planetary hora harmonises strongly with current cosmic flow.",
+  "@arudamWhyHoraStrong": { "description": "Explanation when hora-swara affinity multiplier is high" },
+
+  "arudamWhyHoraModerate": "The planetary hora is neutral and supportive of routine activity.",
+  "@arudamWhyHoraModerate": { "description": "Explanation when hora-swara affinity multiplier is moderate" },
+
+  "arudamWhyHoraWeak": "The planetary hora is discordant with the cosmic window.",
+  "@arudamWhyHoraWeak": { "description": "Explanation when hora-swara affinity multiplier is low" },
+
+  "arudamWhyTarabalaStrong": "Your birth star receives auspicious lunar transit energy.",
+  "@arudamWhyTarabalaStrong": { "description": "Explanation when tarabala multiplier is high" },
+
+  "arudamWhyTarabalaModerate": "Your birth star receives neutral lunar transit influence.",
+  "@arudamWhyTarabalaModerate": { "description": "Explanation when tarabala multiplier is moderate" },
+
+  "arudamWhyTarabalaWeak": "Your birth star faces challenging lunar transit energy.",
+  "@arudamWhyTarabalaWeak": { "description": "Explanation when tarabala multiplier is low" },
+
+  "arudamWhyHarmonyStrong": "The nature of your activity aligns harmoniously with this action window.",
+  "@arudamWhyHarmonyStrong": { "description": "Explanation when query category and action window are in harmony" },
+
+  "arudamWhyHarmonyModerate": "The activity type is moderately compatible with the current window.",
+  "@arudamWhyHarmonyModerate": { "description": "Explanation when query category and action window are moderately compatible" },
+
+  "arudamWhyHarmonyWeak": "The activity type conflicts with the current action window.",
+  "@arudamWhyHarmonyWeak": { "description": "Explanation when query category and action window conflict" },
+
+  "arudamWhyReadinessAligned": "Your breath is naturally aligned, so the window stands at its full height.",
+  "@arudamWhyReadinessAligned": { "description": "Explanation when breath flow naturally matches cosmic window" },
+
+  "arudamWhyReadinessMisaligned": "Your breath isn't naturally aligned, so the moment is dampened — not blocked. The higher path is to wait.",
+  "@arudamWhyReadinessMisaligned": { "description": "Explanation when breath flow is not naturally aligned" },
+
+  "arudamWhySushumna": "Sushumna flows — energy turns inward. Favourable for stillness and meditation, not for worldly action.",
+  "@arudamWhySushumna": { "description": "Explanation when Sushumna flow is active" },
+
+  "arudamWhyFloorLock": "An inauspicious window is active and overrides all other factors. The higher path is to rest and turn inward.",
+  "@arudamWhyFloorLock": { "description": "Explanation when Rahu Kaal or Emakandam floor-locks the score" },
+
+  "arudamWhyCitation": "· {conf}",
+  "@arudamWhyCitation": {
+    "description": "Provenance citation chip suffix citing the doctrinal CONF ID",
+    "placeholders": {
+      "conf": {
+        "type": "String"
+      }
+    }
+  }
 }
 

@@ -29,7 +29,7 @@ team operating model that ties these together.
 |-----|---------|
 | [testing-plan.md](testing/testing-plan.md) | Master test strategy, scenario backlog, test-count progression |
 | [smoke-test-results.md](testing/smoke-test-results.md) | Release smoke-test index (links every version) |
-| [releases/](testing/releases/) | Per-release smoke-test plans + results (`smoke-test-v*.md`) |
+| [releases/](testing/releases/) | Per-release dossiers — rich releases in `vX.Y.Z/` folders (smoke-test, release-notes, docs-audit); legacy v1.0.0–v1.6.0 as flat `smoke-test-v*.md` |
 
 ## 🚀 deployment/ — ops & release enablement
 | Doc | Purpose |

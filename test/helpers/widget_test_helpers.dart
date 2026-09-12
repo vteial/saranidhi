@@ -15,11 +15,15 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 ///
 /// Pass Riverpod provider overrides via [overrides] for widgets that
 /// watch providers (e.g., WisdomCard).
-Widget testableWidget(Widget child, {dynamic overrides}) {
+Widget testableWidget(
+  Widget child, {
+  dynamic overrides,
+  Locale locale = const Locale('en'),
+}) {
   final widget = MaterialApp(
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
-    locale: const Locale('en'),
+    locale: locale,
     home: Scaffold(body: SingleChildScrollView(child: child)),
   );
 

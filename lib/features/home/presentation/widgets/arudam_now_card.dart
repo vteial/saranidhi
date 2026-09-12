@@ -341,6 +341,12 @@ class ArudamNowCard extends ConsumerWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 8),
+            _WhySection(
+              reasons: verdict.reasons,
+              isFloorLocked: verdict.isFloorLocked,
+              l10n: l10n,
+            ),
           ],
         ),
       ),
@@ -575,6 +581,223 @@ class ArudamNowCard extends ConsumerWidget {
       HoraPlanet.jupiter => l10n.planetJupiter,
       HoraPlanet.venus => l10n.planetVenus,
       HoraPlanet.saturn => l10n.planetSaturn,
+    };
+  }
+}
+
+/// Tap-to-expand doctrinal "Why?" provenance accordion for the verdict card.
+///
+/// Explains the verdict doctrinally, in plain language, with CONF citations.
+/// Never displays raw math; collapsed by default; tap target ≥ 44×44.
+class _WhySection extends StatefulWidget {
+  const _WhySection({
+    required this.reasons,
+    required this.isFloorLocked,
+    required this.l10n,
+  });
+
+  final List<ArudamReason> reasons;
+  final bool isFloorLocked;
+  final AppLocalizations l10n;
+
+  @override
+  State<_WhySection> createState() => _WhySectionState();
+}
+
+class _WhySectionState extends State<_WhySection> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = widget.l10n;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Collapsed header row with minimum 44×44 tap target
+        InkWell(
+          onTap: () => setState(() => _expanded = !_expanded),
+          borderRadius: BorderRadius.circular(8),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 44, minWidth: 44),
+            child: Row(
+              children: [
+                AnimatedRotation(
+                  turns: _expanded ? 0.25 : 0.0,
+                  duration: const Duration(milliseconds: 200),
+                  child: Icon(
+                    Icons.chevron_right,
+                    size: 18,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  l10n.arudamWhyLabel,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        // Expanded body
+        if (_expanded) ...[
+          const SizedBox(height: 4),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.25,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: _buildGroupedContent(theme, l10n),
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  List<Widget> _buildGroupedContent(ThemeData theme, AppLocalizations l10n) {
+    if (widget.isFloorLocked) {
+      final floorReasons = widget.reasons
+          .where((r) => r.factor == ArudamFactor.floorLock)
+          .toList();
+      return [
+        Text(
+          l10n.arudamWhyBlockedHeading,
+          style: theme.textTheme.labelMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: theme.colorScheme.error,
+          ),
+        ),
+        const SizedBox(height: 6),
+        for (final reason in floorReasons)
+          _buildReasonItem(reason, theme, l10n),
+      ];
+    }
+
+    final momentReasons = widget.reasons
+        .where(
+          (r) =>
+              r.factor == ArudamFactor.birdState ||
+              r.factor == ArudamFactor.horaSwara ||
+              r.factor == ArudamFactor.tarabala ||
+              r.factor == ArudamFactor.categoryHarmony,
+        )
+        .toList();
+
+    final youReasons = widget.reasons
+        .where(
+          (r) =>
+              r.factor == ArudamFactor.readiness ||
+              r.factor == ArudamFactor.sushumna,
+        )
+        .toList();
+
+    return [
+      if (momentReasons.isNotEmpty) ...[
+        Text(
+          l10n.arudamWhyMomentHeading,
+          style: theme.textTheme.labelMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: theme.colorScheme.primary,
+          ),
+        ),
+        const SizedBox(height: 6),
+        for (final reason in momentReasons)
+          _buildReasonItem(reason, theme, l10n),
+      ],
+      if (youReasons.isNotEmpty) ...[
+        if (momentReasons.isNotEmpty) const SizedBox(height: 6),
+        Text(
+          l10n.arudamWhyYouHeading,
+          style: theme.textTheme.labelMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: theme.colorScheme.primary,
+          ),
+        ),
+        const SizedBox(height: 6),
+        for (final reason in youReasons) _buildReasonItem(reason, theme, l10n),
+      ],
+    ];
+  }
+
+  Widget _buildReasonItem(
+    ArudamReason reason,
+    ThemeData theme,
+    AppLocalizations l10n,
+  ) {
+    final explanation = _factorExplanation(reason, l10n);
+    final citation = l10n.arudamWhyCitation(reason.conf);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            explanation,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              height: 1.35,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            citation,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: theme.colorScheme.outline,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _factorExplanation(ArudamReason reason, AppLocalizations l10n) {
+    return switch (reason.factor) {
+      ArudamFactor.birdState => switch (reason.strength) {
+        FactorStrength.strong => l10n.arudamWhyBirdStrong,
+        FactorStrength.moderate => l10n.arudamWhyBirdModerate,
+        FactorStrength.weak ||
+        FactorStrength.blocking => l10n.arudamWhyBirdWeak,
+      },
+      ArudamFactor.horaSwara => switch (reason.strength) {
+        FactorStrength.strong => l10n.arudamWhyHoraStrong,
+        FactorStrength.moderate => l10n.arudamWhyHoraModerate,
+        FactorStrength.weak ||
+        FactorStrength.blocking => l10n.arudamWhyHoraWeak,
+      },
+      ArudamFactor.tarabala => switch (reason.strength) {
+        FactorStrength.strong => l10n.arudamWhyTarabalaStrong,
+        FactorStrength.moderate => l10n.arudamWhyTarabalaModerate,
+        FactorStrength.weak ||
+        FactorStrength.blocking => l10n.arudamWhyTarabalaWeak,
+      },
+      ArudamFactor.categoryHarmony => switch (reason.strength) {
+        FactorStrength.strong => l10n.arudamWhyHarmonyStrong,
+        FactorStrength.moderate => l10n.arudamWhyHarmonyModerate,
+        FactorStrength.weak ||
+        FactorStrength.blocking => l10n.arudamWhyHarmonyWeak,
+      },
+      ArudamFactor.readiness => switch (reason.strength) {
+        FactorStrength.strong => l10n.arudamWhyReadinessAligned,
+        FactorStrength.moderate ||
+        FactorStrength.weak ||
+        FactorStrength.blocking => l10n.arudamWhyReadinessMisaligned,
+      },
+      ArudamFactor.sushumna => l10n.arudamWhySushumna,
+      ArudamFactor.floorLock => l10n.arudamWhyFloorLock,
     };
   }
 }

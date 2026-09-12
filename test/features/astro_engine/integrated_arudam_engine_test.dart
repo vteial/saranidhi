@@ -236,5 +236,170 @@ void main() {
         expect(OracleBand.fromScore(0), OracleBand.sunya);
       });
     });
+
+    group('Provenance & Doctrinal Reasons (Sprint 39)', () {
+      test(
+        'strong/aligned case lists birdState:strong and readiness:strong with expected CONFs',
+        () {
+          final result = IntegratedArudamEngine.evaluate(
+            birdState: PakshiState.ruling,
+            window: ActionWindow.artha,
+            category: QueryCategory.artha,
+            tarabalaMultiplier: 1.2,
+            horaSwaraMultiplier: 1.15,
+            isAligned: true,
+            actualSwara: BreathFlow.solar,
+            isRahuActive: false,
+            isEmakandamActive: false,
+          );
+
+          final birdReason = result.reasons.firstWhere(
+            (r) => r.factor == ArudamFactor.birdState,
+          );
+          expect(birdReason.strength, FactorStrength.strong);
+          expect(birdReason.conf, 'CONF-PP-004');
+
+          final horaReason = result.reasons.firstWhere(
+            (r) => r.factor == ArudamFactor.horaSwara,
+          );
+          expect(horaReason.strength, FactorStrength.strong);
+          expect(horaReason.conf, 'CONF-014');
+
+          final taraReason = result.reasons.firstWhere(
+            (r) => r.factor == ArudamFactor.tarabala,
+          );
+          expect(taraReason.strength, FactorStrength.strong);
+          expect(taraReason.conf, 'CONF-PP-001/002');
+
+          final harmReason = result.reasons.firstWhere(
+            (r) => r.factor == ArudamFactor.categoryHarmony,
+          );
+          expect(harmReason.strength, FactorStrength.strong);
+          expect(harmReason.conf, 'CONF-015');
+
+          final readinessReason = result.reasons.firstWhere(
+            (r) => r.factor == ArudamFactor.readiness,
+          );
+          expect(readinessReason.strength, FactorStrength.strong);
+          expect(readinessReason.conf, 'CONF-016 / CONF-017');
+        },
+      );
+
+      test('misaligned case lists readiness:weak', () {
+        final result = IntegratedArudamEngine.evaluate(
+          birdState: PakshiState.eating,
+          window: ActionWindow.kriya,
+          category: QueryCategory.kriya,
+          tarabalaMultiplier: 1.0,
+          horaSwaraMultiplier: 1.0,
+          isAligned: false,
+          actualSwara: BreathFlow.lunar,
+          isRahuActive: false,
+          isEmakandamActive: false,
+        );
+
+        final readinessReason = result.reasons.firstWhere(
+          (r) => r.factor == ArudamFactor.readiness,
+        );
+        expect(readinessReason.strength, FactorStrength.weak);
+        expect(readinessReason.conf, 'CONF-016 / CONF-017');
+      });
+
+      test(
+        'stale / unknown swara (actualSwara == null) omits readiness and sushumna reasons',
+        () {
+          final result = IntegratedArudamEngine.evaluate(
+            birdState: PakshiState.walking,
+            window: ActionWindow.artha,
+            category: QueryCategory.artha,
+            tarabalaMultiplier: 1.0,
+            horaSwaraMultiplier: 1.0,
+            isAligned: false,
+            actualSwara: null,
+            isRahuActive: false,
+            isEmakandamActive: false,
+          );
+
+          expect(
+            result.reasons.any((r) => r.factor == ArudamFactor.readiness),
+            isFalse,
+          );
+          expect(
+            result.reasons.any((r) => r.factor == ArudamFactor.sushumna),
+            isFalse,
+          );
+          expect(
+            result.reasons.length,
+            4,
+          ); // birdState, horaSwara, tarabala, categoryHarmony
+        },
+      );
+
+      test(
+        'Sushumna case emits sushumna factor (CONF-026) instead of readiness',
+        () {
+          final result = IntegratedArudamEngine.evaluate(
+            birdState: PakshiState.sleeping,
+            window: ActionWindow.yoga,
+            category: QueryCategory.yoga,
+            tarabalaMultiplier: 1.0,
+            horaSwaraMultiplier: 1.0,
+            isAligned: true,
+            actualSwara: BreathFlow.sushumna,
+            isRahuActive: false,
+            isEmakandamActive: false,
+          );
+
+          expect(
+            result.reasons.any((r) => r.factor == ArudamFactor.readiness),
+            isFalse,
+          );
+          final sushumnaReason = result.reasons.firstWhere(
+            (r) => r.factor == ArudamFactor.sushumna,
+          );
+          expect(sushumnaReason.conf, 'CONF-026');
+          expect(sushumnaReason.strength, FactorStrength.moderate);
+        },
+      );
+
+      test(
+        'floor-locked case emits exactly one floorLock reason with blocking strength and CONF-018',
+        () {
+          final rahuResult = IntegratedArudamEngine.evaluate(
+            birdState: PakshiState.ruling,
+            window: ActionWindow.artha,
+            category: QueryCategory.artha,
+            tarabalaMultiplier: 1.5,
+            horaSwaraMultiplier: 1.5,
+            isAligned: true,
+            actualSwara: BreathFlow.solar,
+            isRahuActive: true,
+            isEmakandamActive: false,
+          );
+
+          expect(rahuResult.reasons.length, 1);
+          expect(rahuResult.reasons.first.factor, ArudamFactor.floorLock);
+          expect(rahuResult.reasons.first.strength, FactorStrength.blocking);
+          expect(rahuResult.reasons.first.conf, 'CONF-018');
+
+          final emaResult = IntegratedArudamEngine.evaluate(
+            birdState: PakshiState.ruling,
+            window: ActionWindow.artha,
+            category: QueryCategory.artha,
+            tarabalaMultiplier: 1.5,
+            horaSwaraMultiplier: 1.5,
+            isAligned: true,
+            actualSwara: BreathFlow.solar,
+            isRahuActive: false,
+            isEmakandamActive: true,
+          );
+
+          expect(emaResult.reasons.length, 1);
+          expect(emaResult.reasons.first.factor, ArudamFactor.floorLock);
+          expect(emaResult.reasons.first.strength, FactorStrength.blocking);
+          expect(emaResult.reasons.first.conf, 'CONF-018');
+        },
+      );
+    });
   });
 }

@@ -2,7 +2,7 @@
 
 # Saranidhi — Project Evaluation Report
 
-> **Reviewed:** v1.8.0-web · **Next review:** every `/sprint-update` (defects + test baseline).
+> **Reviewed:** v1.8.1-web · **Next review:** every `/sprint-update` (defects + test baseline).
 
 ## 1. Executive Architecture Summary
 
@@ -71,7 +71,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total automated tests | 564 (as of Sprint 38) |
+| Total automated tests | 573 (as of Sprint 39) |
 | Pass rate | 100% on CI (macOS local shows 4 known CloudKit-platform failures that pass on Ubuntu) |
 | Static analysis | `dart analyze --fatal-infos` — zero issues |
 | CI enforcement | GitHub Actions two-tier (fast on PRs; full tests + coverage + integration on PRs to `main` and on merge) |
@@ -95,6 +95,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 22 | 62 (10 widget tests × ~6 assertions) | 410 |
 | Sprints 23–37 | +136 (feature/engine + hardening sprints; see per-sprint dossiers/PRs) | 546 |
 | Sprint 38 | +18 (`IntegratedArudamEngine` unit, `arudam_now_card` widget, Oracle regression + night-floor-lock) | 564 |
+| Sprint 39 | +9 (Aruḍam "Why?" — engine `reasons` per case: aligned/misaligned/stale-omits/Sushumna/floor-lock + `conf`; card collapse/expand/provenance/floor-lock/misaligned + Tamil-locale) | 573 |
 
 ### Resolved Defects
 

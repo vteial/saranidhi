@@ -14,6 +14,21 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
+## [1.9.0-web] — TBD
+
+> Sprint 39 — **Integrated Aruḍam: "Why?" provenance accordion**. Verdict transparency —
+> the "Aruḍam Now" card now explains itself doctrinally, with source citations.
+
+### Added
+- **"Why?" accordion on the Aruḍam Now card** — a collapsed-by-default, tap-to-expand section that explains the verdict in plain language. Contributing factors are grouped under **Moment — the timing** (bird state, planetary Hora, Tarabala, activity harmony) and **You — your readiness** (breath alignment), or a single **Blocked** explanation during an inauspicious window.
+- **Source provenance on every reason** — each line carries a subdued citation of the traditional practice / confirmation it rests on (e.g. `· CONF-014`), so the guidance is transparent and auditable. No raw arithmetic is ever shown; no tooltips.
+- Fully bilingual (English + தமிழ், pure Tamil script).
+
+### Notes
+- **Transparency only** — scoring math, bands, and the inauspicious floor-lock are unchanged; the Prasanam Oracle is unaffected. The engine now returns a structured reasons breakdown alongside the score (one new field; behavior-preserving).
+
+---
+
 ## [1.8.1-web] — 2026-09-12
 
 > Hotfix — Tamil localization.

@@ -2,7 +2,7 @@
 
 # Saranidhi — Project Valuation Report
 
-> **Reviewed:** v1.8.0-web · **Next review:** every `/sprint-update` + `/release-update`.
+> **Reviewed:** v1.8.1-web · **Next review:** every `/sprint-update` + `/release-update`.
 
 > **Purpose:** one question only — *how much engineering investment went into this,
 > and what is the current state?* Everything else is delegated to the system of record
@@ -20,11 +20,11 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
-**Sprints Delivered:** 36 (Sprints 1–38, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
-**Total Engineering Investment:** **~116.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
-**Production Web Release:** **v1.7.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.7.0-web`, Sprint 37) · **v1.8.0 built (Sprint 38), release pending**
-**Automated Tests:** 564 (unit + widget + integration)
-**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** slice 1 (the ambient "Aruḍam Now" verdict, Moment × Readiness) built + merged (PR #181, Sprint 38); **next: `/release-start` for v1.8.0**. Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
+**Sprints Delivered:** 37 (Sprints 1–39, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
+**Total Engineering Investment:** **~121.0 hours** (incl. ~26.5h Research & Knowledge Engineering)
+**Production Web Release:** **v1.8.1-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.8.1-web`; preceding feature release v1.8.0-web = Integrated Aruḍam slice 1, Sprint 38) · **v1.9.0 built (Sprint 39), release pending**
+**Automated Tests:** 573 (unit + widget + integration)
+**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** slice 1 shipped (v1.8.0), and its **"Why?" provenance accordion** (verdict transparency) built + merged (PR #196, Sprint 39); **next: `/release-start` for v1.9.0**. Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
 
@@ -42,7 +42,8 @@
 | Polish, hardening & layers | 27.5–36 | ~12.0 |
 | Sprint 37 — Birth-Bird Engine Correction (v1.7.0) | 37 | ~6.0 |
 | Sprint 38 — Integrated Aruḍam, Slice 1 (v1.8.0) | 38 | ~6.0 |
-| **Subtotal** | | **~78.5** |
+| Sprint 39 — Integrated Aruḍam "Why?" accordion (v1.9.0) | 39 | ~4.5 |
+| **Subtotal** | | **~83.0** |
 
 ### Infrastructure, Release & Admin Ops (off-commit)
 
@@ -77,10 +78,10 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (sprint track) | ~78.5 |
+| Active coding & debugging (sprint track) | ~83.0 |
 | Infrastructure, release & admin ops | ~11.0 |
 | Research & knowledge engineering | ~26.5 |
-| **Total** | **~116.5** |
+| **Total** | **~121.0** |
 
 ---
 
@@ -128,7 +129,8 @@
 | 32 | Prasanam Oracle UI | #118 | ✅ |
 | 36 | Stability & Test Hardening (v1.6.0) | #141 | ✅ 🚀 |
 | 37 | Birth-Bird Engine Correction (v1.7.0) | #167 | ✅ 🚀 |
-| 38 | ★ Integrated Aruḍam — Slice 1 (v1.8.0) | #181 | ✅ (release pending) |
+| 38 | ★ Integrated Aruḍam — Slice 1 (v1.8.0) | #181 | ✅ 🚀 |
+| 39 | ★ Integrated Aruḍam — "Why?" provenance accordion (v1.9.0) | #196 | ✅ (release pending) |
 
 > 🚀 = shipped a production release. Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement

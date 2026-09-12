@@ -199,6 +199,20 @@ class AppLocalizationsTa extends AppLocalizations {
       'பறவை உண்ணும் நிலையில் நுழையும்போது அறிவி';
 
   @override
+  String get rahuKaalAlerts => 'ராகு கால எச்சரிக்கைகள்';
+
+  @override
+  String get rahuKaalAlertsSubtitle =>
+      'ராகு காலம் தொடங்கும்போதும் முடியும்போதும் அறிவி';
+
+  @override
+  String get morningSummaryAlerts => 'காலை சுருக்கம்';
+
+  @override
+  String get morningSummaryAlertsSubtitle =>
+      'இன்றைய சிறந்த நேரங்கள் சூரிய உதயத்தில்';
+
+  @override
   String get storageAndBackup => 'சேமிப்பு & காப்புப்பிரதி';
 
   @override
@@ -1822,4 +1836,85 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get arudamShiftLoggedNotice =>
       'சுவாச மாற்றம் பதிவு செய்யப்பட்டது. இயல்பான சுவாசம் எப்போது திரும்புகிறது என்பதை கவனியுங்கள்.';
+
+  @override
+  String get arudamWhyLabel => 'ஏன்?';
+
+  @override
+  String get arudamWhyMomentHeading => 'நேரம் — பிரபஞ்ச தருணம்';
+
+  @override
+  String get arudamWhyYouHeading => 'நீங்கள் — உங்கள் சுவாசம்';
+
+  @override
+  String get arudamWhyBlockedHeading => 'தடைபட்ட காலம்';
+
+  @override
+  String get arudamWhyBirdStrong =>
+      'உங்கள் பிறப்புப் பட்சி வலிமையான நிலையில் உள்ளது — செயலில் இறங்க உகந்த நேரம்.';
+
+  @override
+  String get arudamWhyBirdModerate =>
+      'உங்கள் பிறப்புப் பட்சி மிதமான நிலையில் உள்ளது — கவனத்துடன் காரியங்களை முன்னெடுங்கள்.';
+
+  @override
+  String get arudamWhyBirdWeak =>
+      'உங்கள் பிறப்புப் பட்சி தளர்ந்த நிலையில் உள்ளது — புறச் செயல்களுக்கான ஆற்றல் குறைவு.';
+
+  @override
+  String get arudamWhyHoraStrong =>
+      'கிரக ஹோரை தற்போதைய பிரபஞ்ச ஓட்டத்துடன் சிறப்பாகப் பொருந்துகிறது.';
+
+  @override
+  String get arudamWhyHoraModerate =>
+      'கிரக ஹோரை நடுநிலையாக இருந்து வழக்கமான செயல்களுக்கு துணைநிற்கிறது.';
+
+  @override
+  String get arudamWhyHoraWeak =>
+      'கிரக ஹோரை தற்போதைய கால ஓட்டத்திற்கு முரணாக உள்ளது.';
+
+  @override
+  String get arudamWhyTarabalaStrong =>
+      'உங்கள் ஜென்ம நட்சத்திரத்திற்கு சாதகமான தாராபலம் உள்ளது.';
+
+  @override
+  String get arudamWhyTarabalaModerate =>
+      'உங்கள் ஜென்ம நட்சத்திரத்திற்கு சமமான தாராபலம் உள்ளது.';
+
+  @override
+  String get arudamWhyTarabalaWeak =>
+      'உங்கள் ஜென்ம நட்சத்திரத்திற்கு தாராபலத்தில் சவாலான சூழல் உள்ளது.';
+
+  @override
+  String get arudamWhyHarmonyStrong =>
+      'உங்கள் செயலின் தன்மை தற்போதைய காரிய காலத்துடன் கச்சிதமாகப் பொருந்துகிறது.';
+
+  @override
+  String get arudamWhyHarmonyModerate =>
+      'உங்கள் செயல் தற்போதைய காரிய காலத்துடன் மிதமான பொருத்தம் கொண்டுள்ளது.';
+
+  @override
+  String get arudamWhyHarmonyWeak =>
+      'செயலின் தன்மை தற்போதைய காரிய காலத்திற்கு முரணாக உள்ளது.';
+
+  @override
+  String get arudamWhyReadinessAligned =>
+      'உங்கள் சுவாசம் இயல்பாகவே இணைந்துள்ளது; அதனால் இத்தருணம் முழு ஆற்றலுடன் திகழ்கிறது.';
+
+  @override
+  String get arudamWhyReadinessMisaligned =>
+      'உங்கள் சுவாசம் இயல்பாக இணையவில்லை; எனவே ஆற்றல் மட்டுப்படுத்தப்படுகிறது, தடுக்கப்படவில்லை. காத்திருப்பதே சிறந்த வழி.';
+
+  @override
+  String get arudamWhySushumna =>
+      'சுழுமுனை சுவாசம் செயல்படுகிறது — ஆற்றல் உள்முகமாகத் திரும்புகிறது. அமைதி மற்றும் தியானத்திற்கு உகந்தது; உலகியல் செயல்களுக்கு அல்ல.';
+
+  @override
+  String get arudamWhyFloorLock =>
+      'சூனிய காலம் செயல்படுவதால் மற்ற அனைத்துக் காரணிகளையும் விட இதுவே முதன்மை பெறுகிறது. அமைதி காத்து உள்நோக்குவதே சிறந்த வழி.';
+
+  @override
+  String arudamWhyCitation(String conf) {
+    return '· $conf';
+  }
 }

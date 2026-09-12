@@ -198,6 +198,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'Notify when bird enters Eating state';
 
   @override
+  String get rahuKaalAlerts => 'Rahu Kaal Alerts';
+
+  @override
+  String get rahuKaalAlertsSubtitle => 'Notify when Rahu Kaal starts and ends';
+
+  @override
+  String get morningSummaryAlerts => 'Morning Summary';
+
+  @override
+  String get morningSummaryAlertsSubtitle => 'Today\'s best times at sunrise';
+
+  @override
   String get storageAndBackup => 'Storage & Backup';
 
   @override
@@ -1813,4 +1825,85 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get arudamShiftLoggedNotice =>
       'Shift logged. Observe how naturally the rhythm returns.';
+
+  @override
+  String get arudamWhyLabel => 'Why?';
+
+  @override
+  String get arudamWhyMomentHeading => 'Moment — the timing';
+
+  @override
+  String get arudamWhyYouHeading => 'You — your readiness';
+
+  @override
+  String get arudamWhyBlockedHeading => 'Blocked';
+
+  @override
+  String get arudamWhyBirdStrong =>
+      'Your birth bird is in a strong, favourable state — a good moment to act.';
+
+  @override
+  String get arudamWhyBirdModerate =>
+      'Your birth bird is in a moderate state — proceed with deliberate care.';
+
+  @override
+  String get arudamWhyBirdWeak =>
+      'Your birth bird is in a low-vitality state — energy is diminished for outward action.';
+
+  @override
+  String get arudamWhyHoraStrong =>
+      'The planetary hora harmonises strongly with current cosmic flow.';
+
+  @override
+  String get arudamWhyHoraModerate =>
+      'The planetary hora is neutral and supportive of routine activity.';
+
+  @override
+  String get arudamWhyHoraWeak =>
+      'The planetary hora is discordant with the cosmic window.';
+
+  @override
+  String get arudamWhyTarabalaStrong =>
+      'Your birth star receives auspicious lunar transit energy.';
+
+  @override
+  String get arudamWhyTarabalaModerate =>
+      'Your birth star receives neutral lunar transit influence.';
+
+  @override
+  String get arudamWhyTarabalaWeak =>
+      'Your birth star faces challenging lunar transit energy.';
+
+  @override
+  String get arudamWhyHarmonyStrong =>
+      'The nature of your activity aligns harmoniously with this action window.';
+
+  @override
+  String get arudamWhyHarmonyModerate =>
+      'The activity type is moderately compatible with the current window.';
+
+  @override
+  String get arudamWhyHarmonyWeak =>
+      'The activity type conflicts with the current action window.';
+
+  @override
+  String get arudamWhyReadinessAligned =>
+      'Your breath is naturally aligned, so the window stands at its full height.';
+
+  @override
+  String get arudamWhyReadinessMisaligned =>
+      'Your breath isn\'t naturally aligned, so the moment is dampened — not blocked. The higher path is to wait.';
+
+  @override
+  String get arudamWhySushumna =>
+      'Sushumna flows — energy turns inward. Favourable for stillness and meditation, not for worldly action.';
+
+  @override
+  String get arudamWhyFloorLock =>
+      'An inauspicious window is active and overrides all other factors. The higher path is to rest and turn inward.';
+
+  @override
+  String arudamWhyCitation(String conf) {
+    return '· $conf';
+  }
 }

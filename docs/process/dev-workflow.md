@@ -2,7 +2,7 @@
 
 # Saranidhi — Development Workflow
 
-> **Reviewed:** v1.8.0-web · **Next review:** every release + when a protocol/gate/flow changes.
+> **Reviewed:** v1.8.1-web · **Next review:** every release + when a protocol/gate/flow changes.
 
 > **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
 > — the AI team collaboration model (roles, handoffs, release lifecycle, and
@@ -130,7 +130,7 @@ Runs **after sprint merge** on a separate docs-only branch to avoid CI code fail
    - `docs/testing/testing-plan.md` — test count progression, scenarios awaiting coverage
    - `docs/process/dev-workflow.md` — any threshold/process changes
    - `.kiro/steering/saranidhi-spec.md` — tech stack updates
-   - **`docs/testing/releases/smoke-test-vX.Y.Z.md`** — add scenarios for new features (mandatory)
+   - **`docs/testing/releases/vX.Y.Z/smoke-test.md`** — add scenarios for new features (mandatory)
    - **User Guide content** — refresh guide sections affected by sprint changes (mandatory)
 3. Commit, push, create docs-only PR
 4. **User reviews and merges**
@@ -207,20 +207,25 @@ Prepares the smoke test execution.
 1. Kiro creates branch `release/vX.Y.Z` from `main`
 2. **Bumps `version:` in `pubspec.yaml`** to match the release (e.g., `1.3.0+1`)
    - This ensures the About card (via `package_info_plus`) shows the correct version on the **PR's Vercel preview** (where the smoke test runs) AND in production
-3. Ensures `docs/testing/releases/smoke-test-vX.Y.Z.md` exists (plan + results template)
-4. **Drafts `docs/testing/releases/release-notes-vX.Y.Z.md`** from [`templates/release-notes.template.md`](templates/release-notes.template.md) — the permanent record of the GitHub Release (tag / target / title / body). It is finalized at `/release-update` and is the exact text the owner pastes into the GitHub Release UI, so the release stays auditable and reproducible.
-5. **Creates `docs/testing/releases/docs-audit-vX.Y.Z.md`** from [`templates/docs-audit.template.md`](templates/docs-audit.template.md) — the owner-run docs-freshness gate (ticked during release verification).
-6. Creates PR targeting `main`
-7. **User executes the smoke test on the PR's Vercel _preview_ deployment** (the `vercel[bot]` comment on the PR) — **NOT** staging. Staging (`saranidhi-staging.vercel.app`) deploys from `main`, so the release branch's version bump + changes are not on staging until the PR is merged; the pre-merge gate must run on the preview, which is built from the release-branch head and correctly shows the new version. *(This matches the release-lifecycle in [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md) §2.1 — "QA-Verify on release-branch preview".)*
-8. User commits results (Pass/Fail + Notes) to the same branch
-9. User reviews and merges PR → smoke test results + version bump now on `main` (staging then also reflects the new version as a post-merge confirmation)
+3. **Assembles the release dossier** at `docs/testing/releases/vX.Y.Z/` (one folder per rich release — mirrors the sprint-dossier convention). See the [**Release dossier convention**](#release-dossier-convention) below for layout. Populate:
+   - `docs/testing/releases/vX.Y.Z/smoke-test.md` — plan + results template (relocated from the sprint dossier if the scenarios were authored there)
+   - **`docs/testing/releases/vX.Y.Z/release-notes.md`** from [`templates/release-notes.template.md`](templates/release-notes.template.md) — the permanent record of the GitHub Release (tag / target / title / body). Finalized at `/release-update`; it is the exact text the owner pastes into the GitHub Release UI, so the release stays auditable and reproducible.
+   - **`docs/testing/releases/vX.Y.Z/docs-audit.md`** from [`templates/docs-audit.template.md`](templates/docs-audit.template.md) — the owner-run docs-freshness gate (ticked during release verification).
+   - *(optional)* `qa-verify-prompt.md` — the version-filled QA-Verify agent prompt, if a per-release copy is useful.
+4. Creates PR targeting `main`
+5. **Records the Vercel preview access details for QA-Verify.** The Vercel Deployment Protection SSO wall blocks headless agents (Antigravity QA-Verify) from reaching the PR preview. The permanent bypass is **Protection Bypass for Automation**: read `VERCEL_AUTOMATION_BYPASS_SECRET` from the local `.env` (gitignored — never commit it) and give QA-Verify the preview URL with the bypass query params appended:
+   `<preview-url>?x-vercel-protection-bypass=<secret>&x-vercel-set-bypass-cookie=true`
+   This lets the automated smoke run reach the release-branch preview without a human clicking through SSO.
+6. **User (or QA-Verify) executes the smoke test on the PR's Vercel _preview_ deployment** (the `vercel[bot]` comment on the PR) — **NOT** staging. Staging (`saranidhi-staging.vercel.app`) deploys from `main`, so the release branch's version bump + changes are not on staging until the PR is merged; the pre-merge gate must run on the preview, which is built from the release-branch head and correctly shows the new version. *(This matches the release-lifecycle in [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md) §2.1 — "QA-Verify on release-branch preview".)*
+7. User commits results (Pass/Fail + Notes) to the same branch
+8. User reviews and merges PR → smoke test results + version bump now on `main` (staging then also reflects the new version as a post-merge confirmation)
 
 #### Phase 2: `/release-finish`
 
 Promotes to production after smoke test passes.
 
 1. Kiro validates the smoke test PR is merged to `main`
-2. Kiro creates PR from `main` → `prod` with release notes (mirroring `docs/testing/releases/release-notes-vX.Y.Z.md`):
+2. Kiro creates PR from `main` → `prod` with release notes (mirroring `docs/testing/releases/vX.Y.Z/release-notes.md`):
    - **What's New** — features added since last release
    - **Fixes** — bugs resolved
    - **Known Issues** — anything still pending
@@ -239,7 +244,7 @@ Post-release documentation closure (light touch-up).
 
 1. Kiro creates branch from `main` (`docs/release-vX.Y.Z-update`)
 2. Update:
-   - `docs/testing/releases/release-notes-vX.Y.Z.md` — **finalize** the release-notes doc to match exactly what the owner published (tag / target / title / body), so it is the permanent, auditable record of the release
+   - `docs/testing/releases/vX.Y.Z/release-notes.md` — **finalize** the release-notes doc to match exactly what the owner published (tag / target / title / body), so it is the permanent, auditable record of the release
    - `docs/testing/smoke-test-results.md` — add the version row (✅ PASS, date, scenarios)
    - `CHANGELOG.md` — set release date (remove "Pending")
    - `docs/process/project-valuation-report.md` — refresh executive summary (prod version) + confirm the sprint's Delivery Summary row is 🚀
@@ -259,6 +264,27 @@ Post-release documentation closure (light touch-up).
   - **X** = major (breaking changes, new layers)
   - **Y** = minor (new sprint features)
   - **Z** = patch (hotfixes, minor tweaks)
+
+#### Release dossier convention
+
+> Each *rich* release gets its own folder `docs/testing/releases/vX.Y.Z/` — mirroring the
+> sprint-dossier convention — so a release is auditable by opening one folder. Files (the
+> version lives in the folder name, so filenames drop the `-vX.Y.Z` suffix):
+>
+> | File | Purpose | Created |
+> | --- | --- | --- |
+> | `smoke-test.md` | Scenario plan + executed results (✅/❌ + notes) | `/release-start` |
+> | `release-notes.md` | The permanent, auditable GitHub Release text (tag/target/title/body) | `/release-start`, finalized `/release-update` |
+> | `docs-audit.md` | Owner-run docs-freshness gate, ticked during verification | `/release-start` |
+> | `qa-verify-prompt.md` *(optional)* | Version-filled QA-Verify agent prompt | `/release-start` |
+>
+> **Scope:** only *rich* releases (a full sprint of features with a real smoke matrix and
+> release notes) get a folder — e.g. `v1.7.0/`, `v1.8.0/`. **Light hotfix releases** (cosmetic
+> / l10n-only, gated by CI + eyeball rather than a full smoke matrix — e.g. v1.8.1) do **not**
+> get a folder; they are recorded via the `CHANGELOG.md` entry + a row in
+> [`smoke-test-results.md`](../testing/smoke-test-results.md). **Legacy releases** (v1.0.0–v1.6.0)
+> stay as flat `smoke-test-vX.Y.Z.md` files in `docs/testing/releases/` — closed history is not
+> retro-migrated. v1.7.0 / v1.8.0 are the worked examples of the folder layout.
 
 ---
 

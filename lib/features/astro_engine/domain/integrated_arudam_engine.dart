@@ -26,6 +26,56 @@ enum OracleBand {
   }
 }
 
+/// A single doctrinal reason contributing to an Aruḍam verdict, with provenance.
+///
+/// Provenance mappings (single source of truth):
+/// - [birdState]: Panja Pakshi bird-state ceiling — CONF-PP-004
+/// - [horaSwara]: Hora × swara affinity — CONF-014
+/// - [tarabala]: Navatara category weight — CONF-PP-001/002
+/// - [categoryHarmony]: Action-window vs query-category harmony — CONF-015
+/// - [readiness]: Breath alignment multiplier — CONF-016 / CONF-017
+/// - [sushumna]: Sushumna transcendent neutral — CONF-026
+/// - [floorLock]: Rahu/Emakandam inauspicious window override — CONF-018
+enum ArudamFactor {
+  /// Panja Pakshi bird-state ceiling — CONF-PP-004 (ruling planets/state).
+  birdState,
+
+  /// Hora × swara affinity — CONF-014 (two clocks) / CONF-012 (tattva).
+  horaSwara,
+
+  /// Navatara category weight — Panja Pakshi tarabala (CONF-PP-001/002).
+  tarabala,
+
+  /// Action-window vs query-category harmony — CONF-015.
+  categoryHarmony,
+
+  /// Breath alignment multiplier — CONF-016 / CONF-017.
+  readiness,
+
+  /// Sushumna transcendent neutral — CONF-026.
+  sushumna,
+
+  /// Rahu/Emakandam inauspicious window override — CONF-018.
+  floorLock,
+}
+
+/// Qualitative strength indicator for a doctrinal reason (never shown as raw numbers).
+enum FactorStrength { strong, moderate, weak, blocking }
+
+/// One line of the "Why?" explanation: which factor, its qualitative strength,
+/// and the CONF id to cite. NO raw numbers.
+class ArudamReason {
+  const ArudamReason({
+    required this.factor,
+    required this.strength,
+    required this.conf,
+  });
+
+  final ArudamFactor factor;
+  final FactorStrength strength;
+  final String conf;
+}
+
 /// Result of an Integrated Aruḍam evaluation.
 class IntegratedArudamResult {
   const IntegratedArudamResult({
@@ -36,6 +86,7 @@ class IntegratedArudamResult {
     required this.englishGuidance,
     required this.tamilGuidance,
     required this.isFloorLocked,
+    required this.reasons,
   });
 
   /// The final composite score (0–100) after Readiness multiplier and floor-lock.
@@ -58,6 +109,9 @@ class IntegratedArudamResult {
 
   /// Whether the score was floor-locked to 10% by an inauspicious window.
   final bool isFloorLocked;
+
+  /// Doctrinal factor breakdown with provenance citations for transparency.
+  final List<ArudamReason> reasons;
 }
 
 /// The Integrated Aruḍam Engine — multi-factor composite scoring combining
@@ -138,6 +192,13 @@ class IntegratedArudamEngine {
             '\u0BAA\u0BC1\u0BA4\u0BBF\u0BAF \u0B95\u0BBE\u0BB0\u0BBF\u0BAF\u0B99\u0BCD\u0B95\u0BB3\u0BC8\u0BA4\u0BCD '
             '\u0BA4\u0BB5\u0BBF\u0BB0\u0BCD\u0B95\u0BCD\u0B95\u0BB5\u0BC1\u0BAE\u0BCD.',
         isFloorLocked: true,
+        reasons: const [
+          ArudamReason(
+            factor: ArudamFactor.floorLock,
+            strength: FactorStrength.blocking,
+            conf: 'CONF-018',
+          ),
+        ],
       );
     }
 
@@ -164,7 +225,67 @@ class IntegratedArudamEngine {
     final finalScore = rawScore.round().clamp(0, 100);
     final band = OracleBand.fromScore(finalScore);
 
-    // 4. Generate guidance text
+    // 4. Build doctrinal reasons breakdown with provenance citations
+    final reasons = <ArudamReason>[
+      // Moment reasons
+      ArudamReason(
+        factor: ArudamFactor.birdState,
+        strength: baseScore >= 80
+            ? FactorStrength.strong
+            : (baseScore >= 40 ? FactorStrength.moderate : FactorStrength.weak),
+        conf: 'CONF-PP-004',
+      ),
+      ArudamReason(
+        factor: ArudamFactor.horaSwara,
+        strength: horaSwaraMultiplier >= 1.1
+            ? FactorStrength.strong
+            : (horaSwaraMultiplier >= 0.9
+                  ? FactorStrength.moderate
+                  : FactorStrength.weak),
+        conf: 'CONF-014',
+      ),
+      ArudamReason(
+        factor: ArudamFactor.tarabala,
+        strength: tarabalaMultiplier >= 1.1
+            ? FactorStrength.strong
+            : (tarabalaMultiplier >= 0.9
+                  ? FactorStrength.moderate
+                  : FactorStrength.weak),
+        conf: 'CONF-PP-001/002',
+      ),
+      ArudamReason(
+        factor: ArudamFactor.categoryHarmony,
+        strength: categoryHarmony >= 1.1
+            ? FactorStrength.strong
+            : (categoryHarmony >= 0.9
+                  ? FactorStrength.moderate
+                  : FactorStrength.weak),
+        conf: 'CONF-015',
+      ),
+    ];
+
+    // You reasons (omitted if swara observation is stale / unknown)
+    if (actualSwara != null) {
+      if (actualSwara == BreathFlow.sushumna) {
+        reasons.add(
+          const ArudamReason(
+            factor: ArudamFactor.sushumna,
+            strength: FactorStrength.moderate,
+            conf: 'CONF-026',
+          ),
+        );
+      } else {
+        reasons.add(
+          ArudamReason(
+            factor: ArudamFactor.readiness,
+            strength: isAligned ? FactorStrength.strong : FactorStrength.weak,
+            conf: 'CONF-016 / CONF-017',
+          ),
+        );
+      }
+    }
+
+    // 5. Generate guidance text
     final englishText = _getEnglishText(band, actualSwara);
     final tamilText = _getTamilText(band, actualSwara);
 
@@ -176,6 +297,7 @@ class IntegratedArudamEngine {
       englishGuidance: englishText,
       tamilGuidance: tamilText,
       isFloorLocked: false,
+      reasons: List.unmodifiable(reasons),
     );
   }
 

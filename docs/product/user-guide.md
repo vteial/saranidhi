@@ -2,7 +2,7 @@
 
 # Saranidhi — User Guide
 
-> **Reviewed:** v1.8.0-web · **Next review:** every release (refresh for shipped features).
+> **Reviewed:** v1.8.1-web · **Next review:** every release (refresh for shipped features).
 
 > *"Your breath is not just a physiological function — it is a hidden spiritual inheritance."*
 
@@ -122,6 +122,7 @@ The always-on verdict at the top of your Today dashboard that synthesizes astron
   - **You (Personal Readiness):** Evaluates real-time nostril dominance against cosmic expectation.
 - **Natural Alignment Philosophy:** When your breath naturally matches cosmic timing, you claim 100% of the timing ceiling (`naturally aligned ✓`). When misaligned, Saranidhi emphasizes patience: *wait, accept, or note*. Natural alignment is a lifelong cultivation of harmony.
 - **Breath Observation Freshness:** If your latest breath observation is older than 30 minutes, the card displays the current timing ceiling and prompts you to observe your breath — personal readiness is never fabricated or assumed.
+- **"Why?" — the reasoning behind the verdict (tap to expand):** A collapsed **Why?** row sits under the verdict. Tap it to see, in plain language, *which* factors shaped the answer — grouped under **Moment — the timing** (your bird state, planetary Hora, Tarabala, and activity harmony) and **You — your readiness** (your breath alignment), or a single **Blocked** explanation during an inauspicious window. Each line carries a small source citation (the traditional practice / confirmation it rests on) so the guidance is transparent and traceable. Saranidhi never shows raw arithmetic — only the doctrinal reasoning. Available in English and Tamil.
 - **Contralateral Shift Guidance for Urgent Action:** If an unavoidable worldly duty arises during a misaligned window, a gentle link opens guidance on traditional contralateral pressure techniques (posture or axillary pressure). Re-checking breath after a physical shift logs the observation with strict integrity (`wasForcedShift: true`), keeping personal cultivation honest.
 - **24h-Correct Inauspicious Floor-Lock:** Completely protects you during active Rahu Kaal or Emakandam windows across the full 24 hours of the day.
 

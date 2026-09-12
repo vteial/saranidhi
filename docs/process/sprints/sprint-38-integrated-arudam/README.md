@@ -26,8 +26,9 @@
   Kiro Web reviewed the real diff and approved; regression gate verified.
 - **Process:** spec → coding-setup → review. Antigravity implemented; local run
   564 pass / 4 known-CloudKit baseline / 0 regressions.
-- **Shipped:** **v1.8.0 — pending release** (`/release-start` next). At release, the smoke
-  test moves from this folder to `docs/testing/releases/smoke-test-v1.8.0.md` (convention).
+- **Shipped:** **v1.8.0-web** to production — smoke test
+  [`smoke-test.md`](../../../testing/releases/v1.8.0/smoke-test.md) ✅ PASS;
+  release notes [`release-notes.md`](../../../testing/releases/v1.8.0/release-notes.md).
 - **Out of scope (named fast-follows):** "Why?" provenance accordion; native ambient
   surface (widget/watch/macOS); proactive nudge; 0.75-penalty tuning via the 7-day
   comparison; full streak/analytics natural-alignment rework (38.6 shipped the flag only).

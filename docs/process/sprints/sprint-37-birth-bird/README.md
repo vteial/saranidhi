@@ -26,5 +26,5 @@
   + review; Antigravity implement + local test). One review-flagged item (name-swap
   5-cycle) was verified exact against primary sources before merge.
 - **Shipped:** **v1.7.0-web** to production — smoke test
-  [`smoke-test-v1.7.0.md`](../../../testing/releases/smoke-test-v1.7.0.md) ✅ PASS;
-  release notes [`release-notes-v1.7.0.md`](../../../testing/releases/release-notes-v1.7.0.md).
+  [`smoke-test.md`](../../../testing/releases/v1.7.0/smoke-test.md) ✅ PASS;
+  release notes [`release-notes.md`](../../../testing/releases/v1.7.0/release-notes.md).
