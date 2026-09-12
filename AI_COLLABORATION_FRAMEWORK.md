@@ -27,7 +27,7 @@ sole merge & release authority.** The detailed lifecycles for Flows 3 and 4 live
 | **1** | **Knowledge Capture** | New source material (workshop video, book, YouTube, Telegram notes) | Captures/transcribes source → corpus doc on a `docs/*-capture` branch, strictly scoped (no binaries, no stray file moves) | Designs the capture prompt; verifies scope; rebases; opens PR | Merges | Corpus doc (`docs/research/*-knowledge.md`) + transcripts |
 | **2** | **CONF Resolution** | An open confirmation / cross-source conflict in the corpus | (optional) Delegated verification of a proposal against sources | Presents each CONF proposal (Tier-1→2→3); scribes the owner's decision into the corpus | **Adjudicates** (doctrinal authority) + merges | Resolved CONF entry in the corpus |
 | **3** | **Feature / Engine Sprint** | Backlog item scheduled into a sprint | Implements the spec; runs local `analyze`+`test` green; fills impl + test summaries | Authors the spec; reviews the real diff; runs `/sprint-update` | Merges + (later) tags | Sprint **dossier** (`docs/process/sprints/sprint-N-*/`) → §4 |
-| **4** | **Release** | One or more sprints on `main` ready to promote | QA-Verify smoke test on the deployed build; records results | `/release-start` → `/release-finish` → `/release-update`; drafts release notes + docs-audit | Merges release + prod PRs; **creates the tag**; ticks the docs-audit | Release **dossier** (smoke-test + release-notes + docs-audit `-vX.Y.Z.md`) → §2.1 |
+| **4** | **Release** | One or more sprints on `main` ready to promote | QA-Verify smoke test on the deployed build; records results | `/release-start` → `/release-finish` → `/release-update`; drafts release notes + docs-audit | Merges release + prod PRs; **creates the tag**; ticks the docs-audit | Release **dossier** folder `releases/vX.Y.Z/` (smoke-test + release-notes + docs-audit) → §2.1 |
 
 > **Where the flows connect:** Flow 1 feeds Flow 2 (you can't resolve a conflict
 > until the sources are captured); Flows 1+2 produce the CONF-resolved corpus that
@@ -83,7 +83,7 @@ flowchart TD
 | Framework Role | Actual Tool |
 | :--- | :--- |
 | **Common / Strategy Window** (BA + Architect + QA-Design) | **Google Antigravity IDE**, opened in **multiple windows**, each acting as a different persona (BA / Architect / QA-Design). The multi-window approach gives the multi-persona round-table within a single tool. |
-| **QA Assistant** (QA-Verify) | **Google Antigravity** — performs the real testing on deployed builds and the clerical recording (results in `docs/testing/releases/smoke-test-vX.Y.Z.md`), root-cause analysis, and bug logging. Does not edit source. |
+| **QA Assistant** (QA-Verify) | **Google Antigravity** — performs the real testing on deployed builds and the clerical recording (results in `docs/testing/releases/vX.Y.Z/smoke-test.md`), root-cause analysis, and bug logging. Does not edit source. |
 | **Developer Agent** | **Kiro Web** (the human + Kiro) — planning, documentation, all code/PRs, and the release workflow on `vteial/saranidhi`. Also runs the **spec → coding-setup → review** handoff: Kiro Web authors the spec and reviews the PR; the Antigravity coding setup implements it and runs local tests green before the PR (see `/delegate` in `dev-workflow.md`). |
 
 > **Local dev = pure Antigravity IDE.** Saranidhi's local development environment
@@ -148,7 +148,7 @@ commands live in `docs/process/dev-workflow.md`):
 ```mermaid
 flowchart TD
     A["Sprint(s) merged to main = staging"] --> B["/release-start\nKiro: release/vX.Y.Z branch"]
-    B --> B1["FIRST commit bumps pubspec.yaml version\n+ smoke-test-vX.Y.Z.md + CHANGELOG"]
+    B --> B1["FIRST commit bumps pubspec.yaml version\n+ releases/vX.Y.Z/ dossier + CHANGELOG"]
     B1 --> C["QA-Verify on release-branch preview\n(correct version shown)"]
     C --> D["Human merges release PR -> main"]
     D --> E["/release-finish\nKiro: PR main -> prod (release notes)"]
@@ -201,7 +201,7 @@ flowchart TD
 
 When QA-Verify finds a bug during smoke testing:
 
-1. **Log it** in `docs/testing/releases/smoke-test-vX.Y.Z.md` — scenario, expected vs. actual, and (if known) root cause.
+1. **Log it** in `docs/testing/releases/vX.Y.Z/smoke-test.md` — scenario, expected vs. actual, and (if known) root cause.
 2. **Kiro fixes it on the same branch** (the sprint or release/PR branch) as a **new commit — never `git --amend` after a CI failure.**
 3. **QA re-verifies the specific failed scenario** (targeted, not a full re-run) on the updated build.
 4. Only then proceed.
@@ -375,7 +375,7 @@ This framework describes the **collaboration model**. It cross-links to — and 
 | `docs/process/sprints/sprint-N-*/` | **Flow 3** sprint dossiers (spec + implementation-summary + test-summary + README index) |
 | `docs/process/templates/` | Templates for the dossier artifacts + the docs-audit gate |
 | `docs/research/*-workshop-knowledge.md` | **Flow 1** corpus (practices, CONF tracker) — the doctrinal source of truth |
-| `docs/testing/releases/` | **Flow 4** release dossier per version: `smoke-test-`, `release-notes-`, `docs-audit-vX.Y.Z.md` |
+| `docs/testing/releases/` | **Flow 4** release dossier per rich version in `vX.Y.Z/` (`smoke-test.md`, `release-notes.md`, `docs-audit.md`); legacy v1.0.0–v1.6.0 stay flat as `smoke-test-vX.Y.Z.md` |
 | `docs/testing/smoke-test-results.md` | Smoke-test results index (links every version) |
 | `CHANGELOG.md` | Released version history |
 

@@ -1,4 +1,4 @@
-[← Back to Smoke Test Index](../smoke-test-results.md) · [Sprint 38 dossier](../../process/sprints/sprint-38-integrated-arudam/README.md)
+[← Back to Smoke Test Index](../../smoke-test-results.md) · [Sprint 38 dossier](../../../process/sprints/sprint-38-integrated-arudam/README.md)
 
 # Smoke Test — v1.8.0-web (Sprint 38, Integrated Aruḍam Slice 1)
 
