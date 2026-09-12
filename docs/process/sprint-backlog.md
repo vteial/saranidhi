@@ -93,21 +93,25 @@ So the epic is: **extract the fusion out of the Oracle screen into a shared engi
 the dashboard ingredients + the missing alignment signal, make it 24h-correct, and surface
 an always-on verdict** — with the Oracle becoming the deep-dive form of the same verdict.
 
-### First shippable slice (scope-locked)
+### First shippable slice (scope-locked) — 📋 SCHEDULED as Sprint 38 (v1.8.0)
+
+> Scheduled via `/plan`. Full task list + Delivery Checklist live in the
+> **[Sprint 38 entry in the tracker](sprint-tracker.md#sprint-38-integrated-aruḍam--slice-1-v180--planned)**.
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🔴 | ⬜ | **Extract an `IntegratedArudamEngine`** from `OracleCompositeEngine` so the fusion is callable from the dashboard (not only the Oracle screen). Reuse existing bird/Hora/Tarabala/category logic. |
-| 🔴 | ⬜ | **Fuse breath-alignment as the Readiness multiplier** (Moment × Readiness): wire `AlignmentChecker`'s result in; aligned → ~1.0, misaligned → ~0.75 (uniform for v1, tune later via Accuracy Calibration), Sushumna → existing Yoga-context rule. Never a floor-lock. |
-| 🔴 | ⬜ | **24h-correct the inauspicious floor-lock** — replace/extend the day-only `DaylightSegmentResolver` path so Rahu/Emakandam (and night equivalents) gate correctly after sunset. |
-| 🔴 | ⬜ | **Ambient "Aruḍam Now" verdict card on Home** — always-on, reads `dashboardDataProvider`, shows band + the **two-clock plain-language breakdown** (Moment / You). Honest-but-partial when swara is stale (reuse the confirmed staleness rule — never fabricate a match). |
-| 🔴 | ⬜ | **Natural-vs-forced framing** — misalignment default = *wait/accept/note*; forced-shift behind a secondary, **warning**-toned affordance ("depleting; urgency only"); language never promises success (CONF-016/017: a nudge, not a guarantee). |
-| 🟡 | ⬜ | **Reward natural alignment in streaks/analytics** — mark/exclude force-shifted sessions from the alignment reward (design the data flag; full analytics rework can follow). |
-| 🔴 | ⬜ | Bilingual (EN/TA) verdict states + framing; keep the sacred tone. |
+| 🔴 | → S38 | **Extract an `IntegratedArudamEngine`** from `OracleCompositeEngine` so the fusion is callable from the dashboard (not only the Oracle screen). Reuse existing bird/Hora/Tarabala/category logic. |
+| 🔴 | → S38 | **Fuse breath-alignment as the Readiness multiplier** (Moment × Readiness): wire `AlignmentChecker`'s result in; aligned → ~1.0, misaligned → ~0.75 (uniform for v1, tune later via Accuracy Calibration), Sushumna → existing Yoga-context rule. Never a floor-lock. |
+| 🔴 | → S38 | **24h-correct the inauspicious floor-lock** — replace/extend the day-only `DaylightSegmentResolver` path so Rahu/Emakandam (and night equivalents) gate correctly after sunset. |
+| 🔴 | → S38 | **Ambient "Aruḍam Now" verdict card on Home** — always-on, reads `dashboardDataProvider`, shows band + the **two-clock plain-language breakdown** (Moment / You). Honest-but-partial when swara is stale (reuse the confirmed staleness rule — never fabricate a match). |
+| 🔴 | → S38 | **Natural-vs-forced framing** — misalignment default = *wait/accept/note*; forced-shift behind a secondary, **warning**-toned affordance ("depleting; urgency only"); language never promises success (CONF-016/017: a nudge, not a guarantee). |
+| 🟡 | → S38 | **Reward natural alignment — flag only.** Add the data flag marking force-shifted sessions so they're not rewarded as natural alignment; full analytics rework is a fast-follow. |
+| 🔴 | → S38 | Bilingual (EN/TA) verdict states + framing; keep the sacred tone. |
 
-> **Suggested vehicle:** a stability-sized feature sprint (spec → coding-setup → review).
+> **Vehicle:** Sprint 38, a stability-sized feature sprint (spec → coding-setup → review).
 > Most work is *extraction + wiring + one card* over proven engines, plus the night
-> floor-lock fix — a good fit for one sprint. Schedule the sprint number at the next `/plan`.
+> floor-lock fix. Correctness note: the floor-lock task touches shipped logic → the
+> Delivery Checklist carries a regression gate (Oracle day-time verdicts unchanged).
 
 ### Fast-follows (same epic, after slice 1 — named, parked)
 
