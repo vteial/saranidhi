@@ -9,6 +9,7 @@ import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart'
 import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
 import 'package:saranidhi/features/home/presentation/widgets/action_bar.dart';
 import 'package:saranidhi/features/home/presentation/widgets/action_window_sheet.dart';
+import 'package:saranidhi/features/home/presentation/widgets/arudam_now_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/birth_bird_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/focus_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.dart';
@@ -68,7 +69,9 @@ class _TodayContent extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Row 0: Action Bar (24h timeline) + Focus Card
+            // Row 0: Ambient "Aruḍam Now" Verdict Card + Action Bar + Focus Card
+            ArudamNowCard(data: data),
+            const SizedBox(height: 12),
             if (data.actionWindowSegments != null &&
                 data.actionWindowSegments!.isNotEmpty &&
                 data.sunrise != null) ...[
@@ -103,15 +106,17 @@ class _TodayContent extends ConsumerWidget {
                     if (data.birthBird != null && data.rahuKaal != null)
                       const SizedBox(width: 12),
                     if (data.rahuKaal != null)
-                      Expanded(child: RahuKaalCard(
-                        rahuKaal: data.rahuKaal!,
-                        kuligaiKaal: data.kuligaiKaal,
-                        emakandam: data.emakandam,
-                        sunrise: data.sunrise,
-                        sunset: data.sunset,
-                        lunarPhase: data.lunarPhase,
-                        activeHora: data.activeHora,
-                      )),
+                      Expanded(
+                        child: RahuKaalCard(
+                          rahuKaal: data.rahuKaal!,
+                          kuligaiKaal: data.kuligaiKaal,
+                          emakandam: data.emakandam,
+                          sunrise: data.sunrise,
+                          sunset: data.sunset,
+                          lunarPhase: data.lunarPhase,
+                          activeHora: data.activeHora,
+                        ),
+                      ),
                   ],
                 ),
               )
@@ -158,9 +163,7 @@ class _TodayContent extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Expanded(
-                      child: StreakFlameWidget(streak: data.streak),
-                    ),
+                    Expanded(child: StreakFlameWidget(streak: data.streak)),
                   ],
                 ),
               )

@@ -112,8 +112,16 @@ A full-screen room guides you with the correct body position, a **Sama Vritti** 
 ### 🔥 Streak & Consistency
 Watch your alignment streak grow day by day. A 7-day visual ribbon shows your recent history. A 30-day trend reveals your deeper patterns. The longer your streak, the more attuned you become.
 
-### 🦚 Panja Pakshi Oracle
-Know your birth bird and its current state at any moment. See at a glance whether this is a time to act boldly (Ruling) or rest quietly (Sleeping). The Oracle Readiness score synthesizes all cosmic factors into a single actionable number.
+### 🦅 Aruḍam Now (Integrated Ambient Verdict)
+The always-on verdict at the top of your Today dashboard that synthesizes astronomical timing and personal breath into ONE clear answer: *"Is now a good moment, and what should I do?"*
+
+- **Two-Clock Breakdown:**
+  - **The Moment (Cosmic Ceiling):** Integrates your Panja Pakshi bird state, planetary Hora, Tarabala (birth star to transit Moon harmony), and query category harmony into an objective quality score (0–100).
+  - **You (Personal Readiness):** Evaluates real-time nostril dominance against cosmic expectation.
+- **Natural Alignment Philosophy:** When your breath naturally matches cosmic timing, you claim 100% of the timing ceiling (`naturally aligned ✓`). When misaligned, Saranidhi emphasizes patience: *wait, accept, or note*. Natural alignment is a lifelong cultivation of harmony.
+- **Breath Observation Freshness:** If your latest breath observation is older than 30 minutes, the card displays the current timing ceiling and prompts you to observe your breath — personal readiness is never fabricated or assumed.
+- **Contralateral Shift Guidance for Urgent Action:** If an unavoidable worldly duty arises during a misaligned window, a gentle link opens guidance on traditional contralateral pressure techniques (posture or axillary pressure). Re-checking breath after a physical shift logs the observation with strict integrity (`wasForcedShift: true`), keeping personal cultivation honest.
+- **24h-Correct Inauspicious Floor-Lock:** Completely protects you during active Rahu Kaal or Emakandam windows across the full 24 hours of the day.
 
 ### 🔮 Prasanam Oracle
 A sacred consultation tool for life decisions. Select your query category (Artha for material, Kriya for action, Yoga for spiritual), center your intention, and receive a multi-factor composite score:

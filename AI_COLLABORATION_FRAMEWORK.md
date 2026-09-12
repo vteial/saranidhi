@@ -1,14 +1,48 @@
 # AI Team Collaboration Framework — Saranidhi
 
+> **Reviewed:** v1.7.0-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
+
 This document describes the multi-agent operating model used to develop the
 **Saranidhi** application: how a single human lead orchestrates specialized AI
-personas to take a feature from idea to production, and the gates that keep the
+personas to take work from idea to production, and the gates that keep the
 process honest.
 
-> **Status:** Finalized model, matured through the v1.6.0 release cycle. It is
+> **Status:** Finalized model, matured through the v1.7.0 release cycle. It is
 > intentionally **Saranidhi-specific**; a stack-agnostic version will be
-> extracted into a reusable template (`project-blueprint`) later, once this
+> extracted into a reusable template (`vteial/project-blueprint`) later, once this
 > process has been evaluated in real use.
+
+---
+
+## 0. The Four Flows (overview)
+
+Everything this project does maps to **four repeatable end-to-end flows**. Each is
+run by the Human orchestrating the same cast (Antigravity for capture/verify, Kiro
+Web for planning/docs/code/PRs), and each ends at the same gate: **the Human is the
+sole merge & release authority.** The detailed lifecycles for Flows 3 and 4 live in
+§4 and §2.1 respectively.
+
+| # | Flow | Trigger | Antigravity does | Kiro Web does | Human does | Artifact / record |
+| :- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **1** | **Knowledge Capture** | New source material (workshop video, book, YouTube, Telegram notes) | Captures/transcribes source → corpus doc on a `docs/*-capture` branch, strictly scoped (no binaries, no stray file moves) | Designs the capture prompt; verifies scope; rebases; opens PR | Merges | Corpus doc (`docs/research/*-knowledge.md`) + transcripts |
+| **2** | **CONF Resolution** | An open confirmation / cross-source conflict in the corpus | (optional) Delegated verification of a proposal against sources | Presents each CONF proposal (Tier-1→2→3); scribes the owner's decision into the corpus | **Adjudicates** (doctrinal authority) + merges | Resolved CONF entry in the corpus |
+| **3** | **Feature / Engine Sprint** | Backlog item scheduled into a sprint | Implements the spec; runs local `analyze`+`test` green; fills impl + test summaries | Authors the spec; reviews the real diff; runs `/sprint-update` | Merges + (later) tags | Sprint **dossier** (`docs/process/sprints/sprint-N-*/`) → §4 |
+| **4** | **Release** | One or more sprints on `main` ready to promote | QA-Verify smoke test on the deployed build; records results | `/release-start` → `/release-finish` → `/release-update`; drafts release notes + docs-audit | Merges release + prod PRs; **creates the tag**; ticks the docs-audit | Release **dossier** (smoke-test + release-notes + docs-audit `-vX.Y.Z.md`) → §2.1 |
+
+> **Where the flows connect:** Flow 1 feeds Flow 2 (you can't resolve a conflict
+> until the sources are captured); Flows 1+2 produce the CONF-resolved corpus that
+> Flow 3 derives features from (with provenance: each feature cites the corpus
+> practice + CONF it implements); Flow 3 accumulates sprints that Flow 4 ships.
+> Flows **1 & 2 are doctrine-specific** to Saranidhi (a source-corpus product);
+> Flows **3 & 4 are universal** to any project.
+
+```mermaid
+flowchart LR
+    F1["1 · Knowledge Capture\n(source → corpus)"] --> F2["2 · CONF Resolution\n(resolve conflicts)"]
+    F2 --> F3["3 · Feature / Engine Sprint\n(spec → implement → review)"]
+    F3 --> F4["4 · Release\n(smoke → promote → tag)"]
+    F1 -. "provenance" .-> F3
+```
 
 ---
 
@@ -48,14 +82,20 @@ flowchart TD
 
 | Framework Role | Actual Tool |
 | :--- | :--- |
-| **Common / Strategy Window** (BA + Architect + QA-Design) | **IntelliJ IDEA + AI Assistant running Google Antigravity**, opened in **multiple windows**, each acting as a different persona. This multi-window approach is a deliberate **cost-cutting** choice — it provides the multi-persona round-table without additional paid tooling. |
-| **QA Assistant** (QA-Verify) | **Google Antigravity** — performs the real testing on deployed builds and the clerical recording (results in `docs/smoke-test-*.md`), root-cause analysis, and bug logging. Does not edit source. |
-| **Developer Agent** | **Kiro Web** (the human + Kiro) — planning, documentation, all code/PRs, and the release workflow on `vteial/saranidhi`. |
+| **Common / Strategy Window** (BA + Architect + QA-Design) | **Google Antigravity IDE**, opened in **multiple windows**, each acting as a different persona (BA / Architect / QA-Design). The multi-window approach gives the multi-persona round-table within a single tool. |
+| **QA Assistant** (QA-Verify) | **Google Antigravity** — performs the real testing on deployed builds and the clerical recording (results in `docs/testing/releases/smoke-test-vX.Y.Z.md`), root-cause analysis, and bug logging. Does not edit source. |
+| **Developer Agent** | **Kiro Web** (the human + Kiro) — planning, documentation, all code/PRs, and the release workflow on `vteial/saranidhi`. Also runs the **spec → coding-setup → review** handoff: Kiro Web authors the spec and reviews the PR; the Antigravity coding setup implements it and runs local tests green before the PR (see `/delegate` in `dev-workflow.md`). |
 
-> **Bridge constraint:** the AI personas live in **separate tools and cannot talk
+> **Local dev = pure Antigravity IDE.** Saranidhi's local development environment
+> is the **Antigravity IDE on the owner's Mac** — both the persona round-table
+> (Common Window) and the local coding setup live in Antigravity. (IntelliJ IDEA is
+> the owner's separate *Arivagam* project, not Saranidhi.)
+
+> **Bridge constraint:** the AI surfaces (the Antigravity Common Window, the
+> Antigravity coding/QA setup, and Kiro Web) **do not share a session and cannot talk
 > to each other directly.** The Human is the bridge, and the standardized
-> **Feature Brief** (§5) is the message passed between the Common Window and the
-> Developer Agent.
+> **Feature Brief** (§5) / **sprint spec** is the message passed between the Common
+> Window and the Developer Agent.
 
 ---
 
@@ -63,14 +103,14 @@ flowchart TD
 
 The human runs the project across two main workspaces:
 
-1. **Common / Strategy Window** — IntelliJ + Antigravity multi-window (BA, Architect, QA-Design).
+1. **Common / Strategy Window** — Antigravity IDE multi-window (BA, Architect, QA-Design).
 2. **Developer Agent (Kiro Web)** — execution: code, docs, builds, branches/PRs, release workflow.
 
 *(Optional: a dedicated single-role window for large, isolated deep-dives — see §3.)*
 
 ```mermaid
 flowchart LR
-    subgraph Common ["🪟 1. Common Window (IntelliJ + Antigravity)"]
+    subgraph Common ["🪟 1. Common Window (Antigravity IDE)"]
         direction TB
         Idea["Human idea"] --> Round["BA + Architect + QA-Design"]
         Round --> Brief["Feature Brief"]
@@ -100,8 +140,10 @@ flowchart LR
 
 ### 2.1 Release Lifecycle
 
+> This is the detailed lifecycle for **Flow 4 (Release)** in the §0 map.
+
 Beyond a single feature, releases follow a strict two-phase flow (protocol
-commands live in `docs/dev-workflow.md`):
+commands live in `docs/process/dev-workflow.md`):
 
 ```mermaid
 flowchart TD
@@ -159,12 +201,52 @@ flowchart TD
 
 When QA-Verify finds a bug during smoke testing:
 
-1. **Log it** in `docs/smoke-test-vX.Y.Z.md` — scenario, expected vs. actual, and (if known) root cause.
+1. **Log it** in `docs/testing/releases/smoke-test-vX.Y.Z.md` — scenario, expected vs. actual, and (if known) root cause.
 2. **Kiro fixes it on the same branch** (the sprint or release/PR branch) as a **new commit — never `git --amend` after a CI failure.**
 3. **QA re-verifies the specific failed scenario** (targeted, not a full re-run) on the updated build.
 4. Only then proceed.
 
 *v1.5.0 proof: the `rootNavigator` nav-bar fix was applied on the release branch and re-verified via a targeted J/M scenario pass on commit `969bb4f`.*
+
+### 2.5 Flow 1 — Knowledge Capture
+
+The doctrine-specific flow that digitizes source material into the canonical corpus
+from which the backlog is derived. This is what makes the ≥95%-fidelity goal
+auditable rather than a slogan.
+
+```mermaid
+flowchart TD
+    A["New source material\n(workshop video / book / YouTube / Telegram)"] --> B["Kiro Web: design a scoped capture prompt\n(+ scope guardrails)"]
+    B --> C["Antigravity: capture/transcribe → corpus doc\non a docs/*-capture branch"]
+    C --> D["Kiro Web: verify scope\n(zero binaries, no stray file moves) + rebase"]
+    D --> E["Kiro Web: open PR"]
+    E --> F["Human: merge"]
+```
+
+- **Corpus docs:** `docs/research/*-workshop-knowledge.md` (+ `docs/research/transcripts/`). Each practice is bilingual (Tamil + transliteration + English) and tagged by app-help bucket (🟢 assistable / 🟡 augmentable / 🔴 self-achieved).
+- **Scope discipline (hard rule):** the capture agent stays strictly inside the knowledge doc — it must **never move, rename, or archive other files**, even if asked mid-session (a prior run wrongly archived 9 live docs; surface consequences + a separate commit instead). Prompts carry this guardrail.
+- **Output feeds Flow 2:** anything ambiguous or cross-source-conflicting is logged as a **CONF** (or **CONF-PP** for Panja Pakshi) for adjudication — never silently resolved by the capture agent.
+
+### 2.6 Flow 2 — CONF Resolution
+
+Adjudicating the open confirmations / cross-source conflicts surfaced by Flow 1.
+**The Human is the doctrinal authority; Kiro is the scribe** — the owner decides,
+Kiro commits the decision via PR.
+
+```mermaid
+flowchart TD
+    A["Open CONF in corpus\n(ambiguity / cross-source conflict)"] --> B["Kiro Web: present the proposal\n(Tier-1 engine-blockers first, then 2, 3)"]
+    B --> C{"Owner decides"}
+    C -->|"decide directly"| E["Kiro Web: scribe resolution into corpus"]
+    C -->|"delegate verification"| D["Antigravity: verify proposal against sources"]
+    D --> E
+    E --> F["Kiro Web: open PR"]
+    F --> G["Human: merge"]
+```
+
+- **Authority rule:** when sources conflict, the **owner's lineage decision IS the definition of "source truth"** for the app. Kiro never adjudicates doctrine.
+- **Tiering:** Tier-1 = conflicts that change the core engine (resolve before any backlog derivation); Tier-2/3 = refinements. Saranidhi resolved Sara Kalai 26/26 and Panja Pakshi 6/6 this way.
+- **Downstream guarantee:** Flow 3 features must not surface an unresolved CONF as fact; each shipped rule cites the corpus practice **+ the resolved CONF** it implements (provenance/traceability discipline).
 
 ---
 
@@ -181,6 +263,10 @@ When QA-Verify finds a bug during smoke testing:
 ---
 
 ## 4. End-to-End Feature Lifecycle
+
+> This is the detailed lifecycle for **Flow 3 (Feature / Engine Sprint)** in the §0
+> map. The spec → coding-setup → review handoff and the per-sprint dossier are
+> covered by the `/delegate` protocol in `docs/process/dev-workflow.md`.
 
 ```mermaid
 sequenceDiagram
@@ -286,9 +372,14 @@ This framework describes the **collaboration model**. It cross-links to — and 
 | `docs/process/dev-workflow.md` | Protocol commands (`/plan`, `/sprint-*`, `/release-*`), branching, CI details, Lessons/Gotchas |
 | `docs/process/sprint-tracker.md` | Delivered + in-progress sprints, overview table, Definition of Done |
 | `docs/process/sprint-backlog.md` | Candidate/future work, epics, open decisions, ideas |
-| `docs/testing/releases/smoke-test-*.md` + `docs/testing/smoke-test-results.md` | Per-release test plans + results index |
+| `docs/process/sprints/sprint-N-*/` | **Flow 3** sprint dossiers (spec + implementation-summary + test-summary + README index) |
+| `docs/process/templates/` | Templates for the dossier artifacts + the docs-audit gate |
+| `docs/research/*-workshop-knowledge.md` | **Flow 1** corpus (practices, CONF tracker) — the doctrinal source of truth |
+| `docs/testing/releases/` | **Flow 4** release dossier per version: `smoke-test-`, `release-notes-`, `docs-audit-vX.Y.Z.md` |
+| `docs/testing/smoke-test-results.md` | Smoke-test results index (links every version) |
 | `CHANGELOG.md` | Released version history |
 
-> **Freshness rule:** when a protocol or gate changes, update
+> **Freshness rule:** when a protocol, gate, or **flow** changes, update
 > `docs/process/dev-workflow.md` **and** this framework in the **same PR** so they
-> never drift.
+> never drift. This doc is also on the per-release **docs-audit** freshness gate
+> (its `> Reviewed:` stamp is bumped when checked).

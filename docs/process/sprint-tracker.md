@@ -28,14 +28,24 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 34 | Migration + Onboarding UX Polish | *(bundled)* | ✅ |
 | 35 | Somatic Intervention Engine | **v1.5.0** | ✅ 🚀 |
 | 36 | Stability & Test Hardening | **v1.6.0** | ✅ 🚀 (PR #141) |
-| 37 | Birth-Bird Engine Correction | **v1.7.0** | 🔄 (PR in prep) |
-| 38+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
+| 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ (PR #181) |
+| 39+ | Chronobiology, v2.0 polish, accuracy calibration, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.6.0-web is now live in production (2026-09-07)**, tag
-> `v1.6.0-web`. Sprint 36 (Stability & Test Hardening) shipped via PR #141 (with
-> CI hotfixes #142/#143 and release PRs #144 release-start + #145 main→prod).
+> **Current state:** **v1.7.0-web is now live in production (2026-09-11)**, tag
+> `v1.7.0-web` @ `prod`. Sprint 37 (Birth-Bird Engine Correction) shipped via
+> engine PR #167 → release-start PR #169 → main→prod promotion PR #172; smoke test
+> PASS (A1 migration verified live on iPad). This corrects the Panja Pakshi
+> birth-bird derivation to the canonical 5-6-5-5-6 single-permanent-table model
+> (CONF-PP-001…005), with existing users auto-corrected on app open.
+> Both corpora (Sara Kalai, Panja Pakshi) are now fully CONF-resolved.
 > Further work is selected from the [Sprint Backlog](sprint-backlog.md) during
-> `/plan`.
+> `/plan`. **Phase 2b is underway:** the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
+> epic first slice is now scheduled as **Sprint 38 (v1.8.0)** — an always-on
+> "Aruḍam Now" verdict on Home (Moment × Readiness) over a shared engine extracted
+> from the Oracle, unifying the former "Now" Surface (see the Sprint 38 Delivery
+> Checklist below). Also pending: the accuracy calibration (7-day 3-way comparison,
+> blocked on owner data collection).
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -631,7 +641,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 >
 > **Process:** per the confirmed division of labor, **the implementation is done in
 > the Antigravity IDE coding setup** (Saranidhi local dev; local `flutter test`/`analyze` before PR);
-> **Kiro Web authored the spec** ([`docs/process/sprint-37-birth-bird-spec.md`](sprint-37-birth-bird-spec.md))
+> **Kiro Web authored the spec** ([`docs/process/sprints/sprint-37-birth-bird/spec.md`](sprints/sprint-37-birth-bird/README.md))
 > and will **review the resulting PR**. Bird calc is correctness-critical → local
 > green test run is required before it ships (v1.2.1 lesson).
 
@@ -664,12 +674,65 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
+## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — ✅ Complete (PR #181)
+
+> **Goal:** ship the first slice of the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
+> epic — an **always-on "Aruḍam Now" verdict card on Home** that fuses the separate
+> engines (Sara Kalai swara × Panja Pakshi bird-state × Hora/Tarabala × inauspicious
+> windows) into ONE answer to *"is now a good moment, and what should I do?"*.
+> Scoring = **Moment × Readiness** (Moment sets the ceiling; breath is a readiness
+> multiplier — aligned ~1.0 / misaligned ~0.75, **never a floor-lock**). Owner-confirmed
+> in the Phase-2b `/plan` (PR #179).
+>
+> **North Star:** the app cultivates **natural** alignment as a lifelong practice — it
+> never sells shortcuts. Forced shifting is **urgency-only + warning-toned**; the app
+> must never present it as the "fix"/success path.
+>
+> **Process:** spec → coding-setup → review (Kiro Web authors the spec + reviews;
+> Antigravity IDE implements + local green before PR). **Correctness-critical:** Task
+> 38.3 touches shipped calculation logic (`DaylightSegmentResolver`) → local `analyze`
+> + full `flutter test` green before the PR is required (v1.2.1 lesson), and the
+> refactor must be **behavior-preserving for existing day-time Oracle verdicts**.
+>
+> **Engine reality:** the fusion is ~80% already built inside `OracleCompositeEngine`
+> but trapped in the Oracle screen (pull-only); `dashboardDataProvider` already
+> assembles every ingredient 24h. So most of this slice is **extraction + wiring + one
+> card**, plus the night floor-lock fix.
+
+- [x] Task 38.1: **Extract `IntegratedArudamEngine`** from `OracleCompositeEngine` so the composite fusion (bird-state × Tarabala × Hora-Swara × category) is callable from the dashboard, not only the Oracle screen. Reuse the existing bands (Siddha/Vardhana/Mandha/Stambhana/Sunya) + bilingual guidance. **Behavior-preserving:** the Oracle keeps producing identical verdicts through the extracted engine.
+- [x] Task 38.2: **Fuse breath-alignment as the Readiness multiplier** (Moment × Readiness): wire `AlignmentChecker`'s result into the score — aligned → ~1.0, misaligned → ~0.75 (uniform for v1; tuned later via Accuracy Calibration), Sushumna → existing Yoga-context rule. Never a floor-lock.
+- [x] Task 38.3: **24h-correct the inauspicious floor-lock** — replace/extend the day-only `DaylightSegmentResolver` path so Rahu/Emakandam (and night equivalents) gate correctly after sunset. **Regression-critical** (see DoD).
+- [x] Task 38.4: **Ambient "Aruḍam Now" verdict card on Home** — always-on, reads `dashboardDataProvider`, shows band + the **two-clock plain-language breakdown** (Moment: bird/Hora · You: aligned?). Honest-but-partial when swara is stale (reuse the confirmed staleness rule — degrade to "expected + check", never fabricate a match).
+- [x] Task 38.5: **Natural-vs-forced framing** — misalignment default guidance = *wait / accept / note*; forced-shift only behind a secondary, **warning**-toned "Urgent?" affordance ("depleting; an exception, not a habit"); language never promises success (CONF-016/017: a nudge, not a guarantee). Loop ends with "re-check", not "done".
+- [x] Task 38.6: **Reward natural alignment — flag only (analytics rework deferred).** Add the data flag distinguishing force-shifted sessions so they are **not** rewarded as natural alignment. Scope = design + persist the flag; the full streak/analytics rework is a fast-follow, not this sprint.
+- [x] Task 38.7: **Bilingual (EN/TA) verdict states + framing**, keeping the sacred tone.
+
+> **Explicitly out of scope (named fast-follows, not this slice):** the "Why?"
+> provenance accordion; native ambient surface (widget/watch/macOS); calendar-aware
+> proactive nudge; tuning the 0.75 penalty via the 7-day 3-way comparison; the full
+> streak/analytics natural-alignment rework.
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Code merged** — on `main` (PR #181, merge `d83347d`). _(owner merged — Kiro cannot merge)_
+- [x] **PR link** — [#181](https://github.com/vteial/saranidhi/pull/181) (CI green pre-merge: Analyze / Fast Tests / Build + Full Suite + Integration; local run 564 pass / 4 known-CloudKit baseline / 0 regressions, analyze clean, web build clean). Implemented in the Antigravity IDE coding setup; **Kiro Web reviewed the real diff and APPROVED** (regression gate verified — Oracle day-time behavior preserved, alignment-feeds-score is the authorized Q2-A change, night floor-lock now gates).
+- [x] **Regression gate (Task 38.3/38.1)** — **existing Prasanam Oracle day-time verdicts are UNCHANGED** by the engine extraction + floor-lock refactor (add/keep tests pinning current day-time scores), **AND** night verdicts now gate correctly (Rahu/Emakandam after sunset). Extraction refactors are exactly where behavior silently drifts — this must be proven, not assumed.
+- [x] **Docs updated** — `calculation-methodology.md` (integrated verdict + Moment × Readiness + night floor-lock); User Guide gets the "Aruḍam Now" card + the natural-vs-forced philosophy.
+- [x] **Tests** — `IntegratedArudamEngine` unit tests (Moment × Readiness math, misalignment penalty, Sushumna-in-Yoga, night floor-lock); Oracle-unchanged regression tests; verdict-card widget test; local green before PR.
+- [x] **Smoke test** — scenarios authored in `smoke-test-v1.8.0.md` (verdict card day + night; aligned vs misaligned; stale-swara degrade; forced-shift warning tone; EN/TA). ⚠️ **File relocation pending:** it currently sits in the sprint dossier folder; it must move to `docs/testing/releases/smoke-test-v1.8.0.md` (repo convention) at `/release-start`.
+- [ ] **Valuation report** — Sprint 38 row (+20%) — deferred to `/sprint-update`.
+- [x] **Tracker updated** — status ✅ (this `/sprint-finish`).
+- [x] **User Guide** — "Aruḍam Now" section + the natural-alignment philosophy — real capability change, so **not** `n/a`.
+
+---
+
 ## Future Sprints
 
-Future and candidate sprints (38 v2.0 Polish, 39 Accuracy Calibration, Chronobiology,
-Integrated Aruḍam, The Now Surface, E2E Automation, App Store Prep) live in the
-**[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into
-this tracker (with a Delivery Checklist) when scheduled via `/plan`.
+The flagship **Integrated Aruḍam** slice 1 is now scheduled as **Sprint 38**
+(above). Remaining future/candidate sprints (the flagship's fast-follows incl. the
+native "Now" Surface, plus v2.0 Polish, Accuracy Calibration, Chronobiology, E2E
+Automation, App Store Prep) live in the **[Sprint Backlog](sprint-backlog.md)** with
+full task lists. They graduate into this tracker (with a Delivery Checklist) when
+scheduled via `/plan`.
 
 > **Note on numbering:** Sprint 37 was reassigned from "Chronobiology" to
 > "Birth-Bird Engine Correction" — the CONF-PP audit surfaced a live calculation

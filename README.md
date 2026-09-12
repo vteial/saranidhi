@@ -36,14 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.6.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Production** | v1.7.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 36 | — |
-| **Total PRs** | ~148 | — |
-| **Engineering Hours** | see [valuation report](docs/process/project-valuation-report.md) | AI-assisted (Kiro) |
+| **Sprints Delivered** | 37 | — |
+| **Total PRs** | ~173 | — |
+| **Engineering Hours** | ~110.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
-**Latest:** v1.6.0-web (Stability & Test Hardening, Sprint 36).
-**Next:** selected from the [Sprint Backlog](docs/process/sprint-backlog.md) epics during `/plan`.
+**Latest:** v1.7.0-web (Birth-Bird Engine Correction, Sprint 37) — Panja Pakshi birth-bird derivation corrected to the canonical 5-6-5-5-6 lineage model (CONF-PP-001…005); existing users auto-corrected on app open.
+**Next:** Phase 2b backlog derivation (epic-tagged, corpus-linked) + accuracy calibration — selected from the [Sprint Backlog](docs/process/sprint-backlog.md) during `/plan`.
 
 ---
 

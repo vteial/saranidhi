@@ -11,7 +11,7 @@ Per the [AI_COLLABORATION_FRAMEWORK](../../AI_COLLABORATION_FRAMEWORK.md), QA-Ve
 **To use it each release:**
 
 1. Copy the [prompt block](#reusable-prompt) below.
-2. Fill in the per-release placeholders — see the [fill-in checklist](#per-release-fill-in-checklist): version, staging URL, smoke-test file path, and the "What changed this release" list.
+2. Fill in the per-release placeholders — see the [fill-in checklist](#per-release-fill-in-checklist): version, **preview URL**, smoke-test file path, and the "What changed this release" list.
 3. Paste the completed prompt into Antigravity and let QA-Verify execute.
 
 ---
@@ -22,13 +22,13 @@ QA-Verify **OWNS the deployed-build verification gate**. Within that gate:
 
 | QA-Verify DOES | QA-Verify DOES NOT |
 |----------------|--------------------|
-| Execute the smoke test on the **deployed (staging)** build | Edit source code |
+| Execute the smoke test on the **deployed (release-PR preview)** build | Edit source code |
 | Record PASS / FAIL / BLOCKED results per scenario | Merge PRs |
 | Log bugs with reproduction steps and **root-cause analysis** | Create tags |
 | Re-verify the specific failed scenario after a fix | Fix bugs itself |
 
 - Bugs are fixed by the **Developer Agent (Kiro Web)** on the **same release branch**; QA-Verify then re-verifies only the specific failed scenario.
-- **QA sign-off requires the staging build functionally correct AND CI green** — not just a passing Vercel preview.
+- **QA sign-off requires the preview build functionally correct AND CI green** — the required CI checks passing, not just that the Vercel preview rendered/deployed.
 
 ---
 
@@ -43,8 +43,20 @@ verification gate: you execute the smoke test on the DEPLOYED build, record resu
 log bugs with root-cause analysis. You DO NOT edit source code, and you DO NOT merge or tag.
 
 RELEASE UNDER TEST: v{VERSION} ({SPRINT / release theme}).
-ENVIRONMENT: Staging — {STAGING_URL} (reflects current `main` + the release PR).
+ENVIRONMENT: the release PR's Vercel PREVIEW (NOT staging — staging deploys from `main`, so
+the release branch's changes are not there until merge). Base preview host: {PREVIEW_URL}.
+The preview has Vercel Deployment Protection, so authenticate via the automation-bypass
+secret (see PREVIEW ACCESS below).
 REPO: vteial/saranidhi. Release branch: release/v{VERSION}.
+
+PREVIEW ACCESS (Vercel Deployment Protection bypass):
+- Read the secret VERCEL_AUTOMATION_BYPASS_SECRET from the local `.env` file (gitignored;
+  never committed). It is Vercel's "Protection Bypass for Automation" secret.
+- Navigate using it as a QUERY PARAM so the browser passes it on the top-level request:
+    {PREVIEW_URL}/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
+  The `x-vercel-set-bypass-cookie=true` param sets a cookie on first load so subsequent
+  in-app navigation stays bypassed for the whole run.
+- Protection stays ON for humans; this only bypasses it for this automated run.
 
 TEST PLAN (source of truth): docs/testing/releases/smoke-test-v{VERSION}.md on the release
 branch. Execute EVERY scenario in that file, in order.
@@ -71,7 +83,7 @@ EXECUTION INSTRUCTIONS:
 DELIVERABLE (clerical recording — this you MAY write):
 - Fill in docs/testing/releases/smoke-test-v{VERSION}.md with results for every scenario
   (status, notes, evidence), plus a top summary verdict: PASS / PASS-WITH-NOTES / FAIL, the
-  date, browser/viewport, and the staging URL/commit tested.
+  date, browser/viewport, and the preview URL/commit tested.
 - Commit the results to the release/v{VERSION} branch (results-recording commit only — no
   source changes). Do NOT merge the release PR and do NOT create tags — those are the owner's
   actions.
@@ -79,7 +91,7 @@ DELIVERABLE (clerical recording — this you MAY write):
   get fixed on the SAME release branch by the Developer Agent (Kiro Web), then you re-verify
   the specific failed scenario.
 
-GATE RULE: QA sign-off requires the staging build functionally correct AND CI green (not just
+GATE RULE: QA sign-off requires the preview build functionally correct AND CI green (not just
 the Vercel preview). Your job is the deployed-build verification gate.
 
 Begin by reading docs/testing/releases/smoke-test-v{VERSION}.md, then execute and record.
@@ -95,7 +107,7 @@ Substitute exactly these items each release; everything else in the prompt is st
 |-------------|-------------|---------|
 | `{VERSION}` | The release version (semver, no `v` prefix inside the number) | `1.6.0` |
 | `{SPRINT / release theme}` | The sprint number and/or one-line theme | `Sprint 36 — stability hardening` |
-| `{STAGING_URL}` | The staging deployment URL for this release | `https://saranidhi-staging.vercel.app` |
+| `{PREVIEW_URL}` | The release PR's Vercel **preview** host (from the `vercel[bot]` PR comment) — NOT staging | `https://saranidhi-git-release-vX-Y-Z-<team>.vercel.app` |
 | Smoke-test file path | The versioned smoke-test file to execute and record into | `docs/testing/releases/smoke-test-v1.6.0.md` |
 | `WHAT THIS RELEASE CHANGED` bullets | User-facing changes for this release only | see derivation note below |
 | `HIGHEST-PRIORITY VERIFICATION` bullets | Core risk areas; include the upgrade/migration path when in scope | e.g. "existing-profile bird backfill on upgrade" |
