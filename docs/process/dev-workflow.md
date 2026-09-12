@@ -204,13 +204,14 @@ Prepares the smoke test execution.
 
 1. Kiro creates branch `release/vX.Y.Z` from `main`
 2. **Bumps `version:` in `pubspec.yaml`** to match the release (e.g., `1.3.0+1`)
-   - This ensures the About card (via `package_info_plus`) shows the correct version during smoke testing AND in production
+   - This ensures the About card (via `package_info_plus`) shows the correct version on the **PR's Vercel preview** (where the smoke test runs) AND in production
 3. Ensures `docs/testing/releases/smoke-test-vX.Y.Z.md` exists (plan + results template)
 4. **Drafts `docs/testing/releases/release-notes-vX.Y.Z.md`** from [`templates/release-notes.template.md`](templates/release-notes.template.md) — the permanent record of the GitHub Release (tag / target / title / body). It is finalized at `/release-update` and is the exact text the owner pastes into the GitHub Release UI, so the release stays auditable and reproducible.
-5. Creates PR targeting `main`
-6. User executes smoke test on staging (`saranidhi-staging.vercel.app`)
-7. User commits results (Pass/Fail + Notes) to the same branch
-8. User reviews and merges PR → smoke test results + version bump now on `main`
+5. **Creates `docs/testing/releases/docs-audit-vX.Y.Z.md`** from [`templates/docs-audit.template.md`](templates/docs-audit.template.md) — the owner-run docs-freshness gate (ticked during release verification).
+6. Creates PR targeting `main`
+7. **User executes the smoke test on the PR's Vercel _preview_ deployment** (the `vercel[bot]` comment on the PR) — **NOT** staging. Staging (`saranidhi-staging.vercel.app`) deploys from `main`, so the release branch's version bump + changes are not on staging until the PR is merged; the pre-merge gate must run on the preview, which is built from the release-branch head and correctly shows the new version. *(This matches the release-lifecycle in [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md) §2.1 — "QA-Verify on release-branch preview".)*
+8. User commits results (Pass/Fail + Notes) to the same branch
+9. User reviews and merges PR → smoke test results + version bump now on `main` (staging then also reflects the new version as a post-merge confirmation)
 
 #### Phase 2: `/release-finish`
 
