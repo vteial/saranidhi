@@ -1281,6 +1281,73 @@
         "type": "String"
       }
     }
-  }
+  },
+
+  "stagnancyMildTitle": "Breath Stagnancy (Mild)",
+  "@stagnancyMildTitle": { "description": "Title for mild nostril stagnancy warning card" },
+
+  "stagnancyChronicTitle": "Breath Stagnancy (Chronic)",
+  "@stagnancyChronicTitle": { "description": "Title for chronic nostril stagnancy warning card" },
+
+  "stagnancyRightMildDesc": "Your breath has favoured the right (solar) channel for {duration}. Excess warmth may build — consider cooling foods, calm hydration, or Sheetali breath.",
+  "@stagnancyRightMildDesc": {
+    "description": "Mild stagnancy description for right/solar channel",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+
+  "stagnancyRightChronicDesc": "Your breath has been stuck in the right (solar) channel for {duration}. A rebalancing is advised — practice Sheetali pranayama and rest to cool digestive heat.",
+  "@stagnancyRightChronicDesc": {
+    "description": "Chronic stagnancy description for right/solar channel",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+
+  "stagnancyLeftMildDesc": "Your breath has favoured the left (lunar) channel for {duration}. Sluggishness or cold may build — consider warming foods, gentle movement, or Surya Bhedana.",
+  "@stagnancyLeftMildDesc": {
+    "description": "Mild stagnancy description for left/lunar channel",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+
+  "stagnancyLeftChronicDesc": "Your breath has been stuck in the left (lunar) channel for {duration}. A rebalancing is advised — practice Surya Bhedana pranayama and light movement to kindle metabolic fire.",
+  "@stagnancyLeftChronicDesc": {
+    "description": "Chronic stagnancy description for left/lunar channel",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+
+  "stagnancyRebalanceAction": "Rebalance channel",
+  "@stagnancyRebalanceAction": { "description": "Button to trigger somatic timer rebalance from stagnancy card" },
+
+  "tattvaTipCooling": "Active Fire element (Tejas): cooling breathwork (Sheetali/Sitkari) is especially beneficial.",
+  "@tattvaTipCooling": { "description": "Tattva temperature regulation tip for cooling" },
+
+  "tattvaTipWarming": "Active Water element (Apas): warming breathwork (Surya Bhedana) is especially beneficial.",
+  "@tattvaTipWarming": { "description": "Tattva temperature regulation tip for warming" },
+
+  "focusCardSwaraAharaPrompt": "Eating soon? Favour a right-nostril (solar) flow to strengthen digestive fire.",
+  "@focusCardSwaraAharaPrompt": { "description": "Generic Swara-Ahara digestive prompt on Kriya FocusCard" },
+
+  "focusCardSwaraAharaAligned": "Right nostril active — digestive fire (Jatharagni) is well-placed.",
+  "@focusCardSwaraAharaAligned": { "description": "Swara-Ahara affirming note when right nostril is active during Kriya" },
+
+  "focusCardSwaraAharaNudge": "Left nostril currently active. Tap to shift to right before eating.",
+  "@focusCardSwaraAharaNudge": { "description": "Swara-Ahara nudge to shift to right nostril before eating" },
+
+  "focusCardSwaraAharaAction": "Flip to right",
+  "@focusCardSwaraAharaAction": { "description": "Button to start somatic timer to flip breath to right" }
 }
 

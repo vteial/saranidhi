@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window_segment.dart';
+import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
+import 'package:saranidhi/features/somatic/presentation/widgets/intervention_selector_sheet.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Current Mode Focus Card — shows the active action window with
@@ -10,6 +11,7 @@ class FocusCard extends StatelessWidget {
   const FocusCard({
     required this.segment,
     this.onTap,
+    this.currentFlow,
     super.key,
   });
 
@@ -18,6 +20,9 @@ class FocusCard extends StatelessWidget {
 
   /// Callback when the card is tapped (opens expansion sheet).
   final VoidCallback? onTap;
+
+  /// User's current dominant breath flow (if known).
+  final BreathFlow? currentFlow;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,9 @@ class FocusCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
+        color: Theme.of(
+          context,
+        ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.7),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
           side: BorderSide(color: color.withValues(alpha: 0.3)),
@@ -45,9 +52,7 @@ class FocusCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border(
-              left: BorderSide(color: color, width: 4),
-            ),
+            border: Border(left: BorderSide(color: color, width: 4)),
           ),
           padding: const EdgeInsets.all(14),
           child: Column(
@@ -108,8 +113,94 @@ class FocusCard extends StatelessWidget {
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
+              if (segment.window == ActionWindow.kriya &&
+                  !segment.isBlockedByRahu)
+                _buildSwaraAharaBlock(context, l10n, theme),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSwaraAharaBlock(
+    BuildContext context,
+    AppLocalizations l10n,
+    ThemeData theme,
+  ) {
+    if (currentFlow == BreathFlow.solar) {
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: Colors.amber.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.wb_sunny, size: 16, color: Colors.amber),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                l10n.focusCardSwaraAharaAligned,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSurface,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (currentFlow == BreathFlow.lunar) {
+      return Container(
+        margin: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: Colors.blue.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.restaurant, size: 16, color: Colors.blue.shade700),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                l10n.focusCardSwaraAharaNudge,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSurface,
+                ),
+              ),
+            ),
+            const SizedBox(width: 6),
+            TextButton(
+              onPressed: () {
+                showInterventionSelector(
+                  context,
+                  targetFlow: 'right',
+                  initialFlow: 'left',
+                );
+              },
+              style: TextButton.styleFrom(
+                visualDensity: VisualDensity.compact,
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Text(l10n.focusCardSwaraAharaAction),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: Text(
+        l10n.focusCardSwaraAharaPrompt,
+        style: theme.textTheme.bodySmall?.copyWith(
+          fontStyle: FontStyle.italic,
+          color: theme.colorScheme.onSurfaceVariant,
         ),
       ),
     );

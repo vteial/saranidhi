@@ -116,6 +116,66 @@ void main() {
       final ids = notifications.map((n) => n.id).toSet();
       expect(ids.length, equals(notifications.length));
     });
+
+    test('morning summary includes Pada Gamana advice in English', () {
+      // 5:00 AM before sunrise
+      final earlyMorning = DateTime(2026, 9, 12, 5, 0);
+
+      final notifications = NotificationScheduler.generateForToday(
+        latitude: lat,
+        longitude: lng,
+        utcOffset: utc,
+        prefs: const NotificationPreferences(
+          notifyRuling: false,
+          notifyEating: false,
+          notifyRahuKaal: false,
+          notifyMorningSummary: true,
+        ),
+        languageCode: 'en',
+        now: earlyMorning,
+      );
+
+      expect(notifications, hasLength(1));
+      final morning = notifications.single;
+      expect(morning.title, equals('Good Morning — Saranidhi'));
+      expect(morning.body, contains('Today: Sunrise'));
+      expect(
+        morning.body,
+        contains(
+          'On waking, check your dominant nostril — if right, place your right foot down first; if left, your left.',
+        ),
+      );
+    });
+
+    test(
+      'morning summary includes Pada Gamana advice in Tamil when languageCode is ta',
+      () {
+        final earlyMorning = DateTime(2026, 9, 12, 5, 0);
+
+        final notifications = NotificationScheduler.generateForToday(
+          latitude: lat,
+          longitude: lng,
+          utcOffset: utc,
+          prefs: const NotificationPreferences(
+            notifyRuling: false,
+            notifyEating: false,
+            notifyRahuKaal: false,
+            notifyMorningSummary: true,
+          ),
+          languageCode: 'ta',
+          now: earlyMorning,
+        );
+
+        expect(notifications, hasLength(1));
+        final morning = notifications.single;
+        expect(morning.title, equals('காலை வணக்கம் — சரநிதி'));
+        expect(morning.body, contains('இன்று: சூரியோதயம்'));
+        expect(
+          morning.body,
+          contains('விழிக்கும் போது செயல்படும் நாசியை கவனியுங்கள்'),
+        );
+      },
+    );
   });
 
   group('NotificationPreferences', () {

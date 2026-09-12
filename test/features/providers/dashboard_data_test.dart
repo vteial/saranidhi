@@ -1,4 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
+import 'package:saranidhi/features/chronobiology/domain/chronobiology_analytics.dart';
 import 'package:saranidhi/features/streaks/domain/seven_day_ribbon.dart';
 import 'package:saranidhi/features/streaks/domain/streak_calculator.dart';
 import 'package:saranidhi/features/streaks/domain/trend_calculator.dart';
@@ -39,6 +41,44 @@ void main() {
       expect(data.trend.alignmentPercentage, equals(80));
       expect(data.ribbon.length, equals(7));
       expect(data.yamaAccuracy.yamaCoverage, equals(60));
+      expect(data.stagnancy.level, equals(StagnancyLevel.none));
+      expect(data.stagnancy.stuckFlow, isNull);
+      expect(data.stagnancy.continuousDuration, equals(Duration.zero));
+    });
+
+    test('retains populated stagnancy result', () {
+      const stagnancy = StagnancyAnalysisResult(
+        level: StagnancyLevel.mild,
+        stuckFlow: BreathFlow.solar,
+        continuousDuration: Duration(hours: 6),
+      );
+
+      final data = DashboardData(
+        streak: const StreakResult(
+          currentStreak: 1,
+          longestStreak: 1,
+          isActiveToday: true,
+        ),
+        trend: const TrendResult(
+          alignmentPercentage: 100,
+          totalDaysWithEntries: 1,
+          totalAlignedDays: 1,
+          periodDays: 30,
+        ),
+        ribbon: [],
+        yamaAccuracy: const YamaAccuracyResult(
+          yamaEntries: {},
+          totalEntries: 0,
+        ),
+        stagnancy: stagnancy,
+      );
+
+      expect(data.stagnancy.level, equals(StagnancyLevel.mild));
+      expect(data.stagnancy.stuckFlow, equals(BreathFlow.solar));
+      expect(
+        data.stagnancy.continuousDuration,
+        equals(const Duration(hours: 6)),
+      );
     });
   });
 
