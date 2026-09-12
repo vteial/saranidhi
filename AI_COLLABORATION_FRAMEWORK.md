@@ -82,14 +82,20 @@ flowchart TD
 
 | Framework Role | Actual Tool |
 | :--- | :--- |
-| **Common / Strategy Window** (BA + Architect + QA-Design) | **IntelliJ IDEA + AI Assistant running Google Antigravity**, opened in **multiple windows**, each acting as a different persona. This multi-window approach is a deliberate **cost-cutting** choice — it provides the multi-persona round-table without additional paid tooling. |
+| **Common / Strategy Window** (BA + Architect + QA-Design) | **Google Antigravity IDE**, opened in **multiple windows**, each acting as a different persona (BA / Architect / QA-Design). The multi-window approach gives the multi-persona round-table within a single tool. |
 | **QA Assistant** (QA-Verify) | **Google Antigravity** — performs the real testing on deployed builds and the clerical recording (results in `docs/testing/releases/smoke-test-vX.Y.Z.md`), root-cause analysis, and bug logging. Does not edit source. |
-| **Developer Agent** | **Kiro Web** (the human + Kiro) — planning, documentation, all code/PRs, and the release workflow on `vteial/saranidhi`. |
+| **Developer Agent** | **Kiro Web** (the human + Kiro) — planning, documentation, all code/PRs, and the release workflow on `vteial/saranidhi`. Also runs the **spec → coding-setup → review** handoff: Kiro Web authors the spec and reviews the PR; the Antigravity coding setup implements it and runs local tests green before the PR (see `/delegate` in `dev-workflow.md`). |
 
-> **Bridge constraint:** the AI personas live in **separate tools and cannot talk
+> **Local dev = pure Antigravity IDE.** Saranidhi's local development environment
+> is the **Antigravity IDE on the owner's Mac** — both the persona round-table
+> (Common Window) and the local coding setup live in Antigravity. (IntelliJ IDEA is
+> the owner's separate *Arivagam* project, not Saranidhi.)
+
+> **Bridge constraint:** the AI surfaces (the Antigravity Common Window, the
+> Antigravity coding/QA setup, and Kiro Web) **do not share a session and cannot talk
 > to each other directly.** The Human is the bridge, and the standardized
-> **Feature Brief** (§5) is the message passed between the Common Window and the
-> Developer Agent.
+> **Feature Brief** (§5) / **sprint spec** is the message passed between the Common
+> Window and the Developer Agent.
 
 ---
 
@@ -97,14 +103,14 @@ flowchart TD
 
 The human runs the project across two main workspaces:
 
-1. **Common / Strategy Window** — IntelliJ + Antigravity multi-window (BA, Architect, QA-Design).
+1. **Common / Strategy Window** — Antigravity IDE multi-window (BA, Architect, QA-Design).
 2. **Developer Agent (Kiro Web)** — execution: code, docs, builds, branches/PRs, release workflow.
 
 *(Optional: a dedicated single-role window for large, isolated deep-dives — see §3.)*
 
 ```mermaid
 flowchart LR
-    subgraph Common ["🪟 1. Common Window (IntelliJ + Antigravity)"]
+    subgraph Common ["🪟 1. Common Window (Antigravity IDE)"]
         direction TB
         Idea["Human idea"] --> Round["BA + Architect + QA-Design"]
         Round --> Brief["Feature Brief"]
