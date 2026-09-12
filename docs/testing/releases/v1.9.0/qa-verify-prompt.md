@@ -17,8 +17,9 @@
 > `set-bypass-cookie` param keeps in-app navigation bypassed):
 > `…/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true`.
 >
-> **Fill before sending:** replace `{PREVIEW_URL}` and the PR number once the release PR's
-> `vercel[bot]` comment posts the preview (branch `release/v1.9.0`).
+> **Preview URL (filled):** `https://saranidhi-git-release-v190-eialarasus-projects.vercel.app/`
+> (standard Vercel format `saranidhi-git-<branch-slug>-eialarasus-projects.vercel.app` — the
+> branch `release/v1.9.0` slugifies to `release-v190`). Release PR: **#199**.
 
 ---
 
@@ -37,10 +38,11 @@ verdict score/band/floor-lock or the Prasanam Oracle — only adds an explanatio
 ENVIRONMENT: The release PR's Vercel PREVIEW (NOT staging). The preview has Vercel
 Deployment Protection. Read VERCEL_AUTOMATION_BYPASS_SECRET from the local `.env` and pass
 it as a query param on the preview URL (browser navigation):
-  {PREVIEW_URL}/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
-(Staging deploys from `main`, so the release branch's changes are not on staging until the
-PR is merged; the preview is built from the release-branch head and shows About = v1.9.0.)
-REPO: vteial/saranidhi. Release branch: release/v1.9.0. PR: #___.
+  https://saranidhi-git-release-v190-eialarasus-projects.vercel.app/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
+(Base URL: https://saranidhi-git-release-v190-eialarasus-projects.vercel.app — staging
+deploys from `main`, so the release branch's changes are not on staging until the PR is
+merged; the preview is built from the release-branch head and shows About = v1.9.0.)
+REPO: vteial/saranidhi. Release branch: release/v1.9.0. PR: #199.
 
 TEST PLAN (source of truth): docs/testing/releases/v1.9.0/smoke-test.md on the release
 branch. Execute EVERY scenario in that file, in order (Scenarios 1–6 + regression eyeball).
@@ -105,7 +107,7 @@ Begin by reading docs/testing/releases/v1.9.0/smoke-test.md, then execute and re
 |-------------|-----------|
 | `{VERSION}` | `1.9.0` |
 | `{SPRINT / theme}` | Sprint 39 — Integrated Aruḍam "Why?" provenance accordion |
-| Environment | release PR's Vercel **preview** (`{PREVIEW_URL}` — fill from the `vercel[bot]` comment) |
+| Environment | PR #199 Vercel **preview** `https://saranidhi-git-release-v190-eialarasus-projects.vercel.app` (standard format; branch `release/v1.9.0` → slug `release-v190`) |
 | Smoke-test file | `docs/testing/releases/v1.9.0/smoke-test.md` (new folder convention) |
 | What changed | from the `[1.9.0-web]` CHANGELOG entry + Sprint 39 scope |
 | Highest-priority | collapse-by-default, doctrinal copy (dampened-not-blocked / rest), grouping (Moment/You vs Blocked vs stale-omit), no raw math, Tamil, collapsed-card regression — **no migration path this release** |

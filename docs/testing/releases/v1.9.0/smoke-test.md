@@ -5,9 +5,9 @@
 **Release:** v1.9.0-web (Sprint 39 — verdict-transparency "Why?" accordion)
 **Date:** _pending_
 **Tester:** Antigravity (QA-Verify Agent)
-**Shipping Commit:** _pending_ on `release/v1.9.0` (PR #___)
+**Shipping Commit:** _pending_ on `release/v1.9.0` (PR #199)
 **Device/Browser:** Chrome — Desktop (1200×900) + Tablet (1024×768) + Mobile (390×844)
-**Environment:** the release PR's Vercel **preview** (via `VERCEL_AUTOMATION_BYPASS_SECRET`) — **NOT** staging
+**Environment:** PR #199 Vercel **preview** — `https://saranidhi-git-release-v190-eialarasus-projects.vercel.app` (via `VERCEL_AUTOMATION_BYPASS_SECRET`) — **NOT** staging
 
 ## Result
 
