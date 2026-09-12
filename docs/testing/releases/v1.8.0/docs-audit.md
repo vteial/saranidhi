@@ -1,4 +1,4 @@
-[← Back to Smoke Test](./smoke-test-v1.8.0.md)
+[← Back to Smoke Test](./smoke-test.md)
 
 # Docs Freshness Audit — v1.8.0-web
 
@@ -42,7 +42,7 @@
 
 ## Findings / doc fixes made this release
 
-- Smoke test relocated from the sprint dossier folder → `docs/testing/releases/smoke-test-v1.8.0.md` (repo convention) during `/release-start`.
+- Smoke test relocated from the sprint dossier folder → `docs/testing/releases/v1.8.0/smoke-test.md` (repo convention) during `/release-start`.
 - **Stamp mechanism gap caught by this first audit:** the `> Reviewed:` stamps were assumed present on all durable docs (per the intent recorded when the gate was built), but only `AI_COLLABORATION_FRAMEWORK.md` actually carried one. This `/release-update` **rolled out the stamp to all durable docs** (valuation, evaluation, sprint-tracker, sprint-backlog, dev-workflow, user-guide, product-scope, architecture, security-review, testing-plan) at `v1.8.0-web`. From v1.9.0 onward this is a simple bump, not a rollout. *(This is exactly the kind of drift the gate exists to catch.)*
 
 ## Result

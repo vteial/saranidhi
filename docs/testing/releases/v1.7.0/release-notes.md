@@ -1,4 +1,4 @@
-[← Back to Smoke Test](./smoke-test-v1.7.0.md)
+[← Back to Smoke Test](./smoke-test.md) · [Releases index](../../smoke-test-results.md)
 
 # Release Notes — v1.7.0-web
 
@@ -40,7 +40,7 @@ Your **birth bird** is the root of the entire Panja Pakshi system — it drives 
 
 ---
 
-- **Spec + dossier:** [`sprints/sprint-37-birth-bird/`](../../process/sprints/sprint-37-birth-bird/README.md)
-- **Smoke test:** [`smoke-test-v1.7.0.md`](./smoke-test-v1.7.0.md) — ✅ PASS
+- **Spec + dossier:** [`sprints/sprint-37-birth-bird/`](../../../process/sprints/sprint-37-birth-bird/README.md)
+- **Smoke test:** [`smoke-test.md`](./smoke-test.md) — ✅ PASS
 - **PR:** [#167](https://github.com/vteial/saranidhi/pull/167) · **Prod:** [saranidhi.vercel.app](https://saranidhi.vercel.app)
-- **Full changelog:** [`CHANGELOG.md`](../../../CHANGELOG.md)
+- **Full changelog:** [`CHANGELOG.md`](../../../../CHANGELOG.md)

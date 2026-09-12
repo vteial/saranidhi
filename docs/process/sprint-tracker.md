@@ -664,7 +664,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **PR link** — [#167](https://github.com/vteial/saranidhi/pull/167) (CI green: Analyze / Fast Tests / Build + Full Suite; local run 546 pass / 4 known-CloudKit baseline, analyze clean, `build web` clean). Implemented in the Antigravity IDE coding setup; Kiro Web reviewed (incl. Antigravity source-verification of the name-initial waning 5-cycle — exact match to workshop + master book).
 - [x] **Docs updated** — `calculation-methodology.md` §1 rewritten to 5-6-5-5-6 + single permanent table; CONF-PP cross-links.
 - [x] **Tests** — corrected derivation + 3 disputed stars + Pushya/Krishna→Owl + re-migration (DOB & manual paths) + idempotency; local green before PR (macOS baseline = same 4 known CloudKit failures and no others).
-- [x] **Smoke test** — scenarios in `smoke-test-v1.7.0.md`: existing Pushya/Krishna user sees bird change Cock→Owl on load; manual-star user corrected; onboarding new user gets 5-6-5-5-6 bird.
+- [x] **Smoke test** — scenarios in `releases/v1.7.0/smoke-test.md`: existing Pushya/Krishna user sees bird change Cock→Owl on load; manual-star user corrected; onboarding new user gets 5-6-5-5-6 bird.
 - [x] **Valuation report** — Sprint 37 row added (+20% over AI-estimated time).
 - [x] **Tracker updated** — status ✅ (this update).
 - [x] **User Guide** — update the birth-bird section (corrected partition; note existing users may see a one-time corrected bird) — real capability/accuracy change, so **not** `n/a`.
@@ -721,7 +721,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **Regression gate (Task 38.3/38.1)** — **existing Prasanam Oracle day-time verdicts are UNCHANGED** by the engine extraction + floor-lock refactor (add/keep tests pinning current day-time scores), **AND** night verdicts now gate correctly (Rahu/Emakandam after sunset). Extraction refactors are exactly where behavior silently drifts — this must be proven, not assumed.
 - [x] **Docs updated** — `calculation-methodology.md` (integrated verdict + Moment × Readiness + night floor-lock); User Guide gets the "Aruḍam Now" card + the natural-vs-forced philosophy.
 - [x] **Tests** — `IntegratedArudamEngine` unit tests (Moment × Readiness math, misalignment penalty, Sushumna-in-Yoga, night floor-lock); Oracle-unchanged regression tests; verdict-card widget test; local green before PR.
-- [x] **Smoke test** — scenarios authored in `smoke-test-v1.8.0.md` (verdict card day + night; aligned vs misaligned; stale-swara degrade; forced-shift warning tone; EN/TA). ⚠️ **File relocation pending:** it currently sits in the sprint dossier folder; it must move to `docs/testing/releases/smoke-test-v1.8.0.md` (repo convention) at `/release-start`.
+- [x] **Smoke test** — scenarios authored for v1.8.0 (verdict card day + night; aligned vs misaligned; stale-swara degrade; forced-shift warning tone; EN/TA); relocated at `/release-start` to `docs/testing/releases/v1.8.0/smoke-test.md` (repo convention) and executed ✅ PASS.
 - [ ] **Valuation report** — Sprint 38 row (+20%) — deferred to `/sprint-update`.
 - [x] **Tracker updated** — status ✅ (this `/sprint-finish`).
 - [x] **User Guide** — "Aruḍam Now" section + the natural-alignment philosophy — real capability change, so **not** `n/a`.

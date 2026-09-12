@@ -1,9 +1,9 @@
-[← Back to Smoke Test](./smoke-test-v1.8.0.md)
+[← Back to Smoke Test](./smoke-test.md)
 
 # QA-Verify Prompt — v1.8.0-web (filled, transactional)
 
 > Per-release filled copy of the reusable
-> [`qa-verify-agent-prompt.md`](../qa-verify-agent-prompt.md) template. This is the
+> [`qa-verify-agent-prompt.md`](../../qa-verify-agent-prompt.md) template. This is the
 > **transactional handoff** for the v1.8.0 smoke test — paste the block below into
 > Antigravity. The owner's message to Antigravity is then a one-liner pointing here.
 >

@@ -1,4 +1,4 @@
-[← Back to Smoke Test](../../testing/releases/smoke-test-vX.Y.Z.md)
+[← Back to Smoke Test](./smoke-test.md)
 
 # Docs Freshness Audit — vX.Y.Z-web
 
