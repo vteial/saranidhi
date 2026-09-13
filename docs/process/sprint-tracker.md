@@ -34,7 +34,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ 🚀 (PR #196) |
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
-| 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | 🔄 (in progress) |
+| 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ⬜ (planned) |
 | 43+ | Accuracy Calibration (post-S42), native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
@@ -832,11 +832,15 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 41: Analytics Tidy (CSV → Settings) + Tamil l10n fixes (v1.10.1) — 🔄 In Progress
+## Sprint 41: Analytics Tidy (CSV → Settings) + Tamil l10n fixes (v1.10.1) — ✅ Complete (PR #211)
 
-> **Started** via `/sprint-start` on branch `sprint/41-analytics-tidy`. Spec in the
-> [dossier](sprints/sprint-41-analytics-tidy/README.md); handed to the Antigravity IDE coding
-> setup (implement + local green before PR); Kiro Web reviews the diff.
+> **Delivered** via `/sprint-finish`. Feature PR [#211](https://github.com/vteial/saranidhi/pull/211)
+> (merge `8400e69`) — owner-merged. Antigravity implemented + local green
+> (615 pass / 4 known-CloudKit / 0 other; analyze clean; web build clean); **Kiro Web reviewed
+> the real diff and APPROVED** — CSV moved to Settings via `share_plus` (web + mobile), `_ExportCard`
+> fully removed + Row 3 collapsed full-width, Analytics Tamil gaps fixed (Yama prefix, locale-aware
+> `DateFormat`, `d`/`s` suffixes). Owner confirmed the proposed Tamil strings (`யா`/`நா`/`வி`).
+> **Not yet released** — ships as **v1.10.1** at `/release-start` (no 🚀 until prod).
 >
 > **Scheduled via `/plan`.** A deliberately **small, low-risk** sprint (no core-calc changes) —
 > a clean quick release before the correctness-critical Sprint 42.
@@ -849,18 +853,18 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **Vehicle:** spec → coding-setup → review (low-risk; a widget-move + ARB additions, no engine
 > logic). Ships as **v1.10.1** (patch).
 
-- [ ] Task 41.1: **Move CSV export Analytics → Settings.** Relocate `_ExportCard` (`AnalyticsCalculator.generateCsv` / `csvExportProvider`) into the Settings data-export area beside the JSON export; remove it from the Analytics screen. Keep behavior identical (share-sheet/download). Free the Analytics slot (leave clean, no placeholder).
-- [ ] Task 41.2: **Analytics Tamil l10n audit + fix.** Find hardcoded-English / untranslated `Text()` on the Analytics screen; move to ARB (EN + pure-Tamil), swap to `l10n.*`. Pre-PR Tamil-mode eyeball.
+- [x] Task 41.1: **Move CSV export Analytics → Settings.** Relocate `_ExportCard` (`AnalyticsCalculator.generateCsv` / `csvExportProvider`) into the Settings data-export area beside the JSON export; remove it from the Analytics screen. Keep behavior identical (share-sheet/download). Free the Analytics slot (leave clean, no placeholder).
+- [x] Task 41.2: **Analytics Tamil l10n audit + fix.** Find hardcoded-English / untranslated `Text()` on the Analytics screen; move to ARB (EN + pure-Tamil), swap to `l10n.*`. Pre-PR Tamil-mode eyeball.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
-- [ ] **PR link** — #N (CI green). Antigravity implements + local green; **Kiro Web reviews the diff**.
-- [ ] **Regression gate** — no core-calc/engine changes; CSV output byte-identical after the move; existing analytics/settings tests pass unchanged.
-- [ ] **Tests** — a test that CSV export is reachable from Settings; Analytics-screen l10n render (EN+TA).
-- [ ] **Smoke test** — CSV export from Settings; Analytics screen in Tamil (no English leakage).
-- [ ] **Valuation report** — Sprint 41 row (+20%) at `/sprint-update`.
-- [ ] **Tracker updated** — status ✅.
-- [ ] **User Guide** — note the CSV export now lives in Settings (small update).
+- [x] **Code merged** — on `main` (PR #211, merge `8400e69`). _(owner merged)_
+- [x] **PR link** — [#211](https://github.com/vteial/saranidhi/pull/211) (CI green). Antigravity implemented + local green before PR; **Kiro Web reviewed the real diff and approved**.
+- [x] **Regression gate** — no core-calc/engine change; `generateCsv` untouched (CSV byte-identical); no schema change; existing analytics/settings tests pass unchanged (verified).
+- [x] **Tests** — `generateCsv` unit + Settings CSV-button widget + Analytics EN/TA locale render + l10n getter/parity; local green (615 / 4 CloudKit / 0 other).
+- [ ] **Smoke test** — CSV export from Settings + Analytics screen in Tamil (no leakage) — **at `/release-start` v1.10.1**.
+- [ ] **Valuation report** — Sprint 41 row (+20%) — **at `/sprint-update`**.
+- [x] **Tracker updated** — status ✅ (this `/sprint-finish`).
+- [ ] **User Guide** — CSV export now lives in Settings — **updated at `/sprint-update`** (feature PR was code + l10n only).
 
 ---
 

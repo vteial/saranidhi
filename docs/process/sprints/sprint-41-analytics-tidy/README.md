@@ -8,8 +8,23 @@
 | Artifact | Doc |
 |----------|-----|
 | **Spec** (Kiro Web) | [`spec.md`](./spec.md) |
-| **Implementation summary** (Antigravity) | [`implementation-summary.md`](./implementation-summary.md) _(seeded — fill after coding)_ |
-| **Local test summary** (Antigravity) | [`test-summary.md`](./test-summary.md) _(seeded — fill after local run)_ |
+| **Implementation summary** (Antigravity) | [`implementation-summary.md`](./implementation-summary.md) |
+| **Local test summary** (Antigravity) | [`test-summary.md`](./test-summary.md) |
+
+## Outcome
+
+- **What:** moved the journal-CSV export from Analytics → **Settings** (beside the JSON
+  export, now shared via `share_plus` → works on web + mobile; `_ExportCard` removed, Analytics
+  Row 3 collapsed full-width), and fixed the Analytics-screen Tamil gaps (Yama `யா` prefix,
+  locale-aware `DateFormat`, `d`/`s` → `நா`/`வி` suffixes).
+- **PR:** [#211](https://github.com/vteial/saranidhi/pull/211) — merged `8400e69`.
+  Antigravity implemented; **Kiro Web reviewed the real diff and approved.** Owner confirmed the
+  proposed Tamil strings ("keep as proposed").
+- **Regression-safe:** no core-calc change; `generateCsv` untouched (CSV byte-identical); no
+  schema change; zero deletions in existing test assertions.
+- **Local gate:** 615 pass / 4 known-CloudKit baseline / 0 other; analyze clean; web build clean.
+- **Release:** ships as **v1.10.1** (patch, pending — `/release-start` next). Not 🚀 until prod.
+- **Deferred to `/sprint-update`:** User Guide note (CSV export now in Settings).
 
 ## Goal
 
