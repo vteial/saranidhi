@@ -7,8 +7,8 @@
 
 ## PR
 
-- **PR:** #___ (`sprint/41-analytics-tidy` → `main`)
-- **Commits:** Pending PR creation
+- **PR:** #211 (`sprint/41-analytics-tidy` → `main`)
+- **Commits:** `652fdfe` … `bfc1436`
 
 ## What was implemented (by spec task)
 
