@@ -656,6 +656,9 @@ class AppLocalizationsTa extends AppLocalizations {
   String get exportAllData => 'அனைத்து தரவையும் ஏற்றுமதி செய்';
 
   @override
+  String get exportJournalCsv => 'நாட்குறிப்பை CSV ஆக ஏற்றுமதி செய்க';
+
+  @override
   String get exporting => 'ஏற்றுமதி செய்கிறது...';
 
   @override
@@ -772,6 +775,12 @@ class AppLocalizationsTa extends AppLocalizations {
   String get days => 'நாட்கள்';
 
   @override
+  String get daysSuffixShort => 'நா';
+
+  @override
+  String get secondsSuffixShort => 'வி';
+
+  @override
   String get yamaPerformance => 'யாம செயல்திறன்';
 
   @override
@@ -781,6 +790,9 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get yamaPerformanceEmpty =>
       'பிரிவு பார்க்க வேறு யாமங்களில் பதிவுகளை உள்ளிடவும்.';
+
+  @override
+  String get yamaShortPrefix => 'யா';
 
   @override
   String get holdTimeProgression => 'நிறுத்த நேர முன்னேற்றம்';
