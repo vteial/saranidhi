@@ -2,7 +2,7 @@
 
 # Release Dossier — v1.9.0-web
 
-**Sprint 39 — Integrated Aruḍam: "Why?" Provenance Accordion** · _Release pending (in verification)_
+**Sprint 39 — Integrated Aruḍam: "Why?" Provenance Accordion** · Shipped to production 2026-09-12 · ✅ PASS
 
 A verdict-transparency fast-follow of the flagship Integrated Aruḍam epic: the "Aruḍam Now"
 card now has a collapsed-by-default **"Why?"** accordion that explains the verdict
@@ -15,9 +15,9 @@ bilingual EN/TA. Scoring math / bands / floor-lock / Oracle path are unchanged
 
 | File | What |
 | --- | --- |
-| [`smoke-test.md`](./smoke-test.md) | Scenario plan (executed by QA-Verify on the PR preview) |
-| [`release-notes.md`](./release-notes.md) | Permanent GitHub Release record (tag / target / title / body) |
-| [`docs-audit.md`](./docs-audit.md) | Owner-run docs-freshness gate |
+| [`smoke-test.md`](./smoke-test.md) | Scenario results — ✅ PASS (6/6 + regression, PR #199 preview) |
+| [`release-notes.md`](./release-notes.md) | Permanent GitHub Release record (tag `v1.9.0-web` @ `prod`) |
+| [`docs-audit.md`](./docs-audit.md) | Owner-run docs-freshness gate — ✅ PASS |
 | [`qa-verify-prompt.md`](./qa-verify-prompt.md) | Version-filled QA-Verify agent prompt for this release |
 
 ## Links

@@ -15,6 +15,8 @@ import 'package:saranidhi/features/astro_engine/domain/rahu_kaal_calculator.dart
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/tattva_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/features/breath_journal/data/journal_repository.dart';
+import 'package:saranidhi/features/chronobiology/domain/chronobiology_analytics.dart';
 import 'package:saranidhi/features/streaks/data/streak_repository.dart';
 import 'package:saranidhi/features/streaks/domain/seven_day_ribbon.dart';
 import 'package:saranidhi/features/streaks/domain/streak_calculator.dart';
@@ -57,6 +59,11 @@ class DashboardData {
     this.actionWindowSegments,
     this.activeActionWindow,
     this.birthStarNakshatra,
+    this.stagnancy = const StagnancyAnalysisResult(
+      level: StagnancyLevel.none,
+      stuckFlow: null,
+      continuousDuration: Duration.zero,
+    ),
   });
 
   final StreakResult streak;
@@ -136,6 +143,9 @@ class DashboardData {
 
   /// User's birth star nakshatra name from profile.
   final String? birthStarNakshatra;
+
+  /// Nostril flow stagnancy analysis over the rolling-24h window.
+  final StagnancyAnalysisResult stagnancy;
 }
 
 /// The currently selected date for the dashboard.
@@ -430,6 +440,19 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     todayAvgHoldMs = holdValues.reduce((a, b) => a + b) / holdValues.length;
   }
 
+  // ─── Stagnancy analysis (rolling 24h, only when viewing today) ────────
+  var stagnancy = const StagnancyAnalysisResult(
+    level: StagnancyLevel.none,
+    stuckFlow: null,
+    continuousDuration: Duration.zero,
+  );
+
+  if (isToday) {
+    final cutoff = now.subtract(const Duration(hours: 24));
+    final rollingLogs = await JournalRepository(db).getEntriesSince(cutoff);
+    stagnancy = ChronobiologyAnalytics.analyze(rollingLogs);
+  }
+
   // ─── Action Windows computation ─────────────────────────────────────
   List<ActionWindowSegment>? actionWindowSegments;
   ActionWindowSegment? activeActionWindow;
@@ -519,6 +542,7 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     actionWindowSegments: actionWindowSegments,
     activeActionWindow: activeActionWindow,
     birthStarNakshatra: birthStarNakshatra,
+    stagnancy: stagnancy,
   );
 });
 

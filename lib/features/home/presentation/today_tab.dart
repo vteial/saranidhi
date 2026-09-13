@@ -4,6 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/widgets/error_boundary.dart';
 import 'package:saranidhi/core/widgets/shimmer_loading.dart';
 import 'package:saranidhi/features/ai_wisdom/presentation/widgets/wisdom_card.dart';
+import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
+import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
+import 'package:saranidhi/features/chronobiology/domain/chronobiology_analytics.dart';
 import 'package:saranidhi/features/cloud_backup/domain/backup_repository.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
 import 'package:saranidhi/features/cloud_backup/providers/sync_providers.dart';
@@ -16,6 +19,7 @@ import 'package:saranidhi/features/home/presentation/widgets/full_day_schedule.d
 import 'package:saranidhi/features/home/presentation/widgets/hold_time_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_chart.dart';
 import 'package:saranidhi/features/home/presentation/widgets/rahu_kaal_card.dart';
+import 'package:saranidhi/features/home/presentation/widgets/stagnancy_card.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/seven_day_ribbon_widget.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_widget.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
@@ -53,6 +57,17 @@ class _TodayContent extends ConsumerWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final isWide = screenWidth >= 600;
 
+    final latestEntry = ref.watch(latestJournalEntryProvider).value;
+    final currentFlow = latestEntry != null
+        ? BreathFlow.values
+              .where(
+                (f) =>
+                    f.name == latestEntry.actualFlow ||
+                    f.nostril == latestEntry.actualFlow,
+              )
+              .firstOrNull
+        : null;
+
     return RefreshIndicator(
       onRefresh: () async {
         // Trigger iCloud sync on pull-to-refresh if enabled
@@ -85,6 +100,7 @@ class _TodayContent extends ConsumerWidget {
               if (data.activeActionWindow != null)
                 FocusCard(
                   segment: data.activeActionWindow!,
+                  currentFlow: currentFlow,
                   onTap: () => showActionWindowSheet(
                     context,
                     segment: data.activeActionWindow!,
@@ -93,6 +109,12 @@ class _TodayContent extends ConsumerWidget {
                   ),
                 ),
               if (data.activeActionWindow != null) const SizedBox(height: 12),
+            ],
+
+            // Row 0b: Stagnancy Warning Card (hidden when healthy)
+            if (data.stagnancy.level != StagnancyLevel.none) ...[
+              StagnancyCard(data: data),
+              const SizedBox(height: 12),
             ],
 
             // Row 1: Birth Bird + Rahu Kaal (two-column on wide)

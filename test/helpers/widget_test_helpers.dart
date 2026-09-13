@@ -5,6 +5,7 @@ import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/rahu_kaal_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/features/chronobiology/domain/chronobiology_analytics.dart';
 import 'package:saranidhi/features/streaks/domain/seven_day_ribbon.dart';
 import 'package:saranidhi/features/streaks/domain/streak_calculator.dart';
 import 'package:saranidhi/features/streaks/domain/trend_calculator.dart';
@@ -28,8 +29,12 @@ Widget testableWidget(
   );
 
   if (overrides != null) {
-    return ProviderScope(overrides: (overrides as List).cast(), child: widget);
+    return ProviderScope(
+      overrides: overrides is List<dynamic> ? overrides.cast() : [overrides],
+      child: widget,
+    );
   }
+
   return ProviderScope(child: widget);
 }
 
@@ -58,6 +63,7 @@ DashboardData createTestDashboardData({
   String? birthStarNakshatra,
   EmakandamResult? emakandam,
   HoraResult? activeHora,
+  StagnancyAnalysisResult? stagnancy,
 }) {
   return DashboardData(
     streak:
@@ -107,6 +113,13 @@ DashboardData createTestDashboardData({
     birthStarNakshatra: birthStarNakshatra,
     emakandam: emakandam,
     activeHora: activeHora,
+    stagnancy:
+        stagnancy ??
+        const StagnancyAnalysisResult(
+          level: StagnancyLevel.none,
+          stuckFlow: null,
+          continuousDuration: Duration.zero,
+        ),
   );
 }
 

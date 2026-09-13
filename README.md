@@ -36,14 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.8.1-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Production** | v1.9.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 38 | — |
-| **Total PRs** | ~192 | — |
-| **Engineering Hours** | ~116.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
+| **Sprints Delivered** | 39 | — |
+| **Total PRs** | ~200 | — |
+| **Engineering Hours** | ~121.0 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
-**Latest:** v1.8.1-web — Tamil-localization hotfix (Settings → Notifications toggles). The last feature release, **v1.8.0-web** (Integrated Aruḍam — Slice 1, Sprint 38), delivered the always-on **"Aruḍam Now"** ambient verdict card on Home: bird-state × Hora × Tarabala × auspiciousness fused into one Moment × Readiness verdict, with natural-vs-forced framing and a 24h-correct inauspicious floor-lock.
-**Next:** Integrated Aruḍam fast-follows ("Why?" accordion, native widget/watch/macOS) + accuracy calibration — selected from the [Sprint Backlog](docs/process/sprint-backlog.md) during `/plan`.
+**Latest:** v1.9.0-web — Integrated Aruḍam **"Why?" provenance accordion** (Sprint 39): the "Aruḍam Now" card now explains its verdict doctrinally, with reasons grouped **Moment / You** (or **Blocked**) and a source citation on each — no raw math, bilingual EN/TA, transparency-only. The preceding feature release **v1.8.0-web** (Integrated Aruḍam — Slice 1, Sprint 38) delivered the always-on **"Aruḍam Now"** ambient verdict card (bird-state × Hora × Tarabala × auspiciousness fused into one Moment × Readiness verdict).
+**Next:** Chronobiology & Holistic Guidance (Sprint 40) + Integrated Aruḍam native ambient fast-follows + accuracy calibration — selected from the [Sprint Backlog](docs/process/sprint-backlog.md) during `/plan`.
 
 ---
 

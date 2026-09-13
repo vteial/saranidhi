@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
@@ -124,9 +125,11 @@ class NotificationPrefsNotifier extends Notifier<NotificationPreferences> {
     // Generate and schedule
     final birthBird = profile.birthBird != null
         ? PakshiBird.values
-            .where((b) => b.name == profile.birthBird)
-            .firstOrNull
+              .where((b) => b.name == profile.birthBird)
+              .firstOrNull
         : null;
+
+    final appLocale = ref.read(localeProvider).code;
 
     final notifications = await NotificationScheduler.refreshSchedule(
       latitude: lat,
@@ -134,6 +137,7 @@ class NotificationPrefsNotifier extends Notifier<NotificationPreferences> {
       utcOffset: utcOffset,
       prefs: state,
       birthBird: birthBird,
+      languageCode: appLocale,
     );
 
     await service.scheduleAll(notifications);
@@ -159,10 +163,10 @@ final notificationRefreshProvider = FutureProvider<void>((ref) async {
   );
 
   final birthBird = profile.birthBird != null
-      ? PakshiBird.values
-          .where((b) => b.name == profile.birthBird)
-          .firstOrNull
+      ? PakshiBird.values.where((b) => b.name == profile.birthBird).firstOrNull
       : null;
+
+  final appLocale = ref.read(localeProvider).code;
 
   final notifications = await NotificationScheduler.refreshSchedule(
     latitude: lat,
@@ -170,6 +174,7 @@ final notificationRefreshProvider = FutureProvider<void>((ref) async {
     utcOffset: utcOffset,
     prefs: prefs,
     birthBird: birthBird,
+    languageCode: appLocale,
   );
 
   await service.scheduleAll(notifications);

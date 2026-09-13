@@ -1906,4 +1906,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String arudamWhyCitation(String conf) {
     return '· $conf';
   }
+
+  @override
+  String get stagnancyMildTitle => 'Breath Stagnancy (Mild)';
+
+  @override
+  String get stagnancyChronicTitle => 'Breath Stagnancy (Chronic)';
+
+  @override
+  String stagnancyRightMildDesc(String duration) {
+    return 'Your breath has favoured the right (solar) channel for $duration. Excess warmth may build — consider cooling foods, calm hydration, or Sheetali breath.';
+  }
+
+  @override
+  String stagnancyRightChronicDesc(String duration) {
+    return 'Your breath has been stuck in the right (solar) channel for $duration. A rebalancing is advised — practice Sheetali pranayama and rest to cool digestive heat.';
+  }
+
+  @override
+  String stagnancyLeftMildDesc(String duration) {
+    return 'Your breath has favoured the left (lunar) channel for $duration. Sluggishness or cold may build — consider warming foods, gentle movement, or Surya Bhedana.';
+  }
+
+  @override
+  String stagnancyLeftChronicDesc(String duration) {
+    return 'Your breath has been stuck in the left (lunar) channel for $duration. A rebalancing is advised — practice Surya Bhedana pranayama and light movement to kindle metabolic fire.';
+  }
+
+  @override
+  String get stagnancyRebalanceAction => 'Rebalance channel';
+
+  @override
+  String get tattvaTipCooling =>
+      'Active Fire element (Tejas): cooling breathwork (Sheetali/Sitkari) is especially beneficial.';
+
+  @override
+  String get tattvaTipWarming =>
+      'Active Water element (Apas): warming breathwork (Surya Bhedana) is especially beneficial.';
+
+  @override
+  String get focusCardSwaraAharaPrompt =>
+      'Eating soon? Favour a right-nostril (solar) flow to strengthen digestive fire.';
+
+  @override
+  String get focusCardSwaraAharaAligned =>
+      'Right nostril active — digestive fire (Jatharagni) is well-placed.';
+
+  @override
+  String get focusCardSwaraAharaNudge =>
+      'Left nostril currently active. Tap to shift to right before eating.';
+
+  @override
+  String get focusCardSwaraAharaAction => 'Flip to right';
 }

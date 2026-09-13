@@ -2,7 +2,7 @@
 
 # Saranidhi — Development Workflow
 
-> **Reviewed:** v1.8.1-web · **Next review:** every release + when a protocol/gate/flow changes.
+> **Reviewed:** v1.9.0-web · **Next review:** every release + when a protocol/gate/flow changes.
 
 > **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
 > — the AI team collaboration model (roles, handoffs, release lifecycle, and
@@ -216,6 +216,7 @@ Prepares the smoke test execution.
 5. **Records the Vercel preview access details for QA-Verify.** The Vercel Deployment Protection SSO wall blocks headless agents (Antigravity QA-Verify) from reaching the PR preview. The permanent bypass is **Protection Bypass for Automation**: read `VERCEL_AUTOMATION_BYPASS_SECRET` from the local `.env` (gitignored — never commit it) and give QA-Verify the preview URL with the bypass query params appended:
    `<preview-url>?x-vercel-protection-bypass=<secret>&x-vercel-set-bypass-cookie=true`
    This lets the automated smoke run reach the release-branch preview without a human clicking through SSO.
+   - **Fully pre-fill the QA-Verify prompt at `/release-start` — no manual steps left for the owner.** The preview URL is deterministic (standard Vercel format `saranidhi-git-<branch-slug>-eialarasus-projects.vercel.app`; `release/vX.Y.Z` → slug `release-vXYZ0`, dots dropped) and the **release PR number is known the moment the PR is opened** — so Kiro fills BOTH the URL **and** the PR number into `qa-verify-prompt.md` at `/release-start`. The owner's handoff to Antigravity is then a **one-liner pointing at the filled prompt file** — never "grab the URL" or "fill the PR #". (Established v1.9.0; the PR-# auto-fill added after v1.10.0.)
 6. **User (or QA-Verify) executes the smoke test on the PR's Vercel _preview_ deployment** (the `vercel[bot]` comment on the PR) — **NOT** staging. Staging (`saranidhi-staging.vercel.app`) deploys from `main`, so the release branch's version bump + changes are not on staging until the PR is merged; the pre-merge gate must run on the preview, which is built from the release-branch head and correctly shows the new version. *(This matches the release-lifecycle in [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md) §2.1 — "QA-Verify on release-branch preview".)*
 7. User commits results (Pass/Fail + Notes) to the same branch
 8. User reviews and merges PR → smoke test results + version bump now on `main` (staging then also reflects the new version as a post-merge confirmation)
@@ -382,10 +383,23 @@ Runs on pull requests targeting `main` (pre-merge gate) as well as on merge to `
 | Environment | Branch | Platform | URL | Auto-Deploy | Data |
 |-------------|--------|----------|-----|-------------|------|
 | Production | `prod` | Vercel | [saranidhi.vercel.app](https://saranidhi.vercel.app) | On `/release` PR merge | Existing |
-| Staging | `main` | Vercel (2nd project) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) | On merge to main | Existing |
-| Preview | PR branches | Vercel | Auto-generated per PR | On PR open/update | Fresh |
+| Staging | `main` | Vercel (2nd project) | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) | On merge to main (**preview branch-tracking OFF**) | Existing |
+| Preview | **code** branches (`sprint/*`, `release/*`, `fix/*`) | Vercel (prod project) | Auto-generated per PR | On PR open/update; **`docs/*` + `plan/*` excluded** | Fresh |
 | Production iOS | `main` | App Store | — | Manual |
 | Production Android | `main` | Play Store | — | Manual |
+
+> **Deployment budget (Vercel Hobby 100/day).** A skipped `ignoreCommand` build **still
+> counts** as a deployment, and the repo is connected to **two** Vercel projects — so
+> docs-heavy release days can trip the cap. Mitigation (see
+> [`deployment.md` → Deployment Budget](../deployment/deployment.md#deployment-budget--quota-strategy)):
+> `vercel.json`'s `git.deploymentEnabled` denies `docs/**` + `plan/**` on the prod project,
+> and the staging project's preview **Branch Tracking is OFF** (deploys only `main`). Net:
+> docs/plan pushes = 0 deployments; code-branch pushes = 1. **Keep the deny-list in sync with
+> the branch-naming convention below.**
+
+**Branch-naming convention (drives the deploy allowlist):**
+- **Code branches** (get a preview): `sprint/*`, `release/*`, `fix/*`.
+- **Docs/planning branches** (no deploy): `docs/*`, `plan/*`.
 
 ### Known Limitations (Current)
 

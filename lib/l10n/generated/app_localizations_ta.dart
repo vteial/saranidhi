@@ -1917,4 +1917,56 @@ class AppLocalizationsTa extends AppLocalizations {
   String arudamWhyCitation(String conf) {
     return '· $conf';
   }
+
+  @override
+  String get stagnancyMildTitle => 'சுவாசத் தேக்கம் (மிதமானது)';
+
+  @override
+  String get stagnancyChronicTitle => 'சுவாசத் தேக்கம் (நீடித்தது)';
+
+  @override
+  String stagnancyRightMildDesc(String duration) {
+    return 'உங்கள் சுவாசம் $duration நேரமாக வலது (சூரிய) பாதையில் உள்ளது. வெப்பம் அதிகரிக்கலாம் — குளிர்ச்சியான உணவு, நீர் அல்லது சீதளி மூச்சுப்பயிற்சி நல்லது.';
+  }
+
+  @override
+  String stagnancyRightChronicDesc(String duration) {
+    return 'உங்கள் சுவாசம் $duration நேரமாக தொடர்ந்து வலது (சூரிய) பாதையில் தேங்கியுள்ளது. சீரமைப்பு பரிந்துரைக்கப்படுகிறது — சீதளி பிராணாயாமம் மற்றும் ஓய்வு மூலம் வெப்பத்தை தணிக்கவும்.';
+  }
+
+  @override
+  String stagnancyLeftMildDesc(String duration) {
+    return 'உங்கள் சுவாசம் $duration நேரமாக இடது (சந்திர) பாதையில் உள்ளது. மந்தம் அல்லது குளிர்ச்சி கூடலாம் — வெதுவெதுப்பான உணவு, மெதுவான இயக்கம் அல்லது சூர்ய பேதனம் நல்லது.';
+  }
+
+  @override
+  String stagnancyLeftChronicDesc(String duration) {
+    return 'உங்கள் சுவாசம் $duration நேரமாக தொடர்ந்து இடது (சந்திர) பாதையில் தேங்கியுள்ளது. சீரமைப்பு பரிந்துரைக்கப்படுகிறது — சூர்ய பேதன பிராணாயாமம் மற்றும் இயக்கம் மூலம் செரிமான நெருப்பை தூண்டவும்.';
+  }
+
+  @override
+  String get stagnancyRebalanceAction => 'சுவாசத்தை சமநிலைப்படுத்து';
+
+  @override
+  String get tattvaTipCooling =>
+      'செயலில் உள்ள நெருப்பு தத்துவம் (தேஜஸ்): குளிர்ச்சியூட்டும் மூச்சுப்பயிற்சி (சீதளி/சித்காரி) மிகவும் நல்லது.';
+
+  @override
+  String get tattvaTipWarming =>
+      'செயலில் உள்ள நீர் தத்துவம் (அபஸ்): வெப்பமூட்டும் மூச்சுப்பயிற்சி (சூர்ய பேதனம்) மிகவும் நல்லது.';
+
+  @override
+  String get focusCardSwaraAharaPrompt =>
+      'விரைவில் உணவா? செரிமான நெருப்பை அதிகரிக்க வலது நாசி (சூரிய) சுவாசம் உகந்தது.';
+
+  @override
+  String get focusCardSwaraAharaAligned =>
+      'வலது நாசி செயலில் உள்ளது — செரிமான நெருப்பு (ஜடராக்னி) சீராக உள்ளது.';
+
+  @override
+  String get focusCardSwaraAharaNudge =>
+      'இடது நாசி தற்போது செயலில் உள்ளது. உண்பதற்கு முன் வலது நாசிக்கு மாற்ற தட்டவும்.';
+
+  @override
+  String get focusCardSwaraAharaAction => 'வலதுக்கு மாற்றவும்';
 }

@@ -88,10 +88,12 @@ class NotificationScheduler {
     required double utcOffset,
     required NotificationPreferences prefs,
     PakshiBird? birthBird,
+    String languageCode = 'en',
+    DateTime? now,
   }) {
     if (!prefs.isEnabled) return [];
 
-    final today = DateTime.now();
+    final today = now ?? DateTime.now();
     final sunResult = SunriseCalculator.calculate(
       date: today,
       latitude: latitude,
@@ -149,7 +151,7 @@ class NotificationScheduler {
               title: 'Saranidhi — Eating State Active',
               body: birthBird != null
                   ? 'Your ${_birdNames[birthBird]} enters Eating state. '
-                      'Nourish body and mind.'
+                        'Nourish body and mind.'
                   : 'Eating state — a good time for mindful consumption.',
               scheduledTime: eatingTime,
               yamaIndex: yama.index,
@@ -179,6 +181,7 @@ class NotificationScheduler {
         birthBird: birthBird,
         today: today,
         id: idCounter++,
+        languageCode: languageCode,
       );
       if (summary != null) notifications.add(summary);
     }
@@ -194,8 +197,7 @@ class NotificationScheduler {
   ) {
     if (bird != null && state != null) {
       final birdName = _birdNames[bird] ?? 'Bird';
-      final stateName =
-          state.name[0].toUpperCase() + state.name.substring(1);
+      final stateName = state.name[0].toUpperCase() + state.name.substring(1);
       return 'Your $birdName is now $stateName';
     }
     return 'Saranidhi — ${yama.label}';
@@ -241,7 +243,8 @@ class NotificationScheduler {
         ScheduledNotification(
           id: id++,
           title: 'Rahu Kaal Begins',
-          body: 'Avoid new initiatives until '
+          body:
+              'Avoid new initiatives until '
               '${_formatTime(rahuResult.end)}. Observe and reflect.',
           scheduledTime: rahuResult.start,
         ),
@@ -254,7 +257,8 @@ class NotificationScheduler {
         ScheduledNotification(
           id: id++,
           title: 'Rahu Kaal Ended',
-          body: 'The shadow period has passed. You may proceed with '
+          body:
+              'The shadow period has passed. You may proceed with '
               'confidence.',
           scheduledTime: rahuResult.end,
         ),
@@ -272,28 +276,43 @@ class NotificationScheduler {
     required PakshiBird? birthBird,
     required DateTime today,
     required int id,
+    String languageCode = 'en',
   }) {
     // Schedule at sunrise (or skip if sunrise already passed)
     if (sunResult.sunrise.isBefore(today)) return null;
 
+    final isTamil = languageCode == 'ta';
+    final title = isTamil
+        ? 'காலை வணக்கம் — சரநிதி'
+        : 'Good Morning — Saranidhi';
+
     // Build summary of today's best times
-    var body = 'Today: Sunrise ${_formatTime(sunResult.sunrise)}';
+    var body = isTamil
+        ? 'இன்று: சூரியோதயம் ${_formatTime(sunResult.sunrise)}'
+        : 'Today: Sunrise ${_formatTime(sunResult.sunrise)}';
 
     if (birthBird != null) {
       // Find which yama the birth bird is Ruling
       for (final yama in yamaResult.yamas) {
         final state = pakshiDay.stateForBird(birthBird, yama.index);
         if (state == PakshiState.ruling) {
-          body += ' | Best time: ${_formatTime(yama.start)}'
-              '–${_formatTime(yama.end)}';
+          body += isTamil
+              ? ' | சிறந்த நேரம்: ${_formatTime(yama.start)}–${_formatTime(yama.end)}'
+              : ' | Best time: ${_formatTime(yama.start)}–${_formatTime(yama.end)}';
           break;
         }
       }
     }
 
+    final padaGamana = isTamil
+        ? ' | விழிக்கும் போது செயல்படும் நாசியை கவனியுங்கள் — வலது எனில் வலது காலையும், இடது எனில் இடது காலையும் முதலில் வையுங்கள்.'
+        : ' | On waking, check your dominant nostril — if right, place your right foot down first; if left, your left.';
+
+    body += padaGamana;
+
     return ScheduledNotification(
       id: id,
-      title: 'Good Morning — Saranidhi',
+      title: title,
       body: body,
       scheduledTime: sunResult.sunrise,
     );
@@ -318,6 +337,7 @@ class NotificationScheduler {
     required double utcOffset,
     required NotificationPreferences prefs,
     PakshiBird? birthBird,
+    String languageCode = 'en',
   }) async {
     await cancelAll();
     return generateForToday(
@@ -326,6 +346,7 @@ class NotificationScheduler {
       utcOffset: utcOffset,
       prefs: prefs,
       birthBird: birthBird,
+      languageCode: languageCode,
     );
   }
 

@@ -3515,6 +3515,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'· {conf}'**
   String arudamWhyCitation(String conf);
+
+  /// Title for mild nostril stagnancy warning card
+  ///
+  /// In en, this message translates to:
+  /// **'Breath Stagnancy (Mild)'**
+  String get stagnancyMildTitle;
+
+  /// Title for chronic nostril stagnancy warning card
+  ///
+  /// In en, this message translates to:
+  /// **'Breath Stagnancy (Chronic)'**
+  String get stagnancyChronicTitle;
+
+  /// Mild stagnancy description for right/solar channel
+  ///
+  /// In en, this message translates to:
+  /// **'Your breath has favoured the right (solar) channel for {duration}. Excess warmth may build — consider cooling foods, calm hydration, or Sheetali breath.'**
+  String stagnancyRightMildDesc(String duration);
+
+  /// Chronic stagnancy description for right/solar channel
+  ///
+  /// In en, this message translates to:
+  /// **'Your breath has been stuck in the right (solar) channel for {duration}. A rebalancing is advised — practice Sheetali pranayama and rest to cool digestive heat.'**
+  String stagnancyRightChronicDesc(String duration);
+
+  /// Mild stagnancy description for left/lunar channel
+  ///
+  /// In en, this message translates to:
+  /// **'Your breath has favoured the left (lunar) channel for {duration}. Sluggishness or cold may build — consider warming foods, gentle movement, or Surya Bhedana.'**
+  String stagnancyLeftMildDesc(String duration);
+
+  /// Chronic stagnancy description for left/lunar channel
+  ///
+  /// In en, this message translates to:
+  /// **'Your breath has been stuck in the left (lunar) channel for {duration}. A rebalancing is advised — practice Surya Bhedana pranayama and light movement to kindle metabolic fire.'**
+  String stagnancyLeftChronicDesc(String duration);
+
+  /// Button to trigger somatic timer rebalance from stagnancy card
+  ///
+  /// In en, this message translates to:
+  /// **'Rebalance channel'**
+  String get stagnancyRebalanceAction;
+
+  /// Tattva temperature regulation tip for cooling
+  ///
+  /// In en, this message translates to:
+  /// **'Active Fire element (Tejas): cooling breathwork (Sheetali/Sitkari) is especially beneficial.'**
+  String get tattvaTipCooling;
+
+  /// Tattva temperature regulation tip for warming
+  ///
+  /// In en, this message translates to:
+  /// **'Active Water element (Apas): warming breathwork (Surya Bhedana) is especially beneficial.'**
+  String get tattvaTipWarming;
+
+  /// Generic Swara-Ahara digestive prompt on Kriya FocusCard
+  ///
+  /// In en, this message translates to:
+  /// **'Eating soon? Favour a right-nostril (solar) flow to strengthen digestive fire.'**
+  String get focusCardSwaraAharaPrompt;
+
+  /// Swara-Ahara affirming note when right nostril is active during Kriya
+  ///
+  /// In en, this message translates to:
+  /// **'Right nostril active — digestive fire (Jatharagni) is well-placed.'**
+  String get focusCardSwaraAharaAligned;
+
+  /// Swara-Ahara nudge to shift to right nostril before eating
+  ///
+  /// In en, this message translates to:
+  /// **'Left nostril currently active. Tap to shift to right before eating.'**
+  String get focusCardSwaraAharaNudge;
+
+  /// Button to start somatic timer to flip breath to right
+  ///
+  /// In en, this message translates to:
+  /// **'Flip to right'**
+  String get focusCardSwaraAharaAction;
 }
 
 class _AppLocalizationsDelegate
