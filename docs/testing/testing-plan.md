@@ -278,6 +278,7 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 38 | +18 | 564 | Integrated Aruḍam slice 1: `IntegratedArudamEngine` unit tests (Moment × Readiness, misalignment penalty, Sushumna-in-Yoga, night floor-lock), Oracle-unchanged regression, `arudam_now_card` widget test |
 | Sprint 39 | +9 | 573 | Integrated Aruḍam "Why?" accordion: engine `reasons` breakdown per case (aligned / misaligned / stale-omits-readiness / Sushumna / floor-lock single-reason + `conf` citations); `arudam_now_card` collapse-by-default → expand → provenance + floor-lock + misaligned; Tamil-locale render |
 | Sprint 40 | +32 | 605 | Chronobiology & Holistic Guidance: `ChronobiologyAnalytics` stagnancy (none / mild / chronic / Sushumna-breaks-run / 6h+8h boundaries), `SomaticAdvice` thermal mapping, `getEntriesSince` repo, dashboard-provider `stagnancy` field, `stagnancy_card` (visibility / cooling+warming / mild+chronic / EN+TA), `focus_card` Swara-Ahara (Kriya solar/lunar/non-Kriya), morning-summary Pada Gamana EN/TA |
+| Sprint 41 | +10 | 615 | Analytics tidy: `AnalyticsCalculator.generateCsv` unit (header/row/escaping/empty), `DataExportImportWidget` CSV-button widget (render/share/busy), Analytics-screen EN/TA locale render (Yama prefix + unit suffixes, no leakage), l10n getter + EN/TA parity |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 
