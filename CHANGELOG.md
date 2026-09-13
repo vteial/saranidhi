@@ -14,7 +14,19 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
-## [1.10.0-web] — TBD
+## [1.10.1-web] — TBD
+
+> Sprint 41 — **Analytics tidy + Tamil localization**. A small housekeeping patch.
+
+### Changed
+- **Journal CSV export moved to Settings.** The "Export as CSV" action now lives in **Settings → Data Export / Import** alongside the full JSON export/import (its natural home), and shares via the standard share sheet — so it now works on the **web** too, not just mobile. The Analytics screen is tidier for it.
+
+### Fixed
+- **Analytics screen Tamil localization** — the Yama badge prefix, date formatting (now locale-aware), and the day/second unit suffixes render correctly in Tamil (தமிழ்) instead of falling back to English.
+
+---
+
+## [1.10.0-web] — 2026-09-13
 
 > Sprint 40 — **Chronobiology & Holistic Guidance**. Present-moment, self-observable
 > correction when your breath rhythm drifts — never diagnosis, never prediction.

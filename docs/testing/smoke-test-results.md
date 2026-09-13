@@ -23,6 +23,7 @@ Each production release has a single smoke test file containing both the plan (s
 | v1.8.1-web | 2026-09-12 | — (cosmetic l10n hotfix) | CI + Tamil-mode eyeball | ✅ PASS (no full matrix — hotfix) | — |
 | v1.9.0-web | 2026-09-12 | Antigravity QA (headed, PR preview) | 6 + regression eyeball | ✅ PASS | [v1.9.0](releases/v1.9.0/smoke-test.md) |
 | v1.10.0-web | 2026-09-13 | Antigravity QA (PR preview) | 8 + regression eyeball | ✅ PASS | [v1.10.0](releases/v1.10.0/smoke-test.md) |
+| v1.10.1-web | _pending_ | Antigravity QA (PR preview) | 3 (slim — light patch) | ⏳ pending | [v1.10.1](releases/v1.10.1/smoke-test.md) |
 
 ## Process
 

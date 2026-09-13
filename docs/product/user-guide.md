@@ -2,7 +2,7 @@
 
 # Saranidhi — User Guide
 
-> **Reviewed:** v1.9.0-web · **Next review:** every release (refresh for shipped features).
+> **Reviewed:** v1.10.0-web · **Next review:** every release (refresh for shipped features).
 
 > *"Your breath is not just a physiological function — it is a hidden spiritual inheritance."*
 
@@ -157,6 +157,9 @@ Present-moment, self-observable correction for your breath rhythm — never diag
 
 ### 🔒 Complete Privacy
 Your breath data is sacred and personal. It never leaves your device unless you choose to back it up — and even then, it goes only to your own iCloud or Google Drive account. We never see, store, or process your data.
+
+### 💾 Your Data, Exportable
+All export lives in one place — **Settings → Data Export / Import**: a full **JSON** export/import of everything (profile, journal, preferences) for backup or moving to another device, plus a **journal CSV** export for opening your log in a spreadsheet. Both share via your device's standard share sheet (and download on the web).
 
 ### 🌙 Beautiful Themes
 Four handcrafted visual themes to match your mood and practice: Light (clarity), Dark (night practice), Emerald (growth), and Gold (abundance).

@@ -3,7 +3,7 @@
 
 # Saranidhi — Development Sprint Tracker
 
-> **Reviewed:** v1.9.0-web · **Next review:** every release (docs-audit gate).
+> **Reviewed:** v1.10.0-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
@@ -33,21 +33,23 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 37 | Birth-Bird Engine Correction | **v1.7.0** | ✅ 🚀 (PR #167) |
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ 🚀 (PR #196) |
-| 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ (PR #202) |
-| 41+ | v2.0 polish, accuracy calibration, native "Now" surface, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
+| 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ (PR #211) |
+| 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ⬜ (planned) |
+| 43+ | Accuracy Calibration (post-S42), native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.9.0-web is now live in production (2026-09-12)** — Sprint 39,
-> the flagship's verdict-transparency **"Why?" provenance accordion** on the "Aruḍam Now"
-> card (feature PR #196 → release-start PR #199 → main→prod promotion PR #200, tag
-> `v1.9.0-web` @ `prod`; smoke test ✅ PASS 6/6 + regression on the PR preview). It explains
-> the verdict doctrinally — reasons grouped **Moment / You** (or **Blocked**), each citing
-> the corpus practice + CONF it rests on; no raw math, no tooltips, bilingual EN/TA;
-> **transparency-only** (scoring / bands / floor-lock / Oracle unchanged). The preceding
-> feature release **v1.8.0-web** (Sprint 38 — Integrated Aruḍam Slice 1) shipped the
-> always-on **"Aruḍam Now"** ambient verdict card (Moment × Readiness over a shared
-> `IntegratedArudamEngine`), the natural-vs-forced framing, and the 24h-correct inauspicious
-> floor-lock; **v1.8.1-web** was a Tamil-l10n hotfix. Both corpora (Sara Kalai, Panja Pakshi)
-> remain fully CONF-resolved.
+> **Current state:** **v1.10.0-web is now live in production (2026-09-13)** — Sprint 40,
+> **Chronobiology & Holistic Guidance** (feature PR #202 → release-start PR #205 → main→prod
+> promotion PR #208, tag `v1.10.0-web` @ `prod`; smoke test ✅ PASS 8/8 + regression + docs-audit
+> PASS). It adds present-moment holistic correction: a breath-**stagnancy** card on Home (mild
+> ≥6h / chronic ≥8h; hidden when healthy; cooling for stuck-solar, warming for stuck-lunar;
+> routes into the Sprint 35 somatic timer), the **Swara-Ahara** Kriya dietary prompt, **Tattva**
+> temperature tips, and bilingual **Swara Pada Gamana** morning-summary waking advice —
+> gentle/reliability-first (CONF-017), non-diagnostic, behavior-preserving. The preceding
+> flagship releases: **v1.9.0-web** (Sprint 39 — the "Why?" provenance accordion) and
+> **v1.8.0-web** (Sprint 38 — the always-on "Aruḍam Now" verdict card + 24h floor-lock);
+> **v1.8.1-web** was a Tamil-l10n hotfix. Both corpora (Sara Kalai, Panja Pakshi) remain fully
+> CONF-resolved.
 > **Phase 2b continues** — **Sprint 39** (Integrated Aruḍam "Why?" provenance accordion,
 > v1.9.0) and **Sprint 40** (Chronobiology & Holistic Guidance, v1.10.0) are now
 > **scheduled** via `/plan` (this PR); both are unblocked feature work. Deferred after
@@ -776,16 +778,18 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 40: Chronobiology & Holistic Guidance (v1.10.0) — ✅ Complete (PR #202)
+## Sprint 40: Chronobiology & Holistic Guidance (v1.10.0) — ✅ 🚀 Shipped (PR #202)
 
-> **Delivered** via `/sprint-finish`. Feature PR [#202](https://github.com/vteial/saranidhi/pull/202)
-> (merge `85b3cfb`) — owner-merged. Antigravity implemented + local green
-> (605 pass / 4 known-CloudKit / 0 other; analyze clean; web build clean); **Kiro Web
-> reviewed the real diff and APPROVED** — behavior-preserving (zero test-assertion
-> deletions), 13/13 EN/TA parity (pure Tamil script), reuses the Sprint 35 somatic engine,
-> tone reliability-first (CONF-017). Both review-note items from the implementation plan
-> (flow-primary temperature tip; verified `localeProvider.code`) resolved in code.
-> **Not yet released** — ships as **v1.10.0** at `/release-start` (no 🚀 until prod).
+> **Shipped to production** as **v1.10.0-web** (2026-09-13, tag `v1.10.0-web` @ `prod`).
+> Feature PR [#202](https://github.com/vteial/saranidhi/pull/202) (merge `85b3cfb`) →
+> release-start PR #205 → main→prod promotion PR #208. Smoke test ✅ **PASS** (8/8 + regression
+> eyeball + version confirm, on the PR #205 Vercel preview) + docs-audit ✅ **PASS** (no drift).
+> Antigravity implemented + local green (605 pass / 4 known-CloudKit / 0 other; analyze clean;
+> web build clean); **Kiro Web reviewed the real diff and approved** — behavior-preserving
+> (zero test-assertion deletions), 13/13 EN/TA parity (pure Tamil script), reuses the Sprint 35
+> somatic engine, tone reliability-first (CONF-017). Both review-note items from the
+> implementation plan (flow-primary temperature tip; verified `localeProvider.code`) resolved
+> in code. Release dossier: [`docs/testing/releases/v1.10.0/`](../testing/releases/v1.10.0/README.md).
 
 > **Dossier:** [`sprints/sprint-40-chronobiology/`](sprints/sprint-40-chronobiology/README.md)
 > ([spec](sprints/sprint-40-chronobiology/spec.md)). Derives from the
@@ -828,14 +832,93 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
+## Sprint 41: Analytics Tidy (CSV → Settings) + Tamil l10n fixes (v1.10.1) — ✅ Complete (PR #211)
+
+> **Delivered** via `/sprint-finish`. Feature PR [#211](https://github.com/vteial/saranidhi/pull/211)
+> (merge `8400e69`) — owner-merged. Antigravity implemented + local green
+> (615 pass / 4 known-CloudKit / 0 other; analyze clean; web build clean); **Kiro Web reviewed
+> the real diff and APPROVED** — CSV moved to Settings via `share_plus` (web + mobile), `_ExportCard`
+> fully removed + Row 3 collapsed full-width, Analytics Tamil gaps fixed (Yama prefix, locale-aware
+> `DateFormat`, `d`/`s` suffixes). Owner confirmed the proposed Tamil strings (`யா`/`நா`/`வி`).
+> **Not yet released** — ships as **v1.10.1** at `/release-start` (no 🚀 until prod).
+>
+> **Scheduled via `/plan`.** A deliberately **small, low-risk** sprint (no core-calc changes) —
+> a clean quick release before the correctness-critical Sprint 42.
+>
+> **What:** (1) move the Analytics `_ExportCard` (journal-only CSV) to **Settings** alongside the
+> full JSON export/import — keep the CSV (built + useful, just mis-placed; owner-decided option 2),
+> free the Analytics slot; (2) fix the **Analytics-page Tamil localization** gaps (hardcoded /
+> untranslated strings — the recurring partially-localized-widget miss).
+>
+> **Vehicle:** spec → coding-setup → review (low-risk; a widget-move + ARB additions, no engine
+> logic). Ships as **v1.10.1** (patch).
+
+- [x] Task 41.1: **Move CSV export Analytics → Settings.** Relocate `_ExportCard` (`AnalyticsCalculator.generateCsv` / `csvExportProvider`) into the Settings data-export area beside the JSON export; remove it from the Analytics screen. Keep behavior identical (share-sheet/download). Free the Analytics slot (leave clean, no placeholder).
+- [x] Task 41.2: **Analytics Tamil l10n audit + fix.** Find hardcoded-English / untranslated `Text()` on the Analytics screen; move to ARB (EN + pure-Tamil), swap to `l10n.*`. Pre-PR Tamil-mode eyeball.
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Code merged** — on `main` (PR #211, merge `8400e69`). _(owner merged)_
+- [x] **PR link** — [#211](https://github.com/vteial/saranidhi/pull/211) (CI green). Antigravity implemented + local green before PR; **Kiro Web reviewed the real diff and approved**.
+- [x] **Regression gate** — no core-calc/engine change; `generateCsv` untouched (CSV byte-identical); no schema change; existing analytics/settings tests pass unchanged (verified).
+- [x] **Tests** — `generateCsv` unit + Settings CSV-button widget + Analytics EN/TA locale render + l10n getter/parity; local green (615 / 4 CloudKit / 0 other).
+- [ ] **Smoke test** — CSV export from Settings + Analytics screen in Tamil (no leakage) — **at `/release-start` v1.10.1**.
+- [ ] **Valuation report** — Sprint 41 row (+20%) — **at `/sprint-update`**.
+- [x] **Tracker updated** — status ✅ (this `/sprint-finish`).
+- [ ] **User Guide** — CSV export now lives in Settings — **updated at `/sprint-update`** (feature PR was code + l10n only).
+
+---
+
+## Sprint 42: ★ Swara Clock Engine & Weekday Udhaya Calibration (v1.11.0) — Planned
+
+> **Scheduled via `/plan` — correctness-critical.** Fixes how the app predicts the **expected
+> nostril** (the readiness half of the flagship Aruḍam verdict). Owner-adjudicated doctrine; full
+> rationale + provenance in the
+> [Swara Clock Engine epic](sprint-backlog.md#swara-clock-engine--weekday-udhaya-nostril-pattern-correction).
+>
+> **The fix (two owner-confirmed calls):**
+> 1. **Rebuild expected-nostril on the 1-hour / 24-cycle swara clock (CONF-014)** — decouple from
+>    the Pakshi bird-state yama clock (which today wrongly drives it via `nostril_pattern.dart`).
+> 2. **Seed dawn from the CONF-013 Weekday Udhaya table** (NOT tithi): 1h days Sun R / Mon L /
+>    Thu-Shukla L / Sat R; 2h days Tue R / Wed L / Thu-Krishna R / Fri L (Heating=R, Cooling=L,
+>    Thu flips by paksha). 1h days alternate hourly from the seed; 2h days hold the seed for the
+>    2-hour Udhaya inception window, then alternate hourly.
+>
+> **Why now (before the pause):** the 7-day Accuracy Calibration compares Saranidhi vs Align27 vs
+> Panchangam vs *actual breath* — if the swara clock stays broken, every breath log tests the wrong
+> engine. This MUST ship before data collection.
+>
+> **Vehicle:** the **Sprint 37 birth-bird protocol** — formal spec (Kiro Web) → Antigravity
+> implements with a **local green baseline** + isolated test cases against the workshop transcripts
+> → Kiro Web reviews the real diff. Correctness-critical: local green required before PR (not CI-only).
+
+- [ ] Task 42.1: **New `SwaraClock` engine** — expected nostril on the **1-hour / 24-cycle** clock (sunrise-anchored civil day, CONF-001), replacing the yama-based prediction path.
+- [ ] Task 42.2: **CONF-013 Weekday Udhaya dawn seed** — the weekday→(nostril, 1h/2h) table incl. the Thursday paksha split; seeds the first swara at astronomical sunrise.
+- [ ] Task 42.3: **Hourly progression** — 1h-days alternate every hour from the seed; 2h-days hold the seed 2h (Udhaya inception) then alternate hourly; correct across the full 24h (day + night).
+- [ ] Task 42.4: **Rewire consumers** — `AlignmentChecker` (journal alignment + `expectedFlow`), the Aruḍam Now **readiness multiplier**, and the **Nostril Pattern dashboard card** (+ next-switch countdown → the ~1h swara switch, not the yama boundary) all read the new `SwaraClock`. Retire/replace `NostrilPattern.expectedFlowForYama`.
+- [ ] Task 42.5: **Regression gate** — Pakshi **bird-state / yama** logic UNCHANGED (pin with tests); only the nostril clock moves. Explicit `SwaraClock` tests: each weekday seed, 1h vs 2h dawn, hourly alternation, day/night boundary, sunrise anchoring.
+- [ ] Task 42.6: **Citation cleanup** — re-key the `integrated_arudam_engine.dart` floor-lock citation off `CONF-018` (which is the Day/Night macro-seal, not the inauspicious-window rule) to the correct CONF; optionally let CONF-018 back the day/night macro framing.
+- [ ] Task 42.7: **Bilingual (EN/TA)** for any new/changed nostril-pattern copy; Nostril Pattern card + guidance reflect the 1h clock.
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
+- [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implements + **local green before PR**; **Kiro Web reviews the real diff**.
+- [ ] **Regression gate** — bird-state/yama/Pakshi outputs UNCHANGED (pinned); Aruḍam Now score changes ONLY where the corrected nostril clock legitimately changes readiness; no schema change.
+- [ ] **Docs updated** — User Guide (Nostril Pattern now on the ~1h swara clock + weekday dawn rule) + `calculation-methodology.md` (new §: Swara Clock + Weekday Udhaya table) + the CONF-018 citation fix.
+- [ ] **Tests** — `SwaraClock` unit tests (weekday seeds, 1h/2h dawn, hourly progression, boundaries); alignment/readiness regression; existing bird/Pakshi tests unchanged & green; local green before PR.
+- [ ] **Smoke test** — expected-nostril matches a checked nostril at a known weekday sunrise (the "Sunday morning" test); next-switch countdown ≈ hourly; EN/TA.
+- [ ] **Valuation report** — Sprint 42 row (+20%) at `/sprint-update`.
+- [ ] **Tracker updated** — status ✅.
+- [ ] **User Guide** — real capability/accuracy change, so **not** `n/a`.
+
+---
+
 ## Future Sprints
 
-The flagship **Integrated Aruḍam** slice 1 (Sprint 38) shipped; its "Why?" accordion
-fast-follow is now **Sprint 39** and **Chronobiology** is **Sprint 40** (above).
-Remaining future/candidate sprints (Accuracy Calibration — blocked on the 7-day data;
-the native "Now" Surface; v2.0 Polish; E2E Automation; App Store Prep) live in the
-**[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into this
-tracker (with a Delivery Checklist) when scheduled via `/plan`.
+Sprints **41** (Analytics tidy, v1.10.1) and **42** (★ Swara Clock Engine, v1.11.0) are scheduled
+above. Remaining future/candidate sprints — **Accuracy Calibration** (the 7-day 3-way comparison;
+now gated behind Sprint 42 shipping + owner data collection), the native **"Now" Surface**, v2.0
+Polish, E2E Automation, App Store Prep — live in the **[Sprint Backlog](sprint-backlog.md)** with
+full task lists. They graduate into this tracker (with a Delivery Checklist) when scheduled via `/plan`.
 
 > **Note on numbering:** Sprint 37 was reassigned from "Chronobiology" to
 > "Birth-Bird Engine Correction" — the CONF-PP audit surfaced a live calculation
