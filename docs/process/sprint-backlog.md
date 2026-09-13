@@ -163,15 +163,16 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 
 ## Analytics & Insights
 
-> **⏭️ PARKED for the next `/plan` (owner: Monday).** The CSV-export decision below is
-> deliberately deferred to the Monday planning session — decide there whether to (1) remove
-> CSV + replace the slot with a value-add card [Kiro's rec], (2) move CSV to Settings, or
-> (3) keep as-is; then schedule the chosen work.
+> **✅ DECIDED (`/plan`):** keep the journal CSV (built + genuinely useful, just mis-placed) →
+> **move it from Analytics to Settings** alongside the JSON export. **Scheduled as Sprint 41
+> (v1.10.1)** together with the Analytics-page Tamil-localization fixes — see
+> [sprint-tracker](sprint-tracker.md#sprint-41-analytics-tidy--tamil-l10n-fixes-v1101--planned).
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🟡 | ⏭️ Monday `/plan` | **Analytics export — reconsider.** The Analytics screen's `_ExportCard` exports journal-only CSV; Settings already has full data export/import (JSON, a superset). Decide: (1) remove CSV from Analytics and replace the slot with a higher-value card (alignment-rate insight, hold-time chart expansion, streak heatmap, or a shareable summary report); (2) move CSV to Settings alongside JSON; or (3) keep as-is. *(CSV = human-readable/journal-only vs JSON = full machine backup — weigh before removing.)* |
-| 🟢 | ⬜ | Shareable summary / PDF report of alignment and hold-time progress. |
+| 🟡 | 📋 → S41 | **Analytics export — move CSV to Settings** (owner-decided option 2). Relocate the Analytics `_ExportCard` (journal-only CSV) next to the Settings full JSON export/import; free the Analytics slot. Keep CSV (human-readable/spreadsheet path) — do NOT remove. |
+| 🟡 | 📋 → S41 | **Analytics-page Tamil l10n fixes** — hardcoded-English / untranslated strings on the Analytics screen (the recurring partially-localized-widget miss). Audit + localize. |
+| 🟢 | ⬜ | Shareable summary / PDF report of alignment and hold-time progress. *(The higher-value slot filler if the Analytics real estate is reconsidered later.)* |
 
 ---
 
@@ -203,9 +204,60 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 
 ---
 
+## Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction)
+
+> **Status: scoped via `/plan`; scheduled as Sprint 42 (v1.11.0)** — see
+> [sprint-tracker](sprint-tracker.md#sprint-42-swara-clock-engine--weekday-udhaya-calibration-v1110--planned).
+> A **correctness-critical calculation fix** to how the app predicts the *expected nostril* —
+> the readiness half of the flagship Aruḍam verdict.
+>
+> **The bug (owner-adjudicated, doctrinal):** today the app predicts expected-nostril on the
+> **Pakshi bird-state yama clock** (daylight ÷ 5 ≈ 2.4h segments, tithi-seeded alternation, in
+> `nostril_pattern.dart` → consumed by `AlignmentChecker`, the Nostril Pattern dashboard card,
+> **and the Aruḍam Now readiness multiplier**). Per **CONF-014** the swara clock is a **separate
+> ~1-hour / 24-cycle clock** (12h R + 12h L, the 21,600-breath ledger) — *the thing a user can
+> physically verify by checking their nostril.* Predicting it on the ~2.4h yama clock creates
+> artificial "misalignment" for ~half of every daytime hour, wrongly dampens the verdict (×0.75),
+> and fails the self-verifiable North Star.
+>
+> **The two owner-confirmed fixes (this epic):**
+> 1. **Rebuild expected-nostril on the 1-hour / 24-cycle swara clock (CONF-014)** — fully decouple
+>    it from the Pakshi bird-state yama clock. The yama clock keeps driving bird states.
+> 2. **Seed the day's first swara at dawn from the CONF-013 Weekday Udhaya table** (NOT the tithi):
+>    1-hour dawn days — Sun **R**, Mon **L**, Thu-Shukla **L**, Sat **R**; 2-hour dawn days —
+>    Tue **R**, Wed **L**, Thu-Krishna **R**, Fri **L** (mnemonic: Heating Sun/Tue/Sat = R,
+>    Cooling Mon/Wed/Fri = L; Thu flips by paksha). Progression: 1-hour days alternate hourly from
+>    the seed; 2-hour days hold the seed for the 2-hour Udhaya inception window, then alternate hourly.
+>
+> **Why before the calibration pause (the dependency paradox):** the 7-day Accuracy Calibration
+> compares Saranidhi vs Align27 vs Panchangam vs *actual breath*. If the swara clock is still on
+> the broken yama model, **every breath observation collected during the pause tests the wrong
+> engine** — invalid calibration data. So this MUST land before the data-collection pause.
+>
+> **Cleanup folded in:** re-key the `integrated_arudam_engine.dart` floor-lock citation — it cites
+> `CONF-018`, but CONF-018 is Topic 10 (Daytime-Left/Nighttime-Right macro-seal), not the
+> inauspicious-window rule. Fix the citation; CONF-018 can then properly back the optional day/night
+> macro framing.
+>
+> **Vehicle:** correctness-critical → the **Sprint 37 birth-bird protocol** (formal spec →
+> Antigravity coding-setup with local green baseline + isolated test cases against the workshop
+> transcripts → Kiro Web reviews the real diff). **Regression gate:** pin that bird-state / Pakshi
+> logic is UNCHANGED (only the nostril clock moves); add explicit swara-clock tests (weekday seeds,
+> 1h vs 2h dawn, hourly progression, day boundary).
+
+**Provenance:** CONF-014 (two clocks — 1h swara / 24-cycle vs 1.5h yama) · CONF-013 (Weekday Udhaya
+dawn table + Thu paksha split) · CONF-001 (sunrise-anchored civil day) · CONF-018 (Day/Night
+macro-seal — for the citation fix + optional framing) · `nostril_pattern.dart`, `alignment_checker.dart`,
+`nostril_dominance_chart.dart`, `integrated_arudam_engine.dart`.
+
+---
+
 ## Accuracy & Validation
 
 > **Prerequisite:** Owner collects 7-day Align27 + Tamil Panchangam data BEFORE calibration work starts.
+> **HARD PRE-REQUISITE (added `/plan`):** the **Swara Clock Engine fix (Sprint 42)** MUST ship
+> before the 7-day data collection — otherwise every breath log calibrates the broken yama-clock
+> model (the dependency paradox). Collect data only after v1.11.0 is live.
 
 | Priority | Status | Item |
 |----------|--------|------|
