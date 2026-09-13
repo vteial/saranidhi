@@ -1,10 +1,6 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/core/widgets/empty_state_widget.dart';
@@ -42,68 +38,53 @@ class AnalyticsScreen extends ConsumerWidget {
               ),
             )
           : SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Row 1: Weekly Summary + Monthly Patterns (two-column on wide)
-            if (isWide)
-              IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(child: _WeeklySummaryCard()),
-                    const SizedBox(width: 12),
-                    Expanded(child: _MonthlyPatternsCard()),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Row 1: Weekly Summary + Monthly Patterns (two-column on wide)
+                  if (isWide)
+                    IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(child: _WeeklySummaryCard()),
+                          const SizedBox(width: 12),
+                          Expanded(child: _MonthlyPatternsCard()),
+                        ],
+                      ),
+                    )
+                  else ...[
+                    _WeeklySummaryCard(),
+                    const SizedBox(height: 12),
+                    _MonthlyPatternsCard(),
                   ],
-                ),
-              )
-            else ...[
-              _WeeklySummaryCard(),
-              const SizedBox(height: 12),
-              _MonthlyPatternsCard(),
-            ],
-            const SizedBox(height: 12),
+                  const SizedBox(height: 12),
 
-            // Row 2: Streak Insights + Yama Performance (two-column on wide)
-            if (isWide)
-              IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(child: _StreakInsightsCard()),
-                    const SizedBox(width: 12),
-                    Expanded(child: _YamaPerformanceCard()),
+                  // Row 2: Streak Insights + Yama Performance (two-column on wide)
+                  if (isWide)
+                    IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(child: _StreakInsightsCard()),
+                          const SizedBox(width: 12),
+                          Expanded(child: _YamaPerformanceCard()),
+                        ],
+                      ),
+                    )
+                  else ...[
+                    _StreakInsightsCard(),
+                    const SizedBox(height: 12),
+                    _YamaPerformanceCard(),
                   ],
-                ),
-              )
-            else ...[
-              _StreakInsightsCard(),
-              const SizedBox(height: 12),
-              _YamaPerformanceCard(),
-            ],
-            const SizedBox(height: 12),
+                  const SizedBox(height: 12),
 
-            // Row 3: Hold Time + Export (two-column on wide)
-            if (isWide)
-              IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(child: _HoldTimeProgressionCard()),
-                    const SizedBox(width: 12),
-                    Expanded(child: _ExportCard()),
-                  ],
-                ),
-              )
-            else ...[
-              _HoldTimeProgressionCard(),
-              const SizedBox(height: 12),
-              _ExportCard(),
-            ],
-          ],
-        ),
-      ),
+                  // Row 3: Hold Time Progression (full-width)
+                  _HoldTimeProgressionCard(),
+                ],
+              ),
+            ),
     );
   }
 }
@@ -118,7 +99,11 @@ class _WeeklySummaryCard extends ConsumerWidget {
       data: (weeks) {
         if (weeks.isEmpty) {
           final l10n = AppLocalizations.of(context);
-          return _emptyCard(theme, l10n.weeklyAlignment, l10n.weeklyAlignmentEmpty);
+          return _emptyCard(
+            theme,
+            l10n.weeklyAlignment,
+            l10n.weeklyAlignmentEmpty,
+          );
         }
 
         return Card(
@@ -154,7 +139,8 @@ class _WeekRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat('MMM d');
+    final locale = Localizations.localeOf(context).toString();
+    final dateFormat = DateFormat('MMM d', locale);
     final label =
         '${dateFormat.format(week.weekStart)} – ${dateFormat.format(week.weekEnd)}';
     final pct = week.alignmentPercentage;
@@ -214,7 +200,11 @@ class _MonthlyPatternsCard extends ConsumerWidget {
     return patternsAsync.when(
       data: (patterns) {
         if (patterns.totalEntries == 0) {
-          return _emptyCard(theme, l10n.monthlyPatterns, l10n.monthlyPatternsEmpty);
+          return _emptyCard(
+            theme,
+            l10n.monthlyPatterns,
+            l10n.monthlyPatternsEmpty,
+          );
         }
 
         return Card(
@@ -265,20 +255,26 @@ class _MonthlyPatternsCard extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _StatChip(
-                      label: l10n.activeDays,
-                      value: '${patterns.activeDays}',
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.activeDays,
+                        value: '${patterns.activeDays}',
+                        theme: theme,
+                      ),
                     ),
-                    _StatChip(
-                      label: l10n.avgPerDay,
-                      value: patterns.avgEntriesPerDay.toStringAsFixed(1),
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.avgPerDay,
+                        value: patterns.avgEntriesPerDay.toStringAsFixed(1),
+                        theme: theme,
+                      ),
                     ),
-                    _StatChip(
-                      label: l10n.alignment,
-                      value: '${patterns.alignmentPercentage}%',
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.alignment,
+                        value: '${patterns.alignmentPercentage}%',
+                        theme: theme,
+                      ),
                     ),
                   ],
                 ),
@@ -322,8 +318,8 @@ class _PatternRow extends StatelessWidget {
         children: [
           Icon(icon, size: 16, color: color),
           const SizedBox(width: 8),
-          Text(label, style: theme.textTheme.bodySmall),
-          const Spacer(),
+          Expanded(child: Text(label, style: theme.textTheme.bodySmall)),
+          const SizedBox(width: 8),
           Text(
             value,
             style: theme.textTheme.bodySmall?.copyWith(
@@ -361,6 +357,7 @@ class _StatChip extends StatelessWidget {
         ),
         Text(
           label,
+          textAlign: TextAlign.center,
           style: theme.textTheme.labelSmall?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -380,7 +377,11 @@ class _StreakInsightsCard extends ConsumerWidget {
     return insightsAsync.when(
       data: (insights) {
         if (insights.totalPracticeDays == 0) {
-          return _emptyCard(theme, l10n.streakInsights, l10n.streakInsightsEmpty);
+          return _emptyCard(
+            theme,
+            l10n.streakInsights,
+            l10n.streakInsightsEmpty,
+          );
         }
 
         return Card(
@@ -399,20 +400,28 @@ class _StreakInsightsCard extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _StatChip(
-                      label: l10n.current,
-                      value: '${insights.currentStreak}d',
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.current,
+                        value:
+                            '${insights.currentStreak}${l10n.daysSuffixShort}',
+                        theme: theme,
+                      ),
                     ),
-                    _StatChip(
-                      label: l10n.longest,
-                      value: '${insights.longestStreak}d',
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.longest,
+                        value:
+                            '${insights.longestStreak}${l10n.daysSuffixShort}',
+                        theme: theme,
+                      ),
                     ),
-                    _StatChip(
-                      label: l10n.totalDays,
-                      value: '${insights.totalPracticeDays}',
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.totalDays,
+                        value: '${insights.totalPracticeDays}',
+                        theme: theme,
+                      ),
                     ),
                   ],
                 ),
@@ -455,7 +464,11 @@ class _YamaPerformanceCard extends ConsumerWidget {
       data: (counts) {
         final total = counts.values.fold<int>(0, (a, b) => a + b);
         if (total == 0) {
-          return _emptyCard(theme, l10n.yamaPerformance, l10n.yamaPerformanceEmpty);
+          return _emptyCard(
+            theme,
+            l10n.yamaPerformance,
+            l10n.yamaPerformanceEmpty,
+          );
         }
 
         final sorted = counts.entries.toList()
@@ -484,10 +497,8 @@ class _YamaPerformanceCard extends ConsumerWidget {
                 const SizedBox(height: 12),
                 ...sorted.map((entry) {
                   final yamaNum = entry.key.replaceAll('yama', '');
-                  final fraction =
-                      maxCount > 0 ? entry.value / maxCount : 0.0;
-                  final pct =
-                      total > 0 ? (entry.value * 100 ~/ total) : 0;
+                  final fraction = maxCount > 0 ? entry.value / maxCount : 0.0;
+                  final pct = total > 0 ? (entry.value * 100 ~/ total) : 0;
 
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 3),
@@ -496,7 +507,7 @@ class _YamaPerformanceCard extends ConsumerWidget {
                         SizedBox(
                           width: 28,
                           child: Text(
-                            'Y$yamaNum',
+                            '${l10n.yamaShortPrefix}$yamaNum',
                             style: theme.textTheme.bodySmall,
                           ),
                         ),
@@ -551,7 +562,11 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
     return holdAsync.when(
       data: (hold) {
         if (hold.totalSessions == 0) {
-          return _emptyCard(theme, l10n.holdTimeProgression, l10n.holdTimeEmpty);
+          return _emptyCard(
+            theme,
+            l10n.holdTimeProgression,
+            l10n.holdTimeEmpty,
+          );
         }
 
         final trendIcon = switch (hold.trendDirection) {
@@ -600,20 +615,29 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _StatChip(
-                      label: l10n.thisWeek,
-                      value: '${(hold.weeklyAverage / 1000).toStringAsFixed(1)}s',
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.thisWeek,
+                        value:
+                            '${(hold.weeklyAverage / 1000).toStringAsFixed(1)}${l10n.secondsSuffixShort}',
+                        theme: theme,
+                      ),
                     ),
-                    _StatChip(
-                      label: l10n.thisMonth,
-                      value: '${(hold.monthlyAverage / 1000).toStringAsFixed(1)}s',
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.thisMonth,
+                        value:
+                            '${(hold.monthlyAverage / 1000).toStringAsFixed(1)}${l10n.secondsSuffixShort}',
+                        theme: theme,
+                      ),
                     ),
-                    _StatChip(
-                      label: l10n.bestEver,
-                      value: '${(hold.personalBestMs / 1000).toStringAsFixed(1)}s',
-                      theme: theme,
+                    Expanded(
+                      child: _StatChip(
+                        label: l10n.bestEver,
+                        value:
+                            '${(hold.personalBestMs / 1000).toStringAsFixed(1)}${l10n.secondsSuffixShort}',
+                        theme: theme,
+                      ),
                     ),
                   ],
                 ),
@@ -621,7 +645,8 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
                 _PatternRow(
                   icon: Icons.timer,
                   label: l10n.allTimeAverage,
-                  value: '${(hold.allTimeAverage / 1000).toStringAsFixed(1)}s',
+                  value:
+                      '${(hold.allTimeAverage / 1000).toStringAsFixed(1)}${l10n.secondsSuffixShort}',
                   color: theme.colorScheme.primary,
                   theme: theme,
                 ),
@@ -636,8 +661,10 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
                   _PatternRow(
                     icon: Icons.emoji_events,
                     label: l10n.personalBestDate,
-                    value: DateFormat('MMM d, yyyy')
-                        .format(hold.personalBestDate!),
+                    value: DateFormat(
+                      'MMM d, yyyy',
+                      Localizations.localeOf(context).toString(),
+                    ).format(hold.personalBestDate!),
                     color: theme.colorScheme.primary,
                     theme: theme,
                   ),
@@ -649,85 +676,6 @@ class _HoldTimeProgressionCard extends ConsumerWidget {
       loading: () => const SizedBox.shrink(),
       error: (_, __) => const SizedBox.shrink(),
     );
-  }
-}
-
-class _ExportCard extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context);
-
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.exportData,
-              style: theme.textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              l10n.exportDataSubtitle,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const SizedBox(height: 12),
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: () => _exportCsv(context, ref),
-                icon: const Icon(Icons.download),
-                label: Text(l10n.exportAsCsv),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future<void> _exportCsv(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context);
-    try {
-      final csv = await ref.read(csvExportProvider.future);
-
-      if (kIsWeb) {
-        // On web, show a dialog with the CSV content (can't write files)
-        if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(l10n.csvExportWebOnly),
-            ),
-          );
-        }
-        return;
-      }
-
-      // On mobile/desktop, write to a file
-      final dir = await getApplicationDocumentsDirectory();
-      final file = File(
-        '${dir.path}/saranidhi_journal_${DateFormat('yyyy-MM-dd').format(DateTime.now())}.csv',
-      );
-      await file.writeAsString(csv);
-
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.exportedTo(file.path))),
-        );
-      }
-    } on Exception catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${l10n.exportFailed}: $e')),
-        );
-      }
-    }
   }
 }
 
@@ -750,7 +698,9 @@ Card _emptyCard(ThemeData theme, String title, String hint) {
               Icon(
                 Icons.info_outline,
                 size: 16,
-                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
+                color: theme.colorScheme.onSurfaceVariant.withValues(
+                  alpha: 0.6,
+                ),
               ),
               const SizedBox(width: 8),
               Expanded(

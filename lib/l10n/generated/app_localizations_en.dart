@@ -648,6 +648,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportAllData => 'Export All Data';
 
   @override
+  String get exportJournalCsv => 'Export journal as CSV';
+
+  @override
   String get exporting => 'Exporting...';
 
   @override
@@ -763,6 +766,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get days => 'days';
 
   @override
+  String get daysSuffixShort => 'd';
+
+  @override
+  String get secondsSuffixShort => 's';
+
+  @override
   String get yamaPerformance => 'Yama Performance';
 
   @override
@@ -771,6 +780,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get yamaPerformanceEmpty =>
       'Log entries during different yamas to see breakdown.';
+
+  @override
+  String get yamaShortPrefix => 'Y';
 
   @override
   String get holdTimeProgression => 'Hold Time Progression';

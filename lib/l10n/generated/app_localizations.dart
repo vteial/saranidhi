@@ -1274,6 +1274,12 @@ abstract class AppLocalizations {
   /// **'Export All Data'**
   String get exportAllData;
 
+  /// Export journal as CSV button label in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Export journal as CSV'**
+  String get exportJournalCsv;
+
   /// Export in progress label
   ///
   /// In en, this message translates to:
@@ -1496,6 +1502,18 @@ abstract class AppLocalizations {
   /// **'days'**
   String get days;
 
+  /// Short unit suffix for days (e.g. 7d)
+  ///
+  /// In en, this message translates to:
+  /// **'d'**
+  String get daysSuffixShort;
+
+  /// Short unit suffix for seconds (e.g. 15s)
+  ///
+  /// In en, this message translates to:
+  /// **'s'**
+  String get secondsSuffixShort;
+
   /// Yama performance card title
   ///
   /// In en, this message translates to:
@@ -1513,6 +1531,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log entries during different yamas to see breakdown.'**
   String get yamaPerformanceEmpty;
+
+  /// Short prefix for yama number in charts and badges (e.g. Y1)
+  ///
+  /// In en, this message translates to:
+  /// **'Y'**
+  String get yamaShortPrefix;
 
   /// Hold time card title
   ///

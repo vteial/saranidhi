@@ -78,6 +78,10 @@ void main() {
         l10n.completeSetup,
         l10n.retry,
         l10n.pullToRefresh,
+        l10n.exportJournalCsv,
+        l10n.yamaShortPrefix,
+        l10n.daysSuffixShort,
+        l10n.secondsSuffixShort,
       ];
 
       for (final s in strings) {
@@ -122,11 +126,32 @@ void main() {
         l10n.onboardingWelcome,
         l10n.back,
         l10n.next,
+        l10n.exportJournalCsv,
+        l10n.yamaShortPrefix,
+        l10n.daysSuffixShort,
+        l10n.secondsSuffixShort,
       ];
 
       for (final s in strings) {
         expect(s.isNotEmpty, isTrue);
       }
+    });
+
+    test('Sprint 41 l10n keys EN/TA parity and expected values', () {
+      final en = AppLocalizationsEn();
+      final ta = AppLocalizationsTa();
+
+      expect(en.exportJournalCsv, equals('Export journal as CSV'));
+      expect(ta.exportJournalCsv, equals('நாட்குறிப்பை CSV ஆக ஏற்றுமதி செய்க'));
+
+      expect(en.yamaShortPrefix, equals('Y'));
+      expect(ta.yamaShortPrefix, equals('யா'));
+
+      expect(en.daysSuffixShort, equals('d'));
+      expect(ta.daysSuffixShort, equals('நா'));
+
+      expect(en.secondsSuffixShort, equals('s'));
+      expect(ta.secondsSuffixShort, equals('வி'));
     });
   });
 

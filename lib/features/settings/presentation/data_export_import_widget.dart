@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/theme/theme_provider.dart';
+import 'package:saranidhi/features/analytics/providers/analytics_providers.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/features/cloud_backup/domain/database_exporter.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
@@ -34,11 +35,13 @@ class _DataExportImportWidgetState
     extends ConsumerState<DataExportImportWidget> {
   bool _isExporting = false;
   bool _isImporting = false;
+  bool _isExportingCsv = false;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
+    final isBusy = _isExporting || _isImporting || _isExportingCsv;
 
     return Card(
       child: Padding(
@@ -75,7 +78,7 @@ class _DataExportImportWidgetState
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: _isExporting ? null : _handleExport,
+                onPressed: isBusy ? null : _handleExport,
                 icon: _isExporting
                     ? const SizedBox(
                         width: 16,
@@ -83,9 +86,7 @@ class _DataExportImportWidgetState
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
                     : const Icon(Icons.upload_file),
-                label: Text(
-                  _isExporting ? l10n.exporting : l10n.exportAllData,
-                ),
+                label: Text(_isExporting ? l10n.exporting : l10n.exportAllData),
               ),
             ),
             const SizedBox(height: 8),
@@ -94,7 +95,7 @@ class _DataExportImportWidgetState
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: _isImporting ? null : _handleImport,
+                onPressed: isBusy ? null : _handleImport,
                 icon: _isImporting
                     ? const SizedBox(
                         width: 16,
@@ -102,8 +103,25 @@ class _DataExportImportWidgetState
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
                     : const Icon(Icons.download),
+                label: Text(_isImporting ? l10n.importing : l10n.importData),
+              ),
+            ),
+            const SizedBox(height: 8),
+
+            // Journal CSV Export button
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: isBusy ? null : _handleCsvExport,
+                icon: _isExportingCsv
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.table_chart_outlined),
                 label: Text(
-                  _isImporting ? l10n.importing : l10n.importData,
+                  _isExportingCsv ? l10n.exporting : l10n.exportJournalCsv,
                 ),
               ),
             ),
@@ -111,6 +129,36 @@ class _DataExportImportWidgetState
         ),
       ),
     );
+  }
+
+  Future<void> _handleCsvExport() async {
+    setState(() => _isExportingCsv = true);
+
+    try {
+      final csv = await ref.read(csvExportProvider.future);
+      final bytes = Uint8List.fromList(utf8.encode(csv));
+
+      final dateStr = DateFormat('yyyy-MM-dd').format(DateTime.now());
+      final filename = 'saranidhi_journal_$dateStr.csv';
+
+      await Share.shareXFiles([
+        XFile.fromData(bytes, mimeType: 'text/csv', name: filename),
+      ], subject: 'Saranidhi Journal CSV Export');
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context).exportSuccess)),
+        );
+      }
+    } on Exception catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(context).exportFailed)),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isExportingCsv = false);
+    }
   }
 
   Future<void> _handleExport() async {
@@ -126,30 +174,26 @@ class _DataExportImportWidgetState
 
       if (kIsWeb) {
         // On web, trigger download via share_plus or fallback
-        await Share.shareXFiles(
-          [XFile.fromData(bytes, mimeType: 'application/json', name: filename)],
-          subject: 'Saranidhi Data Export',
-        );
+        await Share.shareXFiles([
+          XFile.fromData(bytes, mimeType: 'application/json', name: filename),
+        ], subject: 'Saranidhi Data Export');
       } else {
         // On mobile/desktop, use share sheet
-        await Share.shareXFiles(
-          [XFile.fromData(bytes, mimeType: 'application/json', name: filename)],
-          subject: 'Saranidhi Data Export',
-        );
+        await Share.shareXFiles([
+          XFile.fromData(bytes, mimeType: 'application/json', name: filename),
+        ], subject: 'Saranidhi Data Export');
       }
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(AppLocalizations.of(context).exportSuccess),
-          ),
+          SnackBar(content: Text(AppLocalizations.of(context).exportSuccess)),
         );
       }
     } on Exception catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Export failed: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Export failed: $e')));
       }
     } finally {
       if (mounted) setState(() => _isExporting = false);
@@ -172,9 +216,9 @@ class _DataExportImportWidgetState
     final bytes = file.bytes;
     if (bytes == null) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.importFailedReadFile)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.importFailedReadFile)));
       }
       return;
     }
@@ -184,7 +228,9 @@ class _DataExportImportWidgetState
     if (validationError != null) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${l10n.importInvalidFile}: $validationError')),
+          SnackBar(
+            content: Text('${l10n.importInvalidFile}: $validationError'),
+          ),
         );
       }
       return;
@@ -268,15 +314,15 @@ class _DataExportImportWidgetState
         ..invalidate(onboardingCompleteProvider);
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.importSuccess)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.importSuccess)));
       }
     } on Exception catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${l10n.importFailed}: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('${l10n.importFailed}: $e')));
       }
     } finally {
       if (mounted) setState(() => _isImporting = false);
