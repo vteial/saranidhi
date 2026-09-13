@@ -7,7 +7,7 @@
 > scope. Paste the block below into Antigravity; the owner's message is a one-liner pointing here.
 >
 > **Preview URL (filled):** `https://saranidhi-git-release-v1101-eialarasus-projects.vercel.app/`
-> (standard Vercel format — branch `release/v1.10.1` → slug `release-v1101`). Release PR: **#___** (fill once opened).
+> (standard Vercel format — branch `release/v1.10.1` → slug `release-v1101`). Release PR: **#214**.
 >
 > **Preview auth:** Vercel Deployment Protection — read `VERCEL_AUTOMATION_BYPASS_SECRET` from the
 > local `.env` (gitignored) and append `?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true`.
@@ -26,7 +26,7 @@ RELEASE UNDER TEST: v1.10.1 (Sprint 41 — Analytics tidy + Tamil l10n). LIGHT P
 ENVIRONMENT: The release PR's Vercel PREVIEW (NOT staging). Read VERCEL_AUTOMATION_BYPASS_SECRET
 from the local `.env` and append it to the preview URL:
   https://saranidhi-git-release-v1101-eialarasus-projects.vercel.app/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
-REPO: vteial/saranidhi. Release branch: release/v1.10.1. PR: #___.
+REPO: vteial/saranidhi. Release branch: release/v1.10.1. PR: #214.
 
 TEST PLAN (source of truth): docs/testing/releases/v1.10.1/smoke-test.md — execute all 3 scenarios
 + version confirm, in order.

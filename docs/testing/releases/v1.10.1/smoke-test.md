@@ -5,7 +5,7 @@
 **Release:** v1.10.1-web (Sprint 41 — Analytics tidy + Tamil l10n) · **Light patch**
 **Date:** _pending_
 **Tester:** Antigravity (QA-Verify Agent)
-**Shipping Commit:** _pending_ on `release/v1.10.1` (PR #___)
+**Shipping Commit:** _pending_ on `release/v1.10.1` (PR #214)
 **Device/Browser:** Chrome — Desktop (1024×768) + Mobile (390×844)
 **Environment:** PR Vercel **preview** — `https://saranidhi-git-release-v1101-eialarasus-projects.vercel.app` (via `VERCEL_AUTOMATION_BYPASS_SECRET`) — **NOT** staging
 
