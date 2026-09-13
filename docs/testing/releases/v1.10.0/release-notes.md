@@ -35,4 +35,9 @@ Saranidhi now notices when your breath rhythm has **drifted** — and gently sug
 - Sprint 40 — Chronobiology & Holistic Guidance
 
 ### Smoke test
-- See [`smoke-test.md`](./smoke-test.md) — status recorded at release verification.
+- See [`smoke-test.md`](./smoke-test.md) — ✅ **PASS** (8/8 + regression eyeball + version confirm, PR #205 preview) + docs-audit ✅ PASS.
+
+---
+
+> **Shipped:** 2026-09-13 · promotion PR #208 · live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
+> **⚠️ Tag note:** the GitHub Release was tagged **`v1.10.0`** — prior releases used the **`-web`** suffix (`v1.9.0-web`, `v1.8.1-web`, …). Convention expects `v1.10.0-web`. Recommend re-tagging to `v1.10.0-web` for consistency (or ratify dropping the suffix going forward). See the `/release-update` PR discussion.

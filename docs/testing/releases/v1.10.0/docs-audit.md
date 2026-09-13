@@ -45,7 +45,7 @@
 ## Findings / doc fixes made this release
 
 - Clean bump release: all durable docs verified fresh against Sprint 40 changes; no stale-content drift found.
-- The 11 durable docs are validated and marked for stamp bump from `v1.9.0-web` → `v1.10.0-web` at `/release-update`.
+- The 11 durable docs' `> Reviewed:` stamps were **bumped `v1.9.0-web` → `v1.10.0-web`** at `/release-update` (this PR). ✅
 - `security-review.md` confirmed as N/A (v1.10.0 = chronobiology & holistic guidance, no data/network boundary change — local-first unchanged).
 - Smoke test index in `docs/testing/smoke-test-results.md` verified updated with v1.10.0 row (8 scenarios, ✅ PASS).
 

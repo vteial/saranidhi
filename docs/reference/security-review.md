@@ -2,7 +2,7 @@
 
 # Saranidhi — Security Review
 
-> **Reviewed:** v1.9.0-web · **Next review:** at a major (X) release or when the data/network boundary changes (v1.9.0 = transparency-only, no boundary change; local-first unchanged).
+> **Reviewed:** v1.10.0-web · **Next review:** at a major (X) release or when the data/network boundary changes (v1.10.0 = pure-Dart chronobiology + UI, no boundary change; local-first unchanged).
 
 ## Architecture Security Assessment
 
