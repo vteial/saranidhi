@@ -34,7 +34,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 38 | ★ Integrated Aruḍam — Slice 1 (ambient "Aruḍam Now" verdict) | **v1.8.0** | ✅ 🚀 (PR #181) |
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ 🚀 (PR #196) |
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
-| 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ⬜ (planned) |
+| 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | 🔄 (in progress) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ⬜ (planned) |
 | 43+ | Accuracy Calibration (post-S42), native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
@@ -832,8 +832,12 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 41: Analytics Tidy (CSV → Settings) + Tamil l10n fixes (v1.10.1) — Planned
+## Sprint 41: Analytics Tidy (CSV → Settings) + Tamil l10n fixes (v1.10.1) — 🔄 In Progress
 
+> **Started** via `/sprint-start` on branch `sprint/41-analytics-tidy`. Spec in the
+> [dossier](sprints/sprint-41-analytics-tidy/README.md); handed to the Antigravity IDE coding
+> setup (implement + local green before PR); Kiro Web reviews the diff.
+>
 > **Scheduled via `/plan`.** A deliberately **small, low-risk** sprint (no core-calc changes) —
 > a clean quick release before the correctness-critical Sprint 42.
 >
