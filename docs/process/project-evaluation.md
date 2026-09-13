@@ -71,7 +71,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total automated tests | 605 (as of Sprint 40) |
+| Total automated tests | 615 (as of Sprint 41) |
 | Pass rate | 100% on CI (macOS local shows 4 known CloudKit-platform failures that pass on Ubuntu) |
 | Static analysis | `dart analyze --fatal-infos` — zero issues |
 | CI enforcement | GitHub Actions two-tier (fast on PRs; full tests + coverage + integration on PRs to `main` and on merge) |
@@ -97,6 +97,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 38 | +18 (`IntegratedArudamEngine` unit, `arudam_now_card` widget, Oracle regression + night-floor-lock) | 564 |
 | Sprint 39 | +9 (Aruḍam "Why?" — engine `reasons` per case: aligned/misaligned/stale-omits/Sushumna/floor-lock + `conf`; card collapse/expand/provenance/floor-lock/misaligned + Tamil-locale) | 573 |
 | Sprint 40 | +32 (Chronobiology: `ChronobiologyAnalytics` stagnancy 14, `SomaticAdvice` 5, `getEntriesSince` repo, dashboard-provider stagnancy, `stagnancy_card` 6, `focus_card` 7, morning-summary EN/TA) | 605 |
+| Sprint 41 | +10 (Analytics tidy: `generateCsv` unit 4, Settings CSV-button widget 3, Analytics EN/TA locale 2, l10n getter/parity) | 615 |
 
 ### Resolved Defects
 
