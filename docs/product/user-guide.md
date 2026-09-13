@@ -2,7 +2,7 @@
 
 # Saranidhi — User Guide
 
-> **Reviewed:** v1.10.0-web · **Next review:** every release (refresh for shipped features).
+> **Reviewed:** v1.10.1-web · **Next review:** every release (refresh for shipped features).
 
 > *"Your breath is not just a physiological function — it is a hidden spiritual inheritance."*
 

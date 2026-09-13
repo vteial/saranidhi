@@ -2,7 +2,7 @@
 
 # Release Dossier — v1.10.1-web
 
-**Sprint 41 — Analytics Tidy + Tamil l10n** · _Release pending (in verification)_ · **Light patch**
+**Sprint 41 — Analytics Tidy + Tamil l10n** · Shipped to production 2026-09-13 · ⚠️ PASS (1 known cosmetic bug) · **Light patch**
 
 A small housekeeping patch: the journal **CSV export moved to Settings** (beside the JSON
 export; now shares via the share sheet → works on web too), and the **Analytics-screen Tamil
