@@ -2,7 +2,7 @@
 
 # Release Dossier — v1.10.0-web
 
-**Sprint 40 — Chronobiology & Holistic Guidance** · _Release pending (in verification)_
+**Sprint 40 — Chronobiology & Holistic Guidance** · Shipped to production 2026-09-13 · ✅ PASS
 
 Present-moment holistic correction: a **breath-stagnancy** card on Home (hidden when healthy;
 cooling for stuck-solar, warming for stuck-lunar; routes into the Sprint 35 somatic timer), a

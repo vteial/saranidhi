@@ -14,7 +14,7 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
-## [1.10.0-web] — TBD
+## [1.10.0-web] — 2026-09-13
 
 > Sprint 40 — **Chronobiology & Holistic Guidance**. Present-moment, self-observable
 > correction when your breath rhythm drifts — never diagnosis, never prediction.
