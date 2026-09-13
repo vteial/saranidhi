@@ -14,6 +14,23 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
+## [1.10.0-web] — TBD
+
+> Sprint 40 — **Chronobiology & Holistic Guidance**. Present-moment, self-observable
+> correction when your breath rhythm drifts — never diagnosis, never prediction.
+
+### Added
+- **Breath-stagnancy awareness card on Home** — if your breath has stayed on one channel too long over the past ~24h, a gentle card appears (**mild** ~6h / **longer** ~8h). It's hidden when your rhythm is healthy, and a Sushumna/central reading resets the count.
+- **Warming vs cooling correction** — stuck on the **right** (solar) channel → cooling suggestions (Sheetali breath, cool fluids); stuck on the **left** (lunar) channel → warming suggestions (Surya Bhedana, warming spices, movement). A one-tap option opens the somatic reset to help shift channels.
+- **Tattva temperature tip** — when the active element agrees with the stuck channel (Fire+solar / Water+lunar), a short elemental note reinforces the same cooling/warming suggestion.
+- **Swara-Ahara (eating by the breath)** — during a Kriya window the Focus Card notes whether your digestive fire is well-placed: right/solar nostril → affirming; left/lunar → a gentle pre-meal reset nudge.
+- **Swara Pada Gamana waking rule** in the morning summary — on rising, step down first with the foot on your active-nostril side. The morning summary is now **bilingual** (English + தமிழ்).
+
+### Notes
+- **Gentle, reliability-first tone** — every suggestion is a nudge toward natural alignment, never a mandate or a medical claim. Reuses the existing somatic-shift engine; no new timed protocol.
+
+---
+
 ## [1.9.0-web] — 2026-09-12
 
 > Sprint 39 — **Integrated Aruḍam: "Why?" provenance accordion**. Verdict transparency —
