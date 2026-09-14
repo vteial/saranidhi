@@ -35,7 +35,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ 🚀 (PR #196) |
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
-| 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ⬜ (planned) |
+| 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | 🔄 (in progress) |
 | 43+ | Accuracy Calibration (post-S42), native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.10.1-web is now live in production (2026-09-13)** — Sprint 41, a light
@@ -49,9 +49,9 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 > **v1.9.0-web** (the Aruḍam "Why?" accordion) and **v1.8.0-web** (the ambient "Aruḍam Now" card).
 > Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
 >
-> **Next: Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0)** — the correctness fix to
-> expected-nostril prediction (CONF-014 / CONF-013), which **must ship before** the 7-day Accuracy
-> Calibration data collection.
+> **In progress: Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0)** — the correctness
+> fix to expected-nostril prediction (CONF-014 / CONF-013), which **must ship before** the 7-day
+> Accuracy Calibration data collection.
 > **Phase 2b continues** — **Sprint 39** (Integrated Aruḍam "Why?" provenance accordion,
 > v1.9.0) and **Sprint 40** (Chronobiology & Holistic Guidance, v1.10.0) are now
 > **scheduled** via `/plan` (this PR); both are unblocked feature work. Deferred after
@@ -871,7 +871,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 42: ★ Swara Clock Engine & Weekday Udhaya Calibration (v1.11.0) — Planned
+## Sprint 42: ★ Swara Clock Engine & Weekday Udhaya Calibration (v1.11.0) — 🔄 In Progress
 
 > **Scheduled via `/plan` — correctness-critical.** Fixes how the app predicts the **expected
 > nostril** (the readiness half of the flagship Aruḍam verdict). Owner-adjudicated doctrine; full
