@@ -7,7 +7,7 @@
 > Antigravity; the owner's message is a one-liner pointing here.
 >
 > **Preview URL (filled):** `https://saranidhi-git-release-v1120-eialarasus-projects.vercel.app/`
-> (branch `release/v1.12.0` → slug `release-v1120`). Release PR: **#PENDING**.
+> (branch `release/v1.12.0` → slug `release-v1120`). Release PR: **#239**.
 >
 > **Note — split responsibility:** the genuine **cross-device merge** scenarios (4, 5, 9) are best
 > run by the **owner on real devices** (iPad Mini + iPhone SE). Antigravity covers what it can on
@@ -32,7 +32,7 @@ guarded by owner identity, replacing the old destructive import. Local-first, ze
 ENVIRONMENT: the release PR's Vercel PREVIEW (NOT staging). Read VERCEL_AUTOMATION_BYPASS_SECRET
 from the local `.env` and pass it as a query param on the preview URL:
   https://saranidhi-git-release-v1120-eialarasus-projects.vercel.app/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
-REPO: vteial/saranidhi. Release branch: release/v1.12.0. PR: #PENDING.
+REPO: vteial/saranidhi. Release branch: release/v1.12.0. PR: #239.
 
 STEP 0 — PRE-FLIGHT READINESS GATE (MANDATORY — run BEFORE any scenario):
 Confirm ALL; if ANY fails, STOP, run NO scenarios, report (see ABORT PROTOCOL). No workarounds.
@@ -40,12 +40,12 @@ Confirm ALL; if ANY fails, STOP, run NO scenarios, report (see ABORT PROTOCOL). 
          DEPLOYMENT_NOT_FOUND / SSO wall / "not available").
   [ ] 2. CORRECT BUILD — Settings → About reads EXACTLY "Saranidhi v1.12.0 (1)". Else ABORT.
   [ ] 3. BYPASS SECRET present in `.env`; cookie set (no SSO wall on navigation). Else ABORT.
-  [ ] 4. CI GREEN on PR #PENDING (Analyze/Fast Tests/Build + Full Test Suite + Coverage;
+  [ ] 4. CI GREEN on PR #239 (Analyze/Fast Tests/Build + Full Test Suite + Coverage;
          Integration Tests (Web) known-flaky/non-blocking).
   [ ] 5. SMOKE-TEST FILE present: docs/testing/releases/v1.12.0/smoke-test.md.
 On pass, write "PRE-FLIGHT: READY (About=v1.12.0, preview OK, CI green)" and PROCEED.
 
-ABSOLUTE NO-FALLBACK RULE: Test the PR #PENDING Vercel PREVIEW and NOTHING ELSE. FORBIDDEN to fall
+ABSOLUTE NO-FALLBACK RULE: Test the PR #239 Vercel PREVIEW and NOTHING ELSE. FORBIDDEN to fall
 back to staging, production, a local dev server, or any other URL. Unavailable/wrong preview = a
 BLOCKER to report, never a cue to switch environments.
 
@@ -106,4 +106,4 @@ pre-flight check fails, follow the ABORT PROTOCOL and stop.
 | Environment | release PR's Vercel **preview** `https://saranidhi-git-release-v1120-eialarasus-projects.vercel.app` (slug `release-v1120`) |
 | Smoke-test file | `docs/testing/releases/v1.12.0/smoke-test.md` |
 | Highest-priority | owner-guard 0-mutation refusal, non-destructive idempotent merge, Restore distinct, migration data-safety, Tamil; **cross-device flow = owner-verified on real devices** |
-| Release PR # | **PENDING** — backfill once opened |
+| Release PR # | **#239** |

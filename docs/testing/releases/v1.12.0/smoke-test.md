@@ -5,7 +5,7 @@
 **Release:** v1.12.0-web (Sprint 44 — ★ Practice Sync Phase 0: owner-stamped safe merge-import)
 **Date:** _pending_
 **Tester:** Owner (real cross-device) + Antigravity (QA-Verify Agent)
-**Shipping Commit:** _pending_ on `release/v1.12.0` (PR #_pending_)
+**Shipping Commit:** _pending_ on `release/v1.12.0` (PR #239)
 **Device/Browser:** Chrome — Desktop + Mobile (390×844); **plus real devices** for the cross-device flow (iPad Mini + iPhone SE)
 **Environment:** PR Vercel **preview** — `https://saranidhi-git-release-v1120-eialarasus-projects.vercel.app` (via `VERCEL_AUTOMATION_BYPASS_SECRET`) — **NOT** staging
 
