@@ -22,6 +22,7 @@ during `/plan`. Keep entries small and outcome-focused.
 ## Table of Contents
 
 - [★ FLAGSHIP — Integrated Aruḍam](#-flagship--integrated-aruḍam)
+- [★ Practice Sync — cross-device aggregate](#-practice-sync--cross-device-aggregate)
 - [Chronobiology & Holistic Guidance](#chronobiology--holistic-guidance)
 - [Analytics & Insights](#analytics--insights)
 - [Prasanam Oracle UX](#prasanam-oracle-ux)
@@ -138,6 +139,59 @@ natural-alignment reward flag.
 (switching is a nudge, favor reliability over forcing) · CONF-026 (Sushumna = calm
 observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngine`,
 `ActionWindowsEngine`, `AlignmentChecker`, `dashboardDataProvider`.
+
+---
+
+## ★ Practice Sync — cross-device aggregate
+
+> **Status: epic scoped via `/plan` (owner-confirmed this session).** **Phase 0 scheduled as
+> Sprint 44 (v1.12.0)** — see [sprint-tracker](sprint-tracker.md#sprint-44--practice-sync--phase-0-owner-stamped-safe-merge-import-v1120--planned).
+>
+> **The problem (a universal user problem, not just the owner's).** The core value of Saranidhi is
+> improving breath-hold time through **consistent practice, any time / any place** — logged on
+> *whichever device is in hand*. But the app is per-device local-first, so sessions live in
+> **separate stores** on each device (owner's fleet: iPad Mini [primary] · iPhone SE · MBP · iMac,
+> all the **web** app). There is **no aggregate** streak / 30-day trend / hold-time average /
+> personal-best across devices — which breaks the exact metrics the practice is judged by. Left
+> unsolved, this is a silent churn driver for every future user (owner plans ~5 trusted validators
+> post-2.0, on **mixed** platforms).
+>
+> **Owner-confirmed decisions:**
+> - **Reframe the principle, don't abandon it:** *local-first **with optional, user-owned sync**.*
+>   Offline still works fully; sync/portability is additive.
+> - **Scope: session/practice data first** (breath-sessions + journal) — append-only, UUID-keyed,
+>   **union-merges with no real conflicts**. Not full profile/prefs sync (that can follow).
+> - **Owner identity is the load-bearing safety mechanism** (not the device cap): every export/DB
+>   carries an `ownerId`; sync/merge only ever unions rows of the **same** owner — structurally
+>   preventing "merge another person's data." A device registry / cap is a *management-UX* layer on
+>   top (nice for the validator phase), **not** relied on for correctness.
+> - **Phase 0 = locally-generated owner ID, no login, zero backend.** Accounts (if any) enter at
+>   Phase 1 with the chosen transport.
+> - **Phase 1 transport = OPEN** (decide at Phase-1 `/plan`): **Vercel serverless + passphrase** (owner
+>   already hosts on Vercel; full control) **vs Google Drive App Data** (user's own account,
+>   cross-platform, zero custom backend). Owner: "or maybe will go for best" → evaluate both then.
+> - **Native CloudKit is OUT for now** (web-first; the built `CloudKitSyncEngine` is Apple-native-only
+>   and doesn't work from Safari/web) — revisit when the native App Store track happens.
+> - **Sync cadence = on app open** (not real-time) — matches the existing sync-on-open design and is
+>   far cheaper.
+
+| Priority | Status | Item |
+|----------|--------|------|
+| 🔴 | 📋 → S44 | **Phase 0 — owner-stamped SAFE merge-import (zero backend).** Locally-generated `ownerId` (guarded v6→v7 migration); stamp exports with `ownerId`+versions; replace the **destructive** import (`database_exporter.dart` deletes all tables) with a **union-by-UUID merge**; **owner-ID mismatch refuses the merge** (the safety core); keep overwrite/restore as a separate labeled option; aggregate (streak/trend/PB) correct post-merge; bilingual. **Scheduled as Sprint 44 (v1.12.0)** — the near-term win before the Now Surface. |
+| 🟡 | ⬜ | **Phase 1 — on-open auto-sync of the session log.** Auto pull-merge-push the breath-session table on app open via the chosen transport (Vercel-serverless-+-passphrase **or** Google-Drive-App-Data — decide at Phase-1 `/plan`), union-merged by (`ownerId`, `sessionId`). Reopens the account/network boundary → **security-review redo required**. |
+| 🟡 | ⬜ | **Device registry / trusted-device management (UX layer).** Name + list registered devices, "device N of max", revoke. Abuse/cost control + user clarity for the validator phase — NOT the data-integrity guard (that's `ownerId`). |
+| 🟢 | ⬜ | **Widen sync scope** (profile / preferences) if wanted, after sessions prove out. |
+| 🟢 | ⬜ | **Evaluate a local-first CRDT / hosted sync layer** if the validator group grows or real-time is needed; fold into native **CloudKit** when the Apple track ships (the built engine is Apple-native). |
+
+**Grounding facts (verified in code):** all tables use **UUID v4** `TextColumn id` PKs
+(`journal_repository.dart` `_uuid.v4()`) → union-merge is collision-free; schema **v6**
+(Phase 0 → v7 for `ownerId`); `DatabaseExporter.importFromBytes` is **destructive** today
+(l.77–94 deletes every table) — the exact thing Phase 0 replaces; the built
+`CloudKitSyncEngine` (primary-wins, pull-merge-push, device IDs) is Apple-native-only and parked
+for the native track; the Google-Drive repo is a **stub**. **Provenance:** owner's real
+cross-device practice pain (2026-09-14) · existing `DatabaseExporter` + `cloud_backup/*` scaffold ·
+offline-first / zero-backend principle (`product-scope.md`) — consciously reframed to
+"local-first with optional user-owned sync."
 
 ---
 

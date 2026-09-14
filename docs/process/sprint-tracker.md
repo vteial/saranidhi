@@ -37,7 +37,8 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
-| 44+ | Accuracy Calibration, native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ⬜ (planned) |
+| 45+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.11.1-web is now live in production (2026-09-14)** — Sprint 43, a small
 > **Localization Defect Fixes** patch (feature PR #227 → /sprint-finish #229 → /sprint-update #230
@@ -949,6 +950,52 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [ ] **Valuation report** — Sprint 43 row (+20%) at `/sprint-update`.
 - [x] **Tracker updated** — status ✅.
 - [x] **User Guide** — `n/a` (no user-facing capability change — cosmetic l10n only).
+
+---
+
+## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — Planned
+
+> **Scheduled via `/plan` (owner-confirmed).** Phase 0 of the **Practice Sync** epic — the
+> near-term, **zero-backend** win pulled ahead of the Now Surface because it directly affects the
+> owner's daily Sara Kalai practice (data split across iPad / iPhone SE / MBP / iMac with no
+> aggregate view). See the [Practice Sync epic](sprint-backlog.md#-practice-sync--cross-device-aggregate).
+>
+> **The problem:** the app is per-device local-first, so breath-session / hold-time data lives in
+> separate stores on each device — no aggregate streak / trend / personal-best. And today's
+> **JSON import is destructive** (`database_exporter.dart` l.77–94 deletes every table before
+> insert) with **no owner identity guard** — importing another device's (or another person's)
+> file wipes local data or silently mixes two people's practice. **This sprint makes the existing
+> manual export/import SAFE** so the owner can aggregate across their 4 devices today, with no
+> backend — and lays the owner-identity foundation Phase 1 auto-sync builds on.
+>
+> **Architecture note:** consciously reframes the principle from *local-first / zero-backend* to
+> **local-first WITH optional, user-owned data portability** — offline still works fully; this adds
+> a safe merge. No network, no account in Phase 0 (owner ID is locally generated). Grounds the
+> Phase-1 auto-sync epic.
+>
+> **Grounding facts (verified in code this session):** all tables use **UUID v4** `TextColumn id`
+> primary keys (`journal_repository.dart` `_uuid.v4()`), so session union-merge is **collision-free**
+> (insert rows whose ID isn't already present). Schema is **v6** → this adds a guarded migration to
+> **v7** for `ownerId`. `DatabaseExporter.importFromBytes` is the destructive path to replace.
+
+- [ ] Task 44.1: **Locally-generated owner ID.** On first run (and as a guarded schema-v6→v7 migration for existing installs), generate a stable `ownerId` (UUID v4) and store it on the profile. No login. Surface it in Settings (read-only, labeled — e.g. "Practice ID"), so devices belonging to the same person can be recognized. Existing single profile is the home (`profiles` table).
+- [ ] Task 44.2: **Stamp the export with `ownerId` + schema/app version.** Extend `DatabaseExporter.exportToBytes` JSON to carry `ownerId` (already carries schema + app version per the v1.2.x lesson). Backward-compatible read (older exports have no `ownerId` → treated as "unknown owner").
+- [ ] Task 44.3: **MERGE import (replace the destructive import).** New non-destructive path: **union breath-sessions (and journal) by `id`** — insert only rows whose UUID isn't already local; never delete existing local rows. Idempotent (re-importing the same file is a no-op). Keep the old full-replace as an explicit, clearly-labeled "Restore (overwrite)" option distinct from "Merge".
+- [ ] Task 44.4: **Owner-identity guard (the safety core).** On import, compare the file's `ownerId` to the local `ownerId`: **match → merge** silently; **mismatch → refuse the merge** with a clear dialog ("This backup belongs to a different Practice ID — merging is disabled to protect your data. Options: Cancel / Restore-overwrite as a new profile"). Legacy no-`ownerId` files → warn + require explicit confirm. This structurally prevents "sync with another person's data."
+- [ ] Task 44.5: **Aggregate correctness after merge.** Confirm streak, 7/30-day trend, hold-time average, and personal-best recompute correctly over the unioned session set (they read the local DB, so this should follow — add a test that merging two disjoint session sets yields the correct aggregate).
+- [ ] Task 44.6: **Bilingual (EN/TA)** for all new Settings copy (Practice ID label, Merge vs Restore buttons, the mismatch dialog).
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
+- [ ] **PR link** — #N (CI green). Correctness-critical (schema migration + data-merge + identity guard) → **Antigravity implements with local green before PR; Kiro Web reviews the real diff.**
+- [ ] **Migration gate** — guarded v6→v7 (column-exists check, per the Sprint 36 lesson); existing profiles get an `ownerId` on load without data loss; tested on an existing-profile upgrade path (not just fresh install).
+- [ ] **Merge-safety tests** — union-by-id merge (disjoint sets → union; overlapping ids → idempotent no dup); owner-ID **mismatch refuses** merge; legacy no-ownerId file warns; aggregate (streak/trend/PB) correct post-merge.
+- [ ] **Regression gate** — normal single-device use unchanged; the old overwrite/restore path still available (relabeled), not silently removed.
+- [ ] **Docs updated** — User Guide (a short "Use Saranidhi on more than one device — export & merge" section — **this IS a real capability, so NOT `n/a`**) + calc/architecture note on the owner-id + merge model.
+- [ ] **Smoke test** — real cross-device flow: export from Device B → merge-import on Device A → aggregate view shows both devices' sessions; mismatch file is refused; EN/TA.
+- [ ] **Valuation report** — Sprint 44 row (+20%) at `/sprint-update`.
+- [ ] **Tracker updated** — status ✅.
+- [ ] **User Guide** — real multi-device capability → refreshed (not `n/a`).
 
 ---
 
