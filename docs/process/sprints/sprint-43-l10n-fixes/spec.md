@@ -162,6 +162,25 @@ OK-to-leave: `about_card.dart` email (`vteial@icloud.com`) + website (`saranidhi
 
 ---
 
+## Task 43.5 — BUG-v1.11.1-02: Best Times card yama prefix not localized
+
+**File:** `lib/features/home/presentation/widgets/best_times_card.dart` (~line 183).
+
+### The bug
+`_BestTimeRow` hardcodes the yama badge as `'Y${entry.yamaNumber}'` — a literal `Y`, ignoring
+locale. In Tamil mode it shows `Y1` while the Analytics screen already renders the localized
+`yamaShortPrefix` (`யா`) for the same concept (`analytics_screen.dart:510`). Same
+"value/label-not-localized" class as 43.1 / 43.2. Owner-found (2026-09-14).
+
+### The fix
+`l10n` is already in scope in `_BestTimeRow.build` (`AppLocalizations.of(context)`), and the key
+`yamaShortPrefix` already exists (`Y` / `யா`). Swap:
+```dart
+'${l10n.yamaShortPrefix}${entry.yamaNumber}'   // was: 'Y${entry.yamaNumber}'
+```
+Folded into Sprint 43 mid-flight (trivial, same theme). Add/extend a Tamil-locale widget
+assertion for the Best Times card badge if practical (or cover via the Tamil-mode gate eyeball).
+
 ## Out of scope
 
 - No new features; no schema change; no migration.

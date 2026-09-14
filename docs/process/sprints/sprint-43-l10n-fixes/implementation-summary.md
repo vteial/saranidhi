@@ -19,6 +19,7 @@
 | 43.2 Monthly-Patterns day-name (BUG-v1.10.1-01) | `analytics_calculator.dart`, `analytics_screen.dart` (+ tests) | ✅ | `MonthlyPatterns` carries `int? bestDayWeekday`/`worstDayWeekday`; `_weekdayName()` deleted; `_localizedWeekday` renders via `DateFormat.EEEE(locale)`; int-based equality check. |
 | 43.3 readiness citation → CONF-014 | `integrated_arudam_engine.dart` | ✅ | Re-keyed readiness factor provenance comments and `ArudamReason` to `CONF-014`; updated assertions in `integrated_arudam_engine_test.dart` and `arudam_now_card_test.dart`. |
 | 43.4 l10n sweep (About + Analytics) | ↑ | ✅ | Grep sweep complete; all user-facing strings verified localized. |
+| 43.5 Best Times card yama prefix (BUG-v1.11.1-02) | `best_times_card.dart` | ✅ | **Added by Kiro Web mid-review** — `'Y${entry.yamaNumber}'` → `'${l10n.yamaShortPrefix}${entry.yamaNumber}'`. Owner-found; the 43.4 sweep was scoped to About+Analytics so Best Times was outside it. |
 
 ## Deviations from the spec
 
@@ -45,6 +46,7 @@
 
 - About card — Developer row shows `இயலரசு` (matches copyright line): ✅ (verified via `test/features/settings/presentation/about_card_test.dart`)
 - Analytics Monthly-Patterns — best/worst day in Tamil script (e.g. `ஞாயிறு`): ✅ (verified via `test/features/analytics/analytics_screen_l10n_test.dart`)
+- Best Times card — yama badge shows `யா1` in Tamil (not `Y1`): ⬜ (43.5, added mid-review — verify on the preview during the Tamil-mode gate)
 
 ## Open questions / follow-ups
 
