@@ -58,7 +58,7 @@ real diff. Owner is the sole merge/release authority.
 
 ## Status
 
-🔄 **In progress** — spec authored; awaiting Antigravity implementation.
+✅ **Complete** — merged to `main`; release pending.
 
-- **PR:** _pending_
-- **Shipped:** _pending — targets v1.11.0-web_
+- **PR:** [#220](https://github.com/vteial/saranidhi/pull/220) — merged `3303171` (Antigravity implemented + local green; Kiro Web reviewed the real diff; fix commit `0055dea` corrected the doc tables + unified pre-dawn anchoring).
+- **Shipped:** _pending — targets v1.11.0-web (`/release-start v1.11.0`)_
