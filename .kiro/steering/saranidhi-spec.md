@@ -52,10 +52,19 @@ inclusion: auto
 
 ## 5. Sprint Protocols
 
-- `/start-sprint` — branch from main, update tracker to "Current Sprint"
-- `/finish-sprint` — push, create PR, update tracker to "Complete (PR #N)", verify CI, merge
-- `/project-update` — runs AFTER merge on separate `docs/` branch (valuation, evaluation, plan, testing-plan)
-- Valuation hours: AI-estimated time + 20% buffer
+> **Current protocol names** (`{domain}-{action}`; the process doctrine lives in
+> [`collaboration-guardrails.md`](./collaboration-guardrails.md)):
+> `/plan` · `/sprint-start` · `/sprint-finish` · `/sprint-update` · `/release-start` ·
+> `/release-finish` · `/release-update`. The old names (`/start-sprint`, `/finish-sprint`,
+> `/project-update`, `/release-complete`) are **deprecated**.
+
+- `/sprint-start` — branch from main, flip tracker to "In Progress"; for correctness-critical
+  sprints Kiro Web authors the dossier spec (handed to Antigravity to implement).
+- `/sprint-finish` — push final commit, open PR, flip tracker to "Complete (PR #N)". **Kiro
+  never merges — owner merges.**
+- `/sprint-update` — AFTER merge, on a separate `docs/` branch (valuation, evaluation,
+  testing-plan; User Guide / calc-methodology for capability changes).
+- Valuation hours: AI-estimated time + 20% buffer.
 
 ## 6. Deployment
 
@@ -63,7 +72,13 @@ inclusion: auto
 |-------------|--------|-----|
 | Production | `prod` | saranidhi.vercel.app |
 | Staging | `main` | saranidhi-staging.vercel.app |
-| Preview | PR branches | Auto-generated Vercel URL |
+| Preview | **code** branches (`sprint/*`, `release/*`, `fix/*`) | Auto-generated Vercel URL |
+
+- **Deployment quota (Vercel Hobby 100/day):** a skipped `ignoreCommand` build still
+  counts as a deployment; two Vercel projects double each push. `vercel.json`
+  `git.deploymentEnabled` denies `docs/**` + `plan/**` (never deploy). Keep the deny-list
+  in sync with the branch-naming convention. Full rationale in
+  [`collaboration-guardrails.md`](./collaboration-guardrails.md) §7–8.
 
 ## 7. Platform Notes
 

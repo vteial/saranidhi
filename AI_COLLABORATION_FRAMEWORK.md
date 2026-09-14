@@ -1,6 +1,6 @@
 # AI Team Collaboration Framework — Saranidhi
 
-> **Reviewed:** v1.10.0-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
+> **Reviewed:** v1.10.1-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
 
 This document describes the multi-agent operating model used to develop the
 **Saranidhi** application: how a single human lead orchestrates specialized AI
@@ -84,7 +84,7 @@ flowchart TD
 | :--- | :--- |
 | **Common / Strategy Window** (BA + Architect + QA-Design) | **Google Antigravity IDE**, opened in **multiple windows**, each acting as a different persona (BA / Architect / QA-Design). The multi-window approach gives the multi-persona round-table within a single tool. |
 | **QA Assistant** (QA-Verify) | **Google Antigravity** — performs the real testing on deployed builds and the clerical recording (results in `docs/testing/releases/vX.Y.Z/smoke-test.md`), root-cause analysis, and bug logging. Does not edit source. |
-| **Developer Agent** | **Kiro Web** (the human + Kiro) — planning, documentation, all code/PRs, and the release workflow on `vteial/saranidhi`. Also runs the **spec → coding-setup → review** handoff: Kiro Web authors the spec and reviews the PR; the Antigravity coding setup implements it and runs local tests green before the PR (see `/delegate` in `dev-workflow.md`). |
+| **Developer Agent** | **Kiro Web _or_ Kiro IDE** (the human + Kiro) — planning, documentation, all code/PRs, and the release workflow on `vteial/saranidhi`. This is a **single seat run from either surface, never both in parallel** — the role is defined by the work + the in-repo `.kiro/` config (shared steering + shared account memory), so the seat can move between surfaces between sessions (pull latest, continue). Both read the same guardrails and neither merges/tags (human is sole authority). **Surface difference:** Kiro **Web** runs in a cloud sandbox and cannot run `flutter analyze`/`test`, so its PR review is diff-inspection + trusting the local-green claim; Kiro **IDE** runs on the owner's Mac and *can* run the suite, so its review can independently verify the PR branch locally before approving (stronger for correctness-critical sprints). Also runs the **spec → coding-setup → review** handoff: the Developer Agent authors the spec and reviews the PR; the Antigravity coding setup implements it and runs local tests green before the PR (see `/delegate` in `dev-workflow.md`). |
 
 > **Local dev = pure Antigravity IDE.** Saranidhi's local development environment
 > is the **Antigravity IDE on the owner's Mac** — both the persona round-table
@@ -104,7 +104,7 @@ flowchart TD
 The human runs the project across two main workspaces:
 
 1. **Common / Strategy Window** — Antigravity IDE multi-window (BA, Architect, QA-Design).
-2. **Developer Agent (Kiro Web)** — execution: code, docs, builds, branches/PRs, release workflow.
+2. **Developer Agent (Kiro Web _or_ Kiro IDE — one seat, one at a time)** — execution: code, docs, builds, branches/PRs, release workflow.
 
 *(Optional: a dedicated single-role window for large, isolated deep-dives — see §3.)*
 

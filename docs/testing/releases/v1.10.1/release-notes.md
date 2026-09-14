@@ -30,4 +30,8 @@ A small housekeeping patch tidying the Analytics screen and polishing Tamil.
 - Sprint 41 — Analytics Tidy + Tamil l10n
 
 ### Smoke test
-- See [`smoke-test.md`](./smoke-test.md) (slim — light patch) — status recorded at release verification.
+- See [`smoke-test.md`](./smoke-test.md) (slim — light patch) — ⚠️ **PASS** (3/3 + version; one pre-existing cosmetic bug noted, BUG-v1.10.1-01, backlogged).
+
+---
+
+> **Shipped:** 2026-09-13 · tag [`v1.10.1-web`](https://github.com/vteial/saranidhi/releases/tag/v1.10.1-web) @ `prod` · promotion PR #216. Live at [saranidhi.vercel.app](https://saranidhi.vercel.app).

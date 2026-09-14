@@ -154,32 +154,41 @@ permanent birth-bird derivation; see §1.)
 
 ---
 
-## 5. Nostril Pattern (Expected Breath Flow)
+## 5. Swara Clock Engine & Weekday Udhaya (Expected Breath Flow)
 
 ### Source
-- **Siva Swarodaya** — Sutras 52–56
+- **CONF-014** — Swara alternation = 1 hour / 24-cycle; separate clock from the 1.5h Panja Pakshi yama.
+- **CONF-013** — Udhaya Sara Kalai Weekday schedule (Day-08 video / Telegram Audio 04).
+- **CONF-001** — Sunrise-to-sunrise civil day; Thursday paksha evaluated at astronomical sunrise.
 
-### Current Implementation (CORRECT — Sprint 33)
+### Method (Sprint 42 — v1.11.0)
 
-Tithi-based starting nostril per Siva Swarodaya (Sutras 52–56):
-- **Shukla Paksha**: Days 1-3 start Lunar, 4-6 start Solar, 7-9 start Lunar, 10-12 start Solar, 13-15 start Lunar
-- **Krishna Paksha**: Days 1-3 start Solar, 4-6 start Lunar, 7-9 start Solar, 10-12 start Lunar, 13-15 start Solar
+Expected nostril flow runs on an independent **1-hour / 24-cycle** ultradian clock, anchored to the astronomical sunrise of the containing civil day.
 
-After the starting nostril, it alternates each yama (odd yamas keep start, even yamas switch).
+#### Weekday Udhaya Dawn Seed Table (CONF-013)
+| Sun-based weekday | Day | Dawn nostril | Inception duration |
+|:--:|-----|:--:|:--:|
+| 1 | Sunday | **Right (Solar)** | 1h |
+| 2 | Monday | **Left (Lunar)** | 1h |
+| 3 | Tuesday | **Right (Solar)** | 2h |
+| 4 | Wednesday | **Left (Lunar)** | 2h |
+| 5 | Thursday | **paksha split** *(see below)* | *(see below)* |
+| 6 | Friday | **Left (Lunar)** | 2h |
+| 7 | Saturday | **Right (Solar)** | 1h |
 
-**API:** `NostrilPattern.expectedFlowForYama(yamaIndex, date: date)`
+**Thursday paksha split** (evaluated at astronomical sunrise):
+- **Shukla Paksha (waxing)**: **Left (Lunar)**, 1h inception
+- **Krishna Paksha (waning)**: **Right (Solar)**, 2h inception
 
-### Accuracy Status: ✅ Correct (tithi-based per Siva Swarodaya)
+#### Hourly Progression
+- **1h Inception Days** (Sun, Mon, Thu Shukla, Sat): Initial seed flow held for 1 hour `[sunrise, sunrise + 1h)`, then alternates opposite/seed every hour thereafter across the full 24h.
+- **2h Inception Days** (Tue, Wed, Thu Krishna, Fri): Initial seed flow held for 2-hour Udhaya inception window `[sunrise, sunrise + 2h)`, then begins hourly alternation starting at hour 2.
+- **Day Boundary (CONF-001)**: Civil day runs continuously from sunrise to next sunrise. Pre-dawn hours (after midnight, before local sunrise) anchor to yesterday's sunrise and continue that day's progression seamlessly across midnight.
 
-### Correct Traditional Method (Sprint 36 accuracy target)
+**API:** `SwaraClock.expectedFlowAt(time: time, sunrise: anchoredSunrise, paksha: paksha)`
+`SwaraClock.blockAt(time: time, sunrise: anchoredSunrise, paksha: paksha)`
 
-The starting nostril depends on **Tithi** (lunar day within 15-day cycle):
-- **Shukla Paksha**: Days 1-3 start Lunar, 4-6 start Solar, 7-9 start Lunar, 10-12 start Solar, 13-15 start Lunar
-- **Krishna Paksha**: Days 1-3 start Solar, 4-6 start Lunar, 7-9 start Solar, 10-12 start Lunar, 13-15 start Solar
-
-After the starting nostril, it alternates each yama.
-
-### Accuracy Status: ⚠️ Approximate (~70% correct, depends on tithi alignment)
+### Accuracy Status: ✅ Exact — Swara Clock Engine (Sprint 42, v1.11.0)
 
 ---
 
@@ -348,7 +357,7 @@ Reasons are classified from the same factors that produce the score (qualitative
 | `categoryHarmony` | CONF-015 | Tattva / action-type contextual harmony |
 | `readiness` | CONF-016 / CONF-017 | Switching is a nudge; reliability over forcing |
 | `sushumna` | CONF-026 | Sushumna transcendent neutral (meditation-favourable) |
-| `floorLock` | CONF-018 | Day/Night inauspicious-window seal |
+| `floorLock` | PP-ORACLE | Rahu Kaal / Emakandam inauspicious window lockout (`prasanam_oracle_engine.md § Guardrail Lockouts`) |
 
 The verdict card's "Why?" accordion renders these grouped **Moment / You** (or **Blocked**),
 each mapped to a localized plain-language explanation (EN/TA) + its citation. The engine

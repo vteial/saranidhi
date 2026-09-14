@@ -64,6 +64,9 @@ DashboardData createTestDashboardData({
   EmakandamResult? emakandam,
   HoraResult? activeHora,
   StagnancyAnalysisResult? stagnancy,
+  double? latitude,
+  double? longitude,
+  double? utcOffset,
 }) {
   return DashboardData(
     streak:
@@ -120,6 +123,9 @@ DashboardData createTestDashboardData({
           stuckFlow: null,
           continuousDuration: Duration.zero,
         ),
+    latitude: latitude,
+    longitude: longitude,
+    utcOffset: utcOffset,
   );
 }
 

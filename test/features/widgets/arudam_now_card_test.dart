@@ -333,7 +333,7 @@ void main() {
     });
 
     testWidgets(
-      'floor-locked card displays blocked reason and CONF-018 without Moment/You subheads',
+      'floor-locked card displays blocked reason and PP-ORACLE without Moment/You subheads',
       (tester) async {
         final now = DateTime.now();
         final rahu = createTestRahuKaal(
@@ -365,9 +365,9 @@ void main() {
         await tester.tap(find.text('Why?'));
         await tester.pumpAndSettle();
 
-        // Shows Blocked heading and CONF-018
+        // Shows Blocked heading and PP-ORACLE
         expect(find.text('Blocked'), findsOneWidget);
-        expect(find.textContaining('CONF-018'), findsOneWidget);
+        expect(find.textContaining('PP-ORACLE'), findsOneWidget);
 
         // Does NOT show Moment or You subheads
         expect(find.textContaining('Moment — the timing'), findsNothing);

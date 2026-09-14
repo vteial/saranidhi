@@ -642,8 +642,8 @@ class AppLocalizationsTa extends AppLocalizations {
       'இரவின் கடைசி நிலை — ஆழ்ந்து உறங்கு, முழுமையாக விடுவி.';
 
   @override
-  String get nightNoNostrilPattern =>
-      'இரவு — எதிர்பார்க்கப்பட்ட நாசி முறை இல்லை';
+  String get nightSwaraRest =>
+      'இரவு சுழற்சி — உள்முக விழிப்புணர்வு மற்றும் இயல்பான ஓய்வு';
 
   @override
   String get dataExportImportTitle => 'தரவு ஏற்றுமதி / இறக்குமதி';
