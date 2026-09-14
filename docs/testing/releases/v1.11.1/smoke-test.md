@@ -12,7 +12,7 @@
 ## Result
 
 - **Pre-flight readiness gate (Step 0):** `PRE-FLIGHT: READY (About=v1.11.1, preview OK, CI green)`
-- **Status:** 🔄 **PASS pending re-verify** — Scenarios 1–3 + regression + version ✅ PASS (first run). A cosmetic **column-width** follow-up (Scenario 4) was found by the owner AFTER that run and fixed on the branch (commit `06bb918`); Scenario 4 needs verification on the rebuilt preview before final PASS.
+- **Status:** ✅ **PASS** — all scenarios green. Scenarios 1–3 + regression + version passed the first run; the cosmetic **column-width** follow-up (Scenario 4, fixed on-branch commit `06bb918`) was re-verified PASS by the owner on the rebuilt preview.
 - **Build / Version Confirmed:** Settings → About confirmed reading **`Saranidhi v1.11.1 (1)`** (`version.json` = `1.11.1+1`).
 - **CI Gate:** ✅ 100% Green on PR #231 (`Analyze, Fast Tests & Build` [PASS], `Full Test Suite + Coverage` [PASS], `Integration Tests (Web)` [PASS]) — re-running on the width-fix commit `06bb918`.
 - **Bugs / Regressions:** None found. One cosmetic layout follow-up (Tamil column widths) fixed on-branch — see Scenario 4.
@@ -78,11 +78,11 @@
 > AI-wisdom payload — out of this cosmetic-UI release's scope; backlogged.)*
 
 ### Scenario 4: Tamil column-width fit (cosmetic follow-up)
-- [ ] Tamil mode → Dashboard ☀️/🌙 Schedule: yama column fits `யா10` on one line (no wrap/clip).
-- [ ] Tamil mode → Analytics → Yama Performance: `யா5` fits.
-- [ ] Tamil mode → Analytics → Weekly Alignment: the week date-range label (e.g. `செப் 8 – செப். 14`) fits on one line (no wrap).
-- **Result:** ⏳
-- **Evidence:**
+- [x] Tamil mode → Dashboard ☀️/🌙 Schedule: yama column fits `யா10` on one line (no wrap/clip).
+- [x] Tamil mode → Analytics → Yama Performance: `யா5` fits.
+- [x] Tamil mode → Analytics → Weekly Alignment: the week date-range label (e.g. `செப் 8 – செப். 14`) fits on one line (no wrap).
+- **Result:** ✅ **PASS** — owner re-verified on the rebuilt preview (commit `06bb918`); Tamil labels fit on one line, no wrap/clip.
+- **Evidence:** owner screenshots (Dashboard schedule + Analytics), 2026-09-14.
 
 > **Cosmetic follow-up (owner-found on the preview):** the l10n fixes made the labels longer, so
 > the fixed-width columns (sized for English `Y1`) wrapped in Tamil. Widened on this release
