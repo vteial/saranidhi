@@ -281,7 +281,7 @@ void main() {
             (r) => r.factor == ArudamFactor.readiness,
           );
           expect(readinessReason.strength, FactorStrength.strong);
-          expect(readinessReason.conf, 'CONF-016 / CONF-017');
+          expect(readinessReason.conf, 'CONF-014');
         },
       );
 
@@ -302,7 +302,7 @@ void main() {
           (r) => r.factor == ArudamFactor.readiness,
         );
         expect(readinessReason.strength, FactorStrength.weak);
-        expect(readinessReason.conf, 'CONF-016 / CONF-017');
+        expect(readinessReason.conf, 'CONF-014');
       });
 
       test(

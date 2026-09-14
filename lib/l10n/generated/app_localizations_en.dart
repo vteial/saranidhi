@@ -847,6 +847,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutDeveloper => 'Developer';
 
   @override
+  String get aboutDeveloperName => 'Eialarasu';
+
+  @override
   String get aboutContact => 'Contact';
 
   @override

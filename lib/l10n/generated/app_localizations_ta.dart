@@ -856,6 +856,9 @@ class AppLocalizationsTa extends AppLocalizations {
   String get aboutDeveloper => 'உருவாக்குநர்';
 
   @override
+  String get aboutDeveloperName => 'இயலரசு';
+
+  @override
   String get aboutContact => 'தொடர்பு';
 
   @override

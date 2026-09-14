@@ -97,4 +97,79 @@ void main() {
       );
     });
   });
+
+  group('AnalyticsCalculator.calculateMonthlyPatterns', () {
+    test('empty entries returns null weekdays and 0 totals', () {
+      final patterns = AnalyticsCalculator.calculateMonthlyPatterns(
+        entries: [],
+      );
+      expect(patterns.bestDayWeekday, isNull);
+      expect(patterns.worstDayWeekday, isNull);
+      expect(patterns.totalEntries, equals(0));
+      expect(patterns.activeDays, equals(0));
+    });
+
+    test('correctly identifies best and worst weekdays as integers', () {
+      // 2026-09-13 is Sunday (weekday 7) - 100% aligned (2/2)
+      // 2026-09-15 is Tuesday (weekday 2) - 0% aligned (0/2)
+      final sunday1 = DateTime(2026, 9, 13, 8, 0);
+      final sunday2 = DateTime(2026, 9, 13, 14, 0);
+      final tuesday1 = DateTime(2026, 9, 15, 9, 0);
+      final tuesday2 = DateTime(2026, 9, 15, 17, 0);
+
+      final entries = [
+        SaraKalaiJournalData(
+          id: '1',
+          timestamp: sunday1.millisecondsSinceEpoch,
+          expectedFlow: 'solar',
+          actualFlow: 'solar',
+          isAligned: true,
+          nostril: 'right',
+          isPinned: false,
+          wasForcedShift: false,
+        ),
+        SaraKalaiJournalData(
+          id: '2',
+          timestamp: sunday2.millisecondsSinceEpoch,
+          expectedFlow: 'solar',
+          actualFlow: 'solar',
+          isAligned: true,
+          nostril: 'right',
+          isPinned: false,
+          wasForcedShift: false,
+        ),
+        SaraKalaiJournalData(
+          id: '3',
+          timestamp: tuesday1.millisecondsSinceEpoch,
+          expectedFlow: 'solar',
+          actualFlow: 'lunar',
+          isAligned: false,
+          nostril: 'left',
+          isPinned: false,
+          wasForcedShift: false,
+        ),
+        SaraKalaiJournalData(
+          id: '4',
+          timestamp: tuesday2.millisecondsSinceEpoch,
+          expectedFlow: 'solar',
+          actualFlow: 'lunar',
+          isAligned: false,
+          nostril: 'left',
+          isPinned: false,
+          wasForcedShift: false,
+        ),
+      ];
+
+      final patterns = AnalyticsCalculator.calculateMonthlyPatterns(
+        entries: entries,
+      );
+
+      expect(patterns.bestDayWeekday, equals(DateTime.sunday)); // 7
+      expect(patterns.worstDayWeekday, equals(DateTime.tuesday)); // 2
+      expect(patterns.totalEntries, equals(4));
+      expect(patterns.totalAligned, equals(2));
+      expect(patterns.alignmentPercentage, equals(50));
+      expect(patterns.activeDays, equals(2));
+    });
+  });
 }

@@ -9,8 +9,21 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-> Sprint 42 — **Swara Clock Engine & Weekday Udhaya** (targets v1.11.0-web). Merged to
-> `main` via PR #220; release pending.
+> Sprint 43 — **Localization Defect Fixes** (targets v1.11.1-web). Merged to `main` via
+> PR #227; release pending.
+
+### Fixed
+- **Tamil localization gaps in three places** — all cases where a *label* was translated but its *value* was not: (1) the **About** card's Developer name now shows in Tamil (`இயலரசு`), consistent with the copyright line; (2) the **Analytics → Monthly Patterns** best/worst **day names** now render in Tamil (e.g. `ஞாயிறு`) instead of English; (3) the **Best Times This Week** card's yama badge now uses the localized prefix (`யா1`) instead of `Y1`.
+
+### Changed
+- **Internal:** the Aruḍam "readiness" factor's provenance citation was re-keyed to CONF-014 (the swara clock) — a documentation/traceability fix, no behavior change.
+
+---
+
+## [1.11.0-web] — 2026-09-14
+
+> Sprint 42 — **Swara Clock Engine & Weekday Udhaya**. A correctness fix to expected-nostril
+> prediction — the "readiness" half of the flagship Aruḍam verdict.
 
 ### Changed
 - **Expected nostril flow now runs on the authentic 1-hour / 24-cycle swara clock.** The Nostril Pattern is decoupled from the 1.5-hour bird-state (Panja Pakshi) yama clock and rebuilt as an independent hourly ultradian cycle (CONF-014), seeded at astronomical sunrise by the classical **Weekday Udhaya** dawn rule (CONF-013 / CONF-001) — including the Thursday waxing/waning split. The dashboard card shows the current flow, upcoming hourly blocks, and a countdown to the next ~1-hour switch across the full 24h (nighttime is now a live cycle with gentle rest guidance, not a dead zone).

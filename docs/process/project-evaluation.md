@@ -2,7 +2,7 @@
 
 # Saranidhi — Project Evaluation Report
 
-> **Reviewed:** v1.10.1-web · **Next review:** every `/sprint-update` (defects + test baseline).
+> **Reviewed:** v1.11.0-web · **Next review:** every `/sprint-update` (defects + test baseline).
 
 ## 1. Executive Architecture Summary
 
@@ -71,7 +71,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total automated tests | 628 (as of Sprint 42) |
+| Total automated tests | 632 (as of Sprint 43) |
 | Pass rate | 100% on CI (macOS local shows 4 known CloudKit-platform failures that pass on Ubuntu) |
 | Static analysis | `dart analyze --fatal-infos` — zero issues |
 | CI enforcement | GitHub Actions two-tier (fast on PRs; full tests + coverage + integration on PRs to `main` and on merge) |
@@ -99,11 +99,15 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 40 | +32 (Chronobiology: `ChronobiologyAnalytics` stagnancy 14, `SomaticAdvice` 5, `getEntriesSince` repo, dashboard-provider stagnancy, `stagnancy_card` 6, `focus_card` 7, morning-summary EN/TA) | 605 |
 | Sprint 41 | +10 (Analytics tidy: `generateCsv` unit 4, Settings CSV-button widget 3, Analytics EN/TA locale 2, l10n getter/parity) | 615 |
 | Sprint 42 | +13 (`SwaraClock` unit 12 — 7 weekday seeds incl. Thu paksha split, 1h/2h inception, §3.5 hourly-progression oracle, day/night + pre-dawn cross-midnight, sunrise anchoring, `blockAt` countdown; + alignment/oracle/nostril-card pre-dawn-location regression tests) | 628 |
+| Sprint 43 | +4 (l10n defect fixes: `about_card_test` EN+TA Developer-name/copyright 2, `analytics_calculator_test` int-weekday best/worst + empty-null 2; + extended `analytics_screen_l10n_test` with EN/TA weekday assertions + updated readiness-citation assertions) | 632 |
 
 ### Resolved Defects
 
 | Issue | Root Cause | Resolution | Sprint |
 |-------|-----------|------------|--------|
+| **BUG-v1.11.1-01 — About-card Developer name not localized** | Tamil mode showed the hardcoded Latin `Eialarasu` in the Developer row (`about_card.dart:87` `value: 'Eialarasu'`) while the copyright line already localized the name to `இயலரசு` — the same name rendered two ways. The recurring "value-not-localized while label is" miss. Owner-found. | Added ARB key `aboutDeveloperName` (EN `Eialarasu` / TA `இயலரசு`); Developer row uses `l10n.aboutDeveloperName`. Email + website left as literal identifiers. | Sprint 43 (PR #227) |
+| **BUG-v1.11.1-02 — Best Times card yama prefix not localized** | The Home "Best Times This Week" card hardcoded `'Y${entry.yamaNumber}'` (`best_times_card.dart:183`), so Tamil showed `Y1` while the Analytics screen already used the localized `yamaShortPrefix` (`யா`). Same class as -01. Owner-found; folded into S43 mid-review. | Swapped to `'${l10n.yamaShortPrefix}${entry.yamaNumber}'` (`l10n` already in scope). Repo-wide grep confirmed no other hardcoded yama badges. | Sprint 43 (PR #227) |
+| **BUG-v1.10.1-01 — Monthly Patterns day-name value unlocalized** | In Tamil the label was localized (`சிறந்த நாள்`) but the value rendered the English day name (`Sunday`, not `ஞாயிறு`). Root cause: `AnalyticsCalculator._weekdayName()` returned hardcoded English day strings, stored on `patterns.bestDay`/`worstDay` and rendered raw. Pre-existing debt shipped as a known defect in v1.10.1. | `MonthlyPatterns` now carries `int? bestDayWeekday`/`worstDayWeekday`; `_weekdayName()` deleted; widget localizes via `DateFormat.EEEE(locale)`; the "hide Needs Attention when same as Best Day" guard now compares ints. Localized-weekday tests added. | Sprint 43 (PR #227) |
 | **Expected-nostril alignment computed on the wrong clock + a latent "always-today" bug** | The expected nostril was driven by the 1.5h Panja Pakshi **yama** clock with a **tithi-triad** dawn seed — but per CONF-014 the swara clock is an independent **1-hour / 24-cycle** clock, and per CONF-013/001 the daily dawn seed is the **Weekday Udhaya** rule at astronomical sunrise. Separately, `AlignmentChecker` called the predictor **without the entry's timestamp**, so it silently evaluated `DateTime.now()` for any non-now (historical/pre-dawn) entry. Together these made the readiness half of the Aruḍam verdict (and journal alignment) an unreliable reference — which would have corrupted the upcoming 7-day Accuracy Calibration. | New `SwaraClock` engine (1h/24-cycle, Weekday Udhaya seed incl. Thursday paksha split; full-24h with pre-dawn cross-midnight anchoring). Rewired `AlignmentChecker`, oracle `_resolveAlignment`, and the Nostril Pattern card onto it; fixed the timestamp bug (anchors to the entry's `time`, recomputes the correct prior sunrise via `SwaraClock.anchorSunriseForLocation`). Bird-state/yama engine unchanged (regression-gated). Floor-lock citation re-keyed off the mistaken CONF-018 → `PP-ORACLE`. | Sprint 42 (PR #220) |
 | **Settings → Notifications: Rahu Kaal + Morning Summary toggles untranslated (Tamil)** | The two `SwitchListTile`s used hardcoded English `Text('Rahu Kaal Alerts')` / `Text('Morning Summary')` (+ subtitles); the sibling Ruling/Eating toggles were already localized. A Tamil-mode gap that slipped the Pre-PR Tamil check. Surfaced by owner in prod. | Added 4 ARB keys (EN+TA) — `rahuKaalAlerts(+Subtitle)`, `morningSummaryAlerts(+Subtitle)` — and swapped the 4 `Text()` to `l10n.*`. | Hotfix v1.8.1 (PR #191) |
 | **Inauspicious floor-lock never fired at night** | The Oracle's Rahu Kaal / Emakandam floor-lock went through `DaylightSegmentResolver`, which returns segment 0 (no lock) outside sunrise→sunset — so a query during a *night* inauspicious window was scored as if favorable. Latent since the Oracle shipped; surfaced while building the 24h ambient verdict. | The Integrated Aruḍam path computes `isRahuActive`/`isEmakandamActive` from the actual `RahuKaalResult`/`EmakandamResult` window containment (`isActive(now)`), correct day AND night; a night-floor-lock regression test pins it. (Oracle screen path left on the day-only resolver, unchanged, to preserve parity.) | Sprint 38 (PR #181) |
