@@ -36,7 +36,8 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
-| 43+ | Accuracy Calibration (post-S42), native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ⬜ (planned) |
+| 44+ | Accuracy Calibration, native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.11.0-web is now live in production (2026-09-14)** — Sprint 42, the
 > **★ Swara Clock Engine & Weekday Udhaya** correctness fix (feature PR #220 → /sprint-finish #221
@@ -51,10 +52,13 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 > Guidance), **v1.9.0-web** (Aruḍam "Why?" accordion), **v1.8.0-web** (ambient "Aruḍam Now" card).
 > Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
 >
-> **Next: the 7-day Accuracy Calibration** (Saranidhi vs Align27 vs Panchangam vs actual breath) —
-> now **unblocked** by the Swara Clock fix, and gated only on owner data collection. Also queued:
-> the native "Now" surface and the remaining Integrated Aruḍam fast-follows. To be scheduled via
-> `/plan`.
+> **Next: Sprint 43 — Localization Defect Fixes (v1.11.1)** — a small, tight bug-fix patch clearing
+> known l10n defects: the About-card Developer **name** not localized in Tamil (shows `Eialarasu`
+> while the copyright line already renders `இயலரசு`), the Monthly-Patterns **day-name value**
+> unlocalized (BUG-v1.10.1-01), plus the trivial `readiness`-factor citation fix
+> (CONF-016/017 → CONF-014). Then the **7-day Accuracy Calibration** (Saranidhi vs Align27 vs
+> Panchangam vs actual breath) — now **unblocked** by the Swara Clock fix, gated only on owner data
+> collection — followed by the native "Now" surface + remaining Integrated Aruḍam fast-follows.
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -916,13 +920,43 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
+## Sprint 43: Localization Defect Fixes (v1.11.1) — Planned
+
+> **Scheduled via `/plan` — a small, tight bug-fix patch.** Clears the known localization
+> defects (the recurring "partially-localized widget / value-not-localized" miss — same class as
+> the v1.8.1 notification-l10n hotfix and BUG-v1.10.1-01), plus one trivial parked citation fix.
+> Ships as **v1.11.1-web** (patch). Bug-only — no new features.
+>
+> **Vehicle:** 43.1 + 43.3 are trivial (additive ARB key / one-line doc-comment) — low risk.
+> 43.2 touches the analytics domain model + a widget, so the whole sprint goes through the
+> **spec → Antigravity (local green) → Kiro Web review** path with a localized-weekday test, not
+> CI-only.
+
+- [ ] Task 43.1: **BUG-v1.11.1-01 — About-card Developer name not localized.** In Tamil mode the Developer row value is the hardcoded Latin `Eialarasu` (`about_card.dart:87` `value: 'Eialarasu'`), while the copyright line already localizes the name to `இயலரசு` (`aboutCopyright`) — the same name renders two ways. **Fix:** add ARB key `aboutDeveloperName` (EN `Eialarasu` / TA `இயலரசு`) and use it for the Developer row value. Leave the email + website values as literal identifiers (correctly not localized).
+- [ ] Task 43.2: **BUG-v1.10.1-01 — Monthly-Patterns day-name value unlocalized.** In Tamil mode the label is localized (`சிறந்த நாள்`) but the value renders the English day name (`Sunday`, not `ஞாயிறு`). Root cause: `AnalyticsCalculator._weekdayName()` (`analytics_calculator.dart:434–443`) returns hardcoded English day strings, stored on `patterns.bestDay`/`worstDay` and rendered raw by `_MonthlyPatternsCard` (`analytics_screen.dart:225–226`). **Fix:** carry the integer weekday on the domain model and map via `DateFormat.EEEE(Localizations.localeOf(context).toString())` in the widget (localize `worstDay` too); add a localized-weekday unit/widget test.
+- [ ] Task 43.3: **Citation fix — `readiness` factor.** In `integrated_arudam_engine.dart` the `readiness` `ArudamFactor` is cited `CONF-016 / CONF-017` (therapeutic occlusion / Kumbhaka consistency). Since Sprint 42, readiness rides the swara clock → re-key to **`CONF-014`** (the 1-hour swara clock). Update the enum doc-comment + the `ArudamReason` conf string; no logic change. *(Owner-confirmed during the S42 review.)*
+- [ ] Task 43.4: **DoD sweep** — while in the About + Analytics cards, grep for any other hardcoded display `value:` / `Text('…')` that should be localized (the recurring miss); localize or explicitly justify leaving literal (e.g. email/URL).
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
+- [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite). 43.2 implemented by Antigravity with **local green before PR**; **Kiro Web reviews the real diff**.
+- [ ] **Tests** — localized-weekday test for 43.2; EN/TA ARB key parity maintained (43.1's new key in both); existing suite green.
+- [ ] **Pre-PR Tamil gate** — About card (Developer name) + Analytics Monthly-Patterns verified in **Tamil mode** render in pure Tamil script, zero English leakage (this is exactly the gate these bugs slipped past).
+- [ ] **Docs updated** — `project-evaluation.md` Resolved Defects rows (BUG-v1.11.1-01 + BUG-v1.10.1-01) at `/sprint-update`; CHANGELOG `[1.11.1-web]`.
+- [ ] **Smoke test** — cosmetic l10n patch → slim gate (CI green + Tamil-mode eyeball of the two cards on the preview), not a full matrix. Decide light-hotfix-flow vs `/release-start` at release time.
+- [ ] **Valuation report** — Sprint 43 row (+20%) at `/sprint-update`.
+- [ ] **Tracker updated** — status ✅.
+- [ ] **User Guide** — `n/a` (no user-facing capability change — cosmetic l10n only).
+
+---
+
 ## Future Sprints
 
-Sprints **41** (Analytics tidy, v1.10.1) and **42** (★ Swara Clock Engine, v1.11.0) are scheduled
-above. Remaining future/candidate sprints — **Accuracy Calibration** (the 7-day 3-way comparison;
-now gated behind Sprint 42 shipping + owner data collection), the native **"Now" Surface**, v2.0
-Polish, E2E Automation, App Store Prep — live in the **[Sprint Backlog](sprint-backlog.md)** with
-full task lists. They graduate into this tracker (with a Delivery Checklist) when scheduled via `/plan`.
+Sprints **42** (★ Swara Clock Engine, v1.11.0) and **43** (Localization Defect Fixes, v1.11.1)
+are scheduled above. Remaining future/candidate sprints — **Accuracy Calibration** (the 7-day
+3-way comparison; unblocked by Sprint 42, now gated only on owner data collection), the native
+**"Now" Surface**, v2.0 Polish, E2E Automation, App Store Prep — live in the
+**[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into this tracker (with a Delivery Checklist) when scheduled via `/plan`.
 
 > **Note on numbering:** Sprint 37 was reassigned from "Chronobiology" to
 > "Birth-Bird Engine Correction" — the CONF-PP audit surfaced a live calculation
