@@ -638,6 +638,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nightNoNostrilPattern => 'Night — no expected nostril pattern';
 
   @override
+  String get nightSwaraRest =>
+      'Night cycle — inward awareness and natural rest';
+
+  @override
   String get dataExportImportTitle => 'Data Export / Import';
 
   @override

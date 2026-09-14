@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_chart.dart';
 
@@ -5,67 +6,90 @@ import '../../helpers/widget_test_helpers.dart';
 
 void main() {
   group('NostrilDominanceChart', () {
-    testWidgets('renders nothing when yamaResult is null', (tester) async {
-      final data = createTestDashboardData(yamaResult: null);
-
-      await tester.pumpWidget(
-        testableWidget(NostrilDominanceChart(data: data)),
-      );
-      await tester.pumpAndSettle();
-
-      // Widget returns SizedBox.shrink when no yama data
-      expect(find.textContaining('Y1'), findsNothing);
-    });
-
-    testWidgets('renders 5 yama rows when yamaResult present', (
+    testWidgets('renders nothing when sunrise and yamaResult are null', (
       tester,
     ) async {
-      final yamaResult = createTestYamaResult();
-      final data = createTestDashboardData(
-        yamaResult: yamaResult,
-        activeYama: yamaResult.yamas[2],
-      );
+      final data = createTestDashboardData(sunrise: null, yamaResult: null);
 
       await tester.pumpWidget(
         testableWidget(NostrilDominanceChart(data: data)),
       );
       await tester.pumpAndSettle();
 
-      expect(find.text('Y1'), findsOneWidget);
-      expect(find.text('Y2'), findsOneWidget);
-      expect(find.text('Y3'), findsOneWidget);
-      expect(find.text('Y4'), findsOneWidget);
-      expect(find.text('Y5'), findsOneWidget);
+      expect(find.byType(Card), findsNothing);
     });
 
+    testWidgets(
+      'renders 5 hourly swara blocks and Now chip when sunrise present',
+      (tester) async {
+        final sunrise = DateTime(2026, 7, 5, 6);
+        final data = createTestDashboardData(sunrise: sunrise);
+
+        await tester.pumpWidget(
+          testableWidget(NostrilDominanceChart(data: data)),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.byType(Card), findsOneWidget);
+        expect(find.text('Nostril Pattern'), findsOneWidget);
+        // Active block has the "Now" chip
+        expect(find.textContaining('NOW'), findsOneWidget);
+      },
+    );
+
     testWidgets('shows Solar/Lunar labels', (tester) async {
-      final yamaResult = createTestYamaResult();
-      final data = createTestDashboardData(yamaResult: yamaResult);
+      final sunrise = DateTime(2026, 7, 5, 6);
+      final data = createTestDashboardData(sunrise: sunrise);
 
       await tester.pumpWidget(
         testableWidget(NostrilDominanceChart(data: data)),
       );
       await tester.pumpAndSettle();
 
-      // Odd yamas = Solar (Right), Even = Lunar (Left)
+      // Displays Solar and Lunar blocks across the hourly cycle
       expect(find.textContaining('Solar'), findsWidgets);
       expect(find.textContaining('Lunar'), findsWidgets);
     });
 
-    testWidgets('shows night message when isNight is true', (tester) async {
-      final yamaResult = createTestYamaResult();
-      final data = createTestDashboardData(
-        yamaResult: yamaResult,
-        isNight: true,
-      );
+    testWidgets('shows next switch countdown', (tester) async {
+      final sunrise = DateTime(2026, 7, 5, 6);
+      final data = createTestDashboardData(sunrise: sunrise);
 
       await tester.pumpWidget(
         testableWidget(NostrilDominanceChart(data: data)),
       );
       await tester.pumpAndSettle();
 
-      // Night message about no nostril pattern
-      expect(find.textContaining('Night'), findsOneWidget);
+      expect(find.textContaining('Next switch: in'), findsOneWidget);
     });
+
+    testWidgets(
+      'shows live expected blocks and night wellness note when isNight is true',
+      (tester) async {
+        final sunrise = DateTime(2026, 7, 5, 6);
+        final data = createTestDashboardData(sunrise: sunrise, isNight: true);
+
+        await tester.pumpWidget(
+          testableWidget(NostrilDominanceChart(data: data)),
+        );
+        await tester.pumpAndSettle();
+
+        // Live nostril pattern continues at night
+        expect(find.byType(Card), findsOneWidget);
+        expect(find.textContaining('NOW'), findsOneWidget);
+        expect(
+          find.byWidgetPredicate(
+            (w) =>
+                w is Text &&
+                (w.data?.contains('Solar') == true ||
+                    w.data?.contains('Lunar') == true),
+          ),
+          findsWidgets,
+        );
+
+        // Night wellness note shown
+        expect(find.textContaining('Night cycle'), findsOneWidget);
+      },
+    );
   });
 }

@@ -1256,6 +1256,12 @@ abstract class AppLocalizations {
   /// **'Night — no expected nostril pattern'**
   String get nightNoNostrilPattern;
 
+  /// Gentle wellness note shown in nostril chart during nighttime
+  ///
+  /// In en, this message translates to:
+  /// **'Night cycle — inward awareness and natural rest'**
+  String get nightSwaraRest;
+
   /// Export/import section title in settings
   ///
   /// In en, this message translates to:

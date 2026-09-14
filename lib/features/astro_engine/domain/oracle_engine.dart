@@ -1,9 +1,9 @@
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/daylight_segment_resolver.dart';
 import 'package:saranidhi/features/astro_engine/domain/integrated_arudam_engine.dart';
-import 'package:saranidhi/features/astro_engine/domain/nostril_pattern.dart';
+import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
-import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/swara_clock.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 
 export 'package:saranidhi/features/astro_engine/domain/integrated_arudam_engine.dart';
@@ -119,14 +119,14 @@ class OracleCompositeEngine {
     if (flow == BreathFlow.sushumna) {
       return currentWindow.isSushumnaAligned;
     }
-    final yamaResult = YamaCalculator.calculate(
-      sunrise: sunrise,
-      sunset: sunset,
-    );
-    final activeYama = yamaResult.activeYama(queryTime);
-    final expectedFlow = NostrilPattern.expectedFlowForYama(
-      activeYama?.index,
-      date: queryTime,
+    final anchoredSunrise = queryTime.isBefore(sunrise)
+        ? sunrise.subtract(const Duration(days: 1))
+        : sunrise;
+    final paksha = LunarPhaseCalculator.phaseForDate(anchoredSunrise);
+    final expectedFlow = SwaraClock.expectedFlowAt(
+      time: queryTime,
+      sunrise: anchoredSunrise,
+      paksha: paksha,
     );
     return flow == expectedFlow;
   }

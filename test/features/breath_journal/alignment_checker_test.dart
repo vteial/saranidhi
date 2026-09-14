@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
-import 'package:saranidhi/features/astro_engine/domain/nostril_pattern.dart';
-import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/swara_clock.dart';
 import 'package:saranidhi/features/breath_journal/domain/alignment_checker.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 
@@ -13,18 +14,14 @@ void main() {
     const utc = 5.5;
 
     group('B-01: aligned when actual flow matches expected', () {
-      test('is aligned during Yama 1 when actual matches expected flow', () {
-        // AlignmentChecker derives expectedFlow from NostrilPattern, which
-        // is called WITHOUT a date argument and therefore falls back to
-        // DateTime.now(). The `time` below only selects which yama the clock
-        // lands in (Yama 1); it does NOT drive expectedFlow. So we derive the
-        // expected Yama 1 flow the same way production does, rather than
-        // hardcoding Solar/Lunar (which would be flaky by CI run date).
-        final expectedY1 = NostrilPattern.expectedFlowForYama(YamaIndex.yama1);
-        final time = DateTime(2025, 4, 2, 7, 0);
+      test('is aligned when actual matches SwaraClock expected flow', () {
+        // Sunday July 5, 2026 at 06:30 Chennai time.
+        // Sunrise ~ 05:48. Sunday seed: Solar (1h inception).
+        // 06:30 is in the first hour [05:48, 06:48) -> Solar.
+        final time = DateTime(2026, 7, 5, 6, 30);
 
         final result = AlignmentChecker.check(
-          actualFlow: expectedY1,
+          actualFlow: BreathFlow.solar,
           time: time,
           latitude: lat,
           longitude: lng,
@@ -32,35 +29,30 @@ void main() {
         );
 
         expect(result, isNotNull);
-        expect(result!.expectedFlow, equals(expectedY1));
+        expect(result!.expectedFlow, equals(BreathFlow.solar));
         expect(result.isAligned, isTrue);
       });
     });
 
     group('B-02: not aligned when actual flow is the opposite of expected', () {
-      test('is not aligned during Yama 1 when actual is opposite flow', () {
-        // expectedFlow is derived from DateTime.now() via NostrilPattern (no
-        // date is passed by AlignmentChecker), so we compute the expected
-        // Yama 1 flow the same way and feed the OPPOSITE flow to prove the
-        // mis-aligned case holds regardless of the CI run date.
-        final expectedY1 = NostrilPattern.expectedFlowForYama(YamaIndex.yama1);
-        final oppositeY1 = expectedY1 == BreathFlow.solar
-            ? BreathFlow.lunar
-            : BreathFlow.solar;
-        final time = DateTime(2025, 4, 2, 7, 0);
+      test(
+        'is not aligned when actual is opposite of SwaraClock expected flow',
+        () {
+          final time = DateTime(2026, 7, 5, 6, 30);
 
-        final result = AlignmentChecker.check(
-          actualFlow: oppositeY1,
-          time: time,
-          latitude: lat,
-          longitude: lng,
-          utcOffset: utc,
-        );
+          final result = AlignmentChecker.check(
+            actualFlow: BreathFlow.lunar,
+            time: time,
+            latitude: lat,
+            longitude: lng,
+            utcOffset: utc,
+          );
 
-        expect(result, isNotNull);
-        expect(result!.expectedFlow, equals(expectedY1));
-        expect(result.isAligned, isFalse);
-      });
+          expect(result, isNotNull);
+          expect(result!.expectedFlow, equals(BreathFlow.solar));
+          expect(result.isAligned, isFalse);
+        },
+      );
     });
 
     group('B-03: Sushumna context-dependent alignment', () {
@@ -80,10 +72,7 @@ void main() {
         );
 
         expect(result, isNotNull);
-        // The result depends on the bird state at this time.
-        // We verify the actionWindow field is populated.
         expect(result!.actionWindow, isNotNull);
-        // Sushumna is aligned only if actionWindow is yoga
         expect(
           result.isAligned,
           equals(result.actionWindow == ActionWindow.yoga),
@@ -91,7 +80,7 @@ void main() {
       });
 
       test('sushumna blocked in non-yoga window', () {
-        // Yama 2 at 9:30 — even yama, lunar expected
+        // Yama 2 at 9:30
         final time = DateTime(2025, 3, 20, 9, 30);
 
         final result = AlignmentChecker.check(
@@ -104,7 +93,6 @@ void main() {
 
         expect(result, isNotNull);
         expect(result!.actionWindow, isNotNull);
-        // Alignment matches the window type
         expect(
           result.isAligned,
           equals(result.actionWindow == ActionWindow.yoga),
@@ -112,36 +100,85 @@ void main() {
       });
     });
 
-    group('Expected flow by Yama', () {
-      test('Yama 2 expected flow is the opposite of Yama 1 and aligns when '
-          'matched', () {
-        // NostrilPattern keeps the day's starting nostril for odd yamas
-        // (1, 3, 5) and flips it for even yamas (2, 4). So Yama 2 is ALWAYS
-        // the opposite of Yama 1, whatever the current date (DateTime.now())
-        // makes the starting nostril. We verify that opposition invariant,
-        // then confirm that supplying the expected Yama 2 flow aligns.
-        final expectedY1 = NostrilPattern.expectedFlowForYama(YamaIndex.yama1);
-        final expectedY2 = NostrilPattern.expectedFlowForYama(YamaIndex.yama2);
-        expect(expectedY2, isNot(equals(expectedY1)));
-
-        // 9:30 AM Chennai lands in Yama 2; the date is irrelevant to
-        // expectedFlow (it is derived from DateTime.now()).
-        final time = DateTime(2025, 4, 2, 9, 30);
-
-        final result = AlignmentChecker.check(
-          actualFlow: expectedY2,
-          time: time,
+    group('Swara Clock Expected Flow & Latent Bug Fix (Task 42.1 / 42.4)', () {
+      test('expected flow alternates hourly and matches SwaraClock', () {
+        // Sunday July 5, 2026: sunrise ~ 05:48
+        // Hour 0 [05:48, 06:48): Solar (Right)
+        final r1 = AlignmentChecker.check(
+          actualFlow: BreathFlow.solar,
+          time: DateTime(2026, 7, 5, 6, 15),
           latitude: lat,
           longitude: lng,
           utcOffset: utc,
         );
+        expect(r1?.expectedFlow, equals(BreathFlow.solar));
 
-        expect(result, isNotNull);
-        expect(result!.expectedFlow, equals(expectedY2));
-        expect(result.isAligned, isTrue);
+        // Hour 1 [06:48, 07:48): Lunar (Left)
+        final r2 = AlignmentChecker.check(
+          actualFlow: BreathFlow.lunar,
+          time: DateTime(2026, 7, 5, 7, 15),
+          latitude: lat,
+          longitude: lng,
+          utcOffset: utc,
+        );
+        expect(r2?.expectedFlow, equals(BreathFlow.lunar));
       });
 
-      test('before sunrise defaults to lunar', () {
+      test('honors historical non-now entry timestamps (fixing latent bug)', () {
+        // Verify that passing different historical dates calculates the expected
+        // flow corresponding to those timestamps, proving no fallback to DateTime.now().
+        final sunResult1 = SunriseCalculator.calculate(
+          date: DateTime(2025, 1, 5), // Sunday
+          latitude: lat,
+          longitude: lng,
+          utcOffset: utc,
+        )!;
+        final paksha1 = LunarPhaseCalculator.phaseForDate(sunResult1.sunrise);
+        final expectedSundayDawn = SwaraClock.expectedFlowAt(
+          time: sunResult1.sunrise.add(const Duration(minutes: 30)),
+          sunrise: sunResult1.sunrise,
+          paksha: paksha1,
+        );
+
+        final result1 = AlignmentChecker.check(
+          actualFlow: expectedSundayDawn,
+          time: sunResult1.sunrise.add(const Duration(minutes: 30)),
+          latitude: lat,
+          longitude: lng,
+          utcOffset: utc,
+        );
+        expect(result1?.expectedFlow, equals(expectedSundayDawn));
+        expect(result1?.isAligned, isTrue);
+
+        // A different day: Monday January 6, 2025
+        final sunResult2 = SunriseCalculator.calculate(
+          date: DateTime(2025, 1, 6), // Monday
+          latitude: lat,
+          longitude: lng,
+          utcOffset: utc,
+        )!;
+        final paksha2 = LunarPhaseCalculator.phaseForDate(sunResult2.sunrise);
+        final expectedMondayDawn = SwaraClock.expectedFlowAt(
+          time: sunResult2.sunrise.add(const Duration(minutes: 30)),
+          sunrise: sunResult2.sunrise,
+          paksha: paksha2,
+        );
+
+        final result2 = AlignmentChecker.check(
+          actualFlow: expectedMondayDawn,
+          time: sunResult2.sunrise.add(const Duration(minutes: 30)),
+          latitude: lat,
+          longitude: lng,
+          utcOffset: utc,
+        );
+        expect(result2?.expectedFlow, equals(expectedMondayDawn));
+        expect(result2?.isAligned, isTrue);
+        expect(result1?.expectedFlow, isNot(equals(result2?.expectedFlow)));
+      });
+
+      test('pre-dawn time anchors to prior civil day cycle', () {
+        // 04:00 on Thursday March 20, 2025 (before sunrise).
+        // Anchors to Wednesday March 19 sunrise.
         final time = DateTime(2025, 3, 20, 4, 0);
 
         final result = AlignmentChecker.check(

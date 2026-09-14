@@ -103,6 +103,12 @@ Within each breath cycle, the five elements (Earth, Water, Fire, Air, Ether) rot
 ### 🫁 Breath Journal (Sara Kalai)
 Log your current breath flow with just two taps. See instantly whether you're aligned with the cosmic pattern. Optionally time your breath to track inhale, hold, and exhale durations. A **guided nostril test** walks you through checking your dominant flow — Lunar (left), Sushumna (both), or Solar (right) — with a **Start over** button to reset at any point.
 
+### ⏱️ Nostril Pattern (Swara Clock Engine)
+The dashboard Nostril Pattern card displays the expected breath flow on the authentic **1-hour / 24-cycle ultradian clock** (CONF-014), independent of the 1.5-hour bird-state yama clock. Seeded at astronomical sunrise according to the classical **Weekday Udhaya schedule** (CONF-013 / CONF-001):
+- **1-Hour Inception Days** (Sunday, Monday, Thursday Shukla/Waxing, Saturday): Initiates in the day's dawn nostril for 1 hour, then alternates hourly.
+- **2-Hour Inception Days** (Tuesday, Wednesday, Thursday Krishna/Waning, Friday): Holds the dawn nostril for a 2-hour Udhaya inception window before beginning hourly alternation.
+- **24-Hour Continuous Cycle:** Shows the currently active flow, upcoming hourly blocks, and an exact countdown to the next ~1-hour switch across the full day and night (nighttime is a live active cycle with gentle inward rest guidance, not an inactive dead zone).
+
 ### 🌬️ Clear Breath Channel (Somatic Intervention)
 When you log a breath and it's **not aligned** with the cosmic expectation, a **Clear Breath Channel** action appears. It offers two gentle, time-bound protocols to shift your dominant nostril toward the aligned state:
 

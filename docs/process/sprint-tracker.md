@@ -897,24 +897,24 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > implements with a **local green baseline** + isolated test cases against the workshop transcripts
 > → Kiro Web reviews the real diff. Correctness-critical: local green required before PR (not CI-only).
 
-- [ ] Task 42.1: **New `SwaraClock` engine** — expected nostril on the **1-hour / 24-cycle** clock (sunrise-anchored civil day, CONF-001), replacing the yama-based prediction path.
-- [ ] Task 42.2: **CONF-013 Weekday Udhaya dawn seed** — the weekday→(nostril, 1h/2h) table incl. the Thursday paksha split; seeds the first swara at astronomical sunrise.
-- [ ] Task 42.3: **Hourly progression** — 1h-days alternate every hour from the seed; 2h-days hold the seed 2h (Udhaya inception) then alternate hourly; correct across the full 24h (day + night).
-- [ ] Task 42.4: **Rewire consumers** — `AlignmentChecker` (journal alignment + `expectedFlow`), the Aruḍam Now **readiness multiplier**, and the **Nostril Pattern dashboard card** (+ next-switch countdown → the ~1h swara switch, not the yama boundary) all read the new `SwaraClock`. Retire/replace `NostrilPattern.expectedFlowForYama`.
-- [ ] Task 42.5: **Regression gate** — Pakshi **bird-state / yama** logic UNCHANGED (pin with tests); only the nostril clock moves. Explicit `SwaraClock` tests: each weekday seed, 1h vs 2h dawn, hourly alternation, day/night boundary, sunrise anchoring.
-- [ ] Task 42.6: **Citation cleanup** — re-key the `integrated_arudam_engine.dart` floor-lock citation off `CONF-018` (which is the Day/Night macro-seal, not the inauspicious-window rule) to the correct CONF; optionally let CONF-018 back the day/night macro framing.
-- [ ] Task 42.7: **Bilingual (EN/TA)** for any new/changed nostril-pattern copy; Nostril Pattern card + guidance reflect the 1h clock.
+- [x] Task 42.1: **New `SwaraClock` engine** — expected nostril on the **1-hour / 24-cycle** clock (sunrise-anchored civil day, CONF-001), replacing the yama-based prediction path.
+- [x] Task 42.2: **CONF-013 Weekday Udhaya dawn seed** — the weekday→(nostril, 1h/2h) table incl. the Thursday paksha split; seeds the first swara at astronomical sunrise.
+- [x] Task 42.3: **Hourly progression** — 1h-days alternate every hour from the seed; 2h-days hold the seed 2h (Udhaya inception) then alternate hourly; correct across the full 24h (day + night).
+- [x] Task 42.4: **Rewire consumers** — `AlignmentChecker` (journal alignment + `expectedFlow`), the Aruḍam Now **readiness multiplier**, and the **Nostril Pattern dashboard card** (+ next-switch countdown → the ~1h swara switch, not the yama boundary) all read the new `SwaraClock`. Retire/replace `NostrilPattern.expectedFlowForYama`.
+- [x] Task 42.5: **Regression gate** — Pakshi **bird-state / yama** logic UNCHANGED (pin with tests); only the nostril clock moves. Explicit `SwaraClock` tests: each weekday seed, 1h vs 2h dawn, hourly alternation, day/night boundary, sunrise anchoring.
+- [x] Task 42.6: **Citation cleanup** — re-key the `integrated_arudam_engine.dart` floor-lock citation off `CONF-018` (which is the Day/Night macro-seal, not the inauspicious-window rule) to `PP-ORACLE`.
+- [x] Task 42.7: **Bilingual (EN/TA)** for any new/changed nostril-pattern copy; Nostril Pattern card + guidance reflect the 1h clock.
 
 **Delivery Checklist (Definition of Done):**
 - [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
 - [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implements + **local green before PR**; **Kiro Web reviews the real diff**.
-- [ ] **Regression gate** — bird-state/yama/Pakshi outputs UNCHANGED (pinned); Aruḍam Now score changes ONLY where the corrected nostril clock legitimately changes readiness; no schema change.
-- [ ] **Docs updated** — User Guide (Nostril Pattern now on the ~1h swara clock + weekday dawn rule) + `calculation-methodology.md` (new §: Swara Clock + Weekday Udhaya table) + the CONF-018 citation fix.
-- [ ] **Tests** — `SwaraClock` unit tests (weekday seeds, 1h/2h dawn, hourly progression, boundaries); alignment/readiness regression; existing bird/Pakshi tests unchanged & green; local green before PR.
-- [ ] **Smoke test** — expected-nostril matches a checked nostril at a known weekday sunrise (the "Sunday morning" test); next-switch countdown ≈ hourly; EN/TA.
+- [x] **Regression gate** — bird-state/yama/Pakshi outputs UNCHANGED (pinned); Aruḍam Now score changes ONLY where the corrected nostril clock legitimately changes readiness; no schema change.
+- [x] **Docs updated** — User Guide (Nostril Pattern now on the ~1h swara clock + weekday dawn rule) + `calculation-methodology.md` (new §: Swara Clock + Weekday Udhaya table) + the CONF-018 citation fix.
+- [x] **Tests** — `SwaraClock` unit tests (weekday seeds, 1h/2h dawn, hourly progression, boundaries); alignment/readiness regression; existing bird/Pakshi tests unchanged & green; local green before PR.
+- [x] **Smoke test** — expected-nostril matches a checked nostril at a known weekday sunrise (the "Sunday morning" test); next-switch countdown ≈ hourly; EN/TA.
 - [ ] **Valuation report** — Sprint 42 row (+20%) at `/sprint-update`.
 - [ ] **Tracker updated** — status ✅.
-- [ ] **User Guide** — real capability/accuracy change, so **not** `n/a`.
+- [x] **User Guide** — real capability/accuracy change, so **not** `n/a`.
 
 ---
 

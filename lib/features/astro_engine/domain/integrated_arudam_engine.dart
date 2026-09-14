@@ -35,7 +35,7 @@ enum OracleBand {
 /// - [categoryHarmony]: Action-window vs query-category harmony — CONF-015
 /// - [readiness]: Breath alignment multiplier — CONF-016 / CONF-017
 /// - [sushumna]: Sushumna transcendent neutral — CONF-026
-/// - [floorLock]: Rahu/Emakandam inauspicious window override — CONF-018
+/// - [floorLock]: Rahu/Emakandam inauspicious window override — PP-ORACLE
 enum ArudamFactor {
   /// Panja Pakshi bird-state ceiling — CONF-PP-004 (ruling planets/state).
   birdState,
@@ -55,7 +55,7 @@ enum ArudamFactor {
   /// Sushumna transcendent neutral — CONF-026.
   sushumna,
 
-  /// Rahu/Emakandam inauspicious window override — CONF-018.
+  /// Rahu/Emakandam inauspicious window override — PP-ORACLE.
   floorLock,
 }
 
@@ -196,7 +196,7 @@ class IntegratedArudamEngine {
           ArudamReason(
             factor: ArudamFactor.floorLock,
             strength: FactorStrength.blocking,
-            conf: 'CONF-018',
+            conf: 'PP-ORACLE',
           ),
         ],
       );

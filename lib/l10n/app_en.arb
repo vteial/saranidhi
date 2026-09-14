@@ -413,6 +413,8 @@
   "@guidanceNightDying": { "description": "Night guidance for Dying state" },
   "nightNoNostrilPattern": "Night \u2014 no expected nostril pattern",
   "@nightNoNostrilPattern": { "description": "Note shown in nostril chart during nighttime" },
+  "nightSwaraRest": "Night cycle \u2014 inward awareness and natural rest",
+  "@nightSwaraRest": { "description": "Gentle wellness note shown in nostril chart during nighttime" },
 
   "dataExportImportTitle": "Data Export / Import",
   "@dataExportImportTitle": { "description": "Export/import section title in settings" },
