@@ -10,13 +10,13 @@ abstract final class AppConstants {
   static const String tagline = 'The Treasure House of Breath';
 
   /// Current app version (semantic versioning).
-  static const String appVersion = '1.2.1';
+  static const String appVersion = '1.12.0';
 
   /// Database schema version (matches app_database.dart).
-  static const int schemaVersion = 4;
+  static const int schemaVersion = 7;
 
   /// Export format version.
-  static const int exportVersion = 1;
+  static const int exportVersion = 2;
 
   /// Developer name.
   static const String developerName = 'Eialarasu';

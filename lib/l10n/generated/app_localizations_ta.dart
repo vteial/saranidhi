@@ -690,6 +690,9 @@ class AppLocalizationsTa extends AppLocalizations {
   String get importBreathSessions => 'மூச்சு அமர்வுகள்';
 
   @override
+  String get importSomaticLogs => 'உடல்சார் தலையீட்டுப் பதிவுகள்';
+
+  @override
   String get importWarning => 'இந்த செயலை மீட்க முடியாது.';
 
   @override
@@ -707,6 +710,77 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get importInvalidFile => 'தவறான ஏற்றுமதி கோப்பு';
+
+  @override
+  String get practiceId => 'பயிற்சி அடையாளம்';
+
+  @override
+  String get copyPracticeId => 'பயிற்சி அடையாளத்தை நகலெடு';
+
+  @override
+  String get practiceIdCopied => 'பயிற்சி அடையாளம் நகலெடுக்கப்பட்டது';
+
+  @override
+  String get mergeFromFile => 'கோப்பிலிருந்து இணை';
+
+  @override
+  String get merging => 'இணைக்கிறது...';
+
+  @override
+  String get mergeConfirmTitle => 'பயிற்சி தரவை இணைக்கவா?';
+
+  @override
+  String get mergeConfirmMessage =>
+      'ஏற்கனவே உள்ள தரவை நீக்காமல் புதிய பயிற்சி பதிவுகள் மட்டுமே பாதுகாப்பாக சேர்க்கப்படும்.';
+
+  @override
+  String get mergeConfirmButton => 'இணை';
+
+  @override
+  String mergeSuccess(int count) {
+    return '$count புதிய பதிவுகள் இணைக்கப்பட்டன';
+  }
+
+  @override
+  String get restoreAllData => 'மீட்டமை (அனைத்தையும் மேலெழுது)';
+
+  @override
+  String get restoreConfirmTitle => 'மீட்டமைத்து மேலெழுதவா?';
+
+  @override
+  String get restoreConfirmMessage =>
+      'இது இந்த சாதனத்தில் உள்ள அனைத்து தரவையும் நிரந்தரமாக இந்த கோப்புடன் மாற்றும். இந்த செயலை மீட்க முடியாது.';
+
+  @override
+  String get restoreConfirmButton => 'மீட்டமைத்து மேலெழுது';
+
+  @override
+  String get restoreSuccess => 'தரவு வெற்றிகரமாக மீட்டமைக்கப்பட்டது';
+
+  @override
+  String get practiceIdMismatchTitle => 'பயிற்சி அடையாளம் பொருந்தவில்லை';
+
+  @override
+  String practiceIdMismatchMessage(String localId, String fileId) {
+    return 'இந்த காப்புப்பிரதி வேறு பயிற்சி அடையாளத்திற்கு உரியது. உங்கள் தரவைப் பாதுகாக்க, இணைப்பது முடக்கப்பட்டுள்ளது.\n\nஉங்கள் பயிற்சி அடையாளம்: $localId\nகாப்புப்பிரதி அடையாளம்: $fileId\n\nநீங்கள் ரத்து செய்யலாம் அல்லது இந்த காப்புப்பிரதியுடன் அனைத்தையும் மேலெழுத மீட்டமைப்பைத் தேர்வு செய்யலாம்.';
+  }
+
+  @override
+  String get legacyBackupWarningTitle => 'பழைய காப்புப்பிரதி வடிவம்';
+
+  @override
+  String get legacyBackupWarningMessage =>
+      'இந்த பழைய காப்புப்பிரதியில் பயிற்சி அடையாளம் இல்லை. இணைப்பதைத் தொடர்ந்தால், இது உங்களுடையதாகக் கருதப்படும்.';
+
+  @override
+  String get continueMerge => 'இணைப்பதைத் தொடரவும்';
+
+  @override
+  String get practiceIdMatches => 'இந்த சாதனத்துடன் பொருந்துகிறது';
+
+  @override
+  String get practiceIdAdopting =>
+      'புதிய சாதனம்: பயிற்சி அடையாளம் ஏற்கப்படுகிறது';
 
   @override
   String get analyticsTitle => 'பகுப்பாய்வு';

@@ -2,7 +2,7 @@
 
 # Saranidhi — User Guide
 
-> **Reviewed:** v1.11.1-web · **Next review:** every release (refresh for shipped features).
+> **Reviewed:** v1.12.0-web · **Next review:** every release (refresh for shipped features).
 
 > *"Your breath is not just a physiological function — it is a hidden spiritual inheritance."*
 
@@ -230,6 +230,33 @@ An ancient Tamil astrological system organizing the 27 Nakshatras into five bird
 
 ### 3. Hora Shastra (होरा शास्त्र)
 The science of planetary hours, dividing each day and night into 24 segments, each governed by one of the seven classical planets in the Chaldean order. Activities aligned with the ruling planet's nature are said to yield better results.
+
+---
+
+## Using Saranidhi on More Than One Device — Export & Merge
+
+If you practice across multiple devices (for example, logging breath sessions on your phone during travel and on a tablet or laptop at home), Saranidhi supports **user-owned, safe cross-device practice aggregation** with zero external servers and no login requirement:
+
+### 1. Practice ID (Owner Identity)
+Every Saranidhi profile has a unique **Practice ID** (visible under **Settings → Profile**). This ID identifies your personal practice across your fleet of devices.
+
+### 2. Linking a New Device (Adopting Identity)
+When installing Saranidhi on a secondary device:
+1. On your existing device, go to **Settings → Data Export / Import** and tap **Export All Data** to save your backup file.
+2. Transfer the file to your new device (AirDrop, email, or drive).
+3. On the new device, open **Settings → Data Export / Import** and tap **Merge from file**.
+4. Because the new device is fresh, it will automatically adopt your Practice ID and import all past sessions.
+5. From then on, both devices share the same Practice ID, enabling bidirectional merging anytime.
+
+### 3. Safe, Non-Destructive Union Merge
+- **No data loss:** Unlike destructive restores, **Merge from file** never deletes existing local records.
+- **Collision-free union:** Each breath session and journal entry has a unique ID. Saranidhi inserts only new records and skips duplicates, making re-merging completely idempotent.
+- **Combined aggregates:** Your streaks, 7/30-day trends, total practice hours, and hold-time personal-bests instantly update to reflect your combined practice from all devices.
+
+### 4. Owner-Identity Guard
+To protect your sacred practice logs from accidental contamination, Saranidhi includes an **Owner Guard**:
+- If someone else exports a backup from their device with a different Practice ID, Saranidhi detects the mismatch and **refuses to merge**, keeping your personal practice data pure.
+- If you genuinely need to replace all local data on a device with another backup, you can use the explicit **Restore (overwrite everything)** option.
 
 ---
 

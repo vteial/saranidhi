@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/providers/profile_location_provider.dart';
@@ -132,9 +133,7 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                   ),
                   subtitle: Text(
                     birdName != null
-                        ? l10n.birthBird(
-                            _localizedBirdName(birdName, l10n),
-                          )
+                        ? l10n.birthBird(_localizedBirdName(birdName, l10n))
                         : l10n.birthStar,
                   ),
                   trailing: _isEditing
@@ -164,6 +163,33 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                   dense: true,
                   contentPadding: EdgeInsets.zero,
                 ),
+                // Practice ID (Sprint 44: Practice Sync Phase 0)
+                if (profile.ownerId != null && profile.ownerId!.isNotEmpty)
+                  ListTile(
+                    leading: const Icon(Icons.fingerprint),
+                    title: SelectableText(
+                      profile.ownerId!,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontFamily: 'monospace',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    subtitle: Text(l10n.practiceId),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.copy, size: 18),
+                      tooltip: l10n.copyPracticeId,
+                      onPressed: () {
+                        Clipboard.setData(
+                          ClipboardData(text: profile.ownerId!),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(l10n.practiceIdCopied)),
+                        );
+                      },
+                    ),
+                    dense: true,
+                    contentPadding: EdgeInsets.zero,
+                  ),
               ],
             ),
           ),
@@ -186,11 +212,13 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
     );
 
     // Push updated profile to iCloud
-    final updatedProfile = await (db.select(db.profiles)
-          ..where((t) => t.id.equals(profile.id)))
-        .getSingleOrNull();
+    final updatedProfile = await (db.select(
+      db.profiles,
+    )..where((t) => t.id.equals(profile.id))).getSingleOrNull();
     if (updatedProfile != null) {
-      await ref.read(syncTriggerServiceProvider).onProfileUpdated(updatedProfile);
+      await ref
+          .read(syncTriggerServiceProvider)
+          .onProfileUpdated(updatedProfile);
     }
 
     setState(() {});
@@ -269,13 +297,13 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
       );
 
       // Push updated profile to iCloud
-      final updatedProfile = await (db.select(db.profiles)
-            ..where((t) => t.id.equals(profiles.first.id)))
-          .getSingleOrNull();
+      final updatedProfile = await (db.select(
+        db.profiles,
+      )..where((t) => t.id.equals(profiles.first.id))).getSingleOrNull();
       if (updatedProfile != null) {
-        await ref.read(syncTriggerServiceProvider).onProfileUpdated(
-          updatedProfile,
-        );
+        await ref
+            .read(syncTriggerServiceProvider)
+            .onProfileUpdated(updatedProfile);
       }
 
       // Refresh dashboard for new birth bird
@@ -287,7 +315,9 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
 
   /// Returns the localized bird name from the stored enum name string.
   String _localizedBirdName(String birdEnumName, AppLocalizations l10n) {
-    final bird = PakshiBird.values.where((b) => b.name == birdEnumName).firstOrNull;
+    final bird = PakshiBird.values
+        .where((b) => b.name == birdEnumName)
+        .firstOrNull;
     if (bird == null) return birdEnumName;
     return bird.localizedName(l10n);
   }
@@ -357,8 +387,8 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                   ? null
                   : () async {
                       final date = selectedDate!;
-                      final time = selectedTime ??
-                          const TimeOfDay(hour: 12, minute: 0);
+                      final time =
+                          selectedTime ?? const TimeOfDay(hour: 12, minute: 0);
 
                       final birthMoment = DateTime.utc(
                         date.year,
@@ -368,38 +398,32 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                         time.minute,
                       );
 
-                      final result =
-                          NakshatraCalculator.calculate(birthMoment);
+                      final result = NakshatraCalculator.calculate(birthMoment);
                       // Use dual-table: determine birth Paksha + correct table
-                      final birthPaksha =
-                          PakshiCalculator.birthPakshaFromDOB(birthMoment);
+                      final birthPaksha = PakshiCalculator.birthPakshaFromDOB(
+                        birthMoment,
+                      );
                       final bird =
                           PakshiCalculator.birthBirdFromNakshatraAndPaksha(
-                        result.standardName,
-                        birthPaksha,
-                      );
+                            result.standardName,
+                            birthPaksha,
+                          );
 
                       // Save to profile
                       final db = ref.read(appDatabaseProvider);
-                      final profiles =
-                          await db.select(db.profiles).get();
+                      final profiles = await db.select(db.profiles).get();
                       if (profiles.isEmpty) return;
 
-                      await (db.update(db.profiles)
-                            ..where(
-                              (t) => t.id.equals(profiles.first.id),
-                            ))
-                          .write(
+                      await (db.update(
+                        db.profiles,
+                      )..where((t) => t.id.equals(profiles.first.id))).write(
                         ProfilesCompanion(
-                          birthStarNakshatra:
-                              drift.Value(result.standardName),
+                          birthStarNakshatra: drift.Value(result.standardName),
                           birthBird: drift.Value(bird?.name),
                           birthDateEpoch: drift.Value(
                             date.millisecondsSinceEpoch,
                           ),
-                          birthTime: drift.Value(
-                            '${time.hour}:${time.minute}',
-                          ),
+                          birthTime: drift.Value('${time.hour}:${time.minute}'),
                           updatedAt: drift.Value(
                             DateTime.now().millisecondsSinceEpoch,
                           ),

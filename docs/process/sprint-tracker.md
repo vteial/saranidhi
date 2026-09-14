@@ -981,24 +981,24 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > (insert rows whose ID isn't already present). Schema is **v6** → this adds a guarded migration to
 > **v7** for `ownerId`. `DatabaseExporter.importFromBytes` is the destructive path to replace.
 
-- [ ] Task 44.1: **Locally-generated owner ID.** On first run (and as a guarded schema-v6→v7 migration for existing installs), generate a stable `ownerId` (UUID v4) and store it on the profile. No login. Surface it in Settings (read-only, labeled — e.g. "Practice ID"), so devices belonging to the same person can be recognized. Existing single profile is the home (`profiles` table).
-- [ ] Task 44.2: **Stamp the export with `ownerId` + schema/app version.** Extend `DatabaseExporter.exportToBytes` JSON to carry `ownerId` (already carries schema + app version per the v1.2.x lesson). Backward-compatible read (older exports have no `ownerId` → treated as "unknown owner").
-- [ ] Task 44.3: **MERGE import (replace the destructive import).** New non-destructive path: **union breath-sessions (and journal) by `id`** — insert only rows whose UUID isn't already local; never delete existing local rows. Idempotent (re-importing the same file is a no-op). Keep the old full-replace as an explicit, clearly-labeled "Restore (overwrite)" option distinct from "Merge".
-- [ ] Task 44.4: **Owner-identity guard (the safety core).** On import, compare the file's `ownerId` to the local `ownerId`: **match → merge** silently; **mismatch → refuse the merge** with a clear dialog ("This backup belongs to a different Practice ID — merging is disabled to protect your data. Options: Cancel / Restore-overwrite as a new profile"). Legacy no-`ownerId` files → warn + require explicit confirm. This structurally prevents "sync with another person's data."
-- [ ] Task 44.5: **Aggregate correctness after merge.** Confirm streak, 7/30-day trend, hold-time average, and personal-best recompute correctly over the unioned session set (they read the local DB, so this should follow — add a test that merging two disjoint session sets yields the correct aggregate).
-- [ ] Task 44.6: **Bilingual (EN/TA)** for all new Settings copy (Practice ID label, Merge vs Restore buttons, the mismatch dialog).
+- [x] Task 44.1: **Locally-generated owner ID.** On first run (and as a guarded schema-v6→v7 migration for existing installs), generate a stable `ownerId` (UUID v4) and store it on the profile. No login. Surface it in Settings (read-only, labeled — e.g. "Practice ID"), so devices belonging to the same person can be recognized. Existing single profile is the home (`profiles` table).
+- [x] Task 44.2: **Stamp the export with `ownerId` + schema/app version.** Extend `DatabaseExporter.exportToBytes` JSON to carry `ownerId` (already carries schema + app version per the v1.2.x lesson). Backward-compatible read (older exports have no `ownerId` → treated as "unknown owner").
+- [x] Task 44.3: **MERGE import (replace the destructive import).** New non-destructive path: **union breath-sessions (and journal) by `id`** — insert only rows whose UUID isn't already local; never delete existing local rows. Idempotent (re-importing the same file is a no-op). Keep the old full-replace as an explicit, clearly-labeled "Restore (overwrite)" option distinct from "Merge".
+- [x] Task 44.4: **Owner-identity guard (the safety core).** On import, compare the file's `ownerId` to the local `ownerId`: **match → merge** silently; **mismatch → refuse the merge** with a clear dialog ("This backup belongs to a different Practice ID — merging is disabled to protect your data. Options: Cancel / Restore-overwrite as a new profile"). Legacy no-`ownerId` files → warn + require explicit confirm. This structurally prevents "sync with another person's data."
+- [x] Task 44.5: **Aggregate correctness after merge.** Confirm streak, 7/30-day trend, hold-time average, and personal-best recompute correctly over the unioned session set (they read the local DB, so this should follow — add a test that merging two disjoint session sets yields the correct aggregate).
+- [x] Task 44.6: **Bilingual (EN/TA)** for all new Settings copy (Practice ID label, Merge vs Restore buttons, the mismatch dialog).
 
 **Delivery Checklist (Definition of Done):**
 - [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
 - [ ] **PR link** — #N (CI green). Correctness-critical (schema migration + data-merge + identity guard) → **Antigravity implements with local green before PR; Kiro Web reviews the real diff.**
-- [ ] **Migration gate** — guarded v6→v7 (column-exists check, per the Sprint 36 lesson); existing profiles get an `ownerId` on load without data loss; tested on an existing-profile upgrade path (not just fresh install).
-- [ ] **Merge-safety tests** — union-by-id merge (disjoint sets → union; overlapping ids → idempotent no dup); owner-ID **mismatch refuses** merge; legacy no-ownerId file warns; aggregate (streak/trend/PB) correct post-merge.
-- [ ] **Regression gate** — normal single-device use unchanged; the old overwrite/restore path still available (relabeled), not silently removed.
-- [ ] **Docs updated** — User Guide (a short "Use Saranidhi on more than one device — export & merge" section — **this IS a real capability, so NOT `n/a`**) + calc/architecture note on the owner-id + merge model.
+- [x] **Migration gate** — guarded v6→v7 (column-exists check, per the Sprint 36 lesson); existing profiles get an `ownerId` on load without data loss; tested on an existing-profile upgrade path (not just fresh install).
+- [x] **Merge-safety tests** — union-by-id merge (disjoint sets → union; overlapping ids → idempotent no dup); owner-ID **mismatch refuses** merge; legacy no-ownerId file warns; aggregate (streak/trend/PB) correct post-merge.
+- [x] **Regression gate** — normal single-device use unchanged; the old overwrite/restore path still available (relabeled), not silently removed.
+- [x] **Docs updated** — User Guide (a short "Use Saranidhi on more than one device — export & merge" section — **this IS a real capability, so NOT `n/a`**) + calc/architecture note on the owner-id + merge model.
 - [ ] **Smoke test** — real cross-device flow: export from Device B → merge-import on Device A → aggregate view shows both devices' sessions; mismatch file is refused; EN/TA.
 - [ ] **Valuation report** — Sprint 44 row (+20%) at `/sprint-update`.
 - [ ] **Tracker updated** — status ✅.
-- [ ] **User Guide** — real multi-device capability → refreshed (not `n/a`).
+- [x] **User Guide** — real multi-device capability → refreshed (not `n/a`).
 
 ---
 

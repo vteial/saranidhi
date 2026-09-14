@@ -836,7 +836,7 @@ abstract class AppLocalizations {
   /// **'Restore'**
   String get restore;
 
-  /// Restore in progress
+  /// Restore in progress label
   ///
   /// In en, this message translates to:
   /// **'Restoring...'**
@@ -1340,6 +1340,12 @@ abstract class AppLocalizations {
   /// **'Breath sessions'**
   String get importBreathSessions;
 
+  /// Somatic intervention logs count in import summary
+  ///
+  /// In en, this message translates to:
+  /// **'Somatic logs'**
+  String get importSomaticLogs;
+
   /// Import warning text
   ///
   /// In en, this message translates to:
@@ -1375,6 +1381,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid export file'**
   String get importInvalidFile;
+
+  /// Label for Practice ID in profile card
+  ///
+  /// In en, this message translates to:
+  /// **'Practice ID'**
+  String get practiceId;
+
+  /// Tooltip for copying practice ID
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Practice ID'**
+  String get copyPracticeId;
+
+  /// Snackbar message when practice ID is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Practice ID copied to clipboard'**
+  String get practiceIdCopied;
+
+  /// Button label for non-destructive merge import
+  ///
+  /// In en, this message translates to:
+  /// **'Merge from file'**
+  String get mergeFromFile;
+
+  /// Merge in progress label
+  ///
+  /// In en, this message translates to:
+  /// **'Merging...'**
+  String get merging;
+
+  /// Merge confirmation dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Merge Practice Data?'**
+  String get mergeConfirmTitle;
+
+  /// Merge confirmation dialog explanation
+  ///
+  /// In en, this message translates to:
+  /// **'New practice records will be safely added without deleting your local data.'**
+  String get mergeConfirmMessage;
+
+  /// Merge confirmation action button
+  ///
+  /// In en, this message translates to:
+  /// **'Merge'**
+  String get mergeConfirmButton;
+
+  /// Snackbar when merge completes successfully
+  ///
+  /// In en, this message translates to:
+  /// **'Merged {count} new entries'**
+  String mergeSuccess(int count);
+
+  /// Button label for destructive restore import
+  ///
+  /// In en, this message translates to:
+  /// **'Restore (overwrite everything)'**
+  String get restoreAllData;
+
+  /// Restore confirmation dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Restore and Overwrite?'**
+  String get restoreConfirmTitle;
+
+  /// Restore confirmation warning message
+  ///
+  /// In en, this message translates to:
+  /// **'This will permanently replace ALL existing data on this device with the contents of this file. This action cannot be undone.'**
+  String get restoreConfirmMessage;
+
+  /// Restore confirmation action button
+  ///
+  /// In en, this message translates to:
+  /// **'Restore and Overwrite'**
+  String get restoreConfirmButton;
+
+  /// Snackbar when restore completes successfully
+  ///
+  /// In en, this message translates to:
+  /// **'Data restored successfully'**
+  String get restoreSuccess;
+
+  /// Title when backup Practice ID does not match local device
+  ///
+  /// In en, this message translates to:
+  /// **'Practice ID Mismatch'**
+  String get practiceIdMismatchTitle;
+
+  /// Message explaining why merge was refused due to identity mismatch
+  ///
+  /// In en, this message translates to:
+  /// **'This backup belongs to a different Practice ID. To protect your data, merging is disabled.\n\nYour Practice ID: {localId}\nBackup Practice ID: {fileId}\n\nYou can Cancel, or use Restore to overwrite all local data with this backup.'**
+  String practiceIdMismatchMessage(String localId, String fileId);
+
+  /// Title when backup has no Practice ID
+  ///
+  /// In en, this message translates to:
+  /// **'Older Backup Format'**
+  String get legacyBackupWarningTitle;
+
+  /// Warning message when merging legacy backup without Practice ID
+  ///
+  /// In en, this message translates to:
+  /// **'This older backup has no Practice ID. If you continue merging, it will be treated as yours.'**
+  String get legacyBackupWarningMessage;
+
+  /// Confirmation button to merge legacy backup
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Merge'**
+  String get continueMerge;
+
+  /// Indicates backup Practice ID matches local device
+  ///
+  /// In en, this message translates to:
+  /// **'Matches this device'**
+  String get practiceIdMatches;
+
+  /// Indicates fresh device is adopting backup Practice ID
+  ///
+  /// In en, this message translates to:
+  /// **'New device: adopting Practice ID'**
+  String get practiceIdAdopting;
 
   /// Analytics screen title
   ///

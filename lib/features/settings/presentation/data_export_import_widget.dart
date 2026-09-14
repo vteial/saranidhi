@@ -13,16 +13,17 @@ import 'package:saranidhi/features/cloud_backup/domain/database_exporter.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
 import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/features/settings/domain/owner_identity_service.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
 
 /// Widget providing full data export/import functionality in Settings.
 ///
-/// - **Export**: Serializes all tables + preferences to JSON, triggers
-///   share sheet (mobile) or download (web).
-/// - **Import**: Opens file picker for .json file, validates, shows
-///   confirmation with data summary, then imports destructively.
+/// - **Export**: Serializes all tables + preferences to JSON with Practice ID.
+/// - **Merge from file**: Non-destructive union merge by UUID with owner-identity guard.
+/// - **Restore (overwrite)**: Destructive overwrite gated behind confirmation dialog.
+/// - **Journal CSV Export**: Exports breath journal entries to CSV.
 class DataExportImportWidget extends ConsumerStatefulWidget {
   const DataExportImportWidget({super.key});
 
@@ -34,14 +35,17 @@ class DataExportImportWidget extends ConsumerStatefulWidget {
 class _DataExportImportWidgetState
     extends ConsumerState<DataExportImportWidget> {
   bool _isExporting = false;
-  bool _isImporting = false;
+  bool _isMerging = false;
+  bool _isRestoring = false;
   bool _isExportingCsv = false;
+
+  bool get _isBusy =>
+      _isExporting || _isMerging || _isRestoring || _isExportingCsv;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    final isBusy = _isExporting || _isImporting || _isExportingCsv;
 
     return Card(
       child: Padding(
@@ -78,7 +82,7 @@ class _DataExportImportWidgetState
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: isBusy ? null : _handleExport,
+                onPressed: _isBusy ? null : _handleExport,
                 icon: _isExporting
                     ? const SizedBox(
                         width: 16,
@@ -91,19 +95,38 @@ class _DataExportImportWidgetState
             ),
             const SizedBox(height: 8),
 
-            // Import button
+            // Merge from file button (new default import)
             SizedBox(
               width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: isBusy ? null : _handleImport,
-                icon: _isImporting
+              child: FilledButton.tonalIcon(
+                onPressed: _isBusy ? null : _handleMerge,
+                icon: _isMerging
                     ? const SizedBox(
                         width: 16,
                         height: 16,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Icon(Icons.download),
-                label: Text(_isImporting ? l10n.importing : l10n.importData),
+                    : const Icon(Icons.merge_type),
+                label: Text(_isMerging ? l10n.merging : l10n.mergeFromFile),
+              ),
+            ),
+            const SizedBox(height: 8),
+
+            // Restore (overwrite) button
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: _isBusy ? null : _handleRestore,
+                icon: _isRestoring
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.restore),
+                label: Text(
+                  _isRestoring ? l10n.restoring : l10n.restoreAllData,
+                ),
               ),
             ),
             const SizedBox(height: 8),
@@ -112,7 +135,7 @@ class _DataExportImportWidgetState
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: isBusy ? null : _handleCsvExport,
+                onPressed: _isBusy ? null : _handleCsvExport,
                 icon: _isExportingCsv
                     ? const SizedBox(
                         width: 16,
@@ -172,17 +195,9 @@ class _DataExportImportWidgetState
       final dateStr = DateFormat('yyyy-MM-dd-HHmm').format(DateTime.now());
       final filename = 'saranidhi_backup_$dateStr.json';
 
-      if (kIsWeb) {
-        // On web, trigger download via share_plus or fallback
-        await Share.shareXFiles([
-          XFile.fromData(bytes, mimeType: 'application/json', name: filename),
-        ], subject: 'Saranidhi Data Export');
-      } else {
-        // On mobile/desktop, use share sheet
-        await Share.shareXFiles([
-          XFile.fromData(bytes, mimeType: 'application/json', name: filename),
-        ], subject: 'Saranidhi Data Export');
-      }
+      await Share.shareXFiles([
+        XFile.fromData(bytes, mimeType: 'application/json', name: filename),
+      ], subject: 'Saranidhi Data Export');
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -200,17 +215,15 @@ class _DataExportImportWidgetState
     }
   }
 
-  Future<void> _handleImport() async {
+  Future<Uint8List?> _pickJsonFile() async {
     final l10n = AppLocalizations.of(context);
-
-    // 1. Pick file
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['json'],
       withData: true,
     );
 
-    if (result == null || result.files.isEmpty) return;
+    if (result == null || result.files.isEmpty) return null;
 
     final file = result.files.first;
     final bytes = file.bytes;
@@ -220,10 +233,9 @@ class _DataExportImportWidgetState
           context,
         ).showSnackBar(SnackBar(content: Text(l10n.importFailedReadFile)));
       }
-      return;
+      return null;
     }
 
-    // 2. Validate
     final validationError = DatabaseExporter.validateExportData(bytes);
     if (validationError != null) {
       if (mounted) {
@@ -233,26 +245,219 @@ class _DataExportImportWidgetState
           ),
         );
       }
+      return null;
+    }
+
+    return bytes;
+  }
+
+  Future<void> _handleMerge() async {
+    final l10n = AppLocalizations.of(context);
+    final bytes = await _pickJsonFile();
+    if (bytes == null || !mounted) return;
+
+    final exporter = ref.read(databaseExporterProvider);
+    final jsonStr = utf8.decode(bytes);
+    final data = jsonDecode(jsonStr) as Map<String, dynamic>;
+    final guardCheck = await exporter.checkOwnerGuard(data);
+
+    // 1. Identity Mismatch -> REFUSE
+    if (guardCheck.status == OwnerGuardStatus.mismatch) {
+      if (!mounted) return;
+      final shouldSwitchToRestore = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Row(
+            children: [
+              Icon(
+                Icons.shield_outlined,
+                color: Theme.of(ctx).colorScheme.error,
+              ),
+              const SizedBox(width: 8),
+              Expanded(child: Text(l10n.practiceIdMismatchTitle)),
+            ],
+          ),
+          content: Text(
+            l10n.practiceIdMismatchMessage(
+              guardCheck.localOwnerId ?? '',
+              guardCheck.fileOwnerId ?? '',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(false),
+              child: Text(l10n.cancel),
+            ),
+            FilledButton.tonal(
+              onPressed: () => Navigator.of(ctx).pop(true),
+              child: Text(l10n.restoreConfirmButton),
+            ),
+          ],
+        ),
+      );
+
+      if ((shouldSwitchToRestore ?? false) && mounted) {
+        await _showRestoreDialogAndExecute(bytes);
+      }
       return;
     }
 
-    // 3. Show confirmation with data summary
+    // 2. Legacy backup with no Practice ID -> warn and require confirm
+    if (guardCheck.status == OwnerGuardStatus.legacyNoOwnerId) {
+      final summary = DatabaseExporter.summarizeExportData(bytes);
+      if (!mounted) return;
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(l10n.legacyBackupWarningTitle),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(l10n.legacyBackupWarningMessage),
+              const SizedBox(height: 16),
+              _SummaryRow(
+                label: l10n.importJournalEntries,
+                value: '${summary['journal']}',
+              ),
+              _SummaryRow(
+                label: l10n.importBreathSessions,
+                value: '${summary['sessions']}',
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(false),
+              child: Text(l10n.cancel),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(ctx).pop(true),
+              child: Text(l10n.continueMerge),
+            ),
+          ],
+        ),
+      );
+
+      if ((confirmed ?? false) && mounted) {
+        await _executeMerge(bytes, allowLegacy: true);
+      }
+      return;
+    }
+
+    // 3. Match or Empty Local -> Summary confirm dialog
+    final summary = DatabaseExporter.summarizeExportData(bytes);
+    final exportedAt = data['exportedAt'] as String?;
+    final practiceIdStatusText = guardCheck.status == OwnerGuardStatus.match
+        ? l10n.practiceIdMatches
+        : l10n.practiceIdAdopting;
+
+    if (!mounted) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.mergeConfirmTitle),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.mergeConfirmMessage),
+            const SizedBox(height: 16),
+            _SummaryRow(label: l10n.practiceId, value: practiceIdStatusText),
+            if (exportedAt != null)
+              _SummaryRow(
+                label: l10n.importExportedOn,
+                value: _formatDate(exportedAt),
+              ),
+            _SummaryRow(
+              label: l10n.importJournalEntries,
+              value: '${summary['journal']}',
+            ),
+            _SummaryRow(
+              label: l10n.importBreathSessions,
+              value: '${summary['sessions']}',
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(l10n.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(l10n.mergeConfirmButton),
+          ),
+        ],
+      ),
+    );
+
+    if ((confirmed ?? false) && mounted) {
+      await _executeMerge(bytes, allowLegacy: false);
+    }
+  }
+
+  Future<void> _executeMerge(
+    Uint8List bytes, {
+    required bool allowLegacy,
+  }) async {
+    final l10n = AppLocalizations.of(context);
+    setState(() => _isMerging = true);
+
+    try {
+      final exporter = ref.read(databaseExporterProvider);
+      final result = await exporter.mergeFromBytes(
+        bytes,
+        allowLegacy: allowLegacy,
+      );
+
+      _invalidateAllDataProviders();
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.mergeSuccess(result.totalInserted))),
+        );
+      }
+    } on Exception catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('${l10n.importFailed}: $e')));
+      }
+    } finally {
+      if (mounted) setState(() => _isMerging = false);
+    }
+  }
+
+  Future<void> _handleRestore() async {
+    final bytes = await _pickJsonFile();
+    if (bytes == null || !mounted) return;
+    await _showRestoreDialogAndExecute(bytes);
+  }
+
+  Future<void> _showRestoreDialogAndExecute(Uint8List bytes) async {
+    final l10n = AppLocalizations.of(context);
     final summary = DatabaseExporter.summarizeExportData(bytes);
     final jsonStr = utf8.decode(bytes);
     final data = jsonDecode(jsonStr) as Map<String, dynamic>;
     final exportedAt = data['exportedAt'] as String?;
 
     if (!mounted) return;
-
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(l10n.importConfirmTitle),
+        title: Text(l10n.restoreConfirmTitle),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(l10n.importConfirmMessage),
+            Text(
+              l10n.restoreConfirmMessage,
+              style: TextStyle(
+                color: Theme.of(ctx).colorScheme.error,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             const SizedBox(height: 16),
             if (exportedAt != null)
               _SummaryRow(
@@ -271,14 +476,6 @@ class _DataExportImportWidgetState
               label: l10n.importBreathSessions,
               value: '${summary['sessions']}',
             ),
-            const SizedBox(height: 12),
-            Text(
-              l10n.importWarning,
-              style: TextStyle(
-                color: Theme.of(ctx).colorScheme.error,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
           ],
         ),
         actions: [
@@ -287,36 +484,30 @@ class _DataExportImportWidgetState
             child: Text(l10n.cancel),
           ),
           FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(ctx).colorScheme.error,
+              foregroundColor: Theme.of(ctx).colorScheme.onError,
+            ),
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l10n.importConfirmButton),
+            child: Text(l10n.restoreConfirmButton),
           ),
         ],
       ),
     );
 
-    if (confirmed != true) return;
+    if (!(confirmed ?? false) || !mounted) return;
 
-    // 4. Perform import
-    setState(() => _isImporting = true);
-
+    setState(() => _isRestoring = true);
     try {
       final exporter = ref.read(databaseExporterProvider);
-      await exporter.importFromBytes(bytes);
+      await exporter.restoreFromBytes(bytes);
 
-      // Invalidate all providers that read from DB or SharedPreferences
-      // so the UI reflects the imported data immediately
-      ref
-        ..invalidate(dashboardDataProvider)
-        ..invalidate(journalEntriesProvider)
-        ..invalidate(themeProvider)
-        ..invalidate(localeProvider)
-        ..invalidate(notificationPrefsProvider)
-        ..invalidate(onboardingCompleteProvider);
+      _invalidateAllDataProviders();
 
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text(l10n.importSuccess)));
+        ).showSnackBar(SnackBar(content: Text(l10n.restoreSuccess)));
       }
     } on Exception catch (e) {
       if (mounted) {
@@ -325,8 +516,19 @@ class _DataExportImportWidgetState
         ).showSnackBar(SnackBar(content: Text('${l10n.importFailed}: $e')));
       }
     } finally {
-      if (mounted) setState(() => _isImporting = false);
+      if (mounted) setState(() => _isRestoring = false);
     }
+  }
+
+  void _invalidateAllDataProviders() {
+    ref
+      ..invalidate(dashboardDataProvider)
+      ..invalidate(journalEntriesProvider)
+      ..invalidate(ownerIdProvider)
+      ..invalidate(themeProvider)
+      ..invalidate(localeProvider)
+      ..invalidate(notificationPrefsProvider)
+      ..invalidate(onboardingCompleteProvider);
   }
 
   String _formatDate(String isoDate) {
