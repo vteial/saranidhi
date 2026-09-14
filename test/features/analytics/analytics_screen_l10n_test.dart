@@ -42,8 +42,8 @@ void main() {
   ];
 
   const sampleMonthly = MonthlyPatterns(
-    bestDay: 'Sunday',
-    worstDay: 'Tuesday',
+    bestDayWeekday: 7,
+    worstDayWeekday: 2,
     mostActiveYama: 'yama1',
     leastActiveYama: 'yama5',
     totalEntries: 20,
@@ -95,6 +95,10 @@ void main() {
       );
       await tester.pumpAndSettle();
 
+      // Monthly patterns weekday localization in en locale
+      expect(find.text('Sunday'), findsOneWidget);
+      expect(find.text('Tuesday'), findsOneWidget);
+
       // Yama performance renders 'Y1' and 'Y2'
       expect(find.text('Y1'), findsOneWidget);
       expect(find.text('Y2'), findsOneWidget);
@@ -124,6 +128,12 @@ void main() {
           ),
         );
         await tester.pumpAndSettle();
+
+        // Monthly patterns weekday localization in ta locale (Tamil script)
+        expect(find.text('ஞாயிறு'), findsOneWidget);
+        expect(find.text('செவ்வாய்'), findsOneWidget);
+        expect(find.text('Sunday'), findsNothing);
+        expect(find.text('Tuesday'), findsNothing);
 
         // Yama performance renders 'யா1' and 'யா2' without bare English 'Y1'/'Y2'
         expect(find.text('யா1'), findsOneWidget);

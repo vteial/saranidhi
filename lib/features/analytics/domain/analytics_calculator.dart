@@ -23,8 +23,8 @@ class WeeklySummary {
 /// Monthly patterns analysis result.
 class MonthlyPatterns {
   const MonthlyPatterns({
-    required this.bestDay,
-    required this.worstDay,
+    required this.bestDayWeekday,
+    required this.worstDayWeekday,
     required this.mostActiveYama,
     required this.leastActiveYama,
     required this.totalEntries,
@@ -33,8 +33,10 @@ class MonthlyPatterns {
     required this.activeDays,
   });
 
-  final String? bestDay; // Day of week name with highest alignment
-  final String? worstDay; // Day of week name with lowest alignment
+  final int?
+  bestDayWeekday; // Day of week (1=Mon..7=Sun) with highest alignment
+  final int?
+  worstDayWeekday; // Day of week (1=Mon..7=Sun) with lowest alignment
   final String? mostActiveYama;
   final String? leastActiveYama;
   final int totalEntries;
@@ -119,8 +121,11 @@ class AnalyticsCalculator {
     final summaries = <WeeklySummary>[];
 
     for (var w = 0; w < weeks; w++) {
-      final weekEnd = DateTime(now.year, now.month, now.day)
-          .subtract(Duration(days: w * 7));
+      final weekEnd = DateTime(
+        now.year,
+        now.month,
+        now.day,
+      ).subtract(Duration(days: w * 7));
       final weekStart = weekEnd.subtract(const Duration(days: 6));
 
       final weekEntries = entries.where((e) {
@@ -155,8 +160,8 @@ class AnalyticsCalculator {
   }) {
     if (entries.isEmpty) {
       return const MonthlyPatterns(
-        bestDay: null,
-        worstDay: null,
+        bestDayWeekday: null,
+        worstDayWeekday: null,
         mostActiveYama: null,
         leastActiveYama: null,
         totalEntries: 0,
@@ -182,8 +187,8 @@ class AnalyticsCalculator {
     }
 
     // Find best/worst day
-    String? bestDay;
-    String? worstDay;
+    int? bestDayWeekday;
+    int? worstDayWeekday;
     var bestPct = -1.0;
     var worstPct = 101.0;
 
@@ -193,11 +198,11 @@ class AnalyticsCalculator {
       final pct = aligned / total;
       if (pct > bestPct) {
         bestPct = pct;
-        bestDay = _weekdayName(weekday);
+        bestDayWeekday = weekday;
       }
       if (pct < worstPct) {
         worstPct = pct;
-        worstDay = _weekdayName(weekday);
+        worstDayWeekday = weekday;
       }
     }
 
@@ -220,8 +225,8 @@ class AnalyticsCalculator {
     }
 
     return MonthlyPatterns(
-      bestDay: bestDay,
-      worstDay: worstDay,
+      bestDayWeekday: bestDayWeekday,
+      worstDayWeekday: worstDayWeekday,
       mostActiveYama: mostActiveYama,
       leastActiveYama: leastActiveYama,
       totalEntries: entries.length,
@@ -334,8 +339,7 @@ class AnalyticsCalculator {
         averageMs: avg,
         entryCount: e.value.length,
       );
-    }).toList()
-      ..sort((a, b) => a.date.compareTo(b.date));
+    }).toList()..sort((a, b) => a.date.compareTo(b.date));
 
     // Weekly average (last 7 days)
     final now = DateTime.now();
@@ -347,7 +351,7 @@ class AnalyticsCalculator {
     final weeklyAvg = weekEntries.isEmpty
         ? 0.0
         : weekEntries.map((e) => e.holdDurationMs!).reduce((a, b) => a + b) /
-            weekEntries.length;
+              weekEntries.length;
 
     // Monthly average (last 30 days)
     final monthAgo = now.subtract(const Duration(days: 30));
@@ -358,12 +362,12 @@ class AnalyticsCalculator {
     final monthlyAvg = monthEntries.isEmpty
         ? 0.0
         : monthEntries.map((e) => e.holdDurationMs!).reduce((a, b) => a + b) /
-            monthEntries.length;
+              monthEntries.length;
 
     // All-time average
     final allTimeAvg =
         holdEntries.map((e) => e.holdDurationMs!).reduce((a, b) => a + b) /
-            holdEntries.length;
+        holdEntries.length;
 
     // Trend direction (compare last week to previous week)
     final twoWeeksAgo = now.subtract(const Duration(days: 14));
@@ -374,9 +378,9 @@ class AnalyticsCalculator {
     final prevWeekAvg = prevWeekEntries.isEmpty
         ? 0.0
         : prevWeekEntries
-                .map((e) => e.holdDurationMs!)
-                .reduce((a, b) => a + b) /
-            prevWeekEntries.length;
+                  .map((e) => e.holdDurationMs!)
+                  .reduce((a, b) => a + b) /
+              prevWeekEntries.length;
 
     TrendDirection trend;
     if (prevWeekAvg == 0 || weeklyAvg == 0) {
@@ -430,17 +434,6 @@ class AnalyticsCalculator {
 
     return buffer.toString();
   }
-
-  static String _weekdayName(int weekday) => switch (weekday) {
-    1 => 'Monday',
-    2 => 'Tuesday',
-    3 => 'Wednesday',
-    4 => 'Thursday',
-    5 => 'Friday',
-    6 => 'Saturday',
-    7 => 'Sunday',
-    _ => '',
-  };
 
   static DateTime _parseDate(String key) {
     final parts = key.split('-');

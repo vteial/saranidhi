@@ -434,7 +434,7 @@ void main() {
 
         expect(find.textContaining('You — your readiness'), findsOneWidget);
         expect(find.textContaining('dampened — not blocked'), findsOneWidget);
-        expect(find.textContaining('CONF-016 / CONF-017'), findsOneWidget);
+        expect(find.textContaining('CONF-014'), findsNWidgets(2));
       },
     );
 

@@ -1652,6 +1652,12 @@ abstract class AppLocalizations {
   /// **'Developer'**
   String get aboutDeveloper;
 
+  /// Developer's name (proper noun; transliterated in Tamil)
+  ///
+  /// In en, this message translates to:
+  /// **'Eialarasu'**
+  String get aboutDeveloperName;
+
   /// Contact label
   ///
   /// In en, this message translates to:

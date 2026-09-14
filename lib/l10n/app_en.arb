@@ -548,6 +548,8 @@
   "@aboutTagline": { "description": "App tagline in About card" },
   "aboutDeveloper": "Developer",
   "@aboutDeveloper": { "description": "Developer label" },
+  "aboutDeveloperName": "Eialarasu",
+  "@aboutDeveloperName": { "description": "Developer's name (proper noun; transliterated in Tamil)" },
   "aboutContact": "Contact",
   "@aboutContact": { "description": "Contact label" },
   "aboutWebsite": "Website",

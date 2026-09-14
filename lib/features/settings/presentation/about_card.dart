@@ -13,7 +13,9 @@ final appVersionProvider = FutureProvider<String>((ref) async {
   try {
     final info = await PackageInfo.fromPlatform();
     // On web, buildNumber may be empty; version may be '1.0.0' from pubspec
-    final version = info.version.isNotEmpty ? info.version : AppConstants.appVersion;
+    final version = info.version.isNotEmpty
+        ? info.version
+        : AppConstants.appVersion;
     final build = info.buildNumber.isNotEmpty ? ' (${info.buildNumber})' : '';
     return '$version$build';
   } on Exception {
@@ -84,7 +86,7 @@ class AboutCard extends ConsumerWidget {
             _InfoRow(
               icon: Icons.person_outline,
               label: l10n.aboutDeveloper,
-              value: 'Eialarasu',
+              value: l10n.aboutDeveloperName,
             ),
             _InfoRow(
               icon: Icons.email_outlined,
@@ -123,7 +125,10 @@ class AboutCard extends ConsumerWidget {
               dense: true,
               contentPadding: EdgeInsets.zero,
               onTap: () {
-                final lang = Localizations.localeOf(context).languageCode == 'ta' ? 'ta' : 'en';
+                final lang =
+                    Localizations.localeOf(context).languageCode == 'ta'
+                    ? 'ta'
+                    : 'en';
                 final baseUrl = Uri.base.origin;
                 _launchUrl('$baseUrl/privacy-$lang.html');
               },
