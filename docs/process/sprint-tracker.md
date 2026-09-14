@@ -953,10 +953,10 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — 🔄 In Progress
+## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — 🔄 In Review
 
 > **Dossier:** [`sprints/sprint-44-practice-sync-p0/`](sprints/sprint-44-practice-sync-p0/README.md) —
-> spec authored (Kiro Web); awaiting Antigravity implementation.
+> spec authored (Kiro Web); Antigravity implementation complete; PR #236 open for Kiro Web review.
 >
 > **Scheduled via `/plan` (owner-confirmed).** Phase 0 of the **Practice Sync** epic — the
 > near-term, **zero-backend** win pulled ahead of the Now Surface because it directly affects the
@@ -990,7 +990,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 **Delivery Checklist (Definition of Done):**
 - [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
-- [ ] **PR link** — #N (CI green). Correctness-critical (schema migration + data-merge + identity guard) → **Antigravity implements with local green before PR; Kiro Web reviews the real diff.**
+- [x] **PR link** — [#236](https://github.com/vteial/saranidhi/pull/236) (local analyze & test green). Correctness-critical (schema migration + data-merge + identity guard) → **Antigravity implements with local green before PR; Kiro Web reviews the real diff.**
 - [x] **Migration gate** — guarded v6→v7 (column-exists check, per the Sprint 36 lesson); existing profiles get an `ownerId` on load without data loss; tested on an existing-profile upgrade path (not just fresh install).
 - [x] **Merge-safety tests** — union-by-id merge (disjoint sets → union; overlapping ids → idempotent no dup); owner-ID **mismatch refuses** merge; legacy no-ownerId file warns; aggregate (streak/trend/PB) correct post-merge.
 - [x] **Regression gate** — normal single-device use unchanged; the old overwrite/restore path still available (relabeled), not silently removed.

@@ -7,8 +7,8 @@
 
 ## PR
 
-- **PR:** #205 (`feature/sprint44-practice-sync-p0` → `main`)
-- **Commits:** Pending PR creation
+- **PR:** [#236](https://github.com/vteial/saranidhi/pull/236) (`feature/sprint44-practice-sync-p0` → `main`)
+- **Commits:** `3270009` (`feat(sync): Sprint 44 — Practice Sync Phase 0 owner-stamped safe merge-import (v1.12.0)`)
 
 ## What was implemented (by spec task)
 

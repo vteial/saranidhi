@@ -38,7 +38,7 @@ capability. Owner is sole merge authority.
 
 ## Status
 
-🔄 **In progress** — spec authored; awaiting Antigravity implementation.
+🔄 **In review** — implementation & local testing complete; PR opened; awaiting Kiro Web review.
 
-- **PR:** _pending_
+- **PR:** [#236](https://github.com/vteial/saranidhi/pull/236)
 - **Shipped:** _pending — targets v1.12.0-web_
