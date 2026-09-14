@@ -9,8 +9,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-_No unreleased changes yet. Upcoming work is tracked in the
-[Sprint Backlog](docs/process/sprint-backlog.md) and scheduled via `/plan`._
+> Sprint 42 — **Swara Clock Engine & Weekday Udhaya** (targets v1.11.0-web). Merged to
+> `main` via PR #220; release pending.
+
+### Changed
+- **Expected nostril flow now runs on the authentic 1-hour / 24-cycle swara clock.** The Nostril Pattern is decoupled from the 1.5-hour bird-state (Panja Pakshi) yama clock and rebuilt as an independent hourly ultradian cycle (CONF-014), seeded at astronomical sunrise by the classical **Weekday Udhaya** dawn rule (CONF-013 / CONF-001) — including the Thursday waxing/waning split. The dashboard card shows the current flow, upcoming hourly blocks, and a countdown to the next ~1-hour switch across the full 24h (nighttime is now a live cycle with gentle rest guidance, not a dead zone).
+
+### Fixed
+- **Breath-alignment accuracy** — the expected-nostril reference (used for journal alignment and the Aruḍam "readiness" verdict) was previously computed on the wrong clock and dawn seed, and a latent bug evaluated historical entries against *today* instead of the entry's own time. Both are corrected; the bird-state / yama engine is unchanged (regression-gated).
 
 ---
 
