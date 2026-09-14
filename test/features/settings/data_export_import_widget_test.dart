@@ -52,7 +52,8 @@ void main() {
 
         expect(find.text('Data Export / Import'), findsOneWidget);
         expect(find.text('Export All Data'), findsOneWidget);
-        expect(find.text('Import Data'), findsOneWidget);
+        expect(find.text('Merge from file'), findsOneWidget);
+        expect(find.text('Restore (overwrite everything)'), findsOneWidget);
         expect(find.text('Export journal as CSV'), findsOneWidget);
         expect(find.byIcon(Icons.table_chart_outlined), findsOneWidget);
       },
@@ -72,7 +73,8 @@ void main() {
 
       expect(find.text('தரவு ஏற்றுமதி / இறக்குமதி'), findsOneWidget);
       expect(find.text('அனைத்து தரவையும் ஏற்றுமதி செய்'), findsOneWidget);
-      expect(find.text('தரவை இறக்குமதி செய்'), findsOneWidget);
+      expect(find.text('கோப்பிலிருந்து இணை'), findsOneWidget);
+      expect(find.text('மீட்டமை (அனைத்தையும் மேலெழுது)'), findsOneWidget);
       expect(find.text('நாட்குறிப்பை CSV ஆக ஏற்றுமதி செய்க'), findsOneWidget);
     });
 

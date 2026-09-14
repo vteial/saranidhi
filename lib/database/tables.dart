@@ -3,6 +3,9 @@ import 'package:drift/drift.dart';
 /// User profile table — stores birth star, location, preferences.
 class Profiles extends Table {
   TextColumn get id => text()();
+
+  /// Owner ID for Practice Sync (Sprint 44: Practice Sync Phase 0)
+  TextColumn get ownerId => text().nullable()();
   TextColumn get displayName => text().withDefault(const Constant(''))();
   TextColumn get birthStarNakshatra => text().nullable()();
   TextColumn get birthBird => text().nullable()();
