@@ -8,7 +8,7 @@
 > Antigravity. The owner's message to Antigravity is then a one-liner pointing here.
 >
 > **Preview URL (filled):** `https://saranidhi-git-release-v1110-eialarasus-projects.vercel.app/`
-> (standard Vercel format — branch `release/v1.11.0` slugifies to `release-v1110`). Release PR: **#PENDING**.
+> (standard Vercel format — branch `release/v1.11.0` slugifies to `release-v1110`). Release PR: **#223**.
 >
 > **Environment:** the release PR's Vercel **preview**, NOT staging. Read
 > `VERCEL_AUTOMATION_BYPASS_SECRET` from the local **`.env`** (gitignored) and pass it as a
@@ -34,7 +34,7 @@ it as a query param on the preview URL (browser navigation):
 (Base URL: https://saranidhi-git-release-v1110-eialarasus-projects.vercel.app — staging
 deploys from `main`, so the release branch's changes are not on staging until merge; the
 preview is built from the release-branch head and shows About = v1.11.0.)
-REPO: vteial/saranidhi. Release branch: release/v1.11.0. PR: #PENDING.
+REPO: vteial/saranidhi. Release branch: release/v1.11.0. PR: #223.
 
 TEST PLAN (source of truth): docs/testing/releases/v1.11.0/smoke-test.md on the release
 branch. Execute EVERY scenario in that file, in order (Scenarios 1–7 + regression eyeball +
@@ -116,4 +116,4 @@ Begin by reading docs/testing/releases/v1.11.0/smoke-test.md, then execute and r
 | Smoke-test file | `docs/testing/releases/v1.11.0/smoke-test.md` |
 | What changed | from the `[Unreleased]`/`[1.11.0-web]` CHANGELOG entry + Sprint 42 scope |
 | Highest-priority | Nostril Pattern card visual on the 1h clock (hourly blocks + NOW chip + ~1h countdown), live night cycle, weekday-seed correctness at a known sunrise, Thursday paksha split, Tamil, regression (bird/yama/Oracle/Moment unchanged) — **time-staging caveat: verify via tests/seeded where a specific time-of-day isn't reproducible live** |
-| Release PR # | **PENDING** — backfill once the release PR is opened |
+| Release PR # | **#223** |

@@ -5,7 +5,7 @@
 **Release:** v1.11.0-web (Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya)
 **Date:** _pending_
 **Tester:** Antigravity (QA-Verify Agent)
-**Shipping Commit:** _pending_ on `release/v1.11.0` (PR #_pending_)
+**Shipping Commit:** _pending_ on `release/v1.11.0` (PR #223)
 **Device/Browser:** Chrome — Desktop (1200×900) + Tablet (1024×768) + Mobile (390×844)
 **Environment:** PR Vercel **preview** — `https://saranidhi-git-release-v1110-eialarasus-projects.vercel.app` (via `VERCEL_AUTOMATION_BYPASS_SECRET`) — **NOT** staging
 
