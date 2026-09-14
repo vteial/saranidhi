@@ -38,8 +38,8 @@ actually teaches — a quiet but important accuracy fix at the heart of the app.
 - Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya
 
 ### Smoke test
-- See [`smoke-test.md`](./smoke-test.md) — status set at `/release-update`.
+- See [`smoke-test.md`](./smoke-test.md) — ✅ **PASS** (pre-flight gate READY + 7/7 scenarios + regression eyeball, PR #223 preview) + docs-audit ✅ PASS.
 
 ---
 
-> **Shipped:** _pending_ · promotion PR _pending_ · will be live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
+> **Shipped:** 2026-09-14 · promotion PR #224 · tagged **`v1.11.0-web`** (target `prod`) · live at [saranidhi.vercel.app](https://saranidhi.vercel.app).

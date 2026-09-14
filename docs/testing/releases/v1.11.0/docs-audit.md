@@ -45,7 +45,7 @@
 ## Findings / doc fixes made this release
 
 - All durable docs verified fresh against Sprint 42 changes; doc updates landed in #222 (valuation ~135.5 hrs, evaluation 628 tests, sprint-tracker Sprint 42 row, user-guide Swara Clock Engine section, testing-plan 628 tests, calculation-methodology §5).
-- All 11 durable docs audited; stamps validated ready for `v1.10.1-web` → `v1.11.0-web` bump at `/release-update`.
+- All 11 durable docs audited; `> Reviewed:` stamps **bumped `v1.10.1-web` → `v1.11.0-web`** at `/release-update` (this PR).
 - `security-review.md` confirmed as N/A (no data/network boundary change; local-first architecture unchanged).
 - Smoke test completed and PASSED 100% on deployed Vercel preview (PR #223 preview verified; 0 bugs or regressions).
 

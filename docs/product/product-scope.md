@@ -2,7 +2,7 @@
 
 # Saranidhi — Product Scope
 
-> **Reviewed:** v1.10.1-web · **Next review:** every release + at each `/plan`.
+> **Reviewed:** v1.11.0-web · **Next review:** every release + at each `/plan`.
 
 *The functional scope of Saranidhi: what the product does for the user, and why.
 For how it is built, see [`docs/reference/architecture.md`](../reference/architecture.md).*
