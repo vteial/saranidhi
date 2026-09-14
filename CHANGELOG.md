@@ -9,8 +9,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-_No unreleased changes yet. Upcoming work is tracked in the
-[Sprint Backlog](docs/process/sprint-backlog.md) and scheduled via `/plan`._
+> Sprint 43 — **Localization Defect Fixes** (targets v1.11.1-web). Merged to `main` via
+> PR #227; release pending.
+
+### Fixed
+- **Tamil localization gaps in three places** — all cases where a *label* was translated but its *value* was not: (1) the **About** card's Developer name now shows in Tamil (`இயலரசு`), consistent with the copyright line; (2) the **Analytics → Monthly Patterns** best/worst **day names** now render in Tamil (e.g. `ஞாயிறு`) instead of English; (3) the **Best Times This Week** card's yama badge now uses the localized prefix (`யா1`) instead of `Y1`.
+
+### Changed
+- **Internal:** the Aruḍam "readiness" factor's provenance citation was re-keyed to CONF-014 (the swara clock) — a documentation/traceability fix, no behavior change.
 
 ---
 

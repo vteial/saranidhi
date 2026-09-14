@@ -20,10 +20,10 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
-**Sprints Delivered:** 38 (Sprints 1–42, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
-**Total Engineering Investment:** **~135.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
-**Production Web Release:** **v1.11.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.11.0-web`, Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya; preceding: v1.10.1-web Analytics tidy + Tamil l10n, Sprint 41)
-**Automated Tests:** 628 (unit + widget + integration)
+**Sprints Delivered:** 39 (Sprints 1–43, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
+**Total Engineering Investment:** **~137.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
+**Production Web Release:** **v1.11.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.11.0-web`, Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya). **Sprint 43 (v1.11.1-web — Localization Defect Fixes) is merged, release pending.** Preceding: v1.10.1-web Analytics tidy + Tamil l10n, Sprint 41.
+**Automated Tests:** 632 (unit + widget + integration)
 **Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** + **Swara Clock Engine (v1.11.0)** all shipped to production. The v1.11.0 correctness fix (expected nostril decoupled onto an independent 1-hour / 24-cycle swara clock seeded by the Weekday Udhaya dawn rule) unblocks the **7-day Accuracy Calibration** (the next major work-stream, gated on owner data collection). Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
@@ -46,7 +46,8 @@
 | Sprint 40 — Chronobiology & Holistic Guidance (v1.10.0) | 40 | ~6.0 |
 | Sprint 41 — Analytics tidy (CSV → Settings) + Tamil l10n (v1.10.1) | 41 | ~2.5 |
 | Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0) | 42 | ~6.0 |
-| **Subtotal** | | **~97.5** |
+| Sprint 43 — Localization Defect Fixes (v1.11.1) | 43 | ~2.0 |
+| **Subtotal** | | **~99.5** |
 
 ### Infrastructure, Release & Admin Ops (off-commit)
 
@@ -81,10 +82,10 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (sprint track) | ~97.5 |
+| Active coding & debugging (sprint track) | ~99.5 |
 | Infrastructure, release & admin ops | ~11.0 |
 | Research & knowledge engineering | ~26.5 |
-| **Total** | **~135.5** |
+| **Total** | **~137.5** |
 
 ---
 
@@ -137,8 +138,9 @@
 | 40 | Chronobiology & Holistic Guidance (v1.10.0) | #202 | ✅ 🚀 |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n (v1.10.1) | #211 | ✅ 🚀 |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (v1.11.0) | #220 | ✅ 🚀 |
+| 43 | Localization Defect Fixes (v1.11.1) | #227 | ✅ |
 
-> 🚀 = shipped a production release. Sprint 37 was the first sprint under the
+> 🚀 = shipped a production release. Sprint 43 is merged (release v1.11.1 pending). Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement
 > + local test) — see the [Sprint 37 dossier](sprints/sprint-37-birth-bird/README.md).
 
