@@ -9,8 +9,8 @@
 
 ## PR
 
-- **PR:** Pending creation (`feature/sprint42-swara-clock` → `main`)
-- **Commits:** Pending commit
+- **PR:** [#220](https://github.com/vteial/saranidhi/pull/220) (`feature/sprint42-swara-clock` → `main`)
+- **Commits:** `9eeea4a`
 
 ## What was implemented (by spec task)
 
