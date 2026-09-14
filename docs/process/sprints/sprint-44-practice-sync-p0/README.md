@@ -38,7 +38,7 @@ capability. Owner is sole merge authority.
 
 ## Status
 
-🔄 **In review** — implementation & local testing complete; PR opened; awaiting Kiro Web review.
+✅ **Complete** — merged to `main`; release pending.
 
-- **PR:** [#236](https://github.com/vteial/saranidhi/pull/236)
-- **Shipped:** _pending — targets v1.12.0-web_
+- **PR:** [#236](https://github.com/vteial/saranidhi/pull/236) — merged `dd26218` (Antigravity implemented + local green; Kiro Web reviewed the real diff and approved — migration + union-merge + owner-guard verified, mismatch-0-mutations test proves the safety guarantee).
+- **Shipped:** _pending — targets v1.12.0-web (`/release-start v1.12.0`)_

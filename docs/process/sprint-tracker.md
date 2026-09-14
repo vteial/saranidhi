@@ -37,7 +37,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
-| 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | 🔄 (in progress) |
+| 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ (PR #236) |
 | 45+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.11.1-web is now live in production (2026-09-14)** — Sprint 43, a small
@@ -953,7 +953,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — 🔄 In Review
+## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — ✅ Complete (PR #236)
 
 > **Dossier:** [`sprints/sprint-44-practice-sync-p0/`](sprints/sprint-44-practice-sync-p0/README.md) —
 > spec authored (Kiro Web); Antigravity implementation complete; PR #236 open for Kiro Web review.
@@ -989,15 +989,15 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] Task 44.6: **Bilingual (EN/TA)** for all new Settings copy (Practice ID label, Merge vs Restore buttons, the mismatch dialog).
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
-- [x] **PR link** — [#236](https://github.com/vteial/saranidhi/pull/236) (local analyze & test green). Correctness-critical (schema migration + data-merge + identity guard) → **Antigravity implements with local green before PR; Kiro Web reviews the real diff.**
+- [x] **Code merged** — on `main` (PR #236, merge commit `dd26218`). _(owner merged)_
+- [x] **PR link** — [#236](https://github.com/vteial/saranidhi/pull/236) (local analyze & test green; CI green). Correctness-critical (schema migration + data-merge + identity guard) → Antigravity implemented with local green before PR; **Kiro Web reviewed the real diff and approved** (2 non-blocking notes: early pubspec bump; new-device "import-before-onboarding" identity-propagation guidance).
 - [x] **Migration gate** — guarded v6→v7 (column-exists check, per the Sprint 36 lesson); existing profiles get an `ownerId` on load without data loss; tested on an existing-profile upgrade path (not just fresh install).
 - [x] **Merge-safety tests** — union-by-id merge (disjoint sets → union; overlapping ids → idempotent no dup); owner-ID **mismatch refuses** merge; legacy no-ownerId file warns; aggregate (streak/trend/PB) correct post-merge.
 - [x] **Regression gate** — normal single-device use unchanged; the old overwrite/restore path still available (relabeled), not silently removed.
 - [x] **Docs updated** — User Guide (a short "Use Saranidhi on more than one device — export & merge" section — **this IS a real capability, so NOT `n/a`**) + calc/architecture note on the owner-id + merge model.
-- [ ] **Smoke test** — real cross-device flow: export from Device B → merge-import on Device A → aggregate view shows both devices' sessions; mismatch file is refused; EN/TA.
+- [ ] **Smoke test** — real cross-device flow: export from Device B → merge-import on Device A → aggregate view shows both devices' sessions; mismatch file is refused; EN/TA. _(at `/release-start v1.12.0`)_
 - [ ] **Valuation report** — Sprint 44 row (+20%) at `/sprint-update`.
-- [ ] **Tracker updated** — status ✅.
+- [x] **Tracker updated** — status ✅.
 - [x] **User Guide** — real multi-device capability → refreshed (not `n/a`).
 
 ---
