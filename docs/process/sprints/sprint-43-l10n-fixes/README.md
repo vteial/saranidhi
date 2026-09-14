@@ -35,7 +35,7 @@ localized-weekday test (not CI-only). **User Guide = n/a** (cosmetic). Owner is 
 
 ## Status
 
-🔄 **In progress** — spec authored; awaiting Antigravity implementation.
+✅ **Complete** — merged to `main`; release pending.
 
-- **PR:** [#227](https://github.com/vteial/saranidhi/pull/227)
-- **Shipped:** _pending — targets v1.11.1-web_
+- **PR:** [#227](https://github.com/vteial/saranidhi/pull/227) — merged `7a4d043` (Antigravity implemented 43.1–43.4 + local green; Kiro Web reviewed the real diff and folded in Task 43.5 / BUG-v1.11.1-02, commit `ccbab10`).
+- **Shipped:** _pending — targets v1.11.1-web (light patch flow)_

@@ -36,7 +36,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
-| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | 🔄 (in progress) |
+| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ (PR #227) |
 | 44+ | Accuracy Calibration, native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.11.0-web is now live in production (2026-09-14)** — Sprint 42, the
@@ -920,10 +920,10 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 43: Localization Defect Fixes (v1.11.1) — 🔄 In Progress
+## Sprint 43: Localization Defect Fixes (v1.11.1) — ✅ Complete (PR #227)
 
 > **Dossier:** [`sprints/sprint-43-l10n-fixes/`](sprints/sprint-43-l10n-fixes/README.md) —
-> spec authored (Kiro Web); awaiting Antigravity implementation.
+> spec (Kiro Web) → implemented (Antigravity, local green) → reviewed (Kiro Web) → merged (PR #227).
 >
 > **Scheduled via `/plan` — a small, tight bug-fix patch.** Clears the known localization
 > defects (the recurring "partially-localized widget / value-not-localized" miss — same class as
@@ -935,22 +935,22 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **spec → Antigravity (local green) → Kiro Web review** path with a localized-weekday test, not
 > CI-only.
 
-- [ ] Task 43.1: **BUG-v1.11.1-01 — About-card Developer name not localized.** In Tamil mode the Developer row value is the hardcoded Latin `Eialarasu` (`about_card.dart:87` `value: 'Eialarasu'`), while the copyright line already localizes the name to `இயலரசு` (`aboutCopyright`) — the same name renders two ways. **Fix:** add ARB key `aboutDeveloperName` (EN `Eialarasu` / TA `இயலரசு`) and use it for the Developer row value. Leave the email + website values as literal identifiers (correctly not localized).
-- [ ] Task 43.2: **BUG-v1.10.1-01 — Monthly-Patterns day-name value unlocalized.** In Tamil mode the label is localized (`சிறந்த நாள்`) but the value renders the English day name (`Sunday`, not `ஞாயிறு`). Root cause: `AnalyticsCalculator._weekdayName()` (`analytics_calculator.dart:434–443`) returns hardcoded English day strings, stored on `patterns.bestDay`/`worstDay` and rendered raw by `_MonthlyPatternsCard` (`analytics_screen.dart:225–226`). **Fix:** carry the integer weekday on the domain model and map via `DateFormat.EEEE(Localizations.localeOf(context).toString())` in the widget (localize `worstDay` too); add a localized-weekday unit/widget test.
-- [ ] Task 43.3: **Citation fix — `readiness` factor.** In `integrated_arudam_engine.dart` the `readiness` `ArudamFactor` is cited `CONF-016 / CONF-017` (therapeutic occlusion / Kumbhaka consistency). Since Sprint 42, readiness rides the swara clock → re-key to **`CONF-014`** (the 1-hour swara clock). Update the enum doc-comment + the `ArudamReason` conf string; no logic change. *(Owner-confirmed during the S42 review.)*
-- [ ] Task 43.4: **DoD sweep** — while in the About + Analytics cards, grep for any other hardcoded display `value:` / `Text('…')` that should be localized (the recurring miss); localize or explicitly justify leaving literal (e.g. email/URL).
-- [ ] Task 43.5: **BUG-v1.11.1-02 — Best Times card yama prefix not localized.** The Best Times card hardcoded `'Y${entry.yamaNumber}'` (`best_times_card.dart:183`), so Tamil mode showed `Y1` while the Analytics screen already used the localized `yamaShortPrefix` (`யா`). Same class as 43.1/43.2. **Fix:** swap to `'${l10n.yamaShortPrefix}${entry.yamaNumber}'` (`l10n` already in scope in `_BestTimeRow`). Owner-found (2026-09-14). *(Folded into S43 mid-flight — same theme, trivial.)*
+- [x] Task 43.1: **BUG-v1.11.1-01 — About-card Developer name not localized.** In Tamil mode the Developer row value is the hardcoded Latin `Eialarasu` (`about_card.dart:87` `value: 'Eialarasu'`), while the copyright line already localizes the name to `இயலரசு` (`aboutCopyright`) — the same name renders two ways. **Fix:** add ARB key `aboutDeveloperName` (EN `Eialarasu` / TA `இயலரசு`) and use it for the Developer row value. Leave the email + website values as literal identifiers (correctly not localized).
+- [x] Task 43.2: **BUG-v1.10.1-01 — Monthly-Patterns day-name value unlocalized.** In Tamil mode the label is localized (`சிறந்த நாள்`) but the value renders the English day name (`Sunday`, not `ஞாயிறு`). Root cause: `AnalyticsCalculator._weekdayName()` (`analytics_calculator.dart:434–443`) returns hardcoded English day strings, stored on `patterns.bestDay`/`worstDay` and rendered raw by `_MonthlyPatternsCard` (`analytics_screen.dart:225–226`). **Fix:** carry the integer weekday on the domain model and map via `DateFormat.EEEE(Localizations.localeOf(context).toString())` in the widget (localize `worstDay` too); add a localized-weekday unit/widget test.
+- [x] Task 43.3: **Citation fix — `readiness` factor.** In `integrated_arudam_engine.dart` the `readiness` `ArudamFactor` is cited `CONF-016 / CONF-017` (therapeutic occlusion / Kumbhaka consistency). Since Sprint 42, readiness rides the swara clock → re-key to **`CONF-014`** (the 1-hour swara clock). Update the enum doc-comment + the `ArudamReason` conf string; no logic change. *(Owner-confirmed during the S42 review.)*
+- [x] Task 43.4: **DoD sweep** — while in the About + Analytics cards, grep for any other hardcoded display `value:` / `Text('…')` that should be localized (the recurring miss); localize or explicitly justify leaving literal (e.g. email/URL).
+- [x] Task 43.5: **BUG-v1.11.1-02 — Best Times card yama prefix not localized.** The Best Times card hardcoded `'Y${entry.yamaNumber}'` (`best_times_card.dart:183`), so Tamil mode showed `Y1` while the Analytics screen already used the localized `yamaShortPrefix` (`யா`). Same class as 43.1/43.2. **Fix:** swap to `'${l10n.yamaShortPrefix}${entry.yamaNumber}'` (`l10n` already in scope in `_BestTimeRow`). Owner-found (2026-09-14). *(Folded into S43 mid-flight — same theme, trivial.)*
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
-- [ ] **PR link** — #N (CI green: Analyze / Fast Tests / Build + Full Suite). 43.2 implemented by Antigravity with **local green before PR**; **Kiro Web reviews the real diff**.
-- [ ] **Tests** — localized-weekday test for 43.2; EN/TA ARB key parity maintained (43.1's new key in both); existing suite green.
-- [ ] **Pre-PR Tamil gate** — About card (Developer name) + Analytics Monthly-Patterns verified in **Tamil mode** render in pure Tamil script, zero English leakage (this is exactly the gate these bugs slipped past).
-- [ ] **Docs updated** — `project-evaluation.md` Resolved Defects rows (BUG-v1.11.1-01 + BUG-v1.10.1-01) at `/sprint-update`; CHANGELOG `[1.11.1-web]`.
-- [ ] **Smoke test** — cosmetic l10n patch → slim gate (CI green + Tamil-mode eyeball of the two cards on the preview), not a full matrix. Decide light-hotfix-flow vs `/release-start` at release time.
+- [x] **Code merged** — on `main` (PR #227, merge commit `7a4d043`). _(owner merged)_
+- [x] **PR link** — [#227](https://github.com/vteial/saranidhi/pull/227) (CI green: Analyze / Fast Tests / Build + Full Suite). 43.2 implemented by Antigravity with **local green before PR**; **Kiro Web reviewed the real diff** (approved; folded in Task 43.5 mid-review, commit `ccbab10`).
+- [x] **Tests** — localized-weekday tests for 43.2 (`analytics_screen_l10n_test.dart` + `analytics_calculator_test.dart`); `about_card_test.dart`; readiness-citation assertions updated; EN/TA ARB key parity maintained (43.1's `aboutDeveloperName` in both); suite green.
+- [x] **Pre-PR Tamil gate** — About card (Developer name → `இயலரசு`) + Analytics Monthly-Patterns (day → `ஞாயிறு`) verified in Tamil mode via widget tests. _(Best Times `யா` badge from 43.5 to eyeball on the release preview.)_
+- [ ] **Docs updated** — `project-evaluation.md` Resolved Defects rows (BUG-v1.11.1-01 + -02 + BUG-v1.10.1-01) at `/sprint-update`; CHANGELOG `[1.11.1-web]`.
+- [ ] **Smoke test** — cosmetic l10n patch → slim gate (CI green + Tamil-mode eyeball of the three cards on the preview), not a full matrix. Decide light-hotfix-flow vs `/release-start` at release time.
 - [ ] **Valuation report** — Sprint 43 row (+20%) at `/sprint-update`.
-- [ ] **Tracker updated** — status ✅.
-- [ ] **User Guide** — `n/a` (no user-facing capability change — cosmetic l10n only).
+- [x] **Tracker updated** — status ✅.
+- [x] **User Guide** — `n/a` (no user-facing capability change — cosmetic l10n only).
 
 ---
 
