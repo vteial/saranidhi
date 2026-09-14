@@ -12,10 +12,10 @@
 ## Result
 
 - **Pre-flight readiness gate (Step 0):** `PRE-FLIGHT: READY (About=v1.11.1, preview OK, CI green)`
-- **Status:** ✅ **PASS**
+- **Status:** 🔄 **PASS pending re-verify** — Scenarios 1–3 + regression + version ✅ PASS (first run). A cosmetic **column-width** follow-up (Scenario 4) was found by the owner AFTER that run and fixed on the branch (commit `06bb918`); Scenario 4 needs verification on the rebuilt preview before final PASS.
 - **Build / Version Confirmed:** Settings → About confirmed reading **`Saranidhi v1.11.1 (1)`** (`version.json` = `1.11.1+1`).
-- **CI Gate:** ✅ 100% Green on PR #231 (`Analyze, Fast Tests & Build` [PASS], `Full Test Suite + Coverage` [PASS], `Integration Tests (Web)` [PASS]).
-- **Bugs / Regressions:** None found.
+- **CI Gate:** ✅ 100% Green on PR #231 (`Analyze, Fast Tests & Build` [PASS], `Full Test Suite + Coverage` [PASS], `Integration Tests (Web)` [PASS]) — re-running on the width-fix commit `06bb918`.
+- **Bugs / Regressions:** None found. One cosmetic layout follow-up (Tamil column widths) fixed on-branch — see Scenario 4.
 
 > **Scope note (SLIM gate — cosmetic l10n patch).** v1.11.1 is three Tamil-localization fixes +
 > one internal citation. There is **no logic / schema / migration change**, and the fixes are
