@@ -36,7 +36,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
-| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ⬜ (planned) |
+| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | 🔄 (in progress) |
 | 44+ | Accuracy Calibration, native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.11.0-web is now live in production (2026-09-14)** — Sprint 42, the
@@ -920,8 +920,11 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 43: Localization Defect Fixes (v1.11.1) — Planned
+## Sprint 43: Localization Defect Fixes (v1.11.1) — 🔄 In Progress
 
+> **Dossier:** [`sprints/sprint-43-l10n-fixes/`](sprints/sprint-43-l10n-fixes/README.md) —
+> spec authored (Kiro Web); awaiting Antigravity implementation.
+>
 > **Scheduled via `/plan` — a small, tight bug-fix patch.** Clears the known localization
 > defects (the recurring "partially-localized widget / value-not-localized" miss — same class as
 > the v1.8.1 notification-l10n hotfix and BUG-v1.10.1-01), plus one trivial parked citation fix.
