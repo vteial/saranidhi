@@ -33,8 +33,8 @@ A small polish patch fixing three spots where Tamil mode showed English text.
 - Sprint 43 — Localization Defect Fixes
 
 ### Smoke test
-- See [`smoke-test.md`](./smoke-test.md) — slim Tamil-mode gate (3 cards); status set at `/release-update`.
+- See [`smoke-test.md`](./smoke-test.md) — ✅ **PASS** (slim Tamil-mode gate: 3 cards + a column-width fit scenario + regression) + docs-audit ✅ PASS.
 
 ---
 
-> **Shipped:** _pending_ · promotion PR _pending_ · will be live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
+> **Shipped:** 2026-09-14 · promotion PR #233 · tagged **`v1.11.1-web`** (target `prod`) · live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
