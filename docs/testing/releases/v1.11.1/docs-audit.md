@@ -43,7 +43,7 @@
 ## Findings / doc fixes made this release
 
 - All durable docs verified fresh against Sprint 43 changes; doc updates landed in #230 (valuation ~137.5 hrs, evaluation 632 tests, sprint-tracker Sprint 43 row, sprint-backlog bug resolution rows, testing-plan 632 tests).
-- All 11 durable docs audited; stamps verified ready for bump `v1.11.0-web` → `v1.11.1-web` at `/release-update`.
+- All 11 durable docs audited; `> Reviewed:` stamps **bumped `v1.11.0-web` → `v1.11.1-web`** at `/release-update` (this PR).
 - `user-guide.md` and `security-review.md` confirmed as N/A (cosmetic l10n patch, no capability or security boundary changes).
 - Smoke test completed and PASSED 100% on deployed Vercel preview (PR #231 preview verified; 0 bugs or regressions).
 
