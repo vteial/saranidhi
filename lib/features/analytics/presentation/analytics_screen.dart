@@ -223,17 +223,22 @@ class _MonthlyPatternsCard extends ConsumerWidget {
                 _PatternRow(
                   icon: Icons.trending_up,
                   label: l10n.bestDay,
-                  value: patterns.bestDay ?? '—',
+                  value: patterns.bestDayWeekday == null
+                      ? '—'
+                      : _localizedWeekday(patterns.bestDayWeekday!, context),
                   color: theme.colorScheme.primary,
                   theme: theme,
                 ),
                 // Hide "Needs Attention" if it's the same day as "Best Day"
-                if (patterns.worstDay != null &&
-                    patterns.worstDay != patterns.bestDay)
+                if (patterns.worstDayWeekday != null &&
+                    patterns.worstDayWeekday != patterns.bestDayWeekday)
                   _PatternRow(
                     icon: Icons.trending_down,
                     label: l10n.needsAttention,
-                    value: patterns.worstDay!,
+                    value: _localizedWeekday(
+                      patterns.worstDayWeekday!,
+                      context,
+                    ),
                     color: theme.colorScheme.error,
                     theme: theme,
                   ),
@@ -292,6 +297,14 @@ class _MonthlyPatternsCard extends ConsumerWidget {
     if (yama == null) return '—';
     final yamaNum = yama.replaceAll('yama', '');
     return '${l10n.yamaPrefix} $yamaNum';
+  }
+
+  String _localizedWeekday(int weekday, BuildContext context) {
+    // weekday: 1=Mon … 7=Sun (Dart). Build a reference date with that weekday.
+    final locale = Localizations.localeOf(context).toString();
+    // 2024-01-01 is a Monday; add (weekday-1) days to hit the target weekday.
+    final ref = DateTime(2024).add(Duration(days: weekday - 1));
+    return DateFormat.EEEE(locale).format(ref);
   }
 }
 

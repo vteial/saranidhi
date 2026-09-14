@@ -36,7 +36,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
-| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ⬜ (planned) |
+| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | 🔄 (in progress) |
 | 44+ | Accuracy Calibration, native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.11.0-web is now live in production (2026-09-14)** — Sprint 42, the
@@ -920,8 +920,11 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 43: Localization Defect Fixes (v1.11.1) — Planned
+## Sprint 43: Localization Defect Fixes (v1.11.1) — 🔄 In Progress
 
+> **Dossier:** [`sprints/sprint-43-l10n-fixes/`](sprints/sprint-43-l10n-fixes/README.md) —
+> spec authored (Kiro Web); awaiting Antigravity implementation.
+>
 > **Scheduled via `/plan` — a small, tight bug-fix patch.** Clears the known localization
 > defects (the recurring "partially-localized widget / value-not-localized" miss — same class as
 > the v1.8.1 notification-l10n hotfix and BUG-v1.10.1-01), plus one trivial parked citation fix.
@@ -936,6 +939,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [ ] Task 43.2: **BUG-v1.10.1-01 — Monthly-Patterns day-name value unlocalized.** In Tamil mode the label is localized (`சிறந்த நாள்`) but the value renders the English day name (`Sunday`, not `ஞாயிறு`). Root cause: `AnalyticsCalculator._weekdayName()` (`analytics_calculator.dart:434–443`) returns hardcoded English day strings, stored on `patterns.bestDay`/`worstDay` and rendered raw by `_MonthlyPatternsCard` (`analytics_screen.dart:225–226`). **Fix:** carry the integer weekday on the domain model and map via `DateFormat.EEEE(Localizations.localeOf(context).toString())` in the widget (localize `worstDay` too); add a localized-weekday unit/widget test.
 - [ ] Task 43.3: **Citation fix — `readiness` factor.** In `integrated_arudam_engine.dart` the `readiness` `ArudamFactor` is cited `CONF-016 / CONF-017` (therapeutic occlusion / Kumbhaka consistency). Since Sprint 42, readiness rides the swara clock → re-key to **`CONF-014`** (the 1-hour swara clock). Update the enum doc-comment + the `ArudamReason` conf string; no logic change. *(Owner-confirmed during the S42 review.)*
 - [ ] Task 43.4: **DoD sweep** — while in the About + Analytics cards, grep for any other hardcoded display `value:` / `Text('…')` that should be localized (the recurring miss); localize or explicitly justify leaving literal (e.g. email/URL).
+- [ ] Task 43.5: **BUG-v1.11.1-02 — Best Times card yama prefix not localized.** The Best Times card hardcoded `'Y${entry.yamaNumber}'` (`best_times_card.dart:183`), so Tamil mode showed `Y1` while the Analytics screen already used the localized `yamaShortPrefix` (`யா`). Same class as 43.1/43.2. **Fix:** swap to `'${l10n.yamaShortPrefix}${entry.yamaNumber}'` (`l10n` already in scope in `_BestTimeRow`). Owner-found (2026-09-14). *(Folded into S43 mid-flight — same theme, trivial.)*
 
 **Delivery Checklist (Definition of Done):**
 - [ ] **Code merged** — on `main` (PR #N). _(owner merges)_

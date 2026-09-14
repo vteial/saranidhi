@@ -180,7 +180,7 @@ class _BestTimeRow extends StatelessWidget {
           SizedBox(
             width: 28,
             child: Text(
-              'Y${entry.yamaNumber}',
+              '${l10n.yamaShortPrefix}${entry.yamaNumber}',
               style: theme.textTheme.bodySmall?.copyWith(
                 fontWeight: FontWeight.w500,
               ),

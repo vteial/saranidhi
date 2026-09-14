@@ -33,7 +33,7 @@ enum OracleBand {
 /// - [horaSwara]: Hora × swara affinity — CONF-014
 /// - [tarabala]: Navatara category weight — CONF-PP-001/002
 /// - [categoryHarmony]: Action-window vs query-category harmony — CONF-015
-/// - [readiness]: Breath alignment multiplier — CONF-016 / CONF-017
+/// - [readiness]: Breath alignment multiplier — CONF-014
 /// - [sushumna]: Sushumna transcendent neutral — CONF-026
 /// - [floorLock]: Rahu/Emakandam inauspicious window override — PP-ORACLE
 enum ArudamFactor {
@@ -49,7 +49,7 @@ enum ArudamFactor {
   /// Action-window vs query-category harmony — CONF-015.
   categoryHarmony,
 
-  /// Breath alignment multiplier — CONF-016 / CONF-017.
+  /// Breath alignment multiplier — CONF-014.
   readiness,
 
   /// Sushumna transcendent neutral — CONF-026.
@@ -279,7 +279,7 @@ class IntegratedArudamEngine {
           ArudamReason(
             factor: ArudamFactor.readiness,
             strength: isAligned ? FactorStrength.strong : FactorStrength.weak,
-            conf: 'CONF-016 / CONF-017',
+            conf: 'CONF-014',
           ),
         );
       }
