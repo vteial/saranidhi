@@ -64,13 +64,12 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
       duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
-    _pulseAnimation = Tween<double>(
-      begin: 0.95,
-      end: 1.05,
-    ).animate(CurvedAnimation(
-      parent: _intentionAnimController,
-      curve: Curves.easeInOut,
-    ));
+    _pulseAnimation = Tween<double>(begin: 0.95, end: 1.05).animate(
+      CurvedAnimation(
+        parent: _intentionAnimController,
+        curve: Curves.easeInOut,
+      ),
+    );
   }
 
   @override
@@ -178,10 +177,12 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
         final now = DateTime.now();
 
         // Check if Rahu Kaal or Emakandam is active
-        final isRahuActive = rahuKaal != null &&
+        final isRahuActive =
+            rahuKaal != null &&
             !now.isBefore(rahuKaal.start) &&
             now.isBefore(rahuKaal.end);
-        final isEmakandamActive = data.emakandam != null &&
+        final isEmakandamActive =
+            data.emakandam != null &&
             !now.isBefore(data.emakandam!.start) &&
             now.isBefore(data.emakandam!.end);
 
@@ -228,9 +229,7 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
             decoration: BoxDecoration(
               color: Colors.green.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Colors.green.withValues(alpha: 0.3),
-              ),
+              border: Border.all(color: Colors.green.withValues(alpha: 0.3)),
             ),
             child: Row(
               children: [
@@ -274,10 +273,8 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
     return Center(
       child: AnimatedBuilder(
         animation: _pulseAnimation,
-        builder: (context, child) => Transform.scale(
-          scale: _pulseAnimation.value,
-          child: child,
-        ),
+        builder: (context, child) =>
+            Transform.scale(scale: _pulseAnimation.value, child: child),
         child: Container(
           width: 80,
           height: 80,
@@ -420,10 +417,7 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
       setState(() => _isEvaluating = false);
 
       if (!mounted) return;
-      showGuidedNostrilTest(
-        context,
-        onResult: _evaluateOracle,
-      );
+      showGuidedNostrilTest(context, onResult: _evaluateOracle);
       return;
     }
 
@@ -514,6 +508,9 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
       horaSwaraMultiplier: horaSwaraMultiplier,
       category: _selectedCategory,
       actualSwara: swara.name,
+      latitude: location.latitude,
+      longitude: location.longitude,
+      utcOffset: utcOffset,
     );
 
     // Store result — saving to history is user-initiated (Option C)

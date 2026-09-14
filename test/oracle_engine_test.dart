@@ -3,10 +3,11 @@ import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/daylight_segment_resolver.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_swara_affinity.dart';
+import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/name_bird_parser.dart';
-import 'package:saranidhi/features/astro_engine/domain/nostril_pattern.dart';
 import 'package:saranidhi/features/astro_engine/domain/oracle_engine.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/swara_clock.dart';
 import 'package:saranidhi/features/astro_engine/domain/tara_category.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
@@ -384,11 +385,13 @@ void main() {
     });
 
     test('aligned vs misaligned score differs by 0.75 factor (Sprint 38)', () {
-      // Monday 10:00 is Yama 2 (08:30–11:00).
-      // On 2026-07-14, let's find the expected flow:
-      final expectedFlow = NostrilPattern.expectedFlowForYama(
-        YamaIndex.yama2,
-        date: DateTime(2026, 7, 14, 10, 0),
+      final queryTime = DateTime(2026, 7, 14, 10, 0);
+      final sunrise = DateTime(2026, 7, 14, 6, 0);
+      final paksha = LunarPhaseCalculator.phaseForDate(sunrise);
+      final expectedFlow = SwaraClock.expectedFlowAt(
+        time: queryTime,
+        sunrise: sunrise,
+        paksha: paksha,
       );
       final oppositeFlow = expectedFlow == BreathFlow.solar
           ? BreathFlow.lunar
@@ -396,8 +399,8 @@ void main() {
 
       // Base: walking=60, tarabala=1.0, hora=1.0, category artha=1.2 -> Moment = 72
       final aligned = OracleCompositeEngine.evaluate(
-        queryTime: DateTime(2026, 7, 14, 10, 0),
-        sunrise: DateTime(2026, 7, 14, 6, 0),
+        queryTime: queryTime,
+        sunrise: sunrise,
         sunset: DateTime(2026, 7, 14, 18, 30),
         weekday: 1,
         currentBirdState: PakshiState.walking,
@@ -409,8 +412,8 @@ void main() {
       );
 
       final misaligned = OracleCompositeEngine.evaluate(
-        queryTime: DateTime(2026, 7, 14, 10, 0),
-        sunrise: DateTime(2026, 7, 14, 6, 0),
+        queryTime: queryTime,
+        sunrise: sunrise,
         sunset: DateTime(2026, 7, 14, 18, 30),
         weekday: 1,
         currentBirdState: PakshiState.walking,
@@ -424,6 +427,32 @@ void main() {
       expect(aligned.score, 72);
       expect(misaligned.score, 54);
       expect(misaligned.score / aligned.score, closeTo(0.75, 0.01));
+    });
+
+    test('pre-dawn evaluation uses location coordinates when provided', () {
+      // 04:30 pre-dawn Chennai (lat: 13.08, lng: 80.27, utcOffset: 5.5)
+      final queryTime = DateTime(2026, 7, 14, 4, 30);
+      final sunrise = DateTime(2026, 7, 14, 5, 52);
+      final sunset = DateTime(2026, 7, 14, 18, 38);
+
+      final result = OracleCompositeEngine.evaluate(
+        queryTime: queryTime,
+        sunrise: sunrise,
+        sunset: sunset,
+        weekday: 2,
+        currentBirdState: PakshiState.ruling,
+        currentWindow: ActionWindow.artha,
+        tarabalaMultiplier: 1.0,
+        horaSwaraMultiplier: 1.0,
+        category: QueryCategory.artha,
+        actualSwara: 'right',
+        latitude: 13.08,
+        longitude: 80.27,
+        utcOffset: 5.5,
+      );
+
+      expect(result.score, greaterThan(0));
+      expect(result.isFloorLocked, isFalse);
     });
   });
 }

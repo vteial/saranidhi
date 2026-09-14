@@ -1,8 +1,8 @@
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
-import 'package:saranidhi/features/astro_engine/domain/nostril_pattern.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/sunrise_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/swara_clock.dart';
 import 'package:saranidhi/features/astro_engine/domain/yama_calculator.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 
@@ -40,11 +40,8 @@ class AlignmentResult {
 /// Determines the expected breath flow and checks alignment.
 ///
 /// In Sara Kalai tradition, the expected nostril dominance alternates
-/// based on the Yama (time segment) and the active Panja Pakshi bird state.
-///
-/// Simplified rule for this implementation:
-/// - Odd Yamas (1, 3, 5) → Solar (Right nostril expected)
-/// - Even Yamas (2, 4) → Lunar (Left nostril expected)
+/// hourly on the 1-hour / 24-cycle clock (CONF-014), seeded at astronomical
+/// sunrise by the Weekday Udhaya rule (CONF-013 / CONF-001).
 ///
 /// **Sushumna (both) — context-dependent (Sprint 27):**
 /// - Yoga window (Sleeping/Dying states) → Fully aligned (spiritual practice)
@@ -82,8 +79,23 @@ class AlignmentChecker {
 
     final activeYamaSegment = yamaResult.activeYama(time);
 
-    // If outside daylight hours, default to lunar
-    final expectedFlow = _expectedFlowForYama(activeYamaSegment?.index);
+    // Anchor sunrise for the civil day containing [time] (CONF-001).
+    // If [time] is before sunrise (pre-dawn), the civil day began at yesterday's sunrise.
+    final anchoredSunrise = SwaraClock.anchorSunriseForLocation(
+      time: time,
+      latitude: latitude,
+      longitude: longitude,
+      utcOffset: utcOffset,
+    );
+    if (anchoredSunrise == null) return null;
+
+    // Expected swara on 1-hour / 24-cycle clock (CONF-014 / CONF-013 / CONF-001)
+    final pakshaAtSunrise = LunarPhaseCalculator.phaseForDate(anchoredSunrise);
+    final expectedFlow = SwaraClock.expectedFlowAt(
+      time: time,
+      sunrise: anchoredSunrise,
+      paksha: pakshaAtSunrise,
+    );
 
     // Get Pakshi info
     final weekday = PakshiCalculator.dartWeekdayToSunBased(time.weekday);
@@ -121,13 +133,5 @@ class AlignmentChecker {
       activeBirdState: activeBirdState,
       actionWindow: actionWindow,
     );
-  }
-
-  /// Determines expected flow based on Yama index and current tithi.
-  ///
-  /// Uses the shared [NostrilPattern] utility which implements the
-  /// tithi-based starting nostril per Siva Swarodaya (Sutras 52–56).
-  static BreathFlow _expectedFlowForYama(YamaIndex? yama) {
-    return NostrilPattern.expectedFlowForYama(yama);
   }
 }

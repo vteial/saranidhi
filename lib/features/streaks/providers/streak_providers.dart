@@ -64,6 +64,9 @@ class DashboardData {
       stuckFlow: null,
       continuousDuration: Duration.zero,
     ),
+    this.latitude,
+    this.longitude,
+    this.utcOffset,
   });
 
   final StreakResult streak;
@@ -146,6 +149,15 @@ class DashboardData {
 
   /// Nostril flow stagnancy analysis over the rolling-24h window.
   final StagnancyAnalysisResult stagnancy;
+
+  /// Geographic latitude for solar calculations.
+  final double? latitude;
+
+  /// Geographic longitude for solar calculations.
+  final double? longitude;
+
+  /// Timezone offset in hours from UTC.
+  final double? utcOffset;
 }
 
 /// The currently selected date for the dashboard.
@@ -543,6 +555,9 @@ final dashboardDataProvider = FutureProvider<DashboardData>((ref) async {
     activeActionWindow: activeActionWindow,
     birthStarNakshatra: birthStarNakshatra,
     stagnancy: stagnancy,
+    latitude: lat,
+    longitude: lng,
+    utcOffset: utcOffset,
   );
 });
 

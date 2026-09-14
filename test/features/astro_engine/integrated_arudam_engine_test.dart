@@ -363,7 +363,7 @@ void main() {
       );
 
       test(
-        'floor-locked case emits exactly one floorLock reason with blocking strength and CONF-018',
+        'floor-locked case emits exactly one floorLock reason with blocking strength and PP-ORACLE',
         () {
           final rahuResult = IntegratedArudamEngine.evaluate(
             birdState: PakshiState.ruling,
@@ -380,7 +380,7 @@ void main() {
           expect(rahuResult.reasons.length, 1);
           expect(rahuResult.reasons.first.factor, ArudamFactor.floorLock);
           expect(rahuResult.reasons.first.strength, FactorStrength.blocking);
-          expect(rahuResult.reasons.first.conf, 'CONF-018');
+          expect(rahuResult.reasons.first.conf, 'PP-ORACLE');
 
           final emaResult = IntegratedArudamEngine.evaluate(
             birdState: PakshiState.ruling,
@@ -397,7 +397,7 @@ void main() {
           expect(emaResult.reasons.length, 1);
           expect(emaResult.reasons.first.factor, ArudamFactor.floorLock);
           expect(emaResult.reasons.first.strength, FactorStrength.blocking);
-          expect(emaResult.reasons.first.conf, 'CONF-018');
+          expect(emaResult.reasons.first.conf, 'PP-ORACLE');
         },
       );
     });
