@@ -7,7 +7,7 @@
 > Antigravity; the owner's message is then a one-liner pointing here.
 >
 > **Preview URL (filled):** `https://saranidhi-git-release-v1111-eialarasus-projects.vercel.app/`
-> (branch `release/v1.11.1` → slug `release-v1111`). Release PR: **#PENDING**.
+> (branch `release/v1.11.1` → slug `release-v1111`). Release PR: **#231**.
 >
 > **Environment:** the release PR's Vercel **preview**, NOT staging. Read
 > `VERCEL_AUTOMATION_BYPASS_SECRET` from the local **`.env`** and pass it as a query param:
@@ -30,7 +30,7 @@ ENVIRONMENT: The release PR's Vercel PREVIEW (NOT staging). The preview has Verc
 Deployment Protection. Read VERCEL_AUTOMATION_BYPASS_SECRET from the local `.env` and pass
 it as a query param on the preview URL:
   https://saranidhi-git-release-v1111-eialarasus-projects.vercel.app/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
-REPO: vteial/saranidhi. Release branch: release/v1.11.1. PR: #PENDING.
+REPO: vteial/saranidhi. Release branch: release/v1.11.1. PR: #231.
 
 STEP 0 — PRE-FLIGHT READINESS GATE (MANDATORY — run BEFORE any scenario):
 Confirm ALL of the following. If ANY check fails, STOP IMMEDIATELY, run NO scenarios, and
@@ -41,13 +41,13 @@ report the failed check (see ABORT PROTOCOL). Do NOT improvise a workaround.
          version = stale/wrong deployment → ABORT.
   [ ] 3. BYPASS SECRET PRESENT — VERCEL_AUTOMATION_BYPASS_SECRET found in `.env`; bypass cookie
          set (no SSO wall on in-app navigation). If missing → ABORT.
-  [ ] 4. CI GREEN ON PR #PENDING — required checks green on the head commit (Analyze/Fast Tests/
+  [ ] 4. CI GREEN ON PR #231 — required checks green on the head commit (Analyze/Fast Tests/
          Build + Full Test Suite + Coverage). Integration Tests (Web) is known-flaky/non-blocking.
   [ ] 5. SMOKE-TEST FILE PRESENT — docs/testing/releases/v1.11.1/smoke-test.md on the branch.
 Only when 1–5 all pass, write "PRE-FLIGHT: READY (About=v1.11.1, preview OK, CI green)" into the
 smoke-test Result block and PROCEED.
 
-ABSOLUTE NO-FALLBACK RULE: Test the PR #PENDING Vercel PREVIEW and NOTHING ELSE. You are
+ABSOLUTE NO-FALLBACK RULE: Test the PR #231 Vercel PREVIEW and NOTHING ELSE. You are
 FORBIDDEN from falling back to staging (saranidhi-staging.vercel.app), production
 (saranidhi.vercel.app), a LOCAL dev server (flutter run / localhost), or any other URL. If the
 preview is unavailable or shows the wrong version, that is a BLOCKER to report — never a cue to
@@ -113,4 +113,4 @@ execute + record the scenarios. If any pre-flight check fails, follow the ABORT 
 | Smoke-test file | `docs/testing/releases/v1.11.1/smoke-test.md` |
 | What changed | from the `[1.11.1-web]` CHANGELOG entry + Sprint 43 scope (3 l10n fixes + citation) |
 | Highest-priority | the 3 Tamil-mode card checks (About `இயலரசு`, Monthly-Patterns `ஞாயிறு`, Best Times `யா1`) + EN regression |
-| Release PR # | **PENDING** — backfill once the release PR is opened |
+| Release PR # | **#231** |

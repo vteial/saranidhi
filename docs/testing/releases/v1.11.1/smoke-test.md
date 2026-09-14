@@ -5,7 +5,7 @@
 **Release:** v1.11.1-web (Sprint 43 — Localization Defect Fixes)
 **Date:** _pending_
 **Tester:** Antigravity (QA-Verify Agent)
-**Shipping Commit:** _pending_ on `release/v1.11.1` (PR #_pending_)
+**Shipping Commit:** _pending_ on `release/v1.11.1` (PR #231)
 **Device/Browser:** Chrome — Desktop + Mobile (390×844)
 **Environment:** PR Vercel **preview** — `https://saranidhi-git-release-v1111-eialarasus-projects.vercel.app` (via `VERCEL_AUTOMATION_BYPASS_SECRET`) — **NOT** staging
 
