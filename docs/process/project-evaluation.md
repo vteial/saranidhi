@@ -2,7 +2,7 @@
 
 # Saranidhi — Project Evaluation Report
 
-> **Reviewed:** v1.10.0-web · **Next review:** every `/sprint-update` (defects + test baseline).
+> **Reviewed:** v1.10.1-web · **Next review:** every `/sprint-update` (defects + test baseline).
 
 ## 1. Executive Architecture Summary
 

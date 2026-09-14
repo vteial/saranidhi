@@ -42,7 +42,7 @@
 ## Findings / doc fixes made this release
 
 - Clean bump release: all durable docs verified fresh against Sprint 41 changes; doc updates landed in #213 (valuation 129.5 hrs, evaluation 615 tests, sprint-tracker Sprint 41 row, user-guide CSV export note, testing-plan 615 tests).
-- All 11 durable docs audited; stamps validated ready for `v1.10.0-web` → `v1.10.1-web` bump at `/release-update`.
+- All 11 durable docs' `> Reviewed:` stamps **bumped `v1.10.0-web` → `v1.10.1-web`** at `/release-update` (this PR). ✅
 - `security-review.md` confirmed as N/A (share-sheet export uses existing local data; no data/network boundary change).
 - Smoke test completed on preview deployment (PR #214 preview verified; 1 cosmetic translation bug noted on Monthly Patterns `bestDay`).
 

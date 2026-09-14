@@ -14,7 +14,7 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
-## [1.10.1-web] — TBD
+## [1.10.1-web] — 2026-09-13
 
 > Sprint 41 — **Analytics tidy + Tamil localization**. A small housekeeping patch.
 

@@ -36,14 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.10.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Production** | v1.10.1-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 40 | — |
-| **Total PRs** | ~208 | — |
-| **Engineering Hours** | ~127.0 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
+| **Sprints Delivered** | 41 | — |
+| **Total PRs** | ~216 | — |
+| **Engineering Hours** | ~129.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
-**Latest:** v1.10.0-web — **Chronobiology & Holistic Guidance** (Sprint 40): present-moment holistic correction when your breath rhythm drifts — a breath-**stagnancy** card (mild ≥6h / chronic ≥8h; cooling for stuck-solar, warming for stuck-lunar), a **Swara-Ahara** dietary prompt on the Kriya card, **Tattva** temperature tips, and bilingual **Swara Pada Gamana** morning-summary waking advice; gentle/reliability-first, non-diagnostic. The preceding release **v1.9.0-web** (Sprint 39) added the Integrated Aruḍam **"Why?" provenance accordion**.
-**Next:** Integrated Aruḍam native ambient fast-follows + Accuracy Calibration (7-day 3-way, pending owner data) + the Analytics CSV decision — selected from the [Sprint Backlog](docs/process/sprint-backlog.md) during `/plan`.
+**Latest:** v1.10.1-web — **Analytics tidy + Tamil l10n** (Sprint 41): moved the journal CSV export to **Settings** (now shares via the share sheet, so it works on web too) and fixed the Analytics-screen Tamil localization. The preceding feature release **v1.10.0-web** (Sprint 40) added **Chronobiology & Holistic Guidance** — the breath-stagnancy card, Swara-Ahara dietary prompt, Tattva temperature tips, and bilingual Pada Gamana morning advice.
+**Next:** ★ **Swara Clock Engine & Weekday Udhaya** (Sprint 42, v1.11.0) — a correctness fix to expected-nostril prediction that lands before the 7-day Accuracy Calibration — then Integrated Aruḍam native ambient fast-follows. See the [Sprint Backlog](docs/process/sprint-backlog.md).
 
 ---
 
