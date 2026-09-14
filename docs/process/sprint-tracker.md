@@ -873,6 +873,9 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ## Sprint 42: ★ Swara Clock Engine & Weekday Udhaya Calibration (v1.11.0) — 🔄 In Progress
 
+> **Dossier:** [`sprints/sprint-42-swara-clock/`](sprints/sprint-42-swara-clock/README.md) —
+> spec authored (Kiro Web); awaiting Antigravity implementation.
+>
 > **Scheduled via `/plan` — correctness-critical.** Fixes how the app predicts the **expected
 > nostril** (the readiness half of the flagship Aruḍam verdict). Owner-adjudicated doctrine; full
 > rationale + provenance in the
