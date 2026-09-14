@@ -35,7 +35,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ 🚀 (PR #196) |
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
-| 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | 🔄 (in progress) |
+| 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ (PR #220) |
 | 43+ | Accuracy Calibration (post-S42), native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.10.1-web is now live in production (2026-09-13)** — Sprint 41, a light
@@ -49,9 +49,12 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 > **v1.9.0-web** (the Aruḍam "Why?" accordion) and **v1.8.0-web** (the ambient "Aruḍam Now" card).
 > Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
 >
-> **In progress: Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0)** — the correctness
-> fix to expected-nostril prediction (CONF-014 / CONF-013), which **must ship before** the 7-day
-> Accuracy Calibration data collection.
+> **Merged, release pending: Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0)** — the
+> correctness fix to expected-nostril prediction (CONF-014 / CONF-013), merged to `main` via
+> **PR #220** (Kiro Web-reviewed). Decouples the expected nostril from the 1.5h Pakshi yama onto an
+> independent 1-hour / 24-cycle swara clock seeded by the Weekday Udhaya dawn rule; fixes a latent
+> alignment bug; bird-state/yama engine unchanged (regression-gated). **Must ship before** the 7-day
+> Accuracy Calibration data collection. Next: `/release-start v1.11.0`.
 > **Phase 2b continues** — **Sprint 39** (Integrated Aruḍam "Why?" provenance accordion,
 > v1.9.0) and **Sprint 40** (Chronobiology & Holistic Guidance, v1.10.0) are now
 > **scheduled** via `/plan` (this PR); both are unblocked feature work. Deferred after
@@ -871,10 +874,10 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 42: ★ Swara Clock Engine & Weekday Udhaya Calibration (v1.11.0) — 🔄 In Progress
+## Sprint 42: ★ Swara Clock Engine & Weekday Udhaya Calibration (v1.11.0) — ✅ Complete (PR #220)
 
 > **Dossier:** [`sprints/sprint-42-swara-clock/`](sprints/sprint-42-swara-clock/README.md) —
-> spec authored (Kiro Web); awaiting Antigravity implementation.
+> spec (Kiro Web) → implemented (Antigravity, local green) → reviewed (Kiro Web) → merged (PR #220).
 >
 > **Scheduled via `/plan` — correctness-critical.** Fixes how the app predicts the **expected
 > nostril** (the readiness half of the flagship Aruḍam verdict). Owner-adjudicated doctrine; full
@@ -906,14 +909,14 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] Task 42.7: **Bilingual (EN/TA)** for any new/changed nostril-pattern copy; Nostril Pattern card + guidance reflect the 1h clock.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Code merged** — on `main` (PR #N). _(owner merges)_
-- [ ] **PR link** — [#220](https://github.com/vteial/saranidhi/pull/220) (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implements + **local green before PR**; **Kiro Web reviews the real diff**.
+- [x] **Code merged** — on `main` (PR #220, merge commit `3303171`). _(owner merged)_
+- [x] **PR link** — [#220](https://github.com/vteial/saranidhi/pull/220) (CI green: Analyze / Fast Tests / Build + Full Suite). Antigravity implemented + **local green before PR**; **Kiro Web reviewed the real diff** (fix commit `0055dea` corrected doc tables + unified pre-dawn anchoring).
 - [x] **Regression gate** — bird-state/yama/Pakshi outputs UNCHANGED (pinned); Aruḍam Now score changes ONLY where the corrected nostril clock legitimately changes readiness; no schema change.
 - [x] **Docs updated** — User Guide (Nostril Pattern now on the ~1h swara clock + weekday dawn rule) + `calculation-methodology.md` (new §: Swara Clock + Weekday Udhaya table) + the CONF-018 citation fix.
 - [x] **Tests** — `SwaraClock` unit tests (weekday seeds, 1h/2h dawn, hourly progression, boundaries); alignment/readiness regression; existing bird/Pakshi tests unchanged & green; local green before PR.
-- [x] **Smoke test** — expected-nostril matches a checked nostril at a known weekday sunrise (the "Sunday morning" test); next-switch countdown ≈ hourly; EN/TA.
+- [ ] **Smoke test** — expected-nostril matches a checked nostril at a known weekday sunrise (the "Sunday morning" test); next-switch countdown ≈ hourly; EN/TA. _(at `/release-start v1.11.0`)_
 - [ ] **Valuation report** — Sprint 42 row (+20%) at `/sprint-update`.
-- [ ] **Tracker updated** — status ✅.
+- [x] **Tracker updated** — status ✅.
 - [x] **User Guide** — real capability/accuracy change, so **not** `n/a`.
 
 ---
