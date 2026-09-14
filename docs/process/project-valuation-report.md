@@ -20,11 +20,11 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
-**Sprints Delivered:** 37 (Sprints 1–39, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
-**Total Engineering Investment:** **~127.0 hours** (incl. ~26.5h Research & Knowledge Engineering)
+**Sprints Delivered:** 38 (Sprints 1–42, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
+**Total Engineering Investment:** **~135.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
 **Production Web Release:** **v1.10.1-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.10.1-web`, Sprint 41 — Analytics tidy + Tamil l10n; preceding feature release: v1.10.0-web Chronobiology & Holistic Guidance, Sprint 40)
-**Automated Tests:** 615 (unit + widget + integration)
-**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** all shipped to production. **Next: Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0)** — a correctness fix to expected-nostril prediction that MUST ship before the 7-day Accuracy Calibration data collection. Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
+**Automated Tests:** 628 (unit + widget + integration)
+**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** all shipped to production. **Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0)** — the correctness fix to expected-nostril prediction (decoupled onto an independent 1-hour / 24-cycle swara clock seeded by the Weekday Udhaya dawn rule) — is now **merged (PR #220), release pending** (`/release-start v1.11.0`). It MUST ship before the 7-day Accuracy Calibration data collection. Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
 
@@ -45,7 +45,8 @@
 | Sprint 39 — Integrated Aruḍam "Why?" accordion (v1.9.0) | 39 | ~4.5 |
 | Sprint 40 — Chronobiology & Holistic Guidance (v1.10.0) | 40 | ~6.0 |
 | Sprint 41 — Analytics tidy (CSV → Settings) + Tamil l10n (v1.10.1) | 41 | ~2.5 |
-| **Subtotal** | | **~91.5** |
+| Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0) | 42 | ~6.0 |
+| **Subtotal** | | **~97.5** |
 
 ### Infrastructure, Release & Admin Ops (off-commit)
 
@@ -80,10 +81,10 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (sprint track) | ~91.5 |
+| Active coding & debugging (sprint track) | ~97.5 |
 | Infrastructure, release & admin ops | ~11.0 |
 | Research & knowledge engineering | ~26.5 |
-| **Total** | **~129.5** |
+| **Total** | **~135.5** |
 
 ---
 
@@ -135,8 +136,9 @@
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion (v1.9.0) | #196 | ✅ 🚀 |
 | 40 | Chronobiology & Holistic Guidance (v1.10.0) | #202 | ✅ 🚀 |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n (v1.10.1) | #211 | ✅ 🚀 |
+| 42 | ★ Swara Clock Engine & Weekday Udhaya (v1.11.0) | #220 | ✅ |
 
-> 🚀 = shipped a production release. Sprint 37 was the first sprint under the
+> 🚀 = shipped a production release. Sprint 42 is merged (release v1.11.0 pending). Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement
 > + local test) — see the [Sprint 37 dossier](sprints/sprint-37-birth-bird/README.md).
 
