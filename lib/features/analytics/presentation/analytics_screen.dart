@@ -150,7 +150,7 @@ class _WeekRow extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: 110,
+            width: 132,
             child: Text(label, style: theme.textTheme.bodySmall),
           ),
           Expanded(
@@ -518,7 +518,7 @@ class _YamaPerformanceCard extends ConsumerWidget {
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 28,
+                          width: 44,
                           child: Text(
                             '${l10n.yamaShortPrefix}$yamaNum',
                             style: theme.textTheme.bodySmall,

@@ -146,7 +146,7 @@ class _YamaRow extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: 28,
+            width: 44,
             child: Text(
               yamaLabel,
               style: theme.textTheme.bodySmall?.copyWith(

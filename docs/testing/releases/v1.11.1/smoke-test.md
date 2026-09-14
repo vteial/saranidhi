@@ -77,6 +77,18 @@
 > `YamaSegment.label` getters `'Yama N'` still surface unlocalized in the **notification** title +
 > AI-wisdom payload — out of this cosmetic-UI release's scope; backlogged.)*
 
+### Scenario 4: Tamil column-width fit (cosmetic follow-up)
+- [ ] Tamil mode → Dashboard ☀️/🌙 Schedule: yama column fits `யா10` on one line (no wrap/clip).
+- [ ] Tamil mode → Analytics → Yama Performance: `யா5` fits.
+- [ ] Tamil mode → Analytics → Weekly Alignment: the week date-range label (e.g. `செப் 8 – செப். 14`) fits on one line (no wrap).
+- **Result:** ⏳
+- **Evidence:**
+
+> **Cosmetic follow-up (owner-found on the preview):** the l10n fixes made the labels longer, so
+> the fixed-width columns (sized for English `Y1`) wrapped in Tamil. Widened on this release
+> branch: yama columns `28→44px` (Full Day Schedule, Best Times, Analytics Yama Performance) and
+> the Weekly-Alignment week-label column `110→132px`.
+
 ### Regression glance + version
 - [x] EN mode unchanged; no layout shift; About = v1.11.1.
 - **Result:** ✅ **PASS**
