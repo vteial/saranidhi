@@ -36,6 +36,39 @@ deploys from `main`, so the release branch's changes are not on staging until me
 preview is built from the release-branch head and shows About = v1.11.0.)
 REPO: vteial/saranidhi. Release branch: release/v1.11.0. PR: #223.
 
+STEP 0 — PRE-FLIGHT READINESS GATE (MANDATORY — run BEFORE any scenario):
+Confirm ALL of the following. If ANY check fails, STOP IMMEDIATELY, run NO scenarios, and
+report the failed check (see ABORT PROTOCOL). Do NOT improvise a workaround.
+  [ ] 1. PREVIEW REACHABLE — load
+         https://saranidhi-git-release-v1110-eialarasus-projects.vercel.app/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
+         and confirm the Saranidhi app shell renders (HTTP 200 — NOT a Vercel 404 /
+         "DEPLOYMENT_NOT_FOUND" / SSO login wall / "not available" page).
+  [ ] 2. CORRECT BUILD — Settings → About reads EXACTLY "Saranidhi v1.11.0 (1)". Any other
+         version = stale/wrong deployment → ABORT.
+  [ ] 3. BYPASS SECRET PRESENT — VERCEL_AUTOMATION_BYPASS_SECRET found in `.env`; bypass cookie
+         set (no SSO wall on in-app navigation). If missing → ABORT.
+  [ ] 4. CI GREEN ON PR #223 — required checks green on the head commit (Analyze/Fast Tests/
+         Build + Full Test Suite + Coverage). Integration Tests (Web) is known-flaky/non-blocking.
+  [ ] 5. SMOKE-TEST FILE PRESENT — docs/testing/releases/v1.11.0/smoke-test.md on the branch.
+Only when 1–5 all pass, write "PRE-FLIGHT: READY (About=v1.11.0, preview OK, CI green)" into the
+smoke-test Result block and PROCEED.
+
+ABSOLUTE NO-FALLBACK RULE: Test the PR #223 Vercel PREVIEW and NOTHING ELSE. You are FORBIDDEN
+from falling back to staging (saranidhi-staging.vercel.app), production (saranidhi.vercel.app),
+a LOCAL dev server (flutter run / localhost), or any other URL. If the preview is unavailable
+or shows the wrong version, that is a BLOCKER to report — never a cue to switch environments.
+Testing the wrong build is worse than not testing.
+
+ABORT PROTOCOL (if Step 0 fails, or the preview goes down mid-run):
+- STOP. Do not run (or continue) scenarios.
+- Write a top-of-file BLOCKED verdict in docs/testing/releases/v1.11.0/smoke-test.md: which
+  check failed, the exact URL tried, the About version seen (if any), HTTP status/error text,
+  and a one-line root-cause hypothesis.
+- Commit that BLOCKED status to release/v1.11.0 and hand back to the Developer Agent (Kiro Web)
+  to fix the environment; re-run Step 0 from scratch once told the preview is ready.
+- If the preview drops MID-RUN (e.g. network interruption), mark the in-progress + remaining
+  scenarios BLOCKED (not FAIL), note where you stopped, and STOP — do NOT switch environments.
+
 TEST PLAN (source of truth): docs/testing/releases/v1.11.0/smoke-test.md on the release
 branch. Execute EVERY scenario in that file, in order (Scenarios 1–7 + regression eyeball +
 version confirm).
@@ -101,7 +134,9 @@ DELIVERABLE (clerical recording — this you MAY write):
 GATE RULE: QA sign-off requires the preview build functionally correct AND CI green on the
 release PR.
 
-Begin by reading docs/testing/releases/v1.11.0/smoke-test.md, then execute and record.
+Begin with STEP 0 (PRE-FLIGHT READINESS GATE). Only if all pre-flight checks pass, read
+docs/testing/releases/v1.11.0/smoke-test.md and execute + record the scenarios. If any
+pre-flight check fails, follow the ABORT PROTOCOL and stop.
 ```
 
 ---

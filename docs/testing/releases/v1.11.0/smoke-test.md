@@ -11,6 +11,7 @@
 
 ## Result
 
+- **Pre-flight readiness gate (Step 0):** ⏳ _pending_ — record here: `PRE-FLIGHT: READY (About=v1.11.0, preview OK, CI green)` before running scenarios, or a `BLOCKED` reason if the gate fails (never fall back to staging/local — see the QA-Verify prompt's ABORT PROTOCOL).
 - **Status:** ⏳ _pending_
 - **Date:** _pending_ · **Devices / Viewports:** _pending_
 - **Environment Tested:** PR Vercel Preview (`https://saranidhi-git-release-v1110-eialarasus-projects.vercel.app/?x-vercel-protection-bypass=…&x-vercel-set-bypass-cookie=true`)
