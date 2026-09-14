@@ -9,8 +9,20 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-_No unreleased changes yet. Upcoming work is tracked in the
-[Sprint Backlog](docs/process/sprint-backlog.md) and scheduled via `/plan`._
+> Sprint 44 — **Practice Sync Phase 0: safe merge-import** (targets v1.12.0-web). Merged to
+> `main` via PR #236; release pending.
+
+### Added
+- **Use Saranidhi on more than one device.** Each install now has a **Practice ID** (shown in Settings) that ties your data together. You can **export** your data on one device and **Merge** it into another — your breath sessions, journal, and hold-time history combine into one aggregate view (streak, trends, personal-best now span all your devices). Merging is **non-destructive** (it only adds sessions you don't already have) and **idempotent** (re-merging the same file changes nothing).
+- **Safe by design.** A merge only combines data with the **same Practice ID**. Importing a file from a *different* Practice ID is refused (to protect your data), so you can never accidentally mix another person's practice into yours.
+
+### Changed
+- The old "import" (which **replaced** all local data) is now a separate, clearly-labeled **"Restore (overwrite)"** option — distinct from the new safe **Merge**.
+
+### Fixed
+- **Internal:** corrected a stale schema-version constant and the import validator's version ceiling (would otherwise have rejected valid export files from the current app).
+
+> **Tip — new device:** on a fresh device, **import your export _before_ onboarding** so it adopts your Practice ID. If you onboard first, the device gets its own new Practice ID and a merge will be (correctly) refused as a mismatch.
 
 ---
 
