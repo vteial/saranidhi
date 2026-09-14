@@ -178,7 +178,7 @@ class _BestTimeRow extends StatelessWidget {
         children: [
           // Yama number (first column — consistency principle)
           SizedBox(
-            width: 28,
+            width: 44,
             child: Text(
               '${l10n.yamaShortPrefix}${entry.yamaNumber}',
               style: theme.textTheme.bodySmall?.copyWith(

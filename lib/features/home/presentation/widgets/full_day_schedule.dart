@@ -139,14 +139,14 @@ class _YamaRow extends StatelessWidget {
     final stateColor = _colorForState(birdState, theme);
     final timeStr = _formatTime(startTime);
     final stateName = birdState.localizedName(l10n);
-    final yamaLabel = 'Y$yamaNumber';
+    final yamaLabel = '${l10n.yamaShortPrefix}$yamaNumber';
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
           SizedBox(
-            width: 28,
+            width: 44,
             child: Text(
               yamaLabel,
               style: theme.textTheme.bodySmall?.copyWith(
