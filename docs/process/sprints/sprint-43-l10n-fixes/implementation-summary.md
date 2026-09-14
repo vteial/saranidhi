@@ -8,8 +8,8 @@
 
 ## PR
 
-- **PR:** #___ (`feature/sprint43-l10n-fixes` → `main`)
-- **Commits:** `<short-sha>` … `<short-sha>`
+- **PR:** [#227](https://github.com/vteial/saranidhi/pull/227) (`feature/sprint43-l10n-fixes` → `main`)
+- **Commits:** `97e8e8f`
 
 ## What was implemented (by spec task)
 

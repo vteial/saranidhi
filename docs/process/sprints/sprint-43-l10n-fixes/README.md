@@ -37,5 +37,5 @@ localized-weekday test (not CI-only). **User Guide = n/a** (cosmetic). Owner is 
 
 🔄 **In progress** — spec authored; awaiting Antigravity implementation.
 
-- **PR:** _pending_
+- **PR:** [#227](https://github.com/vteial/saranidhi/pull/227)
 - **Shipped:** _pending — targets v1.11.1-web_
