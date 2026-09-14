@@ -25,6 +25,7 @@ during `/plan`. Keep entries small and outcome-focused.
 - [Chronobiology & Holistic Guidance](#chronobiology--holistic-guidance)
 - [Analytics & Insights](#analytics--insights)
 - [Prasanam Oracle UX](#prasanam-oracle-ux)
+- [User Guide — Book-Style Navigation & Search](#user-guide--book-style-navigation--search)
 - [Accuracy & Validation](#accuracy--validation)
 - [Quality, CI & E2E](#quality-ci--e2e)
 - [Release Polish & v2.0](#release-polish--v20)
@@ -207,9 +208,59 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 
 ---
 
+## User Guide — Book-Style Navigation & Search
+
+> **Status: scoped via `/plan` (owner-confirmed); medium priority, sequenced AFTER the native
+> "Now" Surface.** The in-app User Guide's *content* is already the right shape — code-tied,
+> versioned, bilingual (12 `_Section`s + a bilingual reference section, sourced from `guide*`
+> ARB keys in `user_guide_screen.dart`). The gap is **navigation**: it's a single flat
+> `CustomScrollView` (top-to-bottom scroll only — no ToC, no jump-to-section, no search, no
+> collapse), which gets unwieldy as the guide grows (Swara Clock, Chronobiology, and soon the
+> Now Surface all add sections).
+>
+> **Decision (owner-confirmed):** deliver **book-like UX qualities natively in Dart** — keep
+> content in Dart/ARB (offline-first, bilingual pipeline intact); upgrade only the presentation.
+> **Explicitly NOT** by embedding the separate `saranidhi-book` Astro/Starlight site (a WebView
+> breaks offline-first + native feel + bundle size, and couples the app to a separately-deployed
+> site). The book repo stays a **distinct** general-audience artifact; this epic is purely the
+> *in-app* guide's navigation.
+>
+> **Keystone = a structured content model.** Replace the hardcoded inline `_Section(...)` calls
+> with a `List<GuideSection>` (id · title · body · keywords · optional subsections), each still
+> pulling its `l10n` strings. The ToC, search, and per-section views then all derive from that
+> one list — adding a chapter becomes a single entry, 100% Dart/ARB/bilingual.
+
+| Priority | Status | Item |
+|----------|--------|------|
+| 🟡 | ⬜ | **Structured `GuideSection` content model** — `List<GuideSection>` (id, title, body, keywords, subsections) sourced from `guide*` ARB keys; single source of truth that drives ToC + search + section views. Replaces inline `_Section(...)` widget calls. |
+| 🟡 | ⬜ | **Table of Contents / chapter landing** — guide opens to a tappable section list (not a wall of text); tap → open/scroll to that section. The #1 navigation win. |
+| 🟡 | ⬜ | **Collapsible sections** — `_Section` → `ExpansionTile` (Flutter built-in), collapsed by default = scannable; zero new deps. |
+| 🟡 | ⬜ | **Offline in-guide search** — search field filtering sections by title/body/keywords (data is already in-memory ARB strings → trivial filter + highlight); fully offline, no backend. |
+| 🟢 | ⬜ | **Jump-to-section / deep anchors** — `ScrollController` + `GlobalKey` per section (or per-section routes) so other surfaces can deep-link into the guide. |
+| 🟢 | ⬜ | **Deep-link help from feature surfaces** — the Aruḍam "Why?" accordion / Now Surface link straight into the relevant guide section (synergy with the structured model). |
+| 🔴 | ⬜ | **Bilingual (EN/TA)** — ToC labels, search field/placeholder, empty-search state, section titles all localized; keep the reference tables bilingual. DoD gate. |
+
+> **Guardrails / scope discipline:**
+> - Keep content in **Dart/ARB** — do NOT move to asset Markdown (loses the bilingual ARB
+>   pipeline) or a WebView (loses offline-first).
+> - Right-size it: the guide is ~12 sections → it needs **navigation + search + collapse**, not
+>   a full CMS.
+> - **User Guide DoD = NOT `n/a`** for this sprint — it *is* the user-facing capability.
+>
+> **Sequencing:** medium priority, **after the native "Now" Surface** — the Now Surface adds a
+> guide section anyway, so upgrade the guide once *after* that chapter lands (not right before).
+> Natural synergy: the structured model enables the Now Surface's deep-linkable "Why?" help.
+>
+> **Vehicle:** feature sprint (spec → Antigravity local-green → Kiro review). New content model +
+> ToC screen + search + section routing + widget tests. **Provenance:** in-app guide
+> (`user_guide_screen.dart`, `guide*` ARB keys) · three-artifact vision (app guide ≠ book — see
+> `product-scope.md` North Star) · offline-first / zero-backend principle.
+
+---
+
 ## Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction)
 
-> **Status: scoped via `/plan`; scheduled as Sprint 42 (v1.11.0)** — see
+> **Status: ✅ SHIPPED as Sprint 42 (v1.11.0-web).** Retained for provenance — see
 > [sprint-tracker](sprint-tracker.md#sprint-42-swara-clock-engine--weekday-udhaya-calibration-v1110--planned).
 > A **correctness-critical calculation fix** to how the app predicts the *expected nostril* —
 > the readiness half of the flagship Aruḍam verdict.
