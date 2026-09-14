@@ -3,7 +3,7 @@
 
 # Saranidhi — Development Sprint Tracker
 
-> **Reviewed:** v1.10.1-web · **Next review:** every release (docs-audit gate).
+> **Reviewed:** v1.11.0-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
@@ -35,31 +35,26 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 39 | ★ Integrated Aruḍam — "Why?" provenance accordion | **v1.9.0** | ✅ 🚀 (PR #196) |
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
-| 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ (PR #220) |
+| 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43+ | Accuracy Calibration (post-S42), native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.10.1-web is now live in production (2026-09-13)** — Sprint 41, a light
-> **Analytics tidy + Tamil l10n** patch (feature PR #211 → release-start PR #214 → main→prod
-> promotion PR #216, tag `v1.10.1-web` @ `prod`; slim smoke ⚠️ PASS 3/3). It moved the journal
-> **CSV export to Settings** (now shares via the share sheet → works on web) and fixed the
-> **Analytics-screen Tamil** gaps; ships with the pre-existing cosmetic **BUG-v1.10.1-01**
-> (Monthly-Patterns day-name l10n, owner-accepted + backlogged). The preceding feature release
-> **v1.10.0-web** (Sprint 40 — Chronobiology & Holistic Guidance) added the breath-stagnancy card,
-> Swara-Ahara prompt, Tattva tips, and bilingual Pada Gamana morning advice; before it,
-> **v1.9.0-web** (the Aruḍam "Why?" accordion) and **v1.8.0-web** (the ambient "Aruḍam Now" card).
+> **Current state:** **v1.11.0-web is now live in production (2026-09-14)** — Sprint 42, the
+> **★ Swara Clock Engine & Weekday Udhaya** correctness fix (feature PR #220 → /sprint-finish #221
+> → /sprint-update #222 → release-start PR #223 → main→prod promotion PR #224, tag `v1.11.0-web`
+> @ `prod`; smoke ✅ PASS 7/7 + regression, via the new QA-Verify pre-flight readiness gate). It
+> decouples the expected nostril from the 1.5h Panja Pakshi yama clock onto an independent
+> **1-hour / 24-cycle** swara clock (CONF-014), seeded at astronomical sunrise by the **Weekday
+> Udhaya** dawn rule (CONF-013 / CONF-001, incl. the Thursday paksha split); the Nostril Pattern
+> card now shows hourly blocks + ~1h countdown + a live night cycle; a latent "always-today"
+> alignment bug is fixed. Bird-state/yama engine unchanged (regression-gated). Preceding releases:
+> **v1.10.1-web** (Analytics tidy + Tamil l10n), **v1.10.0-web** (Chronobiology & Holistic
+> Guidance), **v1.9.0-web** (Aruḍam "Why?" accordion), **v1.8.0-web** (ambient "Aruḍam Now" card).
 > Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
 >
-> **Merged, release pending: Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0)** — the
-> correctness fix to expected-nostril prediction (CONF-014 / CONF-013), merged to `main` via
-> **PR #220** (Kiro Web-reviewed). Decouples the expected nostril from the 1.5h Pakshi yama onto an
-> independent 1-hour / 24-cycle swara clock seeded by the Weekday Udhaya dawn rule; fixes a latent
-> alignment bug; bird-state/yama engine unchanged (regression-gated). **Must ship before** the 7-day
-> Accuracy Calibration data collection. Next: `/release-start v1.11.0`.
-> **Phase 2b continues** — **Sprint 39** (Integrated Aruḍam "Why?" provenance accordion,
-> v1.9.0) and **Sprint 40** (Chronobiology & Holistic Guidance, v1.10.0) are now
-> **scheduled** via `/plan` (this PR); both are unblocked feature work. Deferred after
-> them: accuracy calibration (7-day 3-way comparison, **blocked on owner data collection**,
-> to be collected during the planned ~10-day Saranidhi pause) and the native "Now" surface.
+> **Next: the 7-day Accuracy Calibration** (Saranidhi vs Align27 vs Panchangam vs actual breath) —
+> now **unblocked** by the Swara Clock fix, and gated only on owner data collection. Also queued:
+> the native "Now" surface and the remaining Integrated Aruḍam fast-follows. To be scheduled via
+> `/plan`.
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -874,7 +869,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 42: ★ Swara Clock Engine & Weekday Udhaya Calibration (v1.11.0) — ✅ Complete (PR #220)
+## Sprint 42: ★ Swara Clock Engine & Weekday Udhaya Calibration (v1.11.0) — ✅ 🚀 Shipped (PR #220, v1.11.0-web)
 
 > **Dossier:** [`sprints/sprint-42-swara-clock/`](sprints/sprint-42-swara-clock/README.md) —
 > spec (Kiro Web) → implemented (Antigravity, local green) → reviewed (Kiro Web) → merged (PR #220).
