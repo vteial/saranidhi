@@ -37,7 +37,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
-| 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ⬜ (planned) |
+| 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | 🔄 (in progress) |
 | 45+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.11.1-web is now live in production (2026-09-14)** — Sprint 43, a small
@@ -953,8 +953,11 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — Planned
+## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — 🔄 In Progress
 
+> **Dossier:** [`sprints/sprint-44-practice-sync-p0/`](sprints/sprint-44-practice-sync-p0/README.md) —
+> spec authored (Kiro Web); awaiting Antigravity implementation.
+>
 > **Scheduled via `/plan` (owner-confirmed).** Phase 0 of the **Practice Sync** epic — the
 > near-term, **zero-backend** win pulled ahead of the Now Surface because it directly affects the
 > owner's daily Sara Kalai practice (data split across iPad / iPhone SE / MBP / iMac with no
