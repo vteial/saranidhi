@@ -81,19 +81,13 @@ class AlignmentChecker {
 
     // Anchor sunrise for the civil day containing [time] (CONF-001).
     // If [time] is before sunrise (pre-dawn), the civil day began at yesterday's sunrise.
-    final DateTime anchoredSunrise;
-    if (time.isBefore(sunResult.sunrise)) {
-      final yesterdaySunResult = SunriseCalculator.calculate(
-        date: time.subtract(const Duration(days: 1)),
-        latitude: latitude,
-        longitude: longitude,
-        utcOffset: utcOffset,
-      );
-      if (yesterdaySunResult == null) return null;
-      anchoredSunrise = yesterdaySunResult.sunrise;
-    } else {
-      anchoredSunrise = sunResult.sunrise;
-    }
+    final anchoredSunrise = SwaraClock.anchorSunriseForLocation(
+      time: time,
+      latitude: latitude,
+      longitude: longitude,
+      utcOffset: utcOffset,
+    );
+    if (anchoredSunrise == null) return null;
 
     // Expected swara on 1-hour / 24-cycle clock (CONF-014 / CONF-013 / CONF-001)
     final pakshaAtSunrise = LunarPhaseCalculator.phaseForDate(anchoredSunrise);

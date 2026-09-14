@@ -635,9 +635,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Night\'s lowest ebb — sleep deeply, let go completely.';
 
   @override
-  String get nightNoNostrilPattern => 'Night — no expected nostril pattern';
-
-  @override
   String get nightSwaraRest =>
       'Night cycle — inward awareness and natural rest';
 

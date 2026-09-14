@@ -55,6 +55,9 @@ class OracleCompositeEngine {
     required double horaSwaraMultiplier,
     required QueryCategory category,
     required String actualSwara,
+    double? latitude,
+    double? longitude,
+    double? utcOffset,
   }) {
     // 1. Resolve daylight segment for inauspicious check (Oracle path unchanged)
     final resolver = DaylightSegmentResolver.resolve(
@@ -76,6 +79,9 @@ class OracleCompositeEngine {
       sunrise: sunrise,
       sunset: sunset,
       currentWindow: currentWindow,
+      latitude: latitude,
+      longitude: longitude,
+      utcOffset: utcOffset,
     );
 
     // 4. Delegate to IntegratedArudamEngine
@@ -114,14 +120,31 @@ class OracleCompositeEngine {
     required DateTime sunrise,
     required DateTime sunset,
     required ActionWindow currentWindow,
+    double? latitude,
+    double? longitude,
+    double? utcOffset,
   }) {
     if (flow == null) return true;
     if (flow == BreathFlow.sushumna) {
       return currentWindow.isSushumnaAligned;
     }
-    final anchoredSunrise = queryTime.isBefore(sunrise)
-        ? sunrise.subtract(const Duration(days: 1))
-        : sunrise;
+    final DateTime anchoredSunrise;
+    if (latitude != null && longitude != null && utcOffset != null) {
+      anchoredSunrise =
+          SwaraClock.anchorSunriseForLocation(
+            time: queryTime,
+            latitude: latitude,
+            longitude: longitude,
+            utcOffset: utcOffset,
+          ) ??
+          (queryTime.isBefore(sunrise)
+              ? sunrise.subtract(const Duration(days: 1))
+              : sunrise);
+    } else {
+      anchoredSunrise = queryTime.isBefore(sunrise)
+          ? sunrise.subtract(const Duration(days: 1))
+          : sunrise;
+    }
     final paksha = LunarPhaseCalculator.phaseForDate(anchoredSunrise);
     final expectedFlow = SwaraClock.expectedFlowAt(
       time: queryTime,

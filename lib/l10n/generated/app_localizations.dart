@@ -1250,12 +1250,6 @@ abstract class AppLocalizations {
   /// **'Night\'s lowest ebb — sleep deeply, let go completely.'**
   String get guidanceNightDying;
 
-  /// Note shown in nostril chart during nighttime
-  ///
-  /// In en, this message translates to:
-  /// **'Night — no expected nostril pattern'**
-  String get nightNoNostrilPattern;
-
   /// Gentle wellness note shown in nostril chart during nighttime
   ///
   /// In en, this message translates to:

@@ -91,5 +91,26 @@ void main() {
         expect(find.textContaining('Night cycle'), findsOneWidget);
       },
     );
+
+    testWidgets('renders cleanly when pre-dawn with coordinates provided', (
+      tester,
+    ) async {
+      final sunrise = DateTime(2026, 7, 5, 6);
+      final data = createTestDashboardData(
+        sunrise: sunrise,
+        isNight: true,
+        latitude: 13.08,
+        longitude: 80.27,
+        utcOffset: 5.5,
+      );
+
+      await tester.pumpWidget(
+        testableWidget(NostrilDominanceChart(data: data)),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(Card), findsOneWidget);
+      expect(find.textContaining('NOW'), findsOneWidget);
+    });
   });
 }

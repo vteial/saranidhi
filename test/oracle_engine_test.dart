@@ -428,5 +428,31 @@ void main() {
       expect(misaligned.score, 54);
       expect(misaligned.score / aligned.score, closeTo(0.75, 0.01));
     });
+
+    test('pre-dawn evaluation uses location coordinates when provided', () {
+      // 04:30 pre-dawn Chennai (lat: 13.08, lng: 80.27, utcOffset: 5.5)
+      final queryTime = DateTime(2026, 7, 14, 4, 30);
+      final sunrise = DateTime(2026, 7, 14, 5, 52);
+      final sunset = DateTime(2026, 7, 14, 18, 38);
+
+      final result = OracleCompositeEngine.evaluate(
+        queryTime: queryTime,
+        sunrise: sunrise,
+        sunset: sunset,
+        weekday: 2,
+        currentBirdState: PakshiState.ruling,
+        currentWindow: ActionWindow.artha,
+        tarabalaMultiplier: 1.0,
+        horaSwaraMultiplier: 1.0,
+        category: QueryCategory.artha,
+        actualSwara: 'right',
+        latitude: 13.08,
+        longitude: 80.27,
+        utcOffset: 5.5,
+      );
+
+      expect(result.score, greaterThan(0));
+      expect(result.isFloorLocked, isFalse);
+    });
   });
 }

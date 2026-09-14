@@ -27,9 +27,25 @@ class NostrilDominanceChart extends StatelessWidget {
     final now = DateTime.now();
 
     // Anchor sunrise to the civil day containing now (CONF-001)
-    final anchoredSunrise = now.isBefore(sunrise)
-        ? sunrise.subtract(const Duration(days: 1))
-        : sunrise;
+    final DateTime anchoredSunrise;
+    if (data.latitude != null &&
+        data.longitude != null &&
+        data.utcOffset != null) {
+      anchoredSunrise =
+          SwaraClock.anchorSunriseForLocation(
+            time: now,
+            latitude: data.latitude!,
+            longitude: data.longitude!,
+            utcOffset: data.utcOffset!,
+          ) ??
+          (now.isBefore(sunrise)
+              ? sunrise.subtract(const Duration(days: 1))
+              : sunrise);
+    } else {
+      anchoredSunrise = now.isBefore(sunrise)
+          ? sunrise.subtract(const Duration(days: 1))
+          : sunrise;
+    }
 
     final paksha =
         data.lunarPhase ?? LunarPhaseCalculator.phaseForDate(anchoredSunrise);
