@@ -14,16 +14,21 @@ v1.12.1 manual run ~1h48m. All implementation lands in `vteial/saranidhi-e2e`.
 
 ## §0 — Prerequisite (gated first step): create the repo
 
-`vteial/saranidhi-e2e` **does not exist yet** (verified 404 at `/sprint-start`). Before any code:
+**✅ RESOLVED at `/sprint-start`+1:** `vteial/saranidhi-e2e` now exists — owner created it
+(**private**, `main` default branch, empty). §0 is satisfied; Antigravity may scaffold into it.
 
-- **Owner creates** `vteial/saranidhi-e2e` (public, matching `vteial/saranidhi`'s visibility so
-  Playwright can reach the public preview; MIT/no-license per owner preference), **or** explicitly
-  authorizes Kiro Web to create it via `gh`. **Kiro does not create repos without an explicit go.**
-- Confirm the repo is empty (README-only is fine) so the scaffold can be the first real commit.
+- **Private is fine for the harness.** The E2E *code* need not be public; what must be reachable is
+  the **Vercel preview URL**, which is reached via `VERCEL_AUTOMATION_BYPASS_SECRET` (the same bypass
+  the manual smoke uses). Repo visibility does not affect that. (Original spec said "public, to
+  match" — corrected: private is acceptable.)
+- Repo is **empty** → the scaffold is the first real commit.
 - **Secret handling:** the Vercel bypass secret is read from an **env var / repo Actions secret**
   (`VERCEL_AUTOMATION_BYPASS_SECRET`), **never committed**. Add `.env` to `.gitignore` in the scaffold.
+- **CI note for a private repo:** GitHub Actions minutes on a private repo are metered — keep the
+  workflow `workflow_dispatch` (on-demand) as specced (not on every push), which also honors the
+  "off the Flutter PR path" rule.
 
-> Until §0 is satisfied, the sprint is blocked. Antigravity must not scaffold into `vteial/saranidhi`.
+> Antigravity must scaffold into **`vteial/saranidhi-e2e`**, never into `vteial/saranidhi`.
 
 ---
 
