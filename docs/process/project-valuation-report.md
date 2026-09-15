@@ -20,11 +20,11 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
-**Sprints Delivered:** 40 (Sprints 1–44, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
-**Total Engineering Investment:** **~143.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
-**Production Web Release:** **v1.12.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.12.0-web`, Sprint 44 — ★ Practice Sync Phase 0: owner-stamped safe merge-import; preceding: v1.11.1-web Localization Defect Fixes, Sprint 43).
-**Automated Tests:** 649 (unit + widget + integration)
-**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** + **Swara Clock Engine (v1.11.0)** + **Localization fixes (v1.11.1)** + **Practice Sync Phase 0 (v1.12.0)** all shipped to production. v1.12.0 delivered the first cross-device data-portability step (locally-generated Practice ID + non-destructive union-merge + owner-identity guard), reframing the principle to *local-first with optional, user-owned sync*. Next queued: a **v1.12.1** fast-follow (onboarding import entry point + BUG-v1.12.0-01 refresh + export-filename Practice ID), the native **"Now" Surface**, and the **7-day Accuracy Calibration** (gated on owner data collection). Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
+**Sprints Delivered:** 41 (Sprints 1–45, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
+**Total Engineering Investment:** **~146.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
+**Production Web Release:** **v1.12.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.12.0-web`, Sprint 44 — ★ Practice Sync Phase 0: owner-stamped safe merge-import). **v1.12.1-web (Sprint 45 — Practice Sync polish) built, release pending.**
+**Automated Tests:** 661 (unit + widget + integration)
+**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** + **Swara Clock Engine (v1.11.0)** + **Localization fixes (v1.11.1)** + **Practice Sync Phase 0 (v1.12.0)** shipped to production; **Practice Sync polish (v1.12.1)** built and release-pending. v1.12.0 delivered the first cross-device data-portability step (locally-generated Practice ID + non-destructive union-merge + owner-identity guard), reframing the principle to *local-first with optional, user-owned sync*; v1.12.1 smooths new-device setup (import-before-onboarding entry point + BUG-v1.12.0-01 in-place refresh + export-filename Practice ID). Next queued: the native **"Now" Surface** and the **7-day Accuracy Calibration** (gated on owner data collection). Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
 
@@ -48,7 +48,8 @@
 | Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya (v1.11.0) | 42 | ~6.0 |
 | Sprint 43 — Localization Defect Fixes (v1.11.1) | 43 | ~2.0 |
 | Sprint 44 — ★ Practice Sync Phase 0: safe merge-import (v1.12.0) | 44 | ~6.0 |
-| **Subtotal** | | **~105.5** |
+| Sprint 45 — Practice Sync polish (v1.12.1) | 45 | ~3.0 |
+| **Subtotal** | | **~108.5** |
 
 ### Infrastructure, Release & Admin Ops (off-commit)
 
@@ -83,10 +84,10 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (sprint track) | ~105.5 |
+| Active coding & debugging (sprint track) | ~108.5 |
 | Infrastructure, release & admin ops | ~11.0 |
 | Research & knowledge engineering | ~26.5 |
-| **Total** | **~143.5** |
+| **Total** | **~146.5** |
 
 ---
 
@@ -141,6 +142,7 @@
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (v1.11.0) | #220 | ✅ 🚀 |
 | 43 | Localization Defect Fixes (v1.11.1) | #227 | ✅ 🚀 |
 | 44 | ★ Practice Sync Phase 0: safe merge-import (v1.12.0) | #236 | ✅ 🚀 |
+| 45 | Practice Sync polish (v1.12.1 — import entry point + refresh + filename) | #244 | ✅ |
 
 > 🚀 = shipped a production release. Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement
