@@ -316,6 +316,7 @@ class OnboardingNotifier extends Notifier<OnboardingState> {
         .insert(
           ProfilesCompanion.insert(
             id: id,
+            ownerId: Value(_uuid.v4()),
             displayName: Value(state.displayName),
             birthStarNakshatra: Value(state.selectedNakshatra),
             birthBird: Value(state.birthBird?.name),

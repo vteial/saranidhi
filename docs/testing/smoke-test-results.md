@@ -25,7 +25,8 @@ Each production release has a single smoke test file containing both the plan (s
 | v1.10.0-web | 2026-09-13 | Antigravity QA (PR preview) | 8 + regression eyeball | ✅ PASS | [v1.10.0](releases/v1.10.0/smoke-test.md) |
 | v1.10.1-web | _pending_ | Antigravity QA (PR preview) | 3 (slim — light patch) | ⏳ pending | [v1.10.1](releases/v1.10.1/smoke-test.md) |
 | v1.11.0-web | 2026-09-14 | Antigravity QA (PR preview) | 7 + regression eyeball | ✅ PASS | [v1.11.0](releases/v1.11.0/smoke-test.md) |
-| v1.11.1-web | _pending_ | Antigravity QA (PR preview) | 3 (slim — cosmetic l10n) + regression | ⏳ pending | [v1.11.1](releases/v1.11.1/smoke-test.md) |
+| v1.11.1-web | 2026-09-14 | Owner + Antigravity QA (PR preview) | 4 (slim — cosmetic l10n + width fit) + regression | ✅ PASS | [v1.11.1](releases/v1.11.1/smoke-test.md) |
+| v1.12.0-web | _pending_ | Owner (real cross-device) + Antigravity QA | 10 (full — migration + cross-device merge + owner guard + aggregate) + regression | ⏳ pending | [v1.12.0](releases/v1.12.0/smoke-test.md) |
 
 ## Process
 

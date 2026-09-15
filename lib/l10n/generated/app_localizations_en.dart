@@ -683,6 +683,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get importBreathSessions => 'Breath sessions';
 
   @override
+  String get importSomaticLogs => 'Somatic logs';
+
+  @override
   String get importWarning => 'This action cannot be undone.';
 
   @override
@@ -699,6 +702,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get importInvalidFile => 'Invalid export file';
+
+  @override
+  String get practiceId => 'Practice ID';
+
+  @override
+  String get copyPracticeId => 'Copy Practice ID';
+
+  @override
+  String get practiceIdCopied => 'Practice ID copied to clipboard';
+
+  @override
+  String get mergeFromFile => 'Merge from file';
+
+  @override
+  String get merging => 'Merging...';
+
+  @override
+  String get mergeConfirmTitle => 'Merge Practice Data?';
+
+  @override
+  String get mergeConfirmMessage =>
+      'New practice records will be safely added without deleting your local data.';
+
+  @override
+  String get mergeConfirmButton => 'Merge';
+
+  @override
+  String mergeSuccess(int count) {
+    return 'Merged $count new entries';
+  }
+
+  @override
+  String get restoreAllData => 'Restore (overwrite everything)';
+
+  @override
+  String get restoreConfirmTitle => 'Restore and Overwrite?';
+
+  @override
+  String get restoreConfirmMessage =>
+      'This will permanently replace ALL existing data on this device with the contents of this file. This action cannot be undone.';
+
+  @override
+  String get restoreConfirmButton => 'Restore and Overwrite';
+
+  @override
+  String get restoreSuccess => 'Data restored successfully';
+
+  @override
+  String get practiceIdMismatchTitle => 'Practice ID Mismatch';
+
+  @override
+  String practiceIdMismatchMessage(String localId, String fileId) {
+    return 'This backup belongs to a different Practice ID. To protect your data, merging is disabled.\n\nYour Practice ID: $localId\nBackup Practice ID: $fileId\n\nYou can Cancel, or use Restore to overwrite all local data with this backup.';
+  }
+
+  @override
+  String get legacyBackupWarningTitle => 'Older Backup Format';
+
+  @override
+  String get legacyBackupWarningMessage =>
+      'This older backup has no Practice ID. If you continue merging, it will be treated as yours.';
+
+  @override
+  String get continueMerge => 'Continue Merge';
+
+  @override
+  String get practiceIdMatches => 'Matches this device';
+
+  @override
+  String get practiceIdAdopting => 'New device: adopting Practice ID';
 
   @override
   String get analyticsTitle => 'Analytics';

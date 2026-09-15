@@ -2,7 +2,7 @@
 
 # Saranidhi — Project Evaluation Report
 
-> **Reviewed:** v1.11.0-web · **Next review:** every `/sprint-update` (defects + test baseline).
+> **Reviewed:** v1.11.1-web · **Next review:** every `/sprint-update` (defects + test baseline).
 
 ## 1. Executive Architecture Summary
 
@@ -71,7 +71,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total automated tests | 632 (as of Sprint 43) |
+| Total automated tests | 649 (as of Sprint 44) |
 | Pass rate | 100% on CI (macOS local shows 4 known CloudKit-platform failures that pass on Ubuntu) |
 | Static analysis | `dart analyze --fatal-infos` — zero issues |
 | CI enforcement | GitHub Actions two-tier (fast on PRs; full tests + coverage + integration on PRs to `main` and on merge) |
@@ -100,11 +100,14 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 41 | +10 (Analytics tidy: `generateCsv` unit 4, Settings CSV-button widget 3, Analytics EN/TA locale 2, l10n getter/parity) | 615 |
 | Sprint 42 | +13 (`SwaraClock` unit 12 — 7 weekday seeds incl. Thu paksha split, 1h/2h inception, §3.5 hourly-progression oracle, day/night + pre-dawn cross-midnight, sunrise anchoring, `blockAt` countdown; + alignment/oracle/nostril-card pre-dawn-location regression tests) | 628 |
 | Sprint 43 | +4 (l10n defect fixes: `about_card_test` EN+TA Developer-name/copyright 2, `analytics_calculator_test` int-weekday best/worst + empty-null 2; + extended `analytics_screen_l10n_test` with EN/TA weekday assertions + updated readiness-citation assertions) | 632 |
+| Sprint 44 | +17 (Practice Sync Phase 0: `schema_migration_v6_to_v7_test` 3 [upgrade+backfill / fresh / idempotent], `database_exporter_test` 11 [export+validation, owner-guard match/mismatch-0-mutations/empty-adopts/legacy, union-merge idempotency, restore-destructive, aggregate-after-merge], `owner_identity_service_test` 3) | 649 |
 
 ### Resolved Defects
 
 | Issue | Root Cause | Resolution | Sprint |
 |-------|-----------|------------|--------|
+| **Destructive data-import hazard (cross-device / cross-user)** | The only cross-device path, Settings → Import JSON (`DatabaseExporter.importFromBytes`), **deleted every table then re-inserted** — with **no owner-identity guard**. Importing another device's file wiped local data; importing another person's file replaced the profile + mixed their practice data in. Surfaced by the owner's real multi-device practice need (data split across iPad/iPhone/MBP/iMac with no aggregate). | Added a locally-generated `ownerId` (guarded schema v6→v7 migration + backfill); replaced the destructive import with a **non-destructive union-merge by UUID** (`mergeFromBytes`, idempotent, never deletes); added an **owner-identity guard** that **refuses a mismatched-owner merge with 0 DB mutations** (proven by test). Old destructive path retained as an explicit "Restore (overwrite)". | Sprint 44 (PR #236) |
+| **Stale `AppConstants.schemaVersion` (4) vs real DB schema (6→7)** | `AppConstants.schemaVersion` was frozen at `4` while the Drift DB had advanced to 6; exports stamped the wrong schema, and `DatabaseExporter.validateExportData` rejected `schemaVersion > 4` ("update the app") — which would have rejected valid current-app export files. Latent; surfaced while building Phase-0 export stamping. | Set `AppConstants.schemaVersion` to the real value (7) + `exportVersion` 1→2; rewired `validateExportData` to compare dynamically against `AppConstants.*` (accept current, reject only genuinely-newer). | Sprint 44 (PR #236) |
 | **BUG-v1.11.1-01 — About-card Developer name not localized** | Tamil mode showed the hardcoded Latin `Eialarasu` in the Developer row (`about_card.dart:87` `value: 'Eialarasu'`) while the copyright line already localized the name to `இயலரசு` — the same name rendered two ways. The recurring "value-not-localized while label is" miss. Owner-found. | Added ARB key `aboutDeveloperName` (EN `Eialarasu` / TA `இயலரசு`); Developer row uses `l10n.aboutDeveloperName`. Email + website left as literal identifiers. | Sprint 43 (PR #227) |
 | **BUG-v1.11.1-02 — Best Times card yama prefix not localized** | The Home "Best Times This Week" card hardcoded `'Y${entry.yamaNumber}'` (`best_times_card.dart:183`), so Tamil showed `Y1` while the Analytics screen already used the localized `yamaShortPrefix` (`யா`). Same class as -01. Owner-found; folded into S43 mid-review. | Swapped to `'${l10n.yamaShortPrefix}${entry.yamaNumber}'` (`l10n` already in scope). Repo-wide grep confirmed no other hardcoded yama badges. | Sprint 43 (PR #227) |
 | **BUG-v1.10.1-01 — Monthly Patterns day-name value unlocalized** | In Tamil the label was localized (`சிறந்த நாள்`) but the value rendered the English day name (`Sunday`, not `ஞாயிறு`). Root cause: `AnalyticsCalculator._weekdayName()` returned hardcoded English day strings, stored on `patterns.bestDay`/`worstDay` and rendered raw. Pre-existing debt shipped as a known defect in v1.10.1. | `MonthlyPatterns` now carries `int? bestDayWeekday`/`worstDayWeekday`; `_weekdayName()` deleted; widget localizes via `DateFormat.EEEE(locale)`; the "hide Needs Attention when same as Best Day" guard now compares ints. Localized-weekday tests added. | Sprint 43 (PR #227) |

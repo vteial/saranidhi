@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:saranidhi/database/migration_helpers.dart';
 import 'package:saranidhi/database/tables.dart';
+import 'package:uuid/uuid.dart';
 
 part 'app_database.g.dart';
 
@@ -28,7 +29,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 6;
+  int get schemaVersion => 7;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -75,6 +76,21 @@ class AppDatabase extends _$AppDatabase {
           'was_forced_shift',
         )) {
           await m.addColumn(saraKalaiJournal, saraKalaiJournal.wasForcedShift);
+        }
+      }
+      if (from < 7) {
+        // Sprint 44: Practice Sync Phase 0 — owner identity for safe merge.
+        if (!await columnExists(this, 'profiles', 'owner_id')) {
+          await m.addColumn(profiles, profiles.ownerId);
+        }
+        // Backfill: any profile without an ownerId gets a fresh UUID v4.
+        final rows = await select(profiles).get();
+        for (final p in rows) {
+          if (p.ownerId == null || p.ownerId!.isEmpty) {
+            await (update(profiles)..where((t) => t.id.equals(p.id))).write(
+              ProfilesCompanion(ownerId: Value(const Uuid().v4())),
+            );
+          }
         }
       }
     },

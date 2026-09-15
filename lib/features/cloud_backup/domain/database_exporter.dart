@@ -4,6 +4,7 @@ import 'package:drift/drift.dart';
 import 'package:saranidhi/core/utils/app_constants.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 /// SharedPreferences keys exported as part of a full data export.
 const _exportedPrefKeys = [
@@ -18,22 +19,103 @@ const _exportedPrefKeys = [
   'onboarding_complete',
 ];
 
-/// Handles exporting and importing the database as encrypted bytes.
+/// Status of comparing local Practice ID against a backup file's Practice ID.
+enum OwnerGuardStatus {
+  /// Both local device and backup file have matching Practice IDs.
+  match,
+
+  /// Local profile has not been created or is empty; safe to adopt backup Practice ID.
+  emptyLocal,
+
+  /// Backup file has no Practice ID (legacy v1 export); user confirmation required.
+  legacyNoOwnerId,
+
+  /// Local and backup Practice IDs are both present and differ. Merging refused!
+  mismatch,
+}
+
+/// Result of evaluating the owner guard.
+class OwnerGuardCheck {
+  const OwnerGuardCheck({
+    required this.status,
+    this.localOwnerId,
+    this.fileOwnerId,
+  });
+
+  final OwnerGuardStatus status;
+  final String? localOwnerId;
+  final String? fileOwnerId;
+
+  bool get isMatch => status == OwnerGuardStatus.match;
+  bool get isEmptyLocal => status == OwnerGuardStatus.emptyLocal;
+  bool get isLegacy => status == OwnerGuardStatus.legacyNoOwnerId;
+  bool get isMismatch => status == OwnerGuardStatus.mismatch;
+}
+
+/// Thrown when attempting to merge a backup with a different Practice ID.
+class OwnerMismatchException implements Exception {
+  const OwnerMismatchException({
+    required this.localOwnerId,
+    required this.fileOwnerId,
+  });
+
+  final String localOwnerId;
+  final String fileOwnerId;
+
+  @override
+  String toString() =>
+      'OwnerMismatchException: Local Practice ID ($localOwnerId) does not match '
+      'backup Practice ID ($fileOwnerId). Merging is refused to protect user practice data.';
+}
+
+/// Thrown when attempting to merge a legacy backup without Practice ID when allowLegacy is false.
+class LegacyBackupException implements Exception {
+  const LegacyBackupException();
+
+  @override
+  String toString() =>
+      'LegacyBackupException: Backup file lacks a Practice ID (exportVersion 1). '
+      'Explicit user confirmation is required before merging.';
+}
+
+/// Summary of records merged into the local database.
+class MergeResult {
+  const MergeResult({
+    required this.insertedJournal,
+    required this.insertedSessions,
+    required this.insertedBirds,
+    required this.insertedPrasanam,
+    required this.insertedSomatic,
+    required this.adoptedProfile,
+  });
+
+  final int insertedJournal;
+  final int insertedSessions;
+  final int insertedBirds;
+  final int insertedPrasanam;
+  final int insertedSomatic;
+  final bool adoptedProfile;
+
+  int get totalInserted =>
+      insertedJournal +
+      insertedSessions +
+      insertedBirds +
+      insertedPrasanam +
+      insertedSomatic;
+}
+
+/// Handles exporting and importing/merging the database.
 ///
-/// The export format is a JSON representation of all tables plus
-/// user preferences, encoded to UTF-8 bytes. In production, these bytes
-/// would be encrypted before upload (encryption layer to be added
-/// with a user-derived key in a future sprint).
+/// Supports two import paths:
+/// 1. [mergeFromBytes]: Non-destructive union merge by UUID with owner-identity guard.
+/// 2. [restoreFromBytes]: Explicit destructive overwrite replacing all local data.
 class DatabaseExporter {
   DatabaseExporter(this._db);
 
   final AppDatabase _db;
+  static const _uuid = Uuid();
 
-  /// Exports all database tables and user preferences to a JSON-encoded
-  /// byte array.
-  ///
-  /// Returns the raw bytes ready for encryption and upload, or for
-  /// direct file download/share.
+  /// Exports all database tables and user preferences to a JSON-encoded byte array.
   Future<Uint8List> exportToBytes() async {
     // Export all tables as lists of maps
     final profiles = await _db.select(_db.profiles).get();
@@ -41,20 +123,26 @@ class DatabaseExporter {
     final sessions = await _db.select(_db.breathSessions).get();
     final birds = await _db.select(_db.birdLibrary).get();
     final prasanam = await _db.select(_db.prasanamHistory).get();
+    final somatic = await _db.select(_db.somaticInterventionLogs).get();
 
     // Export user preferences from SharedPreferences
     final preferences = await _exportPreferences();
+
+    // Top-level envelope carries primary profile's ownerId for fast inspection
+    final primaryOwnerId = profiles.isNotEmpty ? profiles.first.ownerId : null;
 
     final exportData = <String, dynamic>{
       'version': AppConstants.exportVersion,
       'appVersion': AppConstants.appVersion,
       'schemaVersion': AppConstants.schemaVersion,
       'exportedAt': DateTime.now().toIso8601String(),
+      'ownerId': primaryOwnerId,
       'profiles': profiles.map(_profileToMap).toList(),
       'journal': journal.map(_journalToMap).toList(),
       'sessions': sessions.map(_sessionToMap).toList(),
       'birds': birds.map(_birdToMap).toList(),
       'prasanam': prasanam.map(_prasanamToMap).toList(),
+      'somatic': somatic.map(_somaticToMap).toList(),
       'preferences': preferences,
     };
 
@@ -62,31 +150,187 @@ class DatabaseExporter {
     return Uint8List.fromList(utf8.encode(jsonStr));
   }
 
-  /// Exports all data as a formatted JSON string (for human-readable
-  /// file download).
+  /// Exports all data as a formatted JSON string (for human-readable file download).
   Future<String> exportToJsonString() async {
     final bytes = await exportToBytes();
     final jsonStr = utf8.decode(bytes);
-    // Re-encode with indentation for readability
     final data = jsonDecode(jsonStr);
     return const JsonEncoder.withIndent('  ').convert(data);
   }
 
-  /// Imports data from a JSON-encoded byte array into the database.
+  /// Evaluates whether [data] can be safely merged into the local database.
+  Future<OwnerGuardCheck> checkOwnerGuard(Map<String, dynamic> data) async {
+    final profiles = await _db.select(_db.profiles).get();
+    if (profiles.isEmpty) {
+      final fileOwnerId = _extractOwnerId(data);
+      return OwnerGuardCheck(
+        status: OwnerGuardStatus.emptyLocal,
+        fileOwnerId: fileOwnerId,
+      );
+    }
+
+    final localProfile = profiles.first;
+    var localOwnerId = localProfile.ownerId;
+    if (localOwnerId == null || localOwnerId.isEmpty) {
+      // Ensure on-check safety net
+      final newId = _uuid.v4();
+      await (_db.update(_db.profiles)
+            ..where((t) => t.id.equals(localProfile.id)))
+          .write(ProfilesCompanion(ownerId: Value(newId)));
+      localOwnerId = newId;
+    }
+
+    final fileOwnerId = _extractOwnerId(data);
+    if (fileOwnerId == null || fileOwnerId.isEmpty) {
+      return OwnerGuardCheck(
+        status: OwnerGuardStatus.legacyNoOwnerId,
+        localOwnerId: localOwnerId,
+      );
+    }
+
+    if (fileOwnerId == localOwnerId) {
+      return OwnerGuardCheck(
+        status: OwnerGuardStatus.match,
+        localOwnerId: localOwnerId,
+        fileOwnerId: fileOwnerId,
+      );
+    }
+
+    return OwnerGuardCheck(
+      status: OwnerGuardStatus.mismatch,
+      localOwnerId: localOwnerId,
+      fileOwnerId: fileOwnerId,
+    );
+  }
+
+  /// Safely merges event records from [bytes] into the local database.
   ///
-  /// This replaces all existing data (destructive import).
-  /// Also restores user preferences from the export.
-  Future<void> importFromBytes(Uint8List bytes) async {
+  /// - Non-destructive: never deletes existing records.
+  /// - Union by UUID: inserts only records whose `id` is not present locally.
+  /// - Idempotent: re-merging inserts 0 duplicates.
+  /// - Profile: if local profile is empty (fresh device), adopts the imported
+  ///   profile and its `ownerId`. If local profile exists, preserves local profile.
+  /// - Preferences: preserves local preferences.
+  /// - Owner Guard:
+  ///   - If Practice ID matches: merges.
+  ///   - If local is empty: adopts Practice ID and merges.
+  ///   - If Practice ID mismatches: throws [OwnerMismatchException], 0 DB mutations.
+  ///   - If legacy file (no Practice ID): requires [allowLegacy] = true, else throws [LegacyBackupException].
+  Future<MergeResult> mergeFromBytes(
+    Uint8List bytes, {
+    bool allowLegacy = false,
+  }) async {
+    final validationError = validateExportData(bytes);
+    if (validationError != null) {
+      throw FormatException(validationError);
+    }
+
     final jsonStr = utf8.decode(bytes);
     final data = jsonDecode(jsonStr) as Map<String, dynamic>;
 
-    // Validate version
-    final version = data['version'] as int?;
-    if (version == null || version > 1) {
-      throw FormatException('Unsupported backup version: $version');
+    final guardCheck = await checkOwnerGuard(data);
+    if (guardCheck.status == OwnerGuardStatus.mismatch) {
+      throw OwnerMismatchException(
+        localOwnerId: guardCheck.localOwnerId ?? '',
+        fileOwnerId: guardCheck.fileOwnerId ?? '',
+      );
     }
 
+    if (guardCheck.status == OwnerGuardStatus.legacyNoOwnerId && !allowLegacy) {
+      throw const LegacyBackupException();
+    }
+
+    var adoptedProfile = false;
+    final localProfiles = await _db.select(_db.profiles).get();
+    if (localProfiles.isEmpty) {
+      final profilesList = data['profiles'] as List<dynamic>? ?? [];
+      if (profilesList.isNotEmpty) {
+        final map = profilesList.first as Map<String, dynamic>;
+        final ownerId =
+            map['ownerId'] as String? ??
+            data['ownerId'] as String? ??
+            _uuid.v4();
+        await _db
+            .into(_db.profiles)
+            .insert(
+              ProfilesCompanion.insert(
+                id: map['id'] as String,
+                ownerId: Value(ownerId),
+                displayName: Value(map['displayName'] as String? ?? ''),
+                birthStarNakshatra: Value(map['birthStarNakshatra'] as String?),
+                birthBird: Value(map['birthBird'] as String?),
+                locationLat: Value(map['locationLat'] as double?),
+                locationLng: Value(map['locationLng'] as double?),
+                birthDateEpoch: Value(map['birthDateEpoch'] as int?),
+                birthTime: Value(map['birthTime'] as String?),
+                birthPlaceName: Value(map['birthPlaceName'] as String?),
+                birthPlaceLat: Value(map['birthPlaceLat'] as double?),
+                birthPlaceLng: Value(map['birthPlaceLng'] as double?),
+                theme: Value(map['theme'] as String? ?? 'light'),
+                language: Value(map['language'] as String? ?? 'en'),
+                storageMode: Value(map['storageMode'] as String? ?? 'local'),
+                notifyRuling: Value(map['notifyRuling'] as bool? ?? true),
+                notifyEating: Value(map['notifyEating'] as bool? ?? false),
+                lastAiNote: Value(map['lastAiNote'] as String?),
+                lastAiNoteDate: Value(map['lastAiNoteDate'] as String?),
+                createdAt:
+                    map['createdAt'] as int? ??
+                    DateTime.now().millisecondsSinceEpoch,
+                updatedAt:
+                    map['updatedAt'] as int? ??
+                    DateTime.now().millisecondsSinceEpoch,
+              ),
+            );
+        adoptedProfile = true;
+      }
+
+      final preferences = data['preferences'] as Map<String, dynamic>?;
+      if (preferences != null) {
+        await _importPreferences(preferences);
+      }
+    }
+
+    // Union merge event tables by UUID
+    final insertedJournal = await _mergeJournal(
+      data['journal'] as List<dynamic>?,
+    );
+    final insertedSessions = await _mergeSessions(
+      data['sessions'] as List<dynamic>?,
+    );
+    final insertedBirds = await _mergeBirds(data['birds'] as List<dynamic>?);
+    final insertedPrasanam = await _mergePrasanam(
+      data['prasanam'] as List<dynamic>?,
+    );
+    final insertedSomatic = await _mergeSomatic(
+      data['somatic'] as List<dynamic>? ??
+          data['somaticInterventions'] as List<dynamic>?,
+    );
+
+    return MergeResult(
+      insertedJournal: insertedJournal,
+      insertedSessions: insertedSessions,
+      insertedBirds: insertedBirds,
+      insertedPrasanam: insertedPrasanam,
+      insertedSomatic: insertedSomatic,
+      adoptedProfile: adoptedProfile,
+    );
+  }
+
+  /// Imports data from a JSON-encoded byte array into the database.
+  ///
+  /// This replaces all existing data (destructive overwrite).
+  /// Also restores user preferences from the export.
+  Future<void> restoreFromBytes(Uint8List bytes) async {
+    final validationError = validateExportData(bytes);
+    if (validationError != null) {
+      throw FormatException(validationError);
+    }
+
+    final jsonStr = utf8.decode(bytes);
+    final data = jsonDecode(jsonStr) as Map<String, dynamic>;
+
     // Clear existing data
+    await _db.delete(_db.somaticInterventionLogs).go();
     await _db.delete(_db.saraKalaiJournal).go();
     await _db.delete(_db.breathSessions).go();
     await _db.delete(_db.birdLibrary).go();
@@ -97,11 +341,14 @@ class DatabaseExporter {
     final profilesList = data['profiles'] as List<dynamic>? ?? [];
     for (final p in profilesList) {
       final map = p as Map<String, dynamic>;
+      final ownerId =
+          map['ownerId'] as String? ?? data['ownerId'] as String? ?? _uuid.v4();
       await _db
           .into(_db.profiles)
           .insert(
             ProfilesCompanion.insert(
               id: map['id'] as String,
+              ownerId: Value(ownerId),
               displayName: Value(map['displayName'] as String? ?? ''),
               birthStarNakshatra: Value(map['birthStarNakshatra'] as String?),
               birthBird: Value(map['birthBird'] as String?),
@@ -119,8 +366,12 @@ class DatabaseExporter {
               notifyEating: Value(map['notifyEating'] as bool? ?? false),
               lastAiNote: Value(map['lastAiNote'] as String?),
               lastAiNoteDate: Value(map['lastAiNoteDate'] as String?),
-              createdAt: map['createdAt'] as int,
-              updatedAt: map['updatedAt'] as int,
+              createdAt:
+                  map['createdAt'] as int? ??
+                  DateTime.now().millisecondsSinceEpoch,
+              updatedAt:
+                  map['updatedAt'] as int? ??
+                  DateTime.now().millisecondsSinceEpoch,
             ),
           );
     }
@@ -219,12 +470,39 @@ class DatabaseExporter {
           );
     }
 
+    // Import Somatic logs
+    final somaticList =
+        (data['somatic'] as List<dynamic>?) ??
+        (data['somaticInterventions'] as List<dynamic>?);
+    if (somaticList != null) {
+      for (final sm in somaticList) {
+        final map = sm as Map<String, dynamic>;
+        await _db
+            .into(_db.somaticInterventionLogs)
+            .insert(
+              SomaticInterventionLogsCompanion.insert(
+                id: map['id'] as String,
+                timestamp: map['timestamp'] as int,
+                protocolType: map['protocolType'] as String,
+                targetFlow: map['targetFlow'] as String,
+                initialFlow: map['initialFlow'] as String,
+                resolvedFlow: Value(map['resolvedFlow'] as String?),
+                isSuccess: Value(map['isSuccess'] as bool? ?? false),
+                durationSeconds: map['durationSeconds'] as int,
+              ),
+            );
+      }
+    }
+
     // Import preferences
     final preferences = data['preferences'] as Map<String, dynamic>?;
     if (preferences != null) {
       await _importPreferences(preferences);
     }
   }
+
+  /// Backward-compatible alias for [restoreFromBytes].
+  Future<void> importFromBytes(Uint8List bytes) => restoreFromBytes(bytes);
 
   /// Returns the size in bytes of the export.
   Future<int> estimateExportSize() async {
@@ -242,11 +520,13 @@ class DatabaseExporter {
 
       final version = data['version'] as int?;
       if (version == null) return 'Missing version field';
-      if (version > 1) return 'Unsupported version: $version';
+      if (version > AppConstants.exportVersion) {
+        return 'Unsupported version: $version';
+      }
 
-      // Check schema version compatibility (Sprint 32)
+      // Check schema version compatibility (Sprint 32 + Sprint 44 ceiling fix)
       final schemaVersion = data['schemaVersion'] as int?;
-      if (schemaVersion != null && schemaVersion > 4) {
+      if (schemaVersion != null && schemaVersion > AppConstants.schemaVersion) {
         return 'Exported from a newer app version (schema $schemaVersion). '
             'Please update the app before importing.';
       }
@@ -265,9 +545,11 @@ class DatabaseExporter {
   }
 
   /// Returns a summary of data in an export file without importing it.
-  static Map<String, int> summarizeExportData(Uint8List bytes) {
+  static Map<String, dynamic> summarizeExportData(Uint8List bytes) {
     final jsonStr = utf8.decode(bytes);
     final data = jsonDecode(jsonStr) as Map<String, dynamic>;
+
+    final ownerId = _extractOwnerId(data);
 
     return {
       'profiles': (data['profiles'] as List?)?.length ?? 0,
@@ -275,7 +557,218 @@ class DatabaseExporter {
       'sessions': (data['sessions'] as List?)?.length ?? 0,
       'birds': (data['birds'] as List?)?.length ?? 0,
       'prasanam': (data['prasanam'] as List?)?.length ?? 0,
+      'somatic':
+          (data['somatic'] as List?)?.length ??
+          (data['somaticInterventions'] as List?)?.length ??
+          0,
+      'ownerId': ownerId,
+      'version': data['version'],
+      'schemaVersion': data['schemaVersion'],
+      'exportedAt': data['exportedAt'],
     };
+  }
+
+  static String? _extractOwnerId(Map<String, dynamic> data) {
+    var fileOwnerId = data['ownerId'] as String?;
+    if (fileOwnerId == null || fileOwnerId.isEmpty) {
+      final profilesList = data['profiles'] as List<dynamic>?;
+      if (profilesList != null && profilesList.isNotEmpty) {
+        final p = profilesList.first as Map<String, dynamic>;
+        fileOwnerId = p['ownerId'] as String?;
+      }
+    }
+    return fileOwnerId;
+  }
+
+  // ─── Table union-merging helpers ───────────────────────────────────────
+
+  Future<int> _mergeJournal(List<dynamic>? list) async {
+    if (list == null || list.isEmpty) return 0;
+    final existingIds =
+        (await (_db.selectOnly(
+              _db.saraKalaiJournal,
+            )..addColumns([_db.saraKalaiJournal.id])).get())
+            .map((row) => row.read(_db.saraKalaiJournal.id)!)
+            .toSet();
+
+    var inserted = 0;
+    for (final item in list) {
+      final map = item as Map<String, dynamic>;
+      final id = map['id'] as String;
+      if (existingIds.contains(id)) continue;
+
+      await _db
+          .into(_db.saraKalaiJournal)
+          .insert(
+            SaraKalaiJournalCompanion.insert(
+              id: id,
+              timestamp: map['timestamp'] as int,
+              expectedFlow: map['expectedFlow'] as String,
+              actualFlow: map['actualFlow'] as String,
+              isAligned: map['isAligned'] as bool,
+              nostril: map['nostril'] as String,
+              inhaleDurationMs: Value(map['inhaleDurationMs'] as int?),
+              holdDurationMs: Value(map['holdDurationMs'] as int?),
+              exhaleDurationMs: Value(map['exhaleDurationMs'] as int?),
+              activeYama: Value(map['activeYama'] as String?),
+              activeBird: Value(map['activeBird'] as String?),
+              activeBirdState: Value(map['activeBirdState'] as String?),
+              activeElement: Value(map['activeElement'] as String?),
+              notes: Value(map['notes'] as String?),
+              isPinned: Value(map['isPinned'] as bool? ?? false),
+              wasForcedShift: Value(map['wasForcedShift'] as bool? ?? false),
+            ),
+          );
+      existingIds.add(id);
+      inserted++;
+    }
+    return inserted;
+  }
+
+  Future<int> _mergeSessions(List<dynamic>? list) async {
+    if (list == null || list.isEmpty) return 0;
+    final existingIds =
+        (await (_db.selectOnly(
+              _db.breathSessions,
+            )..addColumns([_db.breathSessions.id])).get())
+            .map((row) => row.read(_db.breathSessions.id)!)
+            .toSet();
+
+    var inserted = 0;
+    for (final item in list) {
+      final map = item as Map<String, dynamic>;
+      final id = map['id'] as String;
+      if (existingIds.contains(id)) continue;
+
+      await _db
+          .into(_db.breathSessions)
+          .insert(
+            BreathSessionsCompanion.insert(
+              id: id,
+              timestamp: map['timestamp'] as int,
+              totalDurationMs: map['totalDurationMs'] as int,
+              nostril: map['nostril'] as String,
+              inhaleLengthMs: map['inhaleLengthMs'] as int,
+              holdAfterInhaleMs: map['holdAfterInhaleMs'] as int,
+              exhaleLengthMs: map['exhaleLengthMs'] as int,
+              holdAfterExhaleMs: map['holdAfterExhaleMs'] as int,
+              completedCycles: map['completedCycles'] as int,
+              mood: Value(map['mood'] as String?),
+              consciousnessRating: Value(map['consciousnessRating'] as int?),
+              notes: Value(map['notes'] as String?),
+            ),
+          );
+      existingIds.add(id);
+      inserted++;
+    }
+    return inserted;
+  }
+
+  Future<int> _mergeBirds(List<dynamic>? list) async {
+    if (list == null || list.isEmpty) return 0;
+    final existingIds =
+        (await (_db.selectOnly(
+              _db.birdLibrary,
+            )..addColumns([_db.birdLibrary.id])).get())
+            .map((row) => row.read(_db.birdLibrary.id)!)
+            .toSet();
+
+    var inserted = 0;
+    for (final item in list) {
+      final map = item as Map<String, dynamic>;
+      final id = map['id'] as String;
+      if (existingIds.contains(id)) continue;
+
+      await _db
+          .into(_db.birdLibrary)
+          .insert(
+            BirdLibraryCompanion.insert(
+              id: id,
+              birdName: map['birdName'] as String,
+              nakshatraGroup: map['nakshatraGroup'] as String,
+              favorited: Value(map['favorited'] as bool? ?? false),
+            ),
+          );
+      existingIds.add(id);
+      inserted++;
+    }
+    return inserted;
+  }
+
+  Future<int> _mergePrasanam(List<dynamic>? list) async {
+    if (list == null || list.isEmpty) return 0;
+    final existingIds =
+        (await (_db.selectOnly(
+              _db.prasanamHistory,
+            )..addColumns([_db.prasanamHistory.id])).get())
+            .map((row) => row.read(_db.prasanamHistory.id)!)
+            .toSet();
+
+    var inserted = 0;
+    for (final item in list) {
+      final map = item as Map<String, dynamic>;
+      final id = map['id'] as String;
+      if (existingIds.contains(id)) continue;
+
+      await _db
+          .into(_db.prasanamHistory)
+          .insert(
+            PrasanamHistoryCompanion.insert(
+              id: id,
+              timestamp: map['timestamp'] as int,
+              category: map['category'] as String,
+              queryText: Value(map['queryText'] as String? ?? ''),
+              score: map['score'] as int,
+              band: map['band'] as String,
+              guidanceEn: map['guidanceEn'] as String,
+              guidanceTa: map['guidanceTa'] as String,
+              isFloorLocked: Value(map['isFloorLocked'] as bool? ?? false),
+              swara: Value(map['swara'] as String?),
+              birdState: Value(map['birdState'] as String?),
+              actionWindow: Value(map['actionWindow'] as String?),
+              outcomeNotes: Value(map['outcomeNotes'] as String?),
+              outcomeTimestamp: Value(map['outcomeTimestamp'] as int?),
+            ),
+          );
+      existingIds.add(id);
+      inserted++;
+    }
+    return inserted;
+  }
+
+  Future<int> _mergeSomatic(List<dynamic>? list) async {
+    if (list == null || list.isEmpty) return 0;
+    final existingIds =
+        (await (_db.selectOnly(
+              _db.somaticInterventionLogs,
+            )..addColumns([_db.somaticInterventionLogs.id])).get())
+            .map((row) => row.read(_db.somaticInterventionLogs.id)!)
+            .toSet();
+
+    var inserted = 0;
+    for (final item in list) {
+      final map = item as Map<String, dynamic>;
+      final id = map['id'] as String;
+      if (existingIds.contains(id)) continue;
+
+      await _db
+          .into(_db.somaticInterventionLogs)
+          .insert(
+            SomaticInterventionLogsCompanion.insert(
+              id: id,
+              timestamp: map['timestamp'] as int,
+              protocolType: map['protocolType'] as String,
+              targetFlow: map['targetFlow'] as String,
+              initialFlow: map['initialFlow'] as String,
+              resolvedFlow: Value(map['resolvedFlow'] as String?),
+              isSuccess: Value(map['isSuccess'] as bool? ?? false),
+              durationSeconds: map['durationSeconds'] as int,
+            ),
+          );
+      existingIds.add(id);
+      inserted++;
+    }
+    return inserted;
   }
 
   // ─── Preferences export/import ───────────────────────────────────────
@@ -320,6 +813,7 @@ class DatabaseExporter {
 
   Map<String, dynamic> _profileToMap(Profile p) => {
     'id': p.id,
+    'ownerId': p.ownerId,
     'displayName': p.displayName,
     'birthStarNakshatra': p.birthStarNakshatra,
     'birthBird': p.birthBird,
@@ -397,5 +891,16 @@ class DatabaseExporter {
     'actionWindow': p.actionWindow,
     'outcomeNotes': p.outcomeNotes,
     'outcomeTimestamp': p.outcomeTimestamp,
+  };
+
+  Map<String, dynamic> _somaticToMap(SomaticInterventionLog s) => {
+    'id': s.id,
+    'timestamp': s.timestamp,
+    'protocolType': s.protocolType,
+    'targetFlow': s.targetFlow,
+    'initialFlow': s.initialFlow,
+    'resolvedFlow': s.resolvedFlow,
+    'isSuccess': s.isSuccess,
+    'durationSeconds': s.durationSeconds,
   };
 }

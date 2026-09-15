@@ -2,7 +2,7 @@
 
 # Saranidhi — Architecture Reference
 
-> **Reviewed:** v1.11.0-web · **Next review:** every release (or when infra/schema/patterns change).
+> **Reviewed:** v1.11.1-web · **Next review:** every release (or when infra/schema/patterns change).
 
 *The technical design of Saranidhi: how the product is built. For what it does
 and why, see [`docs/product/product-scope.md`](../product/product-scope.md).*
@@ -59,14 +59,17 @@ The onboarding offers dual paths — "I know my star" (nakshatra list → bird) 
 
 ### Local Database Schema (Drift/SQLite)
 
-**Current schema version: v5.** The `somatic_intervention_logs` table was added
-in Sprint 35 (confirmed in [`CHANGELOG.md`](../../CHANGELOG.md)); the v4→v5
-migration is idempotent and safe for both fresh installs and upgrades.
+**Current schema version: v7.**
+- v5 added `somatic_intervention_logs` (Sprint 35).
+- v6 added `was_forced_shift` to `sara_kalai_journal` (Sprint 38).
+- v7 added `owner_id` to `profiles` for Practice Sync Phase 0 (Sprint 44).
+All migrations are guarded and idempotent for both fresh installs and upgrades.
 
 #### `profiles` Table
 | Column | Type | Notes |
 |--------|------|-------|
 | id | TEXT (UUID) | Primary Key |
+| owner_id | TEXT (UUID) | Practice ID (owner identity for safe cross-device union merge) |
 | display_name | TEXT | User's chosen name |
 | birth_star_nakshatra | TEXT | Birth lunar mansion |
 | birth_bird | TEXT | Calculated: Vulture/Owl/Crow/Rooster/Peacock (permanent) |
@@ -157,6 +160,16 @@ Saranidhi is **local-first**: every platform defaults to on-device storage and w
 - **Where:** iOS → iCloud Documents container; Android/Web → Google Drive App Data folder (when the user opts in)
 - **When:** User-initiated + optional auto-backup (daily/weekly)
 - **Restore:** On new device install, sign in → detect backup → offer restore
+
+### Cross-Device Practice Sync (Phase 0 — Zero-Backend Portability)
+
+Introduced in Sprint 44 (v1.12.0), Practice Sync Phase 0 enables cross-device practice aggregation across an owner's fleet without servers or accounts:
+- **Practice ID (`owner_id`):** Generated locally on installation (UUID v4) and attached to the user's profile.
+- **Envelope Stamping:** Database exports (`exportVersion: 2`) carry `ownerId` in the top-level envelope and in profile maps.
+- **Non-Destructive Union Merge:** `DatabaseExporter.mergeFromBytes` unions all event tables (`sara_kalai_journal`, `breath_sessions`, `prasanam_history`, `somatic_intervention_logs`, `bird_library`) by UUID, skipping existing records and never deleting local rows.
+- **Identity Propagation:** When importing onto a fresh/unonboarded device, the device adopts the imported profile and its Practice ID, seamlessly binding subsequent exports across devices.
+- **Owner-Identity Guard:** Prevents contamination between different individuals. If an import file carries a mismatched `ownerId`, merging is strictly refused with zero database mutations.
+- **Deterministic Aggregates:** Streaks, 7/30-day trends, and journal-sourced hold-time personal-bests (`holdDurationMs`) automatically recompute across the unioned set.
 
 ### Deployment Targets
 

@@ -3,7 +3,7 @@
 
 # Saranidhi — Development Sprint Tracker
 
-> **Reviewed:** v1.11.0-web · **Next review:** every release (docs-audit gate).
+> **Reviewed:** v1.11.1-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
@@ -36,29 +36,28 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 40 | Chronobiology & Holistic Guidance | **v1.10.0** | ✅ 🚀 (PR #202) |
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
-| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ (PR #227) |
-| 44+ | Accuracy Calibration, native "Now" surface, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
+| 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ (PR #236) |
+| 45+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.11.0-web is now live in production (2026-09-14)** — Sprint 42, the
-> **★ Swara Clock Engine & Weekday Udhaya** correctness fix (feature PR #220 → /sprint-finish #221
-> → /sprint-update #222 → release-start PR #223 → main→prod promotion PR #224, tag `v1.11.0-web`
-> @ `prod`; smoke ✅ PASS 7/7 + regression, via the new QA-Verify pre-flight readiness gate). It
-> decouples the expected nostril from the 1.5h Panja Pakshi yama clock onto an independent
-> **1-hour / 24-cycle** swara clock (CONF-014), seeded at astronomical sunrise by the **Weekday
-> Udhaya** dawn rule (CONF-013 / CONF-001, incl. the Thursday paksha split); the Nostril Pattern
-> card now shows hourly blocks + ~1h countdown + a live night cycle; a latent "always-today"
-> alignment bug is fixed. Bird-state/yama engine unchanged (regression-gated). Preceding releases:
-> **v1.10.1-web** (Analytics tidy + Tamil l10n), **v1.10.0-web** (Chronobiology & Holistic
-> Guidance), **v1.9.0-web** (Aruḍam "Why?" accordion), **v1.8.0-web** (ambient "Aruḍam Now" card).
+> **Current state:** **v1.11.1-web is now live in production (2026-09-14)** — Sprint 43, a small
+> **Localization Defect Fixes** patch (feature PR #227 → /sprint-finish #229 → /sprint-update #230
+> → release-start PR #231 → main→prod promotion PR #233, tag `v1.11.1-web` @ `prod`; slim smoke
+> ✅ PASS 4/4 + regression). It fixes three Tamil "label localized but value not" gaps — the
+> About-card Developer name (`இயலரசு`), the Monthly-Patterns day names, and the yama badges on
+> Best Times + the Day/Night Schedule (`யா1`…`யா10`) — widens the columns so the longer Tamil
+> labels fit, and re-keys the `readiness` factor citation to CONF-014. The preceding feature
+> release **v1.11.0-web** (Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya) decoupled the
+> expected nostril onto the independent 1-hour / 24-cycle swara clock. Earlier: **v1.10.1** (Analytics
+> tidy), **v1.10.0** (Chronobiology), **v1.9.0** (Aruḍam "Why?"), **v1.8.0** (ambient "Aruḍam Now").
 > Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
 >
-> **Next: Sprint 43 — Localization Defect Fixes (v1.11.1)** — a small, tight bug-fix patch clearing
-> known l10n defects: the About-card Developer **name** not localized in Tamil (shows `Eialarasu`
-> while the copyright line already renders `இயலரசு`), the Monthly-Patterns **day-name value**
-> unlocalized (BUG-v1.10.1-01), plus the trivial `readiness`-factor citation fix
-> (CONF-016/017 → CONF-014). Then the **7-day Accuracy Calibration** (Saranidhi vs Align27 vs
-> Panchangam vs actual breath) — now **unblocked** by the Swara Clock fix, gated only on owner data
-> collection — followed by the native "Now" surface + remaining Integrated Aruḍam fast-follows.
+> **Next (to schedule via `/plan`):** the **7-day Accuracy Calibration** (Saranidhi vs Align27 vs
+> Panchangam vs actual breath) — unblocked by the Swara Clock fix, gated only on owner data
+> collection; the native **"Now" Surface** (ambient widget → watch → macOS); the **User Guide —
+> Book-Style Navigation & Search** epic (native Dart ToC + search, sequenced after the Now Surface);
+> and remaining Integrated Aruḍam fast-follows. Known small follow-up: **BUG-v1.11.1-03**
+> (`YamaSegment.label` unlocalized in the notification title + AI payload).
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -920,7 +919,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 43: Localization Defect Fixes (v1.11.1) — ✅ Complete (PR #227)
+## Sprint 43: Localization Defect Fixes (v1.11.1) — ✅ 🚀 Shipped (PR #227, v1.11.1-web)
 
 > **Dossier:** [`sprints/sprint-43-l10n-fixes/`](sprints/sprint-43-l10n-fixes/README.md) —
 > spec (Kiro Web) → implemented (Antigravity, local green) → reviewed (Kiro Web) → merged (PR #227).
@@ -951,6 +950,55 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [ ] **Valuation report** — Sprint 43 row (+20%) at `/sprint-update`.
 - [x] **Tracker updated** — status ✅.
 - [x] **User Guide** — `n/a` (no user-facing capability change — cosmetic l10n only).
+
+---
+
+## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — ✅ Complete (PR #236)
+
+> **Dossier:** [`sprints/sprint-44-practice-sync-p0/`](sprints/sprint-44-practice-sync-p0/README.md) —
+> spec authored (Kiro Web); Antigravity implementation complete; PR #236 open for Kiro Web review.
+>
+> **Scheduled via `/plan` (owner-confirmed).** Phase 0 of the **Practice Sync** epic — the
+> near-term, **zero-backend** win pulled ahead of the Now Surface because it directly affects the
+> owner's daily Sara Kalai practice (data split across iPad / iPhone SE / MBP / iMac with no
+> aggregate view). See the [Practice Sync epic](sprint-backlog.md#-practice-sync--cross-device-aggregate).
+>
+> **The problem:** the app is per-device local-first, so breath-session / hold-time data lives in
+> separate stores on each device — no aggregate streak / trend / personal-best. And today's
+> **JSON import is destructive** (`database_exporter.dart` l.77–94 deletes every table before
+> insert) with **no owner identity guard** — importing another device's (or another person's)
+> file wipes local data or silently mixes two people's practice. **This sprint makes the existing
+> manual export/import SAFE** so the owner can aggregate across their 4 devices today, with no
+> backend — and lays the owner-identity foundation Phase 1 auto-sync builds on.
+>
+> **Architecture note:** consciously reframes the principle from *local-first / zero-backend* to
+> **local-first WITH optional, user-owned data portability** — offline still works fully; this adds
+> a safe merge. No network, no account in Phase 0 (owner ID is locally generated). Grounds the
+> Phase-1 auto-sync epic.
+>
+> **Grounding facts (verified in code this session):** all tables use **UUID v4** `TextColumn id`
+> primary keys (`journal_repository.dart` `_uuid.v4()`), so session union-merge is **collision-free**
+> (insert rows whose ID isn't already present). Schema is **v6** → this adds a guarded migration to
+> **v7** for `ownerId`. `DatabaseExporter.importFromBytes` is the destructive path to replace.
+
+- [x] Task 44.1: **Locally-generated owner ID.** On first run (and as a guarded schema-v6→v7 migration for existing installs), generate a stable `ownerId` (UUID v4) and store it on the profile. No login. Surface it in Settings (read-only, labeled — e.g. "Practice ID"), so devices belonging to the same person can be recognized. Existing single profile is the home (`profiles` table).
+- [x] Task 44.2: **Stamp the export with `ownerId` + schema/app version.** Extend `DatabaseExporter.exportToBytes` JSON to carry `ownerId` (already carries schema + app version per the v1.2.x lesson). Backward-compatible read (older exports have no `ownerId` → treated as "unknown owner").
+- [x] Task 44.3: **MERGE import (replace the destructive import).** New non-destructive path: **union breath-sessions (and journal) by `id`** — insert only rows whose UUID isn't already local; never delete existing local rows. Idempotent (re-importing the same file is a no-op). Keep the old full-replace as an explicit, clearly-labeled "Restore (overwrite)" option distinct from "Merge".
+- [x] Task 44.4: **Owner-identity guard (the safety core).** On import, compare the file's `ownerId` to the local `ownerId`: **match → merge** silently; **mismatch → refuse the merge** with a clear dialog ("This backup belongs to a different Practice ID — merging is disabled to protect your data. Options: Cancel / Restore-overwrite as a new profile"). Legacy no-`ownerId` files → warn + require explicit confirm. This structurally prevents "sync with another person's data."
+- [x] Task 44.5: **Aggregate correctness after merge.** Confirm streak, 7/30-day trend, hold-time average, and personal-best recompute correctly over the unioned session set (they read the local DB, so this should follow — add a test that merging two disjoint session sets yields the correct aggregate).
+- [x] Task 44.6: **Bilingual (EN/TA)** for all new Settings copy (Practice ID label, Merge vs Restore buttons, the mismatch dialog).
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Code merged** — on `main` (PR #236, merge commit `dd26218`). _(owner merged)_
+- [x] **PR link** — [#236](https://github.com/vteial/saranidhi/pull/236) (local analyze & test green; CI green). Correctness-critical (schema migration + data-merge + identity guard) → Antigravity implemented with local green before PR; **Kiro Web reviewed the real diff and approved** (2 non-blocking notes: early pubspec bump; new-device "import-before-onboarding" identity-propagation guidance).
+- [x] **Migration gate** — guarded v6→v7 (column-exists check, per the Sprint 36 lesson); existing profiles get an `ownerId` on load without data loss; tested on an existing-profile upgrade path (not just fresh install).
+- [x] **Merge-safety tests** — union-by-id merge (disjoint sets → union; overlapping ids → idempotent no dup); owner-ID **mismatch refuses** merge; legacy no-ownerId file warns; aggregate (streak/trend/PB) correct post-merge.
+- [x] **Regression gate** — normal single-device use unchanged; the old overwrite/restore path still available (relabeled), not silently removed.
+- [x] **Docs updated** — User Guide (a short "Use Saranidhi on more than one device — export & merge" section — **this IS a real capability, so NOT `n/a`**) + calc/architecture note on the owner-id + merge model.
+- [ ] **Smoke test** — real cross-device flow: export from Device B → merge-import on Device A → aggregate view shows both devices' sessions; mismatch file is refused; EN/TA. _(at `/release-start v1.12.0`)_
+- [ ] **Valuation report** — Sprint 44 row (+20%) at `/sprint-update`.
+- [x] **Tracker updated** — status ✅.
+- [x] **User Guide** — real multi-device capability → refreshed (not `n/a`).
 
 ---
 

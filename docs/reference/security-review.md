@@ -2,7 +2,7 @@
 
 # Saranidhi — Security Review
 
-> **Reviewed:** v1.11.0-web · **Next review:** at a major (X) release or when the data/network boundary changes (v1.11.0 = Swara Clock Engine — a pure-Dart on-device calculation refactor of the expected-nostril prediction; no new data, network, storage, or permission surface; local-first unchanged).
+> **Reviewed:** v1.11.1-web · **Next review:** at a major (X) release or when the data/network boundary changes (v1.11.1 = Localization Defect Fixes — cosmetic Tamil l10n + a doc-only citation re-key; no data, network, storage, or permission surface; local-first unchanged).
 
 ## Architecture Security Assessment
 

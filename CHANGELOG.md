@@ -9,11 +9,30 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-> Sprint 43 — **Localization Defect Fixes** (targets v1.11.1-web). Merged to `main` via
-> PR #227; release pending.
+> Sprint 44 — **Practice Sync Phase 0: safe merge-import** (targets v1.12.0-web). Merged to
+> `main` via PR #236; release pending.
+
+### Added
+- **Use Saranidhi on more than one device.** Each install now has a **Practice ID** (shown in Settings) that ties your data together. You can **export** your data on one device and **Merge** it into another — your breath sessions, journal, and hold-time history combine into one aggregate view (streak, trends, personal-best now span all your devices). Merging is **non-destructive** (it only adds sessions you don't already have) and **idempotent** (re-merging the same file changes nothing).
+- **Safe by design.** A merge only combines data with the **same Practice ID**. Importing a file from a *different* Practice ID is refused (to protect your data), so you can never accidentally mix another person's practice into yours.
+
+### Changed
+- The old "import" (which **replaced** all local data) is now a separate, clearly-labeled **"Restore (overwrite)"** option — distinct from the new safe **Merge**.
 
 ### Fixed
-- **Tamil localization gaps in three places** — all cases where a *label* was translated but its *value* was not: (1) the **About** card's Developer name now shows in Tamil (`இயலரசு`), consistent with the copyright line; (2) the **Analytics → Monthly Patterns** best/worst **day names** now render in Tamil (e.g. `ஞாயிறு`) instead of English; (3) the **Best Times This Week** card's yama badge now uses the localized prefix (`யா1`) instead of `Y1`.
+- **Internal:** corrected a stale schema-version constant and the import validator's version ceiling (would otherwise have rejected valid export files from the current app).
+
+> **Tip — new device:** on a fresh device, **import your export _before_ onboarding** so it adopts your Practice ID. If you onboard first, the device gets its own new Practice ID and a merge will be (correctly) refused as a mismatch.
+
+---
+
+## [1.11.1-web] — 2026-09-14
+
+> Sprint 43 — **Localization Defect Fixes**. A small cosmetic Tamil-localization patch.
+
+### Fixed
+- **Tamil localization gaps** — cases where a *label* was translated but its *value* was not: (1) the **About** card's Developer name now shows in Tamil, consistent with the copyright line; (2) the **Analytics → Monthly Patterns** best/worst **day names** now render in Tamil instead of English; (3) the **Best Times This Week** card and the **Day / Night Schedule** (Today + Explore) yama badges now use the localized yama prefix instead of `Y1`…`Y10`.
+- **Tamil layout fit** — widened the yama-label columns and the Weekly-Alignment week-label so the longer Tamil labels no longer wrap or clip.
 
 ### Changed
 - **Internal:** the Aruḍam "readiness" factor's provenance citation was re-keyed to CONF-014 (the swara clock) — a documentation/traceability fix, no behavior change.

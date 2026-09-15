@@ -36,14 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.11.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Production** | v1.11.1-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 42 | — |
-| **Total PRs** | ~224 | — |
-| **Engineering Hours** | ~135.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
+| **Sprints Delivered** | 43 | — |
+| **Total PRs** | ~233 | — |
+| **Engineering Hours** | ~137.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
-**Latest:** v1.11.0-web — ★ **Swara Clock Engine & Weekday Udhaya** (Sprint 42): a correctness fix to expected-nostril prediction. The expected nostril now runs on the authentic **1-hour / 24-cycle** swara clock (CONF-014), seeded at astronomical sunrise by the classical **Weekday Udhaya** dawn rule (CONF-013 / CONF-001, incl. the Thursday paksha split); the Nostril Pattern card shows hourly blocks + a ~1-hour countdown + a live night cycle, and a latent alignment bug is fixed. Bird-state / yama engine unchanged (regression-gated). The preceding patch **v1.10.1-web** (Sprint 41) moved the journal CSV export to Settings and fixed Analytics-screen Tamil.
-**Next:** the **7-day Accuracy Calibration** (Saranidhi vs Align27 vs Panchangam vs actual breath) — now unblocked by the Swara Clock fix, gated on owner data collection — then the native ambient "Now" surface and the remaining Integrated Aruḍam fast-follows. See the [Sprint Backlog](docs/process/sprint-backlog.md).
+**Latest:** v1.11.1-web — **Localization Defect Fixes** (Sprint 43): a small cosmetic Tamil patch. Fixed three "label localized but value not" gaps — the About-card Developer name (`இயலரசு`), the Analytics Monthly-Patterns day names, and the yama badges on Best Times + the Day/Night Schedule (`யா1`…`யா10`) — and widened the columns so the longer Tamil labels fit. The preceding feature release **v1.11.0-web** (Sprint 42) was the ★ Swara Clock Engine & Weekday Udhaya correctness fix (expected nostril on the authentic 1-hour / 24-cycle swara clock).
+**Next:** the **7-day Accuracy Calibration** (Saranidhi vs Align27 vs Panchangam vs actual breath) — unblocked by the Swara Clock fix, gated on owner data collection — the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic (after the Now Surface). See the [Sprint Backlog](docs/process/sprint-backlog.md).
 
 ---
 
