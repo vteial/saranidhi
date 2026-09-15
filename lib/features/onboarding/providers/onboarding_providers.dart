@@ -43,6 +43,9 @@ class OnboardingCompleteNotifier extends Notifier<bool> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_onboardingCompleteKey);
   }
+
+  /// Reloads onboarding complete flag from SharedPreferences.
+  Future<void> reload() async => _loadFromPrefs();
 }
 
 /// Onboarding form state.
