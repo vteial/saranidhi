@@ -43,4 +43,4 @@ capability → NOT `n/a`). Owner is sole merge authority.
 ✅ **Complete** — merged to `main`; release pending.
 
 - **PR:** [#244](https://github.com/vteial/saranidhi/pull/244) — Antigravity implemented + local green (analyze clean, 661 pass / 4 known CloudKit baseline / 0 regressions, +12 tests); Kiro Web reviewed the real diff and approved (shared `MergeImportController` extraction verified — no duplicated guard/dialog logic; widget test proves import-before-onboarding adopts the source ownerId + flips onboarding-complete). Owner merged.
-- **Shipped:** _pending — targets v1.12.1-web (`/release-start v1.12.1`)_
+- **Shipped:** ✅ **v1.12.1-web** — live in production 2026-09-15 (release PR #246 → main→prod promotion PR #248, tag `v1.12.1-web` @ `prod`); targeted patch smoke ✅ PASS all 6 on the PR #246 preview.

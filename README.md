@@ -36,14 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.12.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Production** | v1.12.1-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 44 | — |
-| **Total PRs** | ~241 | — |
-| **Engineering Hours** | ~143.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
+| **Sprints Delivered** | 45 | — |
+| **Total PRs** | ~248 | — |
+| **Engineering Hours** | ~146.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
-**Latest:** v1.12.0-web — **★ Practice Sync — Phase 0** (Sprint 44): the safe foundation for aggregating breath practice across the owner's devices. Adds a locally-generated **owner id** stamped on each profile (schema v6→v7 guarded migration + UUID backfill), a **union-by-UUID safe merge-import** (idempotent, additive — alongside the existing destructive restore), an **owner-guard** so a foreign export can't silently overwrite your data, and a **Practice ID** surfaced in Settings (export bumped to v2). The preceding patch **v1.11.1-web** (Sprint 43) was the Localization Defect Fixes Tamil patch.
-**Next:** the **v1.12.1 fast-follow** (onboarding "Import from another device" entry point, Practice-ID refresh-after-restore fix, Practice-ID prefix in export filename), then **Practice Sync Phase 1** (on-open auto-sync), the **7-day Accuracy Calibration** (gated on owner data collection), the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic. See the [Sprint Backlog](docs/process/sprint-backlog.md).
+**Latest:** v1.12.1-web — **Practice Sync polish** (Sprint 45): a v1.12.0 fast-follow smoothing cross-device setup. Adds an onboarding **"Import from another device"** link (adopt your Practice ID *before* onboarding on a fresh device), makes the Settings **Practice ID refresh in place** after a Merge/Restore (no reload), and puts the **Practice ID in export filenames**. No schema change. The preceding feature release **v1.12.0-web** (Sprint 44) was ★ Practice Sync Phase 0 (locally-generated Practice ID + union-by-UUID safe merge-import + owner-guard).
+**Next:** **Practice Sync Phase 1** (on-open auto-sync), the **7-day Accuracy Calibration** (gated on owner data collection), the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic. See the [Sprint Backlog](docs/process/sprint-backlog.md).
 
 ---
 
