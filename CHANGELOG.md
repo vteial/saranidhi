@@ -14,6 +14,31 @@ _No unreleased changes yet. Upcoming work is tracked in the
 
 ---
 
+## [1.12.1-web] — 2026-09-15
+
+> Sprint 45 — **Practice Sync polish** (v1.12.0 fast-follow). No schema change.
+
+### Added
+- **Set up a new device by importing** — a subtle "Already using Saranidhi on another
+  device? Import" link on the onboarding intro screen lets a fresh device import an
+  existing backup **before** completing onboarding, adopting the existing Practice ID
+  instead of minting a new one (previously Merge/Restore were reachable only from
+  Settings, after onboarding).
+- **Practice ID in export filenames** — backups are now named
+  `saranidhi_backup_<first8-of-PracticeID>_<timestamp>.json` so files are
+  identifiable across devices (falls back to the unprefixed name when no Practice ID).
+
+### Fixed
+- **Practice ID now refreshes in place** — after a Merge/Restore, the Settings profile
+  card updates the Practice ID (and name/bird/location) immediately, without needing a
+  page reload (BUG-v1.12.0-01).
+
+### Internal
+- Extracted a shared `MergeImportController` so the onboarding intro and Settings share
+  one guard-aware merge flow (no duplicated dialog/guard logic).
+
+---
+
 ## [1.12.0-web] — 2026-09-15
 
 > Sprint 44 — **Practice Sync Phase 0: safe merge-import**. The first cross-device
