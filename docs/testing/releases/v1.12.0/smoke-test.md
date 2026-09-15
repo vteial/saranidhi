@@ -11,11 +11,14 @@
 
 ## Result
 
-- **Pre-flight readiness gate (Step 0):** ⏳ _pending_ — record `PRE-FLIGHT: READY (About=v1.12.0, preview OK, CI green)` before scenarios, or a `BLOCKED` reason (never fall back — see the QA-Verify prompt's ABORT PROTOCOL).
-- **Status:** ⏳ _pending_
-- **Build / Version Confirmed:** Settings → About should read **`Saranidhi v1.12.0 (1)`** _(confirm)_
-- **CI Gate:** _(confirm green on the release PR — Analyze/Fast+Build, Full Suite+Coverage)_
-- **Bugs / Regressions:** _pending_
+- **Pre-flight readiness gate (Step 0):** ✅ READY — preview reachable, About = `Saranidhi v1.12.0 (1)`, CI green on PR #239.
+- **Status:** ✅ **PASS (with notes)** — owner-run on **real devices** (iMac Chrome + iPad Mini Chrome) on the PR #239 preview. Core capability verified: cross-device **Merge works both ways**, aggregate combines, the **owner-guard refuses** a different-Practice-ID file, and a fresh device **adopts** an existing Practice ID via Restore-overwrite. Three **non-blocking** follow-ups deferred to **v1.12.1** (see Bugs/Notes). No Antigravity run (owner verified the real cross-device flow directly — the part automation can't do).
+- **Build / Version Confirmed:** ✅ Settings → About = `Saranidhi v1.12.0 (1)`.
+- **CI Gate:** ✅ green on release PR #239 (Analyze/Fast+Build, Full Suite+Coverage).
+- **Bugs / Regressions:** No data-integrity issues. Three non-blocking items → **v1.12.1 fast-follow**:
+  1. **UX gap — no import entry point before onboarding.** A genuinely new device shows onboarding first, and Merge/Restore live in Settings (only reachable *after* onboarding), so the intended "import-before-onboarding to adopt the Practice ID" flow isn't directly reachable. **Workaround that works today:** onboard, then **Settings → Restore (overwrite)** with the other device's export → the device adopts that Practice ID → Merge then works both ways. (v1.12.1: add an "Import from another device" action on the onboarding/intro screen.)
+  2. **BUG-v1.12.0-01 — Practice ID not refreshed in Settings after Restore/Merge.** After Restore, the profile card shows the *old* Practice ID until a manual page reload. Root cause: `profile_card.dart` uses its own `FutureBuilder` querying `profiles` directly; `_invalidateAllDataProviders()` invalidates dashboard/journal/ownerId/etc. but not the profile card's local future. Cosmetic — DB is correct, self-heals on reload. (v1.12.1: profile card to watch an invalidated provider.)
+  3. **Enhancement — Practice ID prefix in export filename** (e.g. `saranidhi-backup-<id8>-<timestamp>.json`) so files are identifiable across devices; forward-compatible with an account/email label at Phase 1. (v1.12.1.)
 
 > **Scope note (FULL matrix — real capability + schema migration).** v1.12.0 adds a Practice ID
 > (schema **v6→v7** migration) and a non-destructive **merge** import replacing the destructive one.
@@ -32,18 +35,18 @@
 
 | # | Scenario | Status | What to verify |
 |---|----------|:------:|----------------|
-| 1 | **Migration on existing prod profile (upgrade path)** | ⏳ | Open v1.12.0 on a device that already had v1.11.x data. App loads with **no data loss**; a **Practice ID** now appears in Settings; existing streak/history intact. (The v6→v7 migration ran + backfilled `ownerId`.) |
-| 2 | **Practice ID visible + copyable** | ⏳ | Settings → profile shows **Practice ID** (short, read-only, copy button → toast). Same device keeps the same ID across reopens. |
-| 3 | **Export (with Practice ID)** | ⏳ | Settings → Export produces a JSON file (share/download). It carries the device's Practice ID + version (v1.12.0 / schema 7 / exportVersion 2). |
-| 4 | **★ Cross-device MERGE (the headline)** | ⏳ | On **Device B** (e.g. iPhone SE) export; on **Device A** (iPad Mini, same Practice ID) **Merge from file** → Device A gains B's sessions/journal it didn't have; **no local data deleted**; toast reports N merged. Re-merging the same file = **0 new** (idempotent). |
-| 5 | **Aggregate view spans both devices** | ⏳ | After the merge, Analytics/Home: **streak, 7/30-day trend, hold-time average, personal-best** reflect the **combined** session set (e.g. a hold-time PB from Device B now shows on Device A). |
-| 6 | **Owner-guard REFUSES a foreign file** | ⏳ | Attempt to **Merge** a file with a **different Practice ID** → refused with a clear dialog ("belongs to a different Practice ID… Cancel / Restore-overwrite"). **No data merged/changed.** (Simulate with a second Practice ID / a hand-edited file.) |
-| 7 | **Legacy file (no Practice ID)** | ⏳ | Merging an older export lacking a Practice ID → **warn + require explicit confirm** before proceeding. |
-| 8 | **Restore (overwrite) still works + is distinct** | ⏳ | The old destructive path is a **separate, clearly-labeled "Restore (overwrite everything)"** with a confirm; it fully replaces local data as before (unchanged behavior). Not confusable with Merge. |
-| 9 | **New-device identity propagation** | ⏳ | On a fresh/unonboarded device, **Merge/import an export → the device adopts that Practice ID** (subsequent exports match). *(Doc tip: import before onboarding.)* |
-| 10 | **Tamil localization** | ⏳ | In தமிழ்: Practice ID label + copy toast, Merge vs Restore buttons, the mismatch-refusal dialog, legacy-warn — all pure Tamil script, zero English leakage. |
-| — | **Regression glance** | ⏳ | Single-device normal use unchanged; onboarding, dashboard, journal, Aruḍam, analytics render as v1.11.x. No overflow at 390px. |
-| — | **Version confirm** | ⏳ | Settings → About = `Saranidhi v1.12.0 (1)`. |
+| 1 | **Migration on existing prod profile (upgrade path)** | ✅ PASS (test + post-release) | Verified via the `schema_migration_v6_to_v7_test` unit tests (seed v6 → upgrade → `ownerId` backfilled, no data loss) — the **preview is a separate origin with empty storage**, so real-prod-data migration is confirmed on the **production device after release** (data preserved). |
+| 2 | **Practice ID visible + copyable** | ✅ PASS | Settings shows the Practice ID, read-only + copy button + toast; stable across reopens. |
+| 3 | **Export (with Practice ID)** | ✅ PASS | Export produces a JSON file carrying the Practice ID + version. |
+| 4 | **★ Cross-device MERGE (the headline)** | ✅ PASS | Owner-verified **both ways** (iMac Chrome ↔ iPad Mini Chrome, same Practice ID): each side gains the other's new sessions, no local deletes, re-merge idempotent. |
+| 5 | **Aggregate view spans both devices** | ✅ PASS | After merge, streak / trend / hold-time / personal-best reflect the combined set. |
+| 6 | **Owner-guard REFUSES a foreign file** | ✅ PASS | Merging a **different**-Practice-ID file is refused; no data changed. |
+| 7 | **Legacy file (no Practice ID)** | ✅ PASS | Older no-Practice-ID export → warn + explicit confirm. |
+| 8 | **Restore (overwrite) still works + is distinct** | ✅ PASS | "Restore (overwrite)" is separate + confirm-gated; fully replaces local data and the device **adopts the source's Practice ID** (this is the current new-device onboarding workaround). ⚠️ see BUG-v1.12.0-01 (Practice ID UI not refreshed until reload). |
+| 9 | **New-device identity propagation** | ⚠️ PASS-via-workaround | A fresh device can't reach import *before* onboarding (no entry point) → adopts an existing Practice ID via **Restore-overwrite** after a throwaway onboard. Works; the direct path is a **v1.12.1** follow-up. |
+| 10 | **Tamil localization** | ✅ PASS | New Practice-Sync copy renders in Tamil (Practice ID label, Merge/Restore, mismatch dialog). |
+| — | **Regression glance** | ✅ PASS | Single-device use unchanged; no layout issues. |
+| — | **Version confirm** | ✅ PASS | Settings → About = `Saranidhi v1.12.0 (1)`. |
 
 ---
 
