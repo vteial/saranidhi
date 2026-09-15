@@ -394,10 +394,11 @@ macro-seal — for the citation fix + optional framing) · `nostril_pattern.dart
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🟡 | ⬜ | Set up Playwright for Flutter Web E2E tests (separate repo `vteial/saranidhi-e2e`) |
-| 🟡 | ⬜ | Automate critical-path scenarios from the smoke test (onboarding, log entry, streak, intervention) |
-| 🟡 | ⬜ | Integrate E2E into CI (run against deployed staging URL) |
+| 🟡 | 📋 → S46 | Set up Playwright for Flutter Web E2E tests (separate repo `vteial/saranidhi-e2e`) — **scheduled as Sprint 46**, see [sprint-tracker](sprint-tracker.md#sprint-46-web-e2e-smoke-automation-playwright-vteialsaranidhi-e2e--planned) |
+| 🟡 | 📋 → S46 | Automate critical-path scenarios from the smoke test (Sprint 46 first suite = the current S1–S6: onboarding, import-before-onboarding, in-place refresh, filename, Merge/Restore + owner-guard, EN/TA) |
+| 🟡 | 📋 → S46 | Integrate E2E into CI (run against deployed preview/staging URL; kept OFF the Flutter PR path) |
 | 🟢 | ⬜ | Visual regression snapshots for key screens |
+| — | ✅ | **Ad-hoc-run stopgaps adopted (v1.12.1 post-mortem):** selective state-reset (never wipe the Vercel bypass cookie) + event-driven waiting (no fixed `sleep()`s), in [`qa-verify-agent-prompt.md`](../testing/qa-verify-agent-prompt.md). Superseded by the Sprint 46 harness. |
 | 🟡 | ⬜ | Notification de-duplication / cooldown to avoid repeats during a sustained window. |
 | 🟢 | ⬜ | Periodic staging-data / smoke-data hygiene as the app grows. |
 | 🟡 | ⬜ | Revisit the 19% coverage gate once UI/E2E coverage exists — raise it then. |
