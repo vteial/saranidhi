@@ -38,7 +38,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
-| 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ⬜ Planned |
+| 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | 🔨 In Progress |
 | 46+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.12.0-web is now live in production (2026-09-15)** — Sprint 44, the
@@ -1012,10 +1012,11 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 45: v1.12.1 fast-follow — Practice-Sync polish — ⬜ Planned
+## Sprint 45: v1.12.1 fast-follow — Practice-Sync polish — 🔨 In Progress
 
-> **Dossier:** `sprints/sprint-45-practice-sync-polish/` — to be seeded at `/sprint-start 45`
-> (Kiro Web authors the spec → Antigravity implements with local green → Kiro Web reviews the diff).
+> **Dossier:** [`sprints/sprint-45-practice-sync-polish/`](sprints/sprint-45-practice-sync-polish/README.md) —
+> spec authored (Kiro Web); handed to Antigravity for implementation with local green before PR;
+> Kiro Web reviews the real diff.
 >
 > **Scheduled via `/plan` (owner-confirmed).** The three Practice-Sync polish items deferred from
 > Sprint 44 and logged in the backlog during the v1.12.0 owner smoke (PR #240). Shipped together as
