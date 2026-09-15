@@ -38,7 +38,8 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
-| 45+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ⬜ Planned |
+| 46+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.12.0-web is now live in production (2026-09-15)** — Sprint 44, the
 > **★ Practice Sync — Phase 0** feature release (feature PR #236 → /sprint-finish #237 →
@@ -1008,6 +1009,39 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [ ] **Valuation report** — Sprint 44 row (+20%) at `/sprint-update`.
 - [x] **Tracker updated** — status ✅.
 - [x] **User Guide** — real multi-device capability → refreshed (not `n/a`).
+
+---
+
+## Sprint 45: v1.12.1 fast-follow — Practice-Sync polish — ⬜ Planned
+
+> **Dossier:** `sprints/sprint-45-practice-sync-polish/` — to be seeded at `/sprint-start 45`
+> (Kiro Web authors the spec → Antigravity implements with local green → Kiro Web reviews the diff).
+>
+> **Scheduled via `/plan` (owner-confirmed).** The three Practice-Sync polish items deferred from
+> Sprint 44 and logged in the backlog during the v1.12.0 owner smoke (PR #240). Shipped together as
+> the patch release **v1.12.1-web**. Full sprint (not a fold-into-PR hotfix) because 45.1 changes
+> onboarding navigation, which warrants a spec + review. No schema change (still schema v7,
+> export v2). See the [Practice Sync epic](sprint-backlog.md#-practice-sync--cross-device-aggregate).
+>
+> **Why these three:** the v1.12.0 owner cross-device smoke surfaced one structural gap and two
+> cosmetic/quality-of-life issues that don't block the release but sharpen the Practice-Sync
+> experience the owner uses daily across four devices.
+
+- [ ] Task 45.1: **Onboarding "Import from another device" entry point (🔴 structural).** A genuinely new device shows onboarding first, but Merge/Restore live in Settings — only reachable *after* onboarding completes — so the intended "import-before-onboarding to adopt the existing Practice ID" flow is **not directly reachable** in v1.12.0. Add a **subtle "Already using Saranidhi on another device? Import" link on the onboarding screen** (owner-chosen option (a) — least intrusive, matches the "adopt existing Practice ID" intent) that routes to the Merge/Restore file picker *before* onboarding completes, so the new device adopts the existing `ownerId` rather than minting a fresh one. Bilingual EN/TA copy. Regression: the normal onboarding happy-path (no import) is unchanged.
+- [ ] Task 45.2: **BUG-v1.12.0-01 — Practice ID not refreshed after Restore/Merge (🟢).** After a Restore/Merge the Settings profile card shows the *old* Practice ID until a manual page reload. Root cause (verified): `profile_card.dart` (l.59) uses its own `FutureBuilder` reading `appDatabaseProvider` directly; `_invalidateAllDataProviders()` in `data_export_import_widget.dart` invalidates dashboard/journal/ownerId/theme/locale but **not** the profile card's local future. Fix: have the profile card watch a `profileProvider` that IS in the invalidate list (add + invalidate one, or reuse an existing invalidated provider). Cosmetic — DB is already correct, self-heals on reload — but should refresh in place.
+- [ ] Task 45.3: **Practice ID prefix in export filename (🟢).** Name exports `saranidhi_backup_<first8-of-ownerId>_<timestamp>.json` (`data_export_import_widget.dart` l.196) so files are identifiable across devices and the owner avoids Restoring the wrong file. Forward-compatible: at Phase 1 the label becomes the account id / email. Filename-string change only — no logic/schema change. Guard the case where `ownerId` is null/empty (pre-onboarding) by falling back to the current unprefixed name.
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Code merged** — on `main` (PR #N).
+- [ ] **PR link** — #N (CI green: Analyze/Fast Tests/Build). 45.1 touches onboarding navigation → Antigravity implements with **local green** before PR; **Kiro Web reviews the real diff**.
+- [ ] **45.1 DoD** — a new device can reach import/adopt an existing Practice ID **without first completing onboarding**; adopts the existing `ownerId` (does not mint a new one); EN/TA copy present.
+- [ ] **45.2 DoD** — after Restore/Merge, the Settings profile card shows the correct Practice ID **without a page reload**.
+- [ ] **45.3 DoD** — exported filename carries the first-8 of the owner id; null/empty `ownerId` falls back to the unprefixed name.
+- [ ] **Regression gate** — onboarding happy-path (no import) unchanged; existing Merge/Restore-in-Settings flows unchanged.
+- [ ] **Tests** — unit/widget suite green; new tests for the onboarding-import route + the filename builder + the profile-card refresh.
+- [ ] **Smoke test** — scenarios added to `smoke-test-v1.12.1.md` (new-device import-before-onboarding; refresh-after-restore; filename inspection).
+- [ ] **Valuation report** — Sprint 45 row (+20%) at `/sprint-update`.
+- [ ] **Tracker updated** — status ✅.
 
 ---
 
