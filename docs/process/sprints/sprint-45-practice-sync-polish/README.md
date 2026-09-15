@@ -40,7 +40,7 @@ capability → NOT `n/a`). Owner is sole merge authority.
 
 ## Status
 
-📬 **PR Submitted** — Implementation complete; local suite green; PR opened for Kiro Web / owner review.
+✅ **Complete** — merged to `main`; release pending.
 
-- **PR:** [#244](https://github.com/vteial/saranidhi/pull/244)
+- **PR:** [#244](https://github.com/vteial/saranidhi/pull/244) — Antigravity implemented + local green (analyze clean, 661 pass / 4 known CloudKit baseline / 0 regressions, +12 tests); Kiro Web reviewed the real diff and approved (shared `MergeImportController` extraction verified — no duplicated guard/dialog logic; widget test proves import-before-onboarding adopts the source ownerId + flips onboarding-complete). Owner merged.
 - **Shipped:** _pending — targets v1.12.1-web (`/release-start v1.12.1`)_
