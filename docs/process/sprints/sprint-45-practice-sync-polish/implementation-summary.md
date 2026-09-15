@@ -8,8 +8,8 @@
 
 ## PR
 
-- **PR:** Branch `sprint/45-practice-sync-polish` into `main`
-- **Commits:** `feat(sync): v1.12.1 practice-sync polish (45.1, 45.2, 45.3)`
+- **PR:** [#244](https://github.com/vteial/saranidhi/pull/244)
+- **Commits:** [`54afab3`](https://github.com/vteial/saranidhi/commit/54afab3) `feat(sync): v1.12.1 practice-sync polish (45.1, 45.2, 45.3)`
 
 ## What was implemented (by spec task)
 

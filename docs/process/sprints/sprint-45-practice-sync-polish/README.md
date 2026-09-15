@@ -40,7 +40,7 @@ capability → NOT `n/a`). Owner is sole merge authority.
 
 ## Status
 
-🔨 **In Progress** — spec authored; handed to Antigravity for implementation.
+📬 **PR Submitted** — Implementation complete; local suite green; PR opened for Kiro Web / owner review.
 
-- **PR:** _pending_
+- **PR:** [#244](https://github.com/vteial/saranidhi/pull/244)
 - **Shipped:** _pending — targets v1.12.1-web (`/release-start v1.12.1`)_
