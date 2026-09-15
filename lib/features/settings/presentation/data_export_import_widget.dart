@@ -1,20 +1,14 @@
 import 'dart:convert';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:saranidhi/core/l10n/locale_provider.dart';
-import 'package:saranidhi/core/theme/theme_provider.dart';
 import 'package:saranidhi/features/analytics/providers/analytics_providers.dart';
-import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/features/cloud_backup/domain/database_exporter.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
-import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
-import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
 import 'package:saranidhi/features/settings/domain/owner_identity_service.dart';
-import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
+import 'package:saranidhi/features/settings/presentation/merge_import_controller.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -192,8 +186,14 @@ class _DataExportImportWidgetState
       final jsonString = await exporter.exportToJsonString();
       final bytes = Uint8List.fromList(utf8.encode(jsonString));
 
-      final dateStr = DateFormat('yyyy-MM-dd-HHmm').format(DateTime.now());
-      final filename = 'saranidhi_backup_$dateStr.json';
+      String? ownerId;
+      try {
+        ownerId = await ref.read(ownerIdProvider.future);
+      } on Exception catch (_) {
+        ownerId = ref.read(ownerIdProvider).asData?.value;
+      }
+
+      final filename = DatabaseExporter.buildBackupFilename(ownerId: ownerId);
 
       await Share.shareXFiles([
         XFile.fromData(bytes, mimeType: 'application/json', name: filename),
@@ -215,222 +215,22 @@ class _DataExportImportWidgetState
     }
   }
 
-  Future<Uint8List?> _pickJsonFile() async {
-    final l10n = AppLocalizations.of(context);
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['json'],
-      withData: true,
-    );
-
-    if (result == null || result.files.isEmpty) return null;
-
-    final file = result.files.first;
-    final bytes = file.bytes;
-    if (bytes == null) {
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(l10n.importFailedReadFile)));
-      }
-      return null;
-    }
-
-    final validationError = DatabaseExporter.validateExportData(bytes);
-    if (validationError != null) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${l10n.importInvalidFile}: $validationError'),
-          ),
-        );
-      }
-      return null;
-    }
-
-    return bytes;
-  }
-
   Future<void> _handleMerge() async {
-    final l10n = AppLocalizations.of(context);
-    final bytes = await _pickJsonFile();
-    if (bytes == null || !mounted) return;
-
-    final exporter = ref.read(databaseExporterProvider);
-    final jsonStr = utf8.decode(bytes);
-    final data = jsonDecode(jsonStr) as Map<String, dynamic>;
-    final guardCheck = await exporter.checkOwnerGuard(data);
-
-    // 1. Identity Mismatch -> REFUSE
-    if (guardCheck.status == OwnerGuardStatus.mismatch) {
-      if (!mounted) return;
-      final shouldSwitchToRestore = await showDialog<bool>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Row(
-            children: [
-              Icon(
-                Icons.shield_outlined,
-                color: Theme.of(ctx).colorScheme.error,
-              ),
-              const SizedBox(width: 8),
-              Expanded(child: Text(l10n.practiceIdMismatchTitle)),
-            ],
-          ),
-          content: Text(
-            l10n.practiceIdMismatchMessage(
-              guardCheck.localOwnerId ?? '',
-              guardCheck.fileOwnerId ?? '',
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(ctx).pop(false),
-              child: Text(l10n.cancel),
-            ),
-            FilledButton.tonal(
-              onPressed: () => Navigator.of(ctx).pop(true),
-              child: Text(l10n.restoreConfirmButton),
-            ),
-          ],
-        ),
-      );
-
-      if ((shouldSwitchToRestore ?? false) && mounted) {
-        await _showRestoreDialogAndExecute(bytes);
-      }
-      return;
-    }
-
-    // 2. Legacy backup with no Practice ID -> warn and require confirm
-    if (guardCheck.status == OwnerGuardStatus.legacyNoOwnerId) {
-      final summary = DatabaseExporter.summarizeExportData(bytes);
-      if (!mounted) return;
-      final confirmed = await showDialog<bool>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text(l10n.legacyBackupWarningTitle),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(l10n.legacyBackupWarningMessage),
-              const SizedBox(height: 16),
-              _SummaryRow(
-                label: l10n.importJournalEntries,
-                value: '${summary['journal']}',
-              ),
-              _SummaryRow(
-                label: l10n.importBreathSessions,
-                value: '${summary['sessions']}',
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(ctx).pop(false),
-              child: Text(l10n.cancel),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.of(ctx).pop(true),
-              child: Text(l10n.continueMerge),
-            ),
-          ],
-        ),
-      );
-
-      if ((confirmed ?? false) && mounted) {
-        await _executeMerge(bytes, allowLegacy: true);
-      }
-      return;
-    }
-
-    // 3. Match or Empty Local -> Summary confirm dialog
-    final summary = DatabaseExporter.summarizeExportData(bytes);
-    final exportedAt = data['exportedAt'] as String?;
-    final practiceIdStatusText = guardCheck.status == OwnerGuardStatus.match
-        ? l10n.practiceIdMatches
-        : l10n.practiceIdAdopting;
-
-    if (!mounted) return;
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(l10n.mergeConfirmTitle),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(l10n.mergeConfirmMessage),
-            const SizedBox(height: 16),
-            _SummaryRow(label: l10n.practiceId, value: practiceIdStatusText),
-            if (exportedAt != null)
-              _SummaryRow(
-                label: l10n.importExportedOn,
-                value: _formatDate(exportedAt),
-              ),
-            _SummaryRow(
-              label: l10n.importJournalEntries,
-              value: '${summary['journal']}',
-            ),
-            _SummaryRow(
-              label: l10n.importBreathSessions,
-              value: '${summary['sessions']}',
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(l10n.cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l10n.mergeConfirmButton),
-          ),
-        ],
-      ),
-    );
-
-    if ((confirmed ?? false) && mounted) {
-      await _executeMerge(bytes, allowLegacy: false);
-    }
-  }
-
-  Future<void> _executeMerge(
-    Uint8List bytes, {
-    required bool allowLegacy,
-  }) async {
-    final l10n = AppLocalizations.of(context);
     setState(() => _isMerging = true);
-
     try {
-      final exporter = ref.read(databaseExporterProvider);
-      final result = await exporter.mergeFromBytes(
-        bytes,
-        allowLegacy: allowLegacy,
+      await MergeImportController.pickAndMerge(
+        context,
+        ref,
+        allowRestoreOnMismatch: true,
+        onRestoreFallback: _showRestoreDialogAndExecute,
       );
-
-      _invalidateAllDataProviders();
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.mergeSuccess(result.totalInserted))),
-        );
-      }
-    } on Exception catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('${l10n.importFailed}: $e')));
-      }
     } finally {
       if (mounted) setState(() => _isMerging = false);
     }
   }
 
   Future<void> _handleRestore() async {
-    final bytes = await _pickJsonFile();
+    final bytes = await MergeImportController.pickJsonFile(context);
     if (bytes == null || !mounted) return;
     await _showRestoreDialogAndExecute(bytes);
   }
@@ -460,19 +260,19 @@ class _DataExportImportWidgetState
             ),
             const SizedBox(height: 16),
             if (exportedAt != null)
-              _SummaryRow(
+              SummaryRow(
                 label: l10n.importExportedOn,
-                value: _formatDate(exportedAt),
+                value: formatBackupDate(exportedAt),
               ),
-            _SummaryRow(
+            SummaryRow(
               label: l10n.importProfiles,
               value: '${summary['profiles']}',
             ),
-            _SummaryRow(
+            SummaryRow(
               label: l10n.importJournalEntries,
               value: '${summary['journal']}',
             ),
-            _SummaryRow(
+            SummaryRow(
               label: l10n.importBreathSessions,
               value: '${summary['sessions']}',
             ),
@@ -521,49 +321,6 @@ class _DataExportImportWidgetState
   }
 
   void _invalidateAllDataProviders() {
-    ref
-      ..invalidate(dashboardDataProvider)
-      ..invalidate(journalEntriesProvider)
-      ..invalidate(ownerIdProvider)
-      ..invalidate(themeProvider)
-      ..invalidate(localeProvider)
-      ..invalidate(notificationPrefsProvider)
-      ..invalidate(onboardingCompleteProvider);
-  }
-
-  String _formatDate(String isoDate) {
-    try {
-      final dt = DateTime.parse(isoDate);
-      return DateFormat('MMM d, yyyy – HH:mm').format(dt);
-    } on Exception {
-      return isoDate;
-    }
-  }
-}
-
-class _SummaryRow extends StatelessWidget {
-  const _SummaryRow({required this.label, required this.value});
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label, style: theme.textTheme.bodySmall),
-          Text(
-            value,
-            style: theme.textTheme.bodySmall?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
+    invalidateAllDataProviders(ref);
   }
 }

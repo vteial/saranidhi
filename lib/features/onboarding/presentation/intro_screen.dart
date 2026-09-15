@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/router/onboarding_guard.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
+import 'package:saranidhi/features/settings/presentation/merge_import_controller.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Pre-onboarding intro screen shown before the 4-step onboarding flow.
@@ -12,11 +13,27 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// Gives first-time users context about the app before asking them
 /// to configure their profile. Shows app story, how it works, and
 /// a "Get Started" button to proceed to onboarding.
-class IntroScreen extends ConsumerWidget {
+class IntroScreen extends ConsumerStatefulWidget {
   const IntroScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<IntroScreen> createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends ConsumerState<IntroScreen> {
+  bool _isImporting = false;
+
+  Future<void> _handleImport() async {
+    setState(() => _isImporting = true);
+    try {
+      await MergeImportController.pickAndMerge(context, ref);
+    } finally {
+      if (mounted) setState(() => _isImporting = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final currentLocale = ref.watch(localeProvider);
@@ -37,10 +54,7 @@ class IntroScreen extends ConsumerWidget {
                         value: AppLocale.english,
                         label: Text('EN'),
                       ),
-                      ButtonSegment(
-                        value: AppLocale.tamil,
-                        label: Text('TA'),
-                      ),
+                      ButtonSegment(value: AppLocale.tamil, label: Text('TA')),
                     ],
                     selected: {currentLocale},
                     onSelectionChanged: (selection) {
@@ -106,10 +120,7 @@ class IntroScreen extends ConsumerWidget {
                       // How it works — 3 bullet points
                       _SectionTitle(l10n.introHowTitle),
                       const SizedBox(height: 12),
-                      _BulletPoint(
-                        emoji: '\u2728',
-                        text: l10n.introHowBullet1,
-                      ),
+                      _BulletPoint(emoji: '\u2728', text: l10n.introHowBullet1),
                       _BulletPoint(
                         emoji: '\uD83C\uDF05',
                         text: l10n.introHowBullet2,
@@ -137,18 +148,46 @@ class IntroScreen extends ConsumerWidget {
                 ),
               ),
 
-              // Get Started button — fixed at bottom
+              // Get Started button + Import link — fixed at bottom
               Padding(
                 padding: const EdgeInsets.all(24),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: FilledButton.icon(
-                    onPressed: () {
-                      ref.read(introSeenProvider.notifier).markSeen();
-                    },
-                    icon: const Icon(Icons.arrow_forward),
-                    label: Text(l10n.introGetStarted),
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.icon(
+                        onPressed: _isImporting
+                            ? null
+                            : () {
+                                ref.read(introSeenProvider.notifier).markSeen();
+                              },
+                        icon: const Icon(Icons.arrow_forward),
+                        label: Text(l10n.introGetStarted),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    TextButton(
+                      onPressed: _isImporting ? null : _handleImport,
+                      style: TextButton.styleFrom(
+                        visualDensity: VisualDensity.compact,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: _isImporting
+                          ? const SizedBox(
+                              width: 14,
+                              height: 14,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : Text(
+                              l10n.introImportFromDevice,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: theme.colorScheme.primary,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -167,9 +206,9 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.bold,
-      ),
+      style: Theme.of(
+        context,
+      ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
     );
   }
 }
@@ -191,9 +230,9 @@ class _BulletPoint extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                height: 1.5,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(height: 1.5),
             ),
           ),
         ],

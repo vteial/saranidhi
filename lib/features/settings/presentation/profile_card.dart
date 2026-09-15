@@ -13,6 +13,7 @@ import 'package:saranidhi/features/astro_engine/domain/nakshatra_calculator.dart
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/cloud_backup/providers/sync_trigger_service.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/features/settings/providers/profile_providers.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
@@ -55,18 +56,18 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
+    final profileAsync = ref.watch(profileProvider);
 
-    return FutureBuilder(
-      future: ref
-          .read(appDatabaseProvider)
-          .select(ref.read(appDatabaseProvider).profiles)
-          .get(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData || snapshot.data!.isEmpty) {
+    return profileAsync.when(
+      data: (profile) {
+        if (profile == null) {
           return const SizedBox.shrink();
         }
 
-        final profile = snapshot.data!.first;
+        if (!_isEditing && _nameController.text != profile.displayName) {
+          _nameController.text = profile.displayName;
+        }
+
         final birdName = profile.birthBird;
 
         return Card(
@@ -195,6 +196,8 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
           ),
         );
       },
+      loading: () => const SizedBox.shrink(),
+      error: (_, __) => const SizedBox.shrink(),
     );
   }
 
@@ -210,6 +213,8 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
         updatedAt: drift.Value(DateTime.now().millisecondsSinceEpoch),
       ),
     );
+
+    ref.invalidate(profileProvider);
 
     // Push updated profile to iCloud
     final updatedProfile = await (db.select(
@@ -306,8 +311,10 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
             .onProfileUpdated(updatedProfile);
       }
 
-      // Refresh dashboard for new birth bird
-      ref.invalidate(dashboardDataProvider);
+      // Refresh dashboard for new birth bird and profile
+      ref
+        ..invalidate(dashboardDataProvider)
+        ..invalidate(profileProvider);
 
       setState(() {});
     });
@@ -430,7 +437,9 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                         ),
                       );
 
-                      ref.invalidate(dashboardDataProvider);
+                      ref
+                        ..invalidate(dashboardDataProvider)
+                        ..invalidate(profileProvider);
 
                       if (ctx.mounted) Navigator.of(ctx).pop();
                       setState(() {});
@@ -476,10 +485,11 @@ class _ProfileCardState extends ConsumerState<ProfileCard> {
                       ),
                     );
 
-                    // Refresh dashboard and location cache for new timezone
+                    // Refresh dashboard, location cache, and profile
                     ref
                       ..invalidate(profileLocationProvider)
-                      ..invalidate(dashboardDataProvider);
+                      ..invalidate(dashboardDataProvider)
+                      ..invalidate(profileProvider);
 
                     setState(() {});
                   },
