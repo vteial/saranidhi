@@ -3,7 +3,7 @@
 
 # Saranidhi — Development Sprint Tracker
 
-> **Reviewed:** v1.11.1-web · **Next review:** every release (docs-audit gate).
+> **Reviewed:** v1.12.0-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
@@ -37,27 +37,36 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n fixes | **v1.10.1** | ✅ 🚀 (PR #211) |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
-| 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ (PR #236) |
+| 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
 | 45+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.11.1-web is now live in production (2026-09-14)** — Sprint 43, a small
-> **Localization Defect Fixes** patch (feature PR #227 → /sprint-finish #229 → /sprint-update #230
-> → release-start PR #231 → main→prod promotion PR #233, tag `v1.11.1-web` @ `prod`; slim smoke
-> ✅ PASS 4/4 + regression). It fixes three Tamil "label localized but value not" gaps — the
-> About-card Developer name (`இயலரசு`), the Monthly-Patterns day names, and the yama badges on
-> Best Times + the Day/Night Schedule (`யா1`…`யா10`) — widens the columns so the longer Tamil
-> labels fit, and re-keys the `readiness` factor citation to CONF-014. The preceding feature
-> release **v1.11.0-web** (Sprint 42 — ★ Swara Clock Engine & Weekday Udhaya) decoupled the
-> expected nostril onto the independent 1-hour / 24-cycle swara clock. Earlier: **v1.10.1** (Analytics
-> tidy), **v1.10.0** (Chronobiology), **v1.9.0** (Aruḍam "Why?"), **v1.8.0** (ambient "Aruḍam Now").
-> Both corpora (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
+> **Current state:** **v1.12.0-web is now live in production (2026-09-15)** — Sprint 44, the
+> **★ Practice Sync — Phase 0** feature release (feature PR #236 → /sprint-finish #237 →
+> /sprint-update #238 → release-start PR #239 → main→prod promotion PR #241, tag `v1.12.0-web`
+> @ `prod`; full-matrix smoke ✅ PASS with notes — owner ran real cross-device verification on
+> iMac Chrome + iPad Mini Chrome, the part automation can't cover). It lays the safe foundation
+> for aggregating breath practice across the owner's devices: a locally-generated **owner id**
+> stamped on each profile (`Profiles.ownerId`, schema v6→v7 guarded migration + UUID backfill),
+> a **union-by-UUID safe merge-import** (`DatabaseExporter.mergeFromBytes` — idempotent, additive,
+> alongside the existing destructive `restoreFromBytes`), an **owner-guard** check
+> (`OwnerGuardStatus`: match / emptyLocal / legacyNoOwnerId / mismatch) so a foreign export can't
+> silently overwrite, and a **Practice ID** surfaced in Settings. Export bumped to v2. The preceding
+> patch **v1.11.1-web** (Sprint 43 — Localization Defect Fixes) fixed three Tamil "label localized
+> but value not" gaps; the feature release **v1.11.0-web** (Sprint 42 — ★ Swara Clock Engine &
+> Weekday Udhaya) decoupled the expected nostril onto the independent 1-hour / 24-cycle swara clock.
+> Earlier: **v1.10.1** (Analytics tidy), **v1.10.0** (Chronobiology), **v1.9.0** (Aruḍam "Why?"),
+> **v1.8.0** (ambient "Aruḍam Now"). Both corpora (Sara Kalai, Panja Pakshi) remain fully
+> CONF-resolved.
 >
-> **Next (to schedule via `/plan`):** the **7-day Accuracy Calibration** (Saranidhi vs Align27 vs
-> Panchangam vs actual breath) — unblocked by the Swara Clock fix, gated only on owner data
-> collection; the native **"Now" Surface** (ambient widget → watch → macOS); the **User Guide —
-> Book-Style Navigation & Search** epic (native Dart ToC + search, sequenced after the Now Surface);
-> and remaining Integrated Aruḍam fast-follows. Known small follow-up: **BUG-v1.11.1-03**
-> (`YamaSegment.label` unlocalized in the notification title + AI payload).
+> **Next (to schedule via `/plan`):** the **v1.12.1 fast-follow** — three Practice-Sync polish items
+> deferred from Sprint 44: an onboarding **"Import from another device"** entry point (a new device
+> can't reach Settings import while stuck on onboarding 🔴), **BUG-v1.12.0-01** (Practice ID not
+> refreshed on the Settings card until page reload after a restore 🟢), and a **Practice-ID prefix in
+> the export filename** (🟢); then **Practice Sync Phase 1** (on-open auto-sync); the **7-day
+> Accuracy Calibration** (Saranidhi vs Align27 vs Panchangam vs actual breath) — gated on owner data
+> collection; the native **"Now" Surface** (ambient widget → watch → macOS); and the **User Guide —
+> Book-Style Navigation & Search** epic (native Dart ToC + search). Known small follow-up:
+> **BUG-v1.11.1-03** (`YamaSegment.label` unlocalized in the notification title + AI payload).
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -953,7 +962,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — ✅ Complete (PR #236)
+## Sprint 44: ★ Practice Sync — Phase 0: owner-stamped safe merge-import (v1.12.0) — ✅ 🚀 Shipped (PR #236, v1.12.0-web)
 
 > **Dossier:** [`sprints/sprint-44-practice-sync-p0/`](sprints/sprint-44-practice-sync-p0/README.md) —
 > spec authored (Kiro Web); Antigravity implementation complete; PR #236 open for Kiro Web review.

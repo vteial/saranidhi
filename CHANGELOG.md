@@ -9,8 +9,15 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-> Sprint 44 — **Practice Sync Phase 0: safe merge-import** (targets v1.12.0-web). Merged to
-> `main` via PR #236; release pending.
+_No unreleased changes yet. Upcoming work is tracked in the
+[Sprint Backlog](docs/process/sprint-backlog.md) and scheduled via `/plan`._
+
+---
+
+## [1.12.0-web] — 2026-09-15
+
+> Sprint 44 — **Practice Sync Phase 0: safe merge-import**. The first cross-device
+> data-portability step.
 
 ### Added
 - **Use Saranidhi on more than one device.** Each install now has a **Practice ID** (shown in Settings) that ties your data together. You can **export** your data on one device and **Merge** it into another — your breath sessions, journal, and hold-time history combine into one aggregate view (streak, trends, personal-best now span all your devices). Merging is **non-destructive** (it only adds sessions you don't already have) and **idempotent** (re-merging the same file changes nothing).

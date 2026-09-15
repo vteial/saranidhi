@@ -2,7 +2,7 @@
 
 # Saranidhi — Project Valuation Report
 
-> **Reviewed:** v1.11.1-web · **Next review:** every `/sprint-update` + `/release-update`.
+> **Reviewed:** v1.12.0-web · **Next review:** every `/sprint-update` + `/release-update`.
 
 > **Purpose:** one question only — *how much engineering investment went into this,
 > and what is the current state?* Everything else is delegated to the system of record
@@ -22,9 +22,9 @@
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
 **Sprints Delivered:** 40 (Sprints 1–44, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
 **Total Engineering Investment:** **~143.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
-**Production Web Release:** **v1.11.1-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.11.1-web`, Sprint 43 — Localization Defect Fixes; preceding feature release: v1.11.0-web Swara Clock Engine & Weekday Udhaya, Sprint 42).
+**Production Web Release:** **v1.12.0-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.12.0-web`, Sprint 44 — ★ Practice Sync Phase 0: owner-stamped safe merge-import; preceding: v1.11.1-web Localization Defect Fixes, Sprint 43).
 **Automated Tests:** 649 (unit + widget + integration)
-**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** + **Swara Clock Engine (v1.11.0)** + **Localization fixes (v1.11.1)** all shipped to production. **Sprint 44 — ★ Practice Sync Phase 0 (v1.12.0, owner-stamped safe merge-import) is merged, release pending** — the first cross-device data-portability step (locally-generated Practice ID + non-destructive union-merge + owner-identity guard), reframing the principle to *local-first with optional, user-owned sync*. Still queued: the native **"Now" Surface** and the **7-day Accuracy Calibration** (gated on owner data collection). Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
+**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** + **Swara Clock Engine (v1.11.0)** + **Localization fixes (v1.11.1)** + **Practice Sync Phase 0 (v1.12.0)** all shipped to production. v1.12.0 delivered the first cross-device data-portability step (locally-generated Practice ID + non-destructive union-merge + owner-identity guard), reframing the principle to *local-first with optional, user-owned sync*. Next queued: a **v1.12.1** fast-follow (onboarding import entry point + BUG-v1.12.0-01 refresh + export-filename Practice ID), the native **"Now" Surface**, and the **7-day Accuracy Calibration** (gated on owner data collection). Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
 
@@ -140,9 +140,9 @@
 | 41 | Analytics tidy (CSV → Settings) + Tamil l10n (v1.10.1) | #211 | ✅ 🚀 |
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (v1.11.0) | #220 | ✅ 🚀 |
 | 43 | Localization Defect Fixes (v1.11.1) | #227 | ✅ 🚀 |
-| 44 | ★ Practice Sync Phase 0: safe merge-import (v1.12.0) | #236 | ✅ |
+| 44 | ★ Practice Sync Phase 0: safe merge-import (v1.12.0) | #236 | ✅ 🚀 |
 
-> 🚀 = shipped a production release. Sprint 44 is merged (release v1.12.0 pending). Sprint 37 was the first sprint under the
+> 🚀 = shipped a production release. Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement
 > + local test) — see the [Sprint 37 dossier](sprints/sprint-37-birth-bird/README.md).
 

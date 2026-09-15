@@ -36,14 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.11.1-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Production** | v1.12.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 43 | — |
-| **Total PRs** | ~233 | — |
-| **Engineering Hours** | ~137.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
+| **Sprints Delivered** | 44 | — |
+| **Total PRs** | ~241 | — |
+| **Engineering Hours** | ~143.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
-**Latest:** v1.11.1-web — **Localization Defect Fixes** (Sprint 43): a small cosmetic Tamil patch. Fixed three "label localized but value not" gaps — the About-card Developer name (`இயலரசு`), the Analytics Monthly-Patterns day names, and the yama badges on Best Times + the Day/Night Schedule (`யா1`…`யா10`) — and widened the columns so the longer Tamil labels fit. The preceding feature release **v1.11.0-web** (Sprint 42) was the ★ Swara Clock Engine & Weekday Udhaya correctness fix (expected nostril on the authentic 1-hour / 24-cycle swara clock).
-**Next:** the **7-day Accuracy Calibration** (Saranidhi vs Align27 vs Panchangam vs actual breath) — unblocked by the Swara Clock fix, gated on owner data collection — the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic (after the Now Surface). See the [Sprint Backlog](docs/process/sprint-backlog.md).
+**Latest:** v1.12.0-web — **★ Practice Sync — Phase 0** (Sprint 44): the safe foundation for aggregating breath practice across the owner's devices. Adds a locally-generated **owner id** stamped on each profile (schema v6→v7 guarded migration + UUID backfill), a **union-by-UUID safe merge-import** (idempotent, additive — alongside the existing destructive restore), an **owner-guard** so a foreign export can't silently overwrite your data, and a **Practice ID** surfaced in Settings (export bumped to v2). The preceding patch **v1.11.1-web** (Sprint 43) was the Localization Defect Fixes Tamil patch.
+**Next:** the **v1.12.1 fast-follow** (onboarding "Import from another device" entry point, Practice-ID refresh-after-restore fix, Practice-ID prefix in export filename), then **Practice Sync Phase 1** (on-open auto-sync), the **7-day Accuracy Calibration** (gated on owner data collection), the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic. See the [Sprint Backlog](docs/process/sprint-backlog.md).
 
 ---
 
