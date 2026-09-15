@@ -31,8 +31,9 @@ First suite = the current **S1–S6** matrix.
 
 Owner-confirmed: **separate repo `vteial/saranidhi-e2e`** (not in-repo `tool/qa`), **internal / no
 version bump**. Vehicle: spec → Antigravity implements in the e2e repo with a **green run before
-PR** → Kiro Web reviews. Owner is sole merge authority. ⚠️ **The e2e repo does not exist yet** —
-creating it is the first gated step (spec §0).
+PR** → Kiro Web reviews. Owner is sole merge authority. ✅ **§0 resolved** — the e2e repo
+[`vteial/saranidhi-e2e`](https://github.com/vteial/saranidhi-e2e) now exists (private, empty);
+Antigravity may scaffold into it.
 
 ## Status
 
