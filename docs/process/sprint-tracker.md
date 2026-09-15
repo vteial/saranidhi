@@ -39,7 +39,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
-| 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ⬜ Planned |
+| 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | 🔨 In Progress |
 | 47+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1043,9 +1043,12 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 46: Web E2E Smoke Automation (Playwright, `vteial/saranidhi-e2e`) — ⬜ Planned
+## Sprint 46: Web E2E Smoke Automation (Playwright, `vteial/saranidhi-e2e`) — 🔨 In Progress
 
-> **Dossier:** `sprints/sprint-46-e2e-automation/` — to be seeded at `/sprint-start 46`.
+> **Dossier:** [`sprints/sprint-46-e2e-automation/`](sprints/sprint-46-e2e-automation/README.md) —
+> spec authored (Kiro Web); handed to Antigravity to implement **in the separate repo
+> `vteial/saranidhi-e2e`** with a green run before PR; Kiro Web reviews. ⚠️ **The e2e repo does not
+> exist yet** — creating it is the sprint's first gated step (see spec §0).
 > **Internal / QA-tooling sprint — no user-facing change, no `pubspec` bump, no prod release.** The
 > deliverable is a test harness in a **separate repo** (`vteial/saranidhi-e2e`), not app code.
 >
