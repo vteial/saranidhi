@@ -7,7 +7,7 @@
 > Antigravity; the owner's message is a one-liner pointing here.
 >
 > **Preview URL (filled):** `https://saranidhi-git-release-v1121-eialarasus-projects.vercel.app/`
-> (branch `release/v1.12.1` → slug `release-v1121`). Release PR: **#___** (fill when opened).
+> (branch `release/v1.12.1` → slug `release-v1121`). Release PR: **#246**.
 >
 > **Note — light patch:** v1.12.1 is a small polish patch (no schema change). If the owner prefers,
 > a **quick self-run on the preview** (About = v1.12.1 + walk S1–S6) is sufficient in place of a
@@ -32,7 +32,7 @@ the first 8 chars of the Practice ID. Local-first, zero backend, no account.
 ENVIRONMENT: the release PR's Vercel PREVIEW (NOT staging). Read VERCEL_AUTOMATION_BYPASS_SECRET
 from the local `.env` and pass it on the preview URL:
   https://saranidhi-git-release-v1121-eialarasus-projects.vercel.app/?x-vercel-protection-bypass=$VERCEL_AUTOMATION_BYPASS_SECRET&x-vercel-set-bypass-cookie=true
-REPO: vteial/saranidhi. Release branch: release/v1.12.1. PR: #___ (fill in).
+REPO: vteial/saranidhi. Release branch: release/v1.12.1. PR: #246.
 
 STEP 0 — PRE-FLIGHT READINESS GATE (MANDATORY — run BEFORE any scenario):
 Confirm ALL; if ANY fails, STOP, run NO scenarios, report (see ABORT PROTOCOL). No workarounds.
@@ -86,4 +86,4 @@ pre-flight check fails, follow the ABORT PROTOCOL and stop.
 | Environment | release PR's Vercel **preview** `https://saranidhi-git-release-v1121-eialarasus-projects.vercel.app` (slug `release-v1121`) |
 | Smoke-test file | `docs/testing/releases/v1.12.1/smoke-test.md` |
 | Highest-priority | S1 import-before-onboarding adopts source Practice ID; S2 in-place refresh; S3 filename; regression S4/S5; Tamil |
-| Release PR # | **#___** (fill when opened) |
+| Release PR # | **#246** |
