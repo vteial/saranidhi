@@ -2,7 +2,7 @@
 
 # Saranidhi — Project Evaluation Report
 
-> **Reviewed:** v1.11.1-web · **Next review:** every `/sprint-update` (defects + test baseline).
+> **Reviewed:** v1.12.0-web · **Next review:** every `/sprint-update` (defects + test baseline).
 
 ## 1. Executive Architecture Summary
 
@@ -71,7 +71,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total automated tests | 649 (as of Sprint 44) |
+| Total automated tests | 661 (as of Sprint 45) |
 | Pass rate | 100% on CI (macOS local shows 4 known CloudKit-platform failures that pass on Ubuntu) |
 | Static analysis | `dart analyze --fatal-infos` — zero issues |
 | CI enforcement | GitHub Actions two-tier (fast on PRs; full tests + coverage + integration on PRs to `main` and on merge) |
@@ -101,11 +101,14 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 42 | +13 (`SwaraClock` unit 12 — 7 weekday seeds incl. Thu paksha split, 1h/2h inception, §3.5 hourly-progression oracle, day/night + pre-dawn cross-midnight, sunrise anchoring, `blockAt` countdown; + alignment/oracle/nostril-card pre-dawn-location regression tests) | 628 |
 | Sprint 43 | +4 (l10n defect fixes: `about_card_test` EN+TA Developer-name/copyright 2, `analytics_calculator_test` int-weekday best/worst + empty-null 2; + extended `analytics_screen_l10n_test` with EN/TA weekday assertions + updated readiness-citation assertions) | 632 |
 | Sprint 44 | +17 (Practice Sync Phase 0: `schema_migration_v6_to_v7_test` 3 [upgrade+backfill / fresh / idempotent], `database_exporter_test` 11 [export+validation, owner-guard match/mismatch-0-mutations/empty-adopts/legacy, union-merge idempotency, restore-destructive, aggregate-after-merge], `owner_identity_service_test` 3) | 649 |
+| Sprint 45 | +12 (Practice Sync polish: `backup_filename_test` 6 [prefix / null / empty / <8-char no-RangeError / single-char / default-now], `profile_card_refresh_test` 2 [provider re-read after invalidation, card refresh without reload], `intro_screen_test` 4 [EN+TA import link render, Get-Started happy-path, import-before-onboarding adopts source ownerId + flips onboarding-complete]) | 661 |
 
 ### Resolved Defects
 
 | Issue | Root Cause | Resolution | Sprint |
 |-------|-----------|------------|--------|
+| **BUG-v1.12.0-01 — Practice ID not refreshed in Settings after Restore/Merge** | After a Restore/Merge the Settings profile card showed the *old* Practice ID until a manual page reload. `profile_card.dart` used its own inline `FutureBuilder` reading `appDatabaseProvider` directly; `_invalidateAllDataProviders()` invalidated dashboard/journal/ownerId/theme/locale but **not** the card's local future, so it never rebuilt. Cosmetic (DB was already correct, self-healed on reload). Owner-found in the v1.12.0 cross-device smoke. | Added a `profileProvider` (`FutureProvider<Profile?>`); `ProfileCard` now `ref.watch(profileProvider).when(...)` instead of the inline `FutureBuilder`; `profileProvider` added to the shared `invalidateAllDataProviders` (Merge + Restore) and invalidated on all in-card edits. Widget test proves the card refreshes in place without a reload. | Sprint 45 (PR #244) |
+| **Import unreachable on a new device (import-before-onboarding gap)** | A genuinely new device showed onboarding first, but Merge/Restore lived only in Settings — reachable only *after* onboarding completed. So the intended "import on the new device to adopt the existing Practice ID before setting up a fresh profile" flow was not directly reachable; the workaround was a throwaway onboarding + Restore-overwrite. Owner-found in the v1.12.0 cross-device smoke. | Added a subtle "Already using Saranidhi on another device? Import" link on the onboarding intro screen that runs the (existing) guard-aware merge before onboarding completes — on a fresh device the merge adopts the file's `ownerId` and flips `onboarding_complete`, routing straight to the main app. Extracted a shared `MergeImportController` so Settings + intro share one flow (no duplicated guard/dialog logic). | Sprint 45 (PR #244) |
 | **Destructive data-import hazard (cross-device / cross-user)** | The only cross-device path, Settings → Import JSON (`DatabaseExporter.importFromBytes`), **deleted every table then re-inserted** — with **no owner-identity guard**. Importing another device's file wiped local data; importing another person's file replaced the profile + mixed their practice data in. Surfaced by the owner's real multi-device practice need (data split across iPad/iPhone/MBP/iMac with no aggregate). | Added a locally-generated `ownerId` (guarded schema v6→v7 migration + backfill); replaced the destructive import with a **non-destructive union-merge by UUID** (`mergeFromBytes`, idempotent, never deletes); added an **owner-identity guard** that **refuses a mismatched-owner merge with 0 DB mutations** (proven by test). Old destructive path retained as an explicit "Restore (overwrite)". | Sprint 44 (PR #236) |
 | **Stale `AppConstants.schemaVersion` (4) vs real DB schema (6→7)** | `AppConstants.schemaVersion` was frozen at `4` while the Drift DB had advanced to 6; exports stamped the wrong schema, and `DatabaseExporter.validateExportData` rejected `schemaVersion > 4` ("update the app") — which would have rejected valid current-app export files. Latent; surfaced while building Phase-0 export stamping. | Set `AppConstants.schemaVersion` to the real value (7) + `exportVersion` 1→2; rewired `validateExportData` to compare dynamically against `AppConstants.*` (accept current, reject only genuinely-newer). | Sprint 44 (PR #236) |
 | **BUG-v1.11.1-01 — About-card Developer name not localized** | Tamil mode showed the hardcoded Latin `Eialarasu` in the Developer row (`about_card.dart:87` `value: 'Eialarasu'`) while the copyright line already localized the name to `இயலரசு` — the same name rendered two ways. The recurring "value-not-localized while label is" miss. Owner-found. | Added ARB key `aboutDeveloperName` (EN `Eialarasu` / TA `இயலரசு`); Developer row uses `l10n.aboutDeveloperName`. Email + website left as literal identifiers. | Sprint 43 (PR #227) |

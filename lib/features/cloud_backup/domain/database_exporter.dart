@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
+import 'package:intl/intl.dart';
 import 'package:saranidhi/core/utils/app_constants.dart';
 import 'package:saranidhi/database/app_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -113,6 +114,21 @@ class DatabaseExporter {
   DatabaseExporter(this._db);
 
   final AppDatabase _db;
+
+  /// Builds an export backup filename prefixed with the first 8 characters of [ownerId]
+  /// when available, e.g. `saranidhi_backup_3f9a1c2b_2026-09-15-1034.json`.
+  ///
+  /// If [ownerId] is null or empty, falls back to `saranidhi_backup_2026-09-15-1034.json`.
+  /// If [ownerId] has fewer than 8 characters, uses the entire [ownerId] without RangeError.
+  static String buildBackupFilename({String? ownerId, DateTime? now}) {
+    final dt = now ?? DateTime.now();
+    final dateStr = DateFormat('yyyy-MM-dd-HHmm').format(dt);
+    final prefix = (ownerId != null && ownerId.isNotEmpty)
+        ? '${ownerId.substring(0, ownerId.length < 8 ? ownerId.length : 8)}_'
+        : '';
+    return 'saranidhi_backup_$prefix$dateStr.json';
+  }
+
   static const _uuid = Uuid();
 
   /// Exports all database tables and user preferences to a JSON-encoded byte array.
@@ -287,6 +303,13 @@ class DatabaseExporter {
       final preferences = data['preferences'] as Map<String, dynamic>?;
       if (preferences != null) {
         await _importPreferences(preferences);
+      }
+
+      if (adoptedProfile) {
+        final prefs = await SharedPreferences.getInstance();
+        if (prefs.getBool('onboarding_complete') != true) {
+          await prefs.setBool('onboarding_complete', true);
+        }
       }
     }
 

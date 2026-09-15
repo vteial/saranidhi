@@ -2,7 +2,7 @@
 
 # Saranidhi — Master Testing Plan
 
-> **Reviewed:** v1.11.1-web · **Next review:** every release (test-count + scenarios).
+> **Reviewed:** v1.12.0-web · **Next review:** every release (test-count + scenarios).
 
 ## Overview
 
@@ -282,6 +282,7 @@ This document defines the structured testing strategy for Saranidhi across all l
 | Sprint 42 | +13 | 628 | Swara Clock Engine: `SwaraClock` unit (12) — all 7 weekday dawn seeds incl. Thursday paksha split, 1h vs 2h inception, §3.5 hourly-progression worked-oracle (Sun 1h + Tue 2h), day/night boundary + pre-dawn cross-midnight anchoring, sunrise-anchoring shift, `blockAt` ≤60-min countdown; + regression: `AlignmentChecker` non-now entry-time honored, oracle `_resolveAlignment` + `nostril_dominance_chart` pre-dawn location-coordinate anchoring |
 | Sprint 43 | +4 | 632 | Localization defect fixes: `about_card_test` (EN Developer name/copyright + Tamil `இயலரசு` render, 2), `analytics_calculator_test` (int-weekday best/worst = Sun/Tue + empty→null, 2); extended `analytics_screen_l10n_test` with EN (`Sunday`/`Tuesday`) + TA (`ஞாயிறு`/`செவ்வாய்`, no-leakage) weekday assertions; updated readiness-citation assertions (`integrated_arudam_engine_test`, `arudam_now_card_test`) to `CONF-014` |
 | Sprint 44 | +17 | 649 | Practice Sync Phase 0: `schema_migration_v6_to_v7_test` (existing-profile upgrade + ownerId UUID backfill / fresh install / idempotent re-run, 3), `database_exporter_test` (export+ownerId envelope+validation, owner-guard match / **mismatch→0-mutations** / empty-local-adopts / legacy-no-ownerId, union-merge idempotency, restore destructive, aggregate-after-merge, 11), `owner_identity_service_test` (ensure-on-load idempotent, 3) |
+| Sprint 45 | +12 | 661 | Practice Sync polish: `backup_filename_test` (prefix / null / empty / <8-char no-RangeError / single-char / default-now, 6), `profile_card_refresh_test` (provider re-read after invalidation + card refresh without page reload, 2), `intro_screen_test` (EN+TA import-link render, Get-Started happy-path unaffected, import-before-onboarding adopts source `ownerId` + flips `onboardingCompleteProvider`, 4) |
 
 ### Scenarios Awaiting Automated Test Coverage (Sprint 10)
 

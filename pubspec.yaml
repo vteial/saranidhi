@@ -1,7 +1,7 @@
 name: saranidhi
 description: "The Treasure House of Breath — A spiritual life-guidance app rooted in ancient Sara Kalai science."
 publish_to: 'none'
-version: 1.12.0+1 # v1.12.0-web (Sprint 44 — Practice Sync Phase 0) · release preview
+version: 1.12.1+1 # v1.12.1-web (Sprint 45 — Practice Sync polish) · release preview
 
 environment:
   sdk: ^3.12.1

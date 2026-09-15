@@ -1892,6 +1892,12 @@ abstract class AppLocalizations {
   /// **'Get Started'**
   String get introGetStarted;
 
+  /// Link on intro screen to import an existing backup from another device
+  ///
+  /// In en, this message translates to:
+  /// **'Already using Saranidhi on another device? Import'**
+  String get introImportFromDevice;
+
   /// User Guide screen title
   ///
   /// In en, this message translates to:
@@ -1907,7 +1913,7 @@ abstract class AppLocalizations {
   /// Guide section 1 body
   ///
   /// In en, this message translates to:
-  /// **'Saranidhi (ஸரநிதி) means \'The Treasure House of Breath\' in Tamil. The name combines \'Sara\' (breath/essence, from Sara Kalai) and \'Nidhi\' (treasure/storehouse).\n\nThis app helps you align your daily actions with ancient Vedic breath rhythms and the Panja Pakshi (Five Birds) system — a time-tested framework for optimal living passed down through Tamil spiritual traditions.'**
+  /// **'Saranidhi (சரநிதி) means \'The Treasure House of Breath\' in Tamil. The name combines \'Sara\' (breath/essence, from Sara Kalai) and \'Nidhi\' (treasure/storehouse).\n\nThis app helps you align your daily actions with ancient Vedic breath rhythms and the Panja Pakshi (Five Birds) system — a time-tested framework for optimal living passed down through Tamil spiritual traditions.'**
   String get guideWhatBody;
 
   /// Guide section 2 title
@@ -1931,7 +1937,7 @@ abstract class AppLocalizations {
   /// Guide section 3 body
   ///
   /// In en, this message translates to:
-  /// **'Your birth star (nakshatra) determines your personal Pakshi bird. Each of the 27 nakshatras maps to one of five birds:\n\n🦅 Vulture (Hawk) — Sharp, decisive, powerful\n🦉 Owl — Wise, nocturnal, intuitive\n🐦‍⬛ Crow — Adaptable, intelligent, resourceful\n🐓 Rooster (Cock) — Disciplined, alert, punctual\n🦚 Peacock — Graceful, creative, expressive\n\nYour bird is fixed from birth and determines how your energy cycles through the day.'**
+  /// **'Your birth star (nakshatra) determines your personal Pakshi bird. The 27 nakshatras map to one of five birds:\n\n🦅 Vulture — Sharp, decisive, commanding\n🦉 Owl — Wise, nocturnal, intuitive\n🐦‍⬛ Crow — Adaptable, shrewd, resourceful\n🐓 Rooster — Disciplined, alert, punctual\n🦚 Peacock — Majestic, creative, expressive\n\nYour bird is fixed from birth and determines how your energy cycles throughout the day.'**
   String get guideBirdBody;
 
   /// Guide section 4 title
@@ -1943,7 +1949,7 @@ abstract class AppLocalizations {
   /// Guide section 4 body
   ///
   /// In en, this message translates to:
-  /// **'Each day (sunrise to sunset) is divided into 5 equal time segments called Yamas (Yaamam). Your bird cycles through 5 states in each Yama:\n\n👑 Arasu (Ruling) — Peak power! Best time for important decisions and bold action. [Artha window]\n🍽️ Uun (Eating) — Preparation time. Good for learning and gaining strength. [Kriya window]\n🚶 Nadai (Walking) — Routine work. Avoid critical decisions. [Artha window]\n💤 Thuyil (Sleeping) — Rest period. Avoid important actions. [Yoga window]\n💀 Saavu (Dying) — Lowest energy. Do not begin anything new. [Yoga window]\n\nThe night (sunset to sunrise) has another 5 Yamas with its own cycle. The app shows both day and night schedules.'**
+  /// **'Each day (sunrise to sunset) is divided into 5 equal time segments — called Yamas. Your bird cycles through 5 states during each Yama:\n\n👑 Ruling (Arasu) — Peak power! Best time for important decisions and bold actions. [Artha window]\n🍽️ Eating (Uun) — Preparation time. Good for learning and building strength. [Kriya window]\n🚶 Walking (Nadai) — Routine work. Avoid high-stakes decisions. [Artha window]\n💤 Sleeping (Thuyil) — Low-energy rest period. Avoid major actions. [Yoga window]\n💀 Dying (Saavu) — Lowest energy. Do not initiate anything new. [Yoga window]\n\nThe night (sunset to next sunrise) has its own cycle of another 5 Yamas.'**
   String get guideRhythmBody;
 
   /// Guide section 5 title
@@ -1955,7 +1961,7 @@ abstract class AppLocalizations {
   /// Guide section 5 body
   ///
   /// In en, this message translates to:
-  /// **'1. Check your Today tab each morning to see your bird\'s state schedule for the day.\n\n2. Note your Ruling time — plan important activities during this window.\n\n3. Avoid starting new things during Dying or Rahu Kaal periods.\n\n4. Log your breath flow (which nostril is dominant) to track alignment with cosmic patterns.\n\n5. Use the Breath Timer for conscious breathing practice — builds awareness and extends hold time.\n\n6. Check the Explore tab for historical data and best times this week.'**
+  /// **'1. Check your \'Today\' tab each morning for the day\'s bird state schedule.\n\n2. Note your Ruling hours — schedule critical activities during this window.\n\n3. Avoid starting new ventures during Dying or Rahu Kaal.\n\n4. Log your breath flow (which nostril is dominant) and track alignment with cosmic patterns.\n\n5. Use the Breath Timer for conscious breathing practice.\n\n6. Check the \'Explore\' tab for historical trends and best times this week.'**
   String get guideHowToBody;
 
   /// Guide section 6 title
@@ -1967,31 +1973,31 @@ abstract class AppLocalizations {
   /// Guide section 6 body
   ///
   /// In en, this message translates to:
-  /// **'• Check in at each Yama transition (the app can notify you).\n• Use your Ruling period for important meetings, decisions, and creative work.\n• During Sleeping/Dying periods, focus on routine tasks or rest.\n• Log your breath at least once per Yama to build alignment awareness.\n• Practice the Quick Sync Pacer if your nostril flow is unaligned.\n• Review your weekly alignment in the Analytics tab to spot patterns.\n• Export your data regularly as a backup (Settings → Export).'**
+  /// **'• Check in at each Yama transition (the app can notify you).\n• Use your Ruling period for important meetings, decisions, and creative work.\n• During Sleeping/Dying periods, focus on routine tasks or rest.\n• Log your breath at least once per Yama to build alignment awareness.\n• Use Quick Alignment practice if your nostril flow is out of sync.\n• Review alignment weekly in the Analytics tab to identify patterns.\n• Regularly export your data as a backup (Settings → Export).'**
   String get guideBestBody;
 
-  /// Guide section: Grounding foot step rule
+  /// Guide section 6a title
   ///
   /// In en, this message translates to:
-  /// **'Swara Pada Gamana (Grounding Step)'**
+  /// **'Swara Pada Gamana (The Grounding First Step)'**
   String get guidePadaGamanaTitle;
 
-  /// Guide Swara Pada Gamana section body
+  /// Guide section 6a body
   ///
   /// In en, this message translates to:
-  /// **'The Siva Swarodaya teaches that the first physical contact with the earth upon waking determines the energetic trajectory of the day.\n\n• Upon waking, check which nostril is dominant.\n• If the Right Nostril (Pingalai/Surya) is active: Touch the right side of your face, then place your RIGHT foot on the ground first.\n• If the Left Nostril (Idakalai/Chandra) is active: Touch the left side of your face, then place your LEFT foot on the ground first.\n\nThis simple ritual anchors you in somatic awareness the moment you open your eyes — shifting from reactivity to intentional living. It\'s a physical grounding technique that combats morning anxiety and encourages mindfulness before reaching for your phone.'**
+  /// **'Siva Swarodaya teaches that the first physical contact with the earth upon waking sets the energetic trajectory for your entire day.\n\n• Upon waking, check which nostril is currently dominant.\n• If the Right nostril (Pingalai/Solar) is active: touch the right side of your face, then step onto the ground with your right foot first.\n• If the Left nostril (Idakalai/Lunar) is active: touch the left side of your face, then step onto the ground with your left foot first.\n\nThis simple ritual anchors conscious awareness at the very threshold of awakening — transitioning from reactive to intentional living. It is a physical grounding technique that counters morning anxiety.'**
   String get guidePadaGamanaBody;
 
-  /// Guide section: Dietary chronobiology
+  /// Guide section 6b title
   ///
   /// In en, this message translates to:
   /// **'Swara-Ahara (Dietary Alignment)'**
   String get guideSwaraAharaTitle;
 
-  /// Guide Swara-Ahara section body
+  /// Guide section 6b body
   ///
   /// In en, this message translates to:
-  /// **'In Swara science, digestion is governed by Jatharagni (internal digestive fire), closely tied to the Right Nostril (Pingalai/Surya) channel.\n\n• Eat solid food when the RIGHT nostril is active — metabolic heat is high, aiding digestion and nutrient absorption.\n• Drink water and cooling liquids when the LEFT nostril is active — the body is in receptive, cooling mode.\n• Eating when the LEFT nostril dominates leads to slow metabolism, sluggishness, and poor absorption.\n\nIf you need to eat but your left nostril is active:\n1. Lie on your LEFT side for 3 minutes, OR\n2. Apply gentle pressure under your LEFT armpit.\n\nThis shifts breath to the right nostril, preparing your stomach for digestion. The app shows your current nostril pattern — use it before meals!'**
+  /// **'In breath science, digestion is governed by Jatharagni (internal digestive fire), which is intimately linked to the right nostril (Pingalai/Surya) nadi.\n\n• Eat solid meals when the Right nostril is active — metabolic heat is peaked, aiding digestion and nutrient absorption.\n• Drink water and cooling fluids when the Left nostril is active — the body is in a receptive, cooling state.\n• Eating during left-nostril dominance can lead to sluggish metabolism, lethargy, and poor absorption.\n\nIf you must eat but your left nostril is active:\n1. Lie on your left side for 3 minutes, or\n2. Apply gentle pressure to the left armpit.\n\nThis will naturally shift the breath to the right nostril, preparing the stomach for digestion. The app shows your current nostril pattern — check before meals!'**
   String get guideSwaraAharaBody;
 
   /// Guide section 7 title
@@ -2003,7 +2009,7 @@ abstract class AppLocalizations {
   /// Guide section 7 body
   ///
   /// In en, this message translates to:
-  /// **'• Bird Card — Shows your birth bird\'s current state (Arasu/Uun/Nadai/Thuyil/Saavu) and guidance text.\n• Rahu Kaal — The inauspicious window to avoid new beginnings (changes daily).\n• Day Schedule — Full 10-Yama view showing bird state at each time slot.\n• Nostril Pattern — Expected Pingalai (Solar) or Idakalai (Lunar) dominance per Yama.\n• Daily Wisdom — Spiritual insight tailored to your context.\n• Hold Time — Your average breath hold duration today.\n• Streak — Consecutive days with aligned entries.\n• 7-Day Ribbon — Visual week overview of your practice.'**
+  /// **'• Bird Card — Shows your birth bird\'s current state (Ruling/Eating/Walking/Sleeping/Dying) and guidance text.\n• Rahu Kaal — Inauspicious window to avoid new beginnings (changes daily).\n• Daytime Schedule — Full 10-Yama view showing bird state for each time slot.\n• Nostril Pattern — Expected Pingalai (solar) or Idakalai (lunar) dominance for each Yama.\n• Daily Wisdom — Contextual spiritual insight tailored to your current moment.\n• Retention Time — Today\'s average breath retention duration.\n• Streak — Consecutive days with alignment logs.\n• 7-Day Ribbon — Visual weekly overview of your practice.'**
   String get guideDashboardBody;
 
   /// Guide section 8 title
@@ -2015,7 +2021,7 @@ abstract class AppLocalizations {
   /// Guide section 8 body
   ///
   /// In en, this message translates to:
-  /// **'• Cosmic Timing — Know the best moment to act, rest, or wait.\n• Self-Awareness — Develop sensitivity to your breath and energy patterns.\n• Better Decisions — Use Ruling periods for important choices.\n• Consistency — Build a daily practice with streaks and visual feedback.\n• Privacy — All your data stays on your device. No servers, no tracking.\n• Ancient Wisdom, Modern App — Traditional Sara Kalai science in a clean, accessible format.'**
+  /// **'• Cosmic Timing — Know the optimal moment to act, rest, or wait.\n• Self-Awareness — Develop sensitivity to your breath and energy patterns.\n• Better Decisions — Leverage Ruling periods for high-stakes choices.\n• Consistency — Build daily practice with streaks and visual feedback.\n• Privacy — All your data stays on your device. No servers, no tracking.\n• Ancient Wisdom, Modern App — Traditional Sara Kalai science in a clean, accessible format.'**
   String get guideBenefitsBody;
 
   /// Guide section 9 title
@@ -2027,7 +2033,7 @@ abstract class AppLocalizations {
   /// No description provided for @guideFaqBody.
   ///
   /// In en, this message translates to:
-  /// **'Q: How accurate are the calculations?\nA: Saranidhi uses the Jean Meeus astronomical algorithm for Moon position and authentic Panja Pakshi lookup tables from Prof. Dr. U.S. Pulippani\'s research. Accuracy is within ±0.5°.\n\nQ: Does it work offline?\nA: Yes! All calculations run on your device. No internet needed.\n\nQ: Is my data private?\nA: Absolutely. Your data never leaves your device unless you choose to back up to your own iCloud/Google Drive.\n\nQ: What if I don\'t know my birth star?\nA: Use the \'Calculate from DOB\' option during onboarding — enter your date and time of birth and the app will determine your nakshatra.\n\nQ: What is Rahu Kaal?\nA: A daily inauspicious window (about 90 minutes) based on Vedic astrology. Avoid starting new activities during this time.\n\nQ: Can I use this outside India?\nA: Yes! The app works anywhere. Sunrise/sunset are calculated for your location. Preset cities are Indian, but any latitude/longitude works.\n\nQ: How do I export my data?\nA: Settings → Data Export/Import → Export All Data. This creates a JSON file you can save or share.'**
+  /// **'Q: How accurate are the calculations?\nA: Saranidhi uses the Jean Meeus astronomical algorithm for Moon position and authentic Panja Pakshi lookup tables from Prof. Dr. U.S. Pulippani\'s research. Accuracy is within ±0.5°.\n\nQ: Does it work offline?\nA: Yes! All calculations run on your device. No internet needed.\n\nQ: Is my data private?\nA: Absolutely. Your data never leaves your device unless you choose to back up to your own iCloud/Google Drive.\n\nQ: What if I don\'t know my birth star?\nA: Use the \'Calculate from DOB\' option during onboarding — enter your date and time of birth and the app will determine your nakshatra.\n\nQ: What is Rahu Kaal?\nA: A daily inauspicious window (about 90 minutes) based on Vedic astrology. Avoid starting new activities during this time.\n\nQ: Can I use this outside India?\nA: Yes! The app works anywhere. Sunrise/sunset are calculated for your location. Preset cities are Indian, but any latitude/longitude works.\n\nQ: How do I export my data?\nA: Settings → Data Export/Import → Export All Data. This creates a JSON file you can save or share.\n\nQ: How do I set up a new device using an existing backup?\nA: On the first screen of the new device, tap \'Already using Saranidhi on another device? Import\' below Get Started and select your backup JSON file. Your practice data and Practice ID will be restored immediately.'**
   String get guideFaqBody;
 
   /// Journal empty state title when no entries exist
