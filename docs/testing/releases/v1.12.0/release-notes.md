@@ -37,8 +37,8 @@ Import your export **before** onboarding on a fresh device, so it adopts your Pr
 - Sprint 44 — ★ Practice Sync Phase 0
 
 ### Smoke test
-- See [`smoke-test.md`](./smoke-test.md) — full matrix (migration + cross-device merge + owner guard + aggregate + Restore + Tamil + regression); status set at `/release-update`.
+- See [`smoke-test.md`](./smoke-test.md) — ✅ **PASS (with notes)**, owner-run on real devices (iMac + iPad Mini): cross-device Merge both-ways + aggregate + owner-guard refusal + adopt-via-Restore. Three non-blocking items → v1.12.1 fast-follow.
 
 ---
 
-> **Shipped:** _pending_ · promotion PR _pending_ · will be live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
+> **Shipped:** 2026-09-15 · promotion PR #241 · tagged **`v1.12.0-web`** (target `prod`) · live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
