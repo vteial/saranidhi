@@ -41,4 +41,4 @@ A small follow-up to v1.12.0 that smooths out cross-device setup — no new engi
 
 ---
 
-> **Shipped:** _pending_ — promotion PR #___ · tagged **`v1.12.1-web`** (target `prod`) · live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
+> **Shipped:** 2026-09-15 · promotion PR #248 · tagged **`v1.12.1-web`** (target `prod`) · live at [saranidhi.vercel.app](https://saranidhi.vercel.app).

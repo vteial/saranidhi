@@ -2,7 +2,7 @@
 
 # Saranidhi — Security Review
 
-> **Reviewed:** v1.12.0-web · **Next review:** at a major (X) release or when the data/network boundary changes. **v1.12.0 (Practice Sync Phase 0) = a REAL review, not a stamp-only bump** — the first data-portability feature (owner-identity `ownerId` + export now carries it + a merge-import path). Still **local-only: no network, no account, no telemetry** (files only). See the *Sprint 44 assessment* below. **Phase 1 (on-open auto-sync) WILL require a full re-review** — it introduces a network path + account/passphrase + a possible stored secret that this assessment excludes.
+> **Reviewed:** v1.12.1-web · **Next review:** at a major (X) release or when the data/network boundary changes. **v1.12.0 (Practice Sync Phase 0) = a REAL review, not a stamp-only bump** — the first data-portability feature (owner-identity `ownerId` + export now carries it + a merge-import path). Still **local-only: no network, no account, no telemetry** (files only). See the *Sprint 44 assessment* below. **Phase 1 (on-open auto-sync) WILL require a full re-review** — it introduces a network path + account/passphrase + a possible stored secret that this assessment excludes.
 
 ## Architecture Security Assessment
 

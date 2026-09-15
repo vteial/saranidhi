@@ -41,14 +41,17 @@
 > **Stamp rule:** each durable doc carries `> **Reviewed:** vX.Y.Z`. 11 durable docs read
 > `v1.12.0-web` → bump to `v1.12.1-web` at `/release-update` (`security-review.md` = stamp-only).
 
-## Open note carried into this release
+## Open note carried into this release — RESOLVED
 
-- **`/sprint-update` was NOT run before `/release-start` this cycle.** The Sprint 45 **valuation
-  row**, **evaluation test-count/Resolved-Defect row**, and **testing-plan progression** are still
-  pending. Options: (a) run `/sprint-update` as a separate docs PR before merge, or (b) fold those
-  edits onto this release branch. Whichever is chosen, the docs-audit must confirm they landed
-  **before** `/release-update` marks PASS. (Kiro flagged this at `/release-start`.)
+- **`/sprint-update` was run as a separate docs PR (#247, option a)** and merged **before** the
+  release PR (#246) — clearing the carry-over. The Sprint 45 valuation row (~3.0h), the evaluation
+  test-count (→661) + two Resolved-Defect rows (BUG-v1.12.0-01 + import-before-onboarding gap), and
+  the testing-plan progression (+12) all landed on `main` prior to the release. ✅
 
 ## Result
 
-- **Docs audit:** ⏳ _pending_ — owner ticks each applicable row during release verification; confirmed PASS at `/release-update`.
+- **Docs audit:** ✅ **PASS** (2026-09-15) — all 11 durable-doc `> Reviewed:` stamps bumped
+  `v1.12.0-web` → `v1.12.1-web` at `/release-update`; `security-review.md` stamp-only (no
+  data/network-boundary change this patch); content rows verified (valuation/eval/testing-plan via
+  #247; tracker + README + smoke-index + CHANGELOG date + release-notes shipped line at
+  `/release-update`).

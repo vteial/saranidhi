@@ -2,7 +2,7 @@
 
 # Release Dossier — v1.12.1-web
 
-**Sprint 45 — Practice Sync polish** (v1.12.0 fast-follow) · Release pending · ⏳
+**Sprint 45 — Practice Sync polish** (v1.12.0 fast-follow) · ✅ Shipped 2026-09-15 (tag `v1.12.1-web`, PR #248) · 🚀
 
 A light patch smoothing cross-device setup: an onboarding **"Import from another device"** link
 (adopt your Practice ID before onboarding), the **Practice ID refreshing in place** after a

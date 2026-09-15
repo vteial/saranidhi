@@ -3,7 +3,7 @@
 
 # Saranidhi — Development Sprint Tracker
 
-> **Reviewed:** v1.12.0-web · **Next review:** every release (docs-audit gate).
+> **Reviewed:** v1.12.1-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
@@ -38,36 +38,31 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
-| 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ Complete (PR #244) |
+| 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
 | 46+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.12.0-web is now live in production (2026-09-15)** — Sprint 44, the
-> **★ Practice Sync — Phase 0** feature release (feature PR #236 → /sprint-finish #237 →
-> /sprint-update #238 → release-start PR #239 → main→prod promotion PR #241, tag `v1.12.0-web`
-> @ `prod`; full-matrix smoke ✅ PASS with notes — owner ran real cross-device verification on
-> iMac Chrome + iPad Mini Chrome, the part automation can't cover). It lays the safe foundation
-> for aggregating breath practice across the owner's devices: a locally-generated **owner id**
-> stamped on each profile (`Profiles.ownerId`, schema v6→v7 guarded migration + UUID backfill),
-> a **union-by-UUID safe merge-import** (`DatabaseExporter.mergeFromBytes` — idempotent, additive,
-> alongside the existing destructive `restoreFromBytes`), an **owner-guard** check
-> (`OwnerGuardStatus`: match / emptyLocal / legacyNoOwnerId / mismatch) so a foreign export can't
-> silently overwrite, and a **Practice ID** surfaced in Settings. Export bumped to v2. The preceding
-> patch **v1.11.1-web** (Sprint 43 — Localization Defect Fixes) fixed three Tamil "label localized
-> but value not" gaps; the feature release **v1.11.0-web** (Sprint 42 — ★ Swara Clock Engine &
-> Weekday Udhaya) decoupled the expected nostril onto the independent 1-hour / 24-cycle swara clock.
-> Earlier: **v1.10.1** (Analytics tidy), **v1.10.0** (Chronobiology), **v1.9.0** (Aruḍam "Why?"),
-> **v1.8.0** (ambient "Aruḍam Now"). Both corpora (Sara Kalai, Panja Pakshi) remain fully
-> CONF-resolved.
+> **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
+> **Practice Sync polish** patch (feature PR #244 → /sprint-finish #245 → /sprint-update #247 →
+> release-start PR #246 → main→prod promotion PR #248, tag `v1.12.1-web` @ `prod`; targeted patch
+> smoke ✅ PASS all 6 on the PR #246 preview). It smooths cross-device setup: a subtle onboarding
+> **"Import from another device"** link that lets a fresh device adopt the existing Practice ID
+> **before** onboarding (via a shared `MergeImportController` over the existing merge path), the
+> Settings **Practice ID refreshing in place** after a Merge/Restore (BUG-v1.12.0-01 — now watches
+> a `profileProvider`), and the **Practice ID in export filenames**. No schema change (v7, export v2).
+> The preceding feature release **v1.12.0-web** (Sprint 44 — ★ Practice Sync Phase 0) laid the safe
+> foundation: a locally-generated **owner id** (schema v6→v7 guarded migration + UUID backfill), a
+> **union-by-UUID safe merge-import** with an **owner-guard**, and a Practice ID in Settings —
+> reframing the principle to *local-first with optional, user-owned sync*. Earlier: **v1.11.1**
+> (Localization fixes), **v1.11.0** (★ Swara Clock Engine), **v1.10.1** (Analytics tidy), **v1.10.0**
+> (Chronobiology), **v1.9.0** (Aruḍam "Why?"), **v1.8.0** (ambient "Aruḍam Now"). Both corpora
+> (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
 >
-> **Next (to schedule via `/plan`):** the **v1.12.1 fast-follow** — three Practice-Sync polish items
-> deferred from Sprint 44: an onboarding **"Import from another device"** entry point (a new device
-> can't reach Settings import while stuck on onboarding 🔴), **BUG-v1.12.0-01** (Practice ID not
-> refreshed on the Settings card until page reload after a restore 🟢), and a **Practice-ID prefix in
-> the export filename** (🟢); then **Practice Sync Phase 1** (on-open auto-sync); the **7-day
-> Accuracy Calibration** (Saranidhi vs Align27 vs Panchangam vs actual breath) — gated on owner data
-> collection; the native **"Now" Surface** (ambient widget → watch → macOS); and the **User Guide —
-> Book-Style Navigation & Search** epic (native Dart ToC + search). Known small follow-up:
-> **BUG-v1.11.1-03** (`YamaSegment.label` unlocalized in the notification title + AI payload).
+> **Next (to schedule via `/plan`):** **Practice Sync Phase 1** (on-open auto-sync — reopens the
+> account/network boundary → security-review redo); the **7-day Accuracy Calibration** (Saranidhi vs
+> Align27 vs Panchangam vs actual breath) — gated on owner data collection; the native **"Now"
+> Surface** (ambient widget → watch → macOS); and the **User Guide — Book-Style Navigation & Search**
+> epic (native Dart ToC + search). Known small follow-up: **BUG-v1.11.1-03** (`YamaSegment.label`
+> unlocalized in the notification title + AI payload).
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -1012,7 +1007,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 45: v1.12.1 fast-follow — Practice-Sync polish — ✅ Complete (PR #244)
+## Sprint 45: v1.12.1 fast-follow — Practice-Sync polish — ✅ 🚀 Shipped (PR #244, v1.12.1-web)
 
 > **Dossier:** [`sprints/sprint-45-practice-sync-polish/`](sprints/sprint-45-practice-sync-polish/README.md) —
 > spec authored (Kiro Web); Antigravity implemented with local green (analyze clean, 661 pass / 4
@@ -1041,8 +1036,8 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **45.3 DoD** — exported filename carries the first-8 of the owner id; null/empty/`<8`-char `ownerId` falls back / no `RangeError` (`buildBackupFilename`, 6 unit tests).
 - [x] **Regression gate** — onboarding happy-path (no import) unchanged; existing Merge/Restore-in-Settings flows unchanged (Settings keeps its mismatch→restore fallback).
 - [x] **Tests** — unit/widget suite green; new tests for the onboarding-import route + the filename builder + the profile-card refresh (+12 net; 661 pass / 4 known CloudKit baseline / 0 regressions).
-- [ ] **Smoke test** — scenarios added to `smoke-test-v1.12.1.md` (new-device import-before-onboarding; refresh-after-restore; filename inspection). _(at `/release-start v1.12.1`)_
-- [ ] **Valuation report** — Sprint 45 row (+20%) at `/sprint-update`.
+- [x] **Smoke test** — `docs/testing/releases/v1.12.1/smoke-test.md` ✅ PASS (all 6: S1 import-before-onboarding adopts source Practice ID + bypasses onboarding, S2 in-place refresh, S3 filename prefix, S4/S5/S6 regression + owner-guard + EN/TA), owner-run on the PR #246 preview.
+- [x] **Valuation report** — Sprint 45 row (~3.0h) added at `/sprint-update` (PR #247).
 - [x] **Tracker updated** — status ✅.
 
 ---
