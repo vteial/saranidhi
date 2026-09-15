@@ -39,7 +39,8 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
-| 46+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ⬜ Planned |
+| 47+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
 > **Practice Sync polish** patch (feature PR #244 → /sprint-finish #245 → /sprint-update #247 →
@@ -1039,6 +1040,46 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **Smoke test** — `docs/testing/releases/v1.12.1/smoke-test.md` ✅ PASS (all 6: S1 import-before-onboarding adopts source Practice ID + bypasses onboarding, S2 in-place refresh, S3 filename prefix, S4/S5/S6 regression + owner-guard + EN/TA), owner-run on the PR #246 preview.
 - [x] **Valuation report** — Sprint 45 row (~3.0h) added at `/sprint-update` (PR #247).
 - [x] **Tracker updated** — status ✅.
+
+---
+
+## Sprint 46: Web E2E Smoke Automation (Playwright, `vteial/saranidhi-e2e`) — ⬜ Planned
+
+> **Dossier:** `sprints/sprint-46-e2e-automation/` — to be seeded at `/sprint-start 46`.
+> **Internal / QA-tooling sprint — no user-facing change, no `pubspec` bump, no prod release.** The
+> deliverable is a test harness in a **separate repo** (`vteial/saranidhi-e2e`), not app code.
+>
+> **Scheduled via `/plan` (owner-confirmed).** Origin: the v1.12.1-web smoke run took ~1h48m active
+> / ~2h total (see [Release Effort Reference](../testing/smoke-test-results.md#release-effort-reference--the-smoke-gate-is-mostly-fixed-cost-per-release)),
+> and an Antigravity post-mortem diagnosed the bottleneck as **ad-hoc CDP scripting** (on-the-fly
+> coordinate discovery, fixed `sleep()`s, a cookie-wipe SSO bounce, CanvasKit semantics toggling) —
+> not the number of scenarios. A pre-scripted, deterministic Playwright harness that tests the
+> **deployed preview URL** should collapse the *scripted-scenario* portion of the gate dramatically.
+>
+> **Confirmed decisions:** (1) **separate repo `vteial/saranidhi-e2e`** (Playwright/TS, own CI,
+> tests deployed URLs — the long-standing E2E strategy; NOT in-repo `tool/qa/`); (2) **internal, no
+> version bump**; (3) the two cheap stopgap fixes (selective state reset + event-driven waits) were
+> **adopted immediately** in this same PR into `qa-verify-agent-prompt.md` — they do not wait for
+> this sprint.
+
+- [ ] Task 46.1: **Scaffold `vteial/saranidhi-e2e`** — Playwright + TypeScript, its own CI (GitHub Actions), README, and a single-command entry (`PREVIEW_URL=… BYPASS_SECRET=… npx playwright test`). Reads the Vercel bypass from env; **never commits the secret**.
+- [ ] Task 46.2: **Pre-configure the browser context with the Vercel bypass** (`x-vercel-protection-bypass` header/cookie set once at context creation) so no scenario touches the SSO wall — and **never** clears cookies on reset (the v1.12.1 bounce root cause).
+- [ ] Task 46.3: **Event-driven waiting + Flutter-web semantics enabled** — auto-wait/poll for elements (Playwright's built-in web-first assertions), and force the CanvasKit semantics tree on for the QA build/run so elements are queryable without manual placeholder toggling.
+- [ ] Task 46.4: **State seeding for regression scenarios** — write the initial `localStorage` state (e.g. Practice ID A) + reload, instead of walking onboarding/import to reach a precondition (targets the S2/S5 setup cost).
+- [ ] Task 46.5: **Automate the current smoke matrix S1–S6** as the first suite (import-before-onboarding, in-place refresh, filename prefix, onboarding happy-path, Merge/Restore + owner-guard, bilingual EN/TA), with **timestamped screenshot evidence** saved per step.
+- [ ] Task 46.6: **CI wiring** — run the suite against a deployed preview/staging URL on demand (and document how a release cycle invokes it); keep it **off the Flutter PR path** (doesn't slow app PRs — the reason for a separate repo).
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **Harness green** — S1–S6 pass deterministically against a real deployed preview, in the new repo's CI, with screenshot evidence.
+- [ ] **Measured runtime recorded** — the *actual* end-to-end wall-clock of a green run (NOT the aspirational "~2 min" — record what it really is; the one-time build + CanvasKit-flakiness cost is expected). Update the [Release Effort Reference](../testing/smoke-test-results.md#release-effort-reference--the-smoke-gate-is-mostly-fixed-cost-per-release) baseline **only** once this proves out.
+- [ ] **Scope honesty** — documented that the harness covers **scripted functional scenarios**; the **human visual / UX / Tamil-doctrinal-copy eyeball still gates** each release (automation shrinks the scripted portion, it does not remove the human gate).
+- [ ] **Flakiness risk addressed** — explicitly de-risk vs. the quarantined in-repo `Integration Tests (Web)` ChromeDriver job (still non-blocking for cause): stable selectors/semantics, retries only where justified, no reintroduction of a brittle always-red gate.
+- [ ] **Docs** — `saranidhi-e2e` README + a pointer from this repo's `dev-workflow.md` /release-start (how the automated smoke slots into the release gate); backlog E2E rows flipped to reflect what shipped.
+- [ ] **Tracker updated** — status ✅.
+
+> **Vehicle:** spec → Antigravity implements in `vteial/saranidhi-e2e` with a green run before PR →
+> Kiro Web reviews. Owner is sole merge authority. Note: this sprint's PRs land in the **e2e repo**,
+> not `vteial/saranidhi` (this tracker just records the sprint + links out).
 
 ---
 

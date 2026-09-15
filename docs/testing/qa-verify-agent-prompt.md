@@ -43,6 +43,41 @@ QA-Verify tests **exactly one** environment: the **release PR's Vercel preview**
 
 > The v1.11.0 incident this guardrail prevents: the preview was temporarily unavailable (a docs-only branch HEAD had made Vercel *skip* the build), and the agent silently tried staging, then a local server, producing meaningless partial results before a network drop stopped it. **Unavailable preview = STOP and report, never fall back.**
 
+### Execution efficiency — two rules that avoid self-inflicted delay
+
+> From the v1.12.1-web run analysis: ~30 of the ~108 exploratory minutes were avoidable
+> self-inflicted delay (a cookie-wipe SSO bounce + fixed `sleep()`s). Until the full Playwright
+> harness lands (Sprint 46 → `vteial/saranidhi-e2e`), apply these two rules on any ad-hoc/CDP run.
+
+1. **Selective app-state reset — NEVER wipe cookies.** To reset between scenarios (e.g. before the
+   fresh-onboarding regression), clear **only** application storage:
+   ```js
+   localStorage.clear();   // Saranidhi data
+   sessionStorage.clear();
+   // Do NOT clear cookies / Storage.clearDataForOrigin — that drops the Vercel
+   // `_vercel_jwt` bypass cookie and bounces you to the SSO wall (cost ~15–20 min in v1.12.1).
+   ```
+   If a full origin wipe is unavoidable, **re-apply the bypass** immediately by re-hitting the
+   preview URL with `?x-vercel-protection-bypass=<secret>&x-vercel-set-bypass-cookie=true`.
+2. **Event-driven waiting, not fixed sleeps.** Replace `await sleep(3000)` with predicate polling
+   (~100 ms) for the target element/semantics — steps then advance in 100–300 ms instead of
+   2–4 s. Over 50+ actions this alone saved ~10–15 min.
+   ```js
+   async function waitFor(pred, timeout = 5000) {
+     const start = Date.now();
+     while (Date.now() - start < timeout) {
+       if (await pred()) return true;
+       await new Promise(r => setTimeout(r, 100));
+     }
+     throw new Error('timeout');
+   }
+   ```
+
+> These are **stopgap technique rules for manual/ad-hoc runs**. The durable fix is the Sprint 46
+> Playwright harness, which bakes both in (pre-set bypass context + auto-waiting) plus semantics-on
+> and state-seeding. See [`sprint-backlog.md` → Quality, CI & E2E](../process/sprint-backlog.md#quality-ci--e2e)
+> and the [Release Effort Reference](smoke-test-results.md#release-effort-reference--the-smoke-gate-is-mostly-fixed-cost-per-release).
+
 ---
 
 ## Reusable Prompt
