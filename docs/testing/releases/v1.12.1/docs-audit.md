@@ -22,21 +22,21 @@
 |:-:|-----|--------|:--------------:|
 | ⬜ | `README.md` | Current Status → v1.12.1 (once released), 45 sprints, PRs, Latest/Next | n/a (status block) |
 | ⬜ | `docs/README.md` | Index still matches the doc set | n/a |
-| ⬜ | `docs/process/project-valuation-report.md` | Sprint 45 row + hours + exec summary — **pending `/sprint-update`** (see note) | ⬜ |
-| ⬜ | `docs/process/project-evaluation.md` | Test count (+12 → ~661 local / new-baseline) + progression + Resolved-Defect row (BUG-v1.12.0-01) — **pending `/sprint-update`** | ⬜ |
-| ⬜ | `docs/process/sprint-tracker.md` | Sprint 45 row ✅ (PR #244); flip to ✅ 🚀 + current-state → v1.12.1 live at `/release-update` | ⬜ |
-| ⬜ | `docs/process/sprint-backlog.md` | The three v1.12.1 fast-follow rows → done; Practice Sync Phase 1 accurate | ⬜ |
-| ⬜ | `docs/process/dev-workflow.md` | No protocol/gate change this release | ⬜ |
-| ⬜ | `docs/product/user-guide.md` | "Set up a new device by importing" present (FAQ string added in #244); confirm the guide body mentions it too | ⬜ |
-| ⬜ | `docs/product/product-scope.md` | No principle change this release (portability was reframed at v1.12.0) | ⬜ |
-| ⬜ | `docs/reference/architecture.md` | Shared `MergeImportController` + `profileProvider` + import-before-onboarding path — confirm noted (add a line if wanted) | ⬜ |
-| ⬜ | `docs/reference/security-review.md` | **Stamp-only** — no data/network-boundary change (patch over v1.12.0's already-reviewed model) | ⬜ (stamp only) |
+| ⬜ | `docs/process/project-valuation-report.md` | Sprint 45 row + hours + exec summary — **pending `/sprint-update`** (see note) | ✅ |
+| ⬜ | `docs/process/project-evaluation.md` | Test count (+12 → ~661 local / new-baseline) + progression + Resolved-Defect row (BUG-v1.12.0-01) — **pending `/sprint-update`** | ✅ |
+| ⬜ | `docs/process/sprint-tracker.md` | Sprint 45 row ✅ (PR #244); flip to ✅ 🚀 + current-state → v1.12.1 live at `/release-update` | ✅ |
+| ⬜ | `docs/process/sprint-backlog.md` | The three v1.12.1 fast-follow rows → done; Practice Sync Phase 1 accurate | ✅ |
+| ⬜ | `docs/process/dev-workflow.md` | No protocol/gate change this release | ✅ |
+| ⬜ | `docs/product/user-guide.md` | "Set up a new device by importing" present (FAQ string added in #244); confirm the guide body mentions it too | ✅ |
+| ⬜ | `docs/product/product-scope.md` | No principle change this release (portability was reframed at v1.12.0) | ✅ |
+| ⬜ | `docs/reference/architecture.md` | Shared `MergeImportController` + `profileProvider` + import-before-onboarding path — confirm noted (add a line if wanted) | ✅ |
+| ⬜ | `docs/reference/security-review.md` | **Stamp-only** — no data/network-boundary change (patch over v1.12.0's already-reviewed model) | ✅ (stamp only) |
 | ⬜ | `docs/reference/calculation-methodology.md` | No calc change this release | n/a (research doc) |
-| ⬜ | `docs/testing/testing-plan.md` | Test-count progression (+12) — **pending `/sprint-update`** | ⬜ |
+| ⬜ | `docs/testing/testing-plan.md` | Test-count progression (+12) — **pending `/sprint-update`** | ✅ |
 | ⬜ | `docs/testing/smoke-test-results.md` | Add the v1.12.1 row (status set at `/release-update`) | n/a (index) |
 | ⬜ | `CHANGELOG.md` | `[1.12.1-web]` entry present; date set at `/release-update` | n/a |
 | ⬜ | Sprint dossier `sprints/sprint-45-practice-sync-polish/README.md` | Links spec → impl → test → PR #244 → release | n/a |
-| ⬜ | `AI_COLLABORATION_FRAMEWORK.md` | No flow/role change this release; stamp bumped | ⬜ |
+| ⬜ | `AI_COLLABORATION_FRAMEWORK.md` | No flow/role change this release; stamp bumped | ✅ |
 
 > **Stamp rule:** each durable doc carries `> **Reviewed:** vX.Y.Z`. 11 durable docs read
 > `v1.12.0-web` → bump to `v1.12.1-web` at `/release-update` (`security-review.md` = stamp-only).
