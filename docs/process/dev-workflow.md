@@ -288,6 +288,14 @@ Post-release documentation closure (light touch-up).
 > stay as flat `smoke-test-vX.Y.Z.md` files in `docs/testing/releases/` — closed history is not
 > retro-migrated. v1.7.0 / v1.8.0 are the worked examples of the folder layout.
 
+#### Automated Smoke Suite (`saranidhi-e2e`)
+
+Starting in Sprint 46, web E2E smoke scenarios (S1–S6: onboarding import, in-place refresh, export filename, onboarding happy-path, merge/owner-guard regression, bilingual intro/dialog) are automated via Playwright/TypeScript in the dedicated repository [`vteial/saranidhi-e2e`](https://github.com/vteial/saranidhi-e2e).
+
+- **Execution:** Trigger on-demand via `.github/workflows/e2e.yml` (`workflow_dispatch`) against preview or staging deployments with `VERCEL_AUTOMATION_BYPASS_SECRET`, or locally via `pnpm test`.
+- **Runtime:** Measured wall-clock runtime is ~1.4 minutes (compared to ~1h48m manual baseline).
+- **Gate Scope:** Automated smoke covers scripted regression scenarios; human visual/UX/Tamil verification remains the final gate before production promotion.
+
 ---
 
 ## Rollback Strategies
