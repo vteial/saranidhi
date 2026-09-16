@@ -45,5 +45,5 @@ regression are DoD gates. Owner is sole merge authority.
 
 🔨 **In Progress** — spec authored; handed to Antigravity. §0 (Fly instance) is the owner's parallel prerequisite.
 
-- **PR:** _pending (in `vteial/saranidhi`)_
+- **PR:** [#260](https://github.com/vteial/saranidhi/pull/260) (in `vteial/saranidhi`)
 - **Shipped:** _pending — targets v1.13.0 (`/release-start v1.13.0`)_

@@ -7,8 +7,8 @@
 > _Placeholder — Antigravity fills this in on implementation._
 
 ## PR
-- **PR:** _opened into main from `feature/sprint47-practice-sync-p1`_
-- **Commits:** on branch `feature/sprint47-practice-sync-p1`
+- **PR:** [#260](https://github.com/vteial/saranidhi/pull/260) (`feature/sprint47-practice-sync-p1` into `main`)
+- **Commits:** on branch `feature/sprint47-practice-sync-p1` (`8197515`)
 
 ## What was implemented (by spec section)
 
