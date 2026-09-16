@@ -40,7 +40,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
 | 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
-| 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ⬜ Planned |
+| 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | 🔨 In Progress |
 | 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1088,10 +1088,13 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 47: ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase) — ⬜ Planned
+## Sprint 47: ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase) — 🔨 In Progress
 
-> **Dossier:** `sprints/sprint-47-practice-sync-p1/` — to be seeded at `/sprint-start 47`
-> (Kiro Web authors the spec → Antigravity implements with local green → Kiro Web reviews the diff).
+> **Dossier:** [`sprints/sprint-47-practice-sync-p1/`](sprints/sprint-47-practice-sync-p1/README.md) —
+> spec authored (Kiro Web); handed to Antigravity to implement in `vteial/saranidhi` with local
+> green (against the Docker Compose PocketBase) before PR; Kiro Web reviews. ⚠️ **§0: owner stands
+> up the Fly.io PocketBase instance + collections per the spec's schema** (spec §0) — implementation
+> greens locally against Compose meanwhile; the Fly instance is needed before the release smoke.
 >
 > **Scheduled via `/plan` (owner-confirmed).** Phase 1 of the **Practice Sync** epic — the first
 > real cross-device sync over a network, building on Phase 0's owner-identity + union-merge
