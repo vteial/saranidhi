@@ -37,7 +37,7 @@ Antigravity may scaffold into it.
 
 ## Status
 
-🔨 **In Progress** — spec authored; handed to Antigravity.
+✅ **Complete** — harness built, reviewed, merged.
 
-- **PR:** _pending (in `vteial/saranidhi-e2e`)_
-- **Shipped:** _n/a — internal QA tooling, no prod release_
+- **PR:** [`vteial/saranidhi-e2e#1`](https://github.com/vteial/saranidhi-e2e/pull/1) — merged. Antigravity built the scaffold + S1–S6 suite (3× green, **1m24s** wall-clock); Kiro Web reviewed the real code and approved (secret-never-committed + cookie-preserving reset + behavior/copy assertions verified; two non-blocking flakiness follow-ups logged).
+- **Shipped:** n/a — internal QA tooling, no prod release. Runs on-demand against a deployed preview via the e2e repo's `workflow_dispatch`.
