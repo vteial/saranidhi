@@ -177,6 +177,13 @@ DELIVERABLE (clerical recording — this you MAY write):
   get fixed on the SAME release branch by the Developer Agent (Kiro Web), then you re-verify
   the specific failed scenario.
 
+DELIVERABLE COMPLETENESS: "done" = every deliverable above satisfied, not a partial delivery.
+If this prompt (or the sprint spec) says to OPEN a PR, actually open it — do not push a branch
+and stop. Fill every summary/results file it names, honor the scope / no-fallback / secret rules,
+and hand back cleanly. Still: never merge, never tag (owner authority). Leaving work on an
+un-PR'd branch silently pushes the clerical close-out onto the reviewer and can strand work
+off-`main`. (Sprint 46 lesson.)
+
 GATE RULE: QA sign-off requires the preview build functionally correct AND CI green (not just
 the Vercel preview). Your job is the deployed-build verification gate.
 

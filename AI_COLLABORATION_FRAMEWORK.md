@@ -401,6 +401,7 @@ Use this when transferring work from the Common Window to **Kiro Web**:
 7. **Fix-on-same-branch loop.** A QA bug is fixed on the same PR branch as a new commit (never `--amend` after a CI failure), then the specific scenario is re-verified.
 8. **Capture learnings at the moment of decision.** Record decisions, gotchas, and deferrals as durable learnings so the process compounds instead of repeating mistakes.
 9. **CI Fast ≠ CI Full.** The pre-merge gate must run the same suite that runs at merge (full tests + coverage), or green PRs can still break `main`.
+10. **A delegated agent must complete the WHOLE handoff contract — follow the prompt's rules + deliverable list exactly, no partial delivery.** When Antigravity (coding or QA) is handed a spec/prompt, "done" means every stated deliverable is satisfied: **open the PR** (do not just push a branch and stop), fill the dossier summaries, record the real result, honor the scope/no-fallback/secret rules, and hand back cleanly — while still **never merging or tagging** (human authority). Partial delivery silently pushes the missing clerical work onto the reviewer and can strand work off-`main`. *(Worked example — Sprint 46 (e2e): Antigravity built + tested the harness correctly and pushed a `docs/sprint-46-finish` branch, but **never opened its PR and never flipped the tracker**, so the close-out sat un-merged and looked "not done." The `/sprint-finish` build had to recover it. Rule: if the prompt says "open the PR," open the PR; if it lists deliverables, satisfy all of them.)*
 
 ---
 
