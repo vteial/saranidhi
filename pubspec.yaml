@@ -52,6 +52,10 @@ dependencies:
   timezone: ^0.10.0
   web: ^1.1.0
 
+  # Networking & Sync (Web-safe)
+  pocketbase: ^0.25.1
+  http: ^1.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

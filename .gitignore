@@ -103,3 +103,7 @@ worknotes/**/*.pdf
 worknotes/sarakalai/telegram/**
 worknotes/sarakalai/youtube/**
 worknotes/panja_pakshi/**
+
+# Local Dev Infrastructure (PocketBase data volume)
+tool/dev/pb_data/
+**/pb_data/

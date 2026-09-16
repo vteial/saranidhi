@@ -2062,4 +2062,98 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get focusCardSwaraAharaAction => 'வலதுக்கு மாற்றவும்';
+
+  @override
+  String get practiceSyncTitle => 'பயிற்சி ஒத்திசைவு';
+
+  @override
+  String get practiceSyncSubtitle =>
+      'உங்கள் மூச்சு அமர்வுகள் மற்றும் குறிப்பேட்டை சாதனங்களுக்கிடையில் ஒத்திசைக்கவும்.';
+
+  @override
+  String get syncConsentNotice =>
+      'இயக்கப்படும்போது, உங்கள் பயிற்சித் தரவு உங்கள் தனிப்பட்ட கணக்கில் பாதுகாப்பாக சேமிக்கப்படும்.';
+
+  @override
+  String get syncEnableToggle => 'ஒத்திசைவை இயக்கு';
+
+  @override
+  String get syncEnableToggleSubtitle =>
+      'சேவையகத்துடன் அமர்வுகள் மற்றும் குறிப்பேட்டை ஒத்திசைக்க அனுமதிக்கவும்.';
+
+  @override
+  String get syncAccountTitle => 'கணக்கு';
+
+  @override
+  String get syncNotSignedIn => 'உள்நுழையவில்லை';
+
+  @override
+  String syncSignedInAs(String email) {
+    return '$email என உள்நுழைந்துள்ளீர்கள்';
+  }
+
+  @override
+  String get syncSignInAction => 'உள்நுழைக';
+
+  @override
+  String get syncSignOutAction => 'வெளியேறு';
+
+  @override
+  String get syncEmailField => 'மின்னஞ்சல்';
+
+  @override
+  String get syncPassphraseField => 'கடவுச்சொல்';
+
+  @override
+  String get syncServerUrlField => 'சேவையக முகவரி';
+
+  @override
+  String get syncSignInDialogTitle => 'ஒத்திசைவு கணக்கில் உள்நுழைக';
+
+  @override
+  String get syncSignInSubmit => 'உள்நுழைக';
+
+  @override
+  String get syncCancel => 'ரத்துசெய்';
+
+  @override
+  String get syncSignInFailed =>
+      'உள்நுழைவு தோல்வியடைந்தது. உங்கள் சான்றுகளைச் சரிபார்க்கவும்.';
+
+  @override
+  String get syncScopeSessions => 'மூச்சு அமர்வுகள்';
+
+  @override
+  String get syncScopeJournal => 'மூச்சுக் குறிப்பேடு';
+
+  @override
+  String get syncScopeJournalNote =>
+      'குறிப்பேடு உங்கள் தொடர் பயிற்சி மற்றும் மூச்சடக்கல் புள்ளிவிவரங்களை இயக்குகிறது.';
+
+  @override
+  String get syncNowAction => 'இப்போது ஒத்திசை';
+
+  @override
+  String get syncingAction => 'ஒத்திசைக்கப்படுகிறது...';
+
+  @override
+  String syncLastSynced(String time) {
+    return 'கடைசியாக ஒத்திசைக்கப்பட்டது: $time';
+  }
+
+  @override
+  String get syncNotYetSynced => 'இன்னும் ஒத்திசைக்கப்படவில்லை';
+
+  @override
+  String syncSuccessStatus(int inserted, int pushed) {
+    return 'வெற்றிகரமாக ஒத்திசைக்கப்பட்டது ($inserted புதியவை, $pushed பதிவேற்றப்பட்டன)';
+  }
+
+  @override
+  String syncFailedStatus(String error) {
+    return 'ஒத்திசைவு தோல்வியடைந்தது: $error';
+  }
+
+  @override
+  String get syncSignInRequired => 'ஒத்திசைக்க உள்நுழையவும்';
 }

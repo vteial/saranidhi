@@ -105,6 +105,19 @@ class MergeResult {
       insertedSomatic;
 }
 
+/// Summary of practice-only records merged into the local database (Sprint 47).
+class PracticeMergeResult {
+  const PracticeMergeResult({
+    required this.insertedJournal,
+    required this.insertedSessions,
+  });
+
+  final int insertedJournal;
+  final int insertedSessions;
+
+  int get totalInserted => insertedJournal + insertedSessions;
+}
+
 /// Handles exporting and importing/merging the database.
 ///
 /// Supports two import paths:
@@ -314,12 +327,12 @@ class DatabaseExporter {
     }
 
     // Union merge event tables by UUID
-    final insertedJournal = await _mergeJournal(
-      data['journal'] as List<dynamic>?,
+    final practiceResult = await mergePracticeRows(
+      sessions: data['sessions'] as List<dynamic>?,
+      journal: data['journal'] as List<dynamic>?,
     );
-    final insertedSessions = await _mergeSessions(
-      data['sessions'] as List<dynamic>?,
-    );
+    final insertedJournal = practiceResult.insertedJournal;
+    final insertedSessions = practiceResult.insertedSessions;
     final insertedBirds = await _mergeBirds(data['birds'] as List<dynamic>?);
     final insertedPrasanam = await _mergePrasanam(
       data['prasanam'] as List<dynamic>?,
@@ -605,6 +618,23 @@ class DatabaseExporter {
 
   // ─── Table union-merging helpers ───────────────────────────────────────
 
+  /// Merges decoded practice records (sessions and journal entries) into the local database.
+  ///
+  /// - Non-destructive: never deletes existing records.
+  /// - Union by UUID: inserts only records whose `id` (or `uuid`) is not present locally.
+  /// - Idempotent: re-merging inserts 0 duplicates.
+  Future<PracticeMergeResult> mergePracticeRows({
+    List<dynamic>? sessions,
+    List<dynamic>? journal,
+  }) async {
+    final insertedJournal = await _mergeJournal(journal);
+    final insertedSessions = await _mergeSessions(sessions);
+    return PracticeMergeResult(
+      insertedJournal: insertedJournal,
+      insertedSessions: insertedSessions,
+    );
+  }
+
   Future<int> _mergeJournal(List<dynamic>? list) async {
     if (list == null || list.isEmpty) return 0;
     final existingIds =
@@ -617,7 +647,7 @@ class DatabaseExporter {
     var inserted = 0;
     for (final item in list) {
       final map = item as Map<String, dynamic>;
-      final id = map['id'] as String;
+      final id = (map['id'] ?? map['uuid']) as String;
       if (existingIds.contains(id)) continue;
 
       await _db
@@ -660,7 +690,7 @@ class DatabaseExporter {
     var inserted = 0;
     for (final item in list) {
       final map = item as Map<String, dynamic>;
-      final id = map['id'] as String;
+      final id = (map['id'] ?? map['uuid']) as String;
       if (existingIds.contains(id)) continue;
 
       await _db
@@ -858,7 +888,7 @@ class DatabaseExporter {
     'updatedAt': p.updatedAt,
   };
 
-  Map<String, dynamic> _journalToMap(SaraKalaiJournalData j) => {
+  static Map<String, dynamic> journalToMap(SaraKalaiJournalData j) => {
     'id': j.id,
     'timestamp': j.timestamp,
     'expectedFlow': j.expectedFlow,
@@ -877,7 +907,7 @@ class DatabaseExporter {
     'wasForcedShift': j.wasForcedShift,
   };
 
-  Map<String, dynamic> _sessionToMap(BreathSession s) => {
+  static Map<String, dynamic> sessionToMap(BreathSession s) => {
     'id': s.id,
     'timestamp': s.timestamp,
     'totalDurationMs': s.totalDurationMs,
@@ -891,6 +921,10 @@ class DatabaseExporter {
     'consciousnessRating': s.consciousnessRating,
     'notes': s.notes,
   };
+
+  Map<String, dynamic> _journalToMap(SaraKalaiJournalData j) => journalToMap(j);
+
+  Map<String, dynamic> _sessionToMap(BreathSession s) => sessionToMap(s);
 
   Map<String, dynamic> _birdToMap(BirdLibraryData b) => {
     'id': b.id,
