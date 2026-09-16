@@ -66,12 +66,17 @@ PocketBase's `id`), plus an **`ownerId`** field for the guard/scoping.
 | `notes` | text, optional | |
 | `isPinned` / `wasForcedShift` | bool | |
 
-**Access rules (the network-side half of the owner-guard):** users authenticate; list/view/create/
-update rules must restrict every row to the authenticated user's own `ownerId`
-(e.g. `@request.auth.id != "" && ownerId = @request.auth.<ownerId-claim>`, or a per-user relation —
-Antigravity picks the exact PocketBase rule form and documents it). **A user can never read/write
-another owner's rows** — this backs up the client-side owner-guard server-side. **No delete needed**
-(append-only; Phase 1 never deletes remote rows).
+**Access rules (the network-side half of the owner-guard) — PINNED to the `user`-relation form:**
+Add a **`user` field = relation → `users` (required)** on **both** collections, and set the API
+rules to `user = @request.auth.id` for **List / View / Create / Update**; leave **Delete empty/locked**
+(append-only — Phase 1 never deletes remotely). The app must set `user` = the signed-in user's id on
+every create. **Rationale (decided, not open):** PocketBase enforces the relation to the
+authenticated `users.id` **server-side**, so a user cannot read/write another owner's rows even with
+a crafted request — the network half of the owner-guard. `ownerId` (the Practice ID) is still stored
+as the **cross-device grouping key** the app filters/guards on, but the **`user` relation is what the
+server enforces**. (An `ownerId`-string-match rule was considered and rejected — it's a weaker,
+spoofable guard than a server-enforced relation.) Full runbook:
+[`docs/deployment/pocketbase-fly.md`](../../../deployment/pocketbase-fly.md).
 
 > Until §0 is satisfied for **local** (Compose is enough to build/green), implementation proceeds;
 > the **Fly** instance gates the release smoke.
