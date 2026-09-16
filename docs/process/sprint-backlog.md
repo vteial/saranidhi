@@ -394,9 +394,10 @@ macro-seal — for the citation fix + optional framing) · `nostril_pattern.dart
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🟡 | 📋 → S46 | Set up Playwright for Flutter Web E2E tests (separate repo `vteial/saranidhi-e2e`) — **scheduled as Sprint 46**, see [sprint-tracker](sprint-tracker.md#sprint-46-web-e2e-smoke-automation-playwright-vteialsaranidhi-e2e--planned) |
-| 🟡 | 📋 → S46 | Automate critical-path scenarios from the smoke test (Sprint 46 first suite = the current S1–S6: onboarding, import-before-onboarding, in-place refresh, filename, Merge/Restore + owner-guard, EN/TA) |
-| 🟡 | 📋 → S46 | Integrate E2E into CI (run against deployed preview/staging URL; kept OFF the Flutter PR path) |
+| 🟡 | ✅ S46 | Set up Playwright for Flutter Web E2E tests (separate repo `vteial/saranidhi-e2e`) — **done in Sprint 46** ([e2e PR #1](https://github.com/vteial/saranidhi-e2e/pull/1)); harness scaffolded, 1m24s green run |
+| 🟡 | ✅ S46 | Automate critical-path scenarios from the smoke test — **done**: Step 0 + S1–S6 (onboarding, import-before-onboarding, in-place refresh, filename, Merge/Restore + owner-guard, EN/TA), per-step screenshot evidence |
+| 🟡 | ✅ S46 | Integrate E2E into CI — **done**: `workflow_dispatch` against a preview URL, OFF the Flutter PR path |
+| 🟢 | ⬜ | **Harden the E2E harness (Sprint 46 follow-ups, Kiro review):** replace the few soft `waitForTimeout` settle-waits with predicates; remove the hardcoded pixel fallbacks in `navigateToSettings`/`goBackFromSettings` (make the semantic gear/back locator reliable) — **required before E2E ever becomes a *blocking* release gate** (avoids the quarantined-ChromeDriver flake trap). |
 | 🟢 | ⬜ | Visual regression snapshots for key screens |
 | — | ✅ | **Ad-hoc-run stopgaps adopted (v1.12.1 post-mortem):** selective state-reset (never wipe the Vercel bypass cookie) + event-driven waiting (no fixed `sleep()`s), in [`qa-verify-agent-prompt.md`](../testing/qa-verify-agent-prompt.md). Superseded by the Sprint 46 harness. |
 | 🟡 | ⬜ | Notification de-duplication / cooldown to avoid repeats during a sustained window. |

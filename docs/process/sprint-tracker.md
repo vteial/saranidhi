@@ -39,7 +39,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
-| 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | 🔨 In Progress |
+| 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
 | 47+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1043,12 +1043,13 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 46: Web E2E Smoke Automation (Playwright, `vteial/saranidhi-e2e`) — 🔨 In Progress
+## Sprint 46: Web E2E Smoke Automation (Playwright, `vteial/saranidhi-e2e`) — ✅ Complete (e2e PR #1)
 
 > **Dossier:** [`sprints/sprint-46-e2e-automation/`](sprints/sprint-46-e2e-automation/README.md) —
-> spec authored (Kiro Web); handed to Antigravity to implement **in the separate repo
-> `vteial/saranidhi-e2e`** with a green run before PR; Kiro Web reviews. ⚠️ **The e2e repo does not
-> exist yet** — creating it is the sprint's first gated step (see spec §0).
+> spec authored (Kiro Web); Antigravity built the harness **in the separate repo
+> `vteial/saranidhi-e2e`** (scaffold + S1–S6 suite, 3× green run before PR); Kiro Web reviewed the
+> real code and approved [e2e PR #1](https://github.com/vteial/saranidhi-e2e/pull/1) (merged). §0
+> resolved (owner created the repo, private — fine, preview reached via the bypass secret).
 > **Internal / QA-tooling sprint — no user-facing change, no `pubspec` bump, no prod release.** The
 > deliverable is a test harness in a **separate repo** (`vteial/saranidhi-e2e`), not app code.
 >
@@ -1065,20 +1066,20 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **adopted immediately** in this same PR into `qa-verify-agent-prompt.md` — they do not wait for
 > this sprint.
 
-- [ ] Task 46.1: **Scaffold `vteial/saranidhi-e2e`** — Playwright + TypeScript, its own CI (GitHub Actions), README, and a single-command entry (`PREVIEW_URL=… BYPASS_SECRET=… npx playwright test`). Reads the Vercel bypass from env; **never commits the secret**.
-- [ ] Task 46.2: **Pre-configure the browser context with the Vercel bypass** (`x-vercel-protection-bypass` header/cookie set once at context creation) so no scenario touches the SSO wall — and **never** clears cookies on reset (the v1.12.1 bounce root cause).
-- [ ] Task 46.3: **Event-driven waiting + Flutter-web semantics enabled** — auto-wait/poll for elements (Playwright's built-in web-first assertions), and force the CanvasKit semantics tree on for the QA build/run so elements are queryable without manual placeholder toggling.
-- [ ] Task 46.4: **State seeding for regression scenarios** — write the initial `localStorage` state (e.g. Practice ID A) + reload, instead of walking onboarding/import to reach a precondition (targets the S2/S5 setup cost).
-- [ ] Task 46.5: **Automate the current smoke matrix S1–S6** as the first suite (import-before-onboarding, in-place refresh, filename prefix, onboarding happy-path, Merge/Restore + owner-guard, bilingual EN/TA), with **timestamped screenshot evidence** saved per step.
-- [ ] Task 46.6: **CI wiring** — run the suite against a deployed preview/staging URL on demand (and document how a release cycle invokes it); keep it **off the Flutter PR path** (doesn't slow app PRs — the reason for a separate repo).
+- [x] Task 46.1: **Scaffold `vteial/saranidhi-e2e`** — Playwright + TypeScript, its own CI (GitHub Actions), README, single-command entry (`PREVIEW_URL=… BYPASS_SECRET=… pnpm test`). Reads the Vercel bypass from env (`env.ts` fail-fast); secret never committed (`.gitignore` covers `.env`).
+- [x] Task 46.2: **Context-level Vercel bypass** — `gotoWithBypass` routes preview-origin requests injecting `x-vercel-protection-bypass` + sets the bypass cookie; `resetAppState` clears `localStorage`/`sessionStorage`/IndexedDB but **never cookies** (the v1.12.1 bounce root cause avoided).
+- [x] Task 46.3: **Event-driven waiting + Flutter-web semantics** — `flt-semantics-placeholder` activation, `waitForSemantic`/`waitForFunction` polling, leaf-most candidate selection, auto-scroll for off-viewport elements.
+- [x] Task 46.4: **State seeding for regression scenarios** — `ensureSeeded` reaches the S2/S5 preconditions via the app's own import (documented method per spec §5).
+- [x] Task 46.5: **Automate the current smoke matrix S1–S6** (+ Step 0 pre-flight) — asserts behavior + copy (adopted PID via clipboard, in-place refresh with no reload, filename regex, UUID-v4 shape, mismatch guard + Restore fallback, exact Tamil strings); 32 per-step screenshots via `captureStep`.
+- [x] Task 46.6: **CI wiring** — `.github/workflows/e2e.yml` `workflow_dispatch`-only against a preview URL input, repo-secret injected, evidence artifacts uploaded, **off the Flutter PR path**.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **Harness green** — S1–S6 pass deterministically against a real deployed preview, in the new repo's CI, with screenshot evidence.
-- [ ] **Measured runtime recorded** — the *actual* end-to-end wall-clock of a green run (NOT the aspirational "~2 min" — record what it really is; the one-time build + CanvasKit-flakiness cost is expected). Update the [Release Effort Reference](../testing/smoke-test-results.md#release-effort-reference--the-smoke-gate-is-mostly-fixed-cost-per-release) baseline **only** once this proves out.
-- [ ] **Scope honesty** — documented that the harness covers **scripted functional scenarios**; the **human visual / UX / Tamil-doctrinal-copy eyeball still gates** each release (automation shrinks the scripted portion, it does not remove the human gate).
-- [ ] **Flakiness risk addressed** — explicitly de-risk vs. the quarantined in-repo `Integration Tests (Web)` ChromeDriver job (still non-blocking for cause): stable selectors/semantics, retries only where justified, no reintroduction of a brittle always-red gate.
-- [ ] **Docs** — `saranidhi-e2e` README + a pointer from this repo's `dev-workflow.md` /release-start (how the automated smoke slots into the release gate); backlog E2E rows flipped to reflect what shipped.
-- [ ] **Tracker updated** — status ✅.
+- [x] **Harness green** — Step 0 + S1–S6 pass deterministically against the deployed v1.12.1 preview, with per-step screenshot evidence.
+- [x] **Measured runtime recorded** — **1m24s (84s)** across all 7 scenarios (per-scenario timings in [`test-summary.md`](sprints/sprint-46-e2e-automation/test-summary.md)) — the real number, not the aspirational ~2 min. _(Release Effort Reference baseline NOT yet rewritten — this is on-demand automation, the ~2h **human** gate still stands; revisit if/when automation formally replaces part of the manual gate.)_
+- [x] **Scope honesty** — dev-workflow pointer + e2e README state the harness covers **scripted functional scenarios**; the **human visual / UX / Tamil-doctrinal eyeball still gates** each release.
+- [x] **Flakiness risk addressed** — `retries: 1` capped, stable semantic locators. _(Kiro review flagged two non-blocking follow-ups: a few soft `waitForTimeout` settle-waits + hardcoded pixel fallbacks in `navigateToSettings`/`goBackFromSettings` — logged in backlog to tighten before this ever becomes a blocking gate.)_
+- [x] **Docs** — `saranidhi-e2e` README + `dev-workflow.md` /release pointer added; backlog E2E rows flipped to ✅ (this PR).
+- [x] **Tracker updated** — status ✅.
 
 > **Vehicle:** spec → Antigravity implements in `vteial/saranidhi-e2e` with a green run before PR →
 > Kiro Web reviews. Owner is sole merge authority. Note: this sprint's PRs land in the **e2e repo**,
