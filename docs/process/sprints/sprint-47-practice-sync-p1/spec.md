@@ -13,6 +13,12 @@ were verified against `main` this session (context-gathered).
 > **★ This reopens the network/account/off-device boundary** → the **security-review REDO is a hard
 > gate** (§8), not a footnote. It is the first such change since the local-first posture was set.
 
+> **Branch (Antigravity creates it):** implement on a new feature branch off `main` named
+> **`feature/sprint47-practice-sync-p1`**, and open the PR from it into `main`. (Kiro Web does not
+> pre-create the branch — the coding setup owns the branch + commits + PR, per the spec→implement→
+> review handoff. Standardizing on the `feature/sprintNN-<slug>` form.) Never commit to `main`;
+> never merge — owner is sole merge authority.
+
 ---
 
 ## §0 — Prerequisite (gated, owner, in parallel): the PocketBase instance
