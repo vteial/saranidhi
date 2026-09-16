@@ -43,7 +43,8 @@ regression are DoD gates. Owner is sole merge authority.
 
 ## Status
 
-🔨 **In Progress** — spec authored; handed to Antigravity. §0 (Fly instance) is the owner's parallel prerequisite.
+✅ **Complete** — implemented, reviewed, merged. Release pending.
 
-- **PR:** [#260](https://github.com/vteial/saranidhi/pull/260) (in `vteial/saranidhi`)
-- **Shipped:** _pending — targets v1.13.0 (`/release-start v1.13.0`)_
+- **PR:** [#260](https://github.com/vteial/saranidhi/pull/260) — Antigravity implemented (local green vs. Compose PocketBase); Kiro Web reviewed the real diff and approved (union-core extraction behavior-preserved, engine idempotent/never-delete + owner-guard-on-pull, web-safe transport, opt-in-off = zero network, security-review redo). Merged to `main`.
+- **Shipped:** _pending — targets v1.13.0 (`/release-start v1.13.0`); the Fly.io instance (spec §0) is the remaining release-smoke prerequisite (owner deferred)._
+- **Rule-form:** shipped the `ownerId`-string-match form (owner-accepted); spec §0 + runbook reconciled to match.

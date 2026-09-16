@@ -40,7 +40,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
 | 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
-| 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | 🔨 In Progress |
+| 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅ Complete (PR #260) |
 | 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1088,13 +1088,15 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 47: ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase) — 🔨 In Progress
+## Sprint 47: ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase) — ✅ Complete (PR #260)
 
 > **Dossier:** [`sprints/sprint-47-practice-sync-p1/`](sprints/sprint-47-practice-sync-p1/README.md) —
-> spec authored (Kiro Web); handed to Antigravity to implement in `vteial/saranidhi` with local
-> green (against the Docker Compose PocketBase) before PR; Kiro Web reviews. ⚠️ **§0: owner stands
-> up the Fly.io PocketBase instance + collections per the spec's schema** (spec §0) — implementation
-> greens locally against Compose meanwhile; the Fly instance is needed before the release smoke.
+> spec authored (Kiro Web); Antigravity implemented in `vteial/saranidhi` with local green (against
+> the Docker Compose PocketBase); Kiro Web reviewed the real diff and approved
+> [PR #260](https://github.com/vteial/saranidhi/pull/260) (merged). Ships as **v1.13.0** (release
+> pending). ⚠️ **Still to do before `/release-start v1.13.0`:** owner stands up the **Fly.io**
+> PocketBase instance + collections per the runbook (`docs/deployment/pocketbase-fly.md`) — coding
+> greened against local Compose; the Fly instance is the release-smoke gate.
 >
 > **Scheduled via `/plan` (owner-confirmed).** Phase 1 of the **Practice Sync** epic — the first
 > real cross-device sync over a network, building on Phase 0's owner-identity + union-merge
@@ -1123,25 +1125,30 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > - **Local dev infra:** a **Docker Compose for PocketBase only** (in `saranidhi` under `tool/dev/`);
 >   Flutter stays native and points at `localhost:8090` locally / the Fly URL deployed via config.
 
-- [ ] Task 47.0 (**§0 gated prerequisite — owner, in parallel**): stand up the deployed PocketBase on **Fly.io** and provide its URL + create the `sessions` / `journal` collections with owner-scoped access rules **exactly per the spec's schema** (the spec authored at `/sprint-start` defines fields + rules so the Fly instance and the local Compose seed match). Sprint implementation cannot green against a real instance until this exists. *(Mirrors Sprint 46 §0 repo-creation gating.)*
-- [ ] Task 47.1: **`SyncTransport` interface + `PocketBaseSyncTransport`** — the sync engine is transport-agnostic; PocketBase is one adapter behind the interface (future minimal-backend = a new adapter). Auth via PocketBase (email/passphrase account = the consent surface); token stored + refreshed; never committed.
-- [ ] Task 47.2: **On-demand sync engine** — **pull → union-merge → push** for the append-only tables, keyed by `(ownerId, id)` (reuse the Phase-0 `mergeFromBytes` union semantics). Idempotent; never deletes on pull; **owner-guard preserved** (only ever unions rows of the same `ownerId`; a foreign/other-owner record set is refused, same safety core as Phase 0).
-- [ ] Task 47.3: **Sync-scope selection** — two checkboxes in Settings, **sync sessions** / **sync journal**, **both default ON**, with a one-line note that journal drives the practice aggregates (streak / hold-time PB).
-- [ ] Task 47.4: **Opt-in gate + manual trigger** — a master **Sync toggle** (default OFF; nothing touches the network until enabled) + a **"Sync now"** button + a quiet **last-synced status**; graceful non-blocking failure (a sync error is a status line, never data loss or a blocking modal). **Auto-on-open is explicitly out of scope.**
-- [ ] Task 47.5: **Offline-first regression** — with the toggle off, or offline, the app behaves exactly as today (no degradation, no blocking on network). Pin with tests.
-- [ ] Task 47.6: **Local dev infra** — `tool/dev/docker-compose.yml` (PocketBase only) + a seed/migration matching the §0 schema + a short README; data volume gitignored. Flutter points via config (`localhost:8090` local / Fly URL deployed). Not the Flutter side — native as today.
-- [ ] Task 47.7: **Bilingual (EN/TA)** for all new Settings copy (toggle, checkboxes, Sync-now, status, auth/sign-in, error states).
+- [ ] Task 47.0 (**§0 gated prerequisite — owner**): stand up the deployed PocketBase on **Fly.io** + collections per the runbook. **STILL OPEN** — owner deferred; coding greened against local Compose. Required before `/release-start v1.13.0` (the release-smoke gate), NOT before merge.
+- [x] Task 47.1: **`SyncTransport` interface + `PocketBaseSyncTransport`** — web-safe (`package:http` + `pocketbase`, no `dart:io`), injectable client for tests, upsert-by-uuid, pull filtered by `ownerId`; CloudKit untouched. Auth via the `users` collection (email/passphrase). _(Note: token held in-memory `AuthStore` — no token at rest; user re-signs-in per session.)_
+- [x] Task 47.2: **On-demand sync engine** (`PracticeSyncEngine`) — pull → union-merge → push; keyed by `id ?? uuid`; **idempotent both ways**; **never deletes**; **owner-guard on pull refuses foreign rows with 0 DB mutations**; whole run in `try/catch` → `SyncOutcome.error` (never throws).
+- [x] Task 47.3: **Sync-scope selection** — two checkboxes (sessions / journal), **both default ON**, with the journal-drives-aggregates note.
+- [x] Task 47.4: **Opt-in gate + manual trigger** — master Sync toggle (**default OFF**; `syncNow()` no-ops when off = zero network), **"Sync now"**, quiet last-synced status, non-blocking error. Auto-on-open out of scope.
+- [x] Task 47.5: **Offline-first regression** — toggle-off = zero network; error = quiet status, no data loss. Test-pinned.
+- [x] Task 47.6: **Local dev infra** — `tool/dev/docker-compose.yml` (PocketBase only, :8090, healthcheck) + `pb_migrations/` seed matching §0 (uuid unique index, ownerId index, `deleteRule: null`) + README; `pb_data/` gitignored. Flutter native via `--dart-define POCKETBASE_URL`.
+- [x] Task 47.7: **Bilingual (EN/TA)** for all new Settings copy.
 
 **Delivery Checklist (Definition of Done):**
-- [ ] **§0 satisfied** — Fly PocketBase instance live with the specced collections/rules; URL provided; secret/token handled via env/secure-store, never committed.
-- [ ] **Code merged** — on `main` (PR #N; CI green: Analyze/Fast + Full Suite + Coverage). Correctness + boundary-critical → Antigravity implements with **local green** (against the Docker Compose PocketBase) before PR; **Kiro Web reviews the real diff**.
-- [ ] **SECURITY-REVIEW REDO (hard gate)** — `docs/reference/security-review.md` re-run and re-stamped for the new posture: network path, PocketBase auth token at rest, third-party data egress, opt-in consent, owner-scoped access rules. This is the doc that gates the release, not a footnote.
-- [ ] **Sync correctness** — union by `(ownerId, id)`; idempotent re-sync (no dupes); never deletes on pull; two-device round-trip aggregates correctly; **owner-guard refuses a foreign owner's records** (tested).
-- [ ] **Opt-in + offline-first** — toggle OFF ⇒ zero network; offline ⇒ full app, no degradation; sync failure is a quiet status (regression-tested).
-- [ ] **Checkboxes** — sessions/journal independently selectable, both default ON.
-- [ ] **E2E** — extend `vteial/saranidhi-e2e` with a sync scenario (toggle on → Sync now → round-trip) where feasible against a test instance; at minimum a manual smoke scenario added.
-- [ ] **Docs** — architecture (SyncTransport + PocketBase + the Fly/Compose topology), user-guide (how to enable sync + sign in + what syncs), CHANGELOG; PocketBase-as-lean-infra decision noted.
-- [ ] **Valuation / tracker** — Sprint 47 row at `/sprint-update`; status ✅.
+- [ ] **§0 satisfied** — Fly instance live per the runbook. **STILL OPEN** (owner deferred) — the one remaining gate before `/release-start v1.13.0`; local Compose covered the green.
+- [x] **Code merged** — on `main` ([PR #260](https://github.com/vteial/saranidhi/pull/260); CI green: Analyze/Fast + **Full Suite + Coverage** + Integration). Antigravity implemented with local green (against Compose); **Kiro Web reviewed the real diff and approved**.
+- [x] **SECURITY-REVIEW REDO** — `security-review.md` re-run + re-stamped v1.13.0 (network path, in-memory token, opt-in consent, owner-scoped server rules + client guard, append-only, data-egress ⚠️ acknowledged).
+- [x] **Sync correctness** — union by `id ?? uuid`; idempotent (0-dup on re-sync, tested); never deletes; owner-guard refuses foreign records (tested).
+- [x] **Opt-in + offline-first** — toggle OFF ⇒ zero network; error ⇒ quiet status; regression-pinned.
+- [x] **Checkboxes** — sessions/journal independent, both default ON.
+- [ ] **E2E** — sync scenario in `saranidhi-e2e` deferred to a follow-up (needs a test PocketBase reachable from CI); manual smoke scenario to be added at `/release-start v1.13.0`.
+- [x] **Docs** — architecture + user-guide + CHANGELOG updated; PocketBase-as-lean-infra recorded; runbook at `docs/deployment/pocketbase-fly.md`.
+- [ ] **Valuation / tracker** — tracker ✅ (this PR); valuation row at `/sprint-update`.
+
+> **Rule-form reconciliation (review note ①, owner-accepted):** PR #261 had pinned the `user`-relation
+> rule form; the shipped migration + security-review use the **`ownerId = @request.auth.id`
+> string-match** (createRule binds `ownerId` to the auth id, adequate for the 1–6-user trust model).
+> Owner accepted the string-match; the spec §0 + runbook are updated to match the shipped code (this PR).
 
 > **Out of scope (named, to hold the boundary):** auto-on-open sync (fast-follow), device
 > registry / trusted-device UX (management layer, not correctness), profile/preferences sync

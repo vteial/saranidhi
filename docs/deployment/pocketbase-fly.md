@@ -104,23 +104,25 @@ a `users` record.
 / `activeElement` (Text, opt), `notes` (Text, opt), `isPinned` / `wasForcedShift` (Bool).
 
 ### 3d — Owner-scoped access rules (the server-side owner-guard) — **`user`-relation form (pinned)**
-On **both** collections, add a **`user`** field = **relation → `users`, required**. Then set
-**API Rules** so a signed-in user only ever touches their own rows:
+On **both** collections, set the **API Rules** so a signed-in user only ever touches their own rows.
+**As shipped** (Sprint 47, owner-accepted — see the note below), the rule keys off the record's
+`ownerId` bound to the authenticated user's id:
 
 | Rule | Value |
 |---|---|
-| List / Search | `user = @request.auth.id` |
-| View | `user = @request.auth.id` |
-| Create | `user = @request.auth.id` |
-| Update | `user = @request.auth.id` |
-| **Delete** | **empty / locked** (append-only — Phase 1 never deletes remotely) |
+| List / Search | `@request.auth.id != "" && ownerId = @request.auth.id` |
+| View | `@request.auth.id != "" && ownerId = @request.auth.id` |
+| Create | `@request.auth.id != "" && ownerId = @request.auth.id` |
+| Update | `@request.auth.id != "" && ownerId = @request.auth.id` |
+| **Delete** | **`null` / locked** (append-only — Phase 1 never deletes remotely) |
 
-> **Why the `user` relation (not an `ownerId`-string match):** PocketBase enforces the relation to
-> the authenticated `users.id` server-side, so a user physically cannot read or write another
-> owner's rows even with a crafted request — this is the network half of the owner-guard. `ownerId`
-> (the Practice ID) is still stored as the **cross-device grouping key** the app filters on, but the
-> `user` relation is what the server *enforces*. The app must set `user` = the signed-in user's id
-> on every create. *(This is the pinned decision; see spec §0.)*
+> **Why this form:** the **Create rule binds `ownerId` to the authenticated user's id**, so a user
+> cannot create rows under a foreign `ownerId`; List/View/Update then scope every row to the caller.
+> A user cannot read or write another owner's rows. `ownerId` (the Practice ID) is both the
+> cross-device grouping key AND the server-enforced scope — no separate relation field is needed.
+> *(A `user`-relation form was originally pinned in PR #261; the simpler `ownerId`-bound form was
+> shipped and owner-accepted at `/sprint-finish` for the 1–6-user trust model. This runbook + spec §0
+> reflect the shipped form. The migration in `tool/dev/pb_migrations/` uses exactly these rules.)*
 
 ## 4. Verify & hand off
 
