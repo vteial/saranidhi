@@ -66,17 +66,20 @@ PocketBase's `id`), plus an **`ownerId`** field for the guard/scoping.
 | `notes` | text, optional | |
 | `isPinned` / `wasForcedShift` | bool | |
 
-**Access rules (the network-side half of the owner-guard) — PINNED to the `user`-relation form:**
-Add a **`user` field = relation → `users` (required)** on **both** collections, and set the API
-rules to `user = @request.auth.id` for **List / View / Create / Update**; leave **Delete empty/locked**
-(append-only — Phase 1 never deletes remotely). The app must set `user` = the signed-in user's id on
-every create. **Rationale (decided, not open):** PocketBase enforces the relation to the
-authenticated `users.id` **server-side**, so a user cannot read/write another owner's rows even with
-a crafted request — the network half of the owner-guard. `ownerId` (the Practice ID) is still stored
-as the **cross-device grouping key** the app filters/guards on, but the **`user` relation is what the
-server enforces**. (An `ownerId`-string-match rule was considered and rejected — it's a weaker,
-spoofable guard than a server-enforced relation.) Full runbook:
-[`docs/deployment/pocketbase-fly.md`](../../../deployment/pocketbase-fly.md).
+**Access rules (the network-side half of the owner-guard) — AS SHIPPED (owner-accepted):**
+On **both** collections, set the API rules to **`@request.auth.id != "" && ownerId = @request.auth.id`**
+for **List / View / Create / Update**; leave **Delete `null` (locked)** (append-only — Phase 1 never
+deletes remotely). The **Create rule binds `ownerId` to the authenticated user's id**, so a user
+cannot create rows under a foreign `ownerId`, and the List/View/Update rules scope every row to the
+caller — a user can't read/write another owner's rows. `ownerId` (the Practice ID) is both the
+cross-device grouping key AND the server-enforced scope.
+
+> **Rule-form note (reconciled at `/sprint-finish`):** PR #261 had *pinned* a `user`-relation form
+> (a separate `relation → users` field). The implementation shipped the simpler **`ownerId`
+> string-match bound on create** instead; the **owner accepted it** — for the 1–6-user trust model
+> the create-binding is an adequate server-side guard, and it avoids the extra relation field + the
+> app having to set `user` on every write. This doc + the runbook now reflect the shipped form.
+> Full runbook: [`docs/deployment/pocketbase-fly.md`](../../../deployment/pocketbase-fly.md).
 
 > Until §0 is satisfied for **local** (Compose is enough to build/green), implementation proceeds;
 > the **Fly** instance gates the release smoke.
