@@ -40,7 +40,8 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
 | 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
-| 47+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ⬜ Planned |
+| 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
 > **Practice Sync polish** patch (feature PR #244 → /sprint-finish #245 → /sprint-update #247 →
@@ -1084,6 +1085,65 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **Vehicle:** spec → Antigravity implements in `vteial/saranidhi-e2e` with a green run before PR →
 > Kiro Web reviews. Owner is sole merge authority. Note: this sprint's PRs land in the **e2e repo**,
 > not `vteial/saranidhi` (this tracker just records the sprint + links out).
+
+---
+
+## Sprint 47: ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase) — ⬜ Planned
+
+> **Dossier:** `sprints/sprint-47-practice-sync-p1/` — to be seeded at `/sprint-start 47`
+> (Kiro Web authors the spec → Antigravity implements with local green → Kiro Web reviews the diff).
+>
+> **Scheduled via `/plan` (owner-confirmed).** Phase 1 of the **Practice Sync** epic — the first
+> real cross-device sync over a network, building on Phase 0's owner-identity + union-merge
+> foundation (v1.12.0). Ships as **v1.13.0** (minor — real user-facing capability). See the
+> [Practice Sync epic](sprint-backlog.md#-practice-sync--cross-device-aggregate).
+>
+> **★ Boundary-reopening sprint.** This is the **first real network / account / off-device
+> boundary change** since the app's deliberate local-first / zero-backend posture was set. It is a
+> conscious, owner-confirmed reopening: offline-first still holds fully (sync is additive), but a
+> **security-review REDO is a hard gate** (new network path + a PocketBase auth token at rest +
+> third-party data egress).
+>
+> **Owner-confirmed decisions (this `/plan`):**
+> - **Transport = PocketBase** (SQLite + auth + REST, self-hostable) — chosen deliberately as a
+>   **lean, reusable infra pattern for future mini-projects**, over Supabase (owner knows it well —
+>   80% of their work — but wants the leaner floor) and over **Google Drive / GCP (REJECTED** — the
+>   OAuth/GCP dependency + hyperscaler gravity is exactly what the owner is moving away from).
+> - **Hosting = Fly.io** (lean, owned, ~free, reusable) for the deployed instance; PocketBase Cloud
+>   was considered and set aside (paid, less lean).
+> - **Long-term intent (recorded, NOT this sprint):** a *minimal, owned, consent-based backend* is
+>   the eventual direction — so the sync engine talks to a **`SyncTransport` interface**, making the
+>   backend a swappable adapter (PocketBase now; minimal-backend later = one adapter, not a rewrite).
+> - **Scope = sessions + journal**, with a **user choice: two checkboxes (sync sessions / sync
+>   journal), both default ON** (note: journal drives the hold-time/streak aggregates, per Sprint 44).
+> - **Opt-in toggle + manual "Sync now"** for v1.13.0; **auto-on-open is OUT (fast-follow)**.
+> - **Local dev infra:** a **Docker Compose for PocketBase only** (in `saranidhi` under `tool/dev/`);
+>   Flutter stays native and points at `localhost:8090` locally / the Fly URL deployed via config.
+
+- [ ] Task 47.0 (**§0 gated prerequisite — owner, in parallel**): stand up the deployed PocketBase on **Fly.io** and provide its URL + create the `sessions` / `journal` collections with owner-scoped access rules **exactly per the spec's schema** (the spec authored at `/sprint-start` defines fields + rules so the Fly instance and the local Compose seed match). Sprint implementation cannot green against a real instance until this exists. *(Mirrors Sprint 46 §0 repo-creation gating.)*
+- [ ] Task 47.1: **`SyncTransport` interface + `PocketBaseSyncTransport`** — the sync engine is transport-agnostic; PocketBase is one adapter behind the interface (future minimal-backend = a new adapter). Auth via PocketBase (email/passphrase account = the consent surface); token stored + refreshed; never committed.
+- [ ] Task 47.2: **On-demand sync engine** — **pull → union-merge → push** for the append-only tables, keyed by `(ownerId, id)` (reuse the Phase-0 `mergeFromBytes` union semantics). Idempotent; never deletes on pull; **owner-guard preserved** (only ever unions rows of the same `ownerId`; a foreign/other-owner record set is refused, same safety core as Phase 0).
+- [ ] Task 47.3: **Sync-scope selection** — two checkboxes in Settings, **sync sessions** / **sync journal**, **both default ON**, with a one-line note that journal drives the practice aggregates (streak / hold-time PB).
+- [ ] Task 47.4: **Opt-in gate + manual trigger** — a master **Sync toggle** (default OFF; nothing touches the network until enabled) + a **"Sync now"** button + a quiet **last-synced status**; graceful non-blocking failure (a sync error is a status line, never data loss or a blocking modal). **Auto-on-open is explicitly out of scope.**
+- [ ] Task 47.5: **Offline-first regression** — with the toggle off, or offline, the app behaves exactly as today (no degradation, no blocking on network). Pin with tests.
+- [ ] Task 47.6: **Local dev infra** — `tool/dev/docker-compose.yml` (PocketBase only) + a seed/migration matching the §0 schema + a short README; data volume gitignored. Flutter points via config (`localhost:8090` local / Fly URL deployed). Not the Flutter side — native as today.
+- [ ] Task 47.7: **Bilingual (EN/TA)** for all new Settings copy (toggle, checkboxes, Sync-now, status, auth/sign-in, error states).
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **§0 satisfied** — Fly PocketBase instance live with the specced collections/rules; URL provided; secret/token handled via env/secure-store, never committed.
+- [ ] **Code merged** — on `main` (PR #N; CI green: Analyze/Fast + Full Suite + Coverage). Correctness + boundary-critical → Antigravity implements with **local green** (against the Docker Compose PocketBase) before PR; **Kiro Web reviews the real diff**.
+- [ ] **SECURITY-REVIEW REDO (hard gate)** — `docs/reference/security-review.md` re-run and re-stamped for the new posture: network path, PocketBase auth token at rest, third-party data egress, opt-in consent, owner-scoped access rules. This is the doc that gates the release, not a footnote.
+- [ ] **Sync correctness** — union by `(ownerId, id)`; idempotent re-sync (no dupes); never deletes on pull; two-device round-trip aggregates correctly; **owner-guard refuses a foreign owner's records** (tested).
+- [ ] **Opt-in + offline-first** — toggle OFF ⇒ zero network; offline ⇒ full app, no degradation; sync failure is a quiet status (regression-tested).
+- [ ] **Checkboxes** — sessions/journal independently selectable, both default ON.
+- [ ] **E2E** — extend `vteial/saranidhi-e2e` with a sync scenario (toggle on → Sync now → round-trip) where feasible against a test instance; at minimum a manual smoke scenario added.
+- [ ] **Docs** — architecture (SyncTransport + PocketBase + the Fly/Compose topology), user-guide (how to enable sync + sign in + what syncs), CHANGELOG; PocketBase-as-lean-infra decision noted.
+- [ ] **Valuation / tracker** — Sprint 47 row at `/sprint-update`; status ✅.
+
+> **Out of scope (named, to hold the boundary):** auto-on-open sync (fast-follow), device
+> registry / trusted-device UX (management layer, not correctness), profile/preferences sync
+> (session + journal only), real-time sync, native CloudKit (Apple-only, deferred to the App Store
+> track). Sprint 48 = the native **"Now" Surface** (owner-chosen as the next sprint).
 
 ---
 
