@@ -20,11 +20,11 @@
 
 **Project:** Saranidhi (The Treasure House of Breath)
 **Scope:** Cross-platform (iOS, Android, Web) Siddha breath-timing app with a pure-Dart Vedic calculation engine (Sara Kalai + Panja Pakshi)
-**Sprints Delivered:** 41 (Sprints 1–45, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
-**Total Engineering Investment:** **~146.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
-**Production Web Release:** **v1.12.1-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.12.1-web`, Sprint 45 — Practice Sync polish; preceding: v1.12.0-web Practice Sync Phase 0, Sprint 44).
-**Automated Tests:** 661 (unit + widget + integration)
-**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** + **Swara Clock Engine (v1.11.0)** + **Localization fixes (v1.11.1)** + **Practice Sync Phase 0 (v1.12.0)** + **Practice Sync polish (v1.12.1)** all shipped to production. v1.12.0 delivered the first cross-device data-portability step (locally-generated Practice ID + non-destructive union-merge + owner-identity guard), reframing the principle to *local-first with optional, user-owned sync*; v1.12.1 smoothed new-device setup (import-before-onboarding entry point + BUG-v1.12.0-01 in-place refresh + export-filename Practice ID). Next queued: **Practice Sync Phase 1** (on-open auto-sync), the native **"Now" Surface**, and the **7-day Accuracy Calibration** (gated on owner data collection). Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
+**Sprints Delivered:** 43 (Sprints 1–47, incl. 27.5 hotfix; several consolidated) + Sprint 0 pre-development
+**Total Engineering Investment:** **~157.5 hours** (incl. ~26.5h Research & Knowledge Engineering)
+**Production Web Release:** **v1.12.1-web — LIVE** at [saranidhi.vercel.app](https://saranidhi.vercel.app) (tag `v1.12.1-web`, Sprint 45 — Practice Sync polish). **Sprint 46 (Web E2E automation, internal) + Sprint 47 (★ Practice Sync Phase 1 — on-demand PocketBase sync, v1.13.0) built; v1.13.0 release pending (gated on standing up the Fly.io PocketBase instance).**
+**Automated Tests:** 677 (unit + widget + integration; +Web E2E S1–S6 in `saranidhi-e2e`)
+**Current Phase:** Phase 2b underway — flagship **Integrated Aruḍam** (v1.8.0 + v1.9.0) + **Chronobiology (v1.10.0)** + **Analytics tidy (v1.10.1)** + **Swara Clock Engine (v1.11.0)** + **Localization fixes (v1.11.1)** + **Practice Sync Phase 0 (v1.12.0)** + **Practice Sync polish (v1.12.1)** shipped to production; **Web E2E automation (Sprint 46, internal)** + **★ Practice Sync Phase 1 (Sprint 47, v1.13.0)** built and release-pending. Practice Sync Phase 1 reopens the network/account boundary under strict opt-in consent: on-demand pull→union-merge→push of sessions + journal to a self-hosted **PocketBase** backend (Fly.io) behind a swappable **`SyncTransport`** interface, with server-side owner-scoped rules + a client-side owner-guard and full offline-first fallback. Next queued: stand up the **Fly.io** instance (v1.13.0 release gate), the **auto-on-open sync** fast-follow, the native **"Now" Surface** (Sprint 48), and the **7-day Accuracy Calibration** (gated on owner data collection). Both corpora fully CONF-resolved (Sara Kalai 26/26, Panja Pakshi 6/6).
 
 ---
 
@@ -49,7 +49,9 @@
 | Sprint 43 — Localization Defect Fixes (v1.11.1) | 43 | ~2.0 |
 | Sprint 44 — ★ Practice Sync Phase 0: safe merge-import (v1.12.0) | 44 | ~6.0 |
 | Sprint 45 — Practice Sync polish (v1.12.1) | 45 | ~3.0 |
-| **Subtotal** | | **~108.5** |
+| Sprint 46 — Web E2E Smoke Automation (Playwright, `saranidhi-e2e`; internal) | 46 | ~4.0 |
+| Sprint 47 — ★ Practice Sync Phase 1: on-demand sync, PocketBase (v1.13.0) | 47 | ~7.0 |
+| **Subtotal** | | **~119.5** |
 
 ### Infrastructure, Release & Admin Ops (off-commit)
 
@@ -84,10 +86,10 @@
 
 | Category | Hours |
 |----------|-------|
-| Active coding & debugging (sprint track) | ~108.5 |
+| Active coding & debugging (sprint track) | ~119.5 |
 | Infrastructure, release & admin ops | ~11.0 |
 | Research & knowledge engineering | ~26.5 |
-| **Total** | **~146.5** |
+| **Total** | **~157.5** |
 
 ---
 
@@ -143,6 +145,8 @@
 | 43 | Localization Defect Fixes (v1.11.1) | #227 | ✅ 🚀 |
 | 44 | ★ Practice Sync Phase 0: safe merge-import (v1.12.0) | #236 | ✅ 🚀 |
 | 45 | Practice Sync polish (v1.12.1 — import entry point + refresh + filename) | #244 | ✅ 🚀 |
+| 46 | Web E2E Smoke Automation (Playwright harness in `vteial/saranidhi-e2e`; internal — no prod release) | [e2e #1](https://github.com/vteial/saranidhi-e2e/pull/1) | ✅ |
+| 47 | ★ Practice Sync Phase 1 — on-demand cross-device sync, PocketBase transport (v1.13.0) | #260 | ✅ |
 
 > 🚀 = shipped a production release. Sprint 37 was the first sprint under the
 > **spec → coding-setup → review** model (Kiro Web spec + review; Antigravity implement
