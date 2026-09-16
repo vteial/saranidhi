@@ -1423,6 +1423,107 @@
   "@focusCardSwaraAharaNudge": { "description": "Swara-Ahara nudge to shift to right nostril before eating" },
 
   "focusCardSwaraAharaAction": "Flip to right",
-  "@focusCardSwaraAharaAction": { "description": "Button to start somatic timer to flip breath to right" }
+  "@focusCardSwaraAharaAction": { "description": "Button to start somatic timer to flip breath to right" },
+
+  "practiceSyncTitle": "Practice Sync",
+  "@practiceSyncTitle": { "description": "Title of the Practice Sync card in settings" },
+
+  "practiceSyncSubtitle": "Sync your breath sessions and journal across devices.",
+  "@practiceSyncSubtitle": { "description": "Subtitle explaining what Practice Sync does" },
+
+  "syncConsentNotice": "When enabled, your practice data is stored in your personal account on your chosen backend.",
+  "@syncConsentNotice": { "description": "Consent gate explanation for Practice Sync" },
+
+  "syncEnableToggle": "Enable Sync",
+  "@syncEnableToggle": { "description": "Label for the master sync enable toggle" },
+
+  "syncEnableToggleSubtitle": "Opt-in to sync sessions and journal with the remote backend.",
+  "@syncEnableToggleSubtitle": { "description": "Subtitle for master sync toggle" },
+
+  "syncAccountTitle": "Account",
+  "@syncAccountTitle": { "description": "Account section title in Practice Sync card" },
+
+  "syncNotSignedIn": "Not signed in",
+  "@syncNotSignedIn": { "description": "Indicates no user is signed into PocketBase" },
+
+  "syncSignedInAs": "Signed in as {email}",
+  "@syncSignedInAs": {
+    "description": "Indicates signed in user email",
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
+
+  "syncSignInAction": "Sign In",
+  "@syncSignInAction": { "description": "Button to open sign-in dialog" },
+
+  "syncSignOutAction": "Sign Out",
+  "@syncSignOutAction": { "description": "Button to sign out of sync account" },
+
+  "syncEmailField": "Email",
+  "@syncEmailField": { "description": "Email input field label" },
+
+  "syncPassphraseField": "Passphrase",
+  "@syncPassphraseField": { "description": "Passphrase input field label" },
+
+  "syncServerUrlField": "Server URL",
+  "@syncServerUrlField": { "description": "Server URL input field label" },
+
+  "syncSignInDialogTitle": "Sign in to Practice Sync",
+  "@syncSignInDialogTitle": { "description": "Title for sign in dialog" },
+
+  "syncSignInSubmit": "Sign In",
+  "@syncSignInSubmit": { "description": "Submit button for sign in" },
+
+  "syncCancel": "Cancel",
+  "@syncCancel": { "description": "Cancel button in dialog" },
+
+  "syncSignInFailed": "Sign-in failed. Please check your credentials.",
+  "@syncSignInFailed": { "description": "Error message when sign-in fails" },
+
+  "syncScopeSessions": "Breath Sessions",
+  "@syncScopeSessions": { "description": "Checkbox label for breath sessions sync scope" },
+
+  "syncScopeJournal": "Breath Journal",
+  "@syncScopeJournal": { "description": "Checkbox label for breath journal sync scope" },
+
+  "syncScopeJournalNote": "Journal drives your streak & hold-time stats.",
+  "@syncScopeJournalNote": { "description": "Footnote explaining journal role in aggregates" },
+
+  "syncNowAction": "Sync Now",
+  "@syncNowAction": { "description": "Button to trigger on-demand sync" },
+
+  "syncingAction": "Syncing...",
+  "@syncingAction": { "description": "Button label while sync is in progress" },
+
+  "syncLastSynced": "Last synced: {time}",
+  "@syncLastSynced": {
+    "description": "Status displaying timestamp of last sync",
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+
+  "syncNotYetSynced": "Not yet synced",
+  "@syncNotYetSynced": { "description": "Status when sync has not occurred yet" },
+
+  "syncSuccessStatus": "Synced successfully ({inserted} new, {pushed} uploaded)",
+  "@syncSuccessStatus": {
+    "description": "Status message when sync succeeds",
+    "placeholders": {
+      "inserted": { "type": "int" },
+      "pushed": { "type": "int" }
+    }
+  },
+
+  "syncFailedStatus": "Sync failed: {error}",
+  "@syncFailedStatus": {
+    "description": "Quiet error status when sync fails",
+    "placeholders": {
+      "error": { "type": "String" }
+    }
+  },
+
+  "syncSignInRequired": "Please sign in to sync"
 }
 

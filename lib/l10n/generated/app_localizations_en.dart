@@ -2052,4 +2052,98 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get focusCardSwaraAharaAction => 'Flip to right';
+
+  @override
+  String get practiceSyncTitle => 'Practice Sync';
+
+  @override
+  String get practiceSyncSubtitle =>
+      'Sync your breath sessions and journal across devices.';
+
+  @override
+  String get syncConsentNotice =>
+      'When enabled, your practice data is stored in your personal account on your chosen backend.';
+
+  @override
+  String get syncEnableToggle => 'Enable Sync';
+
+  @override
+  String get syncEnableToggleSubtitle =>
+      'Opt-in to sync sessions and journal with the remote backend.';
+
+  @override
+  String get syncAccountTitle => 'Account';
+
+  @override
+  String get syncNotSignedIn => 'Not signed in';
+
+  @override
+  String syncSignedInAs(String email) {
+    return 'Signed in as $email';
+  }
+
+  @override
+  String get syncSignInAction => 'Sign In';
+
+  @override
+  String get syncSignOutAction => 'Sign Out';
+
+  @override
+  String get syncEmailField => 'Email';
+
+  @override
+  String get syncPassphraseField => 'Passphrase';
+
+  @override
+  String get syncServerUrlField => 'Server URL';
+
+  @override
+  String get syncSignInDialogTitle => 'Sign in to Practice Sync';
+
+  @override
+  String get syncSignInSubmit => 'Sign In';
+
+  @override
+  String get syncCancel => 'Cancel';
+
+  @override
+  String get syncSignInFailed =>
+      'Sign-in failed. Please check your credentials.';
+
+  @override
+  String get syncScopeSessions => 'Breath Sessions';
+
+  @override
+  String get syncScopeJournal => 'Breath Journal';
+
+  @override
+  String get syncScopeJournalNote =>
+      'Journal drives your streak & hold-time stats.';
+
+  @override
+  String get syncNowAction => 'Sync Now';
+
+  @override
+  String get syncingAction => 'Syncing...';
+
+  @override
+  String syncLastSynced(String time) {
+    return 'Last synced: $time';
+  }
+
+  @override
+  String get syncNotYetSynced => 'Not yet synced';
+
+  @override
+  String syncSuccessStatus(int inserted, int pushed) {
+    return 'Synced successfully ($inserted new, $pushed uploaded)';
+  }
+
+  @override
+  String syncFailedStatus(String error) {
+    return 'Sync failed: $error';
+  }
+
+  @override
+  String get syncSignInRequired => 'Please sign in to sync';
 }

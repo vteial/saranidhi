@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:saranidhi/core/l10n/locale_provider.dart';
 import 'package:saranidhi/core/theme/theme_provider.dart';
+import 'package:saranidhi/features/analytics/providers/analytics_providers.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/features/cloud_backup/domain/database_exporter.dart';
 import 'package:saranidhi/features/cloud_backup/providers/backup_providers.dart';
@@ -26,13 +27,34 @@ String formatBackupDate(String isoDate) {
   }
 }
 
-/// Invalidates all data-dependent Riverpod providers across the application.
+/// Invalidates all data-dependent Riverpod providers across the application using [WidgetRef].
 ///
-/// Called after a successful database Merge or Restore.
+/// Called after a successful database Merge, Restore, or Cloud Sync.
 void invalidateAllDataProviders(WidgetRef ref) {
   ref
     ..invalidate(dashboardDataProvider)
     ..invalidate(journalEntriesProvider)
+    ..invalidate(weeklyAnalyticsProvider)
+    ..invalidate(monthlyPatternsProvider)
+    ..invalidate(streakInsightsProvider)
+    ..invalidate(holdTimeProgressionProvider)
+    ..invalidate(ownerIdProvider)
+    ..invalidate(profileProvider)
+    ..invalidate(themeProvider)
+    ..invalidate(localeProvider)
+    ..invalidate(notificationPrefsProvider)
+    ..invalidate(onboardingCompleteProvider);
+}
+
+/// Invalidates all data-dependent Riverpod providers across the application using [Ref].
+void invalidateAllDataProvidersWithRef(Ref ref) {
+  ref
+    ..invalidate(dashboardDataProvider)
+    ..invalidate(journalEntriesProvider)
+    ..invalidate(weeklyAnalyticsProvider)
+    ..invalidate(monthlyPatternsProvider)
+    ..invalidate(streakInsightsProvider)
+    ..invalidate(holdTimeProgressionProvider)
     ..invalidate(ownerIdProvider)
     ..invalidate(profileProvider)
     ..invalidate(themeProvider)

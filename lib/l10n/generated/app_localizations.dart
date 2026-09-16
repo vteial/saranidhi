@@ -3761,6 +3761,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Flip to right'**
   String get focusCardSwaraAharaAction;
+
+  /// Title of the Practice Sync card in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Sync'**
+  String get practiceSyncTitle;
+
+  /// Subtitle explaining what Practice Sync does
+  ///
+  /// In en, this message translates to:
+  /// **'Sync your breath sessions and journal across devices.'**
+  String get practiceSyncSubtitle;
+
+  /// Consent gate explanation for Practice Sync
+  ///
+  /// In en, this message translates to:
+  /// **'When enabled, your practice data is stored in your personal account on your chosen backend.'**
+  String get syncConsentNotice;
+
+  /// Label for the master sync enable toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Sync'**
+  String get syncEnableToggle;
+
+  /// Subtitle for master sync toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Opt-in to sync sessions and journal with the remote backend.'**
+  String get syncEnableToggleSubtitle;
+
+  /// Account section title in Practice Sync card
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get syncAccountTitle;
+
+  /// Indicates no user is signed into PocketBase
+  ///
+  /// In en, this message translates to:
+  /// **'Not signed in'**
+  String get syncNotSignedIn;
+
+  /// Indicates signed in user email
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String syncSignedInAs(String email);
+
+  /// Button to open sign-in dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get syncSignInAction;
+
+  /// Button to sign out of sync account
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get syncSignOutAction;
+
+  /// Email input field label
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get syncEmailField;
+
+  /// Passphrase input field label
+  ///
+  /// In en, this message translates to:
+  /// **'Passphrase'**
+  String get syncPassphraseField;
+
+  /// Server URL input field label
+  ///
+  /// In en, this message translates to:
+  /// **'Server URL'**
+  String get syncServerUrlField;
+
+  /// Title for sign in dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to Practice Sync'**
+  String get syncSignInDialogTitle;
+
+  /// Submit button for sign in
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get syncSignInSubmit;
+
+  /// Cancel button in dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get syncCancel;
+
+  /// Error message when sign-in fails
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in failed. Please check your credentials.'**
+  String get syncSignInFailed;
+
+  /// Checkbox label for breath sessions sync scope
+  ///
+  /// In en, this message translates to:
+  /// **'Breath Sessions'**
+  String get syncScopeSessions;
+
+  /// Checkbox label for breath journal sync scope
+  ///
+  /// In en, this message translates to:
+  /// **'Breath Journal'**
+  String get syncScopeJournal;
+
+  /// Footnote explaining journal role in aggregates
+  ///
+  /// In en, this message translates to:
+  /// **'Journal drives your streak & hold-time stats.'**
+  String get syncScopeJournalNote;
+
+  /// Button to trigger on-demand sync
+  ///
+  /// In en, this message translates to:
+  /// **'Sync Now'**
+  String get syncNowAction;
+
+  /// Button label while sync is in progress
+  ///
+  /// In en, this message translates to:
+  /// **'Syncing...'**
+  String get syncingAction;
+
+  /// Status displaying timestamp of last sync
+  ///
+  /// In en, this message translates to:
+  /// **'Last synced: {time}'**
+  String syncLastSynced(String time);
+
+  /// Status when sync has not occurred yet
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet synced'**
+  String get syncNotYetSynced;
+
+  /// Status message when sync succeeds
+  ///
+  /// In en, this message translates to:
+  /// **'Synced successfully ({inserted} new, {pushed} uploaded)'**
+  String syncSuccessStatus(int inserted, int pushed);
+
+  /// Quiet error status when sync fails
+  ///
+  /// In en, this message translates to:
+  /// **'Sync failed: {error}'**
+  String syncFailedStatus(String error);
+
+  /// No description provided for @syncSignInRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in to sync'**
+  String get syncSignInRequired;
 }
 
 class _AppLocalizationsDelegate

@@ -651,4 +651,77 @@ void main() {
       },
     );
   });
+
+  group('Sprint 47 Task 47.2a — Shared Union-Merge Practice Rows', () {
+    test(
+      'mergePracticeRows inserts disjoint records and is idempotent',
+      () async {
+        final sessionRow = {
+          'id': 'sess-101',
+          'timestamp': 1710000000000,
+          'totalDurationMs': 120000,
+          'nostril': 'right',
+          'inhaleLengthMs': 4000,
+          'holdAfterInhaleMs': 16000,
+          'exhaleLengthMs': 8000,
+          'holdAfterExhaleMs': 0,
+          'completedCycles': 4,
+        };
+        final journalRow = {
+          'uuid': 'jour-101',
+          'timestamp': 1710000000000,
+          'expectedFlow': 'right',
+          'actualFlow': 'right',
+          'isAligned': true,
+          'nostril': 'right',
+        };
+
+        final result1 = await exporterA.mergePracticeRows(
+          sessions: [sessionRow],
+          journal: [journalRow],
+        );
+
+        expect(result1.insertedSessions, equals(1));
+        expect(result1.insertedJournal, equals(1));
+        expect(result1.totalInserted, equals(2));
+
+        // Second merge with same records is 100% idempotent
+        final result2 = await exporterA.mergePracticeRows(
+          sessions: [sessionRow],
+          journal: [journalRow],
+        );
+
+        expect(result2.insertedSessions, equals(0));
+        expect(result2.insertedJournal, equals(0));
+        expect(result2.totalInserted, equals(0));
+      },
+    );
+
+    test(
+      'serializers sessionToMap and journalToMap correctly roundtrip data',
+      () async {
+        await dbA
+            .into(dbA.breathSessions)
+            .insert(
+              BreathSessionsCompanion.insert(
+                id: 'sess-roundtrip-1',
+                timestamp: 1710000000000,
+                totalDurationMs: 60000,
+                nostril: 'left',
+                inhaleLengthMs: 4000,
+                holdAfterInhaleMs: 8000,
+                exhaleLengthMs: 4000,
+                holdAfterExhaleMs: 0,
+                completedCycles: 3,
+              ),
+            );
+
+        final session = (await dbA.select(dbA.breathSessions).get()).first;
+        final map = DatabaseExporter.sessionToMap(session);
+        expect(map['id'], equals('sess-roundtrip-1'));
+        expect(map['nostril'], equals('left'));
+        expect(map['totalDurationMs'], equals(60000));
+      },
+    );
+  });
 }

@@ -7,23 +7,23 @@
 > _Placeholder — Antigravity fills this in on implementation._
 
 ## PR
-- **PR:** _pending_
-- **Commits:** _pending_
+- **PR:** _opened into main from `feature/sprint47-practice-sync-p1`_
+- **Commits:** on branch `feature/sprint47-practice-sync-p1`
 
 ## What was implemented (by spec section)
 
 | Spec § | File(s) | Done | Notes / deviations |
 |--------|---------|:----:|--------------------|
-| §0 PocketBase collections (Fly + Compose seed) | `tool/dev/*` | ⬜ | who created Fly; the exact PocketBase access-rule form chosen |
-| §1 web-safe HTTP/PocketBase client | `pubspec.yaml` | ⬜ | `pocketbase` SDK vs `package:http`; version pinned |
-| §2 `SyncTransport` + `PocketBaseSyncTransport` | _tbd_ | ⬜ | injectable client for tests |
-| §3 extracted union-merge core | `database_exporter.dart` | ⬜ | `mergeFromBytes` refactored, behavior-unchanged (regression-pinned) |
-| §4 `PracticeSyncEngine` (pull→merge→push) | _tbd_ | ⬜ | idempotency + owner-guard-on-pull |
-| §5 Settings Sync card (opt-in + checkboxes + Sync now) | `settings_screen.dart`, arb | ⬜ | new SharedPreferences keys; streak-refresh gap resolved? |
-| §6 Docker Compose (PocketBase only) | `tool/dev/docker-compose.yml` | ⬜ | data volume gitignored; Flutter native via config |
-| §7 offline-first regression | _tbd_ | ⬜ | |
-| §8 security-review REDO | `docs/reference/security-review.md` | ⬜ | re-run + re-stamp |
-| Tests / docs | _tbd_ | ⬜ | |
+| §0 PocketBase collections (Fly + Compose seed) | `tool/dev/docker-compose.yml`, `tool/dev/pb_migrations/*` | ✅ | Schema matches §0 exactly; access rules: `@request.auth.id != "" && ownerId = @request.auth.id`; deleteRule disabled |
+| §1 web-safe HTTP/PocketBase client | `pubspec.yaml` | ✅ | `pocketbase: ^0.25.1`, `http: ^1.2.0`; pure Dart, zero `dart:io` |
+| §2 `SyncTransport` + `PocketBaseSyncTransport` | `lib/features/cloud_backup/domain/sync_transport.dart`, `lib/features/cloud_backup/data/pocketbase_sync_transport.dart` | ✅ | Injectable `http.Client` / `PocketBase` client for testing; CloudKit untouched |
+| §3 extracted union-merge core | `lib/features/cloud_backup/domain/database_exporter.dart` | ✅ | `mergePracticeRows`, public serializers `sessionToMap` & `journalToMap`; `mergeFromBytes` refactored, behavior-unchanged |
+| §4 `PracticeSyncEngine` (pull→merge→push) | `lib/features/cloud_backup/domain/practice_sync_engine.dart` | ✅ | Idempotent pull→union-merge→push; asserts owner-guard on pull; returns `SyncOutcome` |
+| §5 Settings Sync card (opt-in + checkboxes + Sync now) | `practice_sync_card.dart`, `settings_screen.dart`, `app_en.arb`, `app_ta.arb` | ✅ | Master switch `sync_enabled` (default OFF = consent gate); sign-in dialog; 2 checkboxes; `invalidateAllDataProvidersWithRef` refreshes streaks + analytics |
+| §6 Docker Compose (PocketBase only) | `tool/dev/docker-compose.yml`, `tool/dev/README.md` | ✅ | Port 8090, volume `./pb_data` gitignored, Flutter runs native via config |
+| §7 offline-first regression | `practice_sync_engine_test.dart`, `practice_sync_ui_test.dart` | ✅ | Network error caught quietly, zero local mutations, local-first untouched |
+| §8 security-review REDO | `docs/reference/security-review.md` | ✅ | Re-run and re-stamped for v1.13.0 |
+| Tests / docs | `test/features/cloud_backup/*`, `architecture.md`, `user-guide.md`, `CHANGELOG.md` | ✅ | Unit + widget tests added; 100% green |
 
 ## Deviations from the spec
-_None / list here._
+_None._

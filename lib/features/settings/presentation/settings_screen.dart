@@ -7,6 +7,7 @@ import 'package:saranidhi/core/theme/theme_provider.dart';
 import 'package:saranidhi/core/utils/responsive_wrapper.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/backup_actions_widget.dart';
+import 'package:saranidhi/features/cloud_backup/presentation/widgets/practice_sync_card.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/storage_mode_selector.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/sync_device_config_widget.dart';
 import 'package:saranidhi/features/notifications/providers/notification_providers.dart';
@@ -105,10 +106,7 @@ class SettingsScreen extends ConsumerWidget {
         ),
 
         // About card — only in wide layout (left column)
-        if (isWide) ...[
-          const Divider(height: 32),
-          const AboutCard(),
-        ],
+        if (isWide) ...[const Divider(height: 32), const AboutCard()],
       ],
     );
 
@@ -121,6 +119,8 @@ class SettingsScreen extends ConsumerWidget {
         const Divider(height: 32),
         const BackupActionsWidget(),
         const SyncDeviceConfigWidget(),
+        const SizedBox(height: 16),
+        const PracticeSyncCard(),
         const Divider(height: 32),
 
         // Notifications
@@ -296,9 +296,9 @@ class _ClearAllDataTile extends ConsumerWidget {
       ref.invalidate(onboardingNotifierProvider);
 
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.dataCleared)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.dataCleared)));
       }
     }
   }
