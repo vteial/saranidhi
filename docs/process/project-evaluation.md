@@ -71,7 +71,7 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 |--------|-------|
 | Unit/Widget test framework | `flutter_test` + `mocktail` |
 | Integration test framework | `integration_test` (Flutter) + headless Chrome |
-| Total automated tests | 661 (as of Sprint 45) |
+| Total automated tests | 677 (as of Sprint 47) |
 | Pass rate | 100% on CI (macOS local shows 4 known CloudKit-platform failures that pass on Ubuntu) |
 | Static analysis | `dart analyze --fatal-infos` — zero issues |
 | CI enforcement | GitHub Actions two-tier (fast on PRs; full tests + coverage + integration on PRs to `main` and on merge) |
@@ -102,6 +102,8 @@ Saranidhi is a privacy-first, local-first spiritual breath-tracking application 
 | Sprint 43 | +4 (l10n defect fixes: `about_card_test` EN+TA Developer-name/copyright 2, `analytics_calculator_test` int-weekday best/worst + empty-null 2; + extended `analytics_screen_l10n_test` with EN/TA weekday assertions + updated readiness-citation assertions) | 632 |
 | Sprint 44 | +17 (Practice Sync Phase 0: `schema_migration_v6_to_v7_test` 3 [upgrade+backfill / fresh / idempotent], `database_exporter_test` 11 [export+validation, owner-guard match/mismatch-0-mutations/empty-adopts/legacy, union-merge idempotency, restore-destructive, aggregate-after-merge], `owner_identity_service_test` 3) | 649 |
 | Sprint 45 | +12 (Practice Sync polish: `backup_filename_test` 6 [prefix / null / empty / <8-char no-RangeError / single-char / default-now], `profile_card_refresh_test` 2 [provider re-read after invalidation, card refresh without reload], `intro_screen_test` 4 [EN+TA import link render, Get-Started happy-path, import-before-onboarding adopts source ownerId + flips onboarding-complete]) | 661 |
+| Sprint 46 | +0 in this repo (Web E2E harness lives in `vteial/saranidhi-e2e`: Step 0 + S1–S6 Playwright suite, 3× green, 1m24s — counted in that repo, not the Flutter suite) | 661 |
+| Sprint 47 | +16 (Practice Sync Phase 1: `pocketbase_sync_transport_test` 4 [auth / pull-filter-by-ownerId / upsert-by-uuid / web-safe], `practice_sync_engine_test` 6 [pull→merge→push round-trip w/ mocked transport, idempotent no-op re-run, owner-guard-on-pull 0-mutations, not-configured / not-authed / disabled no-ops], `practice_sync_ui_test` 4 [opt-in toggle, checkboxes default-on, Sync-now, offline error status], `database_exporter_test` +2 [`mergePracticeRows` disjoint+idempotent, session round-trip map]) | 677 |
 
 ### Resolved Defects
 
