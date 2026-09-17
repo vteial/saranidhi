@@ -39,7 +39,7 @@ team operating model that ties these together.
 | [store-listing.md](deployment/store-listing.md) | App Store & Play Store listing text |
 | [icloud-sync-testing.md](deployment/icloud-sync-testing.md) | Multi-device CloudKit sync verification |
 | [offline-verification.md](deployment/offline-verification.md) | Offline capability matrix |
-| [pocketbase-fly.md](deployment/pocketbase-fly.md) | PocketBase-on-Fly.io runbook (Practice Sync Phase 1 backend) |
+| [pocketbase-hosting.md](deployment/pocketbase-hosting.md) | PocketBase hosting runbook — host-agnostic (Fly.io / Railway), Practice Sync Phase 1 backend |
 
 ## 📚 reference/ — standing reference
 | Doc | Purpose |

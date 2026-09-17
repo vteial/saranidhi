@@ -1094,9 +1094,10 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > spec authored (Kiro Web); Antigravity implemented in `vteial/saranidhi` with local green (against
 > the Docker Compose PocketBase); Kiro Web reviewed the real diff and approved
 > [PR #260](https://github.com/vteial/saranidhi/pull/260) (merged). Ships as **v1.13.0** (release
-> pending). ⚠️ **Still to do before `/release-start v1.13.0`:** owner stands up the **Fly.io**
-> PocketBase instance + collections per the runbook (`docs/deployment/pocketbase-fly.md`) — coding
-> greened against local Compose; the Fly instance is the release-smoke gate.
+> pending). ⚠️ **Still to do before `/release-start v1.13.0`:** owner stands up the hosted
+> PocketBase instance + collections per the runbook (`docs/deployment/pocketbase-hosting.md`;
+> host-agnostic — owner's choice is **Fly.io**) — coding greened against local Compose; the hosted
+> instance is the release-smoke gate.
 >
 > **Scheduled via `/plan` (owner-confirmed).** Phase 1 of the **Practice Sync** epic — the first
 > real cross-device sync over a network, building on Phase 0's owner-identity + union-merge
@@ -1142,7 +1143,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **Opt-in + offline-first** — toggle OFF ⇒ zero network; error ⇒ quiet status; regression-pinned.
 - [x] **Checkboxes** — sessions/journal independent, both default ON.
 - [ ] **E2E** — sync scenario in `saranidhi-e2e` deferred to a follow-up (needs a test PocketBase reachable from CI); manual smoke scenario to be added at `/release-start v1.13.0`.
-- [x] **Docs** — architecture + user-guide + CHANGELOG updated; PocketBase-as-lean-infra recorded; runbook at `docs/deployment/pocketbase-fly.md`.
+- [x] **Docs** — architecture + user-guide + CHANGELOG updated; PocketBase-as-lean-infra recorded; runbook at `docs/deployment/pocketbase-hosting.md` (host-agnostic — Fly.io / Railway).
 - [ ] **Valuation / tracker** — tracker ✅ (this PR); valuation row at `/sprint-update`.
 
 > **Rule-form reconciliation (review note ①, owner-accepted):** PR #261 had pinned the `user`-relation

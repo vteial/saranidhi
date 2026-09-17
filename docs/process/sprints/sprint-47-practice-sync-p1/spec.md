@@ -79,7 +79,7 @@ cross-device grouping key AND the server-enforced scope.
 > string-match bound on create** instead; the **owner accepted it** — for the 1–6-user trust model
 > the create-binding is an adequate server-side guard, and it avoids the extra relation field + the
 > app having to set `user` on every write. This doc + the runbook now reflect the shipped form.
-> Full runbook: [`docs/deployment/pocketbase-fly.md`](../../../deployment/pocketbase-fly.md).
+> Full runbook: [`docs/deployment/pocketbase-hosting.md`](../../../deployment/pocketbase-hosting.md).
 
 > Until §0 is satisfied for **local** (Compose is enough to build/green), implementation proceeds;
 > the **Fly** instance gates the release smoke.
