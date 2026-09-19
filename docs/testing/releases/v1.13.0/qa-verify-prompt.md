@@ -7,7 +7,7 @@
 > Antigravity; the owner's message is a one-liner pointing here.
 >
 > **Preview URL (filled):** `https://saranidhi-git-release-v1130-eialarasus-projects.vercel.app/`
-> (branch `release/v1.13.0` → slug `release-v1130`). Release PR: **#___** (fill when opened).
+> (branch `release/v1.13.0` → slug `release-v1130`). Release PR: **#265**.
 >
 > **⚠️ New this release — a LIVE backend is part of the gate.** Unlike prior web releases, v1.13.0's
 > sync scenarios hit a real network backend (**PocketBase on Fly**, `https://saranidhi-pb.fly.dev`).
@@ -36,7 +36,7 @@ from the local `.env` and pass it on the preview URL:
 The preview is built with --dart-define=POCKETBASE_URL=https://saranidhi-pb.fly.dev, so Sync points
 at the LIVE PocketBase backend. You need the PocketBase TEST-USER credentials (ask the owner) for
 sign-in scenarios.
-REPO: vteial/saranidhi. Release branch: release/v1.13.0. PR: #___ (fill in).
+REPO: vteial/saranidhi. Release branch: release/v1.13.0. PR: #265.
 
 STEP 0 — PRE-FLIGHT READINESS GATE (MANDATORY — run BEFORE any scenario):
 Confirm ALL; if ANY fails, STOP, run NO scenarios, report (see ABORT PROTOCOL). No workarounds.
@@ -96,5 +96,5 @@ pre-flight check fails, follow the ABORT PROTOCOL and stop.
 | Environment | release PR's Vercel **preview** `https://saranidhi-git-release-v1130-eialarasus-projects.vercel.app` (slug `release-v1130`) + live PocketBase `https://saranidhi-pb.fly.dev` |
 | Smoke-test file | `docs/testing/releases/v1.13.0/smoke-test.md` |
 | Highest-priority | S3 cross-device sync round-trip; S1 opt-in-off=zero-network; S5 owner-guard; S6 offline-first preserved; Tamil |
-| Release PR # | **#___** (fill when opened) |
+| Release PR # | **#265** |
 | Backend | Fly PocketBase `https://saranidhi-pb.fly.dev` (test user required for S2–S5) |
