@@ -109,6 +109,13 @@ class PocketBaseSyncTransport implements SyncTransport {
       _client.authStore.isValid && _client.authStore.token.isNotEmpty;
 
   @override
+  String? get authUserId {
+    if (!isAuthenticated) return null;
+    final id = _client.authStore.record?.id;
+    return (id != null && id.isNotEmpty) ? id : null;
+  }
+
+  @override
   Future<void> signIn({
     required String email,
     required String passphrase,

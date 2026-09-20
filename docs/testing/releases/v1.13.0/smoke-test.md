@@ -90,3 +90,22 @@
   - `flutter test`: 683 passed / 4 expected macOS CloudKit tests failed (+6 new regression tests, 0 regressions)
 - **Deviations:** None.
 
+### Fix 2 — Practice Sync profile owner-binding to PocketBase user ID (release blocker)
+- **Summary doc:** [`bugfix-owner-binding-summary.md`](./bugfix-owner-binding-summary.md)
+- **Spec:** [`bugfix-owner-binding-spec.md`](./bugfix-owner-binding-spec.md)
+- **Fix strategy:** Expose `authUserId` on `SyncTransport` / `PocketBaseSyncTransport` (^0.25.1 API) + idempotent `bindOwnerId` in `OwnerIdentityService` + bind & invalidate on `signIn()` in `PracticeSyncNotifier` + self-healing reconciliation check in `PracticeSyncEngine.performSync()`. Sign-up UI deferred to v1.13.1.
+- **Files changed:**
+  - `lib/features/cloud_backup/domain/sync_transport.dart`
+  - `lib/features/cloud_backup/data/pocketbase_sync_transport.dart`
+  - `lib/features/settings/domain/owner_identity_service.dart`
+  - `lib/features/cloud_backup/providers/practice_sync_providers.dart`
+  - `lib/features/cloud_backup/domain/practice_sync_engine.dart`
+  - `test/features/settings/owner_identity_service_test.dart`
+  - `test/features/cloud_backup/practice_sync_engine_test.dart`
+  - `test/features/cloud_backup/practice_sync_providers_test.dart`
+- **Validation:**
+  - `flutter analyze`: clean (0 issues)
+  - `flutter test`: 687 passed / 4 expected macOS CloudKit tests failed (+4 new regression tests, 0 regressions)
+- **Deviations:** None.
+
+

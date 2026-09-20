@@ -316,6 +316,12 @@ class PracticeSyncNotifier extends Notifier<PracticeSyncState> {
       await transport.signIn(email: email, passphrase: passphrase);
       await ref.read(practiceSyncConfigProvider.notifier).setUserEmail(email);
 
+      final pbUserId = transport.authUserId;
+      if (pbUserId != null && pbUserId.isNotEmpty) {
+        await ref.read(ownerIdentityServiceProvider).bindOwnerId(pbUserId);
+        ref.invalidate(ownerIdProvider);
+      }
+
       state = state.copyWith(
         isSigningIn: false,
         isAuthenticated: transport.isAuthenticated,

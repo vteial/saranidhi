@@ -61,7 +61,7 @@ class PracticeSyncEngine {
   }) async {
     try {
       // 1. Resolve Practice ID (ownerId)
-      final ownerId = await ownerIdentityService.ensureOwnerId();
+      var ownerId = await ownerIdentityService.ensureOwnerId();
       if (ownerId == null || ownerId.isEmpty) {
         return const SyncOutcome(
           error:
@@ -77,6 +77,17 @@ class PracticeSyncEngine {
         return const SyncOutcome(
           error: 'Please sign in to sync your practice data.',
         );
+      }
+
+      // Reconcile ownerId with authenticated backend user if mismatched (self-healing)
+      final authUserId = transport.authUserId;
+      if (authUserId != null &&
+          authUserId.isNotEmpty &&
+          authUserId != ownerId) {
+        final bound = await ownerIdentityService.bindOwnerId(authUserId);
+        if (bound != null && bound.isNotEmpty) {
+          ownerId = bound;
+        }
       }
 
       if (scopes.isEmpty) {
