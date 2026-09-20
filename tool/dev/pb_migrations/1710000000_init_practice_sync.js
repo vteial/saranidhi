@@ -1,5 +1,14 @@
 /// PocketBase migration initializing the Practice Sync schema (Sprint 47).
 /// Matches Sprint 47 Spec §0 exactly for Fly.io and local Docker Compose.
+///
+/// v1.13.0 SCHEMA FIX: Only the IDENTITY fields (uuid, ownerId) are `required`.
+/// All DATA fields are `required: false` because PocketBase's `required` validator
+/// rejects a field type's ZERO VALUE (bool `false`, number `0`, empty text) with
+/// `validation_required` — which would reject legitimate rows such as a misaligned
+/// journal entry (isAligned:false) or a session with holdAfterExhaleMs:0. The app
+/// always sends these fields (mappers apply defaults), so DB-level `required` adds
+/// no safety and only breaks sync on falsy data. Identity fields keep min:1 so they
+/// must be present and non-empty (ownerId isolation is also enforced by createRule).
 migrate((db) => {
   const dao = new Dao(db);
 
@@ -28,42 +37,42 @@ migrate((db) => {
       {
         name: "timestamp",
         type: "number",
-        required: true,
+        required: false,
       },
       {
         name: "totalDurationMs",
         type: "number",
-        required: true,
+        required: false,
       },
       {
         name: "nostril",
         type: "text",
-        required: true,
+        required: false,
       },
       {
         name: "inhaleLengthMs",
         type: "number",
-        required: true,
+        required: false,
       },
       {
         name: "holdAfterInhaleMs",
         type: "number",
-        required: true,
+        required: false,
       },
       {
         name: "exhaleLengthMs",
         type: "number",
-        required: true,
+        required: false,
       },
       {
         name: "holdAfterExhaleMs",
         type: "number",
-        required: true,
+        required: false,
       },
       {
         name: "completedCycles",
         type: "number",
-        required: true,
+        required: false,
       },
       {
         name: "mood",
@@ -113,27 +122,27 @@ migrate((db) => {
       {
         name: "timestamp",
         type: "number",
-        required: true,
+        required: false,
       },
       {
         name: "expectedFlow",
         type: "text",
-        required: true,
+        required: false,
       },
       {
         name: "actualFlow",
         type: "text",
-        required: true,
+        required: false,
       },
       {
         name: "nostril",
         type: "text",
-        required: true,
+        required: false,
       },
       {
         name: "isAligned",
         type: "bool",
-        required: true,
+        required: false,
       },
       {
         name: "inhaleDurationMs",
