@@ -15,7 +15,7 @@
 > **Files in the repo (single source of truth):**
 > | Path | Purpose |
 > |---|---|
-> | `tool/dev/docker-compose.yml` | Local PocketBase (Part A) |
+> | `tool/dev/docker-compose.yml` | Local PocketBase (Part A) — run with **Podman** (preferred) or Docker |
 > | `tool/dev/pb_migrations/*.js` | Collections + rules — used by **both** local and hosted |
 > | `deploy/pocketbase/Dockerfile` | Hosted image (bakes the same migrations) |
 > | `deploy/pocketbase/fly.toml` | Fly.io app config (name, region, volume, port) |
@@ -30,10 +30,22 @@
 Goal: a PocketBase on `http://localhost:8090`, and a locally-run Saranidhi that syncs to it.
 
 ### A1. Start PocketBase (one command)
+
+**Podman (preferred):**
+```bash
+cd tool/dev
+podman compose up -d
+```
+> If `podman compose` isn't wired up on your machine, use the drop-in: `podman-compose up -d`
+> (`pip install podman-compose` / `brew install podman-compose`). The `docker-compose.yml` is
+> unchanged — Podman reads the same file.
+
+**Docker (secondary / fallback):**
 ```bash
 cd tool/dev
 docker compose up -d
 ```
+
 - API: `http://localhost:8090` · Admin: `http://localhost:8090/_/` · Health: `http://localhost:8090/api/health`
 - Data persists in `tool/dev/pb_data/` (git-ignored). The `sessions`/`journal` collections + rules are
   auto-provisioned from `tool/dev/pb_migrations/` on first boot.
@@ -57,8 +69,8 @@ at sign-in. Then enable sync, sign in with the A2 test user, and Sync Now hits y
 ### A4. Stop / reset
 ```bash
 cd tool/dev
-docker compose down            # stop
-docker compose down -v && rm -rf pb_data   # wipe local data, start fresh
+podman compose down            # stop   (Docker: docker compose down)
+podman compose down -v && rm -rf pb_data   # wipe local data, start fresh
 ```
 
 ---

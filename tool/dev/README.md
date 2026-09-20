@@ -1,9 +1,9 @@
 # Local Development Infrastructure — PocketBase (Practice Sync Phase 1)
 
-This directory contains the local Docker Compose configuration for testing Saranidhi's **Practice Sync** feature against a local [PocketBase](https://pocketbase.io/) instance.
+This directory contains the local Compose configuration for testing Saranidhi's **Practice Sync** feature against a local [PocketBase](https://pocketbase.io/) instance. Run it with **Podman (preferred)** or Docker — the `docker-compose.yml` is the same for both.
 
 ## Prerequisites
-- Docker & Docker Compose installed.
+- **Podman + `podman compose`** (preferred), or `podman-compose` (`pip install podman-compose`). Docker + Docker Compose works as a fallback.
 - Flutter SDK 3.x+ (runs natively, not containerized).
 
 ## 1. Start PocketBase
@@ -11,7 +11,9 @@ This directory contains the local Docker Compose configuration for testing Saran
 From repository root:
 ```bash
 cd tool/dev
-docker compose up -d
+podman compose up -d      # preferred
+# or:  podman-compose up -d
+# Docker fallback:  docker compose up -d
 ```
 
 PocketBase will start on port `8090`:
@@ -48,14 +50,17 @@ Alternatively, enable **Practice Sync** in **Settings → Practice Sync**, tap *
 
 ```bash
 cd tool/dev
-docker compose down
+podman compose down          # Docker fallback: docker compose down
 ```
 To wipe local development data and start fresh:
 ```bash
 cd tool/dev
-docker compose down -v
+podman compose down -v       # Docker fallback: docker compose down -v
 rm -rf pb_data
 ```
+
+> **Podman image note:** the compose file uses the fully-qualified image
+> `ghcr.io/muchobien/pocketbase:latest`, so Podman pulls it without prompting for a registry.
 
 
 ---
