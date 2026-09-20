@@ -56,3 +56,10 @@ cd tool/dev
 docker compose down -v
 rm -rf pb_data
 ```
+
+
+---
+
+**Hosted backend?** For the Fly.io production/preview instance (one-time setup + redeploy steps), see
+the full runbook: [`docs/deployment/pocketbase-hosting.md`](../../docs/deployment/pocketbase-hosting.md).
+Local and hosted share the SAME migrations in `pb_migrations/`, so schema never drifts.
