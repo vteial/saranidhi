@@ -3,16 +3,25 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:saranidhi/database/database_provider.dart';
+import 'package:flutter_riverpod/misc.dart';
 import 'package:saranidhi/features/cloud_backup/presentation/widgets/practice_sync_card.dart';
 import 'package:saranidhi/features/cloud_backup/providers/practice_sync_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+class _FakeAuthenticatedNotifier extends PracticeSyncNotifier {
+  @override
+  PracticeSyncState build() =>
+      const PracticeSyncState(isAuthenticated: true);
+}
+
 Widget _createTestWidget({
   required Widget child,
   Locale locale = const Locale('en'),
+  List<Override> overrides = const [],
 }) {
   return ProviderScope(
+    overrides: overrides,
     child: MaterialApp(
       locale: locale,
       localizationsDelegates: const [
@@ -154,5 +163,45 @@ void main() {
       expect(find.text('இப்போது ஒத்திசை'), findsOneWidget);
       expect(find.text('இன்னும் ஒத்திசைக்கப்படவில்லை'), findsOneWidget);
     });
+
+    testWidgets(
+      'when signed in: displays email, sign out button, and enables Sync Now',
+      (tester) async {
+        SharedPreferences.setMockInitialValues({
+          'sync_enabled': true,
+          'sync_user_email': 'practitioner@saranidhi.app',
+        });
+
+        await tester.pumpWidget(
+          _createTestWidget(
+            overrides: [
+              practiceSyncNotifierProvider.overrideWith(
+                _FakeAuthenticatedNotifier.new,
+              ),
+            ],
+            child: const PracticeSyncCard(),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        // Account row shows signed in email and Sign Out button
+        expect(
+          find.text('Signed in as practitioner@saranidhi.app'),
+          findsOneWidget,
+        );
+        expect(find.text('Sign Out'), findsOneWidget);
+        expect(find.text('Sign In'), findsNothing);
+
+        // Sync Now button is enabled, no "Sign in required" hint
+        expect(
+          find.text('Sign in to Practice Sync to enable sync.'),
+          findsNothing,
+        );
+        final syncButton = tester.widget<FilledButton>(
+          find.widgetWithText(FilledButton, 'Sync Now'),
+        );
+        expect(syncButton.onPressed, isNotNull);
+      },
+    );
   });
 }

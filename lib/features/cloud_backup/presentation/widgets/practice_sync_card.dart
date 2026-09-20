@@ -21,7 +21,6 @@ class PracticeSyncCard extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final config = ref.watch(practiceSyncConfigProvider);
     final syncState = ref.watch(practiceSyncNotifierProvider);
-    final transport = ref.watch(practiceSyncTransportProvider);
 
     return Card(
       child: Padding(
@@ -86,7 +85,7 @@ class PracticeSyncCard extends ConsumerWidget {
 
               // Account Row
               _AccountSection(
-                isAuthenticated: transport.isAuthenticated,
+                isAuthenticated: syncState.isAuthenticated,
                 userEmail: config.userEmail,
               ),
 
@@ -135,7 +134,7 @@ class PracticeSyncCard extends ConsumerWidget {
                 children: [
                   FilledButton.icon(
                     onPressed:
-                        (syncState.isSyncing || !transport.isAuthenticated)
+                        (syncState.isSyncing || !syncState.isAuthenticated)
                         ? null
                         : () => ref
                               .read(practiceSyncNotifierProvider.notifier)
@@ -157,7 +156,7 @@ class PracticeSyncCard extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  if (!transport.isAuthenticated)
+                  if (!syncState.isAuthenticated)
                     Expanded(
                       child: Text(
                         l10n.syncSignInRequired,

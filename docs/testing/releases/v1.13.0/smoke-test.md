@@ -71,3 +71,22 @@
 | S6 | Offline-first preserved | ⬜ | |
 | S7 | Bilingual EN/TA | ⬜ | |
 | S8 | Local-only regression | ⬜ | |
+
+## Interim fixes during smoke
+
+### Fix 1 — Practice Sync sign-in state not surfacing (release blocker)
+- **Summary doc:** [`bugfix-signin-state-summary.md`](./bugfix-signin-state-summary.md)
+- **Spec:** [`bugfix-signin-state-spec.md`](./bugfix-signin-state-spec.md)
+- **Fix strategy:** Persistent `SharedPreferencesAuthStore` (`AsyncAuthStore` backed by `pb_auth`) + hoisted `practiceSyncAuthStoreProvider` + selective `practiceSyncTransportProvider` rebuild (`serverUrl` only) + reactive `isAuthenticated` in `PracticeSyncState` & `PracticeSyncCard`.
+- **Files changed:**
+  - `lib/features/cloud_backup/data/pocketbase_sync_transport.dart`
+  - `lib/features/cloud_backup/providers/practice_sync_providers.dart`
+  - `lib/features/cloud_backup/presentation/widgets/practice_sync_card.dart`
+  - `test/features/cloud_backup/pocketbase_sync_transport_test.dart`
+  - `test/features/cloud_backup/practice_sync_providers_test.dart`
+  - `test/features/cloud_backup/practice_sync_ui_test.dart`
+- **Validation:**
+  - `flutter analyze`: clean (0 issues)
+  - `flutter test`: 683 passed / 4 expected macOS CloudKit tests failed (+6 new regression tests, 0 regressions)
+- **Deviations:** None.
+
