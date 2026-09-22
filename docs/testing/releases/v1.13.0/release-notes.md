@@ -39,6 +39,9 @@ Your breath practice, together across your devices — safely, and only when you
 
 ### Notes
 - No local database change this release. If you don't turn Sync on, nothing about the app changes.
+- Hardened during smoke: four fixes landed on the release branch — auth-state surfacing, binding your
+  Practice ID to your account, and two PocketBase schema corrections (falsy-value fields; per-owner
+  uniqueness). Friendlier error messages + in-app account creation are coming in **v1.13.1**.
 
 ### Sprint(s)
 - Sprint 47 — ★ Practice Sync Phase 1
