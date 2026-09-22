@@ -6,6 +6,7 @@ import 'package:http/testing.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:saranidhi/features/cloud_backup/data/pocketbase_sync_transport.dart';
 import 'package:saranidhi/features/cloud_backup/domain/sync_transport.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 String _createMockJwt() {
   final header = base64Url
@@ -234,6 +235,47 @@ void main() {
       expect(createdBodies.length, equals(1));
       expect(createdBodies.first['uuid'], equals('local-sess-uuid-42'));
       expect(createdBodies.first['ownerId'], equals('practice-owner-42'));
+    });
+
+    test('SharedPreferencesAuthStore rehydrates saved credentials', () async {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      final mockJwt = _createMockJwt();
+      final savedData = jsonEncode({
+        'token': mockJwt,
+        'model': {'id': 'u1', 'email': 'user@example.com'},
+      });
+      SharedPreferences.setMockInitialValues({'pb_auth': savedData});
+      final prefs = await SharedPreferences.getInstance();
+
+      final store = SharedPreferencesAuthStore(prefs: prefs);
+      final transport = PocketBaseSyncTransport(
+        baseUrl: 'http://localhost:8090',
+        authStore: store,
+      );
+
+      expect(transport.isAuthenticated, isTrue);
+      expect(transport.authStore.token, equals(mockJwt));
+    });
+
+    test('rehydrateAuth restores authentication when loaded lazily', () async {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      final mockJwt = _createMockJwt();
+      final savedData = jsonEncode({
+        'token': mockJwt,
+        'model': {'id': 'u1', 'email': 'user@example.com'},
+      });
+      SharedPreferences.setMockInitialValues({'pb_auth': savedData});
+
+      final store = SharedPreferencesAuthStore(initial: '');
+      final transport = PocketBaseSyncTransport(
+        baseUrl: 'http://localhost:8090',
+        authStore: store,
+      );
+
+      expect(transport.isAuthenticated, isFalse);
+      final rehydrated = await transport.rehydrateAuth();
+      expect(rehydrated, isTrue);
+      expect(transport.isAuthenticated, isTrue);
     });
   });
 }

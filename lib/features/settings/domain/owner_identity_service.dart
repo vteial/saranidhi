@@ -30,6 +30,24 @@ class OwnerIdentityService {
         .write(ProfilesCompanion(ownerId: Value(newOwnerId)));
     return newOwnerId;
   }
+
+  /// Binds the local profile's ownerId to the authenticated backend (PocketBase) user id.
+  ///
+  /// Idempotent: a no-op if the profile ownerId already equals [backendUserId].
+  /// Returns the effective ownerId (== backendUserId on success), or null if no profile exists.
+  Future<String?> bindOwnerId(String backendUserId) async {
+    final profiles = await _db.select(_db.profiles).get();
+    if (profiles.isEmpty) return null;
+
+    final profile = profiles.first;
+    if (profile.ownerId == backendUserId) {
+      return profile.ownerId;
+    }
+
+    await (_db.update(_db.profiles)..where((t) => t.id.equals(profile.id)))
+        .write(ProfilesCompanion(ownerId: Value(backendUserId)));
+    return backendUserId;
+  }
 }
 
 /// Provider for [OwnerIdentityService].

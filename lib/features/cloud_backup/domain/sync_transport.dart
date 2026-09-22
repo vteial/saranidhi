@@ -26,6 +26,9 @@ abstract interface class SyncTransport {
   /// Whether an authenticated session is currently active.
   bool get isAuthenticated;
 
+  /// The unique record ID of the authenticated user on the backend, or null if unauthenticated.
+  String? get authUserId;
+
   /// Authenticates with the remote backend using email and passphrase.
   Future<void> signIn({required String email, required String passphrase});
 

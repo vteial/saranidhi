@@ -65,5 +65,37 @@ void main() {
       final profile = (await db.select(db.profiles).get()).first;
       expect(profile.ownerId, equals(existingId));
     });
+
+    test('bindOwnerId returns null when no profiles exist', () async {
+      final result = await service.bindOwnerId('pb_user_test_999');
+      expect(result, isNull);
+    });
+
+    test('bindOwnerId binds backend user id to profile and is idempotent', () async {
+      await db.into(db.profiles).insert(
+            ProfilesCompanion.insert(
+              id: 'prof-bind-test',
+              ownerId: const drift.Value('initial-local-uuid-42'),
+              displayName: const drift.Value('Bound Practitioner'),
+              createdAt: 1710000000000,
+              updatedAt: 1710000000000,
+            ),
+          );
+
+      const pbUserId = 'pb_user_record_id_123';
+      final bound = await service.bindOwnerId(pbUserId);
+      expect(bound, equals(pbUserId));
+
+      // Verify persisted to DB
+      var profile = (await db.select(db.profiles).get()).first;
+      expect(profile.ownerId, equals(pbUserId));
+
+      // Second call is idempotent no-op
+      final repeatBound = await service.bindOwnerId(pbUserId);
+      expect(repeatBound, equals(pbUserId));
+
+      profile = (await db.select(db.profiles).get()).first;
+      expect(profile.ownerId, equals(pbUserId));
+    });
   });
 }

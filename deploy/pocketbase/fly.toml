@@ -1,0 +1,23 @@
+# Fly.io config for the Saranidhi Practice Sync PocketBase backend.
+# App name + region are fixed here so `fly deploy` needs no flags.
+# Base URL served: https://saranidhi-pb.fly.dev
+#
+# Deploy from the REPO ROOT so the Dockerfile can COPY tool/dev/pb_migrations:
+#   fly deploy --config deploy/pocketbase/fly.toml --dockerfile deploy/pocketbase/Dockerfile .
+
+app = "saranidhi-pb"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[mounts]]
+  source = "pb_data"
+  destination = "/pb/pb_data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0

@@ -13,9 +13,11 @@ _Upcoming work is tracked in the [Sprint Backlog](docs/process/sprint-backlog.md
 
 ---
 
-## [1.13.0] — 2026-09-16
+## [1.13.0-web] — 2026-09-16
 
 > Sprint 47 — **Practice Sync Phase 1** (on-demand cross-device sync via PocketBase backend).
+> First release to reopen the network/account boundary — sync is **opt-in (default OFF)**;
+> offline-first is fully preserved.
 
 ### Added
 - **Practice Sync Card in Settings** — master opt-in toggle (`sync_enabled`, default OFF = consent gate), user account sign-in/sign-out, and on-demand "Sync now" button with quiet non-blocking status.

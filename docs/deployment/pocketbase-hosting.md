@@ -1,176 +1,211 @@
 [← docs index](../README.md)
 
-# PocketBase hosting — Practice Sync backend runbook (host-agnostic)
+# PocketBase — Practice Sync backend runbook
 
-> **What this is.** How to stand up the **PocketBase** instance that backs **Practice Sync Phase 1**
-> (Sprint 47, v1.13.0). PocketBase is the chosen sync transport (SQLite + auth + REST) — deliberately
-> a **lean, reusable infra pattern**; this runbook doubles as a template for future mini-projects.
+> **What this backs.** The **PocketBase** instance behind **Practice Sync** (Sprint 47, v1.13.0):
+> SQLite + auth + REST, reached through a swappable **`SyncTransport`** — so **the host is just a
+> base-URL config value**. Everything you need is **in this repo** (no files in your home folder).
 >
-> **Host-agnostic by design.** The app talks to PocketBase through a swappable **`SyncTransport`**
-> interface, so **the host is just a base-URL config value** — you can start on one provider and move
-> later by copying one SQLite file + changing `POCKETBASE_URL`. §1 covers the host-independent setup
-> (collections/schema/rules), §2 gives per-provider deploy recipes (**Fly.io / Railway**), §3+ is
-> local dev + ops.
+> **How to read this doc** — it is split by *how often you do it*:
+> - **[Part A — Local dev](#part-a--local-dev-everyday)** — run PocketBase on your machine so a locally-run front-end syncs to it. **Everyday.**
+> - **[Part B — Hosted, one-time setup](#part-b--hosted-backend-one-time-setup)** — stand up the Fly.io instance. **Once per environment.**
+> - **[Part C — Hosted, repeated](#part-c--hosted-repeated-operations)** — redeploy, check health, view logs. **Every release / schema change.**
+> - **[Part D — Reference](#part-d--reference)** — schema, rules, provider choice, ops, host-swap.
 >
-> **Owner's current choice: Fly.io** (see §2A). Railway is documented as the swap-in alternative (§2B).
+> **Files in the repo (single source of truth):**
+> | Path | Purpose |
+> |---|---|
+> | `tool/dev/docker-compose.yml` | Local PocketBase (Part A) — run with **Podman** (preferred) or Docker |
+> | `tool/dev/pb_migrations/*.js` | Collections + rules — used by **both** local and hosted |
+> | `deploy/pocketbase/Dockerfile` | Hosted image (bakes the same migrations) |
+> | `deploy/pocketbase/fly.toml` | Fly.io app config (name, region, volume, port) |
 >
-> **Source of truth for the schema:** the Sprint 47 spec
-> [`sprint-47-practice-sync-p1/spec.md`](../process/sprints/sprint-47-practice-sync-p1/spec.md) §0.
-> The deployed instance **and** the `tool/dev/` Compose seed **must match** it exactly.
->
-> **Sequencing note:** a hosted instance is **not** required to *start* Sprint 47 — the local Docker
-> Compose PocketBase (§3) is enough to build + green the code. A hosted instance is the
-> **release-smoke gate** (needed before `/release-start v1.13.0`), so it can be stood up later.
+> **Schema source of truth:** the migrations in `tool/dev/pb_migrations/`. Local and hosted run the
+> *same* files, so they cannot drift.
 
 ---
 
-## Provider comparison (why the runbook is host-agnostic)
+## Part A — Local dev (everyday)
 
-For a single PocketBase binary + one SQLite file on a persistent disk, 1–6 users, on-demand sync:
+Goal: a PocketBase on `http://localhost:8090`, and a locally-run Saranidhi that syncs to it.
 
-| | **Fly.io** | **Railway** | **Render** |
-|---|---|---|---|
-| Persistent disk (required) | ✅ Volumes, first-class | ✅ Volumes | ⚠️ paid instances only |
-| Free/cheap floor | pay-as-you-go ~$2–3/mo | ~$5/mo Hobby (usage credit) | free tier **can't persist** → must go paid (~$7/mo) |
-| Idle behavior | **scale-to-zero** (cold start ~1–2s) | stays warm (no cold start) | free sleeps (30–60s cold start); paid always-on |
-| DX / ops | most infra-flavored | slickest DX | middle |
-| Fit for PocketBase | **cheapest real bill** | **least-headache** | weakest (free tier is a data-loss trap) |
+### A1. Start PocketBase (one command)
 
-**Verdict:** **Fly** = cheapest + scale-to-zero (owner's pick). **Railway** = smoothest DX, stays
-warm, ~$5/mo. **Render** ruled out for PocketBase (free tier has no persistent disk → SQLite wiped on
-restart; paid loses the cost edge). Because the host is a config URL, this is low-stakes and reversible.
+**Podman (preferred):**
+```bash
+cd tool/dev
+podman compose up -d
+```
+> If `podman compose` isn't wired up on your machine, use the drop-in: `podman-compose up -d`
+> (`pip install podman-compose` / `brew install podman-compose`). The `docker-compose.yml` is
+> unchanged — Podman reads the same file.
+
+**Docker (secondary / fallback):**
+```bash
+cd tool/dev
+docker compose up -d
+```
+
+- API: `http://localhost:8090` · Admin: `http://localhost:8090/_/` · Health: `http://localhost:8090/api/health`
+- Data persists in `tool/dev/pb_data/` (git-ignored). The `sessions`/`journal` collections + rules are
+  auto-provisioned from `tool/dev/pb_migrations/` on first boot.
+
+### A2. One-time local admin + test user
+1. Open `http://localhost:8090/_/`, create a local admin (e.g. `admin@saranidhi.local` / `passphrase12345`).
+2. Confirm `sessions` + `journal` exist under **Collections**.
+3. In the `users` collection, add a test user (e.g. `practitioner@saranidhi.local` / `passphrase12345`).
+
+### A3. Run the front-end against local PocketBase
+```bash
+# Web / macOS desktop
+flutter run -d chrome --dart-define=POCKETBASE_URL=http://localhost:8090
+
+# Android emulator (localhost maps to 10.0.2.2)
+flutter run -d android --dart-define=POCKETBASE_URL=http://10.0.2.2:8090
+```
+Or leave the default and just type `http://localhost:8090` into **Settings → Practice Sync → Server URL**
+at sign-in. Then enable sync, sign in with the A2 test user, and Sync Now hits your local instance.
+
+### A4. Stop / reset
+```bash
+cd tool/dev
+podman compose down            # stop   (Docker: docker compose down)
+podman compose down -v && rm -rf pb_data   # wipe local data, start fresh
+```
 
 ---
 
-## 1. Host-independent setup (same on every provider)
+## Part B — Hosted backend (one-time setup)
 
-### 1a — App-user auth
-The app signs in as a *regular user* (the consent surface), not the admin. Confirm the built-in
-**`users`** auth collection exists with email/password enabled. Each device/person authenticates as a
-`users` record. The **admin (superuser)** account is private ops-only — **never shipped, never committed.**
+Do this **once** to create the Fly.io instance. Owner's chosen host is **Fly.io** (see [§D3](#d3-provider-choice) for why / alternatives).
 
-### 1b — Collection `sessions` (Base) — fields per spec §0
-`uuid` (Text, **Required + Unique**), `ownerId` (Text, Required), `timestamp` (Number),
-`totalDurationMs` (Number), `nostril` (Text), `inhaleLengthMs` / `holdAfterInhaleMs` /
-`exhaleLengthMs` / `holdAfterExhaleMs` (Number), `completedCycles` (Number), `mood` (Text, opt),
-`consciousnessRating` (Number, opt), `notes` (Text, opt).
+### B1. Install + log in (once per machine)
+```bash
+brew install flyctl            # or: curl -L https://fly.io/install.sh | sh
+fly auth login                 # GitHub-linked account
+```
 
-### 1c — Collection `journal` (Base) — fields per spec §0
-`uuid` (Text, **Required + Unique**), `ownerId` (Text, Required), `timestamp` (Number),
-`expectedFlow` / `actualFlow` / `nostril` (Text), `isAligned` (Bool), `inhaleDurationMs` /
-`holdDurationMs` / `exhaleDurationMs` (Number, opt), `activeYama` / `activeBird` / `activeBirdState`
-/ `activeElement` (Text, opt), `notes` (Text, opt), `isPinned` / `wasForcedShift` (Bool).
+### B2. Create the app + persistent volume (once per environment)
+The app config already exists at `deploy/pocketbase/fly.toml` (`app = "saranidhi-pb"`, region `sin`).
+Create the app record and the volume that holds the SQLite file:
+```bash
+# from the repo root
+fly apps create saranidhi-pb                       # skip if it already exists
+fly volumes create pb_data --size 1 --region sin   # must match primary_region in fly.toml
+```
 
-### 1d — Owner-scoped access rules (the server-side owner-guard) — as shipped
-On **both** collections, set the **API Rules** so a signed-in user only ever touches their own rows,
-keyed off the record's `ownerId` bound to the authenticated user's id:
+### B3. First deploy
+```bash
+# from the repo root — context MUST be repo root so the image can COPY tool/dev/pb_migrations
+fly deploy --config deploy/pocketbase/fly.toml --dockerfile deploy/pocketbase/Dockerfile .
+```
+
+### B4. Create the hosted admin + test users (once)
+```bash
+fly open /_/                   # opens the PocketBase Admin UI
+```
+- Create the **superuser** (private ops account — never commit it).
+- In `users`, create the test accounts for smoke (e.g. `usera@…`, `userb@…`). Creds stay out-of-band.
+- Base URL is `https://saranidhi-pb.fly.dev` (already wired into the app build via
+  `scripts/vercel_build.sh` `--dart-define POCKETBASE_URL=…`).
+
+---
+
+## Part C — Hosted (repeated operations)
+
+### C1. Redeploy (after any schema/migration or PocketBase-version change)
+```bash
+# from the repo root — same canonical command as B3
+fly deploy --config deploy/pocketbase/fly.toml --dockerfile deploy/pocketbase/Dockerfile .
+```
+> **Build context.** The context is the repo root (so the Dockerfile can `COPY tool/dev/pb_migrations`),
+> but the repo-root `.dockerignore` whitelists ONLY the migrations, so the upload stays tiny (~KB) even
+> though your working dir may hold a 1.4 GB Flutter `build/` + `.dart_tool/`. If you ever see a Fly
+> "Build context is N GB" warning, check that `.dockerignore` still excludes `build/`/`.dart_tool/`.
+> The final image is ~32 MB regardless (only PocketBase + migrations are `COPY`-ed).
+>
+> New migration files in `tool/dev/pb_migrations/` are baked into the image and applied on boot.
+> Migrations run **once per filename** — to change already-applied schema, ADD a new migration file
+> (do not edit an applied one). Example: `1710000001_relax_required_data_fields.js`.
+
+### C2. Health / status / logs
+```bash
+curl https://saranidhi-pb.fly.dev/api/health     # {"code":200,...}
+fly status                                        # machine running/stopped/crashed
+fly logs                                          # boot + migration errors
+```
+
+### C3. Common gotchas
+- **`Error: the config for your app is missing an app name`** — you ran `fly deploy` without pointing
+  at the config. Use the full canonical command in C1 (or `cd` to the folder holding a `fly.toml` that
+  has `app = "..."`). Our `deploy/pocketbase/fly.toml` has the app name.
+- **`COPY tool/dev/pb_migrations` fails / migrations missing** — the build context wasn't the repo
+  root. The trailing `.` in the canonical command sets context = repo root. Always deploy from there.
+- **Schema edit didn't take** — you edited an already-applied migration. Add a NEW numbered migration
+  instead, then redeploy (C1).
+
+---
+
+## Part D — Reference
+
+### D1. Collections & fields (provisioned by the migrations)
+- **`sessions`** (Base): `uuid`*, `ownerId`*, `timestamp`, `totalDurationMs`, `nostril`,
+  `inhaleLengthMs`, `holdAfterInhaleMs`, `exhaleLengthMs`, `holdAfterExhaleMs`, `completedCycles`,
+  `mood`, `consciousnessRating`, `notes`.
+- **`journal`** (Base): `uuid`*, `ownerId`*, `timestamp`, `expectedFlow`, `actualFlow`, `nostril`,
+  `isAligned`, `inhaleDurationMs`, `holdDurationMs`, `exhaleDurationMs`, `activeYama`, `activeBird`,
+  `activeBirdState`, `activeElement`, `notes`, `isPinned`, `wasForcedShift`.
+
+> \* **Only `uuid` + `ownerId` are `required`** (identity fields, `min:1`). **All other fields are
+> `required: false`** — this is deliberate: PocketBase's `required` validator rejects a type's ZERO
+> VALUE (`bool false`, `number 0`, empty text) with `validation_required`, which would block valid
+> rows like a misaligned journal entry (`isAligned:false`) or `holdAfterExhaleMs:0`. The app always
+> sends every field, so DB-level `required` adds no safety and only breaks on falsy data.
+> **Rule of thumb: never mark a `bool` required; mark a `number` required only if `0` is truly invalid.**
+> (Fixed in `1710000001_relax_required_data_fields.js` after the v1.13.0 smoke caught it.)
+
+> **Unique index is PER OWNER, not global.** `uuid` is indexed as a **composite unique `(ownerId, uuid)`**
+> on both collections — NOT `UNIQUE (uuid)` alone. A per-tenant natural key must be scoped to the owner;
+> a global-unique `uuid` breaks when two owners legitimately hold the same uuid (e.g. the same physical
+> row synced under two accounts) with `uuid: validation_not_unique`. This matches the engine's
+> `ownerId+uuid` upsert logic. (Fixed in `1710000002_uuid_unique_per_owner.js` after the v1.13.0 S5 smoke.)
+
+### D2. Owner-scoped access rules (server-side owner-guard)
+On **both** collections:
 
 | Rule | Value |
 |---|---|
-| List / Search | `@request.auth.id != "" && ownerId = @request.auth.id` |
-| View | `@request.auth.id != "" && ownerId = @request.auth.id` |
-| Create | `@request.auth.id != "" && ownerId = @request.auth.id` |
-| Update | `@request.auth.id != "" && ownerId = @request.auth.id` |
-| **Delete** | **`null` / locked** (append-only — Phase 1 never deletes remotely) |
+| List / View / Create / Update | `@request.auth.id != "" && ownerId = @request.auth.id` |
+| Delete | `null` / locked (append-only) |
 
-> **Why this form:** the **Create rule binds `ownerId` to the authenticated user's id**, so a user
-> cannot create rows under a foreign `ownerId`; List/View/Update then scope every row to the caller —
-> a user cannot read or write another owner's rows. `ownerId` (the Practice ID) is both the
-> cross-device grouping key AND the server-enforced scope — no separate relation field needed.
-> *(A `user`-relation form was originally pinned in PR #261; the simpler `ownerId`-bound form was
-> shipped + owner-accepted at `/sprint-finish` for the 1–6-user trust model. Spec §0 + the migration
-> in `tool/dev/pb_migrations/` reflect these exact rules.)*
+The **Create** rule binds each row's `ownerId` to the authenticated user's id → a user can't write
+under a foreign `ownerId`; List/View/Update scope every row to the caller. So `ownerId` (the app's
+Practice ID, bound to the PocketBase user id on sign-in) is both the cross-device grouping key AND the
+server-enforced isolation boundary. No separate relation field needed.
 
-### 1e — The Dockerfile (used by both providers)
-PocketBase is a single binary; a **persistent disk/volume** keeps the SQLite file across restarts.
-Make a small deploy folder **outside** the `saranidhi` repo (this is infra, not app code):
+### D3. Provider choice
+For one PocketBase binary + one SQLite file on a persistent disk, 1–6 users, on-demand sync:
 
-```bash
-mkdir ~/saranidhi-pb && cd ~/saranidhi-pb
-```
-**`Dockerfile`:**
-```dockerfile
-FROM alpine:3.20
-ARG PB_VERSION=0.22.21
-RUN apk add --no-cache unzip ca-certificates
-ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
-RUN unzip /tmp/pb.zip -d /pb/
-EXPOSE 8080
-CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:8080"]
-```
+| | **Fly.io** (chosen) | **Railway** | **Render** |
+|---|---|---|---|
+| Persistent disk | ✅ Volumes | ✅ Volumes | ⚠️ paid only |
+| Cheap floor | ~$2–3/mo | ~$5/mo Hobby | free can't persist → ~$7/mo paid |
+| Idle | scale-to-zero (~1–2s cold) | stays warm | free sleeps; paid always-on |
+| Verdict | cheapest + scale-to-zero | smoothest DX, warm | free tier is a data-loss trap |
 
----
+Because the host is a config URL, switching is low-stakes (see D5).
 
-## 2. Deploy — pick ONE provider
+### D4. Ops
+- **Backups:** SQLite lives on the `pb_data` volume — `fly volumes snapshots list`, or `fly ssh console`
+  + copy `pb_data`. Low urgency at 1–6 users.
+- **Upgrade PocketBase:** bump `PB_VERSION` in `deploy/pocketbase/Dockerfile` → redeploy (C1).
+- **Cost control:** `auto_stop_machines` idles to zero; first request cold-starts ~1–2s.
+- **Security-review:** the hosted instance (network path, auth token, owner-scoped rules, egress) is
+  covered in the Sprint 47 security-review redo.
 
-### 2A — Fly.io (owner's current choice)
-
-```bash
-brew install flyctl          # or: curl -L https://fly.io/install.sh | sh
-fly auth login               # use the GitHub-linked account
-```
-```bash
-fly launch --no-deploy --name saranidhi-pb        # near region, e.g. Singapore (sin) / Mumbai (bom)
-fly volumes create pb_data --size 1 --region <same-region>
-```
-**`fly.toml`** — mount the volume + internal port + scale-to-zero:
-```toml
-[[mounts]]
-  source = "pb_data"
-  destination = "/pb/pb_data"
-
-[http_service]
-  internal_port = 8080
-  force_https = true
-  auto_stop_machines = true
-  auto_start_machines = true
-  min_machines_running = 0
-```
-```bash
-fly deploy
-fly open /_/          # opens the PocketBase Admin UI → create the superuser
-```
-- Base URL → `https://saranidhi-pb.fly.dev`.
-- **Cost:** ~$2–3/mo; a payment card is required even on small allowances.
-
-### 2B — Railway (swap-in alternative)
-
-- New project → **Deploy from Dockerfile** (the `~/saranidhi-pb` folder above, pushed to a repo) or
-  the PocketBase template.
-- Add a **Volume** mounted at `/pb/pb_data` (persists the SQLite file — required).
-- Set the service **port to 8080**; Railway assigns a public `*.up.railway.app` domain.
-- Open `<domain>/_/` → create the superuser.
-- Base URL → `https://<your-app>.up.railway.app`.
-- **Cost:** ~$5/mo Hobby (usage credit; a small idle PocketBase often fits within it); **stays warm**
-  (no cold start).
-
-> **Render note:** not recommended for PocketBase — its free tier has **no persistent disk** (SQLite
-> wiped on restart). Only viable on a paid instance + disk (~$7/mo), which loses the cost advantage.
-
----
-
-## 3. Local dev mirror (Docker Compose)
-
-Sprint 47 ships `tool/dev/docker-compose.yml` (PocketBase only) + a **seed** that recreates the
-`sessions`/`journal` collections + the §1d rules so **local == hosted**. Local URL:
-`http://localhost:8090`. Flutter runs native and points at local vs. hosted via config
-(`--dart-define POCKETBASE_URL=…` or a settings field). See spec §6.
-
-## 4. Verify & hand off
-
-- Health: `curl <base-url>/api/health` → `{"code":200,...}`.
-- Create one **test user** in the `users` collection (for sign-in tests + smoke).
-- Feed the release smoke / Flutter config: the base URL + the test creds.
-
-## 5. Ops notes
-
-- **Backups:** the SQLite DB lives on the persistent volume — Fly: `fly volumes snapshots` (or
-  `fly ssh` + copy `pb_data`); Railway: volume backup / periodic export. Low urgency at 1–6 users.
-- **Upgrades:** bump `PB_VERSION` in the Dockerfile → redeploy (`fly deploy` / Railway redeploy).
-- **Cost control (Fly):** `auto_stop_machines = true` idles to zero; first request cold-starts ~1–2 s
-  — acceptable for on-demand sync. (Railway stays warm, no cold start, small steady cost.)
-- **Security-review:** the hosted instance is assessed in the Sprint 47 **security-review redo**
-  (network path, auth token, owner-scoped rules, data egress) — see spec §8.
-- **Reusability + host swap:** the Dockerfile + collection schema + rule pattern is the template for
-  future mini-project backends. To move hosts: copy the `pb_data` SQLite file to the new volume,
-  redeploy, and change `POCKETBASE_URL` — the app is unaffected (it only knows the URL).
+### D5. Host swap (Fly → Railway/other)
+1. Copy the `pb_data` SQLite file to the new host's volume.
+2. Deploy the same `deploy/pocketbase/Dockerfile` there (Railway: Deploy-from-Dockerfile + a volume at
+   `/pb/pb_data`, port 8080).
+3. Change `POCKETBASE_URL` (in `scripts/vercel_build.sh` / the app config). The app is otherwise
+   unaffected — it only knows the URL.

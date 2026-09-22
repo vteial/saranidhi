@@ -1,8 +1,70 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:pocketbase/pocketbase.dart';
 import 'package:saranidhi/features/cloud_backup/domain/sync_transport.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-/// PocketBase implementation of [SyncTransport].
+const kPocketBaseAuthStoreKey = 'pb_auth';
+
+/// Persistent `AuthStore` backed by `SharedPreferences`.
+///
+/// Ensures PocketBase authentication survives provider rebuilds
+/// and web page reloads.
+class SharedPreferencesAuthStore extends AsyncAuthStore {
+  SharedPreferencesAuthStore({
+    SharedPreferences? prefs,
+    String? initial,
+    this.storageKey = kPocketBaseAuthStoreKey,
+  }) : _prefs = prefs,
+       super(
+         save: (data) async {
+           try {
+             final p = prefs ?? await SharedPreferences.getInstance();
+             await p.setString(storageKey, data);
+           } on Object catch (_) {
+             // In pure unit tests without Flutter bindings, in-memory store continues to hold state.
+           }
+         },
+         clear: () async {
+           try {
+             final p = prefs ?? await SharedPreferences.getInstance();
+             await p.remove(storageKey);
+           } on Object catch (_) {
+             // In pure unit tests without Flutter bindings, in-memory store continues to hold state.
+           }
+         },
+         initial: initial ?? prefs?.getString(storageKey),
+       );
+
+  final SharedPreferences? _prefs;
+  final String storageKey;
+
+  /// Asynchronously rehydrates the auth store from `SharedPreferences` if not already loaded.
+  Future<bool> rehydrate() async {
+    if (isValid && token.isNotEmpty) {
+      return true;
+    }
+    final p = _prefs ?? await SharedPreferences.getInstance();
+    final raw = p.getString(storageKey);
+    if (raw == null || raw.isEmpty) return false;
+
+    try {
+      final decoded = jsonDecode(raw);
+      if (decoded is Map<String, dynamic>) {
+        final t = decoded['token'] as String? ?? '';
+        final r = RecordModel.fromJson(
+          decoded['model'] as Map<String, dynamic>? ?? {},
+        );
+        save(t, r);
+        return isValid;
+      }
+    } on Object catch (_) {}
+    return false;
+  }
+}
+
+/// PocketBase implementation of `SyncTransport`.
 ///
 /// Communicates with a PocketBase instance (Fly.io or local Docker Compose)
 /// via web-safe HTTP client calls.
@@ -18,7 +80,7 @@ class PocketBaseSyncTransport implements SyncTransport {
            PocketBase(
              baseUrl.trim(),
              httpClientFactory: httpClient != null ? () => httpClient : null,
-             authStore: authStore,
+             authStore: authStore ?? SharedPreferencesAuthStore(),
            );
 
   final String _baseUrl;
@@ -27,12 +89,31 @@ class PocketBaseSyncTransport implements SyncTransport {
   /// Exposes the underlying PocketBase client for testing or advanced inspection.
   PocketBase get client => _client;
 
+  /// Exposes the underlying `AuthStore`.
+  AuthStore get authStore => _client.authStore;
+
+  /// Rehydrates authentication data from storage if the underlying store supports it.
+  Future<bool> rehydrateAuth() async {
+    final store = _client.authStore;
+    if (store is SharedPreferencesAuthStore) {
+      return store.rehydrate();
+    }
+    return isAuthenticated;
+  }
+
   @override
   bool get isConfigured => _baseUrl.isNotEmpty;
 
   @override
   bool get isAuthenticated =>
       _client.authStore.isValid && _client.authStore.token.isNotEmpty;
+
+  @override
+  String? get authUserId {
+    if (!isAuthenticated) return null;
+    final id = _client.authStore.record?.id;
+    return (id != null && id.isNotEmpty) ? id : null;
+  }
 
   @override
   Future<void> signIn({

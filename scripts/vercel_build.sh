@@ -18,6 +18,11 @@ echo "=== Compiling Drift Worker for Web ==="
 dart compile js -o web/drift_worker.js web/drift_worker.dart
 
 echo "=== Building Flutter Web ==="
-flutter build web --release
+# Practice Sync (Sprint 47, v1.13.0+): default PocketBase backend URL baked into the build.
+# Public API base (not a secret — auth is per-user email/passphrase). Users can override it in
+# Settings → Sync. Prefer the Vercel env var POCKETBASE_URL if set, else the Fly default.
+POCKETBASE_URL="${POCKETBASE_URL:-https://saranidhi-pb.fly.dev}"
+echo "Using POCKETBASE_URL=$POCKETBASE_URL"
+flutter build web --release --dart-define=POCKETBASE_URL="$POCKETBASE_URL"
 
 echo "=== Build Complete ==="

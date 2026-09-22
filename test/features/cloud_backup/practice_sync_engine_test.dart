@@ -10,6 +10,7 @@ class FakeSyncTransport implements SyncTransport {
   FakeSyncTransport({
     this.configured = true,
     this.authenticated = true,
+    this.authUserId,
     this.remoteData = const RemoteSyncData(),
     this.throwOnPull = false,
     this.throwOnPush = false,
@@ -17,6 +18,8 @@ class FakeSyncTransport implements SyncTransport {
 
   bool configured;
   bool authenticated;
+  @override
+  String? authUserId;
   RemoteSyncData remoteData;
   bool throwOnPull;
   bool throwOnPush;
@@ -346,6 +349,55 @@ void main() {
 
         expect(outcome.isSuccess, isFalse);
         expect(outcome.error, contains('Please sign in'));
+      },
+    );
+
+    test(
+      'reconciles ownerId with transport.authUserId if mismatched and proceeds',
+      () async {
+        const backendUserId = 'pb-auth-user-999';
+        final transport = FakeSyncTransport(
+          authUserId: backendUserId,
+          remoteData: const RemoteSyncData(
+            sessions: [
+              {
+                'id': 'remote-sess-reconciled',
+                'uuid': 'remote-sess-reconciled',
+                'ownerId': backendUserId,
+                'timestamp': 1710000001000,
+                'totalDurationMs': 60000,
+                'nostril': 'right',
+                'inhaleLengthMs': 4000,
+                'holdAfterInhaleMs': 8000,
+                'exhaleLengthMs': 4000,
+                'holdAfterExhaleMs': 0,
+                'completedCycles': 4,
+              },
+            ],
+          ),
+        );
+
+        final engine = PracticeSyncEngine(
+          db: db,
+          transport: transport,
+          ownerIdentityService: ownerService,
+        );
+
+        // Initial profile ownerId is 'practice-owner-uuid-1' != backendUserId
+        final initialOwner = await ownerService.ensureOwnerId();
+        expect(initialOwner, isNot(equals(backendUserId)));
+
+        final outcome = await engine.performSync(scopes: {SyncScope.sessions});
+        expect(outcome.isSuccess, isTrue);
+
+        // Profile ownerId was reconciled
+        final reconciledOwner = await ownerService.ensureOwnerId();
+        expect(reconciledOwner, equals(backendUserId));
+
+        // Rows in local DB are imported
+        final localSessions = await db.select(db.breathSessions).get();
+        expect(localSessions.length, equals(1));
+        expect(localSessions.first.id, equals('remote-sess-reconciled'));
       },
     );
   });
