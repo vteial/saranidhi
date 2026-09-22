@@ -5,7 +5,7 @@
 > **Feature smoke — the first release with a live network backend in the gate.** v1.13.0 adds
 > opt-in on-demand cross-device sync to a PocketBase backend. This smoke exercises a **real network
 > round-trip** to the Fly instance, not just the Vercel preview. Local suite already green (analyze
-> clean; 677 pass / 4 known CloudKit-on-macOS baseline / 0 regressions; +16 tests).
+> clean; **687 pass** / 4 known CloudKit-on-macOS baseline / 0 regressions; Sprint 47 +16, interim fixes +10).
 >
 > **Environment:** the release PR's Vercel **preview** (built with
 > `--dart-define=POCKETBASE_URL=https://saranidhi-pb.fly.dev`) + the live **Fly PocketBase**
@@ -59,18 +59,19 @@
 
 ## Result
 
-- **Smoke:** ⏳ _pending_ — recorded here during release verification.
+- **Smoke:** ✅ **PASS** — **owner-run** manual smoke on the PR #265 preview (`https://saranidhi-git-release-v1130-eialarasus-projects.vercel.app`) against live Fly PocketBase, across **three physical devices** for the round-trip. (Role note: this release the OWNER ran QA-Verify manually while Antigravity did the interim coding fixes — a deliberate swap from the usual Antigravity-QA-Verify flow.)
+- Four backend/app fixes landed on the release branch during smoke (Fixes 1–4 below); a fifth UX item (raw error message) was found and **deferred to v1.13.1** (see note under Interim fixes).
 
 | # | Scenario | Result | Notes |
 |---|----------|:------:|-------|
-| S1 | Opt-in OFF = zero network | ⬜ | |
-| S2 | Sign in to PocketBase | ⬜ | |
-| S3 | **Cross-device sync round-trip** | ⬜ | |
-| S4 | Scope checkboxes | ⬜ | |
-| S5 | Owner-guard (no cross-owner leak) | ⬜ | |
-| S6 | Offline-first preserved | ⬜ | |
-| S7 | Bilingual EN/TA | ⬜ | |
-| S8 | Local-only regression | ⬜ | |
+| S1 | Opt-in OFF = zero network | ✅ | Sync toggle OFF (default) → no calls to `saranidhi-pb.fly.dev`; Sync-now inert. |
+| S2 | Sign in to PocketBase | ✅ | Signed in as usera + userb; auth-state surfaces correctly (Fix 1). |
+| S3 | **Cross-device sync round-trip** | ✅ | Verified across **3 devices** for usera — push/pull merge + idempotent re-sync. |
+| S4 | Scope checkboxes | ✅ | Sessions / journal scope toggles work. |
+| S5 | Owner-guard (no cross-owner leak) | ✅ | userB signed in sees **none** of usera's rows (server rule + client guard hold). |
+| S6 | Offline-first preserved | ✅ | (a) Sync OFF → app fully works, zero network. (b) Backend unreachable → `net::ERR` surfaced, **no crash, no data loss** (message polish deferred to v1.13.1). |
+| S7 | Bilingual EN/TA | ✅ | Sync card (toggle, checkboxes, sign-in, statuses) renders in Tamil. |
+| S8 | Local-only regression | ✅ | Onboarding / dashboard / journal / Aruḍam / Settings unaffected. |
 
 ## Interim fixes during smoke
 
@@ -119,6 +120,11 @@
 - **Symptom:** userB Sync Now → `400 {uuid: validation_not_unique}` when pushing a row whose uuid already exists under userA (same physical data / install). No cross-owner READ leak — write-collision only.
 - **Root cause:** global `UNIQUE INDEX (uuid)` vs the engine's `ownerId+uuid` upsert logic.
 - **Fix:** composite `UNIQUE INDEX (ownerId, uuid)` on both collections. Original migration updated (fresh deploys) + new `tool/dev/pb_migrations/1710000002_uuid_unique_per_owner.js` patches live collections.
-- **Verification:** redeploy Fly → S5 owner-guard with userB on a FRESH install (its own journal) → sync succeeds, no cross-owner data visible.
+- **Verification:** redeploy Fly → S5 owner-guard with userB on a FRESH install (its own journal) → sync succeeds, no cross-owner data visible. ✅ **PASS**
+
+### Fix 5 — raw `ClientException` shown on sign-in/sync errors → DEFERRED to v1.13.1
+- **Spec:** [`bugfix-signin-error-ux-spec.md`](./bugfix-signin-error-ux-spec.md) (targets v1.13.1).
+- **Symptom:** wrong password / backend-down surfaces the raw exception dump instead of a friendly localized message.
+- **Decision:** UX polish, not a functional blocker (sync works; no crash/data loss). Batched with the deferred first-class **sign-up** into **v1.13.1** per the release-effort heuristic (batch small UX items rather than N separate ~2h releases). Not in v1.13.0 scope.
 
 
