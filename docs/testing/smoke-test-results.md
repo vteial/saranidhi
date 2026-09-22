@@ -28,6 +28,7 @@ Each production release has a single smoke test file containing both the plan (s
 | v1.11.1-web | 2026-09-14 | Owner + Antigravity QA (PR preview) | 4 (slim — cosmetic l10n + width fit) + regression | ✅ PASS | [v1.11.1](releases/v1.11.1/smoke-test.md) |
 | v1.12.0-web | 2026-09-15 | Owner (real cross-device: iMac + iPad Mini) | 10 (full — migration + cross-device merge + owner guard + aggregate) + regression | ✅ PASS (with notes → v1.12.1) | [v1.12.0](releases/v1.12.0/smoke-test.md) |
 | v1.12.1-web | 2026-09-15 | Owner (PR #246 preview) | 6 (targeted patch — import-before-onboarding, in-place refresh, filename prefix) + regression + EN/TA | ✅ PASS | [v1.12.1](releases/v1.12.1/smoke-test.md) |
+| v1.13.0-web | 2026-09-16 | Owner (PR #265 preview, real cross-device: 3 physical devices) | 8 (★ Practice Sync Phase 1 — opt-in gate, sign-in, cross-device round-trip, scopes, owner-guard, offline-first, EN/TA, regression) | ✅ PASS (4 fixes during smoke; error-UX + sign-up → v1.13.1) | [v1.13.0](releases/v1.13.0/smoke-test.md) |
 
 ## Process
 

@@ -2,7 +2,7 @@
 
 # Saranidhi — Development Workflow
 
-> **Reviewed:** v1.12.1-web · **Next review:** every release + when a protocol/gate/flow changes.
+> **Reviewed:** v1.13.0-web · **Next review:** every release + when a protocol/gate/flow changes.
 
 > **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
 > — the AI team collaboration model (roles, handoffs, release lifecycle, and

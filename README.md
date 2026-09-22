@@ -36,14 +36,14 @@ Saranidhi helps you:
 
 | Milestone | Version | URL |
 |-----------|---------|-----|
-| **Production** | v1.12.1-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
+| **Production** | v1.13.0-web | [saranidhi.vercel.app](https://saranidhi.vercel.app) |
 | **Staging** | latest `main` | [saranidhi-staging.vercel.app](https://saranidhi-staging.vercel.app) |
-| **Sprints Delivered** | 45 | — |
-| **Total PRs** | ~248 | — |
-| **Engineering Hours** | ~146.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
+| **Sprints Delivered** | 47 | — |
+| **Total PRs** | ~267 | — |
+| **Engineering Hours** | ~157.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
-**Latest:** v1.12.1-web — **Practice Sync polish** (Sprint 45): a v1.12.0 fast-follow smoothing cross-device setup. Adds an onboarding **"Import from another device"** link (adopt your Practice ID *before* onboarding on a fresh device), makes the Settings **Practice ID refresh in place** after a Merge/Restore (no reload), and puts the **Practice ID in export filenames**. No schema change. The preceding feature release **v1.12.0-web** (Sprint 44) was ★ Practice Sync Phase 0 (locally-generated Practice ID + union-by-UUID safe merge-import + owner-guard).
-**Next:** **Practice Sync Phase 1** (on-open auto-sync), the **7-day Accuracy Calibration** (gated on owner data collection), the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic. See the [Sprint Backlog](docs/process/sprint-backlog.md).
+**Latest:** v1.13.0-web — **★ Practice Sync Phase 1** (Sprint 47): opt-in **on-demand cross-device sync** to a self-hosted **PocketBase** backend behind a swappable transport. Combine your breath sessions + journal across devices (per-scope toggles; additive/idempotent; **owner-scoped isolation** enforced by server rule + client guard). **Still local-first** — Sync is OFF by default and the app works fully offline with no account. First release to cross the network/backend boundary (accompanied by a security-review re-review). Hardened during smoke with four fixes (auth-state, Practice-ID→account binding, and two PocketBase schema corrections). Friendlier error messages + in-app sign-up land in **v1.13.1**.
+**Next:** **v1.13.1** (graceful sync error messages + first-class account sign-up), the **7-day Accuracy Calibration** (gated on owner data collection), the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic. See the [Sprint Backlog](docs/process/sprint-backlog.md).
 
 ---
 
