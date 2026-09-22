@@ -91,7 +91,10 @@ migrate((db) => {
       },
     ],
     indexes: [
-      "CREATE UNIQUE INDEX idx_sessions_uuid ON sessions (uuid)",
+      // uuid is unique PER OWNER (not globally) — two owners may hold the same
+      // uuid (e.g. the same physical row synced under two accounts) without a
+      // collision. Matches the engine's ownerId+uuid upsert logic.
+      "CREATE UNIQUE INDEX idx_sessions_owner_uuid ON sessions (ownerId, uuid)",
       "CREATE INDEX idx_sessions_ownerId ON sessions (ownerId)",
     ],
   });
@@ -196,7 +199,8 @@ migrate((db) => {
       },
     ],
     indexes: [
-      "CREATE UNIQUE INDEX idx_journal_uuid ON journal (uuid)",
+      // uuid is unique PER OWNER (not globally) — see sessions note above.
+      "CREATE UNIQUE INDEX idx_journal_owner_uuid ON journal (ownerId, uuid)",
       "CREATE INDEX idx_journal_ownerId ON journal (ownerId)",
     ],
   });

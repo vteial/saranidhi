@@ -158,6 +158,12 @@ fly logs                                          # boot + migration errors
 > **Rule of thumb: never mark a `bool` required; mark a `number` required only if `0` is truly invalid.**
 > (Fixed in `1710000001_relax_required_data_fields.js` after the v1.13.0 smoke caught it.)
 
+> **Unique index is PER OWNER, not global.** `uuid` is indexed as a **composite unique `(ownerId, uuid)`**
+> on both collections — NOT `UNIQUE (uuid)` alone. A per-tenant natural key must be scoped to the owner;
+> a global-unique `uuid` breaks when two owners legitimately hold the same uuid (e.g. the same physical
+> row synced under two accounts) with `uuid: validation_not_unique`. This matches the engine's
+> `ownerId+uuid` upsert logic. (Fixed in `1710000002_uuid_unique_per_owner.js` after the v1.13.0 S5 smoke.)
+
 ### D2. Owner-scoped access rules (server-side owner-guard)
 On **both** collections:
 

@@ -108,4 +108,17 @@
   - `flutter test`: 687 passed / 4 expected macOS CloudKit tests failed (+4 new regression tests, 0 regressions)
 - **Deviations:** None.
 
+### Fix 3 — PocketBase `required` rejects falsy values (backend schema; no app change)
+- **Summary doc:** [`bugfix-required-fields-summary.md`](./bugfix-required-fields-summary.md)
+- **Symptom:** `isAligned:false` (misaligned journal entry) → `400 {isAligned: validation_required}`. PocketBase's `required` validator rejects a type's ZERO VALUE (`bool false`, `number 0`, empty text).
+- **Fix:** only `uuid` + `ownerId` stay `required`; all data fields → `required: false`. Original migration updated (fresh deploys) + new `tool/dev/pb_migrations/1710000001_relax_required_data_fields.js` patches live collections. Confirmed live against Fly.
+- **Verification:** re-run Sync Now with a misaligned journal entry → no 400. (Cross-device sync then verified working across 3 devices for the same user.)
+
+### Fix 4 — `uuid` unique per-owner, not global (backend schema; no app change)
+- **Summary doc:** [`bugfix-uuid-per-owner-summary.md`](./bugfix-uuid-per-owner-summary.md)
+- **Symptom:** userB Sync Now → `400 {uuid: validation_not_unique}` when pushing a row whose uuid already exists under userA (same physical data / install). No cross-owner READ leak — write-collision only.
+- **Root cause:** global `UNIQUE INDEX (uuid)` vs the engine's `ownerId+uuid` upsert logic.
+- **Fix:** composite `UNIQUE INDEX (ownerId, uuid)` on both collections. Original migration updated (fresh deploys) + new `tool/dev/pb_migrations/1710000002_uuid_unique_per_owner.js` patches live collections.
+- **Verification:** redeploy Fly → S5 owner-guard with userB on a FRESH install (its own journal) → sync succeeds, no cross-owner data visible.
+
 
