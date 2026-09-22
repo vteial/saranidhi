@@ -2,7 +2,7 @@
 
 # Saranidhi — User Guide
 
-> **Reviewed:** v1.12.0-web · **Next review:** every release (refresh for shipped features).
+> **Reviewed:** v1.12.1-web · **Next review:** every release (refresh for shipped features).
 
 > *"Your breath is not just a physiological function — it is a hidden spiritual inheritance."*
 
@@ -257,6 +257,34 @@ When installing Saranidhi on a secondary device:
 To protect your sacred practice logs from accidental contamination, Saranidhi includes an **Owner Guard**:
 - If someone else exports a backup from their device with a different Practice ID, Saranidhi detects the mismatch and **refuses to merge**, keeping your personal practice data pure.
 - If you genuinely need to replace all local data on a device with another backup, you can use the explicit **Restore (overwrite everything)** option.
+
+---
+
+## Practice Sync (On-Demand Cross-Device Sync)
+
+Starting in v1.13.0, you can keep your breath sessions and breath journal synchronized across multiple devices using a personal, secure PocketBase backend.
+
+### 1. Enabling Practice Sync (Opt-In Consent Gate)
+Practice Sync is **disabled by default**. When turned off, Saranidhi operates in complete zero-network isolation.
+- Go to **Settings → Practice Sync**.
+- Toggle **Enable Sync** ON.
+
+### 2. Sign In to Your Sync Account
+- Tap **Sign In**.
+- Enter your email and passphrase registered on your PocketBase server.
+- If using self-hosted or local development instances, you can customize the **Server URL** (defaults to configured instance or `http://localhost:8090`).
+- Credentials are encrypted and stored safely on device.
+
+### 3. Choosing What to Sync
+Two independent scope toggles are provided (both enabled by default):
+- **Breath Sessions:** Syncs timer durations, cycle counts, and breath retentions.
+- **Breath Journal:** Syncs flow checks, nostril alignment, and qualitative notes. (Journal data drives your streak counter and hold-time stats).
+
+### 4. On-Demand "Sync Now"
+- Tap **Sync Now** to trigger synchronization.
+- **Pull → Union-Merge → Push:** Saranidhi pulls remote updates, merges newly added sessions by unique UUID without deleting existing records, and uploads newly recorded local sessions.
+- Status is displayed quietly below the button (e.g., *"Last synced: Today at 12:30"* or *"Synced successfully (2 new, 5 uploaded)"*).
+- If offline or backend is unreachable, Saranidhi surfaces a quiet status notice and leaves all local practice data completely intact.
 
 ---
 

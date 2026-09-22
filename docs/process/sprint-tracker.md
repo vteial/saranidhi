@@ -3,7 +3,7 @@
 
 # Saranidhi — Development Sprint Tracker
 
-> **Reviewed:** v1.12.0-web · **Next review:** every release (docs-audit gate).
+> **Reviewed:** v1.12.1-web · **Next review:** every release (docs-audit gate).
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
@@ -38,36 +38,33 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 42 | ★ Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction) | **v1.11.0** | ✅ 🚀 (PR #220) |
 | 43 | Localization Defect Fixes (About dev name + Monthly-Patterns day l10n + citation) | **v1.11.1** | ✅ 🚀 (PR #227) |
 | 44 | ★ Practice Sync — Phase 0: owner-stamped safe merge-import | **v1.12.0** | ✅ 🚀 (PR #236) |
-| 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ Complete (PR #244) |
-| 46+ | Practice Sync Phase 1 (on-open auto-sync), native "Now" surface, Accuracy Calibration, v2.0 polish, E2E, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
+| 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
+| 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅ Complete (PR #260) |
+| 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
 
-> **Current state:** **v1.12.0-web is now live in production (2026-09-15)** — Sprint 44, the
-> **★ Practice Sync — Phase 0** feature release (feature PR #236 → /sprint-finish #237 →
-> /sprint-update #238 → release-start PR #239 → main→prod promotion PR #241, tag `v1.12.0-web`
-> @ `prod`; full-matrix smoke ✅ PASS with notes — owner ran real cross-device verification on
-> iMac Chrome + iPad Mini Chrome, the part automation can't cover). It lays the safe foundation
-> for aggregating breath practice across the owner's devices: a locally-generated **owner id**
-> stamped on each profile (`Profiles.ownerId`, schema v6→v7 guarded migration + UUID backfill),
-> a **union-by-UUID safe merge-import** (`DatabaseExporter.mergeFromBytes` — idempotent, additive,
-> alongside the existing destructive `restoreFromBytes`), an **owner-guard** check
-> (`OwnerGuardStatus`: match / emptyLocal / legacyNoOwnerId / mismatch) so a foreign export can't
-> silently overwrite, and a **Practice ID** surfaced in Settings. Export bumped to v2. The preceding
-> patch **v1.11.1-web** (Sprint 43 — Localization Defect Fixes) fixed three Tamil "label localized
-> but value not" gaps; the feature release **v1.11.0-web** (Sprint 42 — ★ Swara Clock Engine &
-> Weekday Udhaya) decoupled the expected nostril onto the independent 1-hour / 24-cycle swara clock.
-> Earlier: **v1.10.1** (Analytics tidy), **v1.10.0** (Chronobiology), **v1.9.0** (Aruḍam "Why?"),
-> **v1.8.0** (ambient "Aruḍam Now"). Both corpora (Sara Kalai, Panja Pakshi) remain fully
-> CONF-resolved.
+> **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
+> **Practice Sync polish** patch (feature PR #244 → /sprint-finish #245 → /sprint-update #247 →
+> release-start PR #246 → main→prod promotion PR #248, tag `v1.12.1-web` @ `prod`; targeted patch
+> smoke ✅ PASS all 6 on the PR #246 preview). It smooths cross-device setup: a subtle onboarding
+> **"Import from another device"** link that lets a fresh device adopt the existing Practice ID
+> **before** onboarding (via a shared `MergeImportController` over the existing merge path), the
+> Settings **Practice ID refreshing in place** after a Merge/Restore (BUG-v1.12.0-01 — now watches
+> a `profileProvider`), and the **Practice ID in export filenames**. No schema change (v7, export v2).
+> The preceding feature release **v1.12.0-web** (Sprint 44 — ★ Practice Sync Phase 0) laid the safe
+> foundation: a locally-generated **owner id** (schema v6→v7 guarded migration + UUID backfill), a
+> **union-by-UUID safe merge-import** with an **owner-guard**, and a Practice ID in Settings —
+> reframing the principle to *local-first with optional, user-owned sync*. Earlier: **v1.11.1**
+> (Localization fixes), **v1.11.0** (★ Swara Clock Engine), **v1.10.1** (Analytics tidy), **v1.10.0**
+> (Chronobiology), **v1.9.0** (Aruḍam "Why?"), **v1.8.0** (ambient "Aruḍam Now"). Both corpora
+> (Sara Kalai, Panja Pakshi) remain fully CONF-resolved.
 >
-> **Next (to schedule via `/plan`):** the **v1.12.1 fast-follow** — three Practice-Sync polish items
-> deferred from Sprint 44: an onboarding **"Import from another device"** entry point (a new device
-> can't reach Settings import while stuck on onboarding 🔴), **BUG-v1.12.0-01** (Practice ID not
-> refreshed on the Settings card until page reload after a restore 🟢), and a **Practice-ID prefix in
-> the export filename** (🟢); then **Practice Sync Phase 1** (on-open auto-sync); the **7-day
-> Accuracy Calibration** (Saranidhi vs Align27 vs Panchangam vs actual breath) — gated on owner data
-> collection; the native **"Now" Surface** (ambient widget → watch → macOS); and the **User Guide —
-> Book-Style Navigation & Search** epic (native Dart ToC + search). Known small follow-up:
-> **BUG-v1.11.1-03** (`YamaSegment.label` unlocalized in the notification title + AI payload).
+> **Next (to schedule via `/plan`):** **Practice Sync Phase 1** (on-open auto-sync — reopens the
+> account/network boundary → security-review redo); the **7-day Accuracy Calibration** (Saranidhi vs
+> Align27 vs Panchangam vs actual breath) — gated on owner data collection; the native **"Now"
+> Surface** (ambient widget → watch → macOS); and the **User Guide — Book-Style Navigation & Search**
+> epic (native Dart ToC + search). Known small follow-up: **BUG-v1.11.1-03** (`YamaSegment.label`
+> unlocalized in the notification title + AI payload).
 
 > **Historical note (Sprints 1–7).** Early sprints predate the one-PR-per-sprint
 > workflow and were merged via a mix of direct commits and early PRs; a clean
@@ -1012,7 +1009,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Sprint 45: v1.12.1 fast-follow — Practice-Sync polish — ✅ Complete (PR #244)
+## Sprint 45: v1.12.1 fast-follow — Practice-Sync polish — ✅ 🚀 Shipped (PR #244, v1.12.1-web)
 
 > **Dossier:** [`sprints/sprint-45-practice-sync-polish/`](sprints/sprint-45-practice-sync-polish/README.md) —
 > spec authored (Kiro Web); Antigravity implemented with local green (analyze clean, 661 pass / 4
@@ -1041,9 +1038,123 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **45.3 DoD** — exported filename carries the first-8 of the owner id; null/empty/`<8`-char `ownerId` falls back / no `RangeError` (`buildBackupFilename`, 6 unit tests).
 - [x] **Regression gate** — onboarding happy-path (no import) unchanged; existing Merge/Restore-in-Settings flows unchanged (Settings keeps its mismatch→restore fallback).
 - [x] **Tests** — unit/widget suite green; new tests for the onboarding-import route + the filename builder + the profile-card refresh (+12 net; 661 pass / 4 known CloudKit baseline / 0 regressions).
-- [ ] **Smoke test** — scenarios added to `smoke-test-v1.12.1.md` (new-device import-before-onboarding; refresh-after-restore; filename inspection). _(at `/release-start v1.12.1`)_
-- [ ] **Valuation report** — Sprint 45 row (+20%) at `/sprint-update`.
+- [x] **Smoke test** — `docs/testing/releases/v1.12.1/smoke-test.md` ✅ PASS (all 6: S1 import-before-onboarding adopts source Practice ID + bypasses onboarding, S2 in-place refresh, S3 filename prefix, S4/S5/S6 regression + owner-guard + EN/TA), owner-run on the PR #246 preview.
+- [x] **Valuation report** — Sprint 45 row (~3.0h) added at `/sprint-update` (PR #247).
 - [x] **Tracker updated** — status ✅.
+
+---
+
+## Sprint 46: Web E2E Smoke Automation (Playwright, `vteial/saranidhi-e2e`) — ✅ Complete (e2e PR #1)
+
+> **Dossier:** [`sprints/sprint-46-e2e-automation/`](sprints/sprint-46-e2e-automation/README.md) —
+> spec authored (Kiro Web); Antigravity built the harness **in the separate repo
+> `vteial/saranidhi-e2e`** (scaffold + S1–S6 suite, 3× green run before PR); Kiro Web reviewed the
+> real code and approved [e2e PR #1](https://github.com/vteial/saranidhi-e2e/pull/1) (merged). §0
+> resolved (owner created the repo, private — fine, preview reached via the bypass secret).
+> **Internal / QA-tooling sprint — no user-facing change, no `pubspec` bump, no prod release.** The
+> deliverable is a test harness in a **separate repo** (`vteial/saranidhi-e2e`), not app code.
+>
+> **Scheduled via `/plan` (owner-confirmed).** Origin: the v1.12.1-web smoke run took ~1h48m active
+> / ~2h total (see [Release Effort Reference](../testing/smoke-test-results.md#release-effort-reference--the-smoke-gate-is-mostly-fixed-cost-per-release)),
+> and an Antigravity post-mortem diagnosed the bottleneck as **ad-hoc CDP scripting** (on-the-fly
+> coordinate discovery, fixed `sleep()`s, a cookie-wipe SSO bounce, CanvasKit semantics toggling) —
+> not the number of scenarios. A pre-scripted, deterministic Playwright harness that tests the
+> **deployed preview URL** should collapse the *scripted-scenario* portion of the gate dramatically.
+>
+> **Confirmed decisions:** (1) **separate repo `vteial/saranidhi-e2e`** (Playwright/TS, own CI,
+> tests deployed URLs — the long-standing E2E strategy; NOT in-repo `tool/qa/`); (2) **internal, no
+> version bump**; (3) the two cheap stopgap fixes (selective state reset + event-driven waits) were
+> **adopted immediately** in this same PR into `qa-verify-agent-prompt.md` — they do not wait for
+> this sprint.
+
+- [x] Task 46.1: **Scaffold `vteial/saranidhi-e2e`** — Playwright + TypeScript, its own CI (GitHub Actions), README, single-command entry (`PREVIEW_URL=… BYPASS_SECRET=… pnpm test`). Reads the Vercel bypass from env (`env.ts` fail-fast); secret never committed (`.gitignore` covers `.env`).
+- [x] Task 46.2: **Context-level Vercel bypass** — `gotoWithBypass` routes preview-origin requests injecting `x-vercel-protection-bypass` + sets the bypass cookie; `resetAppState` clears `localStorage`/`sessionStorage`/IndexedDB but **never cookies** (the v1.12.1 bounce root cause avoided).
+- [x] Task 46.3: **Event-driven waiting + Flutter-web semantics** — `flt-semantics-placeholder` activation, `waitForSemantic`/`waitForFunction` polling, leaf-most candidate selection, auto-scroll for off-viewport elements.
+- [x] Task 46.4: **State seeding for regression scenarios** — `ensureSeeded` reaches the S2/S5 preconditions via the app's own import (documented method per spec §5).
+- [x] Task 46.5: **Automate the current smoke matrix S1–S6** (+ Step 0 pre-flight) — asserts behavior + copy (adopted PID via clipboard, in-place refresh with no reload, filename regex, UUID-v4 shape, mismatch guard + Restore fallback, exact Tamil strings); 32 per-step screenshots via `captureStep`.
+- [x] Task 46.6: **CI wiring** — `.github/workflows/e2e.yml` `workflow_dispatch`-only against a preview URL input, repo-secret injected, evidence artifacts uploaded, **off the Flutter PR path**.
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Harness green** — Step 0 + S1–S6 pass deterministically against the deployed v1.12.1 preview, with per-step screenshot evidence.
+- [x] **Measured runtime recorded** — **1m24s (84s)** across all 7 scenarios (per-scenario timings in [`test-summary.md`](sprints/sprint-46-e2e-automation/test-summary.md)) — the real number, not the aspirational ~2 min. _(Release Effort Reference baseline NOT yet rewritten — this is on-demand automation, the ~2h **human** gate still stands; revisit if/when automation formally replaces part of the manual gate.)_
+- [x] **Scope honesty** — dev-workflow pointer + e2e README state the harness covers **scripted functional scenarios**; the **human visual / UX / Tamil-doctrinal eyeball still gates** each release.
+- [x] **Flakiness risk addressed** — `retries: 1` capped, stable semantic locators. _(Kiro review flagged two non-blocking follow-ups: a few soft `waitForTimeout` settle-waits + hardcoded pixel fallbacks in `navigateToSettings`/`goBackFromSettings` — logged in backlog to tighten before this ever becomes a blocking gate.)_
+- [x] **Docs** — `saranidhi-e2e` README + `dev-workflow.md` /release pointer added; backlog E2E rows flipped to ✅ (this PR).
+- [x] **Tracker updated** — status ✅.
+
+> **Vehicle:** spec → Antigravity implements in `vteial/saranidhi-e2e` with a green run before PR →
+> Kiro Web reviews. Owner is sole merge authority. Note: this sprint's PRs land in the **e2e repo**,
+> not `vteial/saranidhi` (this tracker just records the sprint + links out).
+
+---
+
+## Sprint 47: ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase) — ✅ Complete (PR #260)
+
+> **Dossier:** [`sprints/sprint-47-practice-sync-p1/`](sprints/sprint-47-practice-sync-p1/README.md) —
+> spec authored (Kiro Web); Antigravity implemented in `vteial/saranidhi` with local green (against
+> the Docker Compose PocketBase); Kiro Web reviewed the real diff and approved
+> [PR #260](https://github.com/vteial/saranidhi/pull/260) (merged). Ships as **v1.13.0** (release
+> pending). ⚠️ **Still to do before `/release-start v1.13.0`:** owner stands up the hosted
+> PocketBase instance + collections per the runbook (`docs/deployment/pocketbase-hosting.md`;
+> host-agnostic — owner's choice is **Fly.io**) — coding greened against local Compose; the hosted
+> instance is the release-smoke gate.
+>
+> **Scheduled via `/plan` (owner-confirmed).** Phase 1 of the **Practice Sync** epic — the first
+> real cross-device sync over a network, building on Phase 0's owner-identity + union-merge
+> foundation (v1.12.0). Ships as **v1.13.0** (minor — real user-facing capability). See the
+> [Practice Sync epic](sprint-backlog.md#-practice-sync--cross-device-aggregate).
+>
+> **★ Boundary-reopening sprint.** This is the **first real network / account / off-device
+> boundary change** since the app's deliberate local-first / zero-backend posture was set. It is a
+> conscious, owner-confirmed reopening: offline-first still holds fully (sync is additive), but a
+> **security-review REDO is a hard gate** (new network path + a PocketBase auth token at rest +
+> third-party data egress).
+>
+> **Owner-confirmed decisions (this `/plan`):**
+> - **Transport = PocketBase** (SQLite + auth + REST, self-hostable) — chosen deliberately as a
+>   **lean, reusable infra pattern for future mini-projects**, over Supabase (owner knows it well —
+>   80% of their work — but wants the leaner floor) and over **Google Drive / GCP (REJECTED** — the
+>   OAuth/GCP dependency + hyperscaler gravity is exactly what the owner is moving away from).
+> - **Hosting = Fly.io** (lean, owned, ~free, reusable) for the deployed instance; PocketBase Cloud
+>   was considered and set aside (paid, less lean).
+> - **Long-term intent (recorded, NOT this sprint):** a *minimal, owned, consent-based backend* is
+>   the eventual direction — so the sync engine talks to a **`SyncTransport` interface**, making the
+>   backend a swappable adapter (PocketBase now; minimal-backend later = one adapter, not a rewrite).
+> - **Scope = sessions + journal**, with a **user choice: two checkboxes (sync sessions / sync
+>   journal), both default ON** (note: journal drives the hold-time/streak aggregates, per Sprint 44).
+> - **Opt-in toggle + manual "Sync now"** for v1.13.0; **auto-on-open is OUT (fast-follow)**.
+> - **Local dev infra:** a **Docker Compose for PocketBase only** (in `saranidhi` under `tool/dev/`);
+>   Flutter stays native and points at `localhost:8090` locally / the Fly URL deployed via config.
+
+- [ ] Task 47.0 (**§0 gated prerequisite — owner**): stand up the deployed PocketBase on **Fly.io** + collections per the runbook. **STILL OPEN** — owner deferred; coding greened against local Compose. Required before `/release-start v1.13.0` (the release-smoke gate), NOT before merge.
+- [x] Task 47.1: **`SyncTransport` interface + `PocketBaseSyncTransport`** — web-safe (`package:http` + `pocketbase`, no `dart:io`), injectable client for tests, upsert-by-uuid, pull filtered by `ownerId`; CloudKit untouched. Auth via the `users` collection (email/passphrase). _(Note: token held in-memory `AuthStore` — no token at rest; user re-signs-in per session.)_
+- [x] Task 47.2: **On-demand sync engine** (`PracticeSyncEngine`) — pull → union-merge → push; keyed by `id ?? uuid`; **idempotent both ways**; **never deletes**; **owner-guard on pull refuses foreign rows with 0 DB mutations**; whole run in `try/catch` → `SyncOutcome.error` (never throws).
+- [x] Task 47.3: **Sync-scope selection** — two checkboxes (sessions / journal), **both default ON**, with the journal-drives-aggregates note.
+- [x] Task 47.4: **Opt-in gate + manual trigger** — master Sync toggle (**default OFF**; `syncNow()` no-ops when off = zero network), **"Sync now"**, quiet last-synced status, non-blocking error. Auto-on-open out of scope.
+- [x] Task 47.5: **Offline-first regression** — toggle-off = zero network; error = quiet status, no data loss. Test-pinned.
+- [x] Task 47.6: **Local dev infra** — `tool/dev/docker-compose.yml` (PocketBase only, :8090, healthcheck) + `pb_migrations/` seed matching §0 (uuid unique index, ownerId index, `deleteRule: null`) + README; `pb_data/` gitignored. Flutter native via `--dart-define POCKETBASE_URL`.
+- [x] Task 47.7: **Bilingual (EN/TA)** for all new Settings copy.
+
+**Delivery Checklist (Definition of Done):**
+- [ ] **§0 satisfied** — Fly instance live per the runbook. **STILL OPEN** (owner deferred) — the one remaining gate before `/release-start v1.13.0`; local Compose covered the green.
+- [x] **Code merged** — on `main` ([PR #260](https://github.com/vteial/saranidhi/pull/260); CI green: Analyze/Fast + **Full Suite + Coverage** + Integration). Antigravity implemented with local green (against Compose); **Kiro Web reviewed the real diff and approved**.
+- [x] **SECURITY-REVIEW REDO** — `security-review.md` re-run + re-stamped v1.13.0 (network path, in-memory token, opt-in consent, owner-scoped server rules + client guard, append-only, data-egress ⚠️ acknowledged).
+- [x] **Sync correctness** — union by `id ?? uuid`; idempotent (0-dup on re-sync, tested); never deletes; owner-guard refuses foreign records (tested).
+- [x] **Opt-in + offline-first** — toggle OFF ⇒ zero network; error ⇒ quiet status; regression-pinned.
+- [x] **Checkboxes** — sessions/journal independent, both default ON.
+- [ ] **E2E** — sync scenario in `saranidhi-e2e` deferred to a follow-up (needs a test PocketBase reachable from CI); manual smoke scenario to be added at `/release-start v1.13.0`.
+- [x] **Docs** — architecture + user-guide + CHANGELOG updated; PocketBase-as-lean-infra recorded; runbook at `docs/deployment/pocketbase-hosting.md` (host-agnostic — Fly.io / Railway).
+- [ ] **Valuation / tracker** — tracker ✅ (this PR); valuation row at `/sprint-update`.
+
+> **Rule-form reconciliation (review note ①, owner-accepted):** PR #261 had pinned the `user`-relation
+> rule form; the shipped migration + security-review use the **`ownerId = @request.auth.id`
+> string-match** (createRule binds `ownerId` to the auth id, adequate for the 1–6-user trust model).
+> Owner accepted the string-match; the spec §0 + runbook are updated to match the shipped code (this PR).
+
+> **Out of scope (named, to hold the boundary):** auto-on-open sync (fast-follow), device
+> registry / trusted-device UX (management layer, not correctness), profile/preferences sync
+> (session + journal only), real-time sync, native CloudKit (Apple-only, deferred to the App Store
+> track). Sprint 48 = the native **"Now" Surface** (owner-chosen as the next sprint).
 
 ---
 

@@ -2,7 +2,7 @@
 
 # Saranidhi — Sprint Backlog
 
-> **Reviewed:** v1.12.0-web · **Next review:** every release + at each `/plan`.
+> **Reviewed:** v1.12.1-web · **Next review:** every release + at each `/plan`.
 
 Candidate work not yet scheduled into a numbered sprint, organized by **logical
 named epics** rather than sprint number. Items graduate into the
@@ -167,9 +167,14 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 >   top (nice for the validator phase), **not** relied on for correctness.
 > - **Phase 0 = locally-generated owner ID, no login, zero backend.** Accounts (if any) enter at
 >   Phase 1 with the chosen transport.
-> - **Phase 1 transport = OPEN** (decide at Phase-1 `/plan`): **Vercel serverless + passphrase** (owner
->   already hosts on Vercel; full control) **vs Google Drive App Data** (user's own account,
->   cross-platform, zero custom backend). Owner: "or maybe will go for best" → evaluate both then.
+> - **Phase 1 transport = DECIDED (Sprint 47 `/plan`): PocketBase** (SQLite + auth + REST,
+>   self-hostable), behind a **`SyncTransport` interface** so it's a swappable adapter. Hosting =
+>   **Fly.io** (lean/owned/~free; PocketBase Cloud set aside as paid/less-lean). Chosen deliberately
+>   as a **lean, reusable infra pattern for future mini-projects**. REJECTED: **Google Drive / GCP**
+>   (OAuth + hyperscaler gravity — the owner's explicit pain point) and **Vercel serverless +
+>   passphrase** (build-your-own-auth). Supabase was a strong known option (owner uses it for ~80%
+>   of work) but set aside in favor of the leaner PocketBase floor. **Long-term intent:** a *minimal,
+>   owned, consent-based backend* — the `SyncTransport` abstraction keeps that a one-adapter swap.
 > - **Native CloudKit is OUT for now** (web-first; the built `CloudKitSyncEngine` is Apple-native-only
 >   and doesn't work from Safari/web) — revisit when the native App Store track happens.
 > - **Sync cadence = on app open** (not real-time) — matches the existing sync-on-open design and is
@@ -178,11 +183,12 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 | Priority | Status | Item |
 |----------|--------|------|
 | 🔴 | 📋 → S44 | **Phase 0 — owner-stamped SAFE merge-import (zero backend).** Locally-generated `ownerId` (guarded v6→v7 migration); stamp exports with `ownerId`+versions; replace the **destructive** import (`database_exporter.dart` deletes all tables) with a **union-by-UUID merge**; **owner-ID mismatch refuses the merge** (the safety core); keep overwrite/restore as a separate labeled option; aggregate (streak/trend/PB) correct post-merge; bilingual. **Scheduled as Sprint 44 (v1.12.0)** — the near-term win before the Now Surface. |
-| 🟡 | ⬜ | **Phase 1 — on-open auto-sync of the session log.** Auto pull-merge-push the breath-session table on app open via the chosen transport (Vercel-serverless-+-passphrase **or** Google-Drive-App-Data — decide at Phase-1 `/plan`), union-merged by (`ownerId`, `sessionId`). Reopens the account/network boundary → **security-review redo required**. |
+| 🟡 | 📋 → S47 | **Phase 1 — on-DEMAND cross-device sync (sessions + journal).** **Scheduled as Sprint 47 (v1.13.0)** — see [sprint-tracker](sprint-tracker.md#sprint-47--practice-sync--phase-1-on-demand-cross-device-sync-pocketbase--planned). Pull → union-merge → push by (`ownerId`, `id`) via a **`SyncTransport` interface** with a **PocketBase** adapter (self-hosted on **Fly.io**). **v1.13.0 = opt-in toggle + manual "Sync now"** (auto-on-open deferred, see below); two checkboxes (sessions/journal, both default ON). Reopens the account/network boundary → **security-review REDO is a hard gate**. |
+| 🟡 | ⬜ | **Phase 1 fast-follow — auto-on-open sync.** Promote the manual Sync-now to automatic pull-merge-push on app open, once the opt-in manual flow proves out. |
 | 🟡 | ⬜ | **Device registry / trusted-device management (UX layer).** Name + list registered devices, "device N of max", revoke. Abuse/cost control + user clarity for the validator phase — NOT the data-integrity guard (that's `ownerId`). |
-| 🔴 | 📋 → S45 | **v1.12.1 fast-follow — onboarding "Import from another device" entry point.** *(Scheduled as Sprint 45, v1.12.1 — owner chose a subtle onboarding-screen link; see [sprint-tracker](sprint-tracker.md#sprint-45-v1121-fast-follow--practice-sync-polish----planned).)* *(Surfaced in the v1.12.0 owner smoke.)* A genuinely new device shows onboarding first, but Merge/Restore live in Settings (only reachable *after* onboarding) — so the intended "import-before-onboarding to adopt the existing Practice ID" flow is **not directly reachable** in v1.12.0. Current workaround: onboard, then **Settings → Restore (overwrite)** with the other device's export (adopts its Practice ID). Fix: add an "Already using Saranidhi on another device? Import your data" action on the intro/onboarding screen → file picker → `mergeFromBytes`/adopt → skip onboarding. Makes the safe-Merge path reachable without the destructive-Restore dance. |
-| 🟢 | 📋 → S45 | **v1.12.1 fast-follow — BUG-v1.12.0-01: Practice ID not refreshed in Settings after Restore/Merge.** *(v1.12.0 owner smoke.)* After Restore, the profile card shows the *old* Practice ID until a manual page reload. Root cause: `profile_card.dart` uses its own `FutureBuilder` querying `profiles` directly; `_invalidateAllDataProviders()` (in `data_export_import_widget.dart`) invalidates dashboard/journal/ownerId/theme/locale but **not** the profile card's local future. Cosmetic — DB is correct, self-heals on reload. Fix: profile card watches a profile provider that's in the invalidate list (or add + invalidate a `profileProvider`). |
-| 🟢 | 📋 → S45 | **v1.12.1 fast-follow — Practice ID prefix in export filename.** *(Owner idea, v1.12.0.)* Name exports `saranidhi-backup-<first8-of-ownerId>-<timestamp>.json` so files are identifiable across devices (avoids Restoring the wrong file). Forward-compatible: at Phase 1 the label becomes the account id / email. Filename-string change only, no logic/schema. |
+| 🔴 | ✅ v1.12.1 | **v1.12.1 fast-follow — onboarding "Import from another device" entry point.** *(Scheduled as Sprint 45, v1.12.1 — owner chose a subtle onboarding-screen link; see [sprint-tracker](sprint-tracker.md#sprint-45-v1121-fast-follow--practice-sync-polish----planned).)* *(Surfaced in the v1.12.0 owner smoke.)* A genuinely new device shows onboarding first, but Merge/Restore live in Settings (only reachable *after* onboarding) — so the intended "import-before-onboarding to adopt the existing Practice ID" flow is **not directly reachable** in v1.12.0. Current workaround: onboard, then **Settings → Restore (overwrite)** with the other device's export (adopts its Practice ID). Fix: add an "Already using Saranidhi on another device? Import your data" action on the intro/onboarding screen → file picker → `mergeFromBytes`/adopt → skip onboarding. Makes the safe-Merge path reachable without the destructive-Restore dance. |
+| 🟢 | ✅ v1.12.1 | **v1.12.1 fast-follow — BUG-v1.12.0-01: Practice ID not refreshed in Settings after Restore/Merge.** *(v1.12.0 owner smoke.)* After Restore, the profile card shows the *old* Practice ID until a manual page reload. Root cause: `profile_card.dart` uses its own `FutureBuilder` querying `profiles` directly; `_invalidateAllDataProviders()` (in `data_export_import_widget.dart`) invalidates dashboard/journal/ownerId/theme/locale but **not** the profile card's local future. Cosmetic — DB is correct, self-heals on reload. Fix: profile card watches a profile provider that's in the invalidate list (or add + invalidate a `profileProvider`). |
+| 🟢 | ✅ v1.12.1 | **v1.12.1 fast-follow — Practice ID prefix in export filename.** *(Owner idea, v1.12.0.)* Name exports `saranidhi-backup-<first8-of-ownerId>-<timestamp>.json` so files are identifiable across devices (avoids Restoring the wrong file). Forward-compatible: at Phase 1 the label becomes the account id / email. Filename-string change only, no logic/schema. |
 | 🟢 | ⬜ | **Widen sync scope** (profile / preferences) if wanted, after sessions prove out. |
 | 🟢 | ⬜ | **Evaluate a local-first CRDT / hosted sync layer** if the validator group grows or real-time is needed; fold into native **CloudKit** when the Apple track ships (the built engine is Apple-native). |
 
@@ -394,10 +400,12 @@ macro-seal — for the citation fix + optional framing) · `nostril_pattern.dart
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🟡 | ⬜ | Set up Playwright for Flutter Web E2E tests (separate repo `vteial/saranidhi-e2e`) |
-| 🟡 | ⬜ | Automate critical-path scenarios from the smoke test (onboarding, log entry, streak, intervention) |
-| 🟡 | ⬜ | Integrate E2E into CI (run against deployed staging URL) |
+| 🟡 | ✅ S46 | Set up Playwright for Flutter Web E2E tests (separate repo `vteial/saranidhi-e2e`) — **done in Sprint 46** ([e2e PR #1](https://github.com/vteial/saranidhi-e2e/pull/1)); harness scaffolded, 1m24s green run |
+| 🟡 | ✅ S46 | Automate critical-path scenarios from the smoke test — **done**: Step 0 + S1–S6 (onboarding, import-before-onboarding, in-place refresh, filename, Merge/Restore + owner-guard, EN/TA), per-step screenshot evidence |
+| 🟡 | ✅ S46 | Integrate E2E into CI — **done**: `workflow_dispatch` against a preview URL, OFF the Flutter PR path |
+| 🟢 | ⬜ | **Harden the E2E harness (Sprint 46 follow-ups, Kiro review):** replace the few soft `waitForTimeout` settle-waits with predicates; remove the hardcoded pixel fallbacks in `navigateToSettings`/`goBackFromSettings` (make the semantic gear/back locator reliable) — **required before E2E ever becomes a *blocking* release gate** (avoids the quarantined-ChromeDriver flake trap). |
 | 🟢 | ⬜ | Visual regression snapshots for key screens |
+| — | ✅ | **Ad-hoc-run stopgaps adopted (v1.12.1 post-mortem):** selective state-reset (never wipe the Vercel bypass cookie) + event-driven waiting (no fixed `sleep()`s), in [`qa-verify-agent-prompt.md`](../testing/qa-verify-agent-prompt.md). Superseded by the Sprint 46 harness. |
 | 🟡 | ⬜ | Notification de-duplication / cooldown to avoid repeats during a sustained window. |
 | 🟢 | ⬜ | Periodic staging-data / smoke-data hygiene as the app grows. |
 | 🟡 | ⬜ | Revisit the 19% coverage gate once UI/E2E coverage exists — raise it then. |

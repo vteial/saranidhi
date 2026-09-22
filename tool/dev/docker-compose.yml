@@ -1,0 +1,20 @@
+services:
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: saranidhi_pocketbase
+    restart: unless-stopped
+    command:
+      - --encryptionEnv=PB_ENCRYPTION_KEY
+    ports:
+      - "8090:8090"
+    environment:
+      - PB_ENCRYPTION_KEY=saranidhi_dev_secret_key_32bytes!
+    volumes:
+      - ./pb_data:/pb/pb_data
+      - ./pb_migrations:/pb/pb_migrations
+      - ./pb_public:/pb/pb_public
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:8090/api/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

@@ -9,8 +9,26 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-_No unreleased changes yet. Upcoming work is tracked in the
-[Sprint Backlog](docs/process/sprint-backlog.md) and scheduled via `/plan`._
+_Upcoming work is tracked in the [Sprint Backlog](docs/process/sprint-backlog.md)._
+
+---
+
+## [1.13.0-web] — 2026-09-16
+
+> Sprint 47 — **Practice Sync Phase 1** (on-demand cross-device sync via PocketBase backend).
+> First release to reopen the network/account boundary — sync is **opt-in (default OFF)**;
+> offline-first is fully preserved.
+
+### Added
+- **Practice Sync Card in Settings** — master opt-in toggle (`sync_enabled`, default OFF = consent gate), user account sign-in/sign-out, and on-demand "Sync now" button with quiet non-blocking status.
+- **Selective Scope Controls** — two independent checkboxes for Breath Sessions and Breath Journal (both default ON) with explanatory guidance.
+- **Web-Safe PocketBase Transport** — `SyncTransport` abstraction backed by `PocketBaseSyncTransport` using official `pocketbase` Dart SDK and `http`, fully compatible with Flutter Web (no `dart:io`).
+- **Idempotent Pull → Union-Merge → Push Engine** — `PracticeSyncEngine` coordinates sync cycles, asserting client-side owner guard on pull, union-merging by UUID (append-only, never deletes), and pushing local changes.
+- **Bilingual Localization** — complete English and pure Tamil translations for all Practice Sync UI strings.
+- **Local Dev Infrastructure** — Docker Compose configuration and automatic schema migration script (`tool/dev/`) to stand up a local PocketBase instance with one command.
+
+### Security
+- **Security Review Re-stamp** — completed full security review re-evaluation for network boundary reopening (`docs/reference/security-review.md`).
 
 ---
 

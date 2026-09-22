@@ -1,6 +1,6 @@
 # AI Team Collaboration Framework — Saranidhi
 
-> **Reviewed:** v1.12.0-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
+> **Reviewed:** v1.12.1-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
 
 This document describes the multi-agent operating model used to develop the
 **Saranidhi** application: how a single human lead orchestrates specialized AI
@@ -96,6 +96,69 @@ flowchart TD
 > to each other directly.** The Human is the bridge, and the standardized
 > **Feature Brief** (§5) / **sprint spec** is the message passed between the Common
 > Window and the Developer Agent.
+
+### 1.3 Repos & Workspaces (multi-repo orchestration)
+
+Saranidhi is a **family of repos**, not one. Each is a separate GitHub repo with its own CI, and
+each gets its **own single-root IDE window** — the mapping is **window = repo = role**. Do **not**
+open one multi-root window over all of them: that re-couples what the separate repos deliberately
+decouple (isolated CI, independent blast radius, unambiguous "which repo does this PR land in?").
+
+| Repo | Purpose | Workspace window / role | Ships to prod? |
+| :--- | :--- | :--- | :--- |
+| **`vteial/saranidhi`** | The Flutter app + all planning/process docs (the spine) | Dev + planning/docs/release (Antigravity coding setup for impl; Kiro Web/IDE for specs, review, release) | Yes (Vercel) |
+| **`vteial/saranidhi-e2e`** | Playwright/TS web-E2E harness — tests the **deployed preview URL**, not source | Its own window; QA-**Automation** authoring (Antigravity, or IntelliJ + Antigravity agent). Private repo is fine — the preview is reached via the bypass secret regardless of visibility | No (internal QA tooling) |
+| **`vteial/saranidhi-book`** *(future)* | The "Saranidhi" narrative book, compiled last from the corpus + user guide | Its own window when the track starts | No (publication track) |
+
+> **QA-Verify is NOT a repo.** It tests a **deployed URL** (the release PR's Vercel preview), so it
+> is a browser + the bypass secret — not a workspace. The distinction: the E2E suite is **authored**
+> in the `saranidhi-e2e` window (writes code) but **run** as environment work (writes only results).
+> Don't conflate the two.
+
+**How one repo refers to another — reference by URL/docs, never by code coupling.** No git
+submodules, no monorepo (the `tool/qa/` in-repo option was considered and rejected — keeping E2E
+off the Flutter PR path is the whole point). `saranidhi` refers to `saranidhi-e2e` only in **docs**
+(the Sprint 46 spec; the `dev-workflow.md` /release-start pointer). `saranidhi-e2e`'s README points
+back and names the preview-URL pattern. Each stays independently cloneable + CI-able.
+
+**Cross-repo handoff — the prompt-path problem + the two-part convention (owner-confirmed).**
+When the Antigravity window is rooted in `saranidhi-e2e` but the sprint **spec lives in `saranidhi`**,
+a relative path like `docs/process/sprints/.../spec.md` resolves to *nothing* (the agent is
+sandboxed to its workspace root). Resolve it with **both** of the following:
+
+1. **PRIMARY — cross-repo local symlink (gitignored) for navigation.** From inside the sibling repo,
+   create a **gitignored** symlink to the spine repo so `saranidhi/**` paths resolve and both repos
+   are browsable from one window:
+   ```bash
+   # in saranidhi-e2e/.gitignore  — ADD /saranidhi FIRST
+   /saranidhi
+   # then, from inside saranidhi-e2e/
+   ln -s ../saranidhi saranidhi
+   git status   # MUST NOT list "saranidhi" — confirm it is ignored
+   ```
+   **Guardrails (mandatory):** the symlink MUST be gitignored (a committed symlink becomes a broken
+   absolute path on other machines/CI); it is **local-only** (CI clones a single repo and won't have
+   it); scope tooling so it never walks the link (Playwright `testDir: './tests'`, tsconfig
+   `exclude` the symlink) — otherwise the indexer/globbers descend into the whole Flutter app; and
+   treat it **read-only by convention** (the e2e agent's *writes* belong in the e2e repo, never into
+   `saranidhi/**` through the link).
+2. **FALLBACK — full GitHub repo path/URL in the prompt (portability).** Because the symlink is
+   machine-local, a prompt that depends on it isn't portable (CI / another machine / a teammate
+   won't have it). So the **handoff prompt itself stays self-contained**: reference the spec by its
+   **full GitHub URL** —
+   `https://github.com/vteial/saranidhi/blob/main/docs/process/sprints/<sprint>/spec.md` (the
+   `saranidhi` repo is reachable) — or **inline the spec content** directly in the prompt. The
+   symlink is the owner's navigation convenience; the URL/inline is what makes the handoff work
+   anywhere.
+
+> **Rule of thumb:** symlink for **your** cross-repo *navigation*; URL-or-inline for the *agent
+> prompt*. Never let a handoff secretly depend on a local symlink.
+
+**Per-repo hygiene:** each repo keeps its **own** `.kiro/steering` (Flutter conventions in
+`saranidhi`; Playwright "tests deployed URLs, never source" in `saranidhi-e2e`) — steering is not
+shared across repos. Each QA window reads the Vercel preview URL + `VERCEL_AUTOMATION_BYPASS_SECRET`
+from its **own gitignored `.env`** (same secret, separate copies, never committed). Name windows by
+role ("Saranidhi — Dev", "Saranidhi — E2E") so a Dart prompt never lands in the Playwright window.
 
 ---
 
@@ -338,6 +401,7 @@ Use this when transferring work from the Common Window to **Kiro Web**:
 7. **Fix-on-same-branch loop.** A QA bug is fixed on the same PR branch as a new commit (never `--amend` after a CI failure), then the specific scenario is re-verified.
 8. **Capture learnings at the moment of decision.** Record decisions, gotchas, and deferrals as durable learnings so the process compounds instead of repeating mistakes.
 9. **CI Fast ≠ CI Full.** The pre-merge gate must run the same suite that runs at merge (full tests + coverage), or green PRs can still break `main`.
+10. **A delegated agent must complete the WHOLE handoff contract — follow the prompt's rules + deliverable list exactly, no partial delivery.** When Antigravity (coding or QA) is handed a spec/prompt, "done" means every stated deliverable is satisfied: **open the PR** (do not just push a branch and stop), fill the dossier summaries, record the real result, honor the scope/no-fallback/secret rules, and hand back cleanly — while still **never merging or tagging** (human authority). Partial delivery silently pushes the missing clerical work onto the reviewer and can strand work off-`main`. *(Worked example — Sprint 46 (e2e): Antigravity built + tested the harness correctly and pushed a `docs/sprint-46-finish` branch, but **never opened its PR and never flipped the tracker**, so the close-out sat un-merged and looked "not done." The `/sprint-finish` build had to recover it. Rule: if the prompt says "open the PR," open the PR; if it lists deliverables, satisfy all of them.)*
 
 ---
 

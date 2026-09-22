@@ -2,7 +2,7 @@
 
 # Saranidhi — Development Workflow
 
-> **Reviewed:** v1.12.0-web · **Next review:** every release + when a protocol/gate/flow changes.
+> **Reviewed:** v1.12.1-web · **Next review:** every release + when a protocol/gate/flow changes.
 
 > **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
 > — the AI team collaboration model (roles, handoffs, release lifecycle, and
@@ -209,6 +209,7 @@ Prepares the smoke test execution.
    - This ensures the About card (via `package_info_plus`) shows the correct version on the **PR's Vercel preview** (where the smoke test runs) AND in production
 3. **Assembles the release dossier** at `docs/testing/releases/vX.Y.Z/` (one folder per rich release — mirrors the sprint-dossier convention). See the [**Release dossier convention**](#release-dossier-convention) below for layout. Populate:
    - `docs/testing/releases/vX.Y.Z/smoke-test.md` — plan + results template (relocated from the sprint dossier if the scenarios were authored there)
+     - **Scope the smoke tier deliberately** — full matrix (feature/schema change) vs. targeted patch (a handful of changed-behavior scenarios + core regression + EN/TA) vs. CI-only + eyeball (trivial l10n/string hotfix, e.g. v1.8.1 / v1.11.1). ⚠️ **The smoke gate is ~2h of human time *per release* even for a light patch** (only ~30 min of that verifies what changed; the rest — pre-flight ~33 min, onboarding + owner-guard/bilingual regression, finalization — is fixed overhead). See the [**Release Effort Reference**](../testing/smoke-test-results.md#release-effort-reference--the-smoke-gate-is-mostly-fixed-cost-per-release) → this is why small polish items should be **batched**, and why a one-line fix is not a one-line release. Weigh this at `/plan` before spinning a separate patch cycle.
    - **`docs/testing/releases/vX.Y.Z/release-notes.md`** from [`templates/release-notes.template.md`](templates/release-notes.template.md) — the permanent record of the GitHub Release (tag / target / title / body). Finalized at `/release-update`; it is the exact text the owner pastes into the GitHub Release UI, so the release stays auditable and reproducible.
    - **`docs/testing/releases/vX.Y.Z/docs-audit.md`** from [`templates/docs-audit.template.md`](templates/docs-audit.template.md) — the owner-run docs-freshness gate (ticked during release verification).
    - *(optional)* `qa-verify-prompt.md` — the version-filled QA-Verify agent prompt, if a per-release copy is useful.
@@ -286,6 +287,14 @@ Post-release documentation closure (light touch-up).
 > [`smoke-test-results.md`](../testing/smoke-test-results.md). **Legacy releases** (v1.0.0–v1.6.0)
 > stay as flat `smoke-test-vX.Y.Z.md` files in `docs/testing/releases/` — closed history is not
 > retro-migrated. v1.7.0 / v1.8.0 are the worked examples of the folder layout.
+
+#### Automated Smoke Suite (`saranidhi-e2e`)
+
+Starting in Sprint 46, web E2E smoke scenarios (S1–S6: onboarding import, in-place refresh, export filename, onboarding happy-path, merge/owner-guard regression, bilingual intro/dialog) are automated via Playwright/TypeScript in the dedicated repository [`vteial/saranidhi-e2e`](https://github.com/vteial/saranidhi-e2e).
+
+- **Execution:** Trigger on-demand via `.github/workflows/e2e.yml` (`workflow_dispatch`) against preview or staging deployments with `VERCEL_AUTOMATION_BYPASS_SECRET`, or locally via `pnpm test`.
+- **Runtime:** Measured wall-clock runtime is ~1.4 minutes (compared to ~1h48m manual baseline).
+- **Gate Scope:** Automated smoke covers scripted regression scenarios; human visual/UX/Tamil verification remains the final gate before production promotion.
 
 ---
 

@@ -2,7 +2,7 @@
 
 # Saranidhi — Security Review
 
-> **Reviewed:** v1.12.0-web · **Next review:** at a major (X) release or when the data/network boundary changes. **v1.12.0 (Practice Sync Phase 0) = a REAL review, not a stamp-only bump** — the first data-portability feature (owner-identity `ownerId` + export now carries it + a merge-import path). Still **local-only: no network, no account, no telemetry** (files only). See the *Sprint 44 assessment* below. **Phase 1 (on-open auto-sync) WILL require a full re-review** — it introduces a network path + account/passphrase + a possible stored secret that this assessment excludes.
+> **Reviewed:** v1.13.0 (Sprint 47 — Practice Sync Phase 1) · **Next review:** at a major (X) release or when the data/network boundary changes. **v1.13.0 (Practice Sync Phase 1) reopens the network/account/off-device boundary** — introducing an opt-in network path to a user-configured PocketBase backend behind `SyncTransport`. Offline-first remains fully intact. See the *Sprint 47 assessment* below.
 
 ## Architecture Security Assessment
 
@@ -67,7 +67,24 @@ The first data-portability feature. Reviewed at `/release-update` (data-boundary
 
 **Verdict:** v1.12.0 does **not** weaken the security posture — it remains local-first / zero-backend / no-account. The only new exposure is that the (pre-existing) plaintext export now also carries the opaque local `ownerId`, which is not sensitive. **The owner-guard is a net positive** (it prevents accidental cross-user data mixing that the old destructive import allowed).
 
-> ⚠️ **Phase 1 (on-open auto-sync) re-review trigger:** auto-sync introduces a **network path**, an **account or shared passphrase**, and possibly a **stored secret** — all excluded from this assessment. It MUST get a full security re-review (network/TLS, auth, secret storage, server-side data handling, at-rest encryption of synced data) before shipping.
+### Sprint 47 — Practice Sync Phase 1 assessment (v1.13.0, network & account boundary reopening)
+
+The first network-backed cross-device sync feature. Re-evaluated per the mandatory security review trigger.
+
+| Aspect | Status | Notes |
+|--------|--------|-------|
+| New network surface | ✅ Guarded | Dedicated web-safe HTTP client communicating with PocketBase (Fly.io or self-hosted) over HTTPS / TLS. No third-party tracking or telemetry. |
+| Master opt-in consent gate | ✅ Strict Default-OFF | Controlled by `sync_enabled` (default `false`). While OFF, zero network requests are made and client is uninitialized. |
+| Account & credentials | ✅ Scoped | User authenticates with personal email + passphrase against PocketBase. Tokens held in local AuthStore in memory; no admin credentials ship in app. |
+| Server-side access control | ✅ Owner-scoped | PocketBase API rules enforce `@request.auth.id != "" && ownerId = @request.auth.id` for list/view/create/update. API deletes disabled (`deleteRule = null`, append-only). |
+| Client-side owner guard | ✅ Belt-and-suspenders | Engine verifies all pulled rows belong to local `ownerId`. Aborts immediately with 0 database mutations on any foreign row. |
+| Data leaving the device | ⚠️ User-consented | On manual "Sync now", breath sessions and journal rows leave the device to the user's personal PocketBase instance. Data is scoped strictly to user. |
+| Data entering the device | ✅ Union-merge | Pulled rows merged via insert-only union by UUID. Never executes incoming code; never overwrites or deletes local data. |
+| Offline resilience | ✅ Preserved | Toggle-off or network failure surfaces quiet error without crashing, modals, or data loss. Core app remains 100% offline-first functional. |
+
+**Verdict:** v1.13.0 reopens the network boundary under strict user consent. Security is maintained through dual-layer isolation: server-side PocketBase rule scoping combined with client-side owner guard enforcement, append-only constraints, and default-disabled network activity.
+
+> ℹ️ **Future Phase 2 note:** Auto-sync on app open (fast-follow) operates entirely within this verified network/auth boundary and does not alter the security perimeter.
 
 ### Known Limitations (Accepted Risk)
 

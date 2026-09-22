@@ -2,7 +2,7 @@
 
 # Saranidhi — Architecture Reference
 
-> **Reviewed:** v1.12.0-web · **Next review:** every release (or when infra/schema/patterns change).
+> **Reviewed:** v1.12.1-web · **Next review:** every release (or when infra/schema/patterns change).
 
 *The technical design of Saranidhi: how the product is built. For what it does
 and why, see [`docs/product/product-scope.md`](../product/product-scope.md).*
@@ -170,6 +170,17 @@ Introduced in Sprint 44 (v1.12.0), Practice Sync Phase 0 enables cross-device pr
 - **Identity Propagation:** When importing onto a fresh/unonboarded device, the device adopts the imported profile and its Practice ID, seamlessly binding subsequent exports across devices.
 - **Owner-Identity Guard:** Prevents contamination between different individuals. If an import file carries a mismatched `ownerId`, merging is strictly refused with zero database mutations.
 - **Deterministic Aggregates:** Streaks, 7/30-day trends, and journal-sourced hold-time personal-bests (`holdDurationMs`) automatically recompute across the unioned set.
+
+### Cross-Device Practice Sync (Phase 1 — On-Demand Network Sync, PocketBase)
+
+Introduced in Sprint 47 (v1.13.0), Practice Sync Phase 1 builds on the Phase 0 union foundation to provide on-demand cross-device synchronization over a network:
+- **Transport Agnostic Core (`SyncTransport`):** An abstract interface separating synchronization logic from network protocols. Allows future adapter swaps without engine rework.
+- **PocketBase Transport (`PocketBaseSyncTransport`):** Implemented using official `pocketbase: ^0.25.1` and `http: ^1.2.0` pure Dart libraries, ensuring 100% web safety (zero `dart:io`). Connects to Fly.io deployed backend or local Docker Compose dev environment (`localhost:8090`).
+- **Server Topology & Schema:** External PocketBase hosts `sessions` and `journal` collections mirroring Drift columns. Opaque local row UUID is stored in `uuid` (required, unique) to maintain cross-device identity across distinct database engines.
+- **Dual-Layer Access Scoping:** PocketBase API rules enforce `@request.auth.id != "" && ownerId = @request.auth.id` for all CRUD operations (`deleteRule = null` enforces append-only). Server rules back up the client-side `PracticeSyncEngine` owner-guard.
+- **PracticeSyncEngine Orchestration:** Coordinates pull → union-merge → push on manual "Sync now". Verifies owner-guard on pulled datasets (aborting with 0 mutations if foreign), merges via `DatabaseExporter.mergePracticeRows`, and idempotently pushes local rows by UUID.
+- **Consent Gate & Opt-In:** Controlled by `sync_enabled` (default `false`). When disabled, zero network traffic occurs and the HTTP client remains uninitialized.
+- **Offline-First Resilience:** Network disconnects or backend downtime result in quiet non-blocking UI status without crashes or data loss.
 
 ### Deployment Targets
 
