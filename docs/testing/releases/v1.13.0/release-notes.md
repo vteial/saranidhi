@@ -52,4 +52,4 @@ Your breath practice, together across your devices — safely, and only when you
 
 ---
 
-> **Shipped:** _pending_ — promotion PR #___ · tagged **`v1.13.0-web`** (target `prod`) · live at [saranidhi.vercel.app](https://saranidhi.vercel.app).
+> **Shipped:** 2026-09-16 — promotion PR #267 · tagged **`v1.13.0-web`** (target `prod`) · live at [saranidhi.vercel.app](https://saranidhi.vercel.app).

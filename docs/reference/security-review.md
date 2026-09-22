@@ -2,7 +2,7 @@
 
 # Saranidhi — Security Review
 
-> **Reviewed:** v1.13.0 (Sprint 47 — Practice Sync Phase 1) · **Next review:** at a major (X) release or when the data/network boundary changes. **v1.13.0 (Practice Sync Phase 1) reopens the network/account/off-device boundary** — introducing an opt-in network path to a user-configured PocketBase backend behind `SyncTransport`. Offline-first remains fully intact. See the *Sprint 47 assessment* below.
+> **Reviewed:** v1.13.0-web (Sprint 47 — Practice Sync Phase 1) · **Next review:** at a major (X) release or when the data/network boundary changes. **v1.13.0 (Practice Sync Phase 1) reopens the network/account/off-device boundary** — introducing an opt-in network path to a user-configured PocketBase backend behind `SyncTransport`. Offline-first remains fully intact. See the *Sprint 47 assessment* below.
 
 ## Architecture Security Assessment
 
@@ -75,7 +75,7 @@ The first network-backed cross-device sync feature. Re-evaluated per the mandato
 |--------|--------|-------|
 | New network surface | ✅ Guarded | Dedicated web-safe HTTP client communicating with PocketBase (Fly.io or self-hosted) over HTTPS / TLS. No third-party tracking or telemetry. |
 | Master opt-in consent gate | ✅ Strict Default-OFF | Controlled by `sync_enabled` (default `false`). While OFF, zero network requests are made and client is uninitialized. |
-| Account & credentials | ✅ Scoped | User authenticates with personal email + passphrase against PocketBase. Tokens held in local AuthStore in memory; no admin credentials ship in app. |
+| Account & credentials | ✅ Scoped | User authenticates with personal email + passphrase against PocketBase. **Auth token persisted at rest** in a SharedPreferences-backed `AsyncAuthStore` (survives reload/rebuild — introduced by the v1.13.0 sign-in-state fix); passphrase itself is never stored. No admin credentials ship in the app. _Residual risk: the bearer token sits in browser local storage (SharedPreferences on web) — acceptable for the single-owner opt-in model; a future hardening item is token expiry/rotation UX._ |
 | Server-side access control | ✅ Owner-scoped | PocketBase API rules enforce `@request.auth.id != "" && ownerId = @request.auth.id` for list/view/create/update. API deletes disabled (`deleteRule = null`, append-only). |
 | Client-side owner guard | ✅ Belt-and-suspenders | Engine verifies all pulled rows belong to local `ownerId`. Aborts immediately with 0 database mutations on any foreign row. |
 | Data leaving the device | ⚠️ User-consented | On manual "Sync now", breath sessions and journal rows leave the device to the user's personal PocketBase instance. Data is scoped strictly to user. |

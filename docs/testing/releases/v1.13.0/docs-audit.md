@@ -8,7 +8,7 @@
 
 ## Release under audit
 
-- **Version:** v1.13.0-web · **Sprint(s):** 47 · **Audited by:** owner + Kiro Web · **Date:** _pending_
+- **Version:** v1.13.0-web · **Sprint(s):** 47 · **Audited by:** owner + Kiro Web · **Date:** 2026-09-16
 - **Nature:** **feature minor** — first **network/account/off-device boundary reopening** since
   local-first. No local schema change (schema v7, export v2); adds an opt-in PocketBase sync path.
 
@@ -20,24 +20,24 @@
 
 | ✓ | Doc | Verify | Stamp → v1.13.0 |
 |:-:|-----|--------|:--------------:|
-| ⬜ | `README.md` | Current Status → v1.13.0 (once released), 47 sprints, PRs, Latest/Next | n/a (status block) |
-| ⬜ | `docs/README.md` | Index matches doc set (pocketbase-hosting.md present) | n/a |
-| ⬜ | `docs/process/project-valuation-report.md` | Sprint 46+47 rows + hours (~157.5) + exec (677 tests, v1.13.0) — landed via `/sprint-update` #263 | ✅ |
-| ⬜ | `docs/process/project-evaluation.md` | Test count 677 + progression (Sprint 47 +16) — via #263 | ✅ |
-| ⬜ | `docs/process/sprint-tracker.md` | Sprint 47 row ✅ (PR #260); flip to ✅ 🚀 + current-state → v1.13.0 live at `/release-update` | ✅ |
-| ⬜ | `docs/process/sprint-backlog.md` | Practice Sync Phase 1 row done; auto-on-open fast-follow + device-registry rows accurate | ✅ |
-| ⬜ | `docs/process/dev-workflow.md` | No protocol/gate change this release | ✅ |
-| ⬜ | `docs/product/user-guide.md` | Practice Sync section (enable Sync + sign in + what syncs + opt-in/offline) present — added in #260 | ✅ |
-| ⬜ | `docs/product/product-scope.md` | Confirm the network-boundary reopening is reflected (local-first WITH opt-in sync) — add a line if missing | ✅ |
-| ⬜ | `docs/reference/architecture.md` | `SyncTransport` + `PocketBaseSyncTransport` + `PracticeSyncEngine` + Fly/Compose topology — added in #260 | ✅ |
-| ⬜ | `docs/reference/security-review.md` | **REAL REVIEW (not stamp-only)** — network path, per-user auth token, owner-scoped server rules + client guard, data egress, opt-in consent. Re-run in #260; **confirm the assessment + re-stamp v1.13.0**. | ✅ (review + bump) |
-| ⬜ | `docs/reference/calculation-methodology.md` | No calc change this release | n/a (research doc) |
-| ⬜ | `docs/deployment/pocketbase-hosting.md` | Backend runbook matches the shipped Fly instance + rules | n/a (runbook) |
-| ⬜ | `docs/testing/testing-plan.md` | Test-count progression (Sprint 47 +16 → 677) — via #263 | ✅ |
-| ⬜ | `docs/testing/smoke-test-results.md` | Add the v1.13.0 row (status set at `/release-update`) | n/a (index) |
-| ⬜ | `CHANGELOG.md` | `[1.13.0-web]` entry present; date set at `/release-update` | n/a |
-| ⬜ | Sprint dossier `sprints/sprint-47-practice-sync-p1/README.md` | Links spec → impl → test → PR #260 → release | n/a |
-| ⬜ | `AI_COLLABORATION_FRAMEWORK.md` | No flow/role change this release; stamp bumped | ✅ |
+| ✅ | `README.md` | Current Status → v1.13.0 (once released), 47 sprints, PRs, Latest/Next | n/a (status block) |
+| ✅ | `docs/README.md` | Index matches doc set (pocketbase-hosting.md present) | n/a |
+| ✅ | `docs/process/project-valuation-report.md` | Sprint 46+47 rows + hours (~157.5) + exec (677 tests, v1.13.0) — landed via `/sprint-update` #263 | ✅ |
+| ✅ | `docs/process/project-evaluation.md` | Test count 677 + progression (Sprint 47 +16) — via #263 | ✅ |
+| ✅ | `docs/process/sprint-tracker.md` | Sprint 47 row ✅ (PR #260); flip to ✅ 🚀 + current-state → v1.13.0 live at `/release-update` | ✅ |
+| ✅ | `docs/process/sprint-backlog.md` | Practice Sync Phase 1 row done; auto-on-open fast-follow + device-registry rows accurate | ✅ |
+| ✅ | `docs/process/dev-workflow.md` | No protocol/gate change this release | ✅ |
+| ✅ | `docs/product/user-guide.md` | Practice Sync section (enable Sync + sign in + what syncs + opt-in/offline) present — added in #260 | ✅ |
+| ✅ | `docs/product/product-scope.md` | Confirm the network-boundary reopening is reflected (local-first WITH opt-in sync) — add a line if missing | ✅ |
+| ✅ | `docs/reference/architecture.md` | `SyncTransport` + `PocketBaseSyncTransport` + `PracticeSyncEngine` + Fly/Compose topology — added in #260 | ✅ |
+| ✅ | `docs/reference/security-review.md` | **REAL REVIEW (not stamp-only)** — network path, per-user auth token, owner-scoped server rules + client guard, data egress, opt-in consent. Re-run in #260; **confirm the assessment + re-stamp v1.13.0**. | ✅ (review + bump) |
+| ✅ | `docs/reference/calculation-methodology.md` | No calc change this release | n/a (research doc) |
+| ✅ | `docs/deployment/pocketbase-hosting.md` | Backend runbook matches the shipped Fly instance + rules | n/a (runbook) |
+| ✅ | `docs/testing/testing-plan.md` | Test-count progression (Sprint 47 +16 → 677) — via #263 | ✅ |
+| ✅ | `docs/testing/smoke-test-results.md` | Add the v1.13.0 row (status set at `/release-update`) | n/a (index) |
+| ✅ | `CHANGELOG.md` | `[1.13.0-web]` entry present; date set at `/release-update` | n/a |
+| ✅ | Sprint dossier `sprints/sprint-47-practice-sync-p1/README.md` | Links spec → impl → test → PR #260 → release | n/a |
+| ✅ | `AI_COLLABORATION_FRAMEWORK.md` | No flow/role change this release; stamp bumped | ✅ |
 
 > **Stamp rule:** each durable doc carries `> **Reviewed:** vX.Y.Z`. 11 durable docs read
 > `v1.12.1-web` → bump to `v1.13.0-web` at `/release-update`. **security-review.md = real re-review
@@ -54,4 +54,7 @@
 
 ## Result
 
-- **Docs audit:** ⏳ _pending_ — owner ticks each applicable row during release verification; confirmed PASS at `/release-update`.
+- **Docs audit:** ✅ **PASS** (confirmed at `/release-update`, 2026-09-16). All 10 durable-doc `Reviewed:` stamps bumped `v1.12.1-web` → `v1.13.0-web`; `security-review.md` was a **real re-review** (network boundary) and re-stamped.
+- **Corrections made at `/release-update`** (drift caught by the audit):
+  - **Test count:** the header/valuation figure "677" predates the four interim smoke fixes — the shipped suite is **687 pass** (Sprint 47 +16, interim fixes +10). The smoke-test dossier was corrected to 687; the valuation/evaluation "677" figure from `/sprint-update` #263 is left as the sprint-close snapshot (the +10 fix tests landed after it) — flagged here for the next `/sprint-update` to reconcile if desired.
+  - **security-review token-at-rest:** the Sprint 47 assessment said the auth token is held "in memory"; the v1.13.0 sign-in-state fix made it a **persistent SharedPreferences-backed `AsyncAuthStore`** (token now at rest). Corrected the assessment + added the residual-risk note.
