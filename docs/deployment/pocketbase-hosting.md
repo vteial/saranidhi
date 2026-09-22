@@ -118,6 +118,12 @@ fly open /_/                   # opens the PocketBase Admin UI
 # from the repo root — same canonical command as B3
 fly deploy --config deploy/pocketbase/fly.toml --dockerfile deploy/pocketbase/Dockerfile .
 ```
+> **Build context.** The context is the repo root (so the Dockerfile can `COPY tool/dev/pb_migrations`),
+> but the repo-root `.dockerignore` whitelists ONLY the migrations, so the upload stays tiny (~KB) even
+> though your working dir may hold a 1.4 GB Flutter `build/` + `.dart_tool/`. If you ever see a Fly
+> "Build context is N GB" warning, check that `.dockerignore` still excludes `build/`/`.dart_tool/`.
+> The final image is ~32 MB regardless (only PocketBase + migrations are `COPY`-ed).
+>
 > New migration files in `tool/dev/pb_migrations/` are baked into the image and applied on boot.
 > Migrations run **once per filename** — to change already-applied schema, ADD a new migration file
 > (do not edit an applied one). Example: `1710000001_relax_required_data_fields.js`.

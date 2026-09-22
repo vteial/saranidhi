@@ -1,0 +1,26 @@
+# Docker build context filter for the PocketBase image (deploy/pocketbase/Dockerfile).
+#
+# We deploy with build context = REPO ROOT (so the Dockerfile can COPY tool/dev/pb_migrations),
+# but the PocketBase image needs ONLY the migration files. Without this filter, Fly uploads the
+# entire working directory (~1.4 GB: build/, .dart_tool/, etc.) on every deploy for no reason.
+#
+# Strategy: ignore everything, then explicitly UN-ignore what the image build needs.
+# This affects ONLY the Docker build context — not git, not the Flutter/Vercel web build.
+
+# Ignore everything by default.
+*
+
+# Un-ignore the migrations the Dockerfile copies (path must be walked from the root down).
+!tool
+tool/*
+!tool/dev
+tool/dev/*
+!tool/dev/pb_migrations
+!tool/dev/pb_migrations/**
+
+# Un-ignore the Dockerfile itself (harmless, keeps the context self-describing).
+!deploy
+deploy/*
+!deploy/pocketbase
+deploy/pocketbase/*
+!deploy/pocketbase/Dockerfile
