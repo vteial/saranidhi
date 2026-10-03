@@ -37,7 +37,7 @@
 - [x] **TQ — Quality gates + no-regression (RQ)**
   - `just validate-local` green incl. the reconcile; coverage ≥ 19%; `test/features/astro_engine/` unchanged + green. **No `lib/` engine edit** — if the reconcile reveals a bug, STOP and flag it (out of scope, §4), do not fix.
 
-- [ ] **TP — Commit, open PR, emit Human Verification Plan, STOP**
+- [x] **TP — Commit, open PR, emit Human Verification Plan, STOP**
   - `feat(astro): golden-fixture correctness gate (TSK-golden-01)`; push `sprint/golden-fixture-gate`; `gh pr create --base main`. CI green. Emit §4b (V1 perturb→fail→revert, V2 blocking, V3 malformed→fail). STOP. **Never merge/tag.**
 
 - [ ] **TV — After human verification: `/verification-done`**

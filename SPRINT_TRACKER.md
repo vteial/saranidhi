@@ -1171,7 +1171,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] T4 — CI + validate-local wiring (`.github/workflows/ci.yml` Tier-1 + `validate-local.sh`)
 - [x] TG — Governance lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
 - [x] TQ — Quality gates verification (`just validate-local` green)
-- [ ] TP — PR + Human Verification Plan
+- [x] TP — PR + Human Verification Plan
 
 **Delivery Checklist (Definition of Done):**
 - [x] **Frozen fixture** — 37 cases across moonLongitude, nakshatra, swara, hora, tattva, oracle (N >= 20).
