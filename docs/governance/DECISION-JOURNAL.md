@@ -66,3 +66,33 @@ project and spends attention on product, not on re-learning process per repo.
 - **Outcome:** This file + `.kiro/skills/brainstorm-save/`.
 
 > **Session meta.** Division of labor: owner set every direction + will gate every merge; Operator (Kiro Crew) authored all PRs and never merged. Course-correction: the "archive historical docs" ask was reconsidered to signposting after finding releases/sprints are live-linked (PR #276). Honest note: two safety-policy blocks (an `rm -rf`, a brace-fused `git push`) were hit and routed around correctly, not bypassed.
+
+---
+
+## Entry 002 — Personal portfolio dashboard: where it lives, how it refreshes, how it's served
+
+**Date:** 2026-10-03 · **Contributor(s):** Eialarasu (human-directed) · **Mode:** Operator (Kiro Crew) · **Outcome:** PR #282 (Saranidhi wiring); `~/my-works/portfolio` + `~/my-works/caddy` (personal tooling, not git-tracked yet)
+
+### D1 — The portfolio generator lives in `~/my-works`, not inside any project repo
+- **Trigger:** A cross-project dashboard needs to read every project's `STATUS.md`. Putting the generator inside Saranidhi would force Saranidhi to know sibling-repo paths — a self-containment violation (Entry 001 D5).
+- **Options:** (a) generator inside Saranidhi reading sibling paths; (b) each repo refreshes only its own card; (c) generator in the shared `~/my-works` common area, triggered from each repo via a gitignored `_my_works` symlink so the call is a *relative in-repo path*.
+- **Decision & rationale:** (c). The cross-repo concern lives in the one place that is legitimately cross-repo; each project stays self-contained — it only publishes its own `STATUS.md` contract and triggers "refresh" via `_my_works/portfolio/generate.py` (relative), while the generator (not the project) knows where the siblings are. Carries over unchanged when the personal cetana instance becomes the real home. _(Contributor: Eialarasu)_
+- **Outcome:** `~/my-works/portfolio/{generate.py,projects.json}`; `_my_works` symlink gitignored in Saranidhi (PR #282).
+
+### D2 — Dashboard refresh is event-driven (a `/sprint-done` step), not a timed cron
+- **Trigger:** First instinct was a daily cron to refresh the dashboard. But `STATUS.md` only changes at discrete lifecycle events.
+- **Decision & rationale:** The thing that mutates `STATUS.md` (`/sprint-done`, later `/release-update`) refreshes the view **in the same step**, so it can't go stale. A low-frequency cron is only a backstop for out-of-band manual edits, not the primary mechanism. _(Contributor: Eialarasu — matches the saved lesson on event-driven vs. timed view refresh.)_
+- **Outcome:** PR #282 — `/sprint-done` step 4.5 (non-fatal if the symlink is absent).
+
+### D3 — Serve locally with Caddy via a tiny registry-driven service manager
+- **Trigger:** `python -m http.server` works but gives no path to protect/manage the site later.
+- **Options:** keep the zero-dep python server; adopt Caddy with a per-site config; a small multi-service manager over Caddy.
+- **Decision & rationale:** A 4-script manager (`start`/`stop`/`add`/`remove`) over Caddy driven by a `services.json` registry. Caddy's `basic_auth`, local HTTPS (`tls internal`), and `reverse_proxy` make "protect/manage later" one-directive upgrades (the future cetana backend reverse-proxies through the same registry). Bind pinned to `127.0.0.1`; `python` server kept as the zero-dep fallback. _(Contributor: Eialarasu)_
+- **Outcome:** `~/my-works/caddy/` (manager + README).
+
+### D4 — Local-first now; defer the iMac-hosted remote instance (Tailscale, never public exposure)
+- **Trigger:** Idea to self-host the cetana runtime on the iMac for the rare "need it when away" case.
+- **Decision & rationale:** Sequence, don't parallelize. The localhost site covers ~95% of use (owner is at the machine); a 24/7 remote-reachable service for a *rare* need is effort ahead of evidence. When built: **Tailscale** (private mesh, nothing exposed to the public internet) — never port-forwarding/public DNS; plus always-on (launchd) + bind cautions. Captured as a deferred note, not built. _(Contributor: Eialarasu — matches the saved lesson on Tailscale over public exposure for personal/local-first setups.)_
+- **Outcome:** `~/my-works/caddy/cetana-self-hosting-notes.md` (deferred plan).
+
+> **Session meta.** Division of labor: owner set every direction and gated every merge; Operator (Kiro Crew) built the `~/my-works` tooling and the Saranidhi wiring PR, never merged. Course-correction: the initial "daily refresh cron" was reconsidered to an event-driven lifecycle step before building (D2). Discovery: rbac-platform's `STATUS.md` (PRJ-002) landed mid-session, so the dashboard renders both projects. Scope discipline: a pre-existing untracked `ios/Podfile` with no gitignore rule was flagged, not silently committed or ignored (left for an owner decision).
