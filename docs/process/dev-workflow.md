@@ -16,6 +16,10 @@
 > — the AI team collaboration model (roles, handoffs, release lifecycle, and
 > CI/merge gates) that this workflow operates within. When a protocol or gate
 > changes, update **both** docs in the same PR so they never drift.
+>
+> **Environment / ops DX** (`just setup-local · env-doctor · validate-local ·
+> start-local · stop-local · status-local · status-staging · validate-docs`) lives
+> in [`dx-commands.md`](dx-commands.md) — the Layer B half of the family vocabulary.
 
 ---
 

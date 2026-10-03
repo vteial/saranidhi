@@ -9,7 +9,6 @@ inclusion: always
 > rules see [`saranidhi-spec.md`](./saranidhi-spec.md); for product, `.kiro/product.md`.
 > The full narrative lives in [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
 > and [`docs/process/dev-workflow.md`](../../docs/process/dev-workflow.md) — this is the terse must-obey summary.
-
 > **Vocabulary note (cetana-labs family, adopted 2026-10-03 — see
 > [`docs/process/PROCESS_MIGRATION.md`](../../docs/process/PROCESS_MIGRATION.md)).**
 > Roles are **Operator** (Kiro) · **Executor** (Antigravity) · **Human** (owner).
