@@ -9,7 +9,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-_Upcoming work is tracked in the [Sprint Backlog](BACKLOG.md)._
+### Added
+- **Golden-Fixture Correctness Gate (`TSK-golden-01`)** — frozen 37-case correctness dataset (`test/golden/astro_golden.json`) spanning Moon longitude (Meeus ELP 2000/82), Nakshatra & birth bird (CONF-PP-001/002), Swara clock (CONF-013/014), Chaldean Horas, Tattva cycles (CONF-012), and Integrated Aruḍam composite scoring. Reconciled fail-closed via `test/golden/golden_fixture_test.dart` and wired into Tier-1 CI (`ci.yml`) and `just validate-local`. Controlled manual regeneration via `flutter test tool/regen_golden.dart`.
+
 
 ---
 

@@ -41,6 +41,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
 | 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
 | 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅🚀 Shipped (PR #260 · prod #267 · tag v1.13.0-web) |
+| — | Golden-Fixture Correctness Gate (`TSK-golden-01`) | *internal* | 👀 In Review |
 | 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1155,6 +1156,29 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > registry / trusted-device UX (management layer, not correctness), profile/preferences sync
 > (session + journal only), real-time sync, native CloudKit (Apple-only, deferred to the App Store
 > track). Sprint 48 = the native **"Now" Surface** (owner-chosen as the next sprint).
+
+---
+
+## Quality Gate: Golden-Fixture Correctness Gate (`TSK-golden-01`) — 👀 In Review
+
+> Path: `.kiro/specs/golden-fixture-gate/` · Spec ID: `golden-fixture-gate` · Backlog: `TSK-golden-01`
+> Frozen correctness gate over the astro-engines (`lib/features/astro_engine/domain/`).
+
+- [x] T0 — Preflight (P1–P5 on `sprint/golden-fixture-gate`; baseline clean)
+- [x] T1 — Author fixture (`test/golden/astro_golden.json`, 37 cases; `test/golden/README.md`)
+- [x] T2 — Reconcile test (`test/golden/golden_fixture_test.dart`, fail-closed)
+- [x] T3 — Regen tool (`tool/regen_golden.dart`, controlled manual run)
+- [x] T4 — CI + validate-local wiring (`.github/workflows/ci.yml` Tier-1 + `validate-local.sh`)
+- [x] TG — Governance lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
+- [x] TQ — Quality gates verification (`just validate-local` green)
+- [x] TP — PR + Human Verification Plan
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Frozen fixture** — 37 cases across moonLongitude, nakshatra, swara, hora, tattva, oracle (N >= 20).
+- [x] **Reconcile test** — fail-closed, pure & deterministic, tolerance on floats, exact on discrete.
+- [x] **Controlled regen** — `flutter test tool/regen_golden.dart`, manual only, never in CI.
+- [x] **CI gate** — Tier-1 CI includes `test/golden/`, blocking check.
+- [x] **Local green** — `just validate-local` green before PR.
 
 ---
 
