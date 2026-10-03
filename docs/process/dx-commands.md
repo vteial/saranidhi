@@ -23,9 +23,10 @@ repo and see the same list; the bodies are stack-specific. Saranidhi is **local-
 ## Command family
 
 Run `just` (or `just --list`) any time for this list. Each recipe has a **slash mirror**
-— the slash form is the *documented protocol* an agent (Operator/Executor) follows; the
-`just` recipe is the executable surface it invokes. (Saranidhi does not materialize slash
-commands as `.kiro/skills/` files — they live as protocols in `dev-workflow.md`.)
+— the slash form is a cetana-style skill at `.kiro/skills/<name>/SKILL.md` that an agent
+(Operator/Executor) follows; the `just` recipe is the executable surface it invokes. The
+lifecycle slash commands (`/plan-start … /sprint-done`) are materialized the same way; see
+[`.kiro/skills/README.md`](../../.kiro/skills/README.md) for the full family.
 
 | Family verb | `just` recipe | Slash | What it does (Saranidhi / Flutter) |
 | :--- | :--- | :--- | :--- |

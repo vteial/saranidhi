@@ -20,6 +20,13 @@
 > **Environment / ops DX** (`just setup-local · env-doctor · validate-local ·
 > start-local · stop-local · status-local · status-staging · validate-docs`) lives
 > in [`dx-commands.md`](dx-commands.md) — the Layer B half of the family vocabulary.
+>
+> **Executable skills:** each slash command is realized as a cetana-style skill at
+> [`.kiro/skills/<name>/SKILL.md`](../../.kiro/skills/) (see its
+> [`README`](../../.kiro/skills/README.md)); Kiro Specs live at
+> [`.kiro/specs/<id>/`](../../.kiro/specs/) from the
+> [`_template`](../../.kiro/specs/_template/) with the standing Tamil / CONF / gates
+> EARS criteria baked in.
 
 ---
 
