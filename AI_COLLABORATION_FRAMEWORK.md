@@ -2,6 +2,15 @@
 
 > **Reviewed:** v1.13.0-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
 
+> **Vocabulary (cetana-labs family, adopted 2026-10-03 — [`PROCESS_MIGRATION.md`](docs/process/PROCESS_MIGRATION.md)).**
+> The three surfaces below map to the firm-wide roles: **Operator** = Kiro (plan / Spec /
+> review / govern — never merges) · **Executor** = Antigravity (`/spec-run` build + QA-Verify
+> — opens PR, STOP) · **Human** = owner (two gates, sole merge + tag). Lifecycle commands:
+> `/plan-start · /plan-done · /sprint-start · /spec-run · /verification-done · /review-pr ·
+> /sprint-done · /sprint-update · /release-*`, with **merge-first** Kiro Specs
+> (`.kiro/specs/<id>/`) and **phase-aware state guards**. The role *descriptions* here are
+> unchanged in substance — only the names converge for cross-project muscle memory.
+
 This document describes the multi-agent operating model used to develop the
 **Saranidhi** application: how a single human lead orchestrates specialized AI
 personas to take work from idea to production, and the gates that keep the
@@ -69,6 +78,12 @@ flowchart TD
 ```
 
 ### 1.1 Roles
+
+> **Firm-role mapping (cetana-labs family):** the four *framework personas* below are
+> **modes**, not seats. They collapse onto three **surfaces/roles**: the **Operator**
+> (Kiro) runs Product-Owner-support + BA + Architect + QA-Design + review/governance; the
+> **Executor** (Antigravity) runs Developer + QA-Verify; the **Human** (owner) is the
+> Product Owner / sole merge & release authority. Same duties, converged names.
 
 | Role | Responsibilities |
 | :--- | :--- |
@@ -257,8 +272,8 @@ flowchart TD
 > The Developer Agent (Kiro) **pushes branches, opens PRs, and validates CI, but
 > NEVER merges to `main`/`prod` and NEVER creates tags.** The **Human is the sole
 > merge and release authority.** This applies to every protocol
-> (`/sprint-finish`, `/plan`, `/release-start`, `/release-finish`,
-> `/release-update`).
+> (`/plan-done`, `/spec-run`, `/review-pr`, `/sprint-done`, `/release-start`,
+> `/release-finish`, `/release-update`).
 
 ### 2.4 Bug Found During QA-Verify — feedback loop
 
@@ -328,8 +343,8 @@ flowchart TD
 ## 4. End-to-End Feature Lifecycle
 
 > This is the detailed lifecycle for **Flow 3 (Feature / Engine Sprint)** in the §0
-> map. The spec → coding-setup → review handoff and the per-sprint dossier are
-> covered by the `/delegate` protocol in `docs/process/dev-workflow.md`.
+> map. The Operator→Executor handoff (merge-first Kiro Spec → `/spec-run` → `/review-pr`)
+> and the per-sprint dossier are covered in `docs/process/dev-workflow.md`.
 
 ```mermaid
 sequenceDiagram

@@ -10,35 +10,53 @@ inclusion: always
 > The full narrative lives in [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
 > and [`docs/process/dev-workflow.md`](../../docs/process/dev-workflow.md) — this is the terse must-obey summary.
 
+> **Vocabulary note (cetana-labs family, adopted 2026-10-03 — see
+> [`docs/process/PROCESS_MIGRATION.md`](../../docs/process/PROCESS_MIGRATION.md)).**
+> Roles are **Operator** (Kiro) · **Executor** (Antigravity) · **Human** (owner).
+> Lifecycle commands are `/plan-start · /plan-done · /sprint-start · /spec-run ·
+> /verification-done · /review-pr · /sprint-done · /sprint-update · /release-*`.
+> This is firm-wide so one process carries across every project.
+
 ## 1. Authority — the single most important rule
 
-- **The human owner is the SOLE merge & release authority.** Kiro NEVER merges to
-  `main`/`prod`, NEVER runs `git merge`, NEVER pushes to `main`/`prod`, and NEVER
-  creates tags or GitHub Releases. Kiro pushes branches and **opens PRs** only.
+- **The Human owner is the SOLE merge & release authority.** The Operator (Kiro) NEVER
+  merges to `main`/`prod`, NEVER runs `git merge`, NEVER pushes to `main`/`prod`, and
+  NEVER creates tags or GitHub Releases. The Operator pushes branches and **opens PRs** only.
+- **Two Human gates** per unit of work: (1) approve the **Spec merge** (`/plan-done`,
+  merge-first), and (2) approve the final **squash-merge** (`/review-pr` → merge).
 - Every write operation (plan, sprint, docs, release) goes through a **PR the owner
   merges** — no exceptions.
 
-## 2. The two-tool division of labor
+## 2. The three surfaces (roles & division of labor)
 
-- **Kiro Web (this agent + owner):** planning, docs, specs, PR **review**, release
-  workflow, corpus/CONF work, and code/PRs. **Kiro Web CANNOT run `flutter test` /
-  `flutter analyze` locally** — so it must never author-and-ship correctness-critical
-  Dart on CI alone.
-- **Antigravity IDE (owner's Mac):** actual Dart **implementation** with a local green
-  test run before the PR, plus QA-Verify (executes smoke tests on the deployed build,
-  records results, logs bugs; never edits source).
+- **Operator — Kiro (Web/IDE, this agent + owner):** brainstorm, plan, author **Kiro
+  Specs** (`.kiro/specs/<id>/`), PR **review**, governance, release workflow, corpus/CONF
+  work. **Kiro Web CANNOT run `flutter test` / `flutter analyze` locally** — so it must
+  never author-and-ship correctness-critical Dart on CI alone. Never merges; STOP-and-holds.
+- **Executor — Antigravity (owner's Mac):** `/spec-run <id>` → implement on the `feat/`
+  branch, run `flutter analyze`+`test` GREEN before the PR, open the PR, emit the Human
+  Verification Plan, **STOP**; plus QA-Verify (smoke tests on the deployed build, records
+  results, logs bugs; never edits source). Both are Executor sub-modes.
+- **Human — the owner:** sets direction, both gates, sole merge + tag, doctrinal adjudicator.
 
-## 3. Correctness-critical code → spec → coding-setup → review
+## 3. Correctness-critical code → Spec → /spec-run → /review-pr
 
 For any change touching calculation/engine logic (birth-bird, swara/nostril clock,
 Oracle/Aruḍam scoring, DB migrations):
-1. **Kiro Web authors a precise sprint spec** (exact files, logic, edge cases, tests,
-   migration behavior, DoD) in the sprint dossier `docs/process/sprints/sprint-N-*/`.
-2. **Antigravity implements + runs the local suite GREEN** (except the known 4 CloudKit
-   macOS failures) **before** opening the PR — CI-only is NOT sufficient (v1.2.1 lesson).
-3. **Kiro Web reviews the REAL DIFF** (never the summary — summaries have been wrong
-   before) and approves; owner merges.
-- Low-risk pure-docs/l10n work may be done directly in Kiro Web.
+1. **Operator authors a precise Kiro Spec** (`requirements.md` EARS DoD — including the
+   standing **Tamil bilingual** + **CONF provenance** criteria — `design.md`, `tasks.md`;
+   exact files, logic, edge cases, tests, migration behavior) and **`/plan-done` merges
+   it to `main`** (merge-first), so the dossier `docs/process/sprints/sprint-N-*/` records it.
+2. **Executor runs `/spec-run <id>`**: implements + runs the local suite GREEN (except the
+   known 4 CloudKit macOS failures) **before** opening the PR — CI-only is NOT sufficient
+   (v1.2.1 lesson).
+3. **Operator runs `/review-pr`** against the REAL DIFF (never the summary — summaries have
+   been wrong before); recommends; **owner merges**.
+- Low-risk pure-docs/l10n work may be done directly by the Operator (lead-paired, lighter contract).
+
+> **State guards:** every lifecycle command is phase-aware — redundant/already-done ⇒
+> skip + continue; missing prerequisite or gate ⇒ alert + HOLD. A wrong-order command may
+> skip busywork but can **never** silently bypass a gate.
 
 ## 4. Non-negotiable pre-PR gates
 
@@ -52,17 +70,27 @@ Oracle/Aruḍam scoring, DB migrations):
   `CONF-nn` (Sara Kalai) / `CONF-PP-nn` (Panja Pakshi). The owner's lineage decision in
   the CONF tracker IS "source truth" when sources conflict.
 
-## 5. Protocols (current names — the `{domain}-{action}` convention)
+## 5. Protocols (cetana-labs family vocabulary — the `{phase|domain}-{action}` convention)
 
-`/plan` · `/sprint-start` · `/sprint-finish` · `/sprint-update` · `/release-start` ·
-`/release-finish` · `/release-update`. (Old names `/start-sprint`, `/finish-sprint`,
-`/project-update`, `/release-complete` are **deprecated** — do not use.)
+**Lifecycle (per unit of work):** `/plan-start` · `/plan-done` (merges the Spec,
+merge-first) · `/sprint-start` · `/spec-run <id>` (Executor) · `/verification-done`
+(Executor) · `/review-pr <PR>` (gate) · `/sprint-done` · `/sprint-update`.
+**Release:** `/release-start` · `/release-finish` · `/release-update`.
 
-- **All of these produce a PR the owner merges** (never a direct push to main).
+> Old Saranidhi names (`/plan`, `/sprint-finish`, `/delegate`) and the earlier
+> `/start-sprint`/`/finish-sprint`/`/project-update`/`/release-complete` are **deprecated**
+> — do not use. Mapping lives in [`PROCESS_MIGRATION.md`](../../docs/process/PROCESS_MIGRATION.md) §4.
+
+**Environment / ops DX (cetana family, realized as `just` recipes + mirror slash):**
+`just setup-local` · `env-doctor` · `start-local` · `stop-local` · `validate-local` ·
+`status-local` · `status-staging` · `validate-docs`; `/project-status` for the broadcast.
+
+- **All lifecycle/release commands produce a PR the owner merges** (never a direct push to main).
 - **Docs division of responsibility** (one job per doc, no duplication):
   `project-valuation-report.md` = investment/delivery (hours per phase + one-row-per-sprint
   table); `project-evaluation.md` = quality/defects (Resolved Defects + QC baseline);
-  `sprint-tracker.md` + `CHANGELOG.md` = per-feature inventory; `git log` = commits.
+  root `SPRINT_TRACKER.md` + `CHANGELOG.md` = per-feature inventory; `BACKLOG.md` = ideas;
+  `git log` = commits.
 
 ## 6. Release lifecycle (two-phase, owner-gated)
 
@@ -101,5 +129,7 @@ date, smoke-index row, bump the `> Reviewed:` stamp on all durable docs, flip tr
 
 ## 9. Delegation
 
+- Coding delegation goes to the **Executor (Antigravity)** via `/spec-run <id>` against a
+  merge-first Kiro Spec — never a loose prose brief.
 - Google **Jules is retired** for this project (hangs + SDK mismatch; can't do interactive
-  visual QA). Do not reopen. Coding delegation goes to the Antigravity IDE setup.
+  visual QA). Do not reopen.

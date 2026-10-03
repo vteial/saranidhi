@@ -4,6 +4,14 @@
 
 > **Reviewed:** v1.13.0-web · **Next review:** every release + when a protocol/gate/flow changes.
 
+> **Vocabulary (cetana-labs family, adopted 2026-10-03).** Roles are **Operator** (Kiro) ·
+> **Executor** (Antigravity) · **Human** (owner). Lifecycle commands:
+> `/plan-start · /plan-done · /sprint-start · /spec-run · /verification-done · /review-pr ·
+> /sprint-done · /sprint-update · /release-start|finish|update`, with **merge-first** Specs
+> (`.kiro/specs/<id>/`) and **phase-aware state guards**. Deprecated: `/plan`,
+> `/sprint-finish`, `/delegate`. Full map + rationale:
+> [`PROCESS_MIGRATION.md`](PROCESS_MIGRATION.md).
+
 > **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
 > — the AI team collaboration model (roles, handoffs, release lifecycle, and
 > CI/merge gates) that this workflow operates within. When a protocol or gate
@@ -16,12 +24,12 @@
 ```
 main ──────────────────────────────────────────────►
        \                          /
-        ├── feature/sprintX-topic ┤  ← PR reviewed → merge
+        ├── sprint/sprintX-topic ┤  ← PR reviewed → merge
 ```
 
 ### Per Sprint
 
-1. **Branch:** `feature/sprintX-topic` from `main`
+1. **Branch:** `sprint/sprintX-topic` from `main` *(code branch — gets a Vercel preview)*
 2. **Develop:** Implement all sprint tasks
 3. **Validate locally:**
    - `dart analyze` — zero issues
@@ -56,14 +64,14 @@ main ─────────────────────────
 
 **Why:** Card styling, alignment, empty space issues only surface when a human looks at the app.
 
-**Rule:** Before issuing `/sprint-finish`:
+**Rule:** Before issuing `/sprint-done`:
 - [ ] User checks Vercel preview on narrow screen (mobile viewport)
 - [ ] User checks Vercel preview on wide screen (tablet/desktop)
 - [ ] User opens any new bottom sheets/dialogs/modals
 - [ ] User switches to Tamil and repeats all above
 - [ ] New cards visually match the weight/style of existing cards
 
-**Process:** Issues found → fixes go into the SAME PR branch (not a separate hotfix). Only issue `/sprint-finish` after preview testing passes.
+**Process:** Issues found → fixes go into the SAME PR branch (not a separate hotfix). Only issue `/sprint-done` after preview testing passes.
 
 ### 3. l10n Completeness Check
 
@@ -97,88 +105,131 @@ main ─────────────────────────
 
 ## Sprint Protocols
 
+> **Phase-aware state guards:** every command below inspects the current state —
+> redundant/already-done ⇒ skip + continue; missing prerequisite or gate ⇒ alert + HOLD.
+> A wrong-order command may skip busywork but can NEVER silently bypass a gate.
+
+### `/plan-start` *(optional, implicit — any free-form topic is a plan-start)*
+
+Opens a per-feature planning session within a sprint (brainstorm, scope, author a Spec).
+
+1. Brainstorm with the owner (Operator = Kiro Web/IDE).
+2. Confirm scope + decisions; identify the corpus practice + resolved CONF each rule cites.
+
+### `/plan-done` — authors + **merges** the Kiro Spec (merge-first)
+
+1. Author the Kiro Spec at `.kiro/specs/<id>/`: `requirements.md` (EARS acceptance
+   criteria = Definition of Done, **including the standing Tamil-bilingual + CONF-provenance
+   criteria**), `design.md`, `tasks.md` (exact file/line changes, edge cases, migration
+   behavior, a pre-flight = env + known-green baseline).
+2. Seed the sprint dossier `docs/process/sprints/sprint-N-<slug>/` (impl-summary,
+   test-summary, README index) from [`templates/`](templates/).
+3. Open a **docs PR merging the Spec to `main`**. Owner merges → state `READY_TO_BUILD`.
+   This is the first Human gate; it makes `/spec-run` a clean one-liner.
+
 ### `/sprint-start`
 
-Lightweight entry point — creates the branch and marks the sprint active.
+Opens the sprint **container** (holds many plans).
 
-1. Create feature branch from `main` (`feature/sprintN-<topic>`)
-2. Update `docs/process/sprint-tracker.md` — mark sprint as "🚧 In Progress"
-3. Begin implementation
+1. Create feature branch from `main` (`sprint/sprintN-<topic>`).
+2. Flip root `SPRINT_TRACKER.md` → "🚧 In Progress".
 
-### `/sprint-finish`
+### `/spec-run <id>` *(Executor — Antigravity, on the owner's Mac)*
 
-Closes the sprint — delivers the code for user to merge.
+The **implement** phase. One-liner: the owner supplies only the spec id.
 
-1. Commit all remaining changes
-2. Push branch to remote
-3. Create PR targeting `main`
-4. Update `docs/process/sprint-tracker.md` → ✅ Complete (PR #N)
-5. Push tracker update to PR branch
-6. **Tell user PR is ready for merge** — Kiro NEVER merges directly
-7. User reviews + merges (sprint officially closed)
-8. Ask: *"Run /sprint-update now or later?"*
+1. Sync `main`, read the merged Spec, silent preflight, self-create the branch the Spec names.
+2. Implement `tasks.md` in order; self-validate against the EARS DoD.
+3. Run the local suite **GREEN before the PR** — `dart analyze --fatal-infos` +
+   `flutter test` + `flutter build web` (green except the 4 known CloudKit macOS failures).
+   CI-only is NOT sufficient (v1.2.1 lesson).
+4. Fill `implementation-summary.md` + `test-summary.md` in the dossier; **open the PR**;
+   emit the Human Verification Plan; **STOP**. Never merges, never tags.
+
+### `/verification-done` *(Executor)*
+
+After the owner (or QA-Verify) exercises the feature on the preview: record the
+Verification Log in the dossier `REPORT`/test-summary → state `IN_REVIEW`. Fixes ride the
+**same PR** (Single-PR rule), never a separate hotfix branch.
+
+### `/review-pr <PR>` — the human gate
+
+Operator surfaces the checklist; **owner decides**.
+
+1. Fetch the **REAL DIFF** (never trust the summary).
+2. Verify: required CI green (`ci.yml` **and** `ci-full.yml` — analyze + full tests +
+   ≥19% coverage + Integration Tests (Web)); EARS DoD per-criterion; Tamil-mode eyeball;
+   verification record present; any source-derived doctrinal value cross-verified against
+   the corpus (read-only Antigravity check).
+3. Recommend; **owner squash-merges** (Kiro never merges/tags). Changes requested ⇒ iterate on the same PR.
+
+### `/sprint-done`
+
+1. After the owner merges: flip root `SPRINT_TRACKER.md` → ✅ Complete (PR #N).
+2. Ask: *"Run /sprint-update now or later?"*
 
 ### `/sprint-update`
 
-Runs **after sprint merge** on a separate docs-only branch to avoid CI code failures.
+Runs **after sprint merge** on a separate docs-only branch (`docs/sprintN-update`).
 
-1. Create branch from `main` (`docs/sprintN-update`)
-2. Update all clerical docs:
-   - `docs/process/project-valuation-report.md` — add the sprint's *Sprint Delivery Summary* row, bump phase hours (estimate + 20%), refresh the executive summary. **Do NOT** add a per-commit timeline or a per-feature deliverables list — those were removed by design (see that report's "How this report is maintained")
+1. Update all clerical docs:
+   - `docs/process/project-valuation-report.md` — add the sprint's *Delivery Summary* row, bump phase hours (estimate + 20%), refresh the executive summary. **Do NOT** add a per-commit timeline or per-feature deliverables list (removed by design).
    - `docs/process/project-evaluation.md` — feature scorecard, delivery table, resolved defects
    - `docs/reference/architecture.md` — new infrastructure/architecture patterns
    - `docs/testing/testing-plan.md` — test count progression, scenarios awaiting coverage
    - `docs/process/dev-workflow.md` — any threshold/process changes
    - `.kiro/steering/saranidhi-spec.md` — tech stack updates
-   - **`docs/testing/releases/vX.Y.Z/smoke-test.md`** — add scenarios for new features (mandatory)
-   - **User Guide content** — refresh guide sections affected by sprint changes (mandatory)
-3. Commit, push, create docs-only PR
-4. **User reviews and merges**
+   - **root `STATUS.md`** — refresh the 35-line executive summary (powers the personal cetana dashboard) — **mandatory**
+   - **`docs/testing/releases/vX.Y.Z/smoke-test.md`** — add scenarios for new features — **mandatory**
+   - **User Guide content** — refresh guide sections affected by sprint changes — **mandatory**
+2. Commit, push, create docs-only PR. **Owner reviews and merges.**
 
-**Hours estimation rule:** Use AI-estimated active time + 20% buffer (owner-approved).
-
-**Mandatory additions:** Every /sprint-update MUST include User Guide refresh + smoke test plan update. These are not optional.
-
-### `/plan`
-
-Strategic brainstorming and sprint plan revision — forward-looking.
-
-1. Brainstorm with user (conversation in Kiro Web)
-2. Confirm scope and decisions
-3. Create branch from `main` (e.g., `plan/sprint-N` or `plan/v2-roadmap`)
-4. Update:
-   - `docs/process/sprint-tracker.md` — define upcoming sprints
-   - `docs/process/sprint-backlog.md` — adjust epic priorities/scope
-   - `.kiro/design.md`, `.kiro/product.md`, `.kiro/structure.md` — if architecture changes
-5. Commit, push, create PR
-6. **User reviews and merges** (Kiro never pushes directly to main)
-
-**Protocol:** All write operations go through PRs. Only the user merges to main.
+**Hours estimation rule:** AI-estimated active time + 20% buffer (owner-approved).
 
 ---
 
-### `/delegate`
+### `/spec-run <id>` — Operator→Executor handoff (replaces the old `/delegate`)
 
-**Current model — spec → coding-setup → review** (the confirmed stable division of labor; first exercised in Sprint 37, PR #167):
+**The confirmed stable division of labor** (first exercised in Sprint 37, PR #167; now
+cetana-family vocabulary):
 
-1. **Kiro Web creates the sprint dossier + authors a precise implementation spec.** Each sprint gets a folder `docs/process/sprints/sprint-N-<slug>/` seeded from [`docs/process/templates/`](templates/) with: `spec.md` (exact file/line changes, logic, edge cases, test updates, migration behavior, DoD, and a **pre-flight** = env + known-green baseline — because Kiro Web **cannot run `flutter test`/`analyze` locally** and must not ship correctness-critical code blind on CI alone), plus empty `implementation-summary.md`, `test-summary.md`, and a `README.md` index. Kiro→Antigravity handoff is then a **one-liner** pointing at the folder.
-2. **The Antigravity IDE coding setup** (Saranidhi local dev, on the owner's Mac) implements it, runs local `flutter analyze` + `flutter test` **GREEN before opening the PR** (v1.2.1 lesson), fills in `implementation-summary.md` (what was built, deviations, source-derived values flagged for review) and `test-summary.md` (results vs the 4-CloudKit baseline) **in the dossier folder**, and opens the PR.
-3. **Kiro Web reviews the PR** against the spec + doctrine + migration correctness — fetching the real diff, not trusting the summary. Any source-derived value the spec flagged for owner review (e.g. a doctrinal table) is **cross-verified via a read-only Antigravity source check** before merge (Sprint 37: the name-initial waning 5-cycle was verified exact against the workshop transcript + master's book).
-4. **Owner merges** (sole merge authority; Kiro never merges/tags). Then Kiro Web runs `/sprint-update` and finalizes the dossier `README.md` (links spec → impl → test → PR → release).
+1. **Operator (Kiro Web) authored + merged the Kiro Spec at `/plan-done`** — so by the
+   time `/spec-run` runs, `.kiro/specs/<id>/` is already on `main` (merge-first). The
+   dossier folder `docs/process/sprints/sprint-N-<slug>/` carries the human-readable
+   impl/test summaries + README index. The Operator→Executor handoff is a **one-liner:
+   the spec id** (because Kiro Web **cannot run `flutter test`/`analyze` locally** and must
+   not ship correctness-critical code blind on CI alone).
+2. **The Executor (Antigravity, owner's Mac)** implements it, runs local `flutter analyze` +
+   `flutter test` **GREEN before opening the PR** (v1.2.1 lesson), fills in
+   `implementation-summary.md` (what was built, deviations, source-derived values flagged
+   for review) and `test-summary.md` (results vs the 4-CloudKit baseline), and **opens the PR**.
+3. **Operator reviews the PR** (`/review-pr`) against the spec + doctrine + migration
+   correctness — fetching the real diff, not the summary. Any source-derived value the spec
+   flagged for owner review is **cross-verified via a read-only Antigravity source check**
+   before merge (Sprint 37: the name-initial waning 5-cycle, verified exact against the
+   workshop transcript + master's book).
+4. **Owner merges** (sole merge authority; Kiro never merges/tags). Then the Operator runs
+   `/sprint-update` and finalizes the dossier `README.md` (links spec → impl → test → PR → release).
 
-> **Sprint dossier convention:** all *transactional* per-sprint docs (spec, implementation
-> summary, test summary, index) live together in `docs/process/sprints/sprint-N-<slug>/`
-> so a sprint is auditable by opening one folder. Templates in
-> [`docs/process/templates/`](templates/) keep the Antigravity summaries consistent (so the
-> handoff prompt stays a one-liner). *Durable/cumulative* docs (`sprint-tracker.md`,
-> `sprint-backlog.md`, valuation, evaluation, this workflow) stay at the `docs/process/` root.
-> Sprint 37 (`sprints/sprint-37-birth-bird/`) is the worked example.
+> **Sprint dossier convention:** transactional per-sprint docs (impl summary, test summary,
+> index) live in `docs/process/sprints/sprint-N-<slug>/`; the **Kiro Spec** (the contract)
+> lives in `.kiro/specs/<id>/`. Durable/cumulative docs (root `SPRINT_TRACKER.md`,
+> `BACKLOG.md`, valuation, evaluation, this workflow) stay put. Sprint 37 is the worked example.
 
-Rules: delegated work is on its own branch; only files in the spec's scope; **no lint-loosening to force analyze-clean** (verify `analysis_options.yaml` isn't weakened); macOS local baseline = "green except the 4 known CloudKit tests."
+Rules: delegated work is on its own branch; only files in the spec's scope; **no
+lint-loosening to force analyze-clean** (verify `analysis_options.yaml` isn't weakened);
+macOS local baseline = "green except the 4 known CloudKit tests." A delegated agent must
+complete the WHOLE handoff — **open the PR** (do not just push a branch and stop), fill the
+dossier, record the real result, honor scope/no-fallback/secret rules — while never
+merging/tagging (Sprint 46 lesson).
 
-> **Sprint 37 retrospective (first run):** the process worked cleanly — one review-flagged item (the name-swap cycle) was caught by the spec as "derive-from-source → owner-review", verified via Antigravity against primary sources, and confirmed exact. No rework needed. Keep flagging source-derived tables in the spec for explicit verification.
+> **Sprint 37 retrospective (first run):** the process worked cleanly — one review-flagged
+> item (the name-swap cycle) was caught by the spec as "derive-from-source → owner-review",
+> verified via Antigravity against primary sources, and confirmed exact. Keep flagging
+> source-derived tables in the spec for explicit verification.
 
-**(Historical)** — Previously used for delegating to Google Jules (paused: reliability/SDK issues). Superseded by the Antigravity coding-setup model above.
+**(Historical)** — `/delegate` + Google Jules are superseded/retired; this `/spec-run`
+Executor model replaces both.
 
 ---
 
@@ -420,11 +471,19 @@ Runs on pull requests targeting `main` (pre-merge gate) as well as on merge to `
 
 ## Branch Naming
 
-| Type | Pattern | Example |
-|------|---------|---------|
-| Sprint feature | `feature/sprintX-topic` | `feature/sprint2-astro-engine` |
-| Bug fix | `fix/sprintX-topic` | `fix/sprint2-sunrise-edge-case` |
-| Maintenance | `chore/sprintX-topic` | `chore/sprint1-update-deps` |
+| Type | Pattern | Example | Vercel preview |
+|------|---------|---------|----------------|
+| Sprint feature | `sprint/sprintX-topic` | `sprint/sprint2-astro-engine` | ✅ yes |
+| Bug fix | `fix/sprintX-topic` | `fix/sprint2-sunrise-edge-case` | ✅ yes |
+| Release | `release/vX.Y.Z` | `release/v1.13.0` | ✅ yes |
+| Maintenance | `chore/sprintX-topic` | `chore/sprint1-update-deps` | ❌ no |
+| Docs / planning | `docs/*`, `plan/*` | `docs/sprintN-update` | ❌ no (deny-list) |
+
+> **Code branches** (`sprint/*`, `release/*`, `fix/*`) get a Vercel preview; **`docs/*` +
+> `plan/*`** are on the `vercel.json` deny-list (zero deploy quota). This matches
+> `collaboration-guardrails.md` §8 and the Deployment Architecture table above. *(Historical
+> note: pre-migration docs used `feature/sprintX`, which is NOT on the Vercel allowlist and
+> would not have produced a preview — corrected to `sprint/*` in the cetana-family migration.)*
 
 ---
 

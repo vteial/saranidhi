@@ -44,8 +44,8 @@ Vercel is connected to the `vteial/saranidhi` GitHub repository and:
 2. **Two Vercel projects double every push.** The repo is connected to **two** projects —
    `saranidhi` (prod) and `saranidhi-staging`. Historically *both* emitted a deployment on
    every branch push, so one push ≈ **2** deployments.
-3. **The release lifecycle is push-dense.** One feature ≈ 7 branch pushes (`/plan` →
-   `/sprint-start` → `/sprint-finish` → `/sprint-update` → `/release-start` →
+3. **The release lifecycle is push-dense.** One feature ≈ 7 branch pushes (`/plan-done` →
+   `/sprint-start` → `/spec-run`/PR → `/sprint-update` → `/release-start` →
    main→prod → `/release-update`), most of them **docs-only**. Two back-to-back cycles in a
    day, × 2 projects, is how ~28+ deployments appeared and tripped the cap.
 
