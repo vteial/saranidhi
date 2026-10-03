@@ -89,7 +89,7 @@ A contextual guidance layer that delivers personalized coaching by matching the 
 
 ### Prasanam Oracle
 
-A point-in-time micro-oracle for decision moments ("Should I do this now?"). Prasanam Oracle is a **bottom-navigation tab** (Home | Journal | Oracle | Analytics), reachable from any screen. The user picks a category (Artha / Kriya / Yoga), optionally states an intention, and receives a readiness score with clear guidance. Readings are saved only when the user chooses to, respecting the silent/mental Prasanam tradition. Consultation-ritual refinements (cooldown, pre-query breath ritual, intention-anchor hold, daily limits) are tracked in the [Prasanam Oracle UX epic](../process/sprint-backlog.md#prasanam-oracle-ux).
+A point-in-time micro-oracle for decision moments ("Should I do this now?"). Prasanam Oracle is a **bottom-navigation tab** (Home | Journal | Oracle | Analytics), reachable from any screen. The user picks a category (Artha / Kriya / Yoga), optionally states an intention, and receives a readiness score with clear guidance. Readings are saved only when the user chooses to, respecting the silent/mental Prasanam tradition. Consultation-ritual refinements (cooldown, pre-query breath ritual, intention-anchor hold, daily limits) are tracked in the [Prasanam Oracle UX epic](../../BACKLOG.md#prasanam-oracle-ux).
 
 ### Cross-Device Sync
 

@@ -7,7 +7,7 @@
 > **Purpose:** one question only — *how much engineering investment went into this,
 > and what is the current state?* Everything else is delegated to the system of record
 > that already owns it, so this report stays small and never rots:
-> - **What shipped, per feature** → [`sprint-tracker.md`](sprint-tracker.md) + [`CHANGELOG.md`](../../CHANGELOG.md)
+> - **What shipped, per feature** → [`SPRINT_TRACKER.md`](../../SPRINT_TRACKER.md) + [`CHANGELOG.md`](../../CHANGELOG.md)
 > - **Commit history** → `git log` (the source of truth — not duplicated here)
 > - **Per-sprint detail** → the sprint dossiers under [`sprints/`](sprints/)
 >
@@ -96,7 +96,7 @@
 ## Sprint Delivery Summary
 
 > One row per sprint — the correct granularity for valuation. Feature-level detail
-> lives in [`sprint-tracker.md`](sprint-tracker.md); per-sprint artifacts (spec /
+> lives in [`SPRINT_TRACKER.md`](../../SPRINT_TRACKER.md); per-sprint artifacts (spec /
 > implementation / test summaries) live in the [`sprints/`](sprints/) dossiers.
 
 | Sprint | Focus | PR(s) | Status |
@@ -190,7 +190,7 @@ Updated at `/sprint-update` and `/release-update`:
 Explicitly **NOT** maintained here (delegated, to keep this report from rotting):
 
 - ❌ A per-commit timeline → use `git log`.
-- ❌ A per-feature deliverables list → use [`sprint-tracker.md`](sprint-tracker.md) + [`CHANGELOG.md`](../../CHANGELOG.md).
+- ❌ A per-feature deliverables list → use [`SPRINT_TRACKER.md`](../../SPRINT_TRACKER.md) + [`CHANGELOG.md`](../../CHANGELOG.md).
 
 ---
 

@@ -281,7 +281,7 @@ Import flow: file picker (`.json`) → `DatabaseExporter.validateExportData` →
 
 ### Prasanam Oracle — Consultation Model
 
-The Oracle tab runs a 30-minute swara-validation gate: a recent journal entry (≤30 min) supplies the recorded swara, otherwise a `GuidedNostrilTest` bottom sheet is triggered. `OracleCompositeEngine.evaluate()` returns a `PrasanamResult` (score gauge + band + guidance). Saves are **user-initiated**, respecting the silent/mental Prasanam tradition; a window-status banner is informational, not blocking. Consultation-ritual friction (cooldown, breath ritual, intention anchor, daily limits) is tracked as product work in the [Prasanam Oracle UX epic](../process/sprint-backlog.md#prasanam-oracle-ux), not specified here.
+The Oracle tab runs a 30-minute swara-validation gate: a recent journal entry (≤30 min) supplies the recorded swara, otherwise a `GuidedNostrilTest` bottom sheet is triggered. `OracleCompositeEngine.evaluate()` returns a `PrasanamResult` (score gauge + band + guidance). Saves are **user-initiated**, respecting the silent/mental Prasanam tradition; a window-status banner is informational, not blocking. Consultation-ritual friction (cooldown, breath ritual, intention anchor, daily limits) is tracked as product work in the [Prasanam Oracle UX epic](../../BACKLOG.md#prasanam-oracle-ux), not specified here.
 
 ---
 

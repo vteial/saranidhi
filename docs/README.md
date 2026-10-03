@@ -13,8 +13,8 @@ team operating model that ties these together.
 |-----|---------|
 | [dev-workflow.md](process/dev-workflow.md) | Sprint/release protocols (`/plan`, `/sprint-*`, `/release-*`), branching, CI gates, lessons/gotchas |
 | [dev-setup.md](process/dev-setup.md) | Local development environment setup |
-| [sprint-tracker.md](process/sprint-tracker.md) | Completed + in-progress sprints, overview table, Definition of Done |
-| [sprint-backlog.md](process/sprint-backlog.md) | Candidate/future work, epics, open decisions, ideas |
+| [SPRINT_TRACKER.md](../SPRINT_TRACKER.md) | Completed + in-progress sprints, overview table, Definition of Done |
+| [BACKLOG.md](../BACKLOG.md) | Candidate/future work, epics, open decisions, ideas |
 | [project-valuation-report.md](process/project-valuation-report.md) | Time investment, sprint delivery, hours |
 | [project-evaluation.md](process/project-evaluation.md) | Feature scorecard, quality metrics, defect log |
 

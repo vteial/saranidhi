@@ -7,7 +7,7 @@
 
 Tracks delivery as a sequence of sprints. **Completed and in-progress** sprints
 live here; **candidate / future** work lives in the
-[Sprint Backlog](sprint-backlog.md). Each sprint carries a **Delivery Checklist
+[Sprint Backlog](BACKLOG.md). Each sprint carries a **Delivery Checklist
 (Definition of Done)** — see the template below.
 
 > Legend: ✅ Done · 🔄 In progress · ⬜ Not started · 🚀 Released
@@ -41,7 +41,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
 | 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
 | 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅🚀 Shipped (PR #260 · prod #267 · tag v1.13.0-web) |
-| 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](sprint-backlog.md)* | ⬜ |
+| 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
 > **Practice Sync polish** patch (feature PR #244 → /sprint-finish #245 → /sprint-update #247 →
@@ -695,7 +695,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ## Sprint 38: Integrated Aruḍam — Slice 1 (v1.8.0) — ✅ 🚀 Shipped v1.8.0-web (PR #181)
 
-> **Goal:** ship the first slice of the flagship **[★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam)**
+> **Goal:** ship the first slice of the flagship **[★ Integrated Aruḍam](BACKLOG.md#-flagship--integrated-aruḍam)**
 > epic — an **always-on "Aruḍam Now" verdict card on Home** that fuses the separate
 > engines (Sara Kalai swara × Panja Pakshi bird-state × Hora/Tarabala × inauspicious
 > windows) into ONE answer to *"is now a good moment, and what should I do?"*.
@@ -757,7 +757,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 > **Dossier:** [`sprints/sprint-39-why-accordion/`](sprints/sprint-39-why-accordion/README.md)
 > ([spec](sprints/sprint-39-why-accordion/spec.md)). A named **fast-follow** of the flagship
-> [★ Integrated Aruḍam](sprint-backlog.md#-flagship--integrated-aruḍam) epic — it delivers
+> [★ Integrated Aruḍam](BACKLOG.md#-flagship--integrated-aruḍam) epic — it delivers
 > the **verdict-transparency** promise slice 1 (Sprint 38) deliberately deferred.
 >
 > **What:** a tap-to-expand **"Why?"** accordion on the always-on "Aruḍam Now" verdict card
@@ -803,7 +803,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 > **Dossier:** [`sprints/sprint-40-chronobiology/`](sprints/sprint-40-chronobiology/README.md)
 > ([spec](sprints/sprint-40-chronobiology/spec.md)). Derives from the
-> [Chronobiology & Holistic Guidance](sprint-backlog.md#chronobiology--holistic-guidance)
+> [Chronobiology & Holistic Guidance](BACKLOG.md#chronobiology--holistic-guidance)
 > backlog epic.
 >
 > **What:** turns the app from "what is my rhythm now" into "your rhythm has drifted — here
@@ -887,7 +887,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **Scheduled via `/plan` — correctness-critical.** Fixes how the app predicts the **expected
 > nostril** (the readiness half of the flagship Aruḍam verdict). Owner-adjudicated doctrine; full
 > rationale + provenance in the
-> [Swara Clock Engine epic](sprint-backlog.md#swara-clock-engine--weekday-udhaya-nostril-pattern-correction).
+> [Swara Clock Engine epic](BACKLOG.md#swara-clock-engine--weekday-udhaya-nostril-pattern-correction).
 >
 > **The fix (two owner-confirmed calls):**
 > 1. **Rebuild expected-nostril on the 1-hour / 24-cycle swara clock (CONF-014)** — decouple from
@@ -968,7 +968,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **Scheduled via `/plan` (owner-confirmed).** Phase 0 of the **Practice Sync** epic — the
 > near-term, **zero-backend** win pulled ahead of the Now Surface because it directly affects the
 > owner's daily Sara Kalai practice (data split across iPad / iPhone SE / MBP / iMac with no
-> aggregate view). See the [Practice Sync epic](sprint-backlog.md#-practice-sync--cross-device-aggregate).
+> aggregate view). See the [Practice Sync epic](BACKLOG.md#-practice-sync--cross-device-aggregate).
 >
 > **The problem:** the app is per-device local-first, so breath-session / hold-time data lives in
 > separate stores on each device — no aggregate streak / trend / personal-best. And today's
@@ -1020,7 +1020,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > Sprint 44 and logged in the backlog during the v1.12.0 owner smoke (PR #240). Shipped together as
 > the patch release **v1.12.1-web**. Full sprint (not a fold-into-PR hotfix) because 45.1 changes
 > onboarding navigation, which warrants a spec + review. No schema change (still schema v7,
-> export v2). See the [Practice Sync epic](sprint-backlog.md#-practice-sync--cross-device-aggregate).
+> export v2). See the [Practice Sync epic](BACKLOG.md#-practice-sync--cross-device-aggregate).
 >
 > **Why these three:** the v1.12.0 owner cross-device smoke surfaced one structural gap and two
 > cosmetic/quality-of-life issues that don't block the release but sharpen the Practice-Sync
@@ -1102,7 +1102,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 > **Scheduled via `/plan` (owner-confirmed).** Phase 1 of the **Practice Sync** epic — the first
 > real cross-device sync over a network, building on Phase 0's owner-identity + union-merge
 > foundation (v1.12.0). Ships as **v1.13.0** (minor — real user-facing capability). See the
-> [Practice Sync epic](sprint-backlog.md#-practice-sync--cross-device-aggregate).
+> [Practice Sync epic](BACKLOG.md#-practice-sync--cross-device-aggregate).
 >
 > **★ Boundary-reopening sprint.** This is the **first real network / account / off-device
 > boundary change** since the app's deliberate local-first / zero-backend posture was set. It is a
@@ -1164,7 +1164,7 @@ Sprints **42** (★ Swara Clock Engine, v1.11.0) and **43** (Localization Defect
 are scheduled above. Remaining future/candidate sprints — **Accuracy Calibration** (the 7-day
 3-way comparison; unblocked by Sprint 42, now gated only on owner data collection), the native
 **"Now" Surface**, v2.0 Polish, E2E Automation, App Store Prep — live in the
-**[Sprint Backlog](sprint-backlog.md)** with full task lists. They graduate into this tracker (with a Delivery Checklist) when scheduled via `/plan`.
+**[Sprint Backlog](BACKLOG.md)** with full task lists. They graduate into this tracker (with a Delivery Checklist) when scheduled via `/plan`.
 
 > **Note on numbering:** Sprint 37 was reassigned from "Chronobiology" to
 > "Birth-Bird Engine Correction" — the CONF-PP audit surfaced a live calculation

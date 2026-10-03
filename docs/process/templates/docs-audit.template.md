@@ -19,8 +19,8 @@
 | ⬜ | `docs/README.md` | Index still matches the doc set | n/a |
 | ⬜ | `docs/process/project-valuation-report.md` | Sprint row + hours + exec summary | ⬜ |
 | ⬜ | `docs/process/project-evaluation.md` | Defects log + test baseline current | ⬜ |
-| ⬜ | `docs/process/sprint-tracker.md` | Sprint row flipped ✅ 🚀 + current-state = new version | ⬜ |
-| ⬜ | `docs/process/sprint-backlog.md` | Shipped items removed/moved; next-up accurate | ⬜ |
+| ⬜ | `SPRINT_TRACKER.md` | Sprint row flipped ✅ 🚀 + current-state = new version | ⬜ |
+| ⬜ | `BACKLOG.md` | Shipped items removed/moved; next-up accurate | ⬜ |
 | ⬜ | `docs/process/dev-workflow.md` | Any protocol/gate/threshold change captured | ⬜ |
 | ⬜ | `docs/product/user-guide.md` | Reflects features/behavior shipped | ⬜ |
 | ⬜ | `docs/product/product-scope.md` | Scope/North Star still accurate | ⬜ |

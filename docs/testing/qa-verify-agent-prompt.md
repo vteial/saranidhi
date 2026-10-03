@@ -75,7 +75,7 @@ QA-Verify tests **exactly one** environment: the **release PR's Vercel preview**
 
 > These are **stopgap technique rules for manual/ad-hoc runs**. The durable fix is the Sprint 46
 > Playwright harness, which bakes both in (pre-set bypass context + auto-waiting) plus semantics-on
-> and state-seeding. See [`sprint-backlog.md` → Quality, CI & E2E](../process/sprint-backlog.md#quality-ci--e2e)
+> and state-seeding. See [`BACKLOG.md` → Quality, CI & E2E](../../BACKLOG.md#quality-ci--e2e)
 > and the [Release Effort Reference](smoke-test-results.md#release-effort-reference--the-smoke-gate-is-mostly-fixed-cost-per-release).
 
 ---

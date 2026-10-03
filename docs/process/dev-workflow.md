@@ -312,7 +312,7 @@ Post-release documentation closure (light touch-up).
    - `docs/testing/smoke-test-results.md` — add the version row (✅ PASS, date, scenarios)
    - `CHANGELOG.md` — set release date (remove "Pending")
    - `docs/process/project-valuation-report.md` — refresh executive summary (prod version) + confirm the sprint's Delivery Summary row is 🚀
-   - `docs/process/sprint-tracker.md` — flip the sprint's overview row to ✅ 🚀 and refresh the "Current state" note to the new prod version
+   - `SPRINT_TRACKER.md` (root) — flip the sprint's overview row to ✅ 🚀 and refresh the "Current state" note to the new prod version
    - **`README.md` — refresh the "Current Status" block** (Production version, Sprints Delivered, Total PRs, Latest, Next). *(Mandatory — the README is the most stakeholder-visible doc; it drifted at v1.6.0→v1.7.0 because it wasn't on this checklist.)*
 3. Commit, push, create docs-only PR
 4. **User reviews and merges**

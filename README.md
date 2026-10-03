@@ -43,7 +43,7 @@ Saranidhi helps you:
 | **Engineering Hours** | ~157.5 (see [valuation report](docs/process/project-valuation-report.md)) | AI-assisted (Kiro) |
 
 **Latest:** v1.13.0-web — **★ Practice Sync Phase 1** (Sprint 47): opt-in **on-demand cross-device sync** to a self-hosted **PocketBase** backend behind a swappable transport. Combine your breath sessions + journal across devices (per-scope toggles; additive/idempotent; **owner-scoped isolation** enforced by server rule + client guard). **Still local-first** — Sync is OFF by default and the app works fully offline with no account. First release to cross the network/backend boundary (accompanied by a security-review re-review). Hardened during smoke with four fixes (auth-state, Practice-ID→account binding, and two PocketBase schema corrections). Friendlier error messages + in-app sign-up land in **v1.13.1**.
-**Next:** **v1.13.1** (graceful sync error messages + first-class account sign-up), the **7-day Accuracy Calibration** (gated on owner data collection), the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic. See the [Sprint Backlog](docs/process/sprint-backlog.md).
+**Next:** **v1.13.1** (graceful sync error messages + first-class account sign-up), the **7-day Accuracy Calibration** (gated on owner data collection), the native ambient **"Now" Surface**, and the **User Guide — Book-Style Navigation & Search** epic. See the [Sprint Backlog](BACKLOG.md).
 
 ---
 
@@ -186,7 +186,7 @@ Quick links:
 
 - [User Guide](docs/product/user-guide.md) — what Saranidhi is, its aim, and feature overview
 - [Product Scope](docs/product/product-scope.md) — functional product scope · [Architecture](docs/reference/architecture.md) — technical architecture
-- [Sprint Tracker](docs/process/sprint-tracker.md) — delivered + in-progress · [Sprint Backlog](docs/process/sprint-backlog.md) — future/candidate work
+- [Sprint Tracker](SPRINT_TRACKER.md) — delivered + in-progress · [Sprint Backlog](BACKLOG.md) — future/candidate work
 - [Dev Workflow](docs/process/dev-workflow.md) — protocols, CI/CD, gates · [Dev Setup](docs/process/dev-setup.md)
 - [Smoke Test History](docs/testing/smoke-test-results.md) · [Testing Plan](docs/testing/testing-plan.md)
 - [AI Collaboration Framework](AI_COLLABORATION_FRAMEWORK.md) — the AI team operating model
