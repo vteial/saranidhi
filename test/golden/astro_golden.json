@@ -1,0 +1,531 @@
+{
+  "meta": {
+    "generated": "2026-10-03",
+    "engineVersion": "v1.13.0",
+    "note": "known-correct outputs; regen via tool/regen_golden.dart",
+    "totalCases": 37
+  },
+  "moonLongitude": [
+    {
+      "id": "moon-01",
+      "input": {
+        "datetime": "2026-10-03T00:00:00Z"
+      },
+      "expected": {
+        "longitude": 92.41239420225192
+      },
+      "tolerance": 0.000001,
+      "source": "Jean Meeus ELP2000/82 (Ch. 47)"
+    },
+    {
+      "id": "moon-02",
+      "input": {
+        "datetime": "2026-03-20T12:00:00Z"
+      },
+      "expected": {
+        "longitude": 18.849465938362755
+      },
+      "tolerance": 0.000001,
+      "source": "Jean Meeus ELP2000/82 (Ch. 47)"
+    },
+    {
+      "id": "moon-03",
+      "input": {
+        "datetime": "2000-01-01T00:00:00Z"
+      },
+      "expected": {
+        "longitude": 217.28831538603117
+      },
+      "tolerance": 0.000001,
+      "source": "Jean Meeus ELP2000/82 (Ch. 47)"
+    },
+    {
+      "id": "moon-04",
+      "input": {
+        "datetime": "1992-04-12T00:00:00Z"
+      },
+      "expected": {
+        "longitude": 133.16265468515903
+      },
+      "tolerance": 0.000001,
+      "source": "Jean Meeus ELP2000/82 Example 47.a"
+    },
+    {
+      "id": "moon-05",
+      "input": {
+        "datetime": "1990-05-15T06:30:00Z"
+      },
+      "expected": {
+        "longitude": 294.3263394019526
+      },
+      "tolerance": 0.000001,
+      "source": "Jean Meeus ELP2000/82 (Ch. 47)"
+    }
+  ],
+  "nakshatra": [
+    {
+      "id": "nak-01",
+      "input": {
+        "dob": "1990-05-15T06:30:00+05:30"
+      },
+      "expected": {
+        "standardName": "uttara ashadha",
+        "birthBird": "rooster"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    },
+    {
+      "id": "nak-02",
+      "input": {
+        "dob": "1985-08-20T14:00:00+05:30"
+      },
+      "expected": {
+        "standardName": "chitra",
+        "birthBird": "crow"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    },
+    {
+      "id": "nak-03",
+      "input": {
+        "dob": "1995-12-01T06:00:00+05:30"
+      },
+      "expected": {
+        "standardName": "uttara bhadrapada",
+        "birthBird": "peacock"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    },
+    {
+      "id": "nak-04",
+      "input": {
+        "dob": "2000-06-15T12:00:00+05:30"
+      },
+      "expected": {
+        "standardName": "anuradha",
+        "birthBird": "rooster"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    },
+    {
+      "id": "nak-05",
+      "input": {
+        "dob": "1988-03-22T09:15:00+05:30"
+      },
+      "expected": {
+        "standardName": "krittika",
+        "birthBird": "vulture"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    },
+    {
+      "id": "nak-06",
+      "input": {
+        "dob": "2026-01-10T18:00:00+05:30"
+      },
+      "expected": {
+        "standardName": "chitra",
+        "birthBird": "crow"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    },
+    {
+      "id": "nak-07",
+      "input": {
+        "dob": "2026-07-25T03:30:00+05:30"
+      },
+      "expected": {
+        "standardName": "anuradha",
+        "birthBird": "rooster"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    },
+    {
+      "id": "nak-08",
+      "input": {
+        "dob": "2026-10-03T12:00:00+05:30"
+      },
+      "expected": {
+        "standardName": "ardra",
+        "birthBird": "owl"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    }
+  ],
+  "swara": [
+    {
+      "id": "swara-01",
+      "input": {
+        "time": "2026-07-05T06:30:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "solar"
+      },
+      "source": "CONF-013 / CONF-014 (Sunday dawn seed 1h solar inception)"
+    },
+    {
+      "id": "swara-02",
+      "input": {
+        "time": "2026-07-05T07:30:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "lunar"
+      },
+      "source": "CONF-013 / CONF-014 (Sunday block 2 alternating lunar)"
+    },
+    {
+      "id": "swara-03",
+      "input": {
+        "time": "2026-07-06T06:30:00+05:30",
+        "sunrise": "2026-07-06T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "lunar"
+      },
+      "source": "CONF-013 / CONF-014 (Monday dawn seed 1h lunar inception)"
+    },
+    {
+      "id": "swara-04",
+      "input": {
+        "time": "2026-07-07T07:30:00+05:30",
+        "sunrise": "2026-07-07T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "solar"
+      },
+      "source": "CONF-013 / CONF-014 (Tuesday 2h solar inception hour 2)"
+    },
+    {
+      "id": "swara-05",
+      "input": {
+        "time": "2026-07-08T07:30:00+05:30",
+        "sunrise": "2026-07-08T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "lunar"
+      },
+      "source": "CONF-013 / CONF-014 (Wednesday 2h lunar inception hour 2)"
+    },
+    {
+      "id": "swara-06",
+      "input": {
+        "time": "2026-07-09T06:30:00+05:30",
+        "sunrise": "2026-07-09T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "lunar"
+      },
+      "source": "CONF-013 (Thursday Shukla 1h lunar inception)"
+    },
+    {
+      "id": "swara-07",
+      "input": {
+        "time": "2026-07-23T07:15:00+05:30",
+        "sunrise": "2026-07-23T06:00:00+05:30",
+        "paksha": "krishna"
+      },
+      "expected": {
+        "flow": "solar"
+      },
+      "source": "CONF-013 (Thursday Krishna 2h solar inception hour 2)"
+    },
+    {
+      "id": "swara-08",
+      "input": {
+        "time": "2026-07-10T07:15:00+05:30",
+        "sunrise": "2026-07-10T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "lunar"
+      },
+      "source": "CONF-013 / CONF-014 (Friday 2h lunar inception hour 2)"
+    },
+    {
+      "id": "swara-09",
+      "input": {
+        "time": "2026-07-11T06:45:00+05:30",
+        "sunrise": "2026-07-11T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "solar"
+      },
+      "source": "CONF-013 / CONF-014 (Saturday 1h solar inception)"
+    }
+  ],
+  "hora": [
+    {
+      "id": "hora-01",
+      "input": {
+        "time": "2026-07-05T06:15:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "nextSunrise": "2026-07-06T06:00:00+05:30",
+        "weekday": 0
+      },
+      "expected": {
+        "planet": "sun",
+        "horaIndex": 0,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Sunday day lord Sun)"
+    },
+    {
+      "id": "hora-02",
+      "input": {
+        "time": "2026-07-05T07:15:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "nextSunrise": "2026-07-06T06:00:00+05:30",
+        "weekday": 0
+      },
+      "expected": {
+        "planet": "venus",
+        "horaIndex": 1,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Sunday hora 2 Venus)"
+    },
+    {
+      "id": "hora-03",
+      "input": {
+        "time": "2026-07-06T06:15:00+05:30",
+        "sunrise": "2026-07-06T06:00:00+05:30",
+        "sunset": "2026-07-06T18:00:00+05:30",
+        "nextSunrise": "2026-07-07T06:00:00+05:30",
+        "weekday": 1
+      },
+      "expected": {
+        "planet": "moon",
+        "horaIndex": 0,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Monday day lord Moon)"
+    },
+    {
+      "id": "hora-04",
+      "input": {
+        "time": "2026-07-07T18:30:00+05:30",
+        "sunrise": "2026-07-07T06:00:00+05:30",
+        "sunset": "2026-07-07T18:00:00+05:30",
+        "nextSunrise": "2026-07-08T06:00:00+05:30",
+        "weekday": 2
+      },
+      "expected": {
+        "planet": "saturn",
+        "horaIndex": 0,
+        "isDayHora": false
+      },
+      "source": "Chaldean Planetary Hours order (Tuesday night hora 1)"
+    },
+    {
+      "id": "hora-05",
+      "input": {
+        "time": "2026-07-10T12:30:00+05:30",
+        "sunrise": "2026-07-10T06:00:00+05:30",
+        "sunset": "2026-07-10T18:00:00+05:30",
+        "nextSunrise": "2026-07-11T06:00:00+05:30",
+        "weekday": 5
+      },
+      "expected": {
+        "planet": "sun",
+        "horaIndex": 6,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Friday midday hora)"
+    }
+  ],
+  "tattva": [
+    {
+      "id": "tattva-01",
+      "input": {
+        "time": "2026-10-03T06:10:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "earth",
+        "index": 0,
+        "yama": "yama1"
+      },
+      "source": "CONF-012 (Earth element in Yama 1)"
+    },
+    {
+      "id": "tattva-02",
+      "input": {
+        "time": "2026-10-03T06:40:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "water",
+        "index": 1,
+        "yama": "yama1"
+      },
+      "source": "CONF-012 (Water element in Yama 1)"
+    },
+    {
+      "id": "tattva-03",
+      "input": {
+        "time": "2026-10-03T07:10:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "fire",
+        "index": 2,
+        "yama": "yama1"
+      },
+      "source": "CONF-012 (Fire element in Yama 1)"
+    },
+    {
+      "id": "tattva-04",
+      "input": {
+        "time": "2026-10-03T07:40:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "air",
+        "index": 3,
+        "yama": "yama1"
+      },
+      "source": "CONF-012 (Air element in Yama 1)"
+    },
+    {
+      "id": "tattva-05",
+      "input": {
+        "time": "2026-10-03T08:10:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "ether",
+        "index": 4,
+        "yama": "yama1"
+      },
+      "source": "CONF-012 (Ether element in Yama 1)"
+    }
+  ],
+  "oracle": [
+    {
+      "id": "oracle-01",
+      "input": {
+        "queryTime": "2026-07-05T06:30:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "weekday": 0,
+        "currentBirdState": "ruling",
+        "currentWindow": "artha",
+        "tarabalaMultiplier": 1.0,
+        "horaSwaraMultiplier": 1.0,
+        "category": "artha",
+        "actualSwara": "solar"
+      },
+      "expected": {
+        "score": 100,
+        "band": "siddha",
+        "isFloorLocked": false
+      },
+      "tolerance": 1e-9,
+      "source": "Sprint 31/38 Integrated Aruḍam composite (Siddha band)"
+    },
+    {
+      "id": "oracle-02",
+      "input": {
+        "queryTime": "2026-07-05T06:30:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "weekday": 0,
+        "currentBirdState": "eating",
+        "currentWindow": "kriya",
+        "tarabalaMultiplier": 1.0,
+        "horaSwaraMultiplier": 1.0,
+        "category": "kriya",
+        "actualSwara": "lunar"
+      },
+      "expected": {
+        "score": 72,
+        "band": "vardhana",
+        "isFloorLocked": false
+      },
+      "tolerance": 1e-9,
+      "source": "Sprint 31/38 Integrated Aruḍam composite (Vardhana band)"
+    },
+    {
+      "id": "oracle-03",
+      "input": {
+        "queryTime": "2026-07-05T06:30:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "weekday": 0,
+        "currentBirdState": "sleeping",
+        "currentWindow": "yoga",
+        "tarabalaMultiplier": 1.0,
+        "horaSwaraMultiplier": 0.8,
+        "category": "artha",
+        "actualSwara": "lunar"
+      },
+      "expected": {
+        "score": 9,
+        "band": "sunya",
+        "isFloorLocked": false
+      },
+      "tolerance": 1e-9,
+      "source": "Sprint 31/38 Integrated Aruḍam composite"
+    },
+    {
+      "id": "oracle-04",
+      "input": {
+        "queryTime": "2026-07-05T06:30:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "weekday": 0,
+        "currentBirdState": "dying",
+        "currentWindow": "yoga",
+        "tarabalaMultiplier": 0.7,
+        "horaSwaraMultiplier": 0.6,
+        "category": "artha",
+        "actualSwara": "lunar"
+      },
+      "expected": {
+        "score": 2,
+        "band": "sunya",
+        "isFloorLocked": false
+      },
+      "tolerance": 1e-9,
+      "source": "Sprint 31/38 Integrated Aruḍam composite"
+    },
+    {
+      "id": "oracle-05",
+      "input": {
+        "queryTime": "2026-07-05T17:00:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "weekday": 0,
+        "currentBirdState": "ruling",
+        "currentWindow": "artha",
+        "tarabalaMultiplier": 1.0,
+        "horaSwaraMultiplier": 1.0,
+        "category": "artha",
+        "actualSwara": "solar"
+      },
+      "expected": {
+        "score": 10,
+        "band": "sunya",
+        "isFloorLocked": true
+      },
+      "tolerance": 1e-9,
+      "source": "PP-ORACLE Rahu Kaal floor lock (CONF-014/015)"
+    }
+  ]
+}

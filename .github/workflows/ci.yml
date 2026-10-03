@@ -37,6 +37,7 @@ jobs:
       - name: "Run Tier 1 tests (domain + providers)"
         run: |
           flutter test \
+            test/golden/ \
             test/features/astro_engine/ \
             test/features/breath_journal/ \
             test/features/cloud_backup/ \
