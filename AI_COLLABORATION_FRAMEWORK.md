@@ -449,8 +449,8 @@ This framework describes the **collaboration model**. It cross-links to — and 
 | `AI_COLLABORATION_FRAMEWORK.md` (this doc) | Roles, handoffs, lifecycle, gates |
 | `docs/README.md` | Documentation index / map (all docs by context) |
 | `docs/process/dev-workflow.md` | Protocol commands (`/plan`, `/sprint-*`, `/release-*`), branching, CI details, Lessons/Gotchas |
-| `docs/process/sprint-tracker.md` | Delivered + in-progress sprints, overview table, Definition of Done |
-| `docs/process/sprint-backlog.md` | Candidate/future work, epics, open decisions, ideas |
+| `SPRINT_TRACKER.md` (root) | Delivered + in-progress sprints, overview table, Definition of Done |
+| `BACKLOG.md` (root) | Candidate/future work, epics, open decisions, ideas |
 | `docs/process/sprints/sprint-N-*/` | **Flow 3** sprint dossiers (spec + implementation-summary + test-summary + README index) |
 | `docs/process/templates/` | Templates for the dossier artifacts + the docs-audit gate |
 | `docs/research/*-workshop-knowledge.md` | **Flow 1** corpus (practices, CONF tracker) — the doctrinal source of truth |

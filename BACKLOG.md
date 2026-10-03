@@ -6,7 +6,7 @@
 
 Candidate work not yet scheduled into a numbered sprint, organized by **logical
 named epics** rather than sprint number. Items graduate into the
-[Sprint Tracker](sprint-tracker.md) (with a Delivery Checklist) when picked up
+[Sprint Tracker](SPRINT_TRACKER.md) (with a Delivery Checklist) when picked up
 during `/plan`. Keep entries small and outcome-focused.
 
 > The product's Release Vision and current functional scope live in
@@ -100,7 +100,7 @@ an always-on verdict** — with the Oracle becoming the deep-dive form of the sa
 ### First shippable slice (scope-locked) — 📋 SCHEDULED as Sprint 38 (v1.8.0)
 
 > Scheduled via `/plan`. Full task list + Delivery Checklist live in the
-> **[Sprint 38 entry in the tracker](sprint-tracker.md#sprint-38-integrated-aruḍam--slice-1-v180--planned)**.
+> **[Sprint 38 entry in the tracker](SPRINT_TRACKER.md#sprint-38-integrated-aruḍam--slice-1-v180--planned)**.
 
 | Priority | Status | Item |
 |----------|--------|------|
@@ -121,7 +121,7 @@ an always-on verdict** — with the Oracle becoming the deep-dive form of the sa
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🟡 | 📋 → S39 | **Expandable "Why?" accordion** with doctrinal explanation + **provenance** (corpus practice + CONF citation). **Scheduled as Sprint 39 (v1.9.0)** — see [sprint-tracker](sprint-tracker.md#sprint-39--integrated-aruḍam--why-provenance-accordion-v190--planned) + [dossier](sprints/sprint-39-why-accordion/README.md). |
+| 🟡 | 📋 → S39 | **Expandable "Why?" accordion** with doctrinal explanation + **provenance** (corpus practice + CONF citation). **Scheduled as Sprint 39 (v1.9.0)** — see [sprint-tracker](SPRINT_TRACKER.md#sprint-39--integrated-aruḍam--why-provenance-accordion-v190--planned) + [dossier](sprints/sprint-39-why-accordion/README.md). |
 | 🟡 | ⬜ | **The "Now" Surface — native ambient** (Stage 2 phone widget → Stage 3 watch complication → Stage 4 macOS menu-bar). Native Swift/Kotlin extensions + app-group storage + method channels; zero-backend must hold. Widget tri-tap [L]/[R]/[Both] nostril input + freshness decay. |
 | 🟢 | ⬜ | Calendar-aware **proactive nudge** (opt-in, off by default; privacy-sensitive). |
 | 🟢 | ⬜ | Tune the readiness penalty (uniform ~0.75 → possibly window-dependent) using the 7-day 3-way data from the **Accuracy & Validation** epic. |
@@ -145,7 +145,7 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 ## ★ Practice Sync — cross-device aggregate
 
 > **Status: epic scoped via `/plan` (owner-confirmed this session).** **Phase 0 scheduled as
-> Sprint 44 (v1.12.0)** — see [sprint-tracker](sprint-tracker.md#sprint-44--practice-sync--phase-0-owner-stamped-safe-merge-import-v1120--planned).
+> Sprint 44 (v1.12.0)** — see [sprint-tracker](SPRINT_TRACKER.md#sprint-44--practice-sync--phase-0-owner-stamped-safe-merge-import-v1120--planned).
 >
 > **The problem (a universal user problem, not just the owner's).** The core value of Saranidhi is
 > improving breath-hold time through **consistent practice, any time / any place** — logged on
@@ -183,10 +183,10 @@ observation) · CONF-002 (contralateral shift) · existing `OracleCompositeEngin
 | Priority | Status | Item |
 |----------|--------|------|
 | 🔴 | 📋 → S44 | **Phase 0 — owner-stamped SAFE merge-import (zero backend).** Locally-generated `ownerId` (guarded v6→v7 migration); stamp exports with `ownerId`+versions; replace the **destructive** import (`database_exporter.dart` deletes all tables) with a **union-by-UUID merge**; **owner-ID mismatch refuses the merge** (the safety core); keep overwrite/restore as a separate labeled option; aggregate (streak/trend/PB) correct post-merge; bilingual. **Scheduled as Sprint 44 (v1.12.0)** — the near-term win before the Now Surface. |
-| 🟡 | 📋 → S47 | **Phase 1 — on-DEMAND cross-device sync (sessions + journal).** **Scheduled as Sprint 47 (v1.13.0)** — see [sprint-tracker](sprint-tracker.md#sprint-47--practice-sync--phase-1-on-demand-cross-device-sync-pocketbase--planned). Pull → union-merge → push by (`ownerId`, `id`) via a **`SyncTransport` interface** with a **PocketBase** adapter (self-hosted on **Fly.io**). **v1.13.0 = opt-in toggle + manual "Sync now"** (auto-on-open deferred, see below); two checkboxes (sessions/journal, both default ON). Reopens the account/network boundary → **security-review REDO is a hard gate**. |
+| 🟡 | 📋 → S47 | **Phase 1 — on-DEMAND cross-device sync (sessions + journal).** **Scheduled as Sprint 47 (v1.13.0)** — see [sprint-tracker](SPRINT_TRACKER.md#sprint-47--practice-sync--phase-1-on-demand-cross-device-sync-pocketbase--planned). Pull → union-merge → push by (`ownerId`, `id`) via a **`SyncTransport` interface** with a **PocketBase** adapter (self-hosted on **Fly.io**). **v1.13.0 = opt-in toggle + manual "Sync now"** (auto-on-open deferred, see below); two checkboxes (sessions/journal, both default ON). Reopens the account/network boundary → **security-review REDO is a hard gate**. |
 | 🟡 | ⬜ | **Phase 1 fast-follow — auto-on-open sync.** Promote the manual Sync-now to automatic pull-merge-push on app open, once the opt-in manual flow proves out. |
 | 🟡 | ⬜ | **Device registry / trusted-device management (UX layer).** Name + list registered devices, "device N of max", revoke. Abuse/cost control + user clarity for the validator phase — NOT the data-integrity guard (that's `ownerId`). |
-| 🔴 | ✅ v1.12.1 | **v1.12.1 fast-follow — onboarding "Import from another device" entry point.** *(Scheduled as Sprint 45, v1.12.1 — owner chose a subtle onboarding-screen link; see [sprint-tracker](sprint-tracker.md#sprint-45-v1121-fast-follow--practice-sync-polish----planned).)* *(Surfaced in the v1.12.0 owner smoke.)* A genuinely new device shows onboarding first, but Merge/Restore live in Settings (only reachable *after* onboarding) — so the intended "import-before-onboarding to adopt the existing Practice ID" flow is **not directly reachable** in v1.12.0. Current workaround: onboard, then **Settings → Restore (overwrite)** with the other device's export (adopts its Practice ID). Fix: add an "Already using Saranidhi on another device? Import your data" action on the intro/onboarding screen → file picker → `mergeFromBytes`/adopt → skip onboarding. Makes the safe-Merge path reachable without the destructive-Restore dance. |
+| 🔴 | ✅ v1.12.1 | **v1.12.1 fast-follow — onboarding "Import from another device" entry point.** *(Scheduled as Sprint 45, v1.12.1 — owner chose a subtle onboarding-screen link; see [sprint-tracker](SPRINT_TRACKER.md#sprint-45-v1121-fast-follow--practice-sync-polish----planned).)* *(Surfaced in the v1.12.0 owner smoke.)* A genuinely new device shows onboarding first, but Merge/Restore live in Settings (only reachable *after* onboarding) — so the intended "import-before-onboarding to adopt the existing Practice ID" flow is **not directly reachable** in v1.12.0. Current workaround: onboard, then **Settings → Restore (overwrite)** with the other device's export (adopts its Practice ID). Fix: add an "Already using Saranidhi on another device? Import your data" action on the intro/onboarding screen → file picker → `mergeFromBytes`/adopt → skip onboarding. Makes the safe-Merge path reachable without the destructive-Restore dance. |
 | 🟢 | ✅ v1.12.1 | **v1.12.1 fast-follow — BUG-v1.12.0-01: Practice ID not refreshed in Settings after Restore/Merge.** *(v1.12.0 owner smoke.)* After Restore, the profile card shows the *old* Practice ID until a manual page reload. Root cause: `profile_card.dart` uses its own `FutureBuilder` querying `profiles` directly; `_invalidateAllDataProviders()` (in `data_export_import_widget.dart`) invalidates dashboard/journal/ownerId/theme/locale but **not** the profile card's local future. Cosmetic — DB is correct, self-heals on reload. Fix: profile card watches a profile provider that's in the invalidate list (or add + invalidate a `profileProvider`). |
 | 🟢 | ✅ v1.12.1 | **v1.12.1 fast-follow — Practice ID prefix in export filename.** *(Owner idea, v1.12.0.)* Name exports `saranidhi-backup-<first8-of-ownerId>-<timestamp>.json` so files are identifiable across devices (avoids Restoring the wrong file). Forward-compatible: at Phase 1 the label becomes the account id / email. Filename-string change only, no logic/schema. |
 | 🟢 | ⬜ | **Widen sync scope** (profile / preferences) if wanted, after sessions prove out. |
@@ -209,7 +209,7 @@ offline-first / zero-backend principle (`product-scope.md`) — consciously refr
 > Spec: [`research/advanced_somatic_mastery.md`](../research/advanced_somatic_mastery.md) §2.
 >
 > **Status: core scoped as Sprint 40 (v1.10.0)** via `/plan` — see
-> [sprint-tracker](sprint-tracker.md#sprint-40-chronobiology--holistic-guidance-v1100--planned)
+> [sprint-tracker](SPRINT_TRACKER.md#sprint-40-chronobiology--holistic-guidance-v1100--planned)
 > + [dossier](sprints/sprint-40-chronobiology/README.md). The five items below marked
 > `→ S40` are in that sprint; the remainder stay as fast-follows.
 
@@ -230,7 +230,7 @@ offline-first / zero-backend principle (`product-scope.md`) — consciously refr
 > **✅ DECIDED (`/plan`):** keep the journal CSV (built + genuinely useful, just mis-placed) →
 > **move it from Analytics to Settings** alongside the JSON export. **Scheduled as Sprint 41
 > (v1.10.1)** together with the Analytics-page Tamil-localization fixes — see
-> [sprint-tracker](sprint-tracker.md#sprint-41-analytics-tidy--tamil-l10n-fixes-v1101--planned).
+> [sprint-tracker](SPRINT_TRACKER.md#sprint-41-analytics-tidy--tamil-l10n-fixes-v1101--planned).
 
 | Priority | Status | Item |
 |----------|--------|------|
@@ -325,7 +325,7 @@ offline-first / zero-backend principle (`product-scope.md`) — consciously refr
 ## Swara Clock Engine & Weekday Udhaya (Nostril Pattern correction)
 
 > **Status: ✅ SHIPPED as Sprint 42 (v1.11.0-web).** Retained for provenance — see
-> [sprint-tracker](sprint-tracker.md#sprint-42-swara-clock-engine--weekday-udhaya-calibration-v1110--planned).
+> [sprint-tracker](SPRINT_TRACKER.md#sprint-42-swara-clock-engine--weekday-udhaya-calibration-v1110--planned).
 > A **correctness-critical calculation fix** to how the app predicts the *expected nostril* —
 > the readiness half of the flagship Aruḍam verdict.
 >
@@ -379,7 +379,7 @@ macro-seal — for the citation fix + optional framing) · `nostril_pattern.dart
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 📋 | → S37 | **CONF-PP-001/002 + re-migration + 003/004/005** — birth-bird engine correction. **Scheduled as Sprint 37 (v1.7.0)** — see [sprint-tracker](sprint-tracker.md) + [dossier](sprints/sprint-37-birth-bird/README.md). Implemented in the coding setup; Kiro Web reviews. |
+| 📋 | → S37 | **CONF-PP-001/002 + re-migration + 003/004/005** — birth-bird engine correction. **Scheduled as Sprint 37 (v1.7.0)** — see [sprint-tracker](SPRINT_TRACKER.md) + [dossier](sprints/sprint-37-birth-bird/README.md). Implemented in the coding setup; Kiro Web reviews. |
 | 🟡 | ⬜ | **CONF-PP-006 fix** (deferred past Sprint 37) — `_subYamaDuration` supports both models: default equal 28.8-min (workshop), classical weighted (48/36/30/18/12) as a user-selectable option + settings toggle. *Owner-confirmed; a new user option, not a correction.* |
 | 🔴 | ⬜ | Collect 7 consecutive days of Align27 Pancha Pakshi states (all 10 yamas, times, moon phase) for Owl/Pushya *(owner's corrected bird per CONF-PP-001/002)* *[owner task]* |
 | 🔴 | ⬜ | Collect the same 7 days from a Tamil Panchangam (drikpanchang.com or physical calendar) *[owner task]* |

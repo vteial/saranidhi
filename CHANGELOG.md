@@ -9,7 +9,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-_Upcoming work is tracked in the [Sprint Backlog](docs/process/sprint-backlog.md)._
+_Upcoming work is tracked in the [Sprint Backlog](BACKLOG.md)._
 
 ---
 
