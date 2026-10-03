@@ -21,7 +21,7 @@ inclusion: auto
 - No usage of `dynamic` type except where framework-mandated
 - No `IntrinsicHeight` widget (causes layout issues)
 - No `git push --force` to main/prod branches
-- No modifications to files outside assigned scope (e.g., Jules only touches `test/`)
+- No modifications to files outside assigned scope (e.g. an Executor flagged for a test-only run touches only `test/`)
 
 ## 2. Architecture Constraints
 
@@ -62,7 +62,7 @@ inclusion: auto
 
 - `/plan-done` — authors the Kiro Spec (`.kiro/specs/<id>/`) and **merges it to `main`**
   (merge-first) so `/spec-run` is a clean one-liner; for correctness-critical sprints the
-  Operator (Kiro) authors the EARS-DoD spec, the Executor (Antigravity) implements it.
+  the Operator authors the EARS-DoD spec, the Executor implements it (tool→role mapping in `collaboration-guardrails.md` §2).
 - `/sprint-start` — open the sprint container; branch from main, flip tracker to "In Progress".
 - `/spec-run <id>` (Executor) — implement on `feat/`, run local suite GREEN, open PR,
   emit Human Verification Plan, **STOP**. Never merges.

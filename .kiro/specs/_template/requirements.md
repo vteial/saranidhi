@@ -1,7 +1,7 @@
 <!--
   Canonical path: ~/dev-home/personal/saranidhi/.kiro/specs/_template/requirements.md
   Saranidhi Kiro Spec — REQUIREMENTS template (EARS acceptance criteria = Definition of Done).
-  Copy this folder to .kiro/specs/<spec-id>/ and fill it. Authored by the Operator (Kiro),
+  Copy this folder to .kiro/specs/<spec-id>/ and fill it. Authored by the Operator,
   merged to main via /plan-done (merge-first) BEFORE the Executor (Antigravity) runs /spec-run.
   Last verified: 2026-10-03 (v1.13.0-web).
 -->

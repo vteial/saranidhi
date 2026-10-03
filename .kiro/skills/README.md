@@ -28,6 +28,6 @@ contract for one slash command. Vocabulary + roles are defined in
 `status-local` · `status-staging` · `validate-docs` · `project-status`
 
 ## Non-negotiables every lifecycle skill preserves
-- **Operator (Kiro) NEVER merges or tags** — branches + PRs only; owner is sole merge/release authority.
+- **The Operator NEVER merges or tags** — branches + PRs only; owner is sole merge/release authority.
 - **Tamil bilingual gate** (RT), **CONF provenance** (RC), **2-tier CI + ≥19% coverage + integration gate** (RQ).
 - **State guards:** redundant/already-done ⇒ skip + continue; missing prerequisite/gate ⇒ alert + HOLD. Never silently bypass a gate.

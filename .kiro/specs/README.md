@@ -9,9 +9,9 @@ per feature, living at `.kiro/specs/<spec-id>/`:
 
 | File | Owner | Purpose |
 | :--- | :--- | :--- |
-| `requirements.md` | Operator (Kiro) | EARS acceptance criteria = **Definition of Done**, incl. the standing **RT** (Tamil), **RC** (CONF), **RQ** (gates) criteria. |
-| `design.md` | Operator (Kiro) | the HOW — patterns, data/migration, calc + CONF, l10n. |
-| `tasks.md` | Operator (Kiro) | the ordered `/spec-run` build plan with an Execution header. |
+| `requirements.md` | Operator | EARS acceptance criteria = **Definition of Done**, incl. the standing **RT** (Tamil), **RC** (CONF), **RQ** (gates) criteria. |
+| `design.md` | Operator | the HOW — patterns, data/migration, calc + CONF, l10n. |
+| `tasks.md` | Operator | the ordered `/spec-run` build plan with an Execution header. |
 | `REPORT.md` | Executor (Antigravity) | created at `/verification-done`; the human Verification Log (append-only). |
 
 ## Lifecycle (merge-first)

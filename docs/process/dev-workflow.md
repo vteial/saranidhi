@@ -124,7 +124,7 @@ main ─────────────────────────
 
 Opens a per-feature planning session within a sprint (brainstorm, scope, author a Spec).
 
-1. Brainstorm with the owner (Operator = Kiro Web/IDE).
+1. Brainstorm with the owner (Operator — see the tool→role mapping in `collaboration-guardrails.md` §2).
 2. Confirm scope + decisions; identify the corpus practice + resolved CONF each rule cites.
 
 ### `/plan-done` — authors + **merges** the Kiro Spec (merge-first)
@@ -204,13 +204,13 @@ Runs **after sprint merge** on a separate docs-only branch (`docs/sprintN-update
 **The confirmed stable division of labor** (first exercised in Sprint 37, PR #167; now
 cetana-family vocabulary):
 
-1. **Operator (Kiro Web) authored + merged the Kiro Spec at `/plan-done`** — so by the
+1. **The Operator authored + merged the Kiro Spec at `/plan-done`** — so by the
    time `/spec-run` runs, `.kiro/specs/<id>/` is already on `main` (merge-first). The
    dossier folder `docs/process/sprints/sprint-N-<slug>/` carries the human-readable
    impl/test summaries + README index. The Operator→Executor handoff is a **one-liner:
-   the spec id** (because Kiro Web **cannot run `flutter test`/`analyze` locally** and must
-   not ship correctness-critical code blind on CI alone).
-2. **The Executor (Antigravity, owner's Mac)** implements it, runs local `flutter analyze` +
+   the spec id** (because the Operator surface **cannot run `flutter test`/`analyze` locally**
+   and must not ship correctness-critical code blind on CI alone).
+2. **The Executor** (primary: Antigravity IDE on the owner's Mac — see the §2 mapping) implements it, runs local `flutter analyze` +
    `flutter test` **GREEN before opening the PR** (v1.2.1 lesson), fills in
    `implementation-summary.md` (what was built, deviations, source-derived values flagged
    for review) and `test-summary.md` (results vs the 4-CloudKit baseline), and **opens the PR**.
@@ -239,8 +239,9 @@ merging/tagging (Sprint 46 lesson).
 > verified via Antigravity against primary sources, and confirmed exact. Keep flagging
 > source-derived tables in the spec for explicit verification.
 
-**(Historical)** — `/delegate` + Google Jules are superseded/retired; this `/spec-run`
-Executor model replaces both.
+**(Historical)** — the old `/delegate` is superseded by this `/spec-run` Executor model.
+Google Jules is **no longer retired**: as of 2026-10-03 it is an **on-demand Executor for
+special-case / autonomous runs** (see the tool→role mapping in `collaboration-guardrails.md` §2).
 
 ---
 
