@@ -40,5 +40,5 @@
 - [x] **TP — Commit, open PR, emit Human Verification Plan, STOP**
   - `feat(astro): golden-fixture correctness gate (TSK-golden-01)`; push `sprint/golden-fixture-gate`; `gh pr create --base main`. CI green. Emit §4b (V1 perturb→fail→revert, V2 blocking, V3 malformed→fail). STOP. **Never merge/tag.**
 
-- [ ] **TV — After human verification: `/verification-done`**
+- [x] **TV — After human verification: `/verification-done`**
   - Record §4b results + the §4c 4-question evidence summary in `REPORT.md` (same PR). On pass → `/review-pr` → owner merges.
