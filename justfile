@@ -77,6 +77,4 @@ status-staging:
 
 # Docs freshness / link audit (the docs-audit gate — placeholder until scripted).
 validate-docs:
-    @echo "docs audit: check every durable doc's '> Reviewed:' stamp vs current prod,"
-    @echo "and that internal links resolve. (Scripted gate is a follow-up — tracked in BACKLOG.)"
-    @grep -rL "> \*\*Reviewed:\*\*" docs --include="*.md" 2>/dev/null | sed 's/^/  · no Reviewed stamp: /' || true
+    @bash scripts/validate-docs.sh

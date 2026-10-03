@@ -6,7 +6,7 @@
 
 This is the standing prompt handed to the external **QA-Verify** agent (Google Antigravity) at each release. It is intentionally **version-agnostic** so it does not need to be rewritten every cycle — only the per-release placeholders change.
 
-Per the [AI_COLLABORATION_FRAMEWORK](../../AI_COLLABORATION_FRAMEWORK.md), QA-Verify is the second phase of the Quality Assurance role and is driven by **Google Antigravity**; the **Developer Agent** is **Kiro Web** (the human + Kiro), who owns all code, PRs, and the release workflow.
+Per the [collaboration guardrails](../../.kiro/steering/collaboration-guardrails.md) (§2), QA-Verify is a sub-mode of the **Executor** role (primary tool: Antigravity IDE); the **Operator** owns specs, review, and the release workflow, and the **Human owner** is the sole merge/release authority. The tool→role mapping is the single source for which tool plays each role.
 
 **To use it each release:**
 
@@ -86,7 +86,7 @@ Copy everything inside the block, substitute the `{PLACEHOLDERS}`, and paste int
 
 ```text
 ROLE: You are the QA-Verify agent for the Saranidhi project (Panchapakshi / Sara Kalai
-breath-timing Flutter web app). Per the AI_COLLABORATION_FRAMEWORK, QA-Verify OWNS the
+breath-timing Flutter web app). Per the collaboration guardrails, QA-Verify OWNS the
 verification gate: you execute the smoke test on the DEPLOYED build, record results, and
 log bugs with root-cause analysis. You DO NOT edit source code, and you DO NOT merge or tag.
 

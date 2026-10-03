@@ -2,9 +2,9 @@
 
 # Saranidhi — Documentation Index
 
-All project documentation, grouped by context. See the root
-[`AI_COLLABORATION_FRAMEWORK.md`](../AI_COLLABORATION_FRAMEWORK.md) for the AI
-team operating model that ties these together.
+All project documentation, grouped by context. The AI team operating model lives in
+[`dev-workflow.md`](process/dev-workflow.md) + [`collaboration-guardrails.md`](../.kiro/steering/collaboration-guardrails.md)
+(the saranidhi-only doctrine flows in [`doctrine-flows.md`](process/doctrine-flows.md)).
 
 ---
 

@@ -174,7 +174,7 @@ Feature branch → PR → main (staging) → release PR → prod (production)
 5. `/review-pr` (gate) after preview/CI pass → **owner merges** → `/sprint-done` → auto-deploys to [staging](https://saranidhi-staging.vercel.app)
 6. `/release-start` → smoke test → `/release-finish` (PR `main` → `prod`) → [production](https://saranidhi.vercel.app) → `/release-update`
 
-> Protocols, gates, and roles (**Operator** Kiro · **Executor** Antigravity · **Human** owner): [docs/process/dev-workflow.md](docs/process/dev-workflow.md), [AI_COLLABORATION_FRAMEWORK.md](AI_COLLABORATION_FRAMEWORK.md), and [docs/process/PROCESS_MIGRATION.md](docs/process/PROCESS_MIGRATION.md). The **owner is the sole merge & release authority.**
+> Protocols, gates, and roles (**Operator** · **Executor** · **Human** owner — tool→role mapping in [`.kiro/steering/collaboration-guardrails.md`](.kiro/steering/collaboration-guardrails.md) §2): [docs/process/dev-workflow.md](docs/process/dev-workflow.md), the saranidhi-only [doctrine flows](docs/process/doctrine-flows.md), and [docs/process/PROCESS_MIGRATION.md](docs/process/PROCESS_MIGRATION.md). The **owner is the sole merge & release authority.**
 
 ---
 
@@ -189,7 +189,7 @@ Quick links:
 - [Sprint Tracker](SPRINT_TRACKER.md) — delivered + in-progress · [Sprint Backlog](BACKLOG.md) — future/candidate work
 - [Dev Workflow](docs/process/dev-workflow.md) — protocols, CI/CD, gates · [Dev Setup](docs/process/dev-setup.md)
 - [Smoke Test History](docs/testing/smoke-test-results.md) · [Testing Plan](docs/testing/testing-plan.md)
-- [AI Collaboration Framework](AI_COLLABORATION_FRAMEWORK.md) — the AI team operating model
+- [Dev Workflow](docs/process/dev-workflow.md) — the AI team operating model (+ [doctrine flows](docs/process/doctrine-flows.md))
 - [Changelog](CHANGELOG.md) — release history
 
 ---

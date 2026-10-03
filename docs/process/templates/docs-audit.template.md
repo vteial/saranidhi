@@ -30,7 +30,7 @@
 | ⬜ | `docs/testing/smoke-test-results.md` | New version row added (✅ PASS, date) | n/a (index) |
 | ⬜ | `CHANGELOG.md` | Release date set (not "Pending") | n/a |
 | ⬜ | Sprint dossier `sprints/sprint-NN-*/README.md` | Links spec → impl → test → PR → release | n/a |
-| ⬜ | `AI_COLLABORATION_FRAMEWORK.md` | Any flow/role change this release | ⬜ |
+| ⬜ | `.kiro/steering/collaboration-guardrails.md` + `docs/process/doctrine-flows.md` | Any role/flow/gate change this release | ⬜ |
 
 > **Stamp rule:** each durable doc carries `> **Reviewed:** vX.Y.Z` near the top. A stamp
 > older than the current prod version is a red flag to resolve in this audit.

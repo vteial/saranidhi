@@ -233,6 +233,21 @@ PRs 1–4 encoded a two-role model that pinned tools into the role names ("Opera
   mentions — so attention stays on the product, not on tooling. **Future convergence:** lift
   the §2 mapping block into the personal cetana control plane so every project shares it.
 
+## Addendum — 2026-10-03: self-containment + framework retirement (PR 6)
+
+> **Last verified:** 2026-10-03 (v1.13.0-web).
+
+- **Self-containment is now the governing principle** (`collaboration-guardrails.md` §0):
+  saranidhi vendors in the best firm/outside ideas and **owns the copy**; it never depends on
+  an external repo (`../cetana-labs`, …) at runtime. cetana-labs & nexus-pulse are cited as
+  **provenance / live proof**, not a dependency.
+- **`AI_COLLABORATION_FRAMEWORK.md` retired** → a redirect stub. Its universal lifecycle was
+  duplicated/stale against `dev-workflow.md` + guardrails; its saranidhi-only **Flows 1 & 2**
+  (Knowledge Capture + CONF Resolution) were extracted to `docs/process/doctrine-flows.md`
+  (owned here). The stub is kept (not `git rm`) so inbound links + audit trail survive.
+- **Self-cleanup is a gate:** `just validate-docs` (→ `scripts/validate-docs.sh`) now **fails**
+  on an external-repo pointer, and flags stale `Reviewed:` stamps + orphaned process docs.
+
 ---
 
 [← Back to Root](../../README.md)

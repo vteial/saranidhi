@@ -12,10 +12,11 @@
 > `/sprint-finish`, `/delegate`. Full map + rationale:
 > [`PROCESS_MIGRATION.md`](PROCESS_MIGRATION.md).
 
-> **See also:** [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
-> — the AI team collaboration model (roles, handoffs, release lifecycle, and
-> CI/merge gates) that this workflow operates within. When a protocol or gate
-> changes, update **both** docs in the same PR so they never drift.
+> **See also:** [`collaboration-guardrails.md`](../../.kiro/steering/collaboration-guardrails.md)
+> — the terse must-obey doctrine (roles, authority, tool→role mapping, gates) this
+> workflow operates within; and [`doctrine-flows.md`](doctrine-flows.md) — the saranidhi-only
+> Knowledge Capture + CONF Resolution flows. When a protocol or gate changes, update the
+> relevant doc(s) in the same PR so they never drift.
 >
 > **Environment / ops DX** (`just setup-local · env-doctor · validate-local ·
 > start-local · stop-local · status-local · status-staging · validate-docs`) lives
@@ -281,7 +282,7 @@ Prepares the smoke test execution.
    `<preview-url>?x-vercel-protection-bypass=<secret>&x-vercel-set-bypass-cookie=true`
    This lets the automated smoke run reach the release-branch preview without a human clicking through SSO.
    - **Fully pre-fill the QA-Verify prompt at `/release-start` — no manual steps left for the owner.** The preview URL is deterministic (standard Vercel format `saranidhi-git-<branch-slug>-eialarasus-projects.vercel.app`; `release/vX.Y.Z` → slug `release-vXYZ0`, dots dropped) and the **release PR number is known the moment the PR is opened** — so Kiro fills BOTH the URL **and** the PR number into `qa-verify-prompt.md` at `/release-start`. The owner's handoff to Antigravity is then a **one-liner pointing at the filled prompt file** — never "grab the URL" or "fill the PR #". (Established v1.9.0; the PR-# auto-fill added after v1.10.0.)
-6. **User (or QA-Verify) executes the smoke test on the PR's Vercel _preview_ deployment** (the `vercel[bot]` comment on the PR) — **NOT** staging. Staging (`saranidhi-staging.vercel.app`) deploys from `main`, so the release branch's version bump + changes are not on staging until the PR is merged; the pre-merge gate must run on the preview, which is built from the release-branch head and correctly shows the new version. *(This matches the release-lifecycle in [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md) §2.1 — "QA-Verify on release-branch preview".)*
+6. **User (or QA-Verify) executes the smoke test on the PR's Vercel _preview_ deployment** (the `vercel[bot]` comment on the PR) — **NOT** staging. Staging (`saranidhi-staging.vercel.app`) deploys from `main`, so the release branch's version bump + changes are not on staging until the PR is merged; the pre-merge gate must run on the preview, which is built from the release-branch head and correctly shows the new version. *(See the `/release-start` → `/release-finish` → `/release-update` lifecycle in this doc — "QA-Verify on release-branch preview".)*
 7. User commits results (Pass/Fail + Notes) to the same branch
 8. User reviews and merges PR → smoke test results + version bump now on `main` (staging then also reflects the new version as a post-merge confirmation)
 
