@@ -7,14 +7,29 @@ inclusion: always
 > Auto-loads into every session. This file holds the **process doctrine** — how we
 > work, who has authority, and the non-negotiable gates. For **code/architecture**
 > rules see [`saranidhi-spec.md`](./saranidhi-spec.md); for product, `.kiro/product.md`.
-> The full narrative lives in [`AI_COLLABORATION_FRAMEWORK.md`](../../AI_COLLABORATION_FRAMEWORK.md)
-> and [`docs/process/dev-workflow.md`](../../docs/process/dev-workflow.md) — this is the terse must-obey summary.
+> The step-by-step workflow lives in [`docs/process/dev-workflow.md`](../../docs/process/dev-workflow.md);
+> the saranidhi-only doctrine flows (Knowledge Capture + CONF Resolution) in
+> [`docs/process/doctrine-flows.md`](../../docs/process/doctrine-flows.md) — this is the terse must-obey summary.
 > **Vocabulary note (cetana-labs family, adopted 2026-10-03 — see
 > [`docs/process/PROCESS_MIGRATION.md`](../../docs/process/PROCESS_MIGRATION.md)).**
-> Roles are **Operator** (Kiro) · **Executor** (Antigravity) · **Human** (owner).
+> Roles are **Operator** · **Executor** · **Human** (owner); which tool plays each is in §2.
 > Lifecycle commands are `/plan-start · /plan-done · /sprint-start · /spec-run ·
 > /verification-done · /review-pr · /sprint-done · /sprint-update · /release-*`.
 > This is firm-wide so one process carries across every project.
+
+## 0. Self-containment (the governing principle)
+
+- **Saranidhi is self-contained.** It runs its own process, in its own repo. It **adapts** the
+  best ideas from the firm (**cetana-labs** LAB-000, **nexus-pulse** LAB-003) and the outside
+  world — but **vendors them in**: copy, adapt to this stack, **own the copy**, and cite the
+  source as **provenance only**.
+- **Never a runtime dependency on an external repo.** No doc, link, or instruction may point at
+  `../cetana-labs` (or any other project path) as the operative source — an Executor's machine
+  may not even have it. External repos are cited as inspiration/proof, never leaned on.
+- **Self-clean on the go.** Outdated/duplicated docs are a defect: `just validate-docs` fails on
+  stale `> Reviewed:` stamps, external-repo pointers, and orphaned docs, so cleanup is a gate,
+  not a good intention. cetana-labs & nexus-pulse are the live reference implementations of this
+  methodology — the proof it works, not a dependency saranidhi reads at runtime.
 
 ## 1. Authority — the single most important rule
 
