@@ -76,3 +76,12 @@ Run on the deployed PR preview (Vercel) and/or local web build:
 - **V1 — <happy path>:** <exact steps a human clicks + expected result>.
 - **VT — Tamil mode:** switch to Tamil; the new UI renders in pure Tamil script, no English leak (RT).
 - **VQ — gates:** `just validate-local` green; coverage ≥ 19%; integration gate green (RQ).
+
+## 4c. Evidence summary (verification-first — the 4 questions)
+`/verification-done` records the evidence grouped so a reviewer decides WITHOUT reconstructing
+the verification. Answer each; tag every result with the **build + config** it came from
+(a result must say which commit/preview it applies to, so review stays cheap):
+- **What am I accepting?** <the capability + the EARS criteria it satisfies>
+- **What could it affect?** <blast radius: features/providers/DB migration/l10n touched; the §2 "unchanged" behaviors>
+- **Why should I believe it works?** <the executable evidence: `validate-local` result, golden-fixture reconcile if calc-touching, the V1../VT/VQ outcomes — each with build/config>
+- **What remains unresolved?** <anything not demonstrated — a deferred edge, an unavailable config, an ambiguous requirement raised as an explicit question. A missing result stays visible as missing, never explained away.>

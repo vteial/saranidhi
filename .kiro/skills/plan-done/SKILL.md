@@ -45,9 +45,13 @@ merged to `main` as a docs PR**. This merge is the **merge-first rule**: once th
 - The **owner merges** (Operator never merges). After merge, `.kiro/specs/<id>/` is on `main`.
 - Confirm: "Spec `<id>` is ready to merge in PR #NN. After you merge, kick off: `/spec-run <id>`."
 
+### 4. Capture decisions (prompt, never auto-run)
+- If the session held **genuine decisions** (a choice between options, a direction set, a trade-off resolved), **prompt** (do not auto-run) `/brainstorm-save` → appends a curated entry to `docs/governance/DECISION-JOURNAL.md`. Pure drafting with no decision ⇒ skip. Curation stays human-controlled (auto-running every session pollutes the journal).
+
 ## Rules
 - **Operator / Kiro Web only** — the output is a Spec PR, not code.
 - **Merge-first is the point** — the Spec must reach `main` here. Don't hand off to `/spec-run` while it's unmerged.
 - **The Spec must be self-describing before merge** (Execution header + §0 + EARS DoD incl. RT/RC/RQ).
 - **Operator NEVER merges** — opens the PR; the owner merges.
+- **Prompt, don't auto-run** `/brainstorm-save` — curation is human-controlled.
 - **State-guard:** nothing-planned ⇒ HOLD; already-merged ⇒ skip+continue.

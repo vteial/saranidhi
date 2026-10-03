@@ -53,6 +53,12 @@ IN VERIFICATION  ⇄  owner runs the plan; reports findings; Executor fixes on t
   - **Iterations:** <n> (fixups: <shas>)
   - **Verdict:** PASS — human functional verification complete.
   - **Verified by:** <name> · **Surface:** Executor (Antigravity)
+
+  #### Evidence summary (the 4 questions — see requirements §4c), each tagged with build/config
+  - **What am I accepting?** <capability + EARS criteria satisfied>
+  - **What could it affect?** <blast radius; the §2 "unchanged" behaviors>
+  - **Why believe it works?** <executable evidence: validate-local + golden-fixture (if calc) + V1../VT/VQ — each with the commit/preview it ran against>
+  - **What remains unresolved?** <deferred/undemonstrated items, raised explicitly — never explained away>
   ```
 
 ### 4. Commit to the SAME PR (Single-PR rule)

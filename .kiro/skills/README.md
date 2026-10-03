@@ -16,6 +16,7 @@ contract for one slash command. Vocabulary + roles are defined in
 | :--- | :--- | :--- |
 | `plan-start` | Kiro Web | Operator — open brainstorm/Scope |
 | `plan-done` | Kiro Web | Operator — finalize + **merge** the Spec (merge-first) |
+| `brainstorm-save` | Kiro Web | Operator — curate session decisions → Decision Journal (prompted at `/plan-done`) |
 | `sprint-start` | Kiro Web | Operator — open the sprint container |
 | `spec-run` | Antigravity | Executor — build, open PR, STOP |
 | `verification-done` | Antigravity | Executor — record human verify, STOP |
