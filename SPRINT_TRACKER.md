@@ -41,7 +41,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 45 | v1.12.1 fast-follow — Practice-Sync polish (onboarding import entry point + refresh-after-restore + export-filename prefix) | **v1.12.1** | ✅ 🚀 (PR #244) |
 | 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
 | 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅🚀 Shipped (PR #260 · prod #267 · tag v1.13.0-web) |
-| — | Golden-Fixture Correctness Gate (`TSK-golden-01`) | *internal* | 👀 In Review |
+| — | Golden-Fixture Correctness Gate (`TSK-golden-01`) | *internal* | ✅ Done (PR #280) |
 | 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1159,7 +1159,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Quality Gate: Golden-Fixture Correctness Gate (`TSK-golden-01`) — 👀 In Review
+## Quality Gate: Golden-Fixture Correctness Gate (`TSK-golden-01`) — ✅ Done (PR #280, merged 2026-10-03)
 
 > Path: `.kiro/specs/golden-fixture-gate/` · Spec ID: `golden-fixture-gate` · Backlog: `TSK-golden-01`
 > Frozen correctness gate over the astro-engines (`lib/features/astro_engine/domain/`).
