@@ -1,3 +1,6 @@
+<!-- Canonical path: ~/dev-home/personal/saranidhi/docs/reference/implementation-roadmap.md · Last verified: 2026-10-03 (v1.13.0-web) -->
+> **Reviewed:** v1.13.0-web
+
 # Saranidhi Implementation Roadmap: Chronobiology & Somatic Integration
 
 This document outlines the recommended implementation order and dependency sequence for incorporating **Terminology Standard**, **Numerology/Sankhya Sastra**, **Action Windows**, **Prasanam Oracle**, and **Advanced Somatic Mastery** (realignment and analytics) into the Saranidhi app.
