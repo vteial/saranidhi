@@ -27,6 +27,7 @@ All project documentation, grouped by context. The AI team operating model lives
 | [BACKLOG.md](../BACKLOG.md) | Candidate/future work, epics, open decisions, ideas |
 | [project-valuation-report.md](process/project-valuation-report.md) | Time investment, sprint delivery, hours |
 | [project-evaluation.md](process/project-evaluation.md) | Feature scorecard, quality metrics, defect log |
+| [governance/DECISION-JOURNAL.md](governance/DECISION-JOURNAL.md) | **The *why*** — curated decision narratives (problem → options → decision → outcome), append-only |
 
 ## 📦 product/ — what we're building
 | Doc | Purpose |
