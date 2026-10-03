@@ -34,12 +34,46 @@ fi
 
 echo
 echo "Gate 2+3 — flutter test --coverage (>= ${COVERAGE_MIN}%):"
-if "$FLUTTER" test --coverage >/tmp/sarani_test.log 2>&1; then
-  ok "tests green"
+# The 4 known CloudKit macOS failures are the ACCEPTED baseline (ICloudBackupRepository +
+# CloudKitSyncService can't authenticate off an Apple platform). The gate must tell "4 known"
+# apart from "4 known + a real regression": we assert the failing-test NAME SET is EXACTLY these.
+KNOWN_CLOUDKIT_FAILURES='ICloudBackupRepository signIn returns false on non-Apple platform
+ICloudBackupRepository isAuthenticated returns false on non-Apple platform
+ICloudBackupRepository deleteBackup fails on non-Apple platform
+ICloudBackupRepository isSupported is false on test platform'
+
+# --machine emits one JSON object per line; collect the names of tests that errored/failed.
+"$FLUTTER" test --coverage --machine >/tmp/sarani_test.json 2>/tmp/sarani_test.err
+# testID→name from testStart events; failing testIDs from testDone events with result != success.
+actual_failures="$(
+  awk '
+    /"type":"testStart"/ {
+      id=""; name="";
+      if (match($0, /"id":[0-9]+/))        { id=substr($0,RSTART+5,RLENGTH-5) }
+      if (match($0, /"name":"[^"]*"/))     { name=substr($0,RSTART+8,RLENGTH-9) }
+      if (id!="") names[id]=name
+    }
+    /"type":"testDone"/ {
+      id=""; res="";
+      if (match($0, /"testID":[0-9]+/))        { id=substr($0,RSTART+9,RLENGTH-9) }
+      if (match($0, /"result":"[^"]*"/))       { res=substr($0,RSTART+10,RLENGTH-11) }
+      if (id!="" && res!="success" && res!="") print names[id]
+    }
+  ' /tmp/sarani_test.json | sort -u
+)"
+known_sorted="$(printf '%s\n' "$KNOWN_CLOUDKIT_FAILURES" | sort -u)"
+
+if [ -z "$actual_failures" ]; then
+  ok "tests green (0 failures)"
+elif [ "$actual_failures" = "$known_sorted" ]; then
+  ok "tests green except the 4 known CloudKit macOS failures (exact baseline — accepted)"
 else
-  # The 4 known CloudKit macOS failures are the accepted baseline; surface the tail.
-  bad "flutter test not fully green (expected baseline = green except 4 CloudKit macOS):"
-  grep -E "Some tests failed|[0-9]+ (passed|failed)" /tmp/sarani_test.log | tail -5 | sed 's/^/      /'
+  bad "test failures differ from the accepted 4-CloudKit baseline — REGRESSION:"
+  # Show what's unexpected (present in actual, not in known) and any missing-known drift.
+  comm -23 <(printf '%s\n' "$actual_failures") <(printf '%s\n' "$known_sorted") \
+    | sed 's/^/      + unexpected failure: /'
+  comm -13 <(printf '%s\n' "$actual_failures") <(printf '%s\n' "$known_sorted") \
+    | sed 's/^/      - known-baseline test no longer failing (update the list?): /'
 fi
 if [ -f coverage/lcov.info ]; then
   # LF = lines found, LH = lines hit; coverage = 100*LH/LF.
