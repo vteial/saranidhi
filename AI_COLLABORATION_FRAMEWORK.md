@@ -3,13 +3,20 @@
 > **Reviewed:** v1.13.0-web · **Next review:** every release (docs-audit gate) + whenever a protocol/gate/flow changes.
 
 > **Vocabulary (cetana-labs family, adopted 2026-10-03 — [`PROCESS_MIGRATION.md`](docs/process/PROCESS_MIGRATION.md)).**
-> The three surfaces below map to the firm-wide roles: **Operator** = Kiro (plan / Spec /
-> review / govern — never merges) · **Executor** = Antigravity (`/spec-run` build + QA-Verify
-> — opens PR, STOP) · **Human** = owner (two gates, sole merge + tag). Lifecycle commands:
-> `/plan-start · /plan-done · /sprint-start · /spec-run · /verification-done · /review-pr ·
-> /sprint-done · /sprint-update · /release-*`, with **merge-first** Kiro Specs
-> (`.kiro/specs/<id>/`) and **phase-aware state guards**. The role *descriptions* here are
-> unchanged in substance — only the names converge for cross-project muscle memory.
+> The process is written in **roles**: **Operator** (plan / Spec / review / govern /
+> coordinate — never merges) · **Executor** (`/spec-run` build + QA-Verify — opens PR, STOP) ·
+> **Human** = owner (two gates, sole merge + tag). **Which TOOL plays each role is defined in
+> ONE place** — the tool→role mapping table in
+> [`collaboration-guardrails.md`](.kiro/steering/collaboration-guardrails.md) §2 (Operator
+> primary = **Kiro Crew**, secondary = Kiro Web; Executor primary = **Antigravity IDE**,
+> secondary/on-demand = Kiro IDE, Kiro Web & Google Jules for special-case / autonomous runs).
+> Lifecycle commands: `/plan-start · /plan-done · /sprint-start · /spec-run ·
+> /verification-done · /review-pr · /sprint-done · /sprint-update · /release-*`, with
+> **merge-first** Kiro Specs (`.kiro/specs/<id>/`) and **phase-aware state guards**.
+>
+> **Note on §1 below:** the persona/seat descriptions (BA/Architect/QA-Design, "Developer =
+> Kiro Web") are the *older* seat model, kept for narrative context. Where a specific tool is
+> named there, the **§2 mapping is authoritative** — roles are stable, tool ranks live only in §2.
 
 This document describes the multi-agent operating model used to develop the
 **Saranidhi** application: how a single human lead orchestrates specialized AI

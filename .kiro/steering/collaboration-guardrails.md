@@ -18,7 +18,7 @@ inclusion: always
 
 ## 1. Authority — the single most important rule
 
-- **The Human owner is the SOLE merge & release authority.** The Operator (Kiro) NEVER
+- **The Human owner is the SOLE merge & release authority.** The Operator NEVER
   merges to `main`/`prod`, NEVER runs `git merge`, NEVER pushes to `main`/`prod`, and
   NEVER creates tags or GitHub Releases. The Operator pushes branches and **opens PRs** only.
 - **Two Human gates** per unit of work: (1) approve the **Spec merge** (`/plan-done`,
@@ -28,15 +28,31 @@ inclusion: always
 
 ## 2. The three surfaces (roles & division of labor)
 
-- **Operator — Kiro (Web/IDE, this agent + owner):** brainstorm, plan, author **Kiro
-  Specs** (`.kiro/specs/<id>/`), PR **review**, governance, release workflow, corpus/CONF
-  work. **Kiro Web CANNOT run `flutter test` / `flutter analyze` locally** — so it must
-  never author-and-ship correctness-critical Dart on CI alone. Never merges; STOP-and-holds.
-- **Executor — Antigravity (owner's Mac):** `/spec-run <id>` → implement on the `feat/`
-  branch, run `flutter analyze`+`test` GREEN before the PR, open the PR, emit the Human
-  Verification Plan, **STOP**; plus QA-Verify (smoke tests on the deployed build, records
-  results, logs bugs; never edits source). Both are Executor sub-modes.
+- **Operator** — brainstorm, plan, author **Kiro Specs** (`.kiro/specs/<id>/`), coordinate
+  delegation, PR **review**, governance, release workflow, corpus/CONF work. Never merges;
+  STOP-and-holds. (The Operator surface **cannot run `flutter test` / `flutter analyze`
+  locally** — so it never author-and-ships correctness-critical Dart on CI alone; that is
+  what the Executor is for.)
+- **Executor** — `/spec-run <id>` → implement on the branch, run `flutter analyze`+`test`
+  GREEN before the PR, open the PR, emit the Human Verification Plan, **STOP**; plus
+  QA-Verify (smoke tests on the deployed build, records results, logs bugs; never edits
+  source). Both are Executor sub-modes. Never merges/tags.
 - **Human — the owner:** sets direction, both gates, sole merge + tag, doctrinal adjudicator.
+
+### Tool → role mapping (the ONE place tools are named)
+The doctrine is written in **roles** (Operator / Executor); which TOOL plays a role lives
+only here, so re-ranking or swapping a tool is a one-line edit, not a hunt across the docs.
+
+| Role | Primary | Secondary / on-demand |
+| :--- | :--- | :--- |
+| **Operator** (orchestrator/coordinator) | **Kiro Crew** | **Kiro Web** |
+| **Executor** (build + verify) | **Antigravity IDE** | **Kiro IDE**; **Kiro Web** & **Google Jules** for explicitly-flagged special-case / autonomous runs |
+
+- **Kiro Crew** is the orchestrator/coordinator — the primary Operator: it plans, authors Specs, delegates to Executors, reviews, and runs the lifecycle. It never merges/tags.
+- **Antigravity IDE** is the primary Executor (local Flutter toolchain, green baseline, interactive visual QA).
+- **Kiro Web** is normally the backup Operator; it acts as Executor **only** for an explicitly-flagged special-case / autonomous run — not for routine builds.
+- **Google Jules** is an **on-demand Executor for special cases (scope TBD)** — reinstated 2026-10-03 (previously paused; the owner holds the lineage decision). Prefer the primaries; reach for a secondary deliberately, not by default.
+- Rule of thumb: **experimenting with tools is not the goal** — the roles are stable, the tool ranks are a convenience. Default to Primary for each role.
 
 ## 3. Correctness-critical code → Spec → /spec-run → /review-pr
 
@@ -128,7 +144,9 @@ date, smoke-index row, bump the `> Reviewed:` stamp on all durable docs, flip tr
 
 ## 9. Delegation
 
-- Coding delegation goes to the **Executor (Antigravity)** via `/spec-run <id>` against a
-  merge-first Kiro Spec — never a loose prose brief.
-- Google **Jules is retired** for this project (hangs + SDK mismatch; can't do interactive
-  visual QA). Do not reopen.
+- Coding delegation goes to the **Executor** (primary: Antigravity IDE — see the §2 tool→role
+  mapping) via `/spec-run <id>` against a merge-first Kiro Spec — never a loose prose brief.
+- **Kiro Web** and **Google Jules** are **on-demand Executors for special-case / autonomous
+  runs** (scope TBD) — reach for them deliberately, not by default; prefer the primary. Jules
+  was previously paused for cause (hangs + Dart/Flutter SDK mismatch; no interactive visual QA),
+  so weigh those limits when flagging a run for it. The owner holds the lineage decision.

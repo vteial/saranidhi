@@ -208,4 +208,31 @@ the new rails (dogfood).
 
 ---
 
+## Addendum — 2026-10-03: roles decoupled from tools (PR 5)
+
+> **Last verified:** 2026-10-03 (v1.13.0-web).
+
+PRs 1–4 encoded a two-role model that pinned tools into the role names ("Operator = Kiro",
+"Executor = Antigravity") and recorded Google Jules as *retired*. The owner refined the model:
+**roles are the stable abstraction; the tools that play them live in ONE mapping table.**
+
+- **Roles (stable):** Operator · Executor · Human. The whole doctrine is written in these words.
+- **Tool → role mapping (the single source — `collaboration-guardrails.md` §2):**
+
+  | Role | Primary | Secondary / on-demand |
+  | :--- | :--- | :--- |
+  | Operator (orchestrator/coordinator) | **Kiro Crew** | Kiro Web |
+  | Executor (build + verify) | **Antigravity IDE** | Kiro IDE; Kiro Web & Google Jules (special-case / autonomous runs) |
+
+- **Kiro Crew** is now the primary Operator (orchestrator/coordinator) — it was absent before.
+- **Google Jules** is **reinstated as an on-demand Executor** (special cases, scope TBD),
+  superseding the earlier "retired, do not reopen" decision in `BACKLOG.md` (that record is
+  **kept as history**, marked superseded — audit integrity). Its prior for-cause limits
+  (hangs, SDK mismatch, no interactive visual QA) are retained as caveats on the mapping.
+- **Why:** re-ranking or swapping a tool is now a one-line edit in §2, not a hunt across ~118
+  mentions — so attention stays on the product, not on tooling. **Future convergence:** lift
+  the §2 mapping block into the personal cetana control plane so every project shares it.
+
+---
+
 [← Back to Root](../../README.md)

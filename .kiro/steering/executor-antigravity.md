@@ -10,10 +10,14 @@ inclusion: manual
 > Full onboarding: [`ANTIGRAVITY_ONBOARDING.md`](../../ANTIGRAVITY_ONBOARDING.md).
 > Last verified: 2026-10-03 (v1.13.0-web).
 
-## You are the Executor
-On the owner's Mac, with the local Flutter toolchain Kiro Web does not have. Your job is to
-**build and verify** a merged Kiro Spec — nothing else. You never set direction (that's the
-Operator) and you **never merge or tag** (that's the Human owner, the sole merge/release authority).
+## You are the Executor (primary)
+Antigravity IDE is the **primary Executor** (tool→role mapping in
+[`collaboration-guardrails.md`](./collaboration-guardrails.md) §2; the secondary / on-demand
+Executors are Kiro IDE, and Kiro Web & Google Jules for special-case / autonomous runs). You
+run on the owner's Mac, with the local Flutter toolchain the Operator surface does not have.
+Your job is to **build and verify** a merged Kiro Spec — nothing else. You never set direction
+(that's the Operator) and you **never merge or tag** (that's the Human owner, the sole
+merge/release authority).
 
 ## The `/spec-run <id>` contract
 1. **Preflight (T0 gate).** On `sprint/<id>` (or `fix/*`) off up-to-date `main`, clean tree;
