@@ -52,18 +52,25 @@ inclusion: auto
 
 ## 5. Sprint Protocols
 
-> **Current protocol names** (`{domain}-{action}`; the process doctrine lives in
+> **Current protocol names** (`{phase|domain}-{action}`; the process doctrine lives in
 > [`collaboration-guardrails.md`](./collaboration-guardrails.md)):
-> `/plan` · `/sprint-start` · `/sprint-finish` · `/sprint-update` · `/release-start` ·
-> `/release-finish` · `/release-update`. The old names (`/start-sprint`, `/finish-sprint`,
-> `/project-update`, `/release-complete`) are **deprecated**.
+> `/plan-start` · `/plan-done` · `/sprint-start` · `/spec-run` · `/verification-done` ·
+> `/review-pr` · `/sprint-done` · `/sprint-update` · `/release-start` ·
+> `/release-finish` · `/release-update`. The old names (`/plan`, `/sprint-finish`,
+> `/delegate`, `/start-sprint`, `/finish-sprint`, `/project-update`, `/release-complete`)
+> are **deprecated**. Full mapping: [`docs/process/PROCESS_MIGRATION.md`](../../docs/process/PROCESS_MIGRATION.md) §4.
 
-- `/sprint-start` — branch from main, flip tracker to "In Progress"; for correctness-critical
-  sprints Kiro Web authors the dossier spec (handed to Antigravity to implement).
-- `/sprint-finish` — push final commit, open PR, flip tracker to "Complete (PR #N)". **Kiro
-  never merges — owner merges.**
+- `/plan-done` — authors the Kiro Spec (`.kiro/specs/<id>/`) and **merges it to `main`**
+  (merge-first) so `/spec-run` is a clean one-liner; for correctness-critical sprints the
+  Operator (Kiro) authors the EARS-DoD spec, the Executor (Antigravity) implements it.
+- `/sprint-start` — open the sprint container; branch from main, flip tracker to "In Progress".
+- `/spec-run <id>` (Executor) — implement on `feat/`, run local suite GREEN, open PR,
+  emit Human Verification Plan, **STOP**. Never merges.
+- `/review-pr <PR>` — the human gate: CI + EARS DoD per-criterion + verification record.
+  **Kiro never merges — owner merges.**
+- `/sprint-done` — flip tracker to "Complete (PR #N)".
 - `/sprint-update` — AFTER merge, on a separate `docs/` branch (valuation, evaluation,
-  testing-plan; User Guide / calc-methodology for capability changes).
+  testing-plan, User Guide / calc-methodology for capability changes, **and root STATUS.md**).
 - Valuation hours: AI-estimated time + 20% buffer.
 
 ## 6. Deployment

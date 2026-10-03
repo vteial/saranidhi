@@ -167,14 +167,14 @@ flutter run
 Feature branch → PR → main (staging) → release PR → prod (production)
 ```
 
-1. `/plan` → brainstorm scope; `/sprint-start` branches from `main`
-2. Develop with TDD (unit tests for domain logic)
-3. Run validation: `dart analyze && flutter test`
-4. Create PR targeting `main` — Vercel creates a preview URL
-5. `/sprint-finish` after preview/CI pass → **owner merges** → auto-deploys to [staging](https://saranidhi-staging.vercel.app)
+1. `/plan-start` → brainstorm scope; `/plan-done` authors + **merges** the Kiro Spec (`.kiro/specs/<id>/`); `/sprint-start` branches from `main`
+2. `/spec-run <id>` (Executor = Antigravity) — develop with TDD (unit tests for domain logic)
+3. Run validation: `dart analyze && flutter test` (local GREEN before the PR)
+4. Executor opens PR targeting `main` — Vercel creates a preview URL; `/verification-done` records QA-Verify
+5. `/review-pr` (gate) after preview/CI pass → **owner merges** → `/sprint-done` → auto-deploys to [staging](https://saranidhi-staging.vercel.app)
 6. `/release-start` → smoke test → `/release-finish` (PR `main` → `prod`) → [production](https://saranidhi.vercel.app) → `/release-update`
 
-> Protocols, gates, and roles: [docs/process/dev-workflow.md](docs/process/dev-workflow.md) and [AI_COLLABORATION_FRAMEWORK.md](AI_COLLABORATION_FRAMEWORK.md). The **owner is the sole merge & release authority.**
+> Protocols, gates, and roles (**Operator** Kiro · **Executor** Antigravity · **Human** owner): [docs/process/dev-workflow.md](docs/process/dev-workflow.md), [AI_COLLABORATION_FRAMEWORK.md](AI_COLLABORATION_FRAMEWORK.md), and [docs/process/PROCESS_MIGRATION.md](docs/process/PROCESS_MIGRATION.md). The **owner is the sole merge & release authority.**
 
 ---
 
