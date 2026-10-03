@@ -16,12 +16,13 @@ A local-first, zero-backend Flutter app for daily spiritual guidance — Sara Ka
 
 ### 2. Latest Deliveries & Business Wins
 - **v1.13.0-web shipped** — Practice Sync Phase 1: opt-in (default OFF), on-demand cross-device sync via a swappable `SyncTransport` → self-hosted PocketBase. Owner-scoped, append-only/idempotent, offline-first preserved — the first release to cross the network boundary (security re-review passed).
-- **Process converged to the cetana-labs family (PRJ-001)**: Operator/Executor/Human roles, merge-first Kiro Specs, `just` DX surface, cetana-style `.kiro/skills/`, and this STATUS.md as the portfolio-dashboard contract.
-- **~47 sprints · ~272 PRs · ~157.5 engineering hours.**
+- **Process converged to the cetana-labs family (PRJ-001)**: Operator/Executor/Human roles, merge-first Kiro Specs, `just` DX surface, cetana-style `.kiro/skills/`, Decision Journal, and this STATUS.md as the portfolio-dashboard contract.
+- **Golden-Fixture Correctness Gate shipped (`TSK-golden-01`, PR #280)** — the first sprint fully on the new rails: a frozen 37-case fixture CI reconciles fail-closed over the astro engines (Moon longitude, nakshatra/bird, swara, Hora, Tattva, Oracle), converting the prose DoD into an executable, path-independent correctness check.
+- **~47 sprints · ~273 PRs · ~157.5 engineering hours.**
 
 ### 3. Current Focus & Next Milestone
 - **v1.13.1** — graceful sync error messages (no raw `ClientException` in UI) + first-class in-app account sign-up.
-- Then the **golden-fixture CI gate** (calculation-correctness reconcile) as the first sprint on the new rails; Fly.io PocketBase deploy (owner-deferred) and the 7-day Accuracy Calibration behind it.
+- Next quality-gate candidates: AST/architecture-boundary fitness tests; `verify-bundle` deploy check. Fly.io PocketBase deploy (owner-deferred) and the 7-day Accuracy Calibration behind it.
 
 ### 4. Blockers & Risks
 - **Blockers**: None.
