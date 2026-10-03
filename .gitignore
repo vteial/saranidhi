@@ -103,7 +103,12 @@ worknotes/**/*.pdf
 worknotes/sarakalai/telegram/**
 worknotes/sarakalai/youtube/**
 worknotes/panja_pakshi/**
+worknotes/system/**
 
 # Local Dev Infrastructure (PocketBase data volume)
 tool/dev/pb_data/
 **/pb_data/
+
+# Personal cross-repo tooling symlink -> ~/my-works (portfolio dashboard generator).
+# Points outside the repo; a per-machine personal convenience, never committed.
+_my_works

@@ -37,6 +37,15 @@ merges**. Runs on the **Operator** (Kiro Web). The counterpart to `/sprint-start
 ### 4. Synchronize `STATUS.md` (PRJ-001)
 - Update root `STATUS.md`: `Last Updated` = today; `Latest Deliveries & Business Wins` = the closed sprint's achievements; `Current Focus & Next Milestone` = the newly planned goal. Keep the cetana 35-line schema.
 
+### 4.5 Refresh the portfolio dashboard (event-driven)
+- STATUS.md just changed, so regenerate the owner's personal portfolio dashboard **in the same step** — the mutation and the view-refresh stay together so the dashboard can't go stale.
+- Run via the gitignored `_my_works` symlink so the call is an **in-repo relative path** (Saranidhi stays self-contained — it only triggers "refresh"; the generator, in `~/my-works`, is the one that knows the sibling repos' paths):
+  ```bash
+  python3 _my_works/portfolio/generate.py   # reads projects.json -> rewrites site/portfolio/index.html
+  ```
+- **Non-fatal:** if `_my_works` is absent (the symlink is a per-machine personal convenience, never committed) skip with a one-line note — the closeout must not fail because a personal dashboard isn't set up on this machine.
+- This is the authoritative refresh; a low-frequency backstop cron only catches out-of-band manual STATUS edits.
+
 ### 5. Validate & open the closeout PR
 ```bash
 just validate-docs
@@ -53,4 +62,5 @@ gh pr create --base main --head docs/closeout-<SPRINT-NN> --title "docs(governan
 - **Never mark undelivered work as done** — an open PR for a sprint item ⇒ HOLD.
 - Keep `SPRINT_TRACKER.md` + `CHANGELOG.md` + `STATUS.md` in lockstep.
 - STATUS.md edits here feed the owner's personal cetana portfolio dashboard (PRJ-001 row).
+- **Portfolio refresh is event-driven, not timed** (step 4.5): STATUS.md changing is exactly what re-renders the dashboard, via the gitignored `_my_works` symlink (relative in-repo path → self-containment preserved). Non-fatal when the symlink is absent.
 - **State-guard:** redundant ⇒ skip+continue; unmerged-item gate ⇒ alert+HOLD.
