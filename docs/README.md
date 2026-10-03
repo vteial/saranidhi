@@ -1,17 +1,27 @@
 [← Back to Root](../README.md)
 
+> **Reviewed:** v1.13.0-web
+
 # Saranidhi — Documentation Index
 
-All project documentation, grouped by context. See the root
-[`AI_COLLABORATION_FRAMEWORK.md`](../AI_COLLABORATION_FRAMEWORK.md) for the AI
-team operating model that ties these together.
+All project documentation, grouped by context. The AI team operating model lives in
+[`dev-workflow.md`](process/dev-workflow.md) + [`collaboration-guardrails.md`](../.kiro/steering/collaboration-guardrails.md)
+(saranidhi-only doctrine in [`doctrine-flows.md`](process/doctrine-flows.md)).
+
+> **Live vs. historical — read the tree this way:** everything in `process/` · `product/` ·
+> `reference/` · `testing/` · `deployment/` · `research/` and the root ledgers
+> (`SPRINT_TRACKER.md` · `BACKLOG.md` · `CHANGELOG.md` · `STATUS.md`) is **LIVE** — kept current.
+> `process/sprints/**` (completed sprint dossiers) and `testing/releases/**` (shipped release
+> artifacts) are **frozen historical records** — audit integrity, do not edit; the live
+> inventory of what shipped is in `SPRINT_TRACKER.md` + `CHANGELOG.md`.
 
 ---
 
 ## 🛠️ process/ — how we build & ship
 | Doc | Purpose |
 |-----|---------|
-| [dev-workflow.md](process/dev-workflow.md) | Sprint/release protocols (`/plan`, `/sprint-*`, `/release-*`), branching, CI gates, lessons/gotchas |
+| [dev-workflow.md](process/dev-workflow.md) | Sprint/release protocols (`/plan-start` · `/plan-done` · `/sprint-*` · `/spec-run` · `/release-*`), branching, CI gates, lessons/gotchas |
+| [doctrine-flows.md](process/doctrine-flows.md) | Saranidhi-only Knowledge Capture + CONF Resolution flows |
 | [dev-setup.md](process/dev-setup.md) | Local development environment setup |
 | [SPRINT_TRACKER.md](../SPRINT_TRACKER.md) | Completed + in-progress sprints, overview table, Definition of Done |
 | [BACKLOG.md](../BACKLOG.md) | Candidate/future work, epics, open decisions, ideas |
@@ -47,12 +57,14 @@ team operating model that ties these together.
 | [architecture.md](reference/architecture.md) | Technical architecture — engine algorithms, schema, platform, patterns |
 | [security-review.md](reference/security-review.md) | Architecture security assessment, data protection |
 | [third-party-comparison.md](reference/third-party-comparison.md) | Bird-state mapping vs Align27 / Tamil texts |
+| [implementation-roadmap.md](reference/implementation-roadmap.md) | Forward-looking design roadmap — Chronobiology / Somatic / Oracle / numerology sequencing |
 
 ## 🔬 research/ — domain research & engine specs
 Vedic/Sara Kalai methodology, engine specs, and terminology. See
 [research/](research/) — calculation methodology, action windows, Prasanam
-oracle, numerology, advanced somatic mastery, holistic living, implementation
-roadmap, and EN/TA terminology.
+oracle, numerology, advanced somatic mastery, holistic living, and EN/TA
+terminology. *(The forward-looking implementation roadmap moved to
+[reference/implementation-roadmap.md](reference/implementation-roadmap.md).)*
 
 ---
 
