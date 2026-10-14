@@ -1,0 +1,62 @@
+# Saranidhi (PRJ-001) — Agent Entry Map
+
+> Curated map of the canonical, load-bearing docs for any AI agent (Operator,
+> Executor, or a fresh clone) orienting on this repo. Read these FIRST; everything
+> else is detail reachable from them. Adopted from the cetana-labs `llms.txt`
+> convention (LAB-000). Last verified: 2026-10-14.
+
+Saranidhi is a **local-first, zero-backend** Flutter app for Vedic time/alignment
+practice (Panja Pakshi birth-bird + Sara Kalai swara/nostril clock + Prasanam Oracle).
+Correctness-critical calculation engine; privacy-guaranteed; offline-capable.
+Process = the **cetana-labs AIDLC family** rails (Operator plans/reviews, Executor
+builds, Human is sole merge/tag authority).
+
+## Must-read, in order
+
+- AGENTS.md — short must-obey summary; the four load-bearing rules (ICCV, atomic
+  work, verify-before-done, scope-is-a-boundary) + the non-negotiable: owner is
+  sole merge/tag authority.
+- .kiro/steering/collaboration-guardrails.md — PROCESS doctrine: authority (§1),
+  roles & the ONE tool→role mapping (§2), correctness-critical path (§3),
+  work-class routing (§3.1), pre-PR gates (§4), lifecycle protocols (§5),
+  release lifecycle (§6), deploy quota + branch naming (§7–8).
+- .kiro/steering/saranidhi-spec.md — CODE/architecture rules: exclusions,
+  conventions, CI quality gates (2-tier + ≥19% coverage + integration),
+  platform notes.
+- .kiro/steering/executor-antigravity.md — the Executor contract for `/spec-run`.
+- .kiro/steering/test-authoring.md — test-authoring rules.
+
+## Product & requirements
+
+- .kiro/product.md — product requirements.
+- .kiro/structure.md — file structure.
+- .kiro/design.md — architecture detail.
+
+## Lifecycle & governance
+
+- SPRINT_TRACKER.md — committed/in-flight work (per-feature inventory).
+- BACKLOG.md — ideas (not yet committed).
+- CHANGELOG.md — shipped history.
+- STATUS.md — the ≤35-line portfolio-dashboard integration contract (PRJ-001).
+- docs/governance/DECISION-JOURNAL.md — append-only reasoning showcase (why).
+- docs/process/dev-workflow.md — the narrative dev workflow.
+- docs/process/PROCESS_MIGRATION.md — the cetana-family vocabulary migration map.
+
+## Specs
+
+- .kiro/specs/README.md — Spec index + conventions.
+- .kiro/specs/_template/ — the merge-first Kiro Spec scaffold (requirements EARS
+  DoD · design · tasks · REPORT).
+- .kiro/specs/golden-fixture-gate/ — the first delivered Spec (correctness gate
+  reference example).
+
+## Standing gates (never relax)
+
+- Tamil bilingual (EN + pure Tamil script, no transliteration) on every
+  user-facing string.
+- CONF provenance (CONF-nn Sara Kalai / CONF-PP-nn Panja Pakshi) on every
+  doctrinal rule — corpus source material in docs/research/ (sarakalai-workshop-knowledge.md,
+  panja-pakshi-workshop-knowledge.md).
+- Owner is SOLE merge/tag authority; agents open branches + PRs only.
+- `just validate-docs` green (fails on external-repo runtime pointers —
+  self-containment gate).
