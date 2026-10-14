@@ -112,3 +112,6 @@ tool/dev/pb_data/
 # Personal cross-repo tooling symlink -> ~/my-works (portfolio dashboard generator).
 # Points outside the repo; a per-machine personal convenience, never committed.
 _my_works
+
+# KiroCrew CLI live tool state (per-machine, regenerated — never source)
+.kiro/settings/
