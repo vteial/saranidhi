@@ -69,6 +69,27 @@ Oracle/Aruḍam scoring, DB migrations):
    been wrong before); recommends; **owner merges**.
 - Low-risk pure-docs/l10n work may be done directly by the Operator (lead-paired, lighter contract).
 
+### 3.1 Work-class routing — which path a change takes (adopted from cetana-labs AIDLC §4)
+Ceremony scales to a change's **purpose**, not its file path. Every new ask runs this
+test FIRST:
+
+> **The test:** *could a wrong edit here ship a broken behaviour to a user, or to `main`'s
+> automation/engine?* **If yes → sprint deliverable** (full gate: Spec → `/spec-run` →
+> local-green → PR → `/review-pr` → owner merge). **If it is words a human reads → governance/docs**
+> (fast-path: `just validate-docs` + Tamil/CONF eyeball if user-facing strings → branch → PR →
+> owner fast-merge; no EARS Spec, no verification REPORT). **When in doubt, treat it as a
+> sprint deliverable.**
+
+| Class | Example | Path |
+| :--- | :--- | :--- |
+| **Sprint deliverable** (user-facing OR engine/governance-spine) | engine/calc change, a new route, a DB migration, a CI-pillar change, the golden-fixture gate | **FULL gate** (§3) |
+| **Governance / docs** | STATUS/tracker/backlog edits, steering, skills, runbooks, Decision Journal, pure docs | **fast-path** — lead-paired, lighter contract |
+
+**Three invariants never relax on either path:** the owner holds the merge gate · the
+Operator never pushes `main`/`prod` · `just validate-docs` stays green. An *engineering*
+change (alters system behaviour but isn't a user feature — a generator rewrite, a data
+migration) is still a **sprint deliverable** when it touches the governance/engine spine.
+
 > **State guards:** every lifecycle command is phase-aware — redundant/already-done ⇒
 > skip + continue; missing prerequisite or gate ⇒ alert + HOLD. A wrong-order command may
 > skip busywork but can **never** silently bypass a gate.
