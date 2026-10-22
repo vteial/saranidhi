@@ -43,7 +43,8 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅🚀 Shipped (PR #260 · prod #267 · tag v1.13.0-web) |
 | — | Golden-Fixture Correctness Gate (`TSK-golden-01`) | *internal* | ✅ Done (PR #280) |
 | — | Golden-Fixture Gate Hardening — independent-truth + branch coverage (`TSK-golden-02`) | *internal* | ✅ Done (PR #290) |
-| 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
+| — | Practice Sync Auto-on-Open Fast-Follow (`practice-sync-auto-on-open`) | *fast-follow / unreleased* | 👀 In Review |
+| 48+ | Native "Now" surface (next — owner-chosen), Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
 > **Practice Sync polish** patch (feature PR #244 → /sprint-finish #245 → /sprint-update #247 →
@@ -1206,6 +1207,40 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **Branch coverage (R2)** — night-yama tattva, tattva yama2–5, Sushumna aligned/not, Emakandam lockout, 7 hora day-lords + day→night boundary, longitude→nakshatra→bird end-to-end, pre-dawn + late-day swara.
 - [x] **No regression (RQ.3)** — the 37 v1 cases are byte-identical; `lib/` + `test/features/astro_engine/` untouched.
 - [x] **Local green** — `just validate-local` green (analyze clean, tests green except the 4 known CloudKit macOS failures, coverage 42.4%, web build compiles).
+
+---
+
+## Feature: Practice Sync — Auto-on-Open Fast-Follow (`practice-sync-auto-on-open`) — 👀 In Review
+
+> Path: `.kiro/specs/practice-sync-auto-on-open/` · Spec ID: `practice-sync-auto-on-open` · Backlog: Phase-1 fast-follow
+> Promotes the manual Sync-now flow (PocketBase, v1.13.0) to an automatic pull-merge-push cycle
+> on app open and resume from background. Consent-gated on existing opt-in (`enabled == true`)
+> and active session (`isAuthenticated == true`) with zero network traffic when disabled.
+> Debounced (per-session once on cold open + 5-min resume interval) with in-flight guard and
+> silent, non-blocking error containment preserving offline-first startup. Core sync engine,
+> PocketBase transport, owner-ID union-merge, and iCloud path remain completely unchanged.
+
+- [x] T0 — Preflight + seam read (P1–P6; OQ-1/2/3 resolved in REPORT)
+- [x] T1 — The trigger (`PracticeSyncAutoTrigger` wrapper widget mounted in `main.dart` builder)
+- [x] T2 — The gate (`_shouldAutoSync`: enabled && isAuthenticated && !isSyncing; zero traffic when off)
+- [x] T3 — Debounce (`_firedThisSession` per-session once + `kAutoSyncMinInterval = Duration(minutes: 5)`)
+- [x] T4 — Silent / non-blocking (fire-and-forget `syncNow()`; no error dialogs; offline startup unaffected)
+- [x] T5 — Tests (`test/features/cloud_backup/practice_sync_auto_trigger_test.dart`, 16 unit/widget tests)
+- [x] TS — Security re-review (RS.1 — re-run Phase-1 checklist, recorded in REPORT)
+- [x] TL — l10n (RT.1 — N/A, headless trigger widget, no new user-facing strings)
+- [x] TG — Governance lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
+- [x] TQ — Quality gates verification (`just validate-local` green; coverage 42.9% >= 19%)
+- [x] TP — PR + Human Verification Plan (V1–V5 + VS + VQ emitted; waiting for owner review)
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Auto-sync fires on app open (R1)** — opt-in ON + signed in triggers sync without user tap.
+- [x] **Zero traffic when OFF (R1.2, R4.2)** — asserted by unit tests; no transport calls when disabled or unauthenticated.
+- [x] **Debounced (R2)** — per-session once on cold open + 5-min resume interval; no sync storm.
+- [x] **Silent failure (R3)** — offline startup intact, no blocking dialogs/spinners, passive error recording in state.
+- [x] **Core unchanged (R4)** — engine, PocketBase transport, owner-ID union-merge, and iCloud path untouched.
+- [x] **Security re-review (RS.1)** — Phase-1 checklist verified and recorded in REPORT.
+- [x] **RT & RC (standing)** — RT: N/A noted; RC: N/A infrastructure noted.
+- [x] **Local green (RQ)** — `just validate-local` green (analyze clean, tests green except 4 CloudKit macOS baseline, coverage 42.9%, web build compiles).
 
 ---
 
