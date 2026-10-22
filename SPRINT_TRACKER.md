@@ -42,6 +42,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
 | 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅🚀 Shipped (PR #260 · prod #267 · tag v1.13.0-web) |
 | — | Golden-Fixture Correctness Gate (`TSK-golden-01`) | *internal* | ✅ Done (PR #280) |
+| — | Golden-Fixture Gate Hardening — independent-truth + branch coverage (`TSK-golden-02`) | *internal* | 👀 In Review |
 | 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1179,6 +1180,32 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **Controlled regen** — `flutter test tool/regen_golden.dart`, manual only, never in CI.
 - [x] **CI gate** — Tier-1 CI includes `test/golden/`, blocking check.
 - [x] **Local green** — `just validate-local` green before PR.
+
+---
+
+## Quality Gate: Golden-Fixture Gate Hardening (`TSK-golden-02`) — 👀 In Review
+
+> Path: `.kiro/specs/golden-fixture-gate-v2/` · Spec ID: `golden-fixture-gate-v2` · Backlog: `TSK-golden-02`
+> Hardens `TSK-golden-01` from a self-referential snapshot into a **correctness proof**:
+> independent ground-truth cases (external/corpus literals) + coverage for the unpinned
+> engine branches. Test/fixture/tooling-only — **no `lib/` engine change**.
+
+- [x] T0 — Preflight + engine-source read (OQ-1/2/3 resolved)
+- [x] T1 — Independent-truth fixture (`test/golden/astro_independent.json`, 7 cases, mandatory `groundTruth`)
+- [x] T2 — Reconcile test extended (`independent-truth` group, loaded separately, fail-closed)
+- [x] T3 — Regen-guard (`tool/regen_golden.dart` never touches the independent fixture; header states why)
+- [x] T4 — Coverage cases appended to `astro_golden.json` (R2.1–R2.7)
+- [x] T5 — CI + `validate-local` confirmed (runs `test/golden/` directory — no re-wire)
+- [x] TG — Governance lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
+- [x] TQ — Quality gates verification (`just validate-local` green; 37 v1 cases unchanged)
+- [ ] TP — PR + Human Verification Plan (orchestrator opens PR; owner merges)
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Independent-truth set (R1)** — Meeus Example 47.a Moon longitude (tol `1e-5`) + 6 nakshatra→bird rows from the CONF-PP-001 5-6-5-5-6 table (every bird; peacock ×2), each `groundTruth`-cited; a failure is a revealed bug, not a drift.
+- [x] **Regen-guard (R1.4)** — `tool/regen_golden.dart` never reads/writes `astro_independent.json` (verified byte-identical after a run).
+- [x] **Branch coverage (R2)** — night-yama tattva, tattva yama2–5, Sushumna aligned/not, Emakandam lockout, 7 hora day-lords + day→night boundary, longitude→nakshatra→bird end-to-end, pre-dawn + late-day swara.
+- [x] **No regression (RQ.3)** — the 37 v1 cases are byte-identical; `lib/` + `test/features/astro_engine/` untouched.
+- [x] **Local green** — `just validate-local` green (analyze clean, tests green except the 4 known CloudKit macOS failures, coverage 42.4%, web build compiles).
 
 ---
 

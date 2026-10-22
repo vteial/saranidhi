@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "kind": "independent-truth",
+    "note": "Hand-transcribed from external/corpus sources. NEVER regenerated from the engine — see tool/regen_golden.dart guard. A failing case here is a REVEALED BUG, not a drift (requirements R4.1). These expected values did NOT come from the engine: the Moon longitude is the printed worked example in Meeus, and each nakshatra->bird row is read straight from the canonical CONF-PP-001 5-6-5-5-6 star table.",
+    "lastVerified": "2026-10-22"
+  },
+  "moonLongitude": [
+    {
+      "id": "ind-moon-meeus-47a",
+      "input": {
+        "datetime": "1992-04-12T00:00:00Z"
+      },
+      "expected": {
+        "longitude": 133.162655
+      },
+      "tolerance": 1e-5,
+      "groundTruth": "Meeus, Astronomical Algorithms 2nd ed., Example 47.a — apparent longitude of the Moon 1992 Apr 12 0h TD. Transcribed from the book, NOT the engine."
+    }
+  ],
+  "nakshatra": [
+    {
+      "id": "ind-nak-ashwini-vulture",
+      "input": {
+        "dob": "2025-01-08T00:00:00Z"
+      },
+      "expected": {
+        "standardName": "ashwini",
+        "birthBird": "vulture"
+      },
+      "groundTruth": "CONF-PP-001 canonical 5-6-5-5-6 star table (docs/research/calculation-methodology.md:29), Vulture row: Ashwini -> Vulture. Transcribed from the corpus table, NOT the engine. DOB chosen mid-nakshatra (position ~0.51)."
+    },
+    {
+      "id": "ind-nak-purvaphalguni-owl",
+      "input": {
+        "dob": "2024-01-29T00:00:00Z"
+      },
+      "expected": {
+        "standardName": "purva phalguni",
+        "birthBird": "owl"
+      },
+      "groundTruth": "CONF-PP-001 canonical 5-6-5-5-6 star table (docs/research/calculation-methodology.md:30), Owl row: Purva Phalguni (Pooram) -> Owl (reassigned Crow->Owl per CONF-PP-001). Transcribed from the corpus table, NOT the engine. DOB chosen mid-nakshatra (position ~0.50)."
+    },
+    {
+      "id": "ind-nak-vishakha-crow",
+      "input": {
+        "dob": "2024-11-29T18:00:00Z"
+      },
+      "expected": {
+        "standardName": "vishakha",
+        "birthBird": "crow"
+      },
+      "groundTruth": "CONF-PP-001 canonical 5-6-5-5-6 star table (docs/research/calculation-methodology.md:31), Crow row: Vishakha (Visakam) -> Crow (reassigned Rooster->Crow per CONF-PP-001). Transcribed from the corpus table, NOT the engine. DOB chosen mid-nakshatra (position ~0.50)."
+    },
+    {
+      "id": "ind-nak-uttaraashadha-rooster",
+      "input": {
+        "dob": "2024-12-05T00:00:00Z"
+      },
+      "expected": {
+        "standardName": "uttara ashadha",
+        "birthBird": "rooster"
+      },
+      "groundTruth": "CONF-PP-001 canonical 5-6-5-5-6 star table (docs/research/calculation-methodology.md:32), Rooster row: Uttara Ashadha (Uthiradam) -> Rooster (reassigned Peacock->Rooster per CONF-PP-001). Transcribed from the corpus table, NOT the engine. DOB chosen mid-nakshatra (position ~0.50)."
+    },
+    {
+      "id": "ind-nak-uttarabhadrapada-peacock",
+      "input": {
+        "dob": "2024-04-07T18:00:00Z"
+      },
+      "expected": {
+        "standardName": "uttara bhadrapada",
+        "birthBird": "peacock"
+      },
+      "groundTruth": "CONF-PP-001 canonical 5-6-5-5-6 star table (docs/research/calculation-methodology.md:33), Peacock row: Uttara Bhadrapada -> Peacock. Transcribed from the corpus table, NOT the engine. DOB chosen mid-nakshatra (position ~0.50)."
+    },
+    {
+      "id": "ind-nak-revati-peacock",
+      "input": {
+        "dob": "2024-06-02T09:00:00Z"
+      },
+      "expected": {
+        "standardName": "revati",
+        "birthBird": "peacock"
+      },
+      "groundTruth": "CONF-PP-001 canonical 5-6-5-5-6 star table (docs/research/calculation-methodology.md:33), Peacock row: Revati -> Peacock. Transcribed from the corpus table, NOT the engine. DOB chosen mid-nakshatra (position ~0.50)."
+    }
+  ]
+}

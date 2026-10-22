@@ -3,7 +3,7 @@
     "generated": "2026-10-03",
     "engineVersion": "v1.13.0",
     "note": "known-correct outputs; regen via tool/regen_golden.dart",
-    "totalCases": 37
+    "totalCases": 57
   },
   "moonLongitude": [
     {
@@ -150,6 +150,43 @@
         "birthBird": "owl"
       },
       "source": "CONF-PP-001 / CONF-PP-002 (canonical 5-6-5-5-6 star table)"
+    },
+    {
+      "id": "nak-09",
+      "input": {
+        "dob": "2024-04-07T18:00:00Z"
+      },
+      "expected": {
+        "standardName": "uttara bhadrapada",
+        "birthBird": "peacock"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (peacock coverage, Uttara Bhadrapada) [R2.5]"
+    },
+    {
+      "id": "nak-10",
+      "input": {
+        "dob": "2024-06-02T09:00:00Z"
+      },
+      "expected": {
+        "standardName": "revati",
+        "birthBird": "peacock"
+      },
+      "source": "CONF-PP-001 / CONF-PP-002 (peacock coverage, Revati) [R2.5]"
+    }
+  ],
+  "nakshatraEndToEnd": [
+    {
+      "id": "nak-e2e-01",
+      "input": {
+        "datetime": "2024-06-02T09:00:00Z"
+      },
+      "expected": {
+        "longitude": 17.534611341312626,
+        "standardName": "revati",
+        "birthBird": "peacock"
+      },
+      "tolerance": 0.000001,
+      "source": "End-to-end longitude->nakshatra->bird chain (Revati/Peacock) [R2.5]"
     }
   ],
   "swara": [
@@ -260,6 +297,35 @@
         "flow": "solar"
       },
       "source": "CONF-013 / CONF-014 (Saturday 1h solar inception)"
+    },
+    {
+      "id": "swara-10",
+      "input": {
+        "time": "2026-07-05T16:30:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "paksha": "shukla"
+      },
+      "expected": {
+        "flow": "solar"
+      },
+      "source": "CONF-014 (Sunday late-day alternating-block flip, hour ~10) [R2.7]"
+    },
+    {
+      "id": "swara-11",
+      "input": {
+        "time": "2026-07-06T02:00:00+05:30",
+        "paksha": "shukla",
+        "anchor": {
+          "sunriseByDate": {
+            "2026-07-06": "2026-07-06T06:00:00+05:30",
+            "2026-07-05": "2026-07-05T06:00:00+05:30"
+          }
+        }
+      },
+      "expected": {
+        "flow": "solar"
+      },
+      "source": "CONF-001/CONF-013 (pre-dawn anchorSunrise: governing day is Sunday) [R2.7]"
     }
   ],
   "hora": [
@@ -342,6 +408,102 @@
         "isDayHora": true
       },
       "source": "Chaldean Planetary Hours order (Friday midday hora)"
+    },
+    {
+      "id": "hora-06",
+      "input": {
+        "time": "2026-07-08T06:15:00+05:30",
+        "sunrise": "2026-07-08T06:00:00+05:30",
+        "sunset": "2026-07-08T18:00:00+05:30",
+        "nextSunrise": "2026-07-09T06:00:00+05:30",
+        "weekday": 3
+      },
+      "expected": {
+        "planet": "mercury",
+        "horaIndex": 0,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Wednesday day lord Mercury) [R2.6]"
+    },
+    {
+      "id": "hora-07",
+      "input": {
+        "time": "2026-07-09T06:15:00+05:30",
+        "sunrise": "2026-07-09T06:00:00+05:30",
+        "sunset": "2026-07-09T18:00:00+05:30",
+        "nextSunrise": "2026-07-10T06:00:00+05:30",
+        "weekday": 4
+      },
+      "expected": {
+        "planet": "jupiter",
+        "horaIndex": 0,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Thursday day lord Jupiter) [R2.6]"
+    },
+    {
+      "id": "hora-08",
+      "input": {
+        "time": "2026-07-11T06:15:00+05:30",
+        "sunrise": "2026-07-11T06:00:00+05:30",
+        "sunset": "2026-07-11T18:00:00+05:30",
+        "nextSunrise": "2026-07-12T06:00:00+05:30",
+        "weekday": 6
+      },
+      "expected": {
+        "planet": "saturn",
+        "horaIndex": 0,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Saturday day lord Saturn) [R2.6]"
+    },
+    {
+      "id": "hora-10",
+      "input": {
+        "time": "2026-07-07T06:15:00+05:30",
+        "sunrise": "2026-07-07T06:00:00+05:30",
+        "sunset": "2026-07-07T18:00:00+05:30",
+        "nextSunrise": "2026-07-08T06:00:00+05:30",
+        "weekday": 2
+      },
+      "expected": {
+        "planet": "mars",
+        "horaIndex": 0,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Tuesday day lord Mars) [R2.6]"
+    },
+    {
+      "id": "hora-11",
+      "input": {
+        "time": "2026-07-10T06:15:00+05:30",
+        "sunrise": "2026-07-10T06:00:00+05:30",
+        "sunset": "2026-07-10T18:00:00+05:30",
+        "nextSunrise": "2026-07-11T06:00:00+05:30",
+        "weekday": 5
+      },
+      "expected": {
+        "planet": "venus",
+        "horaIndex": 0,
+        "isDayHora": true
+      },
+      "source": "Chaldean Planetary Hours order (Friday day lord Venus) [R2.6]"
+    },
+    {
+      "id": "hora-09",
+      "input": {
+        "time": "2026-07-05T18:05:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "nextSunrise": "2026-07-06T06:00:00+05:30",
+        "weekday": 0
+      },
+      "expected": {
+        "planet": "jupiter",
+        "horaIndex": 0,
+        "isDayHora": false
+      },
+      "source": "Chaldean Planetary Hours order (Sunday day->night boundary, first night hora) [R2.6]"
     }
   ],
   "tattva": [
@@ -414,6 +576,94 @@
         "yama": "yama1"
       },
       "source": "CONF-012 (Ether element in Yama 1)"
+    },
+    {
+      "id": "tattva-06",
+      "input": {
+        "time": "2026-10-03T09:00:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "water",
+        "index": 1,
+        "yama": "yama2"
+      },
+      "source": "CONF-012 (tattva in Yama 2) [R2.2]"
+    },
+    {
+      "id": "tattva-07",
+      "input": {
+        "time": "2026-10-03T11:30:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "water",
+        "index": 1,
+        "yama": "yama3"
+      },
+      "source": "CONF-012 (tattva in Yama 3) [R2.2]"
+    },
+    {
+      "id": "tattva-08",
+      "input": {
+        "time": "2026-10-03T14:00:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "water",
+        "index": 1,
+        "yama": "yama4"
+      },
+      "source": "CONF-012 (tattva in Yama 4) [R2.2]"
+    },
+    {
+      "id": "tattva-09",
+      "input": {
+        "time": "2026-10-03T16:30:00+05:30",
+        "sunrise": "2026-10-03T06:00:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30"
+      },
+      "expected": {
+        "tattva": "water",
+        "index": 1,
+        "yama": "yama5"
+      },
+      "source": "CONF-012 (tattva in Yama 5) [R2.2]"
+    }
+  ],
+  "tattvaNight": [
+    {
+      "id": "tattva-night-01",
+      "input": {
+        "time": "2026-10-03T18:30:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30",
+        "nextSunrise": "2026-10-04T06:00:00+05:30",
+        "night": true
+      },
+      "expected": {
+        "tattva": "water",
+        "index": 1,
+        "yama": "yama6"
+      },
+      "source": "CONF-012 (night tattva in Night Yama 6) [R2.1]"
+    },
+    {
+      "id": "tattva-night-02",
+      "input": {
+        "time": "2026-10-03T21:30:00+05:30",
+        "sunset": "2026-10-03T18:00:00+05:30",
+        "nextSunrise": "2026-10-04T06:00:00+05:30",
+        "night": true
+      },
+      "expected": {
+        "tattva": "fire",
+        "index": 2,
+        "yama": "yama7"
+      },
+      "source": "CONF-012 (night tattva in Night Yama 7) [R2.1]"
     }
   ],
   "oracle": [
@@ -526,6 +776,72 @@
       },
       "tolerance": 1e-9,
       "source": "PP-ORACLE Rahu Kaal floor lock (CONF-014/015)"
+    },
+    {
+      "id": "oracle-06",
+      "input": {
+        "queryTime": "2026-07-05T10:00:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "weekday": 0,
+        "currentBirdState": "sleeping",
+        "currentWindow": "yoga",
+        "tarabalaMultiplier": 1.0,
+        "horaSwaraMultiplier": 1.0,
+        "category": "yoga",
+        "actualSwara": "sushumna"
+      },
+      "expected": {
+        "score": 36,
+        "band": "stambhana",
+        "isFloorLocked": false
+      },
+      "tolerance": 1e-9,
+      "source": "Sushumna aligned in Yoga window (oracle_engine.dart:116-118) [R2.3]"
+    },
+    {
+      "id": "oracle-07",
+      "input": {
+        "queryTime": "2026-07-05T10:00:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "weekday": 0,
+        "currentBirdState": "ruling",
+        "currentWindow": "artha",
+        "tarabalaMultiplier": 1.0,
+        "horaSwaraMultiplier": 1.0,
+        "category": "artha",
+        "actualSwara": "sushumna"
+      },
+      "expected": {
+        "score": 90,
+        "band": "siddha",
+        "isFloorLocked": false
+      },
+      "tolerance": 1e-9,
+      "source": "Sushumna NOT aligned outside Yoga window (oracle_engine.dart:116-118) [R2.3]"
+    },
+    {
+      "id": "oracle-08",
+      "input": {
+        "queryTime": "2026-07-05T12:30:00+05:30",
+        "sunrise": "2026-07-05T06:00:00+05:30",
+        "sunset": "2026-07-05T18:00:00+05:30",
+        "weekday": 0,
+        "currentBirdState": "ruling",
+        "currentWindow": "artha",
+        "tarabalaMultiplier": 1.0,
+        "horaSwaraMultiplier": 1.0,
+        "category": "artha",
+        "actualSwara": "solar"
+      },
+      "expected": {
+        "score": 10,
+        "band": "sunya",
+        "isFloorLocked": true
+      },
+      "tolerance": 1e-9,
+      "source": "Emakandam lockout (oracle_engine.dart:71 isEmakandamActive) [R2.4]"
     }
   ]
 }
