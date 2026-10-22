@@ -42,7 +42,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 46 | Web E2E Smoke Automation — Playwright harness in `vteial/saranidhi-e2e` (automates S1–S6 vs the deployed preview) | *internal — no prod release* | ✅ Complete (e2e PR #1) |
 | 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅🚀 Shipped (PR #260 · prod #267 · tag v1.13.0-web) |
 | — | Golden-Fixture Correctness Gate (`TSK-golden-01`) | *internal* | ✅ Done (PR #280) |
-| — | Golden-Fixture Gate Hardening — independent-truth + branch coverage (`TSK-golden-02`) | *internal* | 👀 In Review |
+| — | Golden-Fixture Gate Hardening — independent-truth + branch coverage (`TSK-golden-02`) | *internal* | ✅ Done (PR #290) |
 | 48+ | Native "Now" surface (next — owner-chosen), Practice Sync auto-on-open fast-follow, Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1183,7 +1183,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Quality Gate: Golden-Fixture Gate Hardening (`TSK-golden-02`) — 👀 In Review
+## Quality Gate: Golden-Fixture Gate Hardening (`TSK-golden-02`) — ✅ Done (PR #290, merged 2026-10-22)
 
 > Path: `.kiro/specs/golden-fixture-gate-v2/` · Spec ID: `golden-fixture-gate-v2` · Backlog: `TSK-golden-02`
 > Hardens `TSK-golden-01` from a self-referential snapshot into a **correctness proof**:
@@ -1198,7 +1198,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] T5 — CI + `validate-local` confirmed (runs `test/golden/` directory — no re-wire)
 - [x] TG — Governance lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
 - [x] TQ — Quality gates verification (`just validate-local` green; 37 v1 cases unchanged)
-- [ ] TP — PR + Human Verification Plan (orchestrator opens PR; owner merges)
+- [x] TP — PR + Human Verification Plan (PR #290 opened; owner merged 2026-10-22)
 
 **Delivery Checklist (Definition of Done):**
 - [x] **Independent-truth set (R1)** — Meeus Example 47.a Moon longitude (tol `1e-5`) + 6 nakshatra→bird rows from the CONF-PP-001 5-6-5-5-6 table (every bird; peacock ×2), each `groundTruth`-cited; a failure is a revealed bug, not a drift.
