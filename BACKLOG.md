@@ -39,10 +39,11 @@ during `/plan`. Keep entries small and outcome-focused.
 
 ## ★ FLAGSHIP — Integrated Aruḍam
 
-> **Status: epic scoped via `/plan` (Phase 2b, this session) — decisions confirmed
-> with the owner; first slice ready to schedule.** This is the app's thesis: the
-> single surface where the separate engines (Sara Kalai swara × Panja Pakshi bird-state
-> × Hora/Tarabala × inauspicious windows) become **one answer** to the user's real
+> **Status: epic scoped via `/plan` (Phase 2b) — decisions confirmed with the owner.
+> Slice 1 SHIPPED (Sprint 38, v1.8.0, PR #181); the "Why?" provenance accordion SHIPPED
+> (Sprint 39, v1.9.0, PR #196). Remaining fast-follows parked below.** This is the app's
+> thesis: the single surface where the separate engines (Sara Kalai swara × Panja Pakshi
+> bird-state × Hora/Tarabala × inauspicious windows) become **one answer** to the user's real
 > question — *"is now a good moment, and what should I do?"*
 >
 > **This epic UNIFIES two previously-separate backlog items:** the flagship *Integrated
@@ -97,31 +98,34 @@ So the epic is: **extract the fusion out of the Oracle screen into a shared engi
 the dashboard ingredients + the missing alignment signal, make it 24h-correct, and surface
 an always-on verdict** — with the Oracle becoming the deep-dive form of the same verdict.
 
-### First shippable slice (scope-locked) — 📋 SCHEDULED as Sprint 38 (v1.8.0)
+### First shippable slice (scope-locked) — ✅ SHIPPED as Sprint 38 (v1.8.0, PR #181)
 
-> Scheduled via `/plan`. Full task list + Delivery Checklist live in the
-> **[Sprint 38 entry in the tracker](SPRINT_TRACKER.md#sprint-38-integrated-aruḍam--slice-1-v180--planned)**.
+> Shipped v1.8.0-web. Full task list + Delivery Checklist live in the
+> **[Sprint 38 entry in the tracker](SPRINT_TRACKER.md#sprint-38-integrated-aruḍam-slice-1-v180-shipped-v180-web-pr-181)**.
+> All slice-1 tasks below landed in PR #181 — the `IntegratedArudamEngine`
+> (`lib/features/astro_engine/domain/integrated_arudam_engine.dart`) and the Home
+> "Aruḍam Now" card (`lib/features/home/presentation/widgets/arudam_now_card.dart`) are live.
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🔴 | → S38 | **Extract an `IntegratedArudamEngine`** from `OracleCompositeEngine` so the fusion is callable from the dashboard (not only the Oracle screen). Reuse existing bird/Hora/Tarabala/category logic. |
-| 🔴 | → S38 | **Fuse breath-alignment as the Readiness multiplier** (Moment × Readiness): wire `AlignmentChecker`'s result in; aligned → ~1.0, misaligned → ~0.75 (uniform for v1, tune later via Accuracy Calibration), Sushumna → existing Yoga-context rule. Never a floor-lock. |
-| 🔴 | → S38 | **24h-correct the inauspicious floor-lock** — replace/extend the day-only `DaylightSegmentResolver` path so Rahu/Emakandam (and night equivalents) gate correctly after sunset. |
-| 🔴 | → S38 | **Ambient "Aruḍam Now" verdict card on Home** — always-on, reads `dashboardDataProvider`, shows band + the **two-clock plain-language breakdown** (Moment / You). Honest-but-partial when swara is stale (reuse the confirmed staleness rule — never fabricate a match). |
-| 🔴 | → S38 | **Natural-vs-forced framing** — misalignment default = *wait/accept/note*; forced-shift behind a secondary, **warning**-toned affordance ("depleting; urgency only"); language never promises success (CONF-016/017: a nudge, not a guarantee). |
-| 🟡 | → S38 | **Reward natural alignment — flag only.** Add the data flag marking force-shifted sessions so they're not rewarded as natural alignment; full analytics rework is a fast-follow. |
-| 🔴 | → S38 | Bilingual (EN/TA) verdict states + framing; keep the sacred tone. |
+| 🔴 | ✅ #181 | **Extract an `IntegratedArudamEngine`** from `OracleCompositeEngine` so the fusion is callable from the dashboard (not only the Oracle screen). Reuse existing bird/Hora/Tarabala/category logic. |
+| 🔴 | ✅ #181 | **Fuse breath-alignment as the Readiness multiplier** (Moment × Readiness): wire `AlignmentChecker`'s result in; aligned → ~1.0, misaligned → ~0.75 (uniform for v1, tune later via Accuracy Calibration), Sushumna → existing Yoga-context rule. Never a floor-lock. |
+| 🔴 | ✅ #181 | **24h-correct the inauspicious floor-lock** — replace/extend the day-only `DaylightSegmentResolver` path so Rahu/Emakandam (and night equivalents) gate correctly after sunset. |
+| 🔴 | ✅ #181 | **Ambient "Aruḍam Now" verdict card on Home** — always-on, reads `dashboardDataProvider`, shows band + the **two-clock plain-language breakdown** (Moment / You). Honest-but-partial when swara is stale (reuse the confirmed staleness rule — never fabricate a match). |
+| 🔴 | ✅ #181 | **Natural-vs-forced framing** — misalignment default = *wait/accept/note*; forced-shift behind a secondary, **warning**-toned affordance ("depleting; urgency only"); language never promises success (CONF-016/017: a nudge, not a guarantee). |
+| 🟡 | ✅ #181 | **Reward natural alignment — flag only.** Add the data flag marking force-shifted sessions so they're not rewarded as natural alignment; full analytics rework is a fast-follow. |
+| 🔴 | ✅ #181 | Bilingual (EN/TA) verdict states + framing; keep the sacred tone. |
 
-> **Vehicle:** Sprint 38, a stability-sized feature sprint (spec → coding-setup → review).
-> Most work is *extraction + wiring + one card* over proven engines, plus the night
-> floor-lock fix. Correctness note: the floor-lock task touches shipped logic → the
-> Delivery Checklist carries a regression gate (Oracle day-time verdicts unchanged).
+> **Vehicle:** Sprint 38 (shipped v1.8.0, PR #181), a stability-sized feature sprint (spec → coding-setup → review).
+> Most work was *extraction + wiring + one card* over proven engines, plus the night
+> floor-lock fix. Correctness note: the floor-lock task touched shipped logic → the
+> Delivery Checklist carried a regression gate (Oracle day-time verdicts unchanged).
 
 ### Fast-follows (same epic, after slice 1 — named, parked)
 
 | Priority | Status | Item |
 |----------|--------|------|
-| 🟡 | 📋 → S39 | **Expandable "Why?" accordion** with doctrinal explanation + **provenance** (corpus practice + CONF citation). **Scheduled as Sprint 39 (v1.9.0)** — see [sprint-tracker](SPRINT_TRACKER.md#sprint-39--integrated-aruḍam--why-provenance-accordion-v190--planned) + [dossier](sprints/sprint-39-why-accordion/README.md). |
+| 🟡 | ✅ #196 | **Expandable "Why?" accordion** with doctrinal explanation + **provenance** (corpus practice + CONF citation). **SHIPPED as Sprint 39 (v1.9.0, PR #196)** — see [sprint-tracker](SPRINT_TRACKER.md#sprint-39-integrated-aruḍam-why-provenance-accordion-v190-shipped-pr-196) + [dossier](sprints/sprint-39-why-accordion/README.md). |
 | 🟡 | ⬜ | **The "Now" Surface — native ambient** (Stage 2 phone widget → Stage 3 watch complication → Stage 4 macOS menu-bar). Native Swift/Kotlin extensions + app-group storage + method channels; zero-backend must hold. Widget tri-tap [L]/[R]/[Both] nostril input + freshness decay. |
 | 🟢 | ⬜ | Calendar-aware **proactive nudge** (opt-in, off by default; privacy-sensitive). |
 | 🟢 | ⬜ | Tune the readiness penalty (uniform ~0.75 → possibly window-dependent) using the 7-day 3-way data from the **Accuracy & Validation** epic. |
