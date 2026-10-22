@@ -43,7 +43,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | 47 | ★ Practice Sync — Phase 1: on-demand cross-device sync (PocketBase transport) | **v1.13.0** | ✅🚀 Shipped (PR #260 · prod #267 · tag v1.13.0-web) |
 | — | Golden-Fixture Correctness Gate (`TSK-golden-01`) | *internal* | ✅ Done (PR #280) |
 | — | Golden-Fixture Gate Hardening — independent-truth + branch coverage (`TSK-golden-02`) | *internal* | ✅ Done (PR #290) |
-| — | Practice Sync Auto-on-Open Fast-Follow (`practice-sync-auto-on-open`) | *fast-follow / unreleased* | 👀 In Review |
+| — | Practice Sync Auto-on-Open Fast-Follow (`practice-sync-auto-on-open`) | *fast-follow / unreleased* | ✅ Done (PR #294) |
 | 48+ | Native "Now" surface (next — owner-chosen), Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1210,7 +1210,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 
 ---
 
-## Feature: Practice Sync — Auto-on-Open Fast-Follow (`practice-sync-auto-on-open`) — 👀 In Review
+## Feature: Practice Sync — Auto-on-Open Fast-Follow (`practice-sync-auto-on-open`) — ✅ Done (PR #294, merged 2026-10-22)
 
 > Path: `.kiro/specs/practice-sync-auto-on-open/` · Spec ID: `practice-sync-auto-on-open` · Backlog: Phase-1 fast-follow
 > Promotes the manual Sync-now flow (PocketBase, v1.13.0) to an automatic pull-merge-push cycle
