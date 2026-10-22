@@ -59,8 +59,50 @@ Map<String, dynamic> _loadFixture() {
   }
 }
 
+// ─── Independent-truth fixture loader (R1/R3.3) ───────────────────────────────
+//
+// Loaded SEPARATELY from astro_golden.json so the independent set is a runnable
+// gate on its own — the independent group must run even if the engine-snapshot
+// block were empty (R3.3). Mirrors the resolution fallbacks of the snapshot loader.
+File _resolveIndependentFile() {
+  const relPath = 'test/golden/astro_independent.json';
+  if (File(relPath).existsSync()) {
+    return File(relPath);
+  }
+  if (File('astro_independent.json').existsSync()) {
+    return File('astro_independent.json');
+  }
+  if (File('../golden/astro_independent.json').existsSync()) {
+    return File('../golden/astro_independent.json');
+  }
+  final cwd = Directory.current.path;
+  final alt = File('$cwd/$relPath');
+  if (alt.existsSync()) {
+    return alt;
+  }
+  throw StateError(
+    'Independent-truth fixture not found at "$relPath" (current working dir: $cwd)',
+  );
+}
+
+Map<String, dynamic> _loadIndependentFixture() {
+  final file = _resolveIndependentFile();
+  final raw = file.readAsStringSync();
+  try {
+    final decoded = jsonDecode(raw);
+    if (decoded is! Map<String, dynamic>) {
+      throw const FormatException('Root JSON object must be a Map<String, dynamic>');
+    }
+    return decoded;
+  } catch (e) {
+    throw FormatException('Failed to parse independent fixture at ${file.path}: $e');
+  }
+}
+
 void main() {
   final fixture = _loadFixture();
+  // Loaded independently (R3.3): neither file's emptiness short-circuits the other.
+  final independent = _loadIndependentFixture();
 
   group('Golden-Fixture Reconcile Gate (TSK-golden-01)', () {
     // ─── 0. Fixture Integrity Check (R2.2) ───────────────────────────────────
@@ -191,19 +233,44 @@ void main() {
           }
 
           final timeStr = input['time'] as String?;
-          final sunriseStr = input['sunrise'] as String?;
           final pakshaStr = input['paksha'] as String?;
           final expectedFlow = expected['flow'] as String?;
+          // Pre-dawn cases (R2.7) carry an `anchor` map instead of a literal
+          // `sunrise`; they resolve the governing civil-day sunrise via
+          // SwaraClock.anchorSunrise. Standard cases carry `sunrise` directly.
+          final anchor = input['anchor'] as Map<String, dynamic>?;
+          final sunriseStr = input['sunrise'] as String?;
 
-          if (timeStr == null || sunriseStr == null || pakshaStr == null || expectedFlow == null) {
+          if (timeStr == null ||
+              pakshaStr == null ||
+              expectedFlow == null ||
+              (sunriseStr == null && anchor == null)) {
             fail('Case $id missing one or more required swara fields');
           }
 
           final time = DateTime.parse(timeStr);
-          final sunrise = DateTime.parse(sunriseStr);
           final paksha = pakshaStr.toLowerCase() == 'shukla'
               ? LunarPhase.waxing
               : LunarPhase.waning;
+
+          final DateTime sunrise;
+          if (anchor != null) {
+            final byDate = (anchor['sunriseByDate'] as Map).cast<String, String>();
+            sunrise = SwaraClock.anchorSunrise(
+              time: time,
+              sunriseForDate: (date) {
+                final key =
+                    '${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+                final iso = byDate[key];
+                if (iso == null) {
+                  fail('Case $id: no sunrise mapping for date $key in anchor');
+                }
+                return DateTime.parse(iso);
+              },
+            );
+          } else {
+            sunrise = DateTime.parse(sunriseStr!);
+          }
 
           final block = SwaraClock.blockAt(
             time: time,
@@ -360,6 +427,137 @@ void main() {
       }
     });
 
+    // ─── 5b. Night Tattva (R2.1) — calculateNight -> NightYamaResult -> tattva
+    group('Night Tattva Cycles (CONF-012, night yamas)', () {
+      final cases = (fixture['tattvaNight'] as List? ?? const [])
+          .cast<Map<String, dynamic>>();
+
+      for (final c in cases) {
+        final id = c['id'] as String;
+        test(id, () {
+          final input = c['input'] as Map<String, dynamic>?;
+          final expected = c['expected'] as Map<String, dynamic>?;
+
+          if (input == null || expected == null) {
+            fail('Case $id is missing required input or expected map');
+          }
+
+          final timeStr = input['time'] as String?;
+          final sunsetStr = input['sunset'] as String?;
+          final nextSunriseStr = input['nextSunrise'] as String?;
+
+          final expectedTattva = expected['tattva'] as String?;
+          final expectedIndex = expected['index'] as int?;
+          final expectedYama = expected['yama'] as String?;
+
+          if (timeStr == null ||
+              sunsetStr == null ||
+              nextSunriseStr == null ||
+              expectedTattva == null ||
+              expectedIndex == null ||
+              expectedYama == null) {
+            fail('Case $id is missing one or more required night-tattva fields');
+          }
+
+          final time = DateTime.parse(timeStr);
+          final sunset = DateTime.parse(sunsetStr);
+          final nextSunrise = DateTime.parse(nextSunriseStr);
+
+          final nightResult = YamaCalculator.calculateNight(
+            sunset: sunset,
+            nextSunrise: nextSunrise,
+          );
+          final nightSegment = nightResult.activeYama(time);
+          if (nightSegment == null) {
+            fail('Case $id: time $timeStr falls outside night yamas');
+          }
+
+          // Wrap the night segment as a YamaSegment for the shared tattva
+          // sub-division math; the recorded `yama` is the NightYamaIndex label.
+          final wrapped = YamaSegment(
+            index: YamaIndex.values[nightSegment.index.index],
+            start: nightSegment.start,
+            end: nightSegment.end,
+          );
+          final tattvaRes = TattvaCalculator.activeTattva(
+            time: time,
+            yamaSegment: wrapped,
+          );
+          if (tattvaRes == null) {
+            fail('Case $id: TattvaCalculator returned null for night yama');
+          }
+
+          expect(
+            tattvaRes.tattva.name,
+            equals(expectedTattva),
+            reason: 'Case $id drift: expected tattva "$expectedTattva", got "${tattvaRes.tattva.name}"',
+          );
+          expect(
+            tattvaRes.index,
+            equals(expectedIndex),
+            reason: 'Case $id drift: expected index $expectedIndex, got ${tattvaRes.index}',
+          );
+          expect(
+            nightSegment.index.name,
+            equals(expectedYama),
+            reason: 'Case $id drift: expected night yama "$expectedYama", got "${nightSegment.index.name}"',
+          );
+        });
+      }
+    });
+
+    // ─── 5c. Nakshatra end-to-end (R2.5) — longitude -> nakshatra -> bird ────
+    group('Nakshatra End-to-End (longitude->nakshatra->bird)', () {
+      final cases = (fixture['nakshatraEndToEnd'] as List? ?? const [])
+          .cast<Map<String, dynamic>>();
+
+      for (final c in cases) {
+        final id = c['id'] as String;
+        test(id, () {
+          final input = c['input'] as Map<String, dynamic>?;
+          final expected = c['expected'] as Map<String, dynamic>?;
+          final tolerance = (c['tolerance'] as num?)?.toDouble();
+
+          if (input == null || expected == null || tolerance == null) {
+            fail('Case $id is missing input, expected, or tolerance');
+          }
+
+          final dtStr = input['datetime'] as String?;
+          final expectedLon = (expected['longitude'] as num?)?.toDouble();
+          final expectedNak = expected['standardName'] as String?;
+          final expectedBird = expected['birthBird'] as String?;
+
+          if (dtStr == null ||
+              expectedLon == null ||
+              expectedNak == null ||
+              expectedBird == null) {
+            fail('Case $id is missing one or more required end-to-end fields');
+          }
+
+          final dt = DateTime.parse(dtStr);
+          final lon = MoonLongitudeCalculator.calculate(dt).longitude;
+          final nak = NakshatraCalculator.calculate(dt);
+          final bird = PakshiCalculator.birthBirdFromNakshatra(nak.standardName).name;
+
+          expect(
+            lon,
+            closeTo(expectedLon, tolerance),
+            reason: 'Case $id drift: expected longitude $expectedLon (±$tolerance), got $lon',
+          );
+          expect(
+            nak.standardName,
+            equals(expectedNak),
+            reason: 'Case $id drift: expected nakshatra "$expectedNak", got "${nak.standardName}"',
+          );
+          expect(
+            bird,
+            equals(expectedBird),
+            reason: 'Case $id drift: expected bird "$expectedBird", got "$bird"',
+          );
+        });
+      }
+    });
+
     // ─── 6. Oracle Composite (R1.3 exact band/lock + tolerance score) ────────
     group('Prasanam Oracle Composite (Sprint 31/38)', () {
       final cases = (fixture['oracle'] as List).cast<Map<String, dynamic>>();
@@ -437,6 +635,131 @@ void main() {
             result.score.toDouble(),
             closeTo(expectedScore, tolerance),
             reason: 'Case $id drift: expected score $expectedScore (±$tolerance), got ${result.score}',
+          );
+        });
+      }
+    });
+  });
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // INDEPENDENT-TRUTH GATE (R1 / R3 / R4) — the correctness proof.
+  //
+  // Expected values here are TRANSCRIBED FROM EXTERNAL/CORPUS SOURCES, not the
+  // engine. A failure is therefore a REVEALED BUG (R4.1), not a drift — do NOT
+  // regenerate or loosen it to pass. Reuses the SAME assertion shapes the v1
+  // sections use (exact for discrete standardName/birthBird, closeTo for the
+  // continuous Moon longitude). Loaded from a SEPARATE file (R3.3), so this
+  // group runs even if the engine-snapshot block were empty.
+  // ═══════════════════════════════════════════════════════════════════════════
+  group('Independent-Truth Gate (TSK-golden-02, R1/R4)', () {
+    test('independent fixture has meta.kind == independent-truth and N >= 6', () {
+      expect(independent.containsKey('meta'), isTrue, reason: 'Missing "meta" section');
+      final meta = independent['meta'] as Map<String, dynamic>?;
+      expect(meta, isNotNull);
+      expect(
+        meta!['kind'],
+        equals('independent-truth'),
+        reason: 'Independent fixture meta.kind must be "independent-truth"',
+      );
+
+      var total = 0;
+      for (final section in const ['moonLongitude', 'nakshatra']) {
+        final list = independent[section] as List?;
+        if (list != null) total += list.length;
+      }
+      expect(
+        total,
+        greaterThanOrEqualTo(6),
+        reason: 'Independent-truth set must hold >= 6 cases (got $total)',
+      );
+    });
+
+    // ─── Moon longitude (continuous, within declared tolerance) ──────────────
+    group('Independent Moon Longitude (Meeus worked example)', () {
+      final cases = (independent['moonLongitude'] as List? ?? const [])
+          .cast<Map<String, dynamic>>();
+
+      for (final c in cases) {
+        final id = c['id'] as String;
+        test(id, () {
+          // R1.2 fail-closed on provenance: a case missing groundTruth FAILS.
+          final groundTruth = c['groundTruth'] as String?;
+          if (groundTruth == null || groundTruth.trim().isEmpty) {
+            fail('Independent case $id is missing mandatory "groundTruth" (R1.2)');
+          }
+
+          final input = c['input'] as Map<String, dynamic>?;
+          final expected = c['expected'] as Map<String, dynamic>?;
+          final tolerance = (c['tolerance'] as num?)?.toDouble();
+          if (input == null || expected == null || tolerance == null) {
+            fail('Independent case $id missing input, expected, or tolerance (R3.1)');
+          }
+
+          final dtStr = input['datetime'] as String?;
+          final expectedLon = (expected['longitude'] as num?)?.toDouble();
+          if (dtStr == null || expectedLon == null) {
+            fail('Independent case $id missing input.datetime or expected.longitude');
+          }
+
+          final result = MoonLongitudeCalculator.calculate(DateTime.parse(dtStr));
+          expect(
+            result.longitude,
+            closeTo(expectedLon, tolerance),
+            reason:
+                'REVEALED BUG (R4.1) — independent case $id: expected $expectedLon '
+                '(±$tolerance) per [$groundTruth], got ${result.longitude}. '
+                'STOP and flag — do NOT regenerate/loosen.',
+          );
+        });
+      }
+    });
+
+    // ─── Nakshatra -> Bird (discrete, exact) ─────────────────────────────────
+    group('Independent Nakshatra->Bird (CONF-PP-001 5-6-5-5-6 table)', () {
+      final cases = (independent['nakshatra'] as List? ?? const [])
+          .cast<Map<String, dynamic>>();
+
+      for (final c in cases) {
+        final id = c['id'] as String;
+        test(id, () {
+          final groundTruth = c['groundTruth'] as String?;
+          if (groundTruth == null || groundTruth.trim().isEmpty) {
+            fail('Independent case $id is missing mandatory "groundTruth" (R1.2)');
+          }
+
+          final input = c['input'] as Map<String, dynamic>?;
+          final expected = c['expected'] as Map<String, dynamic>?;
+          if (input == null || expected == null) {
+            fail('Independent case $id missing input or expected map (R3.1)');
+          }
+
+          final dobStr = input['dob'] as String?;
+          final expectedNak = expected['standardName'] as String?;
+          final expectedBird = expected['birthBird'] as String?;
+          if (dobStr == null || expectedNak == null || expectedBird == null) {
+            fail('Independent case $id missing dob, standardName, or birthBird');
+          }
+
+          final nakResult = NakshatraCalculator.calculate(DateTime.parse(dobStr));
+          final actualNak = nakResult.standardName;
+          final actualBird =
+              PakshiCalculator.birthBirdFromNakshatra(actualNak).name;
+
+          expect(
+            actualNak,
+            equals(expectedNak),
+            reason:
+                'REVEALED BUG (R4.1) — independent case $id: expected nakshatra '
+                '"$expectedNak" per [$groundTruth], got "$actualNak". '
+                'STOP and flag — do NOT regenerate.',
+          );
+          expect(
+            actualBird,
+            equals(expectedBird),
+            reason:
+                'REVEALED BUG (R4.1) — independent case $id: expected bird '
+                '"$expectedBird" per [$groundTruth], got "$actualBird". '
+                'STOP and flag — do NOT regenerate.',
           );
         });
       }
