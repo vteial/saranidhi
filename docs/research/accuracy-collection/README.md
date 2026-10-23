@@ -18,8 +18,8 @@
 | Constant | Value (fill in) | Why it must not vary |
 |---|---|---|
 | **Bird** | `owl` | Your corrected bird per CONF-PP-001/002. Same bird in Saranidhi, Align27 and Panchangam. |
-| **Location** | `<city>` lat `__._____` lng `__._____` | Align27 **and** drikpanchang must be set to this exact place — a different city shifts sunrise and every yama boundary. |
-| **Start date** | `____-__-__` | The morning after v1.11.0 is confirmed live. 7 **consecutive** days, no skips. |
+| **Location** | `Kallakkurichchi` lat `11.7382` lng `78.9639` | Align27 **and** drikpanchang must be set to this exact place — a different city shifts sunrise and every yama boundary. |
+| **Start date** | `2026-10-23` | The morning after v1.11.0 is confirmed live. 7 **consecutive** days, no skips. |
 | **Day boundary** | sunrise → sunrise (CONF-001) | Record Panchangam/Align27 on the **sunrise-anchored civil day**, not midnight→midnight — otherwise weekday/phase can read off by a boundary. |
 | **Time format** | 24-hour local, to the minute | So a plain text diff against the dump works. |
 | **Spelling** | lowercase (`owl`, `eating`, `waxing`) | Match exactly what the dump emits, so comparison is mechanical. |
