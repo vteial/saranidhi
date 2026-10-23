@@ -60,4 +60,4 @@
 - [x] CHANGELOG `[Unreleased]` entry (`adhikara-padu-activation`) + SPRINT_TRACKER row.
 
 ## TP — Open the PR + emit Human Verification Plan, then STOP
-- [ ] Open `fix/adhikara-padu-activation` → `main`; emit the verification plan; STOP. Never merge.
+- [x] Open `fix/adhikara-padu-activation` → `main`; emit the verification plan; STOP. Never merge.

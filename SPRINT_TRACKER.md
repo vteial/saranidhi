@@ -1331,7 +1331,7 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] TC — Provenance (cites CONF-PP-007 + Kottumozhi Sathya pp. 14, 17, 18, 22; Owl-basis caveat carried)
 - [x] TT — Tamil (RT: N/A; no new user-facing UI strings surfaced; existing verdict bands preserved)
 - [x] TG — Lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
-- [ ] TP — Open PR + emit Human Verification Plan, then STOP (Executor opens; owner merges)
+- [x] TP — Open PR + emit Human Verification Plan, then STOP (PR #306 open; /verification-done verified by Human owner)
 
 **Delivery Checklist (Definition of Done):**
 - [x] **Prasanam activated (R1)** — passes `effectiveBirthBird ?? birthBird`; null-bird preserved.
