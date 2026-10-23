@@ -22,16 +22,16 @@
 
 | yama | Drik Panchang (Cock) | Align27 (Cock) | Saranidhi (Cock) | Saranidhi (Owl) | Drik vs Align27? | Saranidhi vs Ground Truth? | Diagnosis / Remarks |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
-| **Y1** | `06:05–08:26` · **Eating** | `06:04–08:25` · `Energize` (**eating**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Cock in Krishna Paksha. |
-| **Y2** | `08:26–10:47` · **Dying** | `08:25–10:46` · `Caution` (**dying**) | — | — | ✅ **MATCH** | — | All times match (±1m). Both apps in Krishna Paksha. |
-| **Y3** | `10:47–13:08` · **Sleeping** | `10:46–13:08` · `Relax` (**sleeping**) | — | — | ✅ **MATCH** | — | All times match (±1m). |
-| **Y4** | `13:08–15:30` · **Ruling** | `13:08–15:29` · `Succeed` (**ruling**) | — | — | ✅ **MATCH** | — | All times match (±1m). Cock is ruling bird. |
-| **Y5** | `15:30–17:51` · **Walking** | `15:29–17:50` · `Action` (**walking**) | — | — | ✅ **MATCH** | — | All times match (±1m). |
-| **Y6** | `17:51–20:18` · **Walking** | `17:50–20:17` · `Action` (**walking**) | — | — | ✅ **MATCH** | — | All times match (±1m). Night table starts. |
-| **Y7** | `20:18–22:45` · **Dying** | `20:17–22:44` · `Caution` (**dying**) | — | — | ✅ **MATCH** | — | All times match (±1m). |
-| **Y8** | `22:45–01:12` · **Ruling** | `22:44–01:11` · `Succeed` (**ruling**) | — | — | ✅ **MATCH** | — | All times match (±1m). Cock is ruling bird. |
-| **Y9** | `01:12–03:38` · **Eating** | `01:11–03:38` · `Energize` (**eating**) | — | — | ✅ **MATCH** | — | All times match (±1m). |
-| **Y10**| `03:38–06:05` · **Sleeping** | `03:38–06:05` · `Relax` (**sleeping**) | — | — | ✅ **MATCH** | — | All times match (±1m). |
+| **Y1** | `06:05–08:26` · **Eating** | `06:04–08:25` · `Energize` (**eating**) | `06:05–08:26` · **ruling** | `06:05–08:26` · **dying** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Cock in Krishna Paksha. |
+| **Y2** | `08:26–10:47` · **Dying** | `08:25–10:46` · `Caution` (**dying**) | `08:26–10:47` · **eating** | `08:26–10:47` · **sleeping** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Both apps in Krishna Paksha. |
+| **Y3** | `10:47–13:08` · **Sleeping** | `10:46–13:08` · `Relax` (**sleeping**) | `10:47–13:08` · **walking** | `10:47–13:08` · **ruling** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). |
+| **Y4** | `13:08–15:30` · **Ruling** | `13:08–15:29` · `Succeed` (**ruling**) | `13:08–15:29` · **sleeping** | `13:08–15:29` · **walking** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Cock is ruling bird. |
+| **Y5** | `15:30–17:51` · **Walking** | `15:29–17:50` · `Action` (**walking**) | `15:29–17:51` · **dying** | `15:29–17:51` · **eating** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). |
+| **Y6** | `17:51–20:18` · **Walking** | `17:50–20:17` · `Action` (**walking**) | `17:51–20:17` · **dying** | `17:51–20:17` · **eating** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Night table starts. |
+| **Y7** | `20:18–22:45` · **Dying** | `20:17–22:44` · `Caution` (**dying**) | `20:17–22:44` · **sleeping** | `20:17–22:44` · **dying** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). |
+| **Y8** | `22:45–01:12` · **Ruling** | `22:44–01:11` · `Succeed` (**ruling**) | `22:44–01:11` · **ruling** | `22:44–01:11` · **walking** | ✅ **MATCH** | ✅ **MATCH** | All times match (±1m). Cock is ruling bird. |
+| **Y9** | `01:12–03:38` · **Eating** | `01:11–03:38` · `Energize` (**eating**) | `01:11–03:38` · **dying** | `01:11–03:38` · **ruling** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). |
+| **Y10** | `03:38–06:05` · **Sleeping** | `03:38–06:05` · `Relax` (**sleeping**) | `03:38–06:05` · **eating** | `03:38–06:05` · **sleeping** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). |
 
 ---
 

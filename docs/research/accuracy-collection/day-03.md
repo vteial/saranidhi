@@ -22,16 +22,16 @@
 
 | yama | Drik Panchang (Cock) | Align27 (Cock) | Saranidhi (Cock) | Saranidhi (Owl) | Drik vs Align27? | Saranidhi vs Ground Truth? | Diagnosis / Remarks |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
-| **Y1** | `06:05–08:26` · **Sleeping** | `06:04–08:25` · `Relax` (**sleeping**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Vulture ruling. |
-| **Y2** | `08:26–10:47` · **Dying** | `08:25–10:47` · `Caution` (**dying**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Peacock ruling. |
-| **Y3** | `10:47–13:09` · **Eating** | `10:47–13:08` · `Energize` (**eating**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Vulture ruling. |
-| **Y4** | `13:09–15:30` · **Walking** | `13:08–15:29` · `Action` (**walking**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Owl ruling. |
-| **Y5** | `15:30–17:51` · **Ruling** | `15:29–17:50` · `Succeed` (**ruling**) | — | — | ✅ **MATCH** | — | All times match (±1m). Cock is ruling bird. |
-| **Y6** | `17:51–20:18` · **Sleeping** | `17:50–20:17` · `Relax` (**sleeping**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Owl ruling. |
-| **Y7** | `20:18–22:45` · **Eating** | `20:17–22:44` · `Energize` (**eating**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Crow ruling. |
-| **Y8** | `22:45–01:12` · **Ruling** | `22:44–01:11` · `Succeed` (**ruling**) | — | — | ✅ **MATCH** | — | All times match (±1m). Cock is ruling bird. |
-| **Y9** | `01:12–03:38` · **Dying** | `01:11–03:37` · `Caution` (**dying**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Vulture ruling. |
-| **Y10**| `03:38–06:05` · **Walking** | `03:37–06:04` · `Action` (**walking**) | — | — | ✅ **MATCH** | — | All times match (±1m). Drik shows Peacock ruling. |
+| **Y1** | `06:05–08:26` · **Sleeping** | `06:04–08:25` · `Relax` (**sleeping**) | `06:05–08:26` · **dying** | `06:05–08:26` · **ruling** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Vulture ruling. |
+| **Y2** | `08:26–10:47` · **Dying** | `08:25–10:47` · `Caution` (**dying**) | `08:26–10:47` · **ruling** | `08:26–10:47` · **dying** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Peacock ruling. |
+| **Y3** | `10:47–13:09` · **Eating** | `10:47–13:08` · `Energize` (**eating**) | `10:47–13:09` · **sleeping** | `10:47–13:09` · **eating** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Vulture ruling. |
+| **Y4** | `13:09–15:30` · **Walking** | `13:08–15:29` · `Action` (**walking**) | `13:09–15:30` · **eating** | `13:09–15:30` · **walking** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Owl ruling. |
+| **Y5** | `15:30–17:51` · **Ruling** | `15:29–17:50` · `Succeed` (**ruling**) | `15:30–17:52` · **walking** | `15:30–17:52` · **sleeping** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Cock is ruling bird. |
+| **Y6** | `17:51–20:18` · **Sleeping** | `17:50–20:17` · `Relax` (**sleeping**) | `17:52–20:18` · **walking** | `17:52–20:18` · **sleeping** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Owl ruling. |
+| **Y7** | `20:18–22:45` · **Eating** | `20:17–22:44` · `Energize` (**eating**) | `20:18–22:45` · **sleeping** | `20:18–22:45` · **eating** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Crow ruling. |
+| **Y8** | `22:45–01:12` · **Ruling** | `22:44–01:11` · `Succeed` (**ruling**) | `22:45–01:11` · **dying** | `22:45–01:11` · **walking** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Cock is ruling bird. |
+| **Y9** | `01:12–03:38` · **Dying** | `01:11–03:37` · `Caution` (**dying**) | `01:11–03:38` · **ruling** | `01:11–03:38` · **dying** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Vulture ruling. |
+| **Y10** | `03:38–06:05` · **Walking** | `03:37–06:04` · `Action` (**walking**) | `03:38–06:05` · **eating** | `03:38–06:05` · **ruling** | ✅ **MATCH** | ⚠️ **DIFF** | All times match (±1m). Drik shows Peacock ruling. |
 
 ---
 
