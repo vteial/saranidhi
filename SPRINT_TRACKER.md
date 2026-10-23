@@ -44,6 +44,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | — | Golden-Fixture Correctness Gate (`TSK-golden-01`) | *internal* | ✅ Done (PR #280) |
 | — | Golden-Fixture Gate Hardening — independent-truth + branch coverage (`TSK-golden-02`) | *internal* | ✅ Done (PR #290) |
 | — | Practice Sync Auto-on-Open Fast-Follow (`practice-sync-auto-on-open`) | *fast-follow / unreleased* | ✅ Done (PR #294) |
+| — | Saranidhi Diagnostic Dump (`diagnostic-dump`) | *internal / accuracy calibration* | 👀 In Review |
 | 48+ | Native "Now" surface (next — owner-chosen), Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1241,6 +1242,39 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **Security re-review (RS.1)** — Phase-1 checklist verified and recorded in REPORT.
 - [x] **RT & RC (standing)** — RT: N/A noted; RC: N/A infrastructure noted.
 - [x] **Local green (RQ)** — `just validate-local` green (analyze clean, tests green except 4 CloudKit macOS baseline, coverage 42.9%, web build compiles).
+
+---
+
+## Feature: Saranidhi Diagnostic Dump (`diagnostic-dump`) — 👀 In Review
+
+> Path: `.kiro/specs/diagnostic-dump/` · Spec ID: `diagnostic-dump` · Backlog: Accuracy & Validation epic
+> Read-only CLI tool (`tool/dump_diagnostic.dart`) for the Accuracy & Validation epic to generate 7-day
+> reports (70 yamas across daytime Y1–Y5 and nighttime Y6–Y10 via `calculateNight`) containing
+> sunrise, sunset, lunar phase, nakshatra, ruling bird, and subject-bird state in deterministic JSON
+> or Markdown table format. Unblocks owner data collection for three-way accuracy calibration against
+> Align27 and Tamil Panchangam without modifying any engine code.
+
+- [x] T0 — Preflight + seam read (OQ-1/2/3 resolved; pure Dart readers, zero `lib/` changes)
+- [x] T1 — Script skeleton (`tool/dump_diagnostic.dart`, hand-rolled parser, `--help`, validation)
+- [x] T2 — Day path (Y1–Y5 ruling bird + subject-bird state via `PakshiDayResult`, sunrise/sunset, weekday, lunar phase, nakshatra)
+- [x] T3 — Night path (Y6–Y10 via `calculateNight` → `NightYamaResult` + night state table)
+- [x] T4 — Serializers (`--format json` deterministic sorted keys, `--format md` GitHub table, `--out` support)
+- [x] T5 — Tests (`test/tool/dump_diagnostic_test.dart`, 6 tests: 70-record shape, determinism, markdown table, all birds)
+- [x] TV — Self-verify (`REPORT.md` emitted with full 7-day sample; golden suite 66 tests green; `lib/` diff empty)
+- [x] TR — RT (Tamil) standing: N/A recorded (developer CLI, no user-facing UI strings)
+- [x] TC — RC (CONF) standing: recorded (subject-bird default Owl traces to CONF-PP-001/002)
+- [x] TG — Governance lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
+- [x] TQ — Quality gates (`just validate-local` green: analyze clean, tests green except 4 CloudKit macOS baseline, coverage 42.9%, web build compiles)
+- [ ] TP — PR + Human Verification Plan (Executor opens; owner merges)
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Full 7-day output (R1)** — emits 70 records covering Y1–Y10 with ruling bird and subject-bird state, sunrise, sunset, weekday, lunar phase, nakshatra.
+- [x] **Subject bird default (R1.4)** — defaults to Owl (CONF-PP-001/002); invalid bird exits non-zero with valid list.
+- [x] **Matrix-ready output (R2)** — `--format json` and `--format md` supported; deterministic byte-identical JSON pinned by tests.
+- [x] **Read-only & self-contained (R3)** — zero writes under `lib/`, zero network calls, offline pure Dart, `--help` works.
+- [x] **No regression (R4)** — `git diff main...HEAD -- lib/ test/golden/` empty; golden suite green (66 tests).
+- [x] **RT & RC standing** — RT: N/A developer CLI; RC: CONF-PP-001/002 provenance noted.
+- [x] **Local green (RQ)** — `just validate-local` green before PR.
 
 ---
 
