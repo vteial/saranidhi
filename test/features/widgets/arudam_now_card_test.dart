@@ -474,5 +474,36 @@ void main() {
       // Citation still carries CONF id
       expect(find.textContaining('CONF-PP-004'), findsOneWidget);
     });
+
+    testWidgets('evaluates with Adhikara modifier when birth bird is provided', (
+      tester,
+    ) async {
+      final now = DateTime.now();
+      final sunrise = DateTime(now.year, now.month, now.day, 6);
+      final sunset = DateTime(now.year, now.month, now.day, 18);
+      final data = createTestDashboardData(
+        birthBird: PakshiBird.rooster,
+        birthBirdState: PakshiState.ruling,
+        sunrise: sunrise,
+        sunset: sunset,
+      );
+
+      await tester.pumpWidget(
+        testableWidget(
+          ArudamNowCard(data: data),
+          overrides: [
+            profileLocationProvider.overrideWith(
+              (ref) => Future.value(const ProfileLocation()),
+            ),
+            latestJournalEntryProvider.overrideWith(
+              (ref) => Stream.value(null),
+            ),
+          ],
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('ARUḌAM NOW'), findsOneWidget);
+    });
   });
 }

@@ -8,6 +8,7 @@ import 'package:saranidhi/features/astro_engine/domain/hora_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/hora_swara_affinity.dart';
 import 'package:saranidhi/features/astro_engine/domain/integrated_arudam_engine.dart';
 import 'package:saranidhi/features/astro_engine/domain/nakshatra_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/pakshi_adhikara.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/tara_category.dart';
 import 'package:saranidhi/features/breath_journal/domain/alignment_checker.dart';
@@ -125,7 +126,17 @@ class ArudamNowCard extends ConsumerWidget {
       horaSwaraMultiplier = 1;
     }
 
-    // 7. Evaluate verdict
+    // 7. Adhikara / Padu-Pakshi modifier (CONF-PP-007)
+    final subjectBird = data.effectiveBirthBird ?? data.birthBird;
+    final adhikaraMultiplier = PakshiAdhikara.multiplierFor(
+      bird: subjectBird,
+      weekday: now.weekday % 7,
+      queryTime: now,
+      sunrise: data.sunrise,
+      sunset: data.sunset,
+    );
+
+    // 8. Evaluate verdict
     final verdict = IntegratedArudamEngine.evaluate(
       birdState: birdState,
       window: window,
@@ -136,6 +147,7 @@ class ArudamNowCard extends ConsumerWidget {
       actualSwara: actualSwara,
       isRahuActive: isRahuActive,
       isEmakandamActive: isEmakandamActive,
+      adhikaraMultiplier: adhikaraMultiplier,
     );
 
     final bandColor = _bandColor(verdict.band);
