@@ -79,5 +79,5 @@ The app renders the user's **effective birth bird** (Owl-basis canonical per CON
 ## 6. Verification Sign-Off
 
 - **Executor:** Antigravity IDE
-- **PR:** Opened against `main` via `gh pr create`
+- **PR:** https://github.com/vteial/saranidhi/pull/306
 - **Verification Status:** PASS (ready for Human owner review).
