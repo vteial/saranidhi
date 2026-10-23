@@ -35,7 +35,7 @@ result today without waiting on the open doctrinal question.
 |---|---|---|
 | **Bird** | `owl` | The app's canonical rendered bird (CONF-PP-001/002). |
 | **Location** | `Kallakkurichchi` lat `11.7382` lng `78.9639` | Same place as the Cock collection — a different city shifts every yama boundary. |
-| **Start date** | 7 **consecutive** days (reuse the SAME 7 dates as the Cock matrix: 2026-10-23 → 10-29 if still representative, else a fresh consecutive week) | Reusing the Cock dates lets the Owl sheets sit beside the Cock ones for the same astronomical envelope — sunrise/phase/nakshatra are already recorded, zero re-collection of the envelope. |
+| **Start date** | **2026-10-24 → 10-30** (starts tomorrow, 7 **consecutive** days, Sat→Fri) | Days 1–6 (10-24..29) overlap the Cock matrix week, so copy those envelopes from the Cock sheets; Day 7 (10-30) has no Cock sheet — collect its envelope fresh. |
 | **Day boundary** | sunrise → sunrise (CONF-001) | Weekday/phase read on the sunrise-anchored civil day. |
 | **Time format** | 24-hour local to the minute; lowercase spelling | Mechanical diff against the dump. |
 
