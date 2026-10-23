@@ -125,14 +125,22 @@ class IntegratedArudamResult {
 class IntegratedArudamEngine {
   const IntegratedArudamEngine._();
 
-  /// Base bird state scores.
+  /// Base bird state scores grounded in the primary Tamil source
+  /// *"பஞ்ச பட்சி ஆருடம்"* (Thirumathi Kottumozhi Sathya, p. 12) under CONF-PP-007.
+  ///
+  /// **Corpus Success/Failure Percentages:**
+  /// - அரசு (Ruling): 100% வெற்றி (success) -> 100
+  /// - ஊண் (Eating): 80% வெற்றி (success) -> 80
+  /// - நடை (Walking): 40% இழுபறியில் வெற்றி (mixed / dragging success) -> 50 (neutral midpoint)
+  /// - துயில் (Sleeping): 80% தோல்வி (failure) -> 20 (active adverse / failure)
+  /// - சாவு (Dying): 90% தோல்வி (failure) -> 5 (severe adverse / near-complete block)
   static int getBaseBirdScore(PakshiState state) {
     return switch (state) {
       PakshiState.ruling => 100,
       PakshiState.eating => 80,
-      PakshiState.walking => 60,
-      PakshiState.sleeping => 30,
-      PakshiState.dying => 10,
+      PakshiState.walking => 50,
+      PakshiState.sleeping => 20,
+      PakshiState.dying => 5,
     };
   }
 
@@ -171,6 +179,7 @@ class IntegratedArudamEngine {
     required BreathFlow? actualSwara,
     required bool isRahuActive,
     required bool isEmakandamActive,
+    double adhikaraMultiplier = 1.0,
   }) {
     // 1. Hard floor lock if inauspicious window active
     if (isRahuActive || isEmakandamActive) {
@@ -206,7 +215,11 @@ class IntegratedArudamEngine {
     final baseScore = getBaseBirdScore(birdState);
     final categoryHarmony = getCategoryHarmony(category, window);
     final rawMoment =
-        baseScore * tarabalaMultiplier * horaSwaraMultiplier * categoryHarmony;
+        baseScore *
+        tarabalaMultiplier *
+        horaSwaraMultiplier *
+        categoryHarmony *
+        adhikaraMultiplier;
     final momentScore = rawMoment.round().clamp(0, 100);
 
     // 3. Compute Readiness multiplier
