@@ -45,6 +45,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | — | Golden-Fixture Gate Hardening — independent-truth + branch coverage (`TSK-golden-02`) | *internal* | ✅ Done (PR #290) |
 | — | Practice Sync Auto-on-Open Fast-Follow (`practice-sync-auto-on-open`) | *fast-follow / unreleased* | ✅ Done (PR #294) |
 | — | Saranidhi Diagnostic Dump (`diagnostic-dump`) | *internal / accuracy calibration* | 👀 In Review |
+| — | Pakshi Scoring Corpus Alignment (`pakshi-scoring-corpus-alignment`) | *correctness-critical / CONF-PP-007* | 👀 In Review |
 | 48+ | Native "Now" surface (next — owner-chosen), Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
@@ -1274,6 +1275,38 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] **Read-only & self-contained (R3)** — zero writes under `lib/`, zero network calls, offline pure Dart, `--help` works.
 - [x] **No regression (R4)** — `git diff main...HEAD -- lib/ test/golden/` empty; golden suite green (66 tests).
 - [x] **RT & RC standing** — RT: N/A developer CLI; RC: CONF-PP-001/002 provenance noted.
+- [x] **Local green (RQ)** — `just validate-local` green before PR.
+
+---
+
+## Feature: Pakshi Scoring Corpus-Alignment (`pakshi-scoring-corpus-alignment`) — 👀 In Review
+
+> Path: `.kiro/specs/pakshi-scoring-corpus-alignment/` · Spec ID: `pakshi-scoring-corpus-alignment` · Class: Correctness-critical
+> Aligns `IntegratedArudamEngine.getBaseBirdScore` with the primary Tamil source *"பஞ்ச பட்சி ஆருடம்"* (Thirumathi Kottumozhi Sathya, p. 12, CONF-PP-007)
+> by encoding failure/downtime semantics: Ruling=100 (100% success), Eating=80 (80% success), Walking=50 (neutral midpoint, 40% mixed/dragging),
+> Sleeping=20 (adverse, 80% failure), and Dying=5 (severe adverse, 90% failure). Implements pure, data-driven `PakshiAdhikara` helper exposing
+> Adhikara (ruling authority, 1.15 boost) and Padu-Pakshi (complete downtime, 0.5 reduction) tables across both lunar fortnights (pp. 14, 17, 18, 22).
+> Per-yama sequence tables (`PakshiCalculator._*Group*`) remain byte-unchanged (CONF-PP-007 sequence invariant).
+
+- [x] T0 — Seam read + source re-transcribe (verified pp. 12, 17, 18, 22 from PDF image renders; confirmed design.md grids)
+- [x] T1 — Pin the sequence regression FIRST (R3) (`test/features/astro_engine/pakshi_sequence_regression_test.dart` green, SHA256 digest pinned)
+- [x] T2 — Rescale base scores (R1) (`getBaseBirdScore`: ruling 100, eating 80, walking 50, sleeping 20, dying 5; doc comment citing CONF-PP-007 / Kottumozhi p12)
+- [x] T3 — Golden before/after (R4) (`test/features/astro_engine/oracle_scoring_golden_test.dart` green, floor-locks unchanged)
+- [x] T4 — `PakshiAdhikara` helper (R2) (`lib/features/astro_engine/domain/pakshi_adhikara.dart` + `test/features/astro_engine/pakshi_adhikara_test.dart`, 14 tests green)
+- [x] T5 — Wiring per OQ-2 (R2.3/D3) (`OracleCompositeEngine.evaluate` accepts optional `bird` and applies Adhikara/Padu modifier)
+- [x] TV — Validate (`just validate-local` green except the 4 known CloudKit macOS baseline failures; coverage >= 19%)
+- [x] TR — Regression statement (per-yama sequence UNCHANGED, Ruling/Eating classification preserved)
+- [x] TC — Provenance (cites CONF-PP-007 + Kottumozhi Sathya pp. 12, 14, 17, 18, 22)
+- [x] TL — Tamil (RT: N/A recorded; no new user-facing UI strings surfaced)
+- [x] TG — Lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
+- [ ] TP — PR + Human Verification Plan (Executor opens; owner merges)
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Base state scores reflect corpus semantics (R1)** — 100 / 80 / 50 / 20 / 5 mapped with citation.
+- [x] **Adhikara & Padu-Pakshi helper (R2)** — data-driven pure helper `PakshiAdhikara` covering all 5 birds across both pakshas.
+- [x] **Per-yama sequence untouched (R3)** — `PakshiCalculator._*Group*` byte-unchanged; 28-instance regression test green.
+- [x] **Scoring shift characterized (R4)** — before/after golden tests explicit; floor-locks invariant.
+- [x] **RT & RC standing** — RT: N/A; RC: CONF-PP-007 Kottumozhi Sathya cited throughout.
 - [x] **Local green (RQ)** — `just validate-local` green before PR.
 
 ---

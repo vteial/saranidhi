@@ -2,11 +2,13 @@ import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
 import 'package:saranidhi/features/astro_engine/domain/daylight_segment_resolver.dart';
 import 'package:saranidhi/features/astro_engine/domain/integrated_arudam_engine.dart';
 import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
+import 'package:saranidhi/features/astro_engine/domain/pakshi_adhikara.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/swara_clock.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
 
 export 'package:saranidhi/features/astro_engine/domain/integrated_arudam_engine.dart';
+export 'package:saranidhi/features/astro_engine/domain/pakshi_adhikara.dart';
 
 /// Result of a Prasanam Oracle evaluation.
 class PrasanamResult {
@@ -30,6 +32,9 @@ class PrasanamResult {
 /// Refactored in Sprint 38 (Task 38.1) to delegate composite scoring to the shared
 /// [IntegratedArudamEngine] while preserving the exact caller signature and
 /// day-only [DaylightSegmentResolver] behavior.
+///
+/// Enhanced under CONF-PP-007 to support [PakshiAdhikara] status modifiers when
+/// the `bird` parameter is supplied to [evaluate].
 class OracleCompositeEngine {
   const OracleCompositeEngine._();
 
@@ -58,6 +63,7 @@ class OracleCompositeEngine {
     double? latitude,
     double? longitude,
     double? utcOffset,
+    PakshiBird? bird,
   }) {
     // 1. Resolve daylight segment for inauspicious check (Oracle path unchanged)
     final resolver = DaylightSegmentResolver.resolve(
@@ -84,7 +90,26 @@ class OracleCompositeEngine {
       utcOffset: utcOffset,
     );
 
-    // 4. Delegate to IntegratedArudamEngine
+    // 4. Derive Adhikara / Padu modifier if bird is provided (CONF-PP-007)
+    final double adhikaraMultiplier;
+    if (bird != null) {
+      final isNight = queryTime.isBefore(sunrise) || !queryTime.isBefore(sunset);
+      final anchoredSunrise = queryTime.isBefore(sunrise)
+          ? sunrise.subtract(const Duration(days: 1))
+          : sunrise;
+      final paksha = LunarPhaseCalculator.phaseForDate(anchoredSunrise);
+      final status = PakshiAdhikara.statusFor(
+        bird: bird,
+        weekday: weekday,
+        paksha: paksha,
+        isNight: isNight,
+      );
+      adhikaraMultiplier = PakshiAdhikara.scoreModifier(status);
+    } else {
+      adhikaraMultiplier = 1.0;
+    }
+
+    // 5. Delegate to IntegratedArudamEngine
     final result = IntegratedArudamEngine.evaluate(
       birdState: currentBirdState,
       window: currentWindow,
@@ -95,6 +120,7 @@ class OracleCompositeEngine {
       actualSwara: flow,
       isRahuActive: isRahuActive,
       isEmakandamActive: isEmakandamActive,
+      adhikaraMultiplier: adhikaraMultiplier,
     );
 
     return PrasanamResult(

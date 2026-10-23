@@ -726,7 +726,7 @@
         "actualSwara": "lunar"
       },
       "expected": {
-        "score": 9,
+        "score": 6,
         "band": "sunya",
         "isFloorLocked": false
       },
@@ -748,7 +748,7 @@
         "actualSwara": "lunar"
       },
       "expected": {
-        "score": 2,
+        "score": 1,
         "band": "sunya",
         "isFloorLocked": false
       },
@@ -792,8 +792,8 @@
         "actualSwara": "sushumna"
       },
       "expected": {
-        "score": 36,
-        "band": "stambhana",
+        "score": 24,
+        "band": "sunya",
         "isFloorLocked": false
       },
       "tolerance": 1e-9,

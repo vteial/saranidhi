@@ -397,7 +397,7 @@ void main() {
           ? BreathFlow.lunar
           : BreathFlow.solar;
 
-      // Base: walking=60, tarabala=1.0, hora=1.0, category artha=1.2 -> Moment = 72
+      // Base: walking=50 (CONF-PP-007), tarabala=1.0, hora=1.0, category artha=1.2 -> Moment = 60
       final aligned = OracleCompositeEngine.evaluate(
         queryTime: queryTime,
         sunrise: sunrise,
@@ -424,8 +424,8 @@ void main() {
         actualSwara: oppositeFlow.nostril,
       );
 
-      expect(aligned.score, 72);
-      expect(misaligned.score, 54);
+      expect(aligned.score, 60);
+      expect(misaligned.score, 45);
       expect(misaligned.score / aligned.score, closeTo(0.75, 0.01));
     });
 

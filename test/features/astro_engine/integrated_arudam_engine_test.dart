@@ -53,8 +53,8 @@ void main() {
     });
 
     test('Aligned vs misaligned score differs by exact 0.75 factor', () {
-      // Walking base=60, Tarabala=1.0, Hora=1.0, Harmony(artha, artha)=1.2 -> Moment = 72
-      // Aligned: 72 * 1.0 = 72
+      // Walking base=50 (CONF-PP-007), Tarabala=1.0, Hora=1.0, Harmony(artha, artha)=1.2 -> Moment = 60
+      // Aligned: 60 * 1.0 = 60
       final aligned = IntegratedArudamEngine.evaluate(
         birdState: PakshiState.walking,
         window: ActionWindow.artha,
@@ -67,7 +67,7 @@ void main() {
         isEmakandamActive: false,
       );
 
-      // Misaligned: 72 * 0.75 = 54
+      // Misaligned: 60 * 0.75 = 45
       final misaligned = IntegratedArudamEngine.evaluate(
         birdState: PakshiState.walking,
         window: ActionWindow.artha,
@@ -80,8 +80,8 @@ void main() {
         isEmakandamActive: false,
       );
 
-      expect(aligned.score, 72);
-      expect(misaligned.score, 54);
+      expect(aligned.score, 60);
+      expect(misaligned.score, 45);
       expect((misaligned.score / aligned.score), closeTo(0.75, 0.01));
     });
 
@@ -100,7 +100,7 @@ void main() {
 
       expect(result.readinessMultiplier, 1.0);
       expect(result.score, result.momentScore);
-      expect(result.score, 72);
+      expect(result.score, 60);
     });
 
     group('Sushumna-in-Yoga rule', () {
@@ -118,8 +118,8 @@ void main() {
         );
 
         expect(result.readinessMultiplier, 1.0);
-        // Base sleeping=30, category yoga=1.2 -> 36 * 1.0 = 36
-        expect(result.score, 36);
+        // Base sleeping=20 (CONF-PP-007), category yoga=1.2 -> 24 * 1.0 = 24
+        expect(result.score, 24);
         expect(result.englishGuidance, contains('Sushumna Swara is active'));
       });
 
