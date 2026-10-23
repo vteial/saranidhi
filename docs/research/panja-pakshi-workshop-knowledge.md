@@ -156,6 +156,26 @@ The decisive mismatch: on **Day-04 (Mon/Shukla)** the workshop Adhikara rule put
 
 *Owner action:* record which of 3a / 3b holds, and whether Align27/Drik is to be treated as canonical-despite-lineage or as a documented secondary school.
 
+##### Update (2026-10-23) — primary source reviewed: *பஞ்ச பட்சி ஆருடம்* (Kottumozhi Sathya)
+
+The owner supplied a primary Tamil handbook — **"பஞ்ச பட்சி ஆருடம்", Thirumathi Kottumozhi Sathya** (Sri Sai Jothida Aaraaichi Nilayam, Pollachi), 58 pp. — uploaded at `~/.kiro/crew/uploads/9eaaca78c78a4274a6a1dba0cc69d73c_panja_pakashi_aarudan.pdf` (legacy Tamil glyph PDF; read by rendering pages to images). I surveyed it end to end. It **corroborates** several already-settled items and **answers the 3a/3b question** for the state-table layer:
+
+**Corroborates (no change needed):**
+- Bird-strength order Crow 100 / Vulture 80 / Owl 60 / Cock 40 / Peacock 20 (p5) — consistent with CONF-PP-001.
+- Yama time model: 60 nāzhigai/day = 5 day + 5 night yamas, 1 yama = 6 nāzhigai = 2h24m, day-Y1 at 06:00, sunrise-anchored (p10) — matches the shipped engine's time model.
+- Friend/enemy unified matrix (p18) — consistent with CONF-PP-003.
+- **Activity-window success doctrine with explicit percentages (p12):** Arasu/ruling **100% success**, Oon/eating **80% success**, Nadai/walking **40% (mixed)**, Thuyil/sleeping **80% failure**, Saavu/dying **90% failure** — a quantified basis for Oracle/Aruḍam scoring weights (worth its own cross-check against the shipped scoring).
+
+**Decisive finding for CONF-PP-007 (resolves 3a vs 3b → it is 3b):**
+The handbook specifies, per bird, the **Adhikara (ruling-power) day/night blocks** and the **Padu Pakshi (full-downtime) days** (keyed by bird × weekday × paksha × day/night, pp14/18/22), and the **activity-window semantics** — but it does **NOT** contain an explicit 5×5 `[bird][yama] → state` sequence grid. It tells you *which block* a bird rules or rests in, not the full per-yama 10-state sequence the engine (`PakshiCalculator`) encodes. So this primary lineage source **constrains** the tables (ruling/downtime placement) without **fully specifying** them.
+
+**What this means (owner still decides, but the path narrows):**
+- **Neither** the shipped Pulippani per-yama tables **nor** the Align27/Drik ground truth is fully derivable from this primary source alone — it does not reach the per-yama sequence.
+- The honest resolution is **3b**: (i) treat the **Adhikara + Padu-Pakshi rules** and the **activity-window percentages** as corpus-confirmed and align the engine/scoring to them where they diverge; (ii) mark the **full per-yama state sequence as UNRESOLVED** pending either a primary source that tabulates all 10 yamas, or an owner ruling to adopt Align27/Drik as the canonical practitioner school (a deliberate choice, since it would stand in for a lineage grid the corpus does not contain).
+- **Testable cross-check available now:** the handbook's Adhikara table says *where* each bird's ruling yama should fall (day vs night block) per weekday/paksha. That can be checked against BOTH the engine tables AND the Align27/Drik matrix as a first correctness gate — the model whose ruling-placement matches the handbook is the one closer to this lineage. (Earlier spot-check: on Mon/Shukla the handbook puts Cock ruling at **night**, the engine agrees structurally, and Align27/Drik put it in the **day** — i.e. the handbook sides with the engine's *keying model* over Align27/Drik on that point, even though the engine's per-yama *values* still diverge elsewhere.)
+
+*Owner action (updated):* confirm 3b — adopt the Adhikara/Padu/activity-% rules as corpus-confirmed, and decide whether to (a) hunt for a primary source with the full per-yama grid, or (b) formally adopt Align27/Drik as the canonical practitioner school for the per-yama sequence. Until then, **no engine state-table rewrite is specced**; a scoped fix aligning the *activity-window percentages* and *Adhikara/Padu-day* logic to this confirmed source may proceed as a separate correctness-critical Spec.
+
 ---
 
 ## Per-Practice Template
