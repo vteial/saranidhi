@@ -25,7 +25,7 @@
 - [x] **TC — RC (CONF):** REPORT notes the subject-bird default (Owl) traces to CONF-PP-001/002;
       no new doctrine asserted.
 - [x] **TG — Lockstep:** CHANGELOG `[Unreleased]` entry + SPRINT_TRACKER row for the dump.
-- [ ] **TP — PR + Human Verification Plan.** Open the PR (Executor opens; owner merges). Emit the
+- [x] **TP — PR + Human Verification Plan.** Open the PR (Executor opens; owner merges). Emit the
       Human Verification Plan. **STOP** for `/review-pr`. Never merge.
 
 ## Flagged, NOT in this build
