@@ -1,3 +1,4 @@
+import 'package:saranidhi/features/astro_engine/domain/lunar_phase_calculator.dart';
 import 'package:saranidhi/features/astro_engine/domain/pakshi_calculator.dart';
 
 /// Operating status of a bird on a specific day/night period.
@@ -147,5 +148,38 @@ class PakshiAdhikara {
       AdhikaraStatus.padu => 0.5,
       AdhikaraStatus.normal => 1.0,
     };
+  }
+
+  /// Derives the Adhikara / Padu-Pakshi multiplier for [bird] at [queryTime].
+  ///
+  /// Returns `1.0` (neutral no-op) if [bird], [sunrise], or [sunset] is `null`
+  /// (R1.2 / R2.2 null-bird invariant).
+  ///
+  /// Grounded in CONF-PP-007 / Kottumozhi Sathya pp. 14, 17, 18, 22:
+  /// - [AdhikaraStatus.adhikara] -> 1.15 boost
+  /// - [AdhikaraStatus.padu] -> 0.5 adverse reduction
+  /// - [AdhikaraStatus.normal] -> 1.0 neutral
+  static double multiplierFor({
+    required int weekday,
+    required DateTime queryTime,
+    PakshiBird? bird,
+    DateTime? sunrise,
+    DateTime? sunset,
+  }) {
+    if (bird == null || sunrise == null || sunset == null) {
+      return 1;
+    }
+    final isNight = queryTime.isBefore(sunrise) || !queryTime.isBefore(sunset);
+    final anchoredSunrise = queryTime.isBefore(sunrise)
+        ? sunrise.subtract(const Duration(days: 1))
+        : sunrise;
+    final paksha = LunarPhaseCalculator.phaseForDate(anchoredSunrise);
+    final status = statusFor(
+      bird: bird,
+      weekday: weekday,
+      paksha: paksha,
+      isNight: isNight,
+    );
+    return scoreModifier(status);
   }
 }

@@ -129,5 +129,89 @@ void main() {
         expect(PakshiAdhikara.scoreModifier(AdhikaraStatus.normal), 1.0);
       });
     });
+
+    group('multiplierFor (CONF-PP-007 activation helper)', () {
+      final shuklaDate = DateTime(2025, 1, 10, 8, 30); // Friday, Shukla
+      final sunrise = DateTime(2025, 1, 10, 6);
+      final sunset = DateTime(2025, 1, 10, 18);
+
+      test('returns 1.15 when bird is in Adhikara block', () {
+        // Cock on Friday daytime in Shukla -> Adhikara
+        final multiplier = PakshiAdhikara.multiplierFor(
+          weekday: 5,
+          queryTime: shuklaDate,
+          bird: PakshiBird.rooster,
+          sunrise: sunrise,
+          sunset: sunset,
+        );
+        expect(multiplier, 1.15);
+      });
+
+      test('returns 0.5 when bird is in Padu downtime', () {
+        // Tuesday in Shukla (Jan 7, 2025): Cock is Padu
+        final tuesday = DateTime(2025, 1, 7, 10);
+        final tuesdaySunrise = DateTime(2025, 1, 7, 6);
+        final tuesdaySunset = DateTime(2025, 1, 7, 18);
+
+        final multiplier = PakshiAdhikara.multiplierFor(
+          weekday: 2,
+          queryTime: tuesday,
+          bird: PakshiBird.rooster,
+          sunrise: tuesdaySunrise,
+          sunset: tuesdaySunset,
+        );
+        expect(multiplier, 0.5);
+      });
+
+      test('returns 1.0 when bird is normal', () {
+        // Wednesday daytime in Shukla (Jan 8, 2025): Cock is normal
+        final wednesday = DateTime(2025, 1, 8, 10);
+        final wedSunrise = DateTime(2025, 1, 8, 6);
+        final wedSunset = DateTime(2025, 1, 8, 18);
+
+        final multiplier = PakshiAdhikara.multiplierFor(
+          weekday: 3,
+          queryTime: wednesday,
+          bird: PakshiBird.rooster,
+          sunrise: wedSunrise,
+          sunset: wedSunset,
+        );
+        expect(multiplier, 1.0);
+      });
+
+      test('returns 1.0 when bird is null (null-bird no-op invariant)', () {
+        final multiplier = PakshiAdhikara.multiplierFor(
+          weekday: 5,
+          queryTime: shuklaDate,
+          bird: null,
+          sunrise: sunrise,
+          sunset: sunset,
+        );
+        expect(multiplier, 1.0);
+      });
+
+      test('returns 1.0 when sunrise or sunset is null', () {
+        expect(
+          PakshiAdhikara.multiplierFor(
+            weekday: 5,
+            queryTime: shuklaDate,
+            bird: PakshiBird.rooster,
+            sunrise: null,
+            sunset: sunset,
+          ),
+          1.0,
+        );
+        expect(
+          PakshiAdhikara.multiplierFor(
+            weekday: 5,
+            queryTime: shuklaDate,
+            bird: PakshiBird.rooster,
+            sunrise: sunrise,
+            sunset: null,
+          ),
+          1.0,
+        );
+      });
+    });
   });
 }

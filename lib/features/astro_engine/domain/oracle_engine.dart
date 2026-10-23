@@ -91,23 +91,13 @@ class OracleCompositeEngine {
     );
 
     // 4. Derive Adhikara / Padu modifier if bird is provided (CONF-PP-007)
-    final double adhikaraMultiplier;
-    if (bird != null) {
-      final isNight = queryTime.isBefore(sunrise) || !queryTime.isBefore(sunset);
-      final anchoredSunrise = queryTime.isBefore(sunrise)
-          ? sunrise.subtract(const Duration(days: 1))
-          : sunrise;
-      final paksha = LunarPhaseCalculator.phaseForDate(anchoredSunrise);
-      final status = PakshiAdhikara.statusFor(
-        bird: bird,
-        weekday: weekday,
-        paksha: paksha,
-        isNight: isNight,
-      );
-      adhikaraMultiplier = PakshiAdhikara.scoreModifier(status);
-    } else {
-      adhikaraMultiplier = 1.0;
-    }
+    final adhikaraMultiplier = PakshiAdhikara.multiplierFor(
+      bird: bird,
+      weekday: weekday,
+      queryTime: queryTime,
+      sunrise: sunrise,
+      sunset: sunset,
+    );
 
     // 5. Delegate to IntegratedArudamEngine
     final result = IntegratedArudamEngine.evaluate(

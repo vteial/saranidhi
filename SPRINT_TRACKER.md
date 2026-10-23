@@ -1299,13 +1299,46 @@ Every sprint from Sprint 28 onward carries this checklist. Copy it per sprint:
 - [x] TC — Provenance (cites CONF-PP-007 + Kottumozhi Sathya pp. 12, 14, 17, 18, 22)
 - [x] TL — Tamil (RT: N/A recorded; no new user-facing UI strings surfaced)
 - [x] TG — Lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
-- [ ] TP — PR + Human Verification Plan (Executor opens; owner merges)
+- [x] TP — PR + Human Verification Plan (PR #304 merged)
 
 **Delivery Checklist (Definition of Done):**
 - [x] **Base state scores reflect corpus semantics (R1)** — 100 / 80 / 50 / 20 / 5 mapped with citation.
 - [x] **Adhikara & Padu-Pakshi helper (R2)** — data-driven pure helper `PakshiAdhikara` covering all 5 birds across both pakshas.
 - [x] **Per-yama sequence untouched (R3)** — `PakshiCalculator._*Group*` byte-unchanged; 28-instance regression test green.
 - [x] **Scoring shift characterized (R4)** — before/after golden tests explicit; floor-locks invariant.
+- [x] **RT & RC standing** — RT: N/A; RC: CONF-PP-007 Kottumozhi Sathya cited throughout.
+- [x] **Local green (RQ)** — `just validate-local` green before PR.
+
+---
+
+## Feature: Adhikara / Padu-Pakshi Activation (`adhikara-padu-activation`) — 👀 In Review
+
+> Path: `.kiro/specs/adhikara-padu-activation/` · Spec ID: `adhikara-padu-activation` · Class: Correctness-critical
+> Activates the corpus-confirmed Adhikara ruling authority (×1.15 boost) and Padu-Pakshi downtime (×0.5 penalty)
+> modifiers (Kottumozhi Sathya pp. 14, 17, 18, 22 under CONF-PP-007) across the Prasanam (`prasanam_screen.dart`)
+> and Home ambient card (`arudam_now_card.dart`) surfaces. Pure extraction helper `PakshiAdhikara.multiplierFor`
+> guarantees both surfaces evaluate identically. Null-bird un-onboarded profiles are 100% byte-identical no-ops.
+> Rahu Kaal and Emakandam inauspicious floor-locks (score=10, sunya) strictly override the boost.
+
+- [x] T0 — Seam re-read (verified `OracleCompositeEngine.evaluate`, `IntegratedArudamEngine.evaluate`, `prasanam_screen.dart`, `arudam_now_card.dart`)
+- [x] T1 — Pin safety invariants FIRST (`adhikara_padu_activation_test.dart`: null-bird no-op, floor-lock over boost, sequence firewall green)
+- [x] T2 — Extract shared derivation helper (`PakshiAdhikara.multiplierFor` added, unit-tested, wired into `oracle_engine.dart`)
+- [x] T3 — Activate Prasanam (R1) (`prasanam_screen.dart` passes `bird: effectiveBirthBird ?? birthBird`)
+- [x] T4 — Activate Home "now" card (R2) (`arudam_now_card.dart` derives `adhikaraMultiplier` and passes to `IntegratedArudamEngine.evaluate`; two-surface agreement pinned)
+- [x] T5 — Characterize score shift (R5) (`adhikara_padu_activation_test.dart`: Adhikara 60→69, Padu 60→30, normal 60→60, floor-lock locked at 10)
+- [x] TV — Validate (`just validate-local` green except known 4 CloudKit failures; coverage >= 19%)
+- [x] TR — Regression statement (null-bird, normal days, floor-lock byte-identical to pre-activation)
+- [x] TC — Provenance (cites CONF-PP-007 + Kottumozhi Sathya pp. 14, 17, 18, 22; Owl-basis caveat carried)
+- [x] TT — Tamil (RT: N/A; no new user-facing UI strings surfaced; existing verdict bands preserved)
+- [x] TG — Lockstep (`CHANGELOG.md` + `SPRINT_TRACKER.md`)
+- [ ] TP — Open PR + emit Human Verification Plan, then STOP (Executor opens; owner merges)
+
+**Delivery Checklist (Definition of Done):**
+- [x] **Prasanam activated (R1)** — passes `effectiveBirthBird ?? birthBird`; null-bird preserved.
+- [x] **Home card activated & synchronized (R2)** — shared `multiplierFor` ensures surfaces agree 100%.
+- [x] **Floor-lock absolute (R3)** — Rahu/Emakandam floor-lock returns 10 / sunya before modifier applied.
+- [x] **Sequence untouched (R4)** — `pakshi_calculator.dart` byte-unchanged; 28-instance SHA-256 test passes.
+- [x] **Score shift characterized (R5)** — test suite explicitly asserts 1.15, 0.5, 1.0, and floor-lock.
 - [x] **RT & RC standing** — RT: N/A; RC: CONF-PP-007 Kottumozhi Sathya cited throughout.
 - [x] **Local green (RQ)** — `just validate-local` green before PR.
 

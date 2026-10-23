@@ -459,6 +459,8 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
 
     // Get dashboard data for bird state and action window
     final dashboardData = await ref.read(dashboardDataProvider.future);
+    final subjectBird =
+        dashboardData.effectiveBirthBird ?? dashboardData.birthBird;
     final currentBirdState = dashboardData.birthBirdState ?? PakshiState.eating;
     final activeWindow = dashboardData.activeActionWindow;
     final currentWindow = activeWindow?.window ?? ActionWindow.artha;
@@ -511,6 +513,7 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
       latitude: location.latitude,
       longitude: location.longitude,
       utcOffset: utcOffset,
+      bird: subjectBird,
     );
 
     // Store result — saving to history is user-initiated (Option C)
