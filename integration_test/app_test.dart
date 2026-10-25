@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/features/whats_new/presentation/whats_new_screen.dart';
 import 'package:saranidhi/main.dart';
 
 void main() {
@@ -28,6 +29,7 @@ void main() {
         ProviderScope(
           overrides: [
             onboardingCompleteProvider.overrideWith(_AlwaysTrueNotifier.new),
+            shouldShowWhatsNewProvider.overrideWith((ref) => false),
           ],
           child: const SaranidhiApp(),
         ),
@@ -53,6 +55,7 @@ void main() {
         ProviderScope(
           overrides: [
             onboardingCompleteProvider.overrideWith(_AlwaysTrueNotifier.new),
+            shouldShowWhatsNewProvider.overrideWith((ref) => false),
           ],
           child: const SaranidhiApp(),
         ),

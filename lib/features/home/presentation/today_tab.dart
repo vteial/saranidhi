@@ -21,6 +21,7 @@ import 'package:saranidhi/features/home/presentation/widgets/nostril_dominance_c
 import 'package:saranidhi/features/home/presentation/widgets/rahu_kaal_card.dart';
 import 'package:saranidhi/features/home/presentation/widgets/stagnancy_card.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/seven_day_ribbon_widget.dart';
+import 'package:saranidhi/features/streaks/presentation/widgets/streak_celebration.dart';
 import 'package:saranidhi/features/streaks/presentation/widgets/streak_flame_widget.dart';
 import 'package:saranidhi/features/streaks/providers/streak_providers.dart';
 
@@ -47,13 +48,48 @@ class TodayTab extends ConsumerWidget {
   }
 }
 
-class _TodayContent extends ConsumerWidget {
+class _TodayContent extends ConsumerStatefulWidget {
   const _TodayContent({required this.data});
 
   final DashboardData data;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_TodayContent> createState() => _TodayContentState();
+}
+
+class _TodayContentState extends ConsumerState<_TodayContent> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        checkAndTriggerStreakCelebration(
+          context,
+          widget.data.streak.currentStreak,
+        );
+      }
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant _TodayContent oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.data.streak.currentStreak !=
+        oldWidget.data.streak.currentStreak) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          checkAndTriggerStreakCelebration(
+            context,
+            widget.data.streak.currentStreak,
+          );
+        }
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final data = widget.data;
     final screenWidth = MediaQuery.of(context).size.width;
     final isWide = screenWidth >= 600;
 

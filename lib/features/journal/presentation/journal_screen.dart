@@ -4,10 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
 import 'package:saranidhi/features/breath_journal/domain/breath_flow.dart';
+import 'package:saranidhi/features/breath_journal/domain/breath_presets.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/alignment_result_widget.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/breath_entry_widget.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/breath_timer_widget.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/journal_history_list.dart';
+import 'package:saranidhi/features/breath_journal/presentation/widgets/preset_selector.dart';
 import 'package:saranidhi/features/breath_journal/presentation/widgets/quick_sync_pacer.dart';
 import 'package:saranidhi/features/breath_journal/providers/journal_providers.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
@@ -21,11 +23,18 @@ import 'package:saranidhi/l10n/generated/app_localizations.dart';
 /// - Quick Sync Pacer animation
 /// - Submit button
 /// - Journal history list (chronological, grouped by date)
-class JournalScreen extends ConsumerWidget {
+class JournalScreen extends ConsumerStatefulWidget {
   const JournalScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<JournalScreen> createState() => _JournalScreenState();
+}
+
+class _JournalScreenState extends ConsumerState<JournalScreen> {
+  BreathPreset? _selectedPreset;
+
+  @override
+  Widget build(BuildContext context) {
     final entryState = ref.watch(breathEntryNotifierProvider);
     final timerState = ref.watch(breathTimerNotifierProvider);
     final hasSelection = entryState.selectedFlow != null;
@@ -95,6 +104,58 @@ class JournalScreen extends ConsumerWidget {
               ),
             ),
           ] else ...[
+            PresetSelector(
+              selectedPreset: _selectedPreset,
+              onSelect: (preset) {
+                setState(() {
+                  _selectedPreset = preset;
+                });
+              },
+            ),
+            const SizedBox(height: 12),
+
+            // Target rhythm guidance when a preset is chosen (R2.2)
+            if (_selectedPreset != null) ...[
+              Card(
+                color: Theme.of(context)
+                    .colorScheme
+                    .primaryContainer
+                    .withValues(alpha: 0.25),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.info_outline,
+                        size: 16,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          '${l10n.presetTimerTitle(presetDisplayName(_selectedPreset!, l10n))}: '
+                          '${_selectedPreset!.inhaleSeconds}s ${l10n.timerIn} • '
+                          '${_selectedPreset!.holdSeconds}s ${l10n.hold} • '
+                          '${_selectedPreset!.exhaleSeconds}s ${l10n.timerOut}'
+                          '${_selectedPreset!.holdAfterExhaleSeconds > 0 ? ' • ${_selectedPreset!.holdAfterExhaleSeconds}s ${l10n.hold}' : ''}',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                fontWeight: FontWeight.w500,
+                              ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+            ],
+
             const BreathTimerWidget(),
             const SizedBox(height: 12),
 

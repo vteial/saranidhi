@@ -1,11 +1,53 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Milestone thresholds that trigger celebrations.
 const streakMilestones = [7, 30, 100, 365];
 
 /// Checks if a streak value hits a milestone.
 bool isStreakMilestone(int streak) => streakMilestones.contains(streak);
+
+/// Key for storing the last celebrated streak milestone in SharedPreferences.
+const lastCelebratedStreakMilestoneKey = 'last_celebrated_streak_milestone';
+
+int _inFlightOrCelebratedMilestone = 0;
+
+/// Resets the in-memory milestone cache (for testing).
+@visibleForTesting
+void resetCelebratedMilestoneCache([int value = 0]) {
+  _inFlightOrCelebratedMilestone = value;
+}
+
+/// Checks if [currentStreak] hits a milestone that has not been celebrated yet,
+/// persists the milestone marker, and displays the celebration dialog.
+Future<void> checkAndTriggerStreakCelebration(
+  BuildContext context,
+  int currentStreak, {
+  SharedPreferences? prefs,
+}) async {
+  if (!isStreakMilestone(currentStreak)) return;
+  if (currentStreak <= _inFlightOrCelebratedMilestone) return;
+
+  final p = prefs ?? await SharedPreferences.getInstance();
+  final lastCelebrated = p.getInt(lastCelebratedStreakMilestoneKey) ?? 0;
+  if (currentStreak > lastCelebrated &&
+      currentStreak > _inFlightOrCelebratedMilestone) {
+    _inFlightOrCelebratedMilestone = currentStreak;
+    await p.setInt(lastCelebratedStreakMilestoneKey, currentStreak);
+    if (context.mounted) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          showStreakCelebration(context, currentStreak);
+        }
+      });
+    }
+  } else {
+    _inFlightOrCelebratedMilestone = lastCelebrated;
+  }
+}
 
 /// A celebration overlay shown when the user hits a streak milestone.
 ///
@@ -32,6 +74,7 @@ class _StreakCelebrationOverlayState extends State<StreakCelebrationOverlay>
   late final AnimationController _controller;
   late final Animation<double> _scaleAnimation;
   late final Animation<double> _fadeAnimation;
+  Timer? _autoDismissTimer;
 
   @override
   void initState() {
@@ -49,13 +92,14 @@ class _StreakCelebrationOverlayState extends State<StreakCelebrationOverlay>
     _controller.forward();
 
     // Auto-dismiss after 3 seconds
-    Future.delayed(const Duration(seconds: 3), () {
+    _autoDismissTimer = Timer(const Duration(seconds: 3), () {
       if (mounted) widget.onDismiss();
     });
   }
 
   @override
   void dispose() {
+    _autoDismissTimer?.cancel();
     _controller.dispose();
     super.dispose();
   }
