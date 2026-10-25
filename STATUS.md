@@ -28,7 +28,7 @@ A local-first, zero-backend Flutter app for daily spiritual guidance — Sara Ka
 
 ### 4. Blockers & Risks
 - **Blockers**: None. *(CONF-PP-007 per-yama sequence is an open research question, explicitly NON-blocking — firewalled from shipped behavior; blocks no 2.0 item.)*
-- **Key Risks**: Fly.io PocketBase deploy deferred (greened against local Docker Compose). Accuracy ground truth validated only for day-blocks (14/14) + Cock/Owl cross-engine baseline; per-yama sequence fidelity remains lineage-gated pending CONF-PP-007.
+- **Key Risks**: Fly.io PocketBase backend **live in production** (`saranidhi-pb.fly.dev`, health 200, `sessions`+`journal` provisioned, URL baked into the Vercel web build); remaining sync items are post-boundary hardening (token-rotation UX, cert pinning, at-rest encryption) logged as accepted/deferred risk in the Sprint-47 security review — none gate 2.0. Accuracy ground truth validated only for day-blocks (14/14) + Cock/Owl cross-engine baseline; per-yama sequence fidelity remains lineage-gated pending CONF-PP-007.
 
 ### 5. Verified Quality Metrics
 - 2-tier CI: `flutter analyze --fatal-infos` (zero issues) + `flutter test` (green except the 4 known CloudKit macOS failures) + `flutter build web`; coverage **≥ 19%**; web integration gate (`flutter drive`) blocking.
