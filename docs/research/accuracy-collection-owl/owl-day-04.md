@@ -16,10 +16,10 @@
 |---|---|
 | date | `2026-10-27` |
 | weekday | `Tue` |
-| sunrise | `__:__` |
-| sunset | `__:__` |
-| lunar phase (paksha) | `waxing` / `waning` |
-| nakshatra | `________` |
+| sunrise | `06:05` |
+| sunset | `17:51` |
+| lunar phase (paksha) | `waning` (`Krishna`) |
+| nakshatra | `Bharani` (upto 15:39) |
 
 ## S3 — Adhikara / Padu day-block expectation (from Kottumozhi pp14/17/18/22)
 
@@ -28,23 +28,23 @@
 
 | Layer | Expected (corpus) | Saranidhi (#306) applied? | match? |
 |---|---|---|---|
-| day block | `adhikara` / `padu` / `normal` |  |  |
-| night block | `adhikara` / `padu` / `normal` |  |  |
+| day block | `normal` | `normal` | ✅ MATCH |
+| night block | `normal` | `normal` | ✅ MATCH |
 
 ## Yama rows (Y1–Y5 day · Y6–Y10 night)
 
 | yama | start | end | Drik ruling bird | Drik (Owl) state | Saranidhi ruling bird | Saranidhi (Owl) state | match? | remarks |
 |------|-------|-----|------------------|------------------|-----------------------|-----------------------|--------|---------|
-| 1 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 2 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 3 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 4 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 5 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 6 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 7 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 8 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 9 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 10 | `__:__` | `__:__` |  |  |  |  |  |  |
+| 1 | `06:05` | `08:26` |  |  | rooster | dying |  |  |
+| 2 | `08:26` | `10:47` |  |  | vulture | sleeping |  |  |
+| 3 | `10:47` | `13:08` |  |  | owl | ruling |  |  |
+| 4 | `13:08` | `15:29` | rooster |  | crow | walking |  |  |
+| 5 | `15:29` | `17:51` |  |  | peacock | eating |  |  |
+| 6 | `17:51` | `20:17` |  |  | peacock | eating |  |  |
+| 7 | `20:17` | `22:44` |  |  | crow | dying |  |  |
+| 8 | `22:44` | `01:11` | rooster |  | rooster | walking |  |  |
+| 9 | `01:11` | `03:38` |  |  | owl | ruling |  |  |
+| 10 | `03:38` | `06:05` |  |  | vulture | sleeping |  |  |
 
 > **ruling bird:** `vulture` / `owl` / `crow` / `rooster` / `peacock`
 > **Owl state:** `ruling` / `eating` / `walking` / `sleeping` / `dying`

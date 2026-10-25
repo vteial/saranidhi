@@ -16,10 +16,10 @@
 |---|---|
 | date | `2026-10-24` |
 | weekday | `Sat` |
-| sunrise | `__:__` |
-| sunset | `__:__` |
-| lunar phase (paksha) | `waxing` / `waning` |
-| nakshatra | `________` |
+| sunrise | `06:05` |
+| sunset | `17:52` |
+| lunar phase (paksha) | `waxing` (`Shukla`) |
+| nakshatra | `Uttara Bhadrapada` |
 
 ## S3 — Adhikara / Padu day-block expectation (from Kottumozhi pp14/17/18/22)
 
@@ -28,23 +28,23 @@
 
 | Layer | Expected (corpus) | Saranidhi (#306) applied? | match? |
 |---|---|---|---|
-| day block | `adhikara` / `padu` / `normal` |  |  |
-| night block | `adhikara` / `padu` / `normal` |  |  |
+| day block | `normal` | `normal` | ✅ MATCH |
+| night block | `adhikara` | `adhikara` | ✅ MATCH |
 
 ## Yama rows (Y1–Y5 day · Y6–Y10 night)
 
 | yama | start | end | Drik ruling bird | Drik (Owl) state | Saranidhi ruling bird | Saranidhi (Owl) state | match? | remarks |
 |------|-------|-----|------------------|------------------|-----------------------|-----------------------|--------|---------|
-| 1 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 2 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 3 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 4 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 5 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 6 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 7 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 8 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 9 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 10 | `__:__` | `__:__` |  |  |  |  |  |  |
+| 1 | `06:05` | `08:26` | peacock |  | peacock | eating |  |  |
+| 2 | `08:26` | `10:47` | vulture |  | vulture | walking |  |  |
+| 3 | `10:47` | `13:09` | owl |  | owl | ruling |  |  |
+| 4 | `13:09` | `15:30` | rooster |  | rooster | sleeping |  |  |
+| 5 | `15:30` | `17:52` | crow |  | crow | dying |  |  |
+| 6 | `17:52` | `20:18` | peacock |  | crow | dying |  |  |
+| 7 | `20:18` | `22:45` | owl |  | owl | ruling |  |  |
+| 8 | `22:45` | `01:11` | crow |  | rooster | sleeping |  |  |
+| 9 | `01:11` | `03:38` | rooster |  | vulture | eating |  |  |
+| 10 | `03:38` | `06:05` | vulture |  | peacock | walking |  |  |
 
 > **ruling bird:** `vulture` / `owl` / `crow` / `rooster` / `peacock`
 > **Owl state:** `ruling` / `eating` / `walking` / `sleeping` / `dying`
