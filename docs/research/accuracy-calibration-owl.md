@@ -51,10 +51,10 @@ PR [#306](https://github.com/vteial/saranidhi/pull/306) activated the Adhikara a
 | **01** | `2026-10-24` | Sat | Shukla | `normal` vs `normal` | `adhikara` vs `adhikara` | ✅ MATCH |
 | **02** | `2026-10-25` | Sun | Shukla | `padu` vs `padu` | `padu` vs `padu` | ✅ MATCH |
 | **03** | `2026-10-26` | Mon | Shukla / Krishna | `adhikara` vs `adhikara` | `normal` vs `normal` | ✅ MATCH |
-| **04** | `2026-10-27` | Tue | Krishna | `normal` vs `normal` | `adhikara` vs `adhikara` | ✅ MATCH |
-| **05** | `2026-10-28` | Wed | Krishna | `padu` vs `padu` | `padu` vs `padu` | ✅ MATCH |
-| **06** | `2026-10-29` | Thu | Krishna | `normal` vs `normal` | `normal` vs `normal` | ✅ MATCH |
-| **07** | `2026-10-30` | Fri | Krishna | `adhikara` vs `adhikara` | `normal` vs `normal` | ✅ MATCH |
+| **04** | `2026-10-27` | Tue | Krishna | `normal` vs `normal` | `normal` vs `normal` | ✅ MATCH |
+| **05** | `2026-10-28` | Wed | Krishna | `normal` vs `normal` | `adhikara` vs `adhikara` | ✅ MATCH |
+| **06** | `2026-10-29` | Thu | Krishna | `adhikara` vs `adhikara` | `normal` vs `normal` | ✅ MATCH |
+| **07** | `2026-10-30` | Fri | Krishna | `normal` vs `normal` | `normal` vs `normal` | ✅ MATCH |
 
 **Result:** **14 / 14 blocks match (100.0%)**.
 The Adhikara/Padu classification layer shipped in [#306](https://github.com/vteial/saranidhi/pull/306) is validated as 100% compliant with primary source scripture.
