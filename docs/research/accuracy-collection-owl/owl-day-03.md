@@ -16,10 +16,10 @@
 |---|---|
 | date | `2026-10-26` |
 | weekday | `Mon` |
-| sunrise | `__:__` |
-| sunset | `__:__` |
-| lunar phase (paksha) | `waxing` / `waning` |
-| nakshatra | `________` |
+| sunrise | `06:05` |
+| sunset | `17:51` |
+| lunar phase (paksha) | `waxing` (`Shukla` Purnima upto 09:41, then Krishna) |
+| nakshatra | `Ashwini` (upto 17:41) |
 
 ## S3 — Adhikara / Padu day-block expectation (from Kottumozhi pp14/17/18/22)
 
@@ -28,23 +28,23 @@
 
 | Layer | Expected (corpus) | Saranidhi (#306) applied? | match? |
 |---|---|---|---|
-| day block | `adhikara` / `padu` / `normal` |  |  |
-| night block | `adhikara` / `padu` / `normal` |  |  |
+| day block | `adhikara` | `adhikara` | ✅ MATCH |
+| night block | `normal` | `normal` | ✅ MATCH |
 
 ## Yama rows (Y1–Y5 day · Y6–Y10 night)
 
 | yama | start | end | Drik ruling bird | Drik (Owl) state | Saranidhi ruling bird | Saranidhi (Owl) state | match? | remarks |
 |------|-------|-----|------------------|------------------|-----------------------|-----------------------|--------|---------|
-| 1 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 2 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 3 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 4 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 5 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 6 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 7 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 8 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 9 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 10 | `__:__` | `__:__` |  |  |  |  |  |  |
+| 1 | `06:05` | `08:26` | rooster | eating | peacock | eating | ✅ MATCH | Both engines show eating. Drik shows Rooster ruling. |
+| 2 | `08:26` | `10:47` | crow / vulture | walking / eating | vulture | walking | ⚠️ DIFF | Tithi split at 09:41 (Purnima end): Drik splits Y2 into Shukla (walking) & Krishna (eating). |
+| 3 | `10:47` | `13:08` | crow | dying | owl | ruling | ⚠️ DIFF | Drik uses Krishna (dying). |
+| 4 | `13:08` | `15:29` | peacock | sleeping | rooster | sleeping | ✅ MATCH | Both engines show sleeping. Drik uses Krishna (sleeping). |
+| 5 | `15:29` | `17:51` | owl | ruling | crow | dying | ⚠️ DIFF | Owl is ruling bird in Drik. |
+| 6 | `17:51` | `20:17` | peacock | walking | crow | dying | ⚠️ DIFF | Drik uses Krishna (walking). |
+| 7 | `20:17` | `22:44` | vulture | dying | owl | ruling | ⚠️ DIFF | Drik uses Krishna (dying). |
+| 8 | `22:44` | `01:11` | owl | ruling | rooster | sleeping | ⚠️ DIFF | Owl is ruling bird in Drik. |
+| 9 | `01:11` | `03:38` | crow | eating | vulture | eating | ✅ MATCH | Both engines show eating. Drik uses Krishna (eating). |
+| 10 | `03:38` | `06:05` | rooster | sleeping | peacock | walking | ⚠️ DIFF | Drik uses Krishna (sleeping). |
 
 > **ruling bird:** `vulture` / `owl` / `crow` / `rooster` / `peacock`
 > **Owl state:** `ruling` / `eating` / `walking` / `sleeping` / `dying`

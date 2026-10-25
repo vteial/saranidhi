@@ -16,10 +16,10 @@
 |---|---|
 | date | `2026-10-28` |
 | weekday | `Wed` |
-| sunrise | `__:__` |
-| sunset | `__:__` |
-| lunar phase (paksha) | `waxing` / `waning` |
-| nakshatra | `________` |
+| sunrise | `06:05` |
+| sunset | `17:50` |
+| lunar phase (paksha) | `waning` (`Krishna`) |
+| nakshatra | `Krittika` (upto 13:26) |
 
 ## S3 — Adhikara / Padu day-block expectation (from Kottumozhi pp14/17/18/22)
 
@@ -28,23 +28,23 @@
 
 | Layer | Expected (corpus) | Saranidhi (#306) applied? | match? |
 |---|---|---|---|
-| day block | `adhikara` / `padu` / `normal` |  |  |
-| night block | `adhikara` / `padu` / `normal` |  |  |
+| day block | `normal` | `normal` | ✅ MATCH |
+| night block | `adhikara` | `adhikara` | ✅ MATCH |
 
 ## Yama rows (Y1–Y5 day · Y6–Y10 night)
 
 | yama | start | end | Drik ruling bird | Drik (Owl) state | Saranidhi ruling bird | Saranidhi (Owl) state | match? | remarks |
 |------|-------|-----|------------------|------------------|-----------------------|-----------------------|--------|---------|
-| 1 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 2 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 3 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 4 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 5 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 6 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 7 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 8 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 9 | `__:__` | `__:__` |  |  |  |  |  |  |
-| 10 | `__:__` | `__:__` |  |  |  |  |  |  |
+| 1 | `06:05` | `08:26` | owl | ruling | owl | ruling | ✅ MATCH | Both engines match: ruling. Owl is ruling bird in both engines. |
+| 2 | `08:26` | `10:47` | rooster | walking | rooster | eating | ⚠️ DIFF | Drik shows Rooster ruling. |
+| 3 | `10:47` | `13:08` | vulture | eating | crow | dying | ⚠️ DIFF | Drik shows Vulture ruling. |
+| 4 | `13:08` | `15:29` | crow | dying | vulture | sleeping | ⚠️ DIFF | Drik shows Crow ruling. |
+| 5 | `15:29` | `17:50` | peacock | sleeping | peacock | walking | ⚠️ DIFF | Drik shows Peacock ruling. |
+| 6 | `17:50` | `20:17` | crow | eating | rooster | walking | ⚠️ DIFF | Drik shows Crow ruling. |
+| 7 | `20:17` | `22:44` | rooster | sleeping | vulture | dying | ⚠️ DIFF | Drik shows Rooster ruling. |
+| 8 | `22:44` | `01:11` | peacock | walking | peacock | eating | ⚠️ DIFF | Drik shows Peacock ruling. |
+| 9 | `01:11` | `03:38` | vulture | dying | owl | ruling | ⚠️ DIFF | Drik shows Vulture ruling. |
+| 10 | `03:38` | `06:06` | owl | ruling | crow | sleeping | ⚠️ DIFF | Owl is ruling bird in Drik. |
 
 > **ruling bird:** `vulture` / `owl` / `crow` / `rooster` / `peacock`
 > **Owl state:** `ruling` / `eating` / `walking` / `sleeping` / `dying`
