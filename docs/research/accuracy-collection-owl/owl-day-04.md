@@ -35,16 +35,16 @@
 
 | yama | start | end | Drik ruling bird | Drik (Owl) state | Saranidhi ruling bird | Saranidhi (Owl) state | match? | remarks |
 |------|-------|-----|------------------|------------------|-----------------------|-----------------------|--------|---------|
-| 1 | `06:05` | `08:26` |  |  | rooster | dying |  |  |
-| 2 | `08:26` | `10:47` |  |  | vulture | sleeping |  |  |
-| 3 | `10:47` | `13:08` |  |  | owl | ruling |  |  |
-| 4 | `13:08` | `15:29` | rooster |  | crow | walking |  |  |
-| 5 | `15:29` | `17:51` |  |  | peacock | eating |  |  |
-| 6 | `17:51` | `20:17` |  |  | peacock | eating |  |  |
-| 7 | `20:17` | `22:44` |  |  | crow | dying |  |  |
-| 8 | `22:44` | `01:11` | rooster |  | rooster | walking |  |  |
-| 9 | `01:11` | `03:38` |  |  | owl | ruling |  |  |
-| 10 | `03:38` | `06:05` |  |  | vulture | sleeping |  |  |
+| 1 | `06:05` | `08:26` | crow | dying | rooster | dying | ✅ MATCH | Both engines match: dying. |
+| 2 | `08:26` | `10:47` | peacock | sleeping | vulture | sleeping | ✅ MATCH | Both engines match: sleeping. |
+| 3 | `10:47` | `13:08` | owl | ruling | owl | ruling | ✅ MATCH | Both engines match: ruling. Owl is ruling bird in both engines. |
+| 4 | `13:08` | `15:29` | rooster | walking | crow | walking | ✅ MATCH | Both engines match: walking. |
+| 5 | `15:29` | `17:51` | vulture | eating | peacock | eating | ✅ MATCH | Both engines match: eating (100% daytime convergence). |
+| 6 | `17:51` | `20:17` | owl | ruling | peacock | eating | ⚠️ DIFF | Owl is ruling bird in Drik. |
+| 7 | `20:17` | `22:44` | crow | eating | crow | dying | ⚠️ DIFF | Drik shows Crow ruling. |
+| 8 | `22:44` | `01:11` | rooster | sleeping | rooster | walking | ⚠️ DIFF | Drik shows Rooster ruling. |
+| 9 | `01:11` | `03:38` | peacock | walking | owl | ruling | ⚠️ DIFF | Drik shows Peacock ruling. |
+| 10 | `03:38` | `06:05` | vulture | dying | vulture | sleeping | ⚠️ DIFF | Drik shows Vulture ruling. |
 
 > **ruling bird:** `vulture` / `owl` / `crow` / `rooster` / `peacock`
 > **Owl state:** `ruling` / `eating` / `walking` / `sleeping` / `dying`

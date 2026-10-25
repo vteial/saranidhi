@@ -35,16 +35,16 @@
 
 | yama | start | end | Drik ruling bird | Drik (Owl) state | Saranidhi ruling bird | Saranidhi (Owl) state | match? | remarks |
 |------|-------|-----|------------------|------------------|-----------------------|-----------------------|--------|---------|
-| 1 | `06:05` | `08:26` | vulture |  | owl | ruling |  |  |
-| 2 | `08:26` | `10:47` | peacock |  | rooster | dying |  |  |
-| 3 | `10:47` | `13:09` | vulture |  | vulture | eating |  |  |
-| 4 | `13:09` | `15:30` | owl |  | crow | walking |  |  |
-| 5 | `15:30` | `17:52` | rooster |  | peacock | sleeping |  |  |
-| 6 | `17:52` | `20:18` | owl |  | peacock | sleeping |  |  |
-| 7 | `20:18` | `22:45` | crow |  | vulture | eating |  |  |
-| 8 | `22:45` | `01:11` | rooster |  | crow | walking |  |  |
-| 9 | `01:11` | `03:38` | vulture |  | rooster | dying |  |  |
-| 10 | `03:38` | `06:05` | peacock |  | owl | ruling |  |  |
+| 1 | `06:05` | `08:26` | crow | walking | owl | ruling | ⚠️ DIFF | Drik shows Crow ruling. |
+| 2 | `08:26` | `10:47` | owl | ruling | rooster | dying | ⚠️ DIFF | Owl is ruling bird in Drik. |
+| 3 | `10:47` | `13:09` | vulture | sleeping | vulture | eating | ⚠️ DIFF | Drik shows Vulture ruling. |
+| 4 | `13:09` | `15:30` | peacock | dying | crow | walking | ⚠️ DIFF | Drik shows Peacock ruling. |
+| 5 | `15:30` | `17:52` | rooster | eating | peacock | sleeping | ⚠️ DIFF | Drik shows Rooster ruling. |
+| 6 | `17:52` | `20:18` | owl | ruling | peacock | sleeping | ⚠️ DIFF | Owl is ruling bird in Drik. |
+| 7 | `20:18` | `22:45` | crow | dying | vulture | eating | ⚠️ DIFF | Drik shows Crow ruling. |
+| 8 | `22:45` | `01:11` | rooster | walking | crow | walking | ✅ MATCH | Both engines show walking. |
+| 9 | `01:11` | `03:38` | peacock | sleeping | rooster | dying | ⚠️ DIFF | Drik shows Peacock ruling. |
+| 10 | `03:38` | `06:05` | vulture | eating | owl | ruling | ⚠️ DIFF | Drik shows Vulture ruling. |
 
 > **ruling bird:** `vulture` / `owl` / `crow` / `rooster` / `peacock`
 > **Owl state:** `ruling` / `eating` / `walking` / `sleeping` / `dying`

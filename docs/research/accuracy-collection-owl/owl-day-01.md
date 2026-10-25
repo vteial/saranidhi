@@ -35,16 +35,16 @@
 
 | yama | start | end | Drik ruling bird | Drik (Owl) state | Saranidhi ruling bird | Saranidhi (Owl) state | match? | remarks |
 |------|-------|-----|------------------|------------------|-----------------------|-----------------------|--------|---------|
-| 1 | `06:05` | `08:26` | peacock |  | peacock | eating |  |  |
-| 2 | `08:26` | `10:47` | vulture |  | vulture | walking |  |  |
-| 3 | `10:47` | `13:09` | owl |  | owl | ruling |  |  |
-| 4 | `13:09` | `15:30` | rooster |  | rooster | sleeping |  |  |
-| 5 | `15:30` | `17:52` | crow |  | crow | dying |  |  |
-| 6 | `17:52` | `20:18` | peacock |  | crow | dying |  |  |
-| 7 | `20:18` | `22:45` | owl |  | owl | ruling |  |  |
-| 8 | `22:45` | `01:11` | crow |  | rooster | sleeping |  |  |
-| 9 | `01:11` | `03:38` | rooster |  | vulture | eating |  |  |
-| 10 | `03:38` | `06:05` | vulture |  | peacock | walking |  |  |
+| 1 | `06:05` | `08:26` | peacock | ruling | peacock | eating | ⚠️ DIFF | Drik shows Peacock ruling. |
+| 2 | `08:26` | `10:47` | vulture | sleeping | vulture | walking | ⚠️ DIFF | Drik shows Vulture ruling. |
+| 3 | `10:47` | `13:09` | owl | dying | owl | ruling | ⚠️ DIFF | Owl is ruling bird in Saranidhi; Drik shows Owl ruling. |
+| 4 | `13:09` | `15:30` | rooster | eating | rooster | sleeping | ⚠️ DIFF | Drik shows Rooster ruling. |
+| 5 | `15:30` | `17:52` | crow | walking | crow | dying | ⚠️ DIFF | Drik shows Crow ruling. |
+| 6 | `17:52` | `20:18` | vulture | eating | crow | dying | ⚠️ DIFF | Drik shows Vulture ruling. |
+| 7 | `20:18` | `22:45` | owl | ruling | owl | ruling | ✅ MATCH | Both engines show Owl ruling bird & Owl ruling state. |
+| 8 | `22:45` | `01:11` | crow | dying | rooster | sleeping | ⚠️ DIFF | Drik shows Crow ruling. |
+| 9 | `01:11` | `03:38` | rooster | walking | vulture | eating | ⚠️ DIFF | Drik shows Rooster ruling. |
+| 10 | `03:38` | `06:05` | peacock | sleeping | peacock | walking | ⚠️ DIFF | Drik shows Peacock ruling. |
 
 > **ruling bird:** `vulture` / `owl` / `crow` / `rooster` / `peacock`
 > **Owl state:** `ruling` / `eating` / `walking` / `sleeping` / `dying`
