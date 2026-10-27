@@ -229,28 +229,60 @@ void main() {
       expect(motionPreferred, isFalse);
     });
 
-    testWidgets('ShimmerLoading renders without throwing and disposes cleanly with reduced-motion ON', (
-      tester,
-    ) async {
-      await tester.pumpWidget(wrapWithThemeAndL10n(const ShimmerLoading()));
-      await tester.pump(const Duration(milliseconds: 100));
+    testWidgets(
+      'ShimmerLoading renders without throwing and disposes cleanly with reduced-motion ON',
+      (tester) async {
+        await tester.pumpWidget(wrapWithThemeAndL10n(const ShimmerLoading()));
+        await tester.pump(const Duration(milliseconds: 100));
 
-      expect(find.byType(ShimmerLoading), findsOneWidget);
+        expect(find.byType(ShimmerLoading), findsOneWidget);
 
-      // Verify clean disposal
-      await tester.pumpWidget(const SizedBox.shrink());
-    });
+        // Controller state: stopped under reduced motion; gradient stops pinned at staticValue (0.5)
+        final container = tester.widget<Container>(
+          find.descendant(
+            of: find.byType(ShimmerLoading),
+            matching: find.byType(Container),
+          ).first,
+        );
+        final decoration = container.decoration! as BoxDecoration;
+        final gradient = decoration.gradient! as LinearGradient;
+        expect(gradient.stops, equals([0.2, 0.5, 0.8]));
 
-    testWidgets('SamaVrittiPacer renders without throwing and disposes cleanly with reduced-motion ON', (
-      tester,
-    ) async {
-      await tester.pumpWidget(wrapWithThemeAndL10n(const SamaVrittiPacer()));
-      await tester.pump(const Duration(milliseconds: 100));
+        // Advancing time confirms controller is not ticking/animating
+        await tester.pump(const Duration(milliseconds: 200));
+        expect(tester.binding.transientCallbackCount, equals(0));
 
-      expect(find.byType(SamaVrittiPacer), findsOneWidget);
+        // Verify clean disposal
+        await tester.pumpWidget(const SizedBox.shrink());
+      },
+    );
 
-      await tester.pumpWidget(const SizedBox.shrink());
-    });
+    testWidgets(
+      'SamaVrittiPacer renders without throwing and disposes cleanly with reduced-motion ON',
+      (tester) async {
+        await tester.pumpWidget(wrapWithThemeAndL10n(const SamaVrittiPacer()));
+        await tester.pump(const Duration(milliseconds: 100));
+
+        expect(find.byType(SamaVrittiPacer), findsOneWidget);
+
+        // Controller state: stopped under reduced motion; scale pinned to staticValue 0 (scale: 0.5)
+        final transform = tester.widget<Transform>(
+          find.descendant(
+            of: find.byType(SamaVrittiPacer),
+            matching: find.byType(Transform),
+          ).first,
+        );
+        expect(transform.transform.entry(0, 0), equals(0.5));
+        expect(find.text('1'), findsOneWidget);
+        expect(find.text('Inhale'), findsOneWidget);
+
+        // Advancing time confirms controller is not ticking/animating
+        await tester.pump(const Duration(milliseconds: 200));
+        expect(tester.binding.transientCallbackCount, equals(0));
+
+        await tester.pumpWidget(const SizedBox.shrink());
+      },
+    );
 
     testWidgets('StreakCelebrationOverlay displays instantly with reduced-motion ON', (
       tester,
@@ -276,6 +308,33 @@ void main() {
       await tester.pumpWidget(wrapWithThemeAndL10n(const QuickSyncPacer()));
       await tester.pump();
       expect(find.byType(QuickSyncPacer), findsOneWidget);
+
+      // Inactive pacer: initial scale 0.6
+      final initialTransform = tester.widget<Transform>(
+        find.descendant(
+          of: find.byType(QuickSyncPacer),
+          matching: find.byType(Transform),
+        ).first,
+      );
+      expect(initialTransform.transform.entry(0, 0), equals(0.6));
+
+      // Activate pacer by tapping
+      await tester.tap(find.byType(GestureDetector));
+      await tester.pump();
+
+      // Controller state: activated under reduced motion stops controller and pins value to 1.0
+      final activeTransform = tester.widget<Transform>(
+        find.descendant(
+          of: find.byType(QuickSyncPacer),
+          matching: find.byType(Transform),
+        ).first,
+      );
+      expect(activeTransform.transform.entry(0, 0), equals(1.0));
+      expect(find.text('Breathe with the circle'), findsOneWidget);
+
+      // Advancing time confirms controller is not ticking/animating
+      await tester.pump(const Duration(milliseconds: 200));
+      expect(tester.binding.transientCallbackCount, equals(0));
 
       await tester.pumpWidget(const SizedBox.shrink());
     });

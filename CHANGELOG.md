@@ -9,6 +9,12 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- **Localization Polish Sweep (`l10n-polish-sweep`)** — Cleared two logged Tamil l10n defects and tightened reduced-motion animation tests:
+  - **Tamil Unpin/Delete Disambiguation (R1, `BUG-POLISH-01`)**: Updated `unpinEntry` in `lib/l10n/app_ta.arb` from `நீக்கு` to `பின் அகற்று` ("un-pin"), eliminating semantic collision with `delete` (`நீக்கு`). English remains `Unpin`.
+  - **Yama Notification Title Localization (R2, `BUG-v1.11.1-03`)**: Localized fallback yama transition notification titles at consumer level (`notification_scheduler.dart`) using `l10n.yamaPrefix` / `languageCode` (`Saranidhi — யாம 1` in Tamil, `Saranidhi — Yama 1` in English) while keeping the astro-engine firewall untouched (`0` engine files) and AI-wisdom payload (`wisdom_context.dart:52`) on stable English keys (R2.4).
+  - **Animation Test-Tighten (R3, 315 carry-over)**: Tightened reduced-motion-ON tests for `ShimmerLoading`, `SamaVrittiPacer`, and `QuickSyncPacer` in `performance_pass_invariants_test.dart` to assert controller state and static pinned values.
+
 ### Added
 - **Performance Pass — Startup Latency & Animation Smoothness (`performance-pass`)** — Measurement-first startup unblocking and reduced-motion adaptation without altering any doctrinal calculation, route, or schema:
   - **Startup Off Critical Path (R1.1)**: Moved native timezone database initialization (`tz.initializeTimeZones()`) and notification plugin setup off the pre-`runApp` blocking path in `lib/main.dart` to a post-first-frame callback (`WidgetsBinding.instance.addPostFrameCallback`), preserving `onNotificationTap` handler and unblocking first frame paint immediately.

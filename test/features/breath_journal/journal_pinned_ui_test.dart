@@ -144,8 +144,8 @@ void main() {
 
       // Pure Tamil for "Pinned" header
       expect(find.text('பின் செய்தவை'), findsOneWidget);
-      // Tooltip/semantics for unpin in Tamil
-      expect(find.byTooltip('நீக்கு'), findsOneWidget);
+      // Tooltip/semantics for unpin in Tamil (BUG-POLISH-01: distinct from delete 'நீக்கு')
+      expect(find.byTooltip('பின் அகற்று'), findsOneWidget);
     });
   });
 }

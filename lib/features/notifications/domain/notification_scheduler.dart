@@ -90,6 +90,7 @@ class NotificationScheduler {
     PakshiBird? birthBird,
     String languageCode = 'en',
     DateTime? now,
+    String? yamaPrefix,
   }) {
     if (!prefs.isEnabled) return [];
 
@@ -133,7 +134,13 @@ class NotificationScheduler {
         notifications.add(
           ScheduledNotification(
             id: idCounter++,
-            title: _buildTitle(yama.index, birthBird, birdState),
+            title: _buildTitle(
+              yama.index,
+              birthBird,
+              birdState,
+              languageCode: languageCode,
+              yamaPrefix: yamaPrefix,
+            ),
             body: _buildBody(yama.index, birthBird, birdState),
             scheduledTime: yama.start,
             yamaIndex: yama.index,
@@ -189,18 +196,21 @@ class NotificationScheduler {
     return notifications;
   }
 
-  /// Build notification title with bird name + state.
+  /// Build notification title with bird name + state, or localized yama label.
   static String _buildTitle(
     YamaIndex yama,
     PakshiBird? bird,
-    PakshiState? state,
-  ) {
+    PakshiState? state, {
+    String languageCode = 'en',
+    String? yamaPrefix,
+  }) {
     if (bird != null && state != null) {
       final birdName = _birdNames[bird] ?? 'Bird';
       final stateName = state.name[0].toUpperCase() + state.name.substring(1);
       return 'Your $birdName is now $stateName';
     }
-    return 'Saranidhi — ${yama.label}';
+    final prefix = yamaPrefix ?? (languageCode == 'ta' ? 'யாம' : 'Yama');
+    return 'Saranidhi — $prefix ${yama.index + 1}';
   }
 
   /// Build notification body with guidance text.
@@ -338,6 +348,7 @@ class NotificationScheduler {
     required NotificationPreferences prefs,
     PakshiBird? birthBird,
     String languageCode = 'en',
+    String? yamaPrefix,
   }) async {
     await cancelAll();
     return generateForToday(
@@ -347,6 +358,7 @@ class NotificationScheduler {
       prefs: prefs,
       birthBird: birthBird,
       languageCode: languageCode,
+      yamaPrefix: yamaPrefix,
     );
   }
 
