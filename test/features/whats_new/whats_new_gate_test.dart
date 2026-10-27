@@ -53,7 +53,7 @@ void main() {
 
       // Verify SharedPreferences has the current version stored
       final prefs = await SharedPreferences.getInstance();
-      expect(prefs.getString('whats_new_last_seen_version'), equals('1.2.0'));
+      expect(prefs.getString('whats_new_last_seen_version'), equals(currentWhatsNewVersion));
     });
 
     testWidgets('does not show WhatsNewScreen if already marked seen for current version', (
@@ -61,7 +61,7 @@ void main() {
     ) async {
       SharedPreferences.setMockInitialValues({
         'onboarding_complete': true,
-        'whats_new_last_seen_version': '1.2.0',
+        'whats_new_last_seen_version': currentWhatsNewVersion,
       });
 
       await tester.pumpWidget(
@@ -81,6 +81,51 @@ void main() {
       // Directly shows main app content
       expect(find.byType(WhatsNewScreen), findsNothing);
       expect(find.text('MainAppReady'), findsOneWidget);
+    });
+
+    testWidgets('WhatsNewScreen renders current version and updated feature highlights', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: WhatsNewScreen(),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('v$currentWhatsNewVersion'), findsOneWidget);
+      expect(find.text('Practice Sync'), findsOneWidget);
+      expect(find.text('Streak Celebrations'), findsOneWidget);
+      expect(find.text('Breathing Presets'), findsOneWidget);
+      expect(find.text('Pin Favourite Entries'), findsOneWidget);
+    });
+
+    testWidgets('WhatsNewScreen renders pure Tamil script in Tamil locale (RT)', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        const ProviderScope(
+          child: MaterialApp(
+            locale: Locale('ta'),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: WhatsNewScreen(),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('v$currentWhatsNewVersion'), findsOneWidget);
+      expect(find.text('புதியது என்ன'), findsOneWidget);
+      expect(find.text('பயிற்சி ஒத்திசைவு'), findsOneWidget);
+      expect(find.text('தொடர் கொண்டாட்டங்கள்'), findsOneWidget);
+      expect(find.text('மூச்சு முன்னமைப்புகள்'), findsOneWidget);
+      expect(find.text('பிடித்த பதிவுகளை பின் செய்'), findsOneWidget);
+      expect(find.text('புரிந்தது!'), findsOneWidget);
     });
   });
 }

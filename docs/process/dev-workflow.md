@@ -268,8 +268,8 @@ Three-phase production promotion with smoke test quality gate.
 Prepares the smoke test execution.
 
 1. Kiro creates branch `release/vX.Y.Z` from `main`
-2. **Bumps `version:` in `pubspec.yaml`** to match the release (e.g., `1.3.0+1`)
-   - This ensures the About card (via `package_info_plus`) shows the correct version on the **PR's Vercel preview** (where the smoke test runs) AND in production
+2. **Bumps `version:` in `pubspec.yaml` and `AppConstants.appVersion` in `lib/core/utils/app_constants.dart`** to match the release (e.g., `1.13.0+1` / `1.13.0`)
+   - This ensures the About card (via `package_info_plus`) and the What's New startup gate show the correct version on the **PR's Vercel preview** (where the smoke test runs) AND in production
 3. **Assembles the release dossier** at `docs/testing/releases/vX.Y.Z/` (one folder per rich release — mirrors the sprint-dossier convention). See the [**Release dossier convention**](#release-dossier-convention) below for layout. Populate:
    - `docs/testing/releases/vX.Y.Z/smoke-test.md` — plan + results template (relocated from the sprint dossier if the scenarios were authored there)
      - **Scope the smoke tier deliberately** — full matrix (feature/schema change) vs. targeted patch (a handful of changed-behavior scenarios + core regression + EN/TA) vs. CI-only + eyeball (trivial l10n/string hotfix, e.g. v1.8.1 / v1.11.1). ⚠️ **The smoke gate is ~2h of human time *per release* even for a light patch** (only ~30 min of that verifies what changed; the rest — pre-flight ~33 min, onboarding + owner-guard/bilingual regression, finalization — is fixed overhead). See the [**Release Effort Reference**](../testing/smoke-test-results.md#release-effort-reference--the-smoke-gate-is-mostly-fixed-cost-per-release) → this is why small polish items should be **batched**, and why a one-line fix is not a one-line release. Weigh this at `/plan` before spinning a separate patch cycle.

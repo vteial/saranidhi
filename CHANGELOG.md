@@ -11,7 +11,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ### Added
 - **Deferred Widgets Wiring (`deferred-widgets-wiring`)** — Activates four built-but-unwired Sprint-26 UX components:
-  - **WhatsNew Startup Gate (R1)**: Post-onboarding gate in `OnboardingGuard` checks `shouldShowWhatsNewProvider` and presents `WhatsNewScreen` once when eligible. Dismissal persists version marker (`1.2.0`, release-gated per R1.3). Never interrupts or precedes intro/onboarding (RQ.3b).
+  - **WhatsNew Startup Gate (R1)**: Post-onboarding gate in `OnboardingGuard` checks `shouldShowWhatsNewProvider` and presents `WhatsNewScreen` once when eligible. Tracks `AppConstants.appVersion` (`1.13.0`), highlights Practice Sync and newly wired deferred widgets, and persists version marker on dismiss. Never interrupts or precedes intro/onboarding (RQ.3b).
   - **PresetSelector Guidance (R2)**: Rendered in `journal_screen.dart` `entryPanel` with "Manual" default. Selecting a preset surfaces its target rhythm as guidance without overwriting or auto-advancing manual breath capture (RQ.3a).
   - **StreakCelebration Trigger (R3)**: Triggers celebratory overlay dialog (`showStreakCelebration`) in `today_tab.dart` when current streak newly hits milestones 7, 30, 100, or 365, de-duplicated by persisted `last_celebrated_streak_milestone` marker in SharedPreferences.
   - **isPinned Journal UI (R4)**: Adds repository `setPinned(id, bool)`, per-entry star toggle in `journal_history_list.dart`, and pinned-first block at top of journal history. Pinned entries sort chronologically descending; unpinned list retains standard chronological grouping (RQ.3c). All affordances localized with pure Tamil script (RT).
