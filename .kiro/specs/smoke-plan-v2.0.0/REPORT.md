@@ -4,7 +4,7 @@
 -->
 # v2.0.0 Smoke-Test Plan — Verification Report
 
-Spec: `.kiro/specs/smoke-plan-v2.0.0/` · Spec ID: `smoke-plan-v2.0.0` · Branch: `sprint/smoke-plan-v2.0.0` → `main`.
+Spec: `.kiro/specs/smoke-plan-v2.0.0/` · Spec ID: `smoke-plan-v2.0.0` · Branch: `sprint/smoke-plan-v2.0.0` → `main` · PR: [#322](https://github.com/vteial/saranidhi/pull/322).
 
 ### Preflight & Baseline (T0)
 - **Preflight:** Clean tree; `just env-doctor` green; baseline `just validate-local` green except 4 accepted CloudKit macOS failures (coverage 48.6% ≥ 19%).
@@ -45,3 +45,22 @@ Spec: `.kiro/specs/smoke-plan-v2.0.0/` · Spec ID: `smoke-plan-v2.0.0` · Branch
 1. **Dossier & Scenario Structure:** Open `docs/testing/releases/v2.0.0/smoke-test.md` and confirm pre-flight, scenarios S1–S8, result table, and known-defect release doctrine are complete.
 2. **Feature Coverage Completeness:** Confirm every feature listed in `CHANGELOG.md [Unreleased]` is covered by a specific scenario in S1–S6 without omission.
 3. **Docs Validation & Scope:** Confirm `just validate-docs` is green and git diff contains zero code or engine modifications.
+
+### Verification Log — 2026-10-27 (PR #322)
+
+| Plan step | Result | Finding / correction |
+| :--- | :---: | :--- |
+| V1 Dossier & Scenario Structure (R1, R2, R5, R6) | ✅ | `docs/testing/releases/v2.0.0/smoke-test.md` authored with pre-flight, scenarios S1–S8, empty result table, and known-defect release doctrine. Attested by owner. |
+| V2 Feature Coverage Completeness (R2, R3, R4) | ✅ | All accumulated v2.0 features in `CHANGELOG.md [Unreleased]` (widgets, perf, reduced-motion, l10n, Oracle, engine Adhikara/Padu, sync) covered across S1–S8 without gap. Attested by owner. |
+| V3 Quality Gates & Scope (RQ, RC, RT) | ✅ | `just validate-docs` clean; `just validate-local` 100% green (analyze clean, tests green ±4 accepted CloudKit baseline, coverage 48.6% ≥ 19%, web build compiles); exactly 0 code/engine files in diff. |
+
+- **Iterations:** 1 (smoke-test plan verified as complete).
+- **Verdict:** PASS — human functional verification complete.
+- **Verified by:** owner (Human) · **Surface:** Executor (Antigravity)
+- **Provenance note:** Local validation gates and mechanical checks verified by Executor; functional verification attested by owner via `/verification-done`.
+
+#### Evidence summary (the 4 questions — requirements §4c)
+- **What am I accepting?** The comprehensive release smoke-test plan for the v2.0.0 major release (`docs/testing/releases/v2.0.0/smoke-test.md`), characterizing all shipped changes since v1.13.0 and the full standing regression surface.
+- **What could it affect?** Release verification procedure for the upcoming v2.0.0 release. Zero production runtime code, engine calculation, or database schema touched.
+- **Why believe it works?** The plan follows the established house format (`v1.13.0/smoke-test.md`), `just validate-docs` passes, baseline tests pass (±4 CloudKit), and coverage remains at 48.6% (≥ 19%).
+- **What remains unresolved?** Execution of the smoke test itself occurs during the release lifecycle (`/release-start` / `/release-finish`) on the release PR's deployed Vercel preview.

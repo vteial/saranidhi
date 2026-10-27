@@ -52,3 +52,4 @@
 1. Open `docs/testing/releases/v2.0.0/smoke-test.md` → confirm pre-flight + S1–S8 + result table present.
 2. Confirm every `[Unreleased]` feature maps to a scenario (no gap).
 3. `just validate-docs` green; 0 code/engine files in the diff.
+- [x] **TV — After human verification passes: `/verification-done`** (human-verify PASS recorded in REPORT.md)
