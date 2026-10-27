@@ -51,8 +51,9 @@ Pinned in `test/features/performance_pass/performance_pass_invariants_test.dart`
 | VT — Tamil mode (RT) | ✅ | Zero new user-facing strings added. Pure Tamil script verified undisturbed across all surfaces. |
 | VQ — quality gates (RQ) | ✅ | `just validate-local` green: analyze clean (0 fatal-infos issues), tests green (496 passed, 4 accepted CloudKit macOS baseline failures), coverage 47.0% ≥ 19%, web build compiles. |
 
-- **Verdict:** PASS — Executor verification complete; awaiting human review.
-- **Surface:** Executor (Antigravity).
+- **Verdict:** PASS — human functional verification complete.
+- **Verified by:** owner (Human) · **Surface:** Executor (Antigravity).
+- **Provenance note:** Local validation gates and mechanical checks verified by Executor; functional verification on preview/build attested by owner via `/verification-done`.
 
 #### Evidence summary (the 4 questions — requirements §4c)
 - **What am I accepting?** Behavior-preserving startup latency optimization (R1.1 native init off critical path, R1.2 run-once on-open side-effects) and reduced-motion animation accessibility (R2.1–R2.3) with zero calculation, route, or schema modifications.

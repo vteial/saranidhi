@@ -63,11 +63,11 @@
   - `just validate-local` green; coverage ≥ 19%; integration gate green; the §2 "unchanged"
     behaviors pinned by the T2 tests.
 
-- [ ] **TP — Commit, open PR, emit Human Verification Plan, STOP**
+- [x] **TP — Commit, open PR, emit Human Verification Plan, STOP**
   - Commit `perf(app): performance-pass — startup off critical path + reduced-motion animations`;
     `git push -u origin sprint/performance-pass`; `gh pr create --base main --head sprint/performance-pass ...`.
     CI green. Emit §4b (V1–V4, VT, VQ) with the before→after numbers. STOP. **Never merge, never tag.**
 
-- [ ] **TV — After human verification passes: `/verification-done`**
+- [x] **TV — After human verification passes: `/verification-done`**
   - Human runs §4b (esp. V3 reduced-motion ON / V4 OFF). Fixes ride the SAME PR (Single-PR rule).
     On pass → `/verification-done` → `/review-pr` (Operator gate) → owner merges.
