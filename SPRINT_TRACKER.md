@@ -48,6 +48,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | — | Pakshi Scoring Corpus Alignment (`pakshi-scoring-corpus-alignment`) | *correctness-critical / CONF-PP-007* | 👀 In Review |
 | — | Wire Sprint-26 Deferred Widgets (`deferred-widgets-wiring`) | *v2.0 freeze deliverable* | 👀 In Review |
 | — | Performance Pass — Startup & Animations (`performance-pass`) | *v2.0 release polish* | 👀 In Review |
+| — | Localization Polish Sweep (`l10n-polish-sweep`) | *v2.0 polish* | 👀 In Review |
 | 48+ | Native "Now" surface (next — owner-chosen), Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the

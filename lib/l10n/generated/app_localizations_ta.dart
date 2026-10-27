@@ -1188,7 +1188,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get pinEntry => 'பின்';
 
   @override
-  String get unpinEntry => 'நீக்கு';
+  String get unpinEntry => 'பின் அகற்று';
 
   @override
   String get pinnedEntries => 'பின் செய்தவை';
