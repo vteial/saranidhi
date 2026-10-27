@@ -82,6 +82,12 @@ class UserGuideScreen extends StatelessWidget {
                     body: l10n.guideDashboardBody,
                   ),
 
+                  // Section 7a: Prasanam Oracle
+                  _Section(
+                    title: l10n.guideOracleTitle,
+                    body: l10n.guideOracleBody,
+                  ),
+
                   // Section 8: Benefits
                   _Section(
                     title: l10n.guideBenefitsTitle,

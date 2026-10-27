@@ -101,7 +101,7 @@ Within each breath cycle, the five elements (Earth, Water, Fire, Air, Ether) rot
 ## Features at a Glance
 
 ### 🫁 Breath Journal (Sara Kalai)
-Log your current breath flow with just two taps. See instantly whether you're aligned with the cosmic pattern. Optionally time your breath to track inhale, hold, and exhale durations. A **guided nostril test** walks you through checking your dominant flow — Lunar (left), Sushumna (both), or Solar (right) — with a **Start over** button to reset at any point.
+Log your current breath flow with just two taps. See instantly whether you're aligned with the cosmic pattern. Optionally time your breath to track inhale, hold, and exhale durations. Choose from **guided breath presets** (such as 4-7-8 and Box breathing / Sama Vritti) with tailored inhale, hold, and exhale ratios. A **guided nostril test** walks you through checking your dominant flow — Lunar (left), Sushumna (both), or Solar (right) — with a **Start over** button to reset at any point. You can also **star/pin** meaningful entries to keep key reflections pinned at the top of your journal.
 
 ### ⏱️ Nostril Pattern (Swara Clock Engine)
 The dashboard Nostril Pattern card displays the expected breath flow on the authentic **1-hour / 24-cycle ultradian clock** (CONF-014), independent of the 1.5-hour bird-state yama clock. Seeded at astronomical sunrise according to the classical **Weekday Udhaya schedule** (CONF-013 / CONF-001):
@@ -118,7 +118,7 @@ When you log a breath and it's **not aligned** with the cosmic expectation, a **
 A full-screen room guides you with the correct body position, a **Sama Vritti** breathing pacer (equal-ratio 4:4:4:4 — inhale, hold, exhale, hold), and a high-contrast countdown. When the timer ends, the app re-runs the guided nostril test to verify whether your flow shifted, and records the session so you can review what works for you over time.
 
 ### 🔥 Streak & Consistency
-Watch your alignment streak grow day by day. A 7-day visual ribbon shows your recent history. A 30-day trend reveals your deeper patterns. The longer your streak, the more attuned you become.
+Watch your alignment streak grow day by day. A 7-day visual ribbon shows your recent history. A 30-day trend reveals your deeper patterns. Celebrate special milestone animations at 7, 30, 100, and 365 days of continuous practice. The longer your streak, the more attuned you become.
 
 ### 🦅 Aruḍam Now (Integrated Ambient Verdict)
 The always-on verdict at the top of your Today dashboard that synthesizes astronomical timing and personal breath into ONE clear answer: *"Is now a good moment, and what should I do?"*
@@ -133,13 +133,13 @@ The always-on verdict at the top of your Today dashboard that synthesizes astron
 - **24h-Correct Inauspicious Floor-Lock:** Completely protects you during active Rahu Kaal or Emakandam windows across the full 24 hours of the day.
 
 ### 🔮 Prasanam Oracle
-A sacred consultation tool for life decisions. Select your query category (Artha for material, Kriya for action, Yoga for spiritual), center your intention, and receive a multi-factor composite score:
+A sacred consultation tool for life decisions, situated as the dedicated fourth tab in the bottom navigation (Home · Journal · Oracle · Analytics). Select your query category (Artha for material, Kriya for action, Yoga for spiritual), center your intention, and receive a multi-factor composite score:
 
 - **Score Gauge** (0–100) — synthesizes bird state, hora-swara alignment, tarabala, and category harmony
 - **5 Answer Bands** — Strong Yes (Siddha), Favorable (Vardhana), Caution (Mandha), Delay (Stambhana), Hard No (Sunya)
 - **Validation Gate** — requires fresh breath awareness (within 30 minutes) before consultation
 - **Window Status** — shows if current timing is favorable or void-locked (Rahu Kaal / Emakandam)
-- **History** — optionally save readings for post-event reflection and outcome tracking. Delete an entry by swiping it on touch devices, or by hovering over it and clicking the trash icon on desktop
+- **Intentional History** — readings are saved only when you tap 'Save to History', allowing meaningful post-event reflection and outcome tracking. Delete an entry by swiping it on touch devices, or by hovering over it and clicking the trash icon on desktop
 
 ### ⏰ Smart Reminders
 Receive gentle nudges at each Yama transition — the exact moment when cosmic energy shifts. Each notification carries a piece of traditional wisdom tailored to your current bird state.
@@ -206,13 +206,14 @@ Close one nostril. Notice which side flows more freely. Tap to log. That's your 
 
 ## Daily Practice (Recommended)
 
-| When | What | Time Required |
-|------|------|---------------|
-| **Morning (upon waking)** | Log your first breath of the day | 10 seconds |
-| **Each Yama transition** | Check notification, log breath if changed | 10 seconds |
-| **Before important decisions** | Check Oracle Readiness + active Hora | 30 seconds |
-| **Evening (before sleep)** | Review daily alignment in journal | 1 minute |
-| **Weekly** | Review 7-day ribbon and streak | 2 minutes |
+| When | What | Surface | Time Required |
+|------|------|---------|---------------|
+| **Morning (upon waking)** | Check 10-Yama schedule, active Hora, Tattva, and log first breath | Home Tab | 15 seconds |
+| **Each Yama transition** | Check notification, log breath if changed, use guided breath presets | Home / Journal | 15 seconds |
+| **Before important decisions** | Consult yes/no omen guidance during aligned windows | Oracle Tab | 30 seconds |
+| **Evening (before sleep)** | Review daily alignment, pin notable reflections | Journal Tab | 1 minute |
+| **Weekly** | Review weekly trends, retention averages, celebrate streak milestones | Analytics Tab | 2 minutes |
+| **Settings & Sync** | Export backups, manage notifications, or opt in to Practice Sync | Settings (gear icon) | As needed |
 
 *Total daily time: Under 5 minutes for a complete spiritual breath practice.*
 

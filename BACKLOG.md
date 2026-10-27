@@ -438,7 +438,7 @@ macro-seal — for the citation fix + optional framing) · `nostril_pattern.dart
 | 🔴 | ⬜ | End-to-end feature integration testing (all layers together) |
 | 🟡 | ⬜ | Performance optimization (startup time, animation smoothness) |
 | 🔴 | ⬜ | Comprehensive smoke test plan for v2.0.0 (all features) |
-| 🟡 | ⬜ | User Guide refresh — complete rewrite covering all v2.0 features |
+| 🟡 | ✅ | User Guide refresh — light content refresh covering all v2.0 features (`user-guide-refresh`) |
 | 🟢 | ⬜ | Wire Sprint 26 deferred widgets (WhatsNew startup, PresetSelector, StreakCelebration, isPinned star) |
 
 ---

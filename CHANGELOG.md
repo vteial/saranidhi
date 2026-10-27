@@ -10,6 +10,13 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Changed
+- **User Guide Light Refresh (`user-guide-refresh`)** — Content refresh of the in-app User Guide (`user_guide_screen.dart`) and mirror doc (`docs/product/user-guide.md`) for the v2.0 feature set, retaining the flat `CustomScrollView` / `_Section` architecture without pulling forward the post-2.0 structured-model epic:
+  - **Prasanam Oracle Section (R1)**: Added `guideOracle{Title,Body}` describing the 4th nav tab omen consultation, 5 guidance bands, window friction, and user-saved history (D1, D2).
+  - **Nav Correction (R2)**: Replaced stale 4-tab / "Explore" references with the current bottom navigation (Home · Journal · Oracle · Analytics) and top-bar Settings gear icon.
+  - **Journal & Dashboard Features (R3, R4)**: Documented pin/star entries (`isPinned`), guided breath presets (4-7-8, Box breathing), streak milestone celebrations (7, 30, 100, 365 days), and real-time active Hora & Tattva readings.
+  - **Practice Sync Note (R5)**: Added FAQ entry and benefits note clarifying Practice Sync as an opt-in, default-OFF cross-device feature preserving local-first privacy (D3).
+  - **Doc Mirror (R6)**: Refreshed `docs/product/user-guide.md` with unchanged `> Reviewed:` stamp.
+  - **Bilingual Gate & Invariant Tests (RT, RQ.1, RQ.2)**: Authored all strings in pure Tamil script (EN + TA); pinned flat sliver architecture and reference tables via `test/features/settings/presentation/user_guide_screen_test.dart` with 0 engine files touched.
 - **Localization Polish Sweep (`l10n-polish-sweep`)** — Cleared two logged Tamil l10n defects and tightened reduced-motion animation tests:
   - **Tamil Unpin/Delete Disambiguation (R1, `BUG-POLISH-01`)**: Updated `unpinEntry` in `lib/l10n/app_ta.arb` from `நீக்கு` to `பின் அகற்று` ("un-pin"), eliminating semantic collision with `delete` (`நீக்கு`). English remains `Unpin`.
   - **Yama Notification Title Localization (R2, `BUG-v1.11.1-03`)**: Localized fallback yama transition notification titles at consumer level (`notification_scheduler.dart`) using `l10n.yamaPrefix` / `languageCode` (`Saranidhi — யாம 1` in Tamil, `Saranidhi — Yama 1` in English) while keeping the astro-engine firewall untouched (`0` engine files) and AI-wisdom payload (`wisdom_context.dart:52`) on stable English keys (R2.4).
