@@ -56,6 +56,7 @@
 - [x] CHANGELOG `[Unreleased]` entry (user-guide-refresh).
 - [x] SPRINT_TRACKER row.
 - [x] Flip the BACKLOG "User Guide refresh" item to done (NOT the structured-model epic row).
+- [x] **TV — After human verification passes: `/verification-done`** (human-verify PASS recorded in REPORT.md)
 
 ## Human Verification Plan (Executor emits, owner runs)
 1. Open guide in EN → confirm Oracle section present, nav references correct, journal/dashboard/sync
