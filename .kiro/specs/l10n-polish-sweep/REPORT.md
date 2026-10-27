@@ -52,3 +52,25 @@ Pinned in `test/features/l10n_polish_sweep/l10n_polish_sweep_invariants_test.dar
    - In English mode, verify title displays `Saranidhi — Yama <N>`.
 3. **AI Wisdom Context Payload:**
    - Verify AI prompt payload retains `'activeYama': 'Yama <N>'` in English regardless of app language.
+
+### Verification Log — 2026-10-27 (PR #317)
+
+| Plan step | Result | Finding / correction |
+| :--- | :---: | :--- |
+| V1 Tamil journal unpin tooltip (R1) | ✅ | Tooltip renders `பின் அகற்று`, distinctly disambiguated from `delete` (`நீக்கு`). Confirmed by owner. |
+| V2 Yama notification title (R2) | ✅ | Notification title composes localized prefix (`Saranidhi — யாம <N>` in Tamil, `Saranidhi — Yama <N>` in English). Confirmed by owner. |
+| V3 AI wisdom payload stability (R2.4) | ✅ | Code invariant: `WisdomContext.toMap()['activeYama']` remains stable English `Yama <N>` across all locales (pinned via test `RQ.c`). |
+| VT Tamil mode (RT) | ✅ | Pure Tamil script verified on `unpinEntry` (`பின் அகற்று`) and yama prefix (`யாம` / `யா`); zero new keys, no transliteration. |
+| VQ Quality gates (RQ) | ✅ | `just validate-local` green: analyze clean (0 issues), 501 tests green (±4 accepted CloudKit baseline), coverage 47.2% ≥ 19%, web build compiles. |
+
+- **Iterations:** 1 (initial run; test assertion in `journal_pinned_ui_test.dart` aligned with new `பின் அகற்று` tooltip).
+- **Verdict:** PASS — human functional verification complete.
+- **Verified by:** owner (Human) · **Surface:** Executor (Antigravity)
+- **Provenance note:** Local validation gates and mechanical checks verified by Executor; functional verification of unpin tooltip and notification title attested by owner via `/verification-done`.
+
+#### Evidence summary (the 4 questions — requirements §4c)
+- **What am I accepting?** Disambiguation of Tamil unpin action label (`பின் அகற்று`) from delete (`நீக்கு`), consumer-level localization of yama transition notification titles (`Saranidhi — யாம <N>` / `Saranidhi — Yama <N>`), and tightened reduced-motion animation controller assertions.
+- **What could it affect?** Journal unpin button tooltip, yama notification fallback titles, and 3 animation test assertions. Astro engine firewall strictly maintained with **0** files touched under `lib/features/astro_engine/` (R-FW).
+- **Why believe it works?** Pinned regression suite `l10n_polish_sweep_invariants_test.dart` (5/5) and `performance_pass_invariants_test.dart` (11/11) pass, `journal_pinned_ui_test.dart` passes, and `just validate-local` is 100% green with 47.2% coverage.
+- **What remains unresolved?** None. All three items verified and passing.
+

@@ -44,5 +44,6 @@ Before any change, add/confirm tests that pin:
 - [x] `git diff --name-only main... | grep -E 'astro_engine|pakshi_calculator|swara|oracle|arudam|nakshatra'` → **0 files**. Record in REPORT.
 
 ## TP — Lockstep + PR
-- [x] CHANGELOG entry + flip the two BACKLOG rows (`BUG-POLISH-01`, `BUG-v1.11.1-03`) to resolved; note the 315 test-tighten carry-over addressed.
-- [ ] Open PR `fix/l10n-polish-sweep` → `main`, emit the Human Verification Plan, STOP.
+- [x] Open PR `fix/l10n-polish-sweep` → `main`, emit the Human Verification Plan, STOP.
+- [x] **TV — After human verification passes: `/verification-done`** (human-verify PASS recorded in REPORT.md)
+
