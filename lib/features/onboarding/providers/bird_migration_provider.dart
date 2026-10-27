@@ -16,3 +16,16 @@ final birdMigrationProvider = FutureProvider<BirdMigrationResult>((ref) async {
   final service = ref.watch(birdMigrationServiceProvider);
   return service.recalculateIfNeeded();
 });
+
+/// In-memory session flag: whether BirdMigrationOnLoadWidget has run this session.
+final birdMigrationFiredProvider =
+    NotifierProvider<BirdMigrationFiredNotifier, bool>(
+      BirdMigrationFiredNotifier.new,
+    );
+
+class BirdMigrationFiredNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+
+  void markFired() => state = true;
+}

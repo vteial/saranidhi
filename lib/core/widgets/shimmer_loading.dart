@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saranidhi/core/utils/reduced_motion.dart';
 
 /// A shimmer/skeleton loading widget that displays animated placeholder cards
 /// while dashboard data is loading.
@@ -23,9 +24,19 @@ class _ShimmerLoadingState extends State<ShimmerLoading>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
-    )..repeat();
+    );
     _animation = Tween<double>(begin: -1, end: 2).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    ReducedMotion.configureRepeating(
+      context: context,
+      controller: _controller,
+      staticValue: 0.5,
     );
   }
 

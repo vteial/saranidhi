@@ -13,10 +13,19 @@ import 'package:saranidhi/features/onboarding/presentation/widgets/bird_migratio
 import 'package:saranidhi/features/onboarding/presentation/widgets/location_on_open_widget.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
-void main() async {
+final Stopwatch _startupStopwatch = Stopwatch()..start();
+
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await NotificationService.instance.initialize();
   runApp(const ProviderScope(child: SaranidhiApp()));
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    // In-code stopwatch benchmark emission on initial frame render.
+    // ignore: avoid_print
+    print(
+      '[PERF] main -> first frame: ${_startupStopwatch.elapsedMilliseconds}ms',
+    );
+    NotificationService.instance.initialize();
+  });
 }
 
 /// Root application widget.

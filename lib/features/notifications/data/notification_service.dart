@@ -61,14 +61,19 @@ class NotificationService {
       macOS: darwinSettings,
     );
 
-    await _plugin.initialize(
-      initSettings,
-      onDidReceiveNotificationResponse: (response) {
-        onNotificationTap?.call(response.payload);
-      },
-    );
-    _initialized = true;
-    debugPrint('[Notifications] Initialized');
+    try {
+      await _plugin.initialize(
+        initSettings,
+        onDidReceiveNotificationResponse: (response) {
+          onNotificationTap?.call(response.payload);
+        },
+      );
+      _initialized = true;
+      debugPrint('[Notifications] Initialized');
+    } on Object catch (e) {
+      _initialized = true;
+      debugPrint('[Notifications] Initialization failed: $e');
+    }
   }
 
   /// Request notification permission from the user.

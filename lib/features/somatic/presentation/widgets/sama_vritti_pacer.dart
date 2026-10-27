@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saranidhi/core/utils/reduced_motion.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// The four equal phases of Sama Vritti (equal-ratio) breathing.
@@ -54,7 +55,17 @@ class _SamaVrittiPacerState extends State<SamaVrittiPacer>
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: widget.phaseSeconds * 4),
-    )..repeat();
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    ReducedMotion.configureRepeating(
+      context: context,
+      controller: _controller,
+      staticValue: 0,
+    );
   }
 
   @override

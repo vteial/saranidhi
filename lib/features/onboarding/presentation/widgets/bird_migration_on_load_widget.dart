@@ -34,6 +34,9 @@ class _BirdMigrationOnLoadWidgetState
   }
 
   Future<void> _runMigration() async {
+    if (ref.read(birdMigrationFiredProvider)) return;
+    ref.read(birdMigrationFiredProvider.notifier).markFired();
+
     final result = await ref.read(birdMigrationProvider.future);
     if (!result.changed || !mounted) return;
 

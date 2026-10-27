@@ -34,6 +34,9 @@ class _LocationOnOpenWidgetState extends ConsumerState<LocationOnOpenWidget> {
   }
 
   Future<void> _checkLocation() async {
+    if (ref.read(locationOnOpenFiredProvider)) return;
+    ref.read(locationOnOpenFiredProvider.notifier).markFired();
+
     final result = await ref.read(locationOnOpenProvider.future);
     if (!result.updated || !mounted) return;
 
