@@ -48,11 +48,13 @@ class _SyncOnOpenWidgetState extends ConsumerState<SyncOnOpenWidget> {
 
   /// Called when app returns to foreground.
   void _onAppResume() {
-    _triggerSyncIfNeeded();
+    _triggerSyncIfNeeded(isResume: true);
   }
 
   /// Triggers sync only if storage mode is iCloud.
-  void _triggerSyncIfNeeded() {
+  void _triggerSyncIfNeeded({bool isResume = false}) {
+    if (!isResume && ref.read(syncOnOpenFiredProvider)) return;
+
     final storageMode = ref.read(storageModeProvider);
     if (storageMode != StorageMode.icloud) return;
 
@@ -63,8 +65,9 @@ class _SyncOnOpenWidgetState extends ConsumerState<SyncOnOpenWidget> {
       return;
     }
 
-    ref.read(syncNotifierProvider.notifier).performSync();
+    ref.read(syncOnOpenFiredProvider.notifier).markFired();
     _hasSyncedOnce = true;
+    ref.read(syncNotifierProvider.notifier).performSync();
   }
 
   @override

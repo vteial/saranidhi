@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:saranidhi/core/utils/reduced_motion.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -75,6 +76,7 @@ class _StreakCelebrationOverlayState extends State<StreakCelebrationOverlay>
   late final Animation<double> _scaleAnimation;
   late final Animation<double> _fadeAnimation;
   Timer? _autoDismissTimer;
+  bool _animationStarted = false;
 
   @override
   void initState() {
@@ -89,12 +91,24 @@ class _StreakCelebrationOverlayState extends State<StreakCelebrationOverlay>
     _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
-    _controller.forward();
 
     // Auto-dismiss after 3 seconds
     _autoDismissTimer = Timer(const Duration(seconds: 3), () {
       if (mounted) widget.onDismiss();
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_animationStarted) {
+      _animationStarted = true;
+      if (context.prefersReducedMotion) {
+        _controller.value = 1.0;
+      } else {
+        _controller.forward();
+      }
+    }
   }
 
   @override

@@ -81,3 +81,16 @@ final registeredDevicesProvider =
   final syncService = ref.watch(cloudKitSyncServiceProvider);
   return syncService.pullDeviceMetadata();
 });
+
+/// In-memory session flag: whether SyncOnOpenWidget has fired this app session.
+final syncOnOpenFiredProvider =
+    NotifierProvider<SyncOnOpenFiredNotifier, bool>(
+      SyncOnOpenFiredNotifier.new,
+    );
+
+class SyncOnOpenFiredNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+
+  void markFired() => state = true;
+}

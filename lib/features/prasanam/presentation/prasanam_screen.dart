@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/core/providers/profile_location_provider.dart';
 import 'package:saranidhi/core/utils/branded_app_bar.dart';
+import 'package:saranidhi/core/utils/reduced_motion.dart';
 import 'package:saranidhi/core/utils/timezone_utils.dart';
 import 'package:saranidhi/database/database_provider.dart';
 import 'package:saranidhi/features/astro_engine/domain/action_window.dart';
@@ -63,12 +64,23 @@ class _PrasanamScreenState extends ConsumerState<PrasanamScreen>
     _intentionAnimController = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
-    )..repeat(reverse: true);
+    );
     _pulseAnimation = Tween<double>(begin: 0.95, end: 1.05).animate(
       CurvedAnimation(
         parent: _intentionAnimController,
         curve: Curves.easeInOut,
       ),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    ReducedMotion.configureRepeating(
+      context: context,
+      controller: _intentionAnimController,
+      reverse: true,
+      staticValue: 0.5,
     );
   }
 

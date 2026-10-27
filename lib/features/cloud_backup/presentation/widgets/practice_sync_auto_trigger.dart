@@ -93,7 +93,10 @@ class _PracticeSyncAutoTriggerState
         return;
       }
     } else {
-      if (_firedThisSession) return;
+      if (_firedThisSession || ref.read(practiceSyncColdOpenFiredProvider)) {
+        return;
+      }
+      ref.read(practiceSyncColdOpenFiredProvider.notifier).markFired();
       if (lastSynced != null &&
           now.difference(lastSynced) < widget.minInterval) {
         _firedThisSession = true;

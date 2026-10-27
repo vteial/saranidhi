@@ -348,3 +348,16 @@ class PracticeSyncNotifier extends Notifier<PracticeSyncState> {
     );
   }
 }
+
+/// In-memory session flag: whether PracticeSyncAutoTrigger cold open has fired.
+final practiceSyncColdOpenFiredProvider =
+    NotifierProvider<PracticeSyncColdOpenFiredNotifier, bool>(
+      PracticeSyncColdOpenFiredNotifier.new,
+    );
+
+class PracticeSyncColdOpenFiredNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
+
+  void markFired() => state = true;
+}

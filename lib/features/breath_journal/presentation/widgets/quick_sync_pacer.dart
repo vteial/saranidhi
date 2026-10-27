@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saranidhi/core/utils/reduced_motion.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 
 /// Animated breathing pacer to help shift dominant nostril.
@@ -32,6 +33,21 @@ class _QuickSyncPacerState extends State<QuickSyncPacer>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isActive) {
+      if (context.prefersReducedMotion) {
+        if (_controller.isAnimating) {
+          _controller.stop();
+        }
+        _controller.value = 1.0;
+      } else if (!_controller.isAnimating) {
+        _controller.repeat(reverse: true);
+      }
+    }
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -41,7 +57,13 @@ class _QuickSyncPacerState extends State<QuickSyncPacer>
     setState(() {
       _isActive = !_isActive;
       if (_isActive) {
-        _controller.repeat(reverse: true);
+        if (context.prefersReducedMotion) {
+          _controller
+            ..stop()
+            ..value = 1.0;
+        } else {
+          _controller.repeat(reverse: true);
+        }
       } else {
         _controller
           ..stop()
