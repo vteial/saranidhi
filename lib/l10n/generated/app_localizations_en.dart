@@ -1019,14 +1019,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guideHowToBody =>
-      '1. Check your \'Today\' tab each morning for the day\'s bird state schedule.\n\n2. Note your Ruling hours — schedule critical activities during this window.\n\n3. Avoid starting new ventures during Dying or Rahu Kaal.\n\n4. Log your breath flow (which nostril is dominant) and track alignment with cosmic patterns.\n\n5. Use the Breath Timer for conscious breathing practice.\n\n6. Check the \'Explore\' tab for historical trends and best times this week.';
+      '1. Home Tab — Check your birth bird\'s daily 10-Yama schedule, active planetary Hora, Tattva element, and today\'s Rahu Kaal.\n\n2. Timing Alignment — Note your Ruling (Arasu) hours for critical decisions; avoid beginning new initiatives during Dying (Saavu) or Rahu Kaal.\n\n3. Journal & Presets — Log breath flow entries, use guided breath presets (such as 4-7-8 and Box breathing), and star/pin meaningful entries to the top.\n\n4. Prasanam Oracle — Consult the dedicated 4th tab for yes/no omen readings during auspicious windows, and save readings to history for reflection.\n\n5. Analytics & Milestones — Review weekly alignment patterns, breath retention averages, and celebrate streak milestones (7, 30, 100, 365 days).\n\n6. Settings & Sync — Access preferences via the top gear icon to manage notifications, export backups, or optionally enable cross-device Practice Sync.';
 
   @override
   String get guideBestTitle => 'Best Practices';
 
   @override
   String get guideBestBody =>
-      '• Check in at each Yama transition (the app can notify you).\n• Use your Ruling period for important meetings, decisions, and creative work.\n• During Sleeping/Dying periods, focus on routine tasks or rest.\n• Log your breath at least once per Yama to build alignment awareness.\n• Use Quick Alignment practice if your nostril flow is out of sync.\n• Review alignment weekly in the Analytics tab to identify patterns.\n• Regularly export your data as a backup (Settings → Export).';
+      '• Check in at each Yama transition (the app can notify you).\n• Use your Ruling period for important meetings, decisions, and creative work.\n• During Sleeping/Dying periods, focus on routine tasks or rest.\n• Log your breath at least once per Yama to build alignment awareness.\n• Use Quick Alignment or guided breath presets if your nostril flow is out of sync.\n• Star and pin key journal entries to keep important reflections easily accessible.\n• Review alignment weekly in the Analytics tab to identify patterns.\n• Regularly export your data as a backup (Settings → Export), or opt in to Practice Sync for seamless multi-device continuity.';
 
   @override
   String get guidePadaGamanaTitle =>
@@ -1048,21 +1048,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guideDashboardBody =>
-      '• Bird Card — Shows your birth bird\'s current state (Ruling/Eating/Walking/Sleeping/Dying) and guidance text.\n• Rahu Kaal — Inauspicious window to avoid new beginnings (changes daily).\n• Daytime Schedule — Full 10-Yama view showing bird state for each time slot.\n• Nostril Pattern — Expected Pingalai (solar) or Idakalai (lunar) dominance for each Yama.\n• Daily Wisdom — Contextual spiritual insight tailored to your current moment.\n• Retention Time — Today\'s average breath retention duration.\n• Streak — Consecutive days with alignment logs.\n• 7-Day Ribbon — Visual weekly overview of your practice.';
+      '• Bird Card — Shows your birth bird\'s current state (Ruling/Eating/Walking/Sleeping/Dying) and guidance text.\n• Hora & Tattva — Real-time planetary hour (Horai) and active element (Tattvam) modifying current breath qualities.\n• Rahu Kaal — Inauspicious window to avoid new beginnings (changes daily).\n• Daytime Schedule — Full 10-Yama view showing bird state for each time slot.\n• Nostril Pattern — Expected Pingalai (solar) or Idakalai (lunar) dominance for each Yama.\n• Daily Wisdom — Contextual spiritual insight tailored to your current moment.\n• Retention Time — Today\'s average breath retention duration.\n• Streak & Milestones — Consecutive practice days with special milestone celebrations at 7, 30, 100, and 365 days.\n• 7-Day Ribbon — Visual weekly overview of your practice.';
+
+  @override
+  String get guideOracleTitle => 'Prasanam Oracle';
+
+  @override
+  String get guideOracleBody =>
+      'The Oracle tab (the fourth destination in bottom navigation) provides yes/no omen guidance (Prasanam) aligned with your cosmic moment.\n\n• How It Works — Choose your query category (Artha for practical or financial matters, Kriya for actions and health, Yoga for spiritual inquiry) and focus your intention before asking.\n\n• Five Guidance Bands — Readings resolve into five traditional omen bands: Siddha (Yes), Vardhana (Favourable), Mandha (Caution), Stambhana (Delay), or Sunya (No).\n\n• Cosmic Windows — A status banner reflects active conditions (such as inauspicious Rahu Kaal or Emakandam floor locks, or category-aligned Artha, Kriya, and Yoga windows).\n\n• Intentional History — Readings are not saved automatically. If an answer resonates, tap \'Save to History\' to record it, where you can later reflect on the outcome.';
 
   @override
   String get guideBenefitsTitle => 'Benefits';
 
   @override
   String get guideBenefitsBody =>
-      '• Cosmic Timing — Know the optimal moment to act, rest, or wait.\n• Self-Awareness — Develop sensitivity to your breath and energy patterns.\n• Better Decisions — Leverage Ruling periods for high-stakes choices.\n• Consistency — Build daily practice with streaks and visual feedback.\n• Privacy — All your data stays on your device. No servers, no tracking.\n• Ancient Wisdom, Modern App — Traditional Sara Kalai science in a clean, accessible format.';
+      '• Cosmic Timing — Know the optimal moment to act, rest, or wait.\n• Self-Awareness — Develop sensitivity to your breath and energy patterns.\n• Better Decisions — Leverage Ruling periods for high-stakes choices.\n• Consistency — Build daily practice with streaks and visual feedback.\n• Privacy & Control — All your data stays on your device by default. Offline-first design with optional, opt-in Practice Sync across your personal devices.\n• Ancient Wisdom, Modern App — Traditional Sara Kalai science in a clean, accessible format.';
 
   @override
   String get guideFaqTitle => 'Frequently Asked Questions';
 
   @override
   String get guideFaqBody =>
-      'Q: How accurate are the calculations?\nA: Saranidhi uses the Jean Meeus astronomical algorithm for Moon position and authentic Panja Pakshi lookup tables from Prof. Dr. U.S. Pulippani\'s research. Accuracy is within ±0.5°.\n\nQ: Does it work offline?\nA: Yes! All calculations run on your device. No internet needed.\n\nQ: Is my data private?\nA: Absolutely. Your data never leaves your device unless you choose to back up to your own iCloud/Google Drive.\n\nQ: What if I don\'t know my birth star?\nA: Use the \'Calculate from DOB\' option during onboarding — enter your date and time of birth and the app will determine your nakshatra.\n\nQ: What is Rahu Kaal?\nA: A daily inauspicious window (about 90 minutes) based on Vedic astrology. Avoid starting new activities during this time.\n\nQ: Can I use this outside India?\nA: Yes! The app works anywhere. Sunrise/sunset are calculated for your location. Preset cities are Indian, but any latitude/longitude works.\n\nQ: How do I export my data?\nA: Settings → Data Export/Import → Export All Data. This creates a JSON file you can save or share.\n\nQ: How do I set up a new device using an existing backup?\nA: On the first screen of the new device, tap \'Already using Saranidhi on another device? Import\' below Get Started and select your backup JSON file. Your practice data and Practice ID will be restored immediately.';
+      'Q: How accurate are the calculations?\nA: Saranidhi uses the Jean Meeus astronomical algorithm for Moon position and authentic Panja Pakshi lookup tables from Prof. Dr. U.S. Pulippani\'s research. Accuracy is within ±0.5°.\n\nQ: Does it work offline?\nA: Yes! All calculations run on your device. No internet needed.\n\nQ: Is my data private?\nA: Absolutely. Your data never leaves your device unless you choose to back up to your own iCloud/Google Drive or opt in to Practice Sync.\n\nQ: What is Practice Sync?\nA: Practice Sync is an optional, opt-in feature (disabled by default) that lets you securely sync your practice entries and streaks across your own devices. Your data remains completely private and local-first unless you explicitly enable sync in Settings and connect your account.\n\nQ: What if I don\'t know my birth star?\nA: Use the \'Calculate from DOB\' option during onboarding — enter your date and time of birth and the app will determine your nakshatra.\n\nQ: What is Rahu Kaal?\nA: A daily inauspicious window (about 90 minutes) based on Vedic astrology. Avoid starting new activities during this time.\n\nQ: Can I use this outside India?\nA: Yes! The app works anywhere. Sunrise/sunset are calculated for your location. Preset cities are Indian, but any latitude/longitude works.\n\nQ: How do I export my data?\nA: Settings → Data Export/Import → Export All Data. This creates a JSON file you can save or share.\n\nQ: How do I set up a new device using an existing backup?\nA: On the first screen of the new device, tap \'Already using Saranidhi on another device? Import\' below Get Started and select your backup JSON file. Your practice data and Practice ID will be restored immediately.';
 
   @override
   String get journalEmptyTitle => 'Begin Your Breath Journey';

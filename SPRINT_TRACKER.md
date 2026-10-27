@@ -49,6 +49,7 @@ Owner: **Eialarasu (@vteial)** for all sprints (solo, AI-assisted via Kiro).
 | — | Wire Sprint-26 Deferred Widgets (`deferred-widgets-wiring`) | *v2.0 freeze deliverable* | 👀 In Review |
 | — | Performance Pass — Startup & Animations (`performance-pass`) | *v2.0 release polish* | 👀 In Review |
 | — | Localization Polish Sweep (`l10n-polish-sweep`) | *v2.0 polish* | 👀 In Review |
+| — | User Guide Light Refresh (`user-guide-refresh`) | *v2.0 user-facing content* | 👀 In Review |
 | 48+ | Native "Now" surface (next — owner-chosen), Accuracy Calibration, v2.0 polish, App Store | *see [backlog](BACKLOG.md)* | ⬜ |
 
 > **Current state:** **v1.12.1-web is now live in production (2026-09-15)** — Sprint 45, the
