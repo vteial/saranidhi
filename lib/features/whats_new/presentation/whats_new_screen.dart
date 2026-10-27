@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:saranidhi/core/utils/app_constants.dart';
 import 'package:saranidhi/l10n/generated/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Key for storing the last seen app version in SharedPreferences.
 const _lastSeenVersionKey = 'whats_new_last_seen_version';
 
-/// The current version's "What's New" content.
-/// Update this each release with the changes for that version.
-const _currentWhatsNewVersion = '1.2.0';
+/// The current version's "What's New" content version.
+/// Automatically tracks [AppConstants.appVersion] so What's New displays
+/// and triggers in lockstep with the app release version.
+const currentWhatsNewVersion = AppConstants.appVersion;
 
 /// Provider that checks if the "What's New" screen should be shown.
 ///
@@ -16,13 +18,13 @@ const _currentWhatsNewVersion = '1.2.0';
 final shouldShowWhatsNewProvider = FutureProvider<bool>((ref) async {
   final prefs = await SharedPreferences.getInstance();
   final lastSeen = prefs.getString(_lastSeenVersionKey);
-  return lastSeen != _currentWhatsNewVersion;
+  return lastSeen != currentWhatsNewVersion;
 });
 
 /// Marks the "What's New" as seen for the current version.
 Future<void> markWhatsNewSeen() async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.setString(_lastSeenVersionKey, _currentWhatsNewVersion);
+  await prefs.setString(_lastSeenVersionKey, currentWhatsNewVersion);
 }
 
 /// "What's New" screen shown once per app version update.
@@ -60,7 +62,7 @@ class WhatsNewScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'v$_currentWhatsNewVersion',
+                'v$currentWhatsNewVersion',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -74,6 +76,12 @@ class WhatsNewScreen extends ConsumerWidget {
                   child: Column(
                     children: [
                       _FeatureItem(
+                        icon: Icons.sync,
+                        title: l10n.practiceSyncTitle,
+                        subtitle: l10n.practiceSyncSubtitle,
+                        theme: theme,
+                      ),
+                      _FeatureItem(
                         icon: Icons.celebration,
                         title: l10n.whatsNewCelebrations,
                         subtitle: l10n.whatsNewCelebrationsDesc,
@@ -86,27 +94,21 @@ class WhatsNewScreen extends ConsumerWidget {
                         theme: theme,
                       ),
                       _FeatureItem(
-                        icon: Icons.summarize,
-                        title: l10n.whatsNewDailySummary,
-                        subtitle: l10n.whatsNewDailySummaryDesc,
-                        theme: theme,
-                      ),
-                      _FeatureItem(
                         icon: Icons.star,
                         title: l10n.whatsNewPinEntries,
                         subtitle: l10n.whatsNewPinEntriesDesc,
                         theme: theme,
                       ),
                       _FeatureItem(
-                        icon: Icons.dark_mode,
-                        title: l10n.whatsNewNightSchedule,
-                        subtitle: l10n.whatsNewNightScheduleDesc,
+                        icon: Icons.summarize,
+                        title: l10n.whatsNewDailySummary,
+                        subtitle: l10n.whatsNewDailySummaryDesc,
                         theme: theme,
                       ),
                       _FeatureItem(
-                        icon: Icons.speed,
-                        title: l10n.whatsNewPerformance,
-                        subtitle: l10n.whatsNewPerformanceDesc,
+                        icon: Icons.dark_mode,
+                        title: l10n.whatsNewNightSchedule,
+                        subtitle: l10n.whatsNewNightScheduleDesc,
                         theme: theme,
                       ),
                     ],

@@ -121,9 +121,12 @@ class _HistoryContentState extends State<_HistoryContent> {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
 
-    // Group by date
+    final pinned = widget.entries.where((e) => e.isPinned).toList();
+    final unpinned = widget.entries.where((e) => !e.isPinned).toList();
+
+    // Group unpinned by date
     final grouped = <String, List<SaraKalaiJournalData>>{};
-    for (final entry in widget.entries) {
+    for (final entry in unpinned) {
       final date = DateTime.fromMillisecondsSinceEpoch(entry.timestamp);
       final key =
           '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
@@ -147,6 +150,37 @@ class _HistoryContentState extends State<_HistoryContent> {
             style: theme.textTheme.titleSmall,
           ),
         ),
+        if (pinned.isNotEmpty) ...[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  size: 16,
+                  color: theme.colorScheme.primary,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  l10n.pinnedEntries,
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  '(${pinned.length})',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ...pinned.map((entry) => _EntryTile(entry: entry)),
+          const SizedBox(height: 12),
+        ],
         ...sortedKeys.map((dateKey) {
           final dayEntries = grouped[dateKey]!;
           final isToday = dateKey == todayKey;
@@ -273,6 +307,25 @@ class _EntryTile extends ConsumerWidget {
                   timeStr,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                IconButton(
+                  tooltip: entry.isPinned ? l10n.unpinEntry : l10n.pinEntry,
+                  icon: Icon(
+                    entry.isPinned ? Icons.star : Icons.star_border,
+                    size: 18,
+                    color: entry.isPinned
+                        ? Colors.amber
+                        : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
+                  ),
+                  onPressed: () {
+                    ref.read(journalRepositoryProvider).setPinned(entry.id, !entry.isPinned);
+                  },
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(
+                    minWidth: 28,
+                    minHeight: 28,
                   ),
                 ),
                 const SizedBox(width: 4),

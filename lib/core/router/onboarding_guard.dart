@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saranidhi/features/onboarding/presentation/intro_screen.dart';
 import 'package:saranidhi/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:saranidhi/features/onboarding/providers/onboarding_providers.dart';
+import 'package:saranidhi/features/whats_new/presentation/whats_new_screen.dart';
 
 /// Whether the user has dismissed the intro screen and is in the onboarding flow.
 final introSeenProvider = NotifierProvider<IntroSeenNotifier, bool>(
@@ -17,12 +18,14 @@ class IntroSeenNotifier extends Notifier<bool> {
   void markSeen() => state = true;
 }
 
-/// Guards the main app — shows intro → onboarding if profile not completed.
+/// Guards the main app — shows intro → onboarding if profile not completed,
+/// then shows What's New screen once if eligible before showing main app.
 ///
 /// Flow:
 /// 1. If onboarding not complete AND intro not seen → show IntroScreen
 /// 2. If onboarding not complete AND intro seen → show OnboardingScreen
-/// 3. If onboarding complete → show main app (child)
+/// 3. If onboarding complete AND shouldShowWhatsNew → show WhatsNewScreen
+/// 4. If onboarding complete AND !shouldShowWhatsNew → show main app (child)
 ///
 /// Wraps screens in their own [Navigator] so that dialog-based widgets
 /// (showDatePicker, showTimePicker) have a valid overlay to push onto.
@@ -51,6 +54,16 @@ class OnboardingGuard extends ConsumerWidget {
         key: const ValueKey('onboarding-navigator'),
         onGenerateRoute: (_) => MaterialPageRoute<void>(
           builder: (_) => const OnboardingScreen(),
+        ),
+      );
+    }
+
+    final showWhatsNewAsync = ref.watch(shouldShowWhatsNewProvider);
+    if (showWhatsNewAsync.value ?? false) {
+      return Navigator(
+        key: const ValueKey('whats-new-navigator'),
+        onGenerateRoute: (_) => MaterialPageRoute<void>(
+          builder: (_) => const WhatsNewScreen(),
         ),
       );
     }

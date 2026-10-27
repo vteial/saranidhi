@@ -56,13 +56,17 @@ class PresetSelector extends StatelessWidget {
     );
   }
 
-  String _presetName(BreathPreset preset, AppLocalizations l10n) {
-    return switch (preset.id) {
-      'relaxing_478' => l10n.preset478,
-      'box_breathing' => l10n.presetBox,
-      'energizing' => l10n.presetEnergizing,
-      'calming' => l10n.presetCalming,
-      _ => preset.id,
-    };
-  }
+  String _presetName(BreathPreset preset, AppLocalizations l10n) =>
+      presetDisplayName(preset, l10n);
+}
+
+/// Returns the localized display name for a [BreathPreset].
+String presetDisplayName(BreathPreset preset, AppLocalizations l10n) {
+  return switch (preset.id) {
+    'relaxing_478' => l10n.preset478,
+    'box_breathing' => l10n.presetBox,
+    'energizing' => l10n.presetEnergizing,
+    'calming' => l10n.presetCalming,
+    _ => preset.id,
+  };
 }

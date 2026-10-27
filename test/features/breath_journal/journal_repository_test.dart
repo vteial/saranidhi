@@ -116,4 +116,32 @@ void main() {
       expect(results, isEmpty);
     });
   });
+
+  group('JournalRepository.setPinned (R4 / T2)', () {
+    test('updates isPinned flag and round-trips correctly', () async {
+      final id = await repo.insertEntry(
+        expectedFlow: 'solar',
+        actualFlow: 'solar',
+        isAligned: true,
+        nostril: 'right',
+      );
+
+      // Default isPinned is false
+      var entries = await repo.getAllEntries();
+      expect(entries.first.isPinned, isFalse);
+
+      // Set pinned to true
+      final rowsUpdated = await repo.setPinned(id, true);
+      expect(rowsUpdated, equals(1));
+
+      entries = await repo.getAllEntries();
+      expect(entries.first.isPinned, isTrue);
+
+      // Toggle back to false
+      await repo.setPinned(id, false);
+      entries = await repo.getAllEntries();
+      expect(entries.first.isPinned, isFalse);
+    });
+  });
 }
+

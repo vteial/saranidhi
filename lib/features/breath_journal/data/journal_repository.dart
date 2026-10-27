@@ -110,6 +110,14 @@ class JournalRepository {
     )..where((t) => t.id.equals(id))).go();
   }
 
+  /// Sets the pinned status of a journal entry.
+  // ignore: avoid_positional_boolean_parameters
+  Future<int> setPinned(String id, bool isPinned) async {
+    return (_db.update(_db.saraKalaiJournal)..where((t) => t.id.equals(id))).write(
+      SaraKalaiJournalCompanion(isPinned: Value(isPinned)),
+    );
+  }
+
   /// Returns the count of entries for today.
   Future<int> todayCount() async {
     final entries = await getEntriesForDate(DateTime.now());
